@@ -8,6 +8,7 @@ class SentryGroupSeeder extends Seeder
 
         Sentry::getGroupProvider()->create(array(
             'name' => 'Admins',
+            'is_origin' => 1,
             'permissions' => array(
                 'admin' => 1,
                 'power' => 0,
@@ -15,13 +16,21 @@ class SentryGroupSeeder extends Seeder
             )));
 
         Sentry::getGroupProvider()->create(array(
-            'name' => 'Test',
+            'name' => 'Power',
+            'is_origin' => 1,
+            'permissions' => array(
+                'admin' => 1,
+                'power' => 1,
+                'simple' => 0,
+            )));
+
+        Sentry::getGroupProvider()->create(array(
+            'name' => 'Simple',
+            'is_origin' => 1,
             'permissions' => array(
                 'admin' => 1,
                 'power' => 1,
                 'simple' => 1,
             )));
-
     }
-
 }

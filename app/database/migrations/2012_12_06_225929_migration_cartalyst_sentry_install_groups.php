@@ -34,6 +34,7 @@ class MigrationCartalystSentryInstallGroups extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->text('permissions')->nullable();
+            $table->boolean('is_origin')->default(0);
 			$table->timestamps();
 
 			// We'll need to ensure that MySQL uses the InnoDB engine to

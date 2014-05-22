@@ -28,9 +28,9 @@ Skupiny
                     </td>
 					<td>
 						<button class="btn btn-default" onClick="location.href='{{ action('GroupController@edit', array($group->id)) }}'">Editovat</button>
-					 	<button class="btn btn-default action_confirm {{ ($group->id == 1) ? 'disabled' : '' }}" type="button" data-method="delete" href="{{ URL::to('adm/groups') }}/{{ $group->id }}">Smazat</button>
+					 	<button class="btn btn-default action_confirm {{ ($group->is_origin == 1) ? 'disabled' : '' }}" type="button" data-method="delete" href="{{ URL::to('adm/groups') }}/{{ $group->id }}">Smazat</button>
 					 </td>
-				</tr>	
+				</tr>
 			@endforeach
 			</tbody>
 		</table> 
