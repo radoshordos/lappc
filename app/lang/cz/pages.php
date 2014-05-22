@@ -1,0 +1,33 @@
+<?php
+
+return array(
+	'flashsuccess'	=> 'Úspěch',
+	'flasherror'	=> 'Chyba',
+	'flashwarning'	=> 'Varování',
+	'flashinfo'		=> 'FYI',
+	'register'		=> 'Registrovat',
+	'login'			=> "Login",
+	'logout'		=> "Logout",
+	'home'			=> "Domu",
+	'users'			=> "Users",
+	'user'			=> "User",
+	'groups'		=> "Skupiny",
+	'helloworld'	=> "Hello World!",
+	'description'	=> "Vítejte",
+	'loginstatus'	=> "Jsi úspěšně přihlášen",
+	'sessiondata'	=> "Session Data",
+	'currentusers'	=> "Součastní uživatelé",
+	'options'		=> 'Nastavení',
+	'status'		=> "Status",
+	'active'		=> "Aktivní",
+	'notactive'		=> "Neaktivní",
+	'suspended'		=> "Pozastaven",
+	'banned'		=> "Banován",
+	'actionedit'	=> "Editovat",
+	'actionsuspend'	=> "Pozastavit",
+	'actionunsuspend' => "Aktivovat",
+	'actionban'		=> "Banovat",
+	'actionunban'	=> "Odbanovat",
+	'actiondelete'	=> "Smazat",
+	''	=> ""
+);

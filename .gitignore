@@ -1,0 +1,17 @@
+.DS_Store
+.env.*.php
+.env.php
+.idea
+.vagrant
+/app/config/defaultMailConfig.php
+/app/config/local/*
+/app/config/sendGridConfig.php
+/bootstrap/compiled.php
+/vendor
+Thumbs.db
+Vagrantfile
+bootstrap.sh
+composer.lock
+composer.phar
+l4withsentry.sublime-project
+l4withsentry.sublime-workspace
