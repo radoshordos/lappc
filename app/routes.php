@@ -8,6 +8,7 @@ Route::get('/', function()
 // Nastavení routy
 Route::get('adm/nastaveni/tree-group-top', array('as' => 'adm.nastaveni.tree2group2top','uses' => 'Tree2group2topController@show'));
 Route::get('adm/admin/phpinfo', array('as' => 'adm.admin.phpinfo','uses' => 'PhpinfoController@show'));
+Route::get('adm/ppc/manual-import', array('as' => 'adm.ppc.manual2import','uses' => 'Ppc2manual2importController@show'));
 
 
 // Session Routes

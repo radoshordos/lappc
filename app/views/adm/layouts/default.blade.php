@@ -51,6 +51,15 @@
 
                 @if (Sentry::getUser()->hasAccess('admin'))
                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PPC <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::to('adm/ppc/manual-import') }}">Manual Import</a></li>
+                    </ul>
+                </li>
+                @endif
+
+                @if (Sentry::getUser()->hasAccess('admin'))
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::to('adm/admin/phpinfo') }}">PhpInfo();</a></li>
