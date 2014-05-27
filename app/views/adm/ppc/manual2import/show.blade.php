@@ -10,13 +10,22 @@ Home
 @section('content')
 <h1>Manual import</h1>
 
-
-
+@if ($count == 0)
 {{ Form::open(array('action' => 'adm.Ppc2manual2import@show')) }}
 {{ Form::url('url-file') }}
 {{ Form::submit('Submit') }}
 {{ Form::close() }}
-@stop
+@else
+
+@foreach ($source as $arr)
+<p>-{{ $arr->getProduct() }}</p>
+@endforeach
+
+
+@endif
+
+
+
 
 
 @stop
