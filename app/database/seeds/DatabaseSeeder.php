@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call('TreeGroupTopTableSeeder');
         $this->call('TreeGroupTableSeeder');
+
+        $this->call('PpcConfigSeeder');
     }
 
 }
