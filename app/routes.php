@@ -4,12 +4,10 @@ Route::get('/', function () {
     return 'Hello World';
 });
 
-
 // Nastavení routy
 Route::get('adm/nastaveni/tree-group-top', array('as' => 'adm.nastaveni.tree2group2top', 'uses' => 'Tree2group2topController@show'));
 Route::get('adm/admin/phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'PhpinfoController@show'));
-Route::match(array('GET', 'POST'), 'adm/ppc/manual-import', array('as' => 'adm.ppc.manual2import', 'uses' => 'Ppc2manual2importController@show'));
-
+Route::match(array('GET', 'POST'), 'adm/ppc/manual-import', array('as' => 'adm.Ppc2manual2import@show', 'uses' => 'Ppc2manual2importController@show'));
 
 // Session Routes
 Route::get('adm/login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));
