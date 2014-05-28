@@ -21,8 +21,6 @@ class Ppc2manual2importController extends Controller
                 return View::make('adm.ppc.manual2import.show', array('source' => $fr->getArr(), 'count' => $fr->getCount()));
             } catch (ErrorException $e) {
                 Session::flash('error', $e->getMessage());
-            } catch (Illuminate\Filesystem\FileNotFoundException $e) {
-                die("The file doesn't exist");
             }
         }
         return View::make('adm.ppc.manual2import.show');

@@ -53,6 +53,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">PPC <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ URL::to('adm/ppc/rules') }}">PPC rules</a></li>
                         <li><a href="{{ URL::to('adm/ppc/manual-import') }}">Manual Import</a></li>
                         <li><a href="{{ URL::to('adm/ppc/config') }}">PPC Konfigurace</a></li>
                     </ul>

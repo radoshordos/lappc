@@ -7,7 +7,7 @@ class Ppc2config extends Migration
 {
     public function up()
     {
-        Schema::create('ppc_config', function ($table) {
+        Schema::create('ppc_config', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
             $table->string('email');

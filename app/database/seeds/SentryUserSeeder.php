@@ -9,19 +9,19 @@ class SentryUserSeeder extends Seeder
 
         Sentry::getUserProvider()->create(array(
             'email' => 'admin@admin.com',
-            'password' => 'sentryadmin',
+            'password' => 'admin@admin.com',
             'activated' => 1,
         ));
 
         Sentry::getUserProvider()->create(array(
             'email' => 'power@power.com',
-            'password' => 'sentryuser',
+            'password' => 'power@power.com',
             'activated' => 1,
         ));
 
         Sentry::getUserProvider()->create(array(
             'email' => 'simple@simple.com',
-            'password' => 'sentryuser',
+            'password' => 'simple@simple.com',
             'activated' => 1,
         ));
     }

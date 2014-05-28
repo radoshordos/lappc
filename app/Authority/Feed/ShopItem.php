@@ -2,7 +2,7 @@
 
 namespace Authority\Xml;
 
-class FeedShopitem
+class FeedShopItem
 {
     private $productName;
     private $product;
@@ -20,7 +20,7 @@ class FeedShopitem
         $this->setManufacturer($simpleXMLElement);
     }
 
-    public function setProduct(\SimpleXMLElement $simpleXMLElement)
+    public function setProductName(\SimpleXMLElement $simpleXMLElement)
     {
         if ($simpleXMLElement->PRODUCTNAME) {
             $this->productName = (string)$simpleXMLElement->PRODUCTNAME;
@@ -41,14 +41,14 @@ class FeedShopitem
         }
     }
 
-    public function setImageurl(\SimpleXMLElement $simpleXMLElement)
+    public function setImageUrl(\SimpleXMLElement $simpleXMLElement)
     {
         if ($simpleXMLElement->IMGURL) {
             $this->imgUrl = (string)$simpleXMLElement->IMGURL;
         }
     }
 
-    public function setPricevat(\SimpleXMLElement $simpleXMLElement)
+    public function setPriceVat(\SimpleXMLElement $simpleXMLElement)
     {
         if ($simpleXMLElement->PRICE_VAT) {
             $this->priceVat = (string)$simpleXMLElement->PRICE_VAT;

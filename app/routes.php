@@ -5,12 +5,20 @@ Route::get('/', function () {
 });
 
 // Nastavení routy
-Route::get('adm/nastaveni/tree-group-top', array('as' => 'adm.nastaveni.tree2group2top', 'uses' => 'Tree2group2topController@show'));
-Route::get('adm/admin/phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'PhpinfoController@show'));
+
+Route::group(array('prefix' => 'adm'), function() {
+    Route::get('nastaveni/tree-group-top', array('as' => 'adm.nastaveni.tree2group2top', 'uses' => 'Tree2group2topController@show'));
+    Route::get('admin/phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'PhpinfoController@show'));
+
+    Route::group(array('prefix' => 'ppc'), function() {
+        Route::any('manual-import', array('as' => 'adm.Ppc2manual2import@show', 'uses' => 'Ppc2manual2importController@show'));
+        Route::any('config', array('as' => 'adm.Ppc2config@show', 'uses' => 'Ppc2configController@show'));
+        Route::any('rules', array('as' => 'adm.Ppc2rules@show', 'uses' => 'Ppc2rulesController@show'));
+        Route::any('rules/create', array('as' => 'adm.Ppc2rules@create', 'uses' => 'Ppc2rulesController@create'));
+    });
+});
 
 // PPC
-Route::match(array('GET', 'POST'), 'adm/ppc/manual-import', array('as' => 'adm.Ppc2manual2import@show', 'uses' => 'Ppc2manual2importController@show'));
-Route::any('adm/ppc/config', array('as' => 'adm.Ppc2config@show', 'uses' => 'Ppc2configController@show'));
 
 // Session Routes
 Route::get('adm/login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));
