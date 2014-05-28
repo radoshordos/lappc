@@ -29,11 +29,12 @@ class Ppc2db extends Migration
         Schema::create('ppc_db', function ($table) {
 
             $table->increments('id')->unsigned();
-            $table->date('created_at');
             $table->string('manufacturer');
             $table->string('name');
             $table->decimal('price', 7, 2);
             $table->string('imgurl');
+            $table->timestamps();
+
             $table->engine = 'InnoDB';
         });
     }

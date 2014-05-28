@@ -10,7 +10,7 @@ Route::get('adm/admin/phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'Ph
 
 // PPC
 Route::match(array('GET', 'POST'), 'adm/ppc/manual-import', array('as' => 'adm.Ppc2manual2import@show', 'uses' => 'Ppc2manual2importController@show'));
-Route::get('adm/ppc/config', array('as' => 'adm.Ppc2config@show', 'uses' => 'Ppc2configController@show'));
+Route::any('adm/ppc/config', array('as' => 'adm.Ppc2config@show', 'uses' => 'Ppc2configController@show'));
 
 // Session Routes
 Route::get('adm/login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));
