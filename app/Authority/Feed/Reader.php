@@ -2,7 +2,7 @@
 
 namespace Authority\Feed;
 
-class XmlReader
+class Reader
 {
 
     protected $count = 0;
@@ -13,7 +13,7 @@ class XmlReader
         $xml = simplexml_load_string($xmlSource);
         if ($xml) {
             foreach ($xml as $val) {
-                $this->arr[$this->count++] = new FeedShopItem($val);
+                $this->arr[$this->count++] = new ShopItem($val);
             }
         }
     }

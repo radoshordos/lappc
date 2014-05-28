@@ -1,7 +1,8 @@
 <?php
+
 use Authority\Eloquent\PpcRules;
 
-class Ppc2rulesController extends Controller
+class PpcRulesController extends Controller
 {
     public function show()
     {
@@ -16,8 +17,7 @@ class Ppc2rulesController extends Controller
 
     public function store()
     {
-
-        return Redirect::to('adm.ppc.rules.show');
+        return Redirect::route('adm.ppc.rules.show');
 
         /*
         $result = $this->groupForm->save( Input::all() );

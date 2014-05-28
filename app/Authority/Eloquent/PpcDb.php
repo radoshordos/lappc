@@ -2,13 +2,13 @@
 
 namespace Authority\Eloquent;
 
-use Authority\Feed\XmlShopItem;
+use Authority\Feed\ShopItem;
 
 class PpcDb extends \Eloquent
 {
     protected $table = 'ppc_db';
 
-    public static function saveShopItem(XmlShopItem $fs) {
+    public static function saveShopItem(ShopItem $fs) {
 
         $ppc_db = new PpcDb;
         $ppc_db->name = $fs->getProduct();

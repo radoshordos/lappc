@@ -18,9 +18,9 @@ class CreatePpcRules extends Migration {
             $table->tinyInteger('name_count_word_max')->unsigned();
             $table->tinyInteger('price_min')->unsigned();
             $table->tinyInteger('price_max')->unsigned();
-            $table->boolean('is_sell');
-            $table->boolean('is_action');
-            $table->boolean('is_ready_send');
+            $table->enum('in_sell', array('YES','NO'));
+            $table->enum('in_action', array('YES','NO'));
+            $table->enum('ready_send', array('YES','NO'));
             $table->timestamps();
 		});
 	}

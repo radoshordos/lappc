@@ -2,7 +2,7 @@
 
 use Authority\Eloquent\PpcConfig;
 
-class Ppc2configController extends Controller
+class PpcConfigController extends Controller
 {
     public function show()
     {

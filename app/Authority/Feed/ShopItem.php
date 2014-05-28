@@ -1,8 +1,8 @@
 <?php
 
-namespace Authority\Xml;
+namespace Authority\Feed;
 
-class FeedShopItem
+class ShopItem
 {
     private $productName;
     private $product;

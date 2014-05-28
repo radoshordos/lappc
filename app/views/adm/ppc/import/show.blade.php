@@ -9,7 +9,7 @@ Home
 {{-- Content --}}
 @section('content')
 <h3 class="text-center">Manual import</h3>
-{{ Form::open(array('action' => 'adm.Ppc2manual2import@show','class'=>'form-horizontal','role'=>'form')) }}
+{{ Form::open(array('action' => 'adm.ppc.import.show','class'=>'form-horizontal','role'=>'form')) }}
 <div class="form-group">
     <label for="'url-file" class="col-sm-2 control-label">Url</label>
     <div class="col-sm-10">
