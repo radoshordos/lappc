@@ -13,7 +13,9 @@ Route::group(array('prefix' => 'adm'), function() {
     Route::group(array('prefix' => 'ppc'), function() {
         Route::any('manual-import', array('as' => 'adm.Ppc2manual2import@show', 'uses' => 'Ppc2manual2importController@show'));
         Route::any('config', array('as' => 'adm.Ppc2config@show', 'uses' => 'Ppc2configController@show'));
-        Route::any('rules', array('as' => 'adm.Ppc2rules@show', 'uses' => 'Ppc2rulesController@show'));
+
+        Route::resource('rules', 'Ppc2rulesController');
+        Route::any('rules/show', array('as' => 'adm.Ppc2rules@show', 'uses' => 'Ppc2rulesController@show'));
         Route::any('rules/create', array('as' => 'adm.Ppc2rules@create', 'uses' => 'Ppc2rulesController@create'));
     });
 });
