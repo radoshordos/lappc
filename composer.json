@@ -3,6 +3,8 @@
         "laravel/framework": "4.2.*",
         "cartalyst/sentry": "2.*",
         "twbs/bootstrap": "3.*",
+        "ivaynberg/select2": "3.*",
+        "components/jquery": "1.*",
         "dg/adminer-custom": "*"
     },
     "require-dev": {

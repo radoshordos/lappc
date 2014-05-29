@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/js/select2/select2.css') }}">
+
     <style>
         @section ('styles')
         body {
@@ -123,7 +125,10 @@
 
 <!-- ./ container -->
 
+
+
 <script src="{{ asset('admin/js/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ asset('admin/js/select2/select2.css') }}"></script>
 <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('admin/js/restfulizer.js') }}"></script>
 </body>
