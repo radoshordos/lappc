@@ -1,4 +1,6 @@
-<?php namespace Authority\Service\Form\SuspendUser;
+<?php
+
+namespace Authority\Service\Form\SuspendUser;
 
 use Authority\Service\Validation\ValidableInterface;
 use Authority\Repo\User\UserInterface;

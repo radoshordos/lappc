@@ -1,4 +1,5 @@
 <?php
+
 namespace Authority\Service\Validation;
 
 interface ValidableInterface

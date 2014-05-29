@@ -1,4 +1,6 @@
-<?php namespace Authority\Service\Form\ForgotPassword;
+<?php
+
+namespace Authority\Service\Form\ForgotPassword;
 
 use Authority\Service\Validation\AbstractLaravelValidator;
 

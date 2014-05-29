@@ -1,4 +1,6 @@
-<?php namespace Authority\Service\Form\Login;
+<?php
+
+namespace Authority\Service\Form\Login;
 
 use Authority\Service\Validation\AbstractLaravelValidator;
 

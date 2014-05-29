@@ -4,6 +4,14 @@ use Authority\Eloquent\PpcRules;
 
 class PpcRulesController extends Controller
 {
+
+    public function __construct(GroupForm $groupForm)
+    {
+        $this->groupForm = $groupForm;
+
+    }
+
+
     public function show()
     {
         $rules = PpcRules::all();
@@ -19,9 +27,10 @@ class PpcRulesController extends Controller
     {
         return Redirect::route('adm.ppc.rules.show');
 
-        /*
         $result = $this->groupForm->save( Input::all() );
 
+        Session::flash('success', $result);
+        /*
         if( $result['success'] )
         {
             // Success!

@@ -1,4 +1,6 @@
-<?php namespace Authority\Service\Form\ChangePassword;
+<?php
+
+namespace Authority\Service\Form\ChangePassword;
 
 use Authority\Service\Validation\ValidableInterface;
 use Authority\Repo\User\UserInterface;

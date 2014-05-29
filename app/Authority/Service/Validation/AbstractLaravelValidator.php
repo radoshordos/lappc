@@ -1,4 +1,6 @@
-<?php namespace Authority\Service\Validation;
+<?php
+
+namespace Authority\Service\Validation;
 
 use Illuminate\Validation\Factory;
 

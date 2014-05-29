@@ -1,20 +1,23 @@
-<?php namespace Authority\Repo\Session;
+<?php
 
-interface SessionInterface {
+namespace Authority\Repo\Session;
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store($data);
+interface SessionInterface
+{
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy();
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store($data);
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy();
 
 }

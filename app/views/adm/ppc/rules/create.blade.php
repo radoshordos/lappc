@@ -36,6 +36,14 @@ PPC - Nové pravidlo
 
 {{ Form::open(array('action' => 'PpcRulesController@store', 'class' => 'form-horizontal', 'role' => 'form')) }}
 <div class="form-group">
+    <label for="name_lenght_min" class="col-sm-2 control-label">Mód</label>
+
+    <div class="col-sm-10">
+        <?php echo Form::select('modes', array("import" => 'Import', "insert" => 'Insert'), NULL, array('id' => 'modes', 'class' => 'form-control')); ?>
+    </div>
+</div>
+
+<div class="form-group">
     <label for="name_lenght_min" class="col-sm-2 control-label">Počet znaků</label>
 
     <div class="col-sm-5">

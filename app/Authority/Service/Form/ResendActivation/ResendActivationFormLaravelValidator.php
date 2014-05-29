@@ -1,4 +1,6 @@
-<?php namespace Authority\Service\Form\ResendActivation;
+<?php
+
+namespace Authority\Service\Form\ResendActivation;
 
 use Authority\Service\Validation\AbstractLaravelValidator;
 

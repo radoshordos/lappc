@@ -1,4 +1,6 @@
-<?php namespace Authority\Repo\Session;
+<?php
+
+namespace Authority\Repo\Session;
 
 use Cartalyst\Sentry\Sentry;
 use Authority\Repo\RepoAbstract;

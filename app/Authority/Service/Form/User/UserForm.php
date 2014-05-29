@@ -1,4 +1,6 @@
-<?php namespace Authority\Service\Form\User;
+<?php
+
+namespace Authority\Service\Form\User;
 
 use Authority\Service\Validation\ValidableInterface;
 use Authority\Repo\User\UserInterface;

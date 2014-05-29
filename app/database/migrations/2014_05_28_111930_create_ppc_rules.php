@@ -10,17 +10,17 @@ class CreatePpcRules extends Migration {
 		Schema::create('ppc_rules', function(Blueprint $table)
 		{
 			$table->increments('id')->unsigned();
-            $table->enum('modes', array('import', 'insert'));
-            $table->string('dev');
-            $table->tinyInteger('name_lenght_min')->unsigned();
-            $table->tinyInteger('name_lenght_max')->unsigned();
-            $table->tinyInteger('name_count_word_min')->unsigned();
-            $table->tinyInteger('name_count_word_max')->unsigned();
-            $table->tinyInteger('price_min')->unsigned();
-            $table->tinyInteger('price_max')->unsigned();
-            $table->enum('in_sell', array('YES','NO'));
-            $table->enum('in_action', array('YES','NO'));
-            $table->enum('ready_send', array('YES','NO'));
+            $table->enum('modes', array('import', 'insert'))->default('import');
+            $table->string('dev')->nullable();
+            $table->tinyInteger('name_lenght_min')->unsigned()->nullable();
+            $table->tinyInteger('name_lenght_max')->unsigned()->nullable();
+            $table->tinyInteger('name_count_word_min')->unsigned()->nullable();
+            $table->tinyInteger('name_count_word_max')->unsigned()->nullable();
+            $table->tinyInteger('price_min')->unsigned()->nullable();
+            $table->tinyInteger('price_max')->unsigned()->nullable();
+            $table->enum('in_sell', array('YES','NO'))->nullable();
+            $table->enum('in_action', array('YES','NO'))->nullable();
+            $table->enum('ready_send', array('YES','NO'))->nullable();
             $table->timestamps();
 		});
 	}
