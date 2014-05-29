@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/js/select2/select2.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('admin/css/s2b3/select2-bootstrap.css') }}">
+    <script src="{{ asset('admin/js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('admin/js/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/js/restfulizer.js') }}"></script>
+    @section('script')
+    @show
     <style>
         @section ('styles')
         body {
@@ -127,9 +133,7 @@
 
 
 
-<script src="{{ asset('admin/js/jquery-1.11.1.min.js') }}"></script>
-<script src="{{ asset('admin/js/select2/select2.css') }}"></script>
-<script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('admin/js/restfulizer.js') }}"></script>
+
+
 </body>
 </html>

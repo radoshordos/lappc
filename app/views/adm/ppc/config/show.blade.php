@@ -4,7 +4,10 @@
 @section('title')
 @parent
 Home
+
 @stop
+
+
 
 {{-- Content --}}
 @section('content')
