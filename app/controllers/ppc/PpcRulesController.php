@@ -5,13 +5,6 @@ use Authority\Eloquent\PpcRules;
 class PpcRulesController extends Controller
 {
 
-    public function __construct(GroupForm $groupForm)
-    {
-        $this->groupForm = $groupForm;
-
-    }
-
-
     public function show()
     {
         $rules = PpcRules::all();

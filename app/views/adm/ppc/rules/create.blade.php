@@ -36,62 +36,55 @@ PPC - Nové pravidlo
 
 {{ Form::open(array('action' => 'PpcRulesController@store', 'class' => 'form-horizontal', 'role' => 'form')) }}
 <div class="form-group">
-    <label for="name_lenght_min" class="col-sm-2 control-label">Mód</label>
-
+    {{ Form::label('modes','Mód',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        <?php echo Form::select('modes', array("import" => 'Import', "insert" => 'Insert'), NULL, array('id' => 'modes', 'class' => 'form-control')); ?>
+        {{ Form::select('modes', array("import" => 'Import', "insert" => 'Insert'), NULL, array('id' => 'modes', 'class' => 'form-control')); }}
     </div>
 </div>
 
 <div class="form-group">
-    <label for="name_lenght_min" class="col-sm-2 control-label">Počet znaků</label>
-
+    {{ Form::label('name_lenght_min','Počet znaků',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-5">
-        {{ Form::input('number','name_lenght_min', null ,array('class'=>'form-control','placeholder' => 'Minimální délka názvu')) }}
+        {{ Form::input('number','name_lenght_min', null ,array('min'=>'0','class'=>'form-control','placeholder' => 'Minimální délka názvu')) }}
     </div>
     <div class="col-sm-5">
-        {{ Form::input('number','name_lenght_max', null ,array('class'=>'form-control','placeholder' => 'Maximální délka názvu')) }}
-    </div>
-</div>
-<div class="form-group">
-    <label for="name_count_word_min" class="col-sm-2 control-label">Počet slov</label>
-
-    <div class="col-sm-5">
-        {{ Form::input('number','name_count_word_min', null ,array('class'=>'form-control','placeholder' => 'Minimální počet slov v názvu')) }}
-    </div>
-    <div class="col-sm-5">
-        {{ Form::input('number','name_count_word_max', null ,array('class'=>'form-control','placeholder' => 'Maximální počet slov v názvu')) }}
+        {{ Form::input('number','name_lenght_max', null ,array('min'=>'0','class'=>'form-control','placeholder' => 'Maximální délka názvu')) }}
     </div>
 </div>
 <div class="form-group">
-    <label for="price_min" class="col-sm-2 control-label">Cena</label>
-
+    {{ Form::label('name_count_word_min','Počet slov',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-5">
-        {{ Form::input('number','price_min', null ,array('class'=>'form-control','placeholder' => 'Minimální cena zboží')) }}
+        {{ Form::input('number','name_count_word_min', null ,array('min'=>'0','class'=>'form-control','placeholder' => 'Minimální počet slov v názvu')) }}
     </div>
     <div class="col-sm-5">
-        {{ Form::input('number','price_max', null ,array('class'=>'form-control','placeholder' => 'Maximální cena zboží')) }}
+        {{ Form::input('number','name_count_word_max', null ,array('min'=>'0','class'=>'form-control','placeholder' => 'Maximální počet slov v názvu')) }}
     </div>
 </div>
 <div class="form-group">
-    <label for="is_sell" class="col-sm-2 control-label">Prodává se</label>
-
+    {{ Form::label('price_min','Cena',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::input('number','price_min', null ,array('min'=>'0','class'=>'form-control','placeholder' => 'Minimální cena zboží')) }}
+    </div>
+    <div class="col-sm-5">
+        {{ Form::input('number','price_max', null ,array('min'=>'0','class'=>'form-control','placeholder' => 'Maximální cena zboží')) }}
+    </div>
+</div>
+<div class="form-group">
+    {{ Form::label('is_sell','Prodává se',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-6">
         <?php echo Form::select('is_sell', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_sell', 'class' => 'form-control')); ?>
     </div>
 </div>
 <div class="form-group">
-    <label for="is_action" class="col-sm-2 control-label">Produkt v akci</label>
-
+    {{ Form::label('is_action','Produkt v akci',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-6">
-        <?php echo Form::select('is_action', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_action','class' => 'form-control')); ?>
+        <?php echo Form::select('is_action', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_action', 'class' => 'form-control')); ?>
     </div>
 </div>
 <div class="form-group">
-    <label for="is_ready_send" class="col-sm-2 control-label">Připraven k odeslání</label>
-
+    {{ Form::label('is_ready_send','Připraven k odeslání',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-6">
-        <?php echo Form::select('is_ready_send', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_ready_send','class' => 'form-control')); ?>
+        <?php echo Form::select('is_ready_send', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_ready_send', 'class' => 'form-control')); ?>
     </div>
 </div>
 <div class="form-group">
@@ -100,8 +93,6 @@ PPC - Nové pravidlo
     </div>
 </div>
 
-
 {{ Form::close() }}
-
 
 @stop
