@@ -10,12 +10,11 @@ class Ppc2config extends Migration
         Schema::create('ppc_config', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('xmlfeed');
             $table->engine = 'InnoDB';
         });
     }
-
 
     public function down()
     {

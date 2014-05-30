@@ -8,10 +8,7 @@ PPC - Editování klíčového slova
 
 {{-- Content --}}
 @section('content')
-
-<h3 class="text-center">Editování klíčového slova</h3>
-
-{{ Form::model($keyword, array('method'=>'PATCH','route' => array('adm.ppc.keywords.update',$keyword->id))) }}
+{{ Form::model($keyword, array('method'=>'PATCH','route' => array('adm.ppc.keywords.update',$keyword->id),'class'=>'form-horizontal','role'=>'form')) }}
 
 <div class="form-group">
     {{ Form::label('sklik_id','Sklik ID',array('class'=> 'col-sm-2 control-label')) }}
@@ -37,7 +34,11 @@ PPC - Editování klíčového slova
         {{ Form::text('cpc',null,array('class'=> 'form-control', 'placeholder'=> 'Cena CPC v haléřích')) }}
     </div>
 </div>
-
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-default')) }}
+    </div>
+</div>
 {{ Form::close() }}
 
 @stop

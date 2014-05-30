@@ -50,7 +50,7 @@ class PpcKeywordsController extends Controller
             $this->keyword->create($input);
             return View::make('adm.ppc.keywords.index');
         }
-        return View::route('adm.ppc.keywords.create')
+        return Redirect::route('adm.ppc.keywords.create')
             ->withInput()
             ->withErrors($v)
             ->with('message', 'Validační chaba');
@@ -66,7 +66,7 @@ class PpcKeywordsController extends Controller
     public function show($id)
     {
         $keyword = $this->keyword->findOrFail($id);
-        return View::make('adm.ppc.keywords.show', compact('keywords'));
+        return View::make('adm.ppc.keywords.show', compact('keyword'));
     }
 
     /**
@@ -100,12 +100,12 @@ class PpcKeywordsController extends Controller
         $v = Validator::make($input, PpcKeywords::$rules);
 
         if ($v->passes()) {
-            $keyword = $this->keyword->find($id);
-            $keyword->update($input);
+            $keywords = $this->keyword->find($id);
+            $keywords->update($input);
 
-            return View::make('adm.ppc.keywords.show', $id);
+            return Redirect::route('adm.ppc.keywords.show',$id);
         }
-        return View::route('adm.ppc.keywords.edit', $id)
+        return Redirect::route('adm.ppc.keywords.edit', $id)
             ->withInput()
             ->withErrors($v)
             ->with('message', 'Validační chaba');
