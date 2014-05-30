@@ -10,17 +10,17 @@ PPC - Nové pravidlo
 @section ('script')
 <script>
     $(document).ready(function () {
-        $("#is_sell").select2({
+        $("#in_sell").select2({
             placeholder: "Prodává se nyní produkt?",
             minimumResultsForSearch: 10,
             allowClear: true
         });
-        $("#is_action").select2({
+        $("#in_action").select2({
             placeholder: "Je nyní produkt v akci?",
             minimumResultsForSearch: 10,
             allowClear: true
         });
-        $("#is_ready_send").select2({
+        $("#ready_send").select2({
             placeholder: "Je produkt možný ihned odeslat?",
             minimumResultsForSearch: 10,
             allowClear: true
@@ -70,26 +70,26 @@ PPC - Nové pravidlo
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('is_sell','Prodává se',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('in_sell','Prodává se',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-6">
-        <?php echo Form::select('is_sell', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_sell', 'class' => 'form-control')); ?>
+        <?php echo Form::select('in_sell', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'in_sell', 'class' => 'form-control')); ?>
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('is_action','Produkt v akci',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('in_action','Produkt v akci',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-6">
-        <?php echo Form::select('is_action', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_action', 'class' => 'form-control')); ?>
+        <?php echo Form::select('in_action', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'in_action', 'class' => 'form-control')); ?>
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('is_ready_send','Připraven k odeslání',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('ready_send','Připraven k odeslání',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-6">
-        <?php echo Form::select('is_ready_send', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'is_ready_send', 'class' => 'form-control')); ?>
+        <?php echo Form::select('ready_send', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'ready_send', 'class' => 'form-control')); ?>
     </div>
 </div>
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-default')) }}
+        {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-success')) }}
     </div>
 </div>
 

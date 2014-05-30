@@ -4,11 +4,23 @@ use Authority\Eloquent\PpcRules;
 
 class PpcRulesController extends Controller
 {
+    protected $rule;
 
-    public function show()
+    function __construct(PpcRules $rule)
     {
-        $rules = PpcRules::all();
-        return View::make('adm.ppc.rules.show')->with('rules', $rules);
+        $this->rule = $rule;
+    }
+
+    public function index()
+    {
+        $rules = $this->rule->all();
+        return View::make('adm.ppc.rules.index', compact('rules'));
+    }
+
+    public function show($id)
+    {
+        $rules = $this->rule->findOrFail($id);
+        return View::make('adm.ppc.rules.show')->compact('rules');
     }
 
     public function create()
@@ -18,26 +30,33 @@ class PpcRulesController extends Controller
 
     public function store()
     {
-        return Redirect::route('adm.ppc.rules.show');
+        $input = Input::all();
+        $v = Validator::make($input, PpcRules::$rules);
 
-        $result = $this->groupForm->save( Input::all() );
-
-        Session::flash('success', $result);
-        /*
-        if( $result['success'] )
-        {
-            // Success!
-            Session::flash('success', $result['message']);
-            return Redirect::to('adm/groups');
-
-        } else {
-            Session::flash('error', $result['message']);
-            return Redirect::action('GroupController@create')
-                ->withInput()
-                ->withErrors( $this->groupForm->errors() );
+        if ($v->passes()) {
+            $this->rule->create($input);
+            return View::make('adm.ppc.rules.index');
         }
-        */
+        return Redirect::route('adm.ppc.rules.create')
+            ->withInput()
+            ->withErrors($v)
+            ->with('message', 'Validační chyba');
     }
 
+    public function update($id)
+    {
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, PpcRules::$rules);
 
+        if ($v->passes()) {
+            $rules = $this->rule->find($id);
+            $rules->update($input);
+
+            return Redirect::route('adm.ppc.rules.show', $id);
+        }
+        return Redirect::route('adm.ppc.rules.edit', $id)
+            ->withInput()
+            ->withErrors($v)
+            ->with('message', 'Validační chyba');
+    }
 }

@@ -20,6 +20,7 @@ class CreatePpcKeywordsTable extends Migration
             $table->String('name')->unique();
             $table->Integer('cpc')->unsigned();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
