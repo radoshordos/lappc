@@ -1,11 +1,13 @@
 <?php
 
+use \Authority\Eloquent\PpcKeywords;
+
 class PpcKeywordsController extends Controller
 {
 
     protected $keyword;
 
-    function __construct(\Authority\Eloquent\PpcKeywords $keyword)
+    function __construct(PpcKeywords $keyword)
     {
         $this->keyword = $keyword;
     }
@@ -30,7 +32,7 @@ class PpcKeywordsController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('adm.ppc.keywords.create');
     }
 
     /**
@@ -41,7 +43,17 @@ class PpcKeywordsController extends Controller
      */
     public function store()
     {
-        //
+        $input = Input::all();
+        $v = Validator::make($input, PpcKeywords::$rules);
+
+        if ($v->passes()) {
+            $this->keyword->create($input);
+            return View::make('adm.ppc.keywords.index');
+        }
+        return View::route('adm.ppc.keywords.create')
+            ->withInput()
+            ->withErrors($v)
+            ->with('message', 'Validační chaba');
     }
 
     /**
@@ -53,7 +65,8 @@ class PpcKeywordsController extends Controller
      */
     public function show($id)
     {
-        //
+        $keyword = $this->keyword->findOrFail($id);
+        return View::make('adm.ppc.keywords.show', compact('keywords'));
     }
 
     /**
@@ -65,7 +78,13 @@ class PpcKeywordsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $keyword = $this->keyword->find($id);
+
+        if (is_null($keyword)) {
+            return Redirect::route('adm.ppc.keywords.index');
+        }
+
+        return View::make('adm.ppc.keywords.edit', compact('keyword'));
     }
 
     /**
@@ -77,7 +96,19 @@ class PpcKeywordsController extends Controller
      */
     public function update($id)
     {
-        //
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, PpcKeywords::$rules);
+
+        if ($v->passes()) {
+            $keyword = $this->keyword->find($id);
+            $keyword->update($input);
+
+            return View::make('adm.ppc.keywords.show', $id);
+        }
+        return View::route('adm.ppc.keywords.edit', $id)
+            ->withInput()
+            ->withErrors($v)
+            ->with('message', 'Validační chaba');
     }
 
     /**
@@ -91,7 +122,5 @@ class PpcKeywordsController extends Controller
     {
         $this->keyword->find($id)->delete();
         return Redirect::route('adm.ppc.keywords.index');
-
     }
-
 }
