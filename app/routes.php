@@ -17,6 +17,8 @@ Route::group(array('prefix' => 'adm'), function() {
         Route::any('config', array('as' => 'adm.ppc.config.show', 'uses' => 'PpcConfigController@show'));
 
         Route::resource('rules', 'PpcRulesController');
+        Route::resource('keywords', 'PpcKeywordsController');
+
 
         Route::any('rules/show', array('as' => 'adm.ppc.rules.show', 'uses' => 'PpcRulesController@show'));
         Route::any('rules/create', array('as' => 'adm.ppc.rules.create', 'uses' => 'PpcRulesController@create'));

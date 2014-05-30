@@ -64,6 +64,7 @@
                         <li><a href="{{ URL::route('adm.ppc.rules.show')}}">PPC rules</a></li>
                         <li><a href="{{ URL::to('adm/ppc/import') }}">Manual Import</a></li>
                         <li><a href="{{ URL::to('adm/ppc/config') }}">PPC Konfigurace</a></li>
+                        <li><a href="{{ URL::to('adm/ppc/keywords') }}">PPC Keywords</a></li>
                     </ul>
                 </li>
                 @endif
@@ -130,9 +131,6 @@
 </div>
 
 <!-- ./ container -->
-
-
-
 
 
 </body>
