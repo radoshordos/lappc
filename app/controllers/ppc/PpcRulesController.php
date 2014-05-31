@@ -1,6 +1,6 @@
 <?php
 
-use Authority\Eloquent\PpcRules;
+use \Authority\Eloquent\PpcRules;
 
 class PpcRulesController extends Controller
 {
@@ -20,7 +20,7 @@ class PpcRulesController extends Controller
     public function show($id)
     {
         $rules = $this->rule->findOrFail($id);
-        return View::make('adm.ppc.rules.show')->compact('rules');
+        return View::make('adm.ppc.rules.show', compact('rules'));
     }
 
     public function create()
@@ -35,7 +35,7 @@ class PpcRulesController extends Controller
 
         if ($v->passes()) {
             $this->rule->create($input);
-            return View::make('adm.ppc.rules.index');
+            return Redirect::route('adm.ppc.rules.index');
         }
         return Redirect::route('adm.ppc.rules.create')
             ->withInput()
@@ -59,4 +59,11 @@ class PpcRulesController extends Controller
             ->withErrors($v)
             ->with('message', 'Validační chyba');
     }
+
+    public function destroy($id)
+    {
+        $this->rule->find($id)->delete();
+        return Redirect::route('adm.ppc.rules.index');
+    }
+
 }

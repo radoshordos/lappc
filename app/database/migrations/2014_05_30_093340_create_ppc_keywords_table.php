@@ -6,30 +6,23 @@ use Illuminate\Database\Schema\Blueprint;
 class CreatePpcKeywordsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('ppc_keywords', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->Integer('sklik_id')->unsigned()->nullable();
-            $table->tinyInteger('match_id')->unsigned();
-            $table->String('name')->unique();
-            $table->Integer('cpc')->unsigned();
+            $table->integer('sklik_id')->unsigned()->nullable();
+            $table->integer('match_id')->unsigned();
+            $table->string('name')->unique();
+            $table->integer('cpc')->unsigned();
             $table->timestamps();
             $table->engine = 'InnoDB';
+
+            $table->foreign('match_id')
+                ->references('id')->on('ppc_keyword_match')
+                ->onUpdate('cascade')->onDelete('no action');
         });
     }
 
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('ppc_keywords');

@@ -8,6 +8,9 @@ PPC - Klíčová slova
 
 {{-- Content --}}
 @section('content')
+<p>
+    {{ link_to_route('adm.ppc.rules.create','Přidat nové pravidlo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+</p>
 @if ($rules->count())
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -43,9 +46,7 @@ PPC - Klíčová slova
             @endforeach
             </tbody>
         </table>
-        <p>
-            {{ link_to_route('adm.ppc.rules.create','Přidat nové pravidlo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
-        </p>
+
     </div>
 </div>
 @else

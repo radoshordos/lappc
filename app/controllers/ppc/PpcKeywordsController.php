@@ -48,7 +48,7 @@ class PpcKeywordsController extends Controller
 
         if ($v->passes()) {
             $this->keyword->create($input);
-            return View::make('adm.ppc.keywords.index');
+            return Redirect::route('adm.ppc.keywords.index');
         }
         return Redirect::route('adm.ppc.keywords.create')
             ->withInput()
