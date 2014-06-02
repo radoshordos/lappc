@@ -31,5 +31,5 @@
             "php artisan command:adminer"
         ]
     },
-    "minimum-stability": "beta"
+    "minimum-stability": "stable"
 }
