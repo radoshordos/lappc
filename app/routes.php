@@ -10,8 +10,7 @@ Route::group(array('prefix' => 'adm'), function() {
     Route::get('nastaveni/tree-group-top', array('as' => 'adm.nastaveni.tree2group2top', 'uses' => 'Tree2group2topController@show'));
     Route::get('admin/phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'PhpinfoController@show'));
 
-    Route::group(array('prefix' => 'ppc'), function() {
-
+    Route::group(array('prefix' => 'ppc', 'before' => 'Sentry|inGroup:Admins'), function() {
 
         Route::any('import', array('as' => 'adm.ppc.import.show', 'uses' => 'PpcImportController@show'));
         Route::any('config', array('as' => 'adm.ppc.config.show', 'uses' => 'PpcConfigController@show'));

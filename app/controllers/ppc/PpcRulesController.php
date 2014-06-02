@@ -1,15 +1,13 @@
 <?php
 
-use Authority\Authentication\AdminAuthentication;
 use \Authority\Eloquent\PpcRules;
 
-class PpcRulesController extends AdminAuthentication
+class PpcRulesController extends BaseController
 {
     protected $rule;
 
     function __construct(PpcRules $rule)
     {
-        parent::__construct();
         $this->rule = $rule;
     }
 

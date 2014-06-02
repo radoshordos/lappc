@@ -1,11 +1,11 @@
 <?php
 
-use Authority\Authentication\AdminAuthentication;
+
 use Authority\Feed\Reader;
 use Authority\Feed\ShopItem;
 use Authority\Eloquent\PpcDb;
 
-class PpcImportController extends AdminAuthentication
+class PpcImportController extends BaseController
 {
 
     public function show()
