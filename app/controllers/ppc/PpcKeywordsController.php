@@ -1,14 +1,16 @@
 <?php
 
+use Authority\Authentication\AdminAuthentication;
 use \Authority\Eloquent\PpcKeywords;
 
-class PpcKeywordsController extends Controller
+class PpcKeywordsController extends AdminAuthentication
 {
 
     protected $keyword;
 
     function __construct(PpcKeywords $keyword)
     {
+        parent::__construct();
         $this->keyword = $keyword;
     }
 

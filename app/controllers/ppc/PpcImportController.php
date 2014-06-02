@@ -1,11 +1,13 @@
 <?php
 
+use Authority\Authentication\AdminAuthentication;
 use Authority\Feed\Reader;
 use Authority\Feed\ShopItem;
 use Authority\Eloquent\PpcDb;
 
-class PpcImportController extends Controller
+class PpcImportController extends AdminAuthentication
 {
+
     public function show()
     {
         if (Input::has('url-file')) {
@@ -17,7 +19,7 @@ class PpcImportController extends Controller
                         PpcDb::saveShopItem($val);
                     }
                 }
-                Session::flash('success', 'Přečteno '. $fr->getCount(). ' záznamů');
+                Session::flash('success', 'Přečteno ' . $fr->getCount() . ' záznamů');
                 return View::make('adm.ppc.import.show', array('source' => $fr->getArr(), 'count' => $fr->getCount()));
             } catch (ErrorException $e) {
                 Session::flash('error', $e->getMessage());

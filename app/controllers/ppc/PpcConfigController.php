@@ -1,8 +1,9 @@
 <?php
 
+use Authority\Authentication\AdminAuthentication;
 use Authority\Eloquent\PpcConfig;
 
-class PpcConfigController extends Controller
+class PpcConfigController extends AdminAuthentication
 {
     public function show()
     {
