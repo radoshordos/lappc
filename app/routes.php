@@ -7,8 +7,8 @@ Route::get('/', function () {
 // Nastavení routy
 
 Route::group(array('prefix' => 'adm'), function () {
+
     Route::get('nastaveni/tree-group-top', array('as' => 'adm.nastaveni.tree2group2top', 'uses' => 'Tree2group2topController@show'));
-    Route::get('admin/phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'PhpinfoController@show'));
 
     Route::group(array('prefix' => 'ppc', 'before' => 'Sentry|inGroup:Admins'), function () {
 
@@ -17,6 +17,12 @@ Route::group(array('prefix' => 'adm'), function () {
 
         Route::resource('rules', 'PpcRulesController');
         Route::resource('keywords', 'PpcKeywordsController');
+    });
+
+    Route::group(array('prefix' => 'admin', 'before' => 'Sentry|inGroup:Admins'), function () {
+
+        Route::get('phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'PhpinfoController@show'));
+        Route::resource('runner', 'CommandRunnerController');
     });
 
     // Session Routes
