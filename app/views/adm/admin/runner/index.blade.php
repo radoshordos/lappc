@@ -8,10 +8,29 @@ Runner
 
 {{-- Content --}}
 @section('content')
-HI
 
-@foreach ($runner as $run)
-    {{ $run->command }}
-@endforeach
-
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>AUTORUN</th>
+                    <th>Alias</th>
+                    <th>Commnad</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach ($runner as $run)
+            <tr>
+                <td>
+                {{ Form::select('animal', array('0' => 'NE','1' => 'ANO'), $run->autorun) }}
+                </td>
+                <td>{{ $run->alias }}</td>
+                <td>{{ $run->command }}</td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 @stop
