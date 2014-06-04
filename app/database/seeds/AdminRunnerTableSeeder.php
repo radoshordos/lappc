@@ -7,8 +7,8 @@ class AdminRunnerTableSeeder extends Seeder
     {
         DB::table('runner')->delete();
 
-        Sentry::getUserProvider()->create(array(
-            'id' => 'admin@admin.com',
+        DB::table('runner')->insert(array(
+            'id' => 1,
             'autorun' => 1,
             'alias' => 'keydb',
             'command' => 'command:ppc:keyword-db',

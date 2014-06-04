@@ -16,11 +16,14 @@ class CreatePpcKeywordsTable extends Migration
             $table->integer('cpc')->unsigned();
             $table->timestamps();
             $table->engine = 'InnoDB';
-
-            $table->foreign('match_id')
-                ->references('id')->on('ppc_keyword_match')
-                ->onUpdate('cascade')->onDelete('no action');
+            /*
+                        $table->foreign('match_id')
+                            ->references('id')->on('ppc_keyword_match')
+                            ->onUpdate('cascade')->onDelete('no action');
+                        */
         });
+
+
     }
 
     public function down()

@@ -9,4 +9,9 @@ Runner
 {{-- Content --}}
 @section('content')
 HI
+
+@foreach ($runner as $run)
+    {{ $run->command }}
+@endforeach
+
 @stop
