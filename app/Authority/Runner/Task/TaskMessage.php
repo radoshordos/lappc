@@ -13,12 +13,12 @@ class TaskMessage extends TaskTimer
         $this->comment = array();
     }
 
-    public function addComment($comment)
+    public function addMessage($comment)
     {
         $this->message[] = $comment;
     }
 
-    public function getComment()
+    public function getMessages()
     {
         if (count($this->message) > 0) {
             return implode("<br />", $this->message);
@@ -27,7 +27,6 @@ class TaskMessage extends TaskTimer
 
     public function getTime()
     {
-        $this->time = round(microtime(true) - $this->start, 5) . "s";
-        return $this->time;
+        return round(microtime(true) - $this->start, 5) . "s";
     }
 }

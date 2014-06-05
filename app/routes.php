@@ -22,7 +22,7 @@ Route::group(array('prefix' => 'adm'), function () {
     Route::group(array('prefix' => 'admin', 'before' => 'Sentry|inGroup:Admins'), function () {
 
         Route::get('phpinfo', array('as' => 'adm.admin.phpinfo', 'uses' => 'PhpinfoController@show'));
-        Route::get('runner/{task}', array('as' => 'adm.admin.runner', 'uses' => 'CommandRunnerController@task'));
+        Route::match(array('GET', 'POST'),'runner/{task}', array('as' => 'adm.admin.runner.task', 'uses' => 'CommandRunnerController@task'));
         Route::resource('runner', 'CommandRunnerController');
 
     });

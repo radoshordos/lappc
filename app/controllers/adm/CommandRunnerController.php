@@ -21,10 +21,14 @@ class CommandRunnerController extends Controller
 
     public function task($task)
     {
+        var_dump(Request::method());
+        $ao = new ArrayObject();
         $run = DB::table('runner')->where('alias', $task)->first();
 
-        if (class_exists($run->class)) {
-            $task = new $run->class($run);
+        if (!empty($run) && class_exists($run->class)) {
+            $ao->append(new $run->class($run));
         }
+
+        return View::make('adm.admin.runner.task', array('ao' => $ao, "run" => $run));
     }
 }

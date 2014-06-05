@@ -14,5 +14,12 @@ class AdminRunnerTableSeeder extends Seeder
             'class' => 'Authority\Runner\Task\Ppc\KeywordDb'
         ));
 
+        DB::table('runner')->insert(array(
+            'id' => 20,
+            'autorun' => 1,
+            'alias' => 'OT',
+            'class' => 'Authority\Runner\Task\Performance\OptimalizeTable'
+        ));
+
     }
 }
