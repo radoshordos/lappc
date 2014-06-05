@@ -5,7 +5,8 @@
         "twbs/bootstrap": "3.*",
         "ivaynberg/select2": "3.*",
         "components/jquery": "1.*",
-        "dg/adminer-custom": "*"
+        "dg/adminer-custom": "1.*",
+        "yproximite/command-processor": "dev-master"
     },
     "require-dev": {
         "way/generators": "~2.6",
