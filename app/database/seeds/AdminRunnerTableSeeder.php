@@ -11,7 +11,7 @@ class AdminRunnerTableSeeder extends Seeder
             'id' => 1,
             'autorun' => 1,
             'alias' => 'keydb',
-            'command' => 'command:ppc:keyword-db',
+            'class' => 'Authority\Runner\Task\Ppc\KeywordDb'
         ));
 
     }

@@ -12,8 +12,7 @@ class CreateRunnerTable extends Migration
             $table->smallInteger('id')->unsigned();
             $table->boolean("autorun")->default(1);
             $table->string("alias", "16");
-            $table->string("command", "64");
-
+            $table->string("class", "128");
             $table->engine = 'InnoDB';
         });
     }

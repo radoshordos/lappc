@@ -26,11 +26,14 @@ Runner
                 {{ Form::select('animal', array('0' => 'NE','1' => 'ANO'), $run->autorun) }}
                 </td>
                 <td>{{ $run->alias }}</td>
-                <td>{{ $run->command }}</td>
+                <td>{{ $run->namespace }}</td>
+                <td>{{ $run->class }}</td>
+                <td><button class="btn btn-primary" onClick="location.href='{{ URL::to('adm/admin/runner',$run->alias) }}'">{{ $run->alias }}</button></td>
             </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+
 </div>
 @stop

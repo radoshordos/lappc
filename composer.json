@@ -6,7 +6,7 @@
         "ivaynberg/select2": "3.*",
         "components/jquery": "1.*",
         "dg/adminer-custom": "1.*",
-        "yproximite/command-processor": "dev-master"
+        "barryvdh/laravel-ide-helper": "1.*"
     },
     "require-dev": {
         "way/generators": "~2.6",
@@ -28,8 +28,11 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "php artisan optimize",
-            "php artisan command:adminer"
+
+            "php artisan command:adminer",
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
+            "php artisan optimize"
         ]
     },
     "minimum-stability": "stable"
