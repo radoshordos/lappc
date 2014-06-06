@@ -8,11 +8,9 @@ Runner
 
 {{-- Content --}}
 @section('content')
-
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-
-        {{ Form::open(array('route' => 'adm.admin.runner.task', 'method' => 'GET')) }}
+        {{ Form::open(array('action' => 'CommandRunnerController@task', 'method' => 'POST')) }}
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -33,7 +31,7 @@ Runner
                 </td>
                 <td>{{ $run->class }}</td>
                 <td>
-                    <button class="btn btn-primary btn-xs" onClick="location.href='{{ URL::to('adm/admin/runner',$run->alias) }}'">RUN</button>
+                    <input type="submit" formmethod="GET" formaction="{{ URL::action('CommandRunnerController@task',$run->alias) }}" value="RUN" class="btn btn-primary btn-xs" />
                 </td>
             </tr>
             @endforeach
@@ -48,6 +46,5 @@ Runner
         </table>
         {{ Form::close() }}
     </div>
-
 </div>
 @stop
