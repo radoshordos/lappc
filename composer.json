@@ -5,7 +5,8 @@
         "twbs/bootstrap": "3.*",
         "ivaynberg/select2": "3.*",
         "components/jquery": "1.*",
-        "dg/adminer-custom": "*"
+        "dg/adminer-custom": "1.*",
+        "barryvdh/laravel-ide-helper": "1.*"
     },
     "require-dev": {
         "way/generators": "~2.6",
@@ -27,9 +28,12 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "php artisan optimize",
-            "php artisan command:adminer"
+
+            "php artisan command:adminer",
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
+            "php artisan optimize"
         ]
     },
-    "minimum-stability": "beta"
+    "minimum-stability": "stable"
 }

@@ -31,9 +31,6 @@ PPC - Nové pravidlo
 
 {{-- Content --}}
 @section('content')
-
-<h3 class="text-center">Nové pravidlo</h3>
-
 {{ Form::open(array('action' => 'PpcRulesController@store', 'class' => 'form-horizontal', 'role' => 'form')) }}
 <div class="form-group">
     {{ Form::label('modes','Mód',array('class'=> 'col-sm-2 control-label')) }}

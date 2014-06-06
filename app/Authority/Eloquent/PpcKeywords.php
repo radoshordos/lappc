@@ -2,9 +2,10 @@
 
 namespace Authority\Eloquent;
 
-class PpcKeywords extends \Eloquent {
+class PpcKeywords extends \Eloquent
+{
 
-	protected $fillable = [];
+    protected $fillable = [];
 
     protected $guarded = array();
 

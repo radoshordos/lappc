@@ -2,7 +2,7 @@
 
 use \Authority\Eloquent\PpcKeywords;
 
-class PpcKeywordsController extends Controller
+class PpcKeywordsController extends BaseController
 {
 
     protected $keyword;

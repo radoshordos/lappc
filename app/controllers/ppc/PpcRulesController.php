@@ -2,7 +2,7 @@
 
 use \Authority\Eloquent\PpcRules;
 
-class PpcRulesController extends Controller
+class PpcRulesController extends BaseController
 {
     protected $rule;
 

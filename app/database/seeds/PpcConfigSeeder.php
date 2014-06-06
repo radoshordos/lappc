@@ -7,10 +7,11 @@ class PpcConfigSeeder extends Seeder
     {
         DB::table('ppc_config')->delete();
 
-        DB::insert('
-            INSERT INTO ppc_config (id, email, xmlfeed)
-            VALUES (?, ?, ?)',
-            array(1, 'hordos@centrum.cz', 'http://www.narex-makita.cz/cronx/zbozi.xml')
-        );
+        DB::table('ppc_config')->insert(array(
+            'id' => 1,
+            'email' => 'hordos@centrum.cz',
+            'xmlfeed' => 'http://www.narex-makita.cz/cronx/zbozi.xml'
+        ));
+
     }
 }

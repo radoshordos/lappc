@@ -80,3 +80,9 @@ App::down(function()
 {
     return Response::view('maintenance', array(), 503);
 });
+
+
+App::error(function(Exception $exception)
+{
+    Log::error($exception);
+});

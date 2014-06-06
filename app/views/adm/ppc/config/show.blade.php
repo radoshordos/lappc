@@ -3,16 +3,12 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Home
-
+PPC konfigurace
 @stop
-
 
 
 {{-- Content --}}
 @section('content')
-<h3 class="text-center">PPC konfigurace</h3>
-
 <form class="form-horizontal" role="form" method='post'>
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
