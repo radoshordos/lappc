@@ -5,12 +5,13 @@ namespace Authority\Runner\Task\Performance;
 use \DB;
 use \PDO;
 use \PDOException;
-use Authority\Runner\Task\TaskMaker;
+use Authority\Runner\Task\TaskMessage;
 
-class OptimalizeTable extends TaskMaker
+class OptimalizeTable extends TaskMessage
 {
-    public function __construct()
+    public function __construct($db)
     {
+        parent::__construct($db);
         $pdo = DB::connection()->getPdo();
         $tables = $this->itemDiscontinued($pdo);
         $this->runOptimalizeTables($pdo, $tables);

@@ -2,7 +2,7 @@
 
 namespace Authority\Runner\Task;
 
-abstract class TaskTimer
+class TaskTimer
 {
     public static $startime;
 

@@ -9,17 +9,24 @@ Runner
 {{-- Content --}}
 @section('content')
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
         {{ Form::open(array('action' => 'CommandRunnerController@task', 'method' => 'POST')) }}
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>
+                <th rowspan="2">
                     <span class="glyphicon glyphicon-check"></span>
                 </th>
-                <th>AUTORUN</th>
-                <th>Execute Manual Task</th>
-                <th>RUN</th>
+                <th rowspan="2"></th>
+                <th colspan="2">AUTORUN</th>
+                <th rowspan="2">Manuálně</th>
+                <th rowspan="2">Execute Manual Task</th>
+                <th rowspan="2">RUN</th>
+
+            </tr>
+            <tr>
+                <th>Minule</th>
+                <th>Příště nejdříve</th>
             </tr>
             </thead>
             <tbody>
@@ -29,9 +36,12 @@ Runner
                 <td>
                     {{ Form::select('autorun['.$run->id.']', array('0' => 'NE','1' => 'ANO'), $run->autorun) }}
                 </td>
-                <td>{{ $run->class }}</td>
+                <td>{{ date("d.m.Y H:i", $run->last_run_automatic) }} </td>
+                <td>{{ date("d.m.Y H:i", $run->last_run_automatic + $run->autorun_minimim_range) }} </td>
+                <td>{{ date("d.m.Y H:i", $run->last_run_manual) }} </td>
+                <td>{{ str_replace('Authority\\Runner\\Task\\', '', $run->class)  }}</td>
                 <td>
-                    <input type="submit" formmethod="GET" formaction="{{ URL::action('CommandRunnerController@task',$run->alias) }}" value="RUN" class="btn btn-primary btn-xs" />
+                    <input type="submit" formmethod="GET" formaction="{{ URL::action('CommandRunnerController@task',$run->id) }}" value="RUN" class="btn btn-primary btn-xs" />
                 </td>
             </tr>
             @endforeach

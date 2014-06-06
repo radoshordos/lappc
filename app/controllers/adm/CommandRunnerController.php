@@ -13,9 +13,7 @@ class CommandRunnerController extends Controller
 
     public function index()
     {
-        $runner = $this->runner->all();
-
-
+        $runner = $this->runner->orderBy('id')->get();
         return View::make('adm.admin.runner.index', compact('runner'));
     }
 
@@ -27,25 +25,32 @@ class CommandRunnerController extends Controller
         if (Request::isMethod('post')) {
             if (Request::get('alias')) {
                 foreach (Request::get('alias') as $row) {
-                    var_dump($row);
-                    $run = DB::table('runner')->where('alias', $row)->first();
-                    var_dump($run);
-                    die;
-                    if (!empty($row) && class_exists($run->class)) {
-                        $ao->append(new $run->class($run));
-                    }
+                    $this->executeManualTask($ao, $row);
                 }
             }
-
-           // return View::make('adm.admin.runner.task', array('ao' => $ao, "run" => $run));
+            return View::make('adm.admin.runner.task', array('ao' => $ao));
         }
 
         if (Request::isMethod('get')) {
-            $run = DB::table('runner')->where('alias', $task)->first();
-            if (!empty($run) && class_exists($run->class)) {
-                $ao->append(new $run->class($run));
-            }
-           // return View::make('adm.admin.runner.task', array('ao' => $ao, "run" => $run));
+            $this->executeManualTask($ao, $task);
+            return View::make('adm.admin.runner.task', array('ao' => $ao));
+        }
+    }
+
+    private function executeManualTask(ArrayObject $ao, $task)
+    {
+
+        $row = AdminRunner::find($task);
+
+        if (!empty($row) && class_exists($row->class)) {
+
+            $cl = new $row->class($row);
+            $cl->stopTimer();
+
+            $row->last_run_manual = strtotime('now');
+            $row->save();
+
+            $ao->append($cl);
         }
     }
 }

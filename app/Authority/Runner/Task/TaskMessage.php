@@ -6,9 +6,12 @@ class TaskMessage extends TaskTimer
 {
     protected $start;
     protected $message;
+    protected $db;
 
-    public function __construct()
+    public function __construct($db)
     {
+        parent::__construct($db);
+        $this->db = $db;
         $this->start = microtime(true);
         $this->comment = array();
     }
@@ -29,4 +32,10 @@ class TaskMessage extends TaskTimer
     {
         return round(microtime(true) - $this->start, 5) . "s";
     }
+
+    public function getClassName()
+    {
+        return $this->db->class;
+    }
+
 }

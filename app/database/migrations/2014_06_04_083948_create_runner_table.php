@@ -15,10 +15,10 @@ class CreateRunnerTable extends Migration
             $table->integer("autorun_first_run_day")->unsigned()->default(18000);
             $table->integer("last_run_automatic")->unsigned()->default(0);
             $table->integer("last_run_manual")->unsigned()->default(0);
-            $table->string("alias", "16");
             $table->string("class", "128");
-            $table->string("description", "256")->nullable();
+
             $table->engine = 'InnoDB';
+            $table->unique('class');
         });
     }
 
