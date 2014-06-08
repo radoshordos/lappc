@@ -44,7 +44,9 @@ PPC - Klíčová slova
     </div>
 </div>
 @else
-{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success btn-xs','role'=> 'button')) }}
+<p class="text-center">
+{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+</p>
 @endif
 
 @stop

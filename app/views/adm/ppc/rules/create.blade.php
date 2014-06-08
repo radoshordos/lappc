@@ -84,12 +84,8 @@ PPC - Nové pravidlo
         <?php echo Form::select('ready_send', array("" => "", "NO" => "NE", "YES" => "ANO"), NULL, array('id' => 'ready_send', 'class' => 'form-control')); ?>
     </div>
 </div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-success')) }}
-    </div>
-</div>
-
+<p class="text-center">
+    {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-success')) }}
+</p>
 {{ Form::close() }}
-
 @stop

@@ -8,9 +8,6 @@ PPC - Klíčová slova
 
 {{-- Content --}}
 @section('content')
-<p>
-    {{ link_to_route('adm.ppc.rules.create','Přidat nové pravidlo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
-</p>
 @if ($rules->count())
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -22,6 +19,7 @@ PPC - Klíčová slova
                 <th colspan="2">Znaků</th>
                 <th colspan="2">Slov</th>
                 <th colspan="2">Cena</th>
+                <th colspan="3" class="text-center">{{ link_to_route('adm.ppc.rules.create','Přidat nové pravidlo',NULL, array('class'=>'btn btn-success btn-xs','role'=> 'button')) }}</th>
             </tr>
             <tr>
                 <th>Min</th>
@@ -30,6 +28,9 @@ PPC - Klíčová slova
                 <th>Max</th>
                 <th>Od</th>
                 <th>Do</th>
+                <th>Prodej</th>
+                <th>Akce</th>
+                <th>Odeslání</th>
             </tr>
             </thead>
             <tbody>
@@ -43,6 +44,9 @@ PPC - Klíčová slova
                 <td>{{ ($rule->name_count_word_max ? $rule->name_count_word_max : NULL) }}</td>
                 <td>{{ ($rule->price_min ? $rule->price_min : NULL) }}</td>
                 <td>{{ ($rule->price_max ? $rule->price_max : NULL) }}</td>
+                <td>{{ ($rule->in_sell ? $rule->in_sell : NULL) }}</td>
+                <td>{{ ($rule->in_action ? $rule->in_action : NULL) }}</td>
+                <td>{{ ($rule->ready_send ? $rule->ready_send : NULL) }}</td>
             @endforeach
             </tbody>
         </table>
@@ -50,7 +54,8 @@ PPC - Klíčová slova
     </div>
 </div>
 @else
-{{ "NE" }}
+<p>
+    {{ link_to_route('adm.ppc.rules.create','Přidat nové pravidlo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+</p>
 @endif
-
 @stop
