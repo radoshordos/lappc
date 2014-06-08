@@ -37,12 +37,12 @@ PPC - Klíčová slova
             <tr>
                 <td>{{ $rule->id }}</td>
                 <td>{{ $rule->modes }}</td>
-                <td>{{ $rule->name_lenght_min }}</td>
-                <td>{{ $rule->name_lenght_max }}</td>
-                <td>{{ $rule->name_count_word_min }}</td>
-                <td>{{ $rule->name_count_word_max }}</td>
-                <td>{{ $rule->price_min }}</td>
-                <td>{{ $rule->price_max }}</td>
+                <td>{{ ($rule->name_lenght_min ? $rule->name_lenght_min : NULL) }}</td>
+                <td>{{ ($rule->name_lenght_max ? $rule->name_lenght_max : NULL) }}</td>
+                <td>{{ ($rule->name_count_word_min ? $rule->name_count_word_min : NULL) }}</td>
+                <td>{{ ($rule->name_count_word_max ? $rule->name_count_word_max : NULL) }}</td>
+                <td>{{ ($rule->price_min ? $rule->price_min : NULL) }}</td>
+                <td>{{ ($rule->price_max ? $rule->price_max : NULL) }}</td>
             @endforeach
             </tbody>
         </table>

@@ -2,11 +2,12 @@
     "require": {
         "laravel/framework": "4.2.*",
         "cartalyst/sentry": "2.*",
+        "zendframework/zend-xmlrpc": "2.3.*",
+        "barryvdh/laravel-ide-helper": "1.*",
+        "dg/adminer-custom": "1.*",
         "twbs/bootstrap": "3.*",
         "ivaynberg/select2": "3.*",
-        "components/jquery": "1.*",
-        "dg/adminer-custom": "1.*",
-        "barryvdh/laravel-ide-helper": "1.*"
+        "components/jquery": "1.*"
     },
     "require-dev": {
         "way/generators": "~2.6",
@@ -28,7 +29,6 @@
     },
     "scripts": {
         "post-update-cmd": [
-
             "php artisan command:adminer",
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",

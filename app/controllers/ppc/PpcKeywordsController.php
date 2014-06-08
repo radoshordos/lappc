@@ -1,6 +1,7 @@
 <?php
 
-use \Authority\Eloquent\PpcKeywords;
+use Authority\Eloquent\PpcKeywords;
+use Authority\Tools\SB;
 
 class PpcKeywordsController extends BaseController
 {
@@ -32,7 +33,9 @@ class PpcKeywordsController extends BaseController
      */
     public function create()
     {
-        return View::make('adm.ppc.keywords.create');
+        return View::make('adm.ppc.keywords.create', array(
+            'select_keywords_match' => SB::option("SELECT * FROM ppc_keywords_match", ['id' => '->string_before->code->string_after - [->desc]'])
+        ));
     }
 
     /**
@@ -65,8 +68,11 @@ class PpcKeywordsController extends BaseController
      */
     public function show($id)
     {
+
         $keyword = $this->keyword->findOrFail($id);
-        return View::make('adm.ppc.keywords.show', compact('keyword'));
+        return View::make('adm.ppc.keywords.show', array(
+            'keyword' => $keyword
+        ));
     }
 
     /**
@@ -84,7 +90,10 @@ class PpcKeywordsController extends BaseController
             return Redirect::route('adm.ppc.keywords.index');
         }
 
-        return View::make('adm.ppc.keywords.edit', compact('keyword'));
+        return View::make('adm.ppc.keywords.edit', array(
+            'keyword' => $keyword,
+            'select_keywords_match' => SB::option("SELECT * FROM ppc_keywords_match", ['id' => '->string_before->code->string_after - [->desc]'])
+        ));
     }
 
     /**
@@ -103,7 +112,7 @@ class PpcKeywordsController extends BaseController
             $keywords = $this->keyword->find($id);
             $keywords->update($input);
 
-            return Redirect::route('adm.ppc.keywords.show',$id);
+            return Redirect::route('adm.ppc.keywords.show', $id);
         }
         return Redirect::route('adm.ppc.keywords.edit', $id)
             ->withInput()

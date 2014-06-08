@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-PPC - Klíčové slovo detail
+PPC - Detail klíčového slova
 @stop
 
 {{-- Content --}}
@@ -12,30 +12,32 @@ PPC - Klíčové slovo detail
     <div class="form-group">
         {{ Form::label('sklik_id','Sklik ID',array('class'=> 'col-sm-2 control-label')) }}
         <div class="col-sm-10">
-            {{ Form::text('sklik_id',$keyword->sklik_id,array('class'=> 'form-control', 'placeholder'=> 'Sklik ID','disable' => 'disable')) }}
+            {{ Form::text('sklik_id',$keyword->sklik_id,array('readonly' => 'readonly','class'=> 'form-control', 'placeholder'=> 'Sklik ID','disable' => 'disable')) }}
         </div>
     </div>
     <div class="form-group">
-        {{ Form::label('match_id','Match ID',array('class'=> 'col-sm-2 control-label')) }}
+        {{ Form::label('match_code','Shoda slova',array('class'=> 'col-sm-2 control-label')) }}
         <div class="col-sm-10">
-            {{ Form::text('match_id',$keyword->match_id,array('class'=> 'form-control', 'placeholder'=> 'Match ID','disable' => 'disable')) }}
+            {{ Form::text('match_code',$keyword->ppc_keywords_match->string_before.$keyword->ppc_keywords_match->code.$keyword->ppc_keywords_match->string_after,array('readonly' => 'readonly','class'=> 'form-control', 'placeholder'=> 'Shoda slova','disable' => 'disable')) }}
         </div>
     </div>
     <div class="form-group">
         {{ Form::label('name','Název',array('class'=> 'col-sm-2 control-label')) }}
         <div class="col-sm-10">
-            {{ Form::text('name',$keyword->name,array('class'=> 'form-control', 'placeholder'=> 'Klíčové slovo')) }}
+            {{ Form::text('name',$keyword->name,array('readonly' => 'readonly','class'=> 'form-control', 'placeholder'=> 'Klíčové slovo')) }}
         </div>
     </div>
     <div class="form-group">
         {{ Form::label('cpc','CPC (v haléřích)',array('class'=> 'col-sm-2 control-label')) }}
         <div class="col-sm-10">
-            {{ Form::text('cpc',$keyword->cpc,array('class'=> 'form-control', 'placeholder'=> 'Cena CPC v haléřích')) }}
+            {{ Form::text('cpc',$keyword->cpc,array('readonly' => 'readonly','class'=> 'form-control', 'placeholder'=> 'Cena CPC v haléřích')) }}
         </div>
     </div>
 </form>
-<p>
-    {{ link_to_route('adm.ppc.keywords.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-default','role'=> 'button')) }}
+<p class="text-center">
+    {{ link_to_route('adm.ppc.keywords.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
+    {{ link_to_route('adm.ppc.keywords.edit','Editovat klíčové slovo',array($keyword->id),array('class' => 'btn btn-info')) }}
+    {{ link_to_route('adm.ppc.keywords.create','Nové klíčové slovo',NULL,array('class' => 'btn btn-success')) }}
 </p>
 
 @stop

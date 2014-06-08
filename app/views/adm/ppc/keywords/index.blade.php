@@ -8,9 +8,6 @@ PPC - Klíčová slova
 
 {{-- Content --}}
 @section('content')
-<p>
-    {{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
-</p>
 @if ($keywords->count())
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -19,9 +16,10 @@ PPC - Klíčová slova
             <tr>
                 <th>#</th>
                 <th>Sklik ID</th>
-                <th>Match ID</th>
+                <th>Shoda</th>
                 <th>Jméno</th>
-                <th colspan="4">CPC</th>
+                <th>CPC</th>
+                <th colspan="3">{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success btn-xs','role'=> 'button')) }}</th>
             </tr>
             </thead>
             <tbody>
@@ -29,10 +27,10 @@ PPC - Klíčová slova
             <tr>
                 <td>{{ $keyword->id }}</td>
                 <td>{{ $keyword->sklik_id }}</td>
-                <td>{{ $keyword->match_id }}</td>
+                <td>{{ $keyword->ppc_keywords_match->string_before.$keyword->ppc_keywords_match->code.$keyword->ppc_keywords_match->string_after }}</td>
                 <td>{{ $keyword->name }}</td>
                 <td>{{ $keyword->cpc }}</td>
-                <td>{{ link_to_route('adm.ppc.keywords.show','Show',array($keyword->id),array('class' => 'btn btn-primary btn-xs')) }}</td>
+                <td>{{ link_to_route('adm.ppc.keywords.show','Detail',array($keyword->id),array('class' => 'btn btn-primary btn-xs')) }}</td>
                 <td>{{ link_to_route('adm.ppc.keywords.edit','Edit',array($keyword->id),array('class' => 'btn btn-info btn-xs')) }}</td>
                 <td>
                     {{ Form::open(array('method' => 'DELETE', 'route' => array('adm.ppc.keywords.destroy', $keyword->id))) }}
@@ -46,7 +44,7 @@ PPC - Klíčová slova
     </div>
 </div>
 @else
-{{ "NE" }}
+{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success btn-xs','role'=> 'button')) }}
 @endif
 
 @stop

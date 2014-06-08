@@ -6,23 +6,24 @@ use Illuminate\Database\Schema\Blueprint;
 class CreatePpcKeywordMatch extends Migration
 {
 
+    const DB_PPC_KEYWORDS_MATCH = 'ppc_keywords_match';
+
     public function up()
     {
-        Schema::create('ppc_keyword_match', function (Blueprint $table) {
+        Schema::create(self::DB_PPC_KEYWORDS_MATCH, function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->boolean('pozitive')->default(1);
             $table->string('code', 16)->unique();
             $table->string('string_before', 2);
             $table->string('string_after', 2);
-            $table->string('name', 2);
-            $table->timestamps();
+            $table->string('desc', 128);
+
             $table->engine = 'InnoDB';
         });
     }
 
     public function down()
     {
-        Schema::drop('ppc_keyword_match');
+        Schema::drop(self::DB_PPC_KEYWORDS_MATCH);
     }
-
 }

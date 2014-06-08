@@ -11,15 +11,9 @@ PPC - Editování klíčového slova
 {{ Form::model($keyword, array('method'=>'PATCH','route' => array('adm.ppc.keywords.update',$keyword->id),'class'=>'form-horizontal','role'=>'form')) }}
 
 <div class="form-group">
-    {{ Form::label('sklik_id','Sklik ID',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('match_id','Shoda',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('sklik_id',null,array('class'=> 'form-control', 'placeholder'=> 'Sklik ID','disable' => 'disable')) }}
-    </div>
-</div>
-<div class="form-group">
-    {{ Form::label('match_id','Match ID',array('class'=> 'col-sm-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::text('match_id',null,array('class'=> 'form-control', 'placeholder'=> 'Match ID','disable' => 'disable')) }}
+        {{ Form::select('match_id',$select_keywords_match, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Shoda slov')) }}
     </div>
 </div>
 <div class="form-group">
@@ -31,14 +25,12 @@ PPC - Editování klíčového slova
 <div class="form-group">
     {{ Form::label('cpc','CPC',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('cpc',null,array('class'=> 'form-control', 'placeholder'=> 'Cena CPC v haléřích')) }}
+        {{ Form::input('number','cpc',null,array('class'=> 'form-control','min' => '20', 'max'=>'500','placeholder'=> 'Cena CPC v haléřích')) }}
     </div>
 </div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-default')) }}
-    </div>
-</div>
+<p class="text-center">
+    {{ Form::submit('Editovat klíčové slovo', array('class' => 'btn btn-info')) }}
+</p>
 {{ Form::close() }}
 
 @stop
