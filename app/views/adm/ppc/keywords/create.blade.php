@@ -29,6 +29,7 @@ PPC - Nové klíčové slovo
     </div>
 </div>
 <p class="text-center">
+    {{ link_to_route('adm.ppc.keywords.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
     {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-success')) }}
 </p>
 {{ Form::close() }}

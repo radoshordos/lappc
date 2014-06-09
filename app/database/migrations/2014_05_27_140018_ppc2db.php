@@ -12,7 +12,7 @@ class Ppc2db extends Migration
             $table->increments('id')->unsigned();
             $table->string('manufacturer');
             $table->string('name');
-            $table->decimal('price', 7, 2)->unsigned();
+            $table->decimal('price', 9, 2)->unsigned();
             $table->timestamps();
 
             $table->engine = 'InnoDB';

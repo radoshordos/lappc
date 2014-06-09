@@ -29,6 +29,7 @@ PPC - Editování klíčového slova
     </div>
 </div>
 <p class="text-center">
+    {{ link_to_route('adm.ppc.keywords.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
     {{ Form::submit('Editovat klíčové slovo', array('class' => 'btn btn-info')) }}
 </p>
 {{ Form::close() }}
