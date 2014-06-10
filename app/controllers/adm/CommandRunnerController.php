@@ -19,16 +19,17 @@ class CommandRunnerController extends Controller
 
     public function task($task)
     {
-
         $ao = new ArrayObject();
 
         if (Request::isMethod('post')) {
             if (Request::get('alias')) {
-                foreach (Request::get('alias') as $row) {
-                    $this->executeManualTask($ao, $row);
+
+                foreach (array_keys(Request::get('alias')) as $key) {
+                    $this->executeManualTask($ao, $key);
                 }
+
+                return View::make('adm.admin.runner.task', array('ao' => $ao));
             }
-            return View::make('adm.admin.runner.task', array('ao' => $ao));
         }
 
         if (Request::isMethod('get')) {
@@ -39,10 +40,10 @@ class CommandRunnerController extends Controller
 
     private function executeManualTask(ArrayObject $ao, $task)
     {
-
         $row = AdminRunner::find($task);
 
         if (!empty($row) && class_exists($row->class)) {
+
 
             $cl = new $row->class($row);
             $cl->stopTimer();
