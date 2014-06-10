@@ -32,7 +32,9 @@
             "php artisan command:adminer",
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan migrate:refresh",
+            "php artisan db:seed"
         ]
     },
     "minimum-stability": "stable"

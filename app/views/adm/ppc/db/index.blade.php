@@ -17,7 +17,7 @@ Import z XML Feed
         <table class="table table-striped table-hover">
             <tbody>
             <tr>
-                <td>{{ Form::input('search','name',null,array('class' => 'form-control','placeholder' => 'Text input')) }}</td>
+                <td>{{ Form::input('search','name', (isset($get['name']) ? $get['name'] : NULL),array('class' => 'form-control','placeholder' => 'Text input')) }}</td>
                 <td>{{ Form::submit('GET'); }}</td>
             </tr>
             </tbody>
