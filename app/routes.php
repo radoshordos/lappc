@@ -15,6 +15,7 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::any('import', array('as' => 'adm.ppc.import.show', 'uses' => 'PpcImportController@show'));
         Route::any('config', array('as' => 'adm.ppc.config.show', 'uses' => 'PpcConfigController@show'));
 
+        Route::resource('db', 'PpcDbController');
         Route::resource('rules', 'PpcRulesController');
         Route::resource('keywords', 'PpcKeywordsController');
     });
