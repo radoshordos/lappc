@@ -11,7 +11,7 @@ class CreatePpcKeywordMatch extends Migration
     public function up()
     {
         Schema::create(self::DB_PPC_KEYWORDS_MATCH, function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->tinyInteger('id')->unsigned();
             $table->boolean('pozitive')->default(1);
             $table->string('code', 16)->unique();
             $table->string('string_before', 2);
@@ -19,6 +19,7 @@ class CreatePpcKeywordMatch extends Migration
             $table->string('desc', 128);
 
             $table->engine = 'InnoDB';
+            $table->primary('id');
         });
     }
 

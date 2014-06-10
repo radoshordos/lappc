@@ -2,26 +2,29 @@
 
 namespace Authority\Runner\Task\Performance;
 
+use Authority\Runner\Task\iRun;
+use Authority\Runner\Task\TaskMessage;
 use \DB;
 use \PDO;
 use \PDOException;
-use Authority\Runner\Task\TaskMessage;
 
-class OptimalizeTable extends TaskMessage
+
+class OptimalizeTable extends TaskMessage implements iRun
 {
+    private $pdo;
+
     public function __construct($db)
     {
         parent::__construct($db);
-        $pdo = DB::connection()->getPdo();
-        $tables = $this->itemDiscontinued($pdo);
-        $this->runOptimalizeTables($pdo, $tables);
+        $this->pdo = DB::connection()->getPdo();
+        $this->run();
     }
 
-    function itemDiscontinued($pdo)
+    function itemDiscontinued()
     {
         $tableList = array();
         try {
-            $result = $pdo->query("SHOW TABLES");
+            $result = $this->pdo->query("SHOW TABLES");
             while ($row = $result->fetch(\PDO::FETCH_NUM)) {
                 $tableList[] = $row[0];
             }
@@ -31,14 +34,14 @@ class OptimalizeTable extends TaskMessage
         return $tableList;
     }
 
-    public function runOptimalizeTables($pdo, array $tables)
+    public function run()
     {
         $inc = 0;
+        $tables = $this->itemDiscontinued();
         foreach ($tables as $table) {
             $inc++;
             $pdo->query("OPTIMIZE TABLE $table");
         }
         $this->addMessage("Optimalizováno tabulek databáze : <b>" . $inc . "</b>");
     }
-
 }

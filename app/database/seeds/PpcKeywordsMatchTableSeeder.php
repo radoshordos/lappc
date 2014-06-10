@@ -2,12 +2,10 @@
 
 class PpcKeywordsMatchTableSeeder extends Seeder
 {
-
     const DB_PPC_KEYWORDS_MATCH = 'ppc_keywords_match';
 
     public function run()
     {
-
         DB::table(self::DB_PPC_KEYWORDS_MATCH)->delete();
 
         DB::table(self::DB_PPC_KEYWORDS_MATCH)->insert(array(

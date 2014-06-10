@@ -10,12 +10,15 @@ class Ppc2db extends Migration
         Schema::create('ppc_db', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
-            $table->string('manufacturer');
+            $table->integer('item_id')->unsigned();
+            $table->string('manufacturer')->nullable();
             $table->string('name');
             $table->decimal('price', 9, 2)->unsigned();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
+            $table->unique('item_id');
+            $table->unique('name');
         });
     }
 

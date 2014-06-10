@@ -8,6 +8,7 @@ class PpcKeywordsTableSeeder extends Seeder
         DB::table('ppc_keywords')->delete();
 
         DB::table('ppc_keywords')->insert(array(
+            'item_id' => 50000,
             'sklik_id' => NULL,
             'match_id' => 1,
             'name' => 'Admins',
@@ -15,6 +16,7 @@ class PpcKeywordsTableSeeder extends Seeder
         ));
 
         DB::table('ppc_keywords')->insert(array(
+            'item_id' => 50001,
             'sklik_id' => NULL,
             'match_id' => 1,
             'name' => 'HR 3025',
@@ -22,6 +24,7 @@ class PpcKeywordsTableSeeder extends Seeder
         ));
 
         DB::table('ppc_keywords')->insert(array(
+            'item_id' => 50002,
             'sklik_id' => NULL,
             'match_id' => 1,
             'name' => 'BT 545',
@@ -29,6 +32,7 @@ class PpcKeywordsTableSeeder extends Seeder
         ));
 
         DB::table('ppc_keywords')->insert(array(
+            'item_id' => 50003,
             'sklik_id' => NULL,
             'match_id' => 2,
             'name' => 'Seat Toledo',
@@ -36,6 +40,7 @@ class PpcKeywordsTableSeeder extends Seeder
         ));
 
         DB::table('ppc_keywords')->insert(array(
+            'item_id' => 50004,
             'sklik_id' => NULL,
             'match_id' => 2,
             'name' => 'Fiat Punto',
@@ -43,6 +48,7 @@ class PpcKeywordsTableSeeder extends Seeder
         ));
 
         DB::table('ppc_keywords')->insert(array(
+            'item_id' => 50005,
             'sklik_id' => NULL,
             'match_id' => 3,
             'name' => 'Ford Mondeo',
@@ -50,6 +56,7 @@ class PpcKeywordsTableSeeder extends Seeder
         ));
 
         DB::table('ppc_keywords')->insert(array(
+            'item_id' => 50006,
             'sklik_id' => NULL,
             'match_id' => 3,
             'name' => 'Škoda Citi go',
