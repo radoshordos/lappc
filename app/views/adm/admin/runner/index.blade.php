@@ -9,7 +9,7 @@ Runner
 {{-- Content --}}
 @section('content')
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
         {{ Form::open(array('action' => 'CommandRunnerController@task', 'method' => 'POST')) }}
         <table class="table table-striped table-hover">
             <thead>
@@ -17,15 +17,15 @@ Runner
                 <th rowspan="2">
                     <span class="glyphicon glyphicon-check"></span>
                 </th>
-                <th rowspan="2"></th>
-                <th colspan="2">AUTORUN</th>
-                <th rowspan="2">Manuálně</th>
+                <th colspan="3" class="text-center">AUTORUN</th>
+                <th rowspan="2">Denní<br /> blok</th>
+                <th rowspan="2">Manuálně<br />spuštěno</th>
                 <th rowspan="2">Execute Manual Task</th>
                 <th rowspan="2">RUN</th>
-
             </tr>
             <tr>
-                <th>Minule</th>
+                <th>ANO/NE</th>
+                <th>Minule spuštěno</th>
                 <th>Příště nejdříve</th>
             </tr>
             </thead>
@@ -38,6 +38,7 @@ Runner
                 </td>
                 <td>{{ date("d.m.Y H:i", $run->last_run_automatic) }} </td>
                 <td>{{ date("d.m.Y H:i", $run->last_run_automatic + $run->autorun_minimim_range) }} </td>
+                <td>{{ date("H:i", (mktime(0, 0, 0, date("m"), date("d"), date("Y")) + $run->autorun_first_run_day)) }} </td>
                 <td>{{ date("d.m.Y H:i", $run->last_run_manual) }} </td>
                 <td>{{ str_replace('Authority\\Runner\\Task\\', '', $run->class)  }}</td>
                 <td>
@@ -48,7 +49,7 @@ Runner
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="4">
+                <td colspan="8">
                     {{ Form::submit('Spustit vše zaškrtnuté', array('class' => 'btn btn-primary btn-xs')) }}
                 </td>
             </tr>
