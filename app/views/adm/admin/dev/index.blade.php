@@ -1,0 +1,1 @@
+C:\xampp\htdocs\lappc\app/views/adm/admin/devs/index.blade.php
