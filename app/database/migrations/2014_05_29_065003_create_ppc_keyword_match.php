@@ -6,11 +6,9 @@ use Illuminate\Database\Schema\Blueprint;
 class CreatePpcKeywordMatch extends Migration
 {
 
-    const DB_PPC_KEYWORDS_MATCH = 'ppc_keywords_match';
-
     public function up()
     {
-        Schema::create(self::DB_PPC_KEYWORDS_MATCH, function (Blueprint $table) {
+        Schema::create('ppc_keywords_match', function (Blueprint $table) {
             $table->tinyInteger('id')->unsigned();
             $table->boolean('pozitive')->default(1);
             $table->string('code', 16)->unique();
@@ -25,6 +23,9 @@ class CreatePpcKeywordMatch extends Migration
 
     public function down()
     {
-        Schema::drop(self::DB_PPC_KEYWORDS_MATCH);
+        Schema::drop('ppc_keywords_match', function (Blueprint $table) {
+            $table->dropForeign('match_id');
+        });
+
     }
 }

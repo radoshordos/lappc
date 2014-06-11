@@ -13,9 +13,11 @@ class DevGroup extends Migration
 
             $table->smallInteger('id')->unsigned();
             $table->string('name','32');
+            $table->string('desc','256')->nullable();
 
             $table->engine = 'InnoDB';
             $table->primary('id');
+            $table->unique('name');
         });
 
     }
@@ -23,6 +25,7 @@ class DevGroup extends Migration
     public function down()
     {
         Schema::drop('dev_group');
+
     }
 
 }

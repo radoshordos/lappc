@@ -1,7 +1,7 @@
 <?php
 
 
-class DevWarrantyTableSeeder extends Seeder
+class ProdWarrantyTableSeeder extends Seeder
 {
 
     public function run()

@@ -12,7 +12,7 @@ class CreatePpcKeywordsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->integer('sklik_id')->unsigned()->nullable();
-            $table->tinyInteger('match_id')->unsigned()->default(1);
+            $table->tinyInteger('match_id')->unsigned();
             $table->string('name')->unique();
             $table->integer('cpc')->unsigned();
             $table->timestamps();
@@ -21,16 +21,16 @@ class CreatePpcKeywordsTable extends Migration
             $table->unique('item_id');
             $table->unique('sklik_id');
 
-            $table->foreign('match_id')
-                ->references('id')->on('ppc_keywords_match')
-                ->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('match_id')->references('id')->on('ppc_keywords_match')->onUpdate('cascade')->onDelete('no action');
         });
-
     }
 
     public function down()
     {
-        Schema::drop('ppc_keywords');
-    }
+        Schema::drop('ppc_keywords', function (Blueprint $table) {
+            $table->dropForeign('match_id');
+            $table->dropIndex('match_id');
+        });
 
+    }
 }

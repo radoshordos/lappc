@@ -1,13 +1,15 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
-use Faker\Factory as Faker;
-
 class DevGroupTableSeeder extends Seeder {
 
 	public function run()
 	{
+        DB::table('dev_group')->delete();
+
+        DB::table('dev_group')->insert(array(
+            'id' => 10,
+            'name' => 'Makita GROUP'
+        ));
 
 	}
-
 }

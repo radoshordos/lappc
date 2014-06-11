@@ -12,10 +12,10 @@ class Dev extends Migration {
             $table->smallInteger('id')->unsigned();
             $table->boolean('active')->default(1);
 
-            $table->tinyInteger('default_warranty')->unsigned();
-            $table->tinyInteger('default_sale')->unsigned();
-            $table->tinyInteger('default_availibility')->unsigned();
-            $table->tinyInteger('default_delivery_date')->unsigned();
+            $table->tinyInteger('default_warranty_id')->unsigned()->default(1);
+            $table->tinyInteger('default_sale_id')->unsigned()->default(1);
+            $table->tinyInteger('default_availibility_id')->unsigned()->default(1);
+//            $table->tinyInteger('default_delivery_date')->unsigned()->default(1);
 
             $table->string('alias','32');
             $table->string('name','32');
