@@ -1,32 +1,32 @@
 <?php
 
-class Adm.admin.devsController extends \BaseController {
+class DevController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /adm.admin.devs
+	 * GET /adm/admin/dev
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		//
+        return View::make('adm.pattern.dev.index');
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /adm.admin.devs/create
+	 * GET /adm/admin/dev/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+        return View::make('adm.pattern.dev.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /adm.admin.devs
+	 * POST /adm/admin/dev
 	 *
 	 * @return Response
 	 */
@@ -37,7 +37,7 @@ class Adm.admin.devsController extends \BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /adm.admin.devs/{id}
+	 * GET /adm/admin/dev/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -68,7 +68,7 @@ class Adm.admin.devsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        return View::make('adm.pattern.dev.edit');
 	}
 
 	/**

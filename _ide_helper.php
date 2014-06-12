@@ -4325,6 +4325,36 @@ namespace {
 		 }
 
 		/**
+		 * Add a right join to the query.
+		 *
+		 * @param string  $table
+		 * @param string  $first
+		 * @param string  $operator
+		 * @param string  $second
+		 * @return \Illuminate\Database\Query\Builder|static
+		 * @static 
+		 */
+		 public static function rightJoin($table, $first, $operator = null, $second = null){
+			//Method inherited from \Illuminate\Database\Query\Builder
+			return \Illuminate\Database\Query\Builder::rightJoin($table, $first, $operator, $second);
+		 }
+
+		/**
+		 * Add a "right join where" clause to the query.
+		 *
+		 * @param string  $table
+		 * @param string  $first
+		 * @param string  $operator
+		 * @param string  $two
+		 * @return \Illuminate\Database\Query\Builder|static
+		 * @static 
+		 */
+		 public static function rightJoinWhere($table, $one, $operator, $two){
+			//Method inherited from \Illuminate\Database\Query\Builder
+			return \Illuminate\Database\Query\Builder::rightJoinWhere($table, $one, $operator, $two);
+		 }
+
+		/**
 		 * Add a raw where clause to the query.
 		 *
 		 * @param string  $sql
@@ -12689,6 +12719,18 @@ namespace {
 		 public static function renderEach($view, $data, $iterator, $empty = 'raw|'){
 			//Method inherited from \Illuminate\View\Factory
 			return \Illuminate\View\Factory::renderEach($view, $data, $iterator, $empty);
+		 }
+
+		/**
+		 * Get the appropriate view engine for the given path.
+		 *
+		 * @param string  $path
+		 * @return \Illuminate\View\Engines\EngineInterface
+		 * @static 
+		 */
+		 public static function getEngineFromPath($path){
+			//Method inherited from \Illuminate\View\Factory
+			return \Illuminate\View\Factory::getEngineFromPath($path);
 		 }
 
 		/**

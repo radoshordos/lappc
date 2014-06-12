@@ -34,7 +34,24 @@
         <div class="collapse navbar-collapse">
 
             @if (Sentry::check())
+
+
+
             <ul class="nav navbar-nav">
+
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::route('adm.pattern.devgroup.index')}}">DEV GROUP</a></li>
+                        <li><a href="{{ URL::to('adm/pattern/dev') }}">DEV</a></li>
+                        <li><a href="{{ URL::route('adm.nastaveni.tree2group2top') }}">Tree TOP Group</a></li>
+                    </ul>
+                </li>
+
+
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>
                     <ul class="dropdown-menu">
