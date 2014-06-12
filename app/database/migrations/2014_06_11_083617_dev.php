@@ -7,6 +7,7 @@ class Dev extends Migration {
 
     public function up()
     {
+
         Schema::create('dev', function (Blueprint $table) {
 
             $table->smallInteger('id')->unsigned();
@@ -26,6 +27,7 @@ class Dev extends Migration {
             $table->unique('alias');
 
         });
+
     }
 
     public function down()

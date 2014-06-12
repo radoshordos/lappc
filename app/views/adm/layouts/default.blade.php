@@ -34,12 +34,7 @@
         <div class="collapse navbar-collapse">
 
             @if (Sentry::check())
-
-
-
             <ul class="nav navbar-nav">
-
-
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>
@@ -49,8 +44,6 @@
                         <li><a href="{{ URL::route('adm.nastaveni.tree2group2top') }}">Tree TOP Group</a></li>
                     </ul>
                 </li>
-
-
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>

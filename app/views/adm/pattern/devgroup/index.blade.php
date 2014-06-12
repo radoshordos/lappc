@@ -26,7 +26,7 @@ Skupiny výrobců
                 <td>{{ $dev->id }}</td>
                 <td>{{ $dev->name }}</td>
                 <td>{{ $dev->desc }}</td>
-                <td>{{ substr_count($dev->desc, ', ')+1 }}</td>
+                <td>{{ ($dev->desc ?  substr_count($dev->desc, ', ') + 1 : '0') }}</td>
             </tr>
             @endforeach
             </tbody>

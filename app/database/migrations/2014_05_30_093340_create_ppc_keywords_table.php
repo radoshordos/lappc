@@ -12,7 +12,7 @@ class CreatePpcKeywordsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->integer('sklik_id')->unsigned()->nullable();
-            $table->tinyInteger('match_id')->unsigned();
+            $table->tinyInteger('match_id')->unsigned()->default(1);
             $table->string('name')->unique();
             $table->integer('cpc')->unsigned();
             $table->timestamps();

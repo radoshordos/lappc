@@ -8,7 +8,7 @@ Nová skupina výrobců
 
 {{-- Content --}}
 @section('content')
-{{ Form::open(array('route' => 'adm.pattern.dev.store','class' => 'form-horizontal', 'role' => 'form')) }}
+{{ Form::open(array('route' => 'adm.pattern.devgroup.store','class' => 'form-horizontal', 'role' => 'form')) }}
 
 <div class="form-group">
     {{ Form::label('name','Nová skupina výrobce',array('class'=> 'col-sm-2 control-label')) }}
@@ -17,7 +17,7 @@ Nová skupina výrobců
     </div>
 </div>
 <p class="text-center">
-
+    {{ link_to_route('adm.pattern.devgroup.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
     {{ Form::submit('Vytvořit nové pravidlo', array('class' => 'btn btn-success')) }}
 </p>
 
