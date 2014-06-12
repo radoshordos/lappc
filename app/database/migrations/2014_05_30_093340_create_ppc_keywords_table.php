@@ -21,16 +21,17 @@ class CreatePpcKeywordsTable extends Migration
             $table->unique('item_id');
             $table->unique('sklik_id');
 
-            $table->foreign('match_id')->references('id')->on('ppc_keywords_match')->onUpdate('cascade')->onDelete('no action');
+        //    $table->foreign('match_id')->references('id')->on('ppc_keywords_match')->onUpdate('cascade')->onDelete('no action');
         });
     }
 
     public function down()
     {
+        /*
         Schema::drop('ppc_keywords', function (Blueprint $table) {
             $table->dropForeign('match_id');
             $table->dropIndex('match_id');
         });
-
+    */
     }
 }

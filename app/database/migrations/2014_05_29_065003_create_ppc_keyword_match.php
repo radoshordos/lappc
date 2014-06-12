@@ -23,9 +23,7 @@ class CreatePpcKeywordMatch extends Migration
 
     public function down()
     {
-        Schema::drop('ppc_keywords_match', function (Blueprint $table) {
-            $table->dropForeign('match_id');
-        });
+
 
     }
 }

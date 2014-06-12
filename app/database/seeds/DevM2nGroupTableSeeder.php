@@ -22,6 +22,11 @@ class DevM2nGroupTableSeeder extends Seeder
             'dev_id' => '30'
         ));
 
+        DB::table('dev_m2n_group')->insert(array(
+            'group_id' => '12',
+            'dev_id' => '30'
+        ));
+
     }
 
 }

@@ -15,10 +15,9 @@ class AddTriggerDev extends Migration
                                                 SELECT GROUP_CONCAT(" ",dev.name)
                                                 FROM dev
                                                 INNER JOIN dev_m2n_group ON dev_m2n_group.dev_id = dev.id
-                                                WHERE dev_m2n_group.group_id = NEW.id
+                                                WHERE dev_m2n_group.group_id IN (SELECT group_id FROM dev_m2n_group WHERE dev_id = NEW.id)
                                                 ORDER BY dev.id
-                                             )
-                        WHERE dev_group.id=NEW.dev.id;
+                                             );
 
                         END;
         ');
@@ -31,10 +30,12 @@ class AddTriggerDev extends Migration
                                                 SELECT GROUP_CONCAT(" ",dev.name)
                                                 FROM dev
                                                 INNER JOIN dev_m2n_group ON dev_m2n_group.dev_id = dev.id
-                                                WHERE dev_m2n_group.group_id = NEW.id
+                                                WHERE dev_m2n_group.group_id IN (SELECT group_id FROM dev_m2n_group WHERE dev_id = NEW.id)
                                                 ORDER BY dev.id
-                                             )
-                        WHERE dev_group.id=NEW.dev.id;
+                                             );
+                        WHERE (SELECT group_id FROM dev_m2n_group WHERE dev_id = NEW.id)
+
+
 
                         END;
         ');

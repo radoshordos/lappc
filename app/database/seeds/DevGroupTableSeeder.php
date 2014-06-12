@@ -11,5 +11,10 @@ class DevGroupTableSeeder extends Seeder {
             'name' => 'Makita GROUP'
         ));
 
+        DB::table('dev_group')->insert(array(
+            'id' => 12,
+            'name' => 'Dolmar Only'
+        ));
+
 	}
 }
