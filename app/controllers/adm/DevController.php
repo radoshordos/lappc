@@ -1,6 +1,15 @@
 <?php
 
+use Authority\Eloquent\Dev;
+
 class DevController extends Controller {
+
+    protected $dev;
+
+    function __construct(Dev $dev)
+    {
+        $this->dev = $dev;
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -10,7 +19,8 @@ class DevController extends Controller {
 	 */
 	public function index()
 	{
-        return View::make('adm.pattern.dev.index');
+        $devs = $this->dev->orderBy('id')->get();
+        return View::make('adm.pattern.dev.index',array('devs'=> $devs));
 	}
 
 	/**

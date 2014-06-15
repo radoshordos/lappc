@@ -40,7 +40,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.pattern.devgroup.index')}}">DEV GROUP</a></li>
-                        <li><a href="{{ URL::to('adm/pattern/dev') }}">DEV</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.dev.index') }}">DEV</a></li>
                         <li><a href="{{ URL::route('adm.nastaveni.tree2group2top') }}">Tree TOP Group</a></li>
                     </ul>
                 </li>
