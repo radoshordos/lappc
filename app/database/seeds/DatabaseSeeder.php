@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call('PpcConfigSeeder');
         $this->call('PpcDbModeTableSeeder');
-//        $this->call('PpcKeywordsMatchTableSeeder');
+        $this->call('PpcKeywordsMatchTableSeeder');
         $this->call('PpcKeywordsTableSeeder');
 
         $this->call('AdminRunnerTableSeeder');

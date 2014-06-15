@@ -6,6 +6,7 @@ class PpcKeywordsMatchTableSeeder extends Seeder
 
     public function run()
     {
+        DB::table('ppc_keywords')->delete();
         DB::table(self::DB_PPC_KEYWORDS_MATCH)->delete();
 
         DB::table(self::DB_PPC_KEYWORDS_MATCH)->insert(array(

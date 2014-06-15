@@ -40,7 +40,7 @@ class OptimalizeTable extends TaskMessage implements iRun
         $tables = $this->itemDiscontinued();
         foreach ($tables as $table) {
             $inc++;
-            $pdo->query("OPTIMIZE TABLE $table");
+            $this->pdo->query("OPTIMIZE TABLE $table");
         }
         $this->addMessage("Optimalizováno tabulek databáze : <b>" . $inc . "</b>");
     }

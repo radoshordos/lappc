@@ -23,7 +23,6 @@ class CreatePpcKeywordMatch extends Migration
 
     public function down()
     {
-
-
+        Schema::drop('ppc_keywords_match');
     }
 }
