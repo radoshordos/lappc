@@ -48,7 +48,19 @@ class DevController extends Controller
      */
     public function store()
     {
-        //
+        $input = Input::all();
+
+        $input['alias'] = strtolower($input['name']);
+        $v = Validator::make($input, Dev::$rules);
+
+        if ($v->passes()) {
+            $this->dev->create($input);
+            Session::flash('success', 'Nový záznam výrobce byl přidán');
+            return Redirect::route('adm.pattern.dev.index');
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.dev.create')->withInput()->withErrors($v);
+        }
     }
 
     /**

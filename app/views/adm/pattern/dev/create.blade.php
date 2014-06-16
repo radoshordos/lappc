@@ -9,7 +9,12 @@ Přidat nového výrobce
 {{-- Content --}}
 @section('content')
 {{ Form::open(array('route' => 'adm.pattern.dev.store','class' => 'form-horizontal', 'role' => 'form')) }}
-
+<div class="form-group">
+    {{ Form::label('id','ID',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::input('number','id',NULL,array('min'=> '1','max'=> '999','required' => 'required','class'=> 'form-control', 'placeholder'=> 'ID určené pro výrobce')) }}
+    </div>
+</div>
 <div class="form-group">
     {{ Form::label('name','Název výrobce',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
@@ -17,23 +22,23 @@ Přidat nového výrobce
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('default_warranty','Výchozí záruka',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('default_warranty_id','Výchozí záruka',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('default_warranty',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí záruka pro
+        {{ Form::select('default_warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí záruka pro
         výrobce')) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('default_sale','Výchozí sleva',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('default_sale_id','Výchozí sleva',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('default_sale',$select_sale, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí sleva pro
+        {{ Form::select('default_sale_id',$select_sale, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí sleva pro
         výrobce')) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('default_availability','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('default_availibility_id','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('default_availability',$select_availability, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí
+        {{ Form::select('default_availibility_id',$select_availability, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí
         dostupnost pro výrobce')) }}
     </div>
 </div>
@@ -50,17 +55,5 @@ Přidat nového výrobce
     {{ Form::submit('Vložit nového výrobce', array('class' => 'btn btn-success')) }}
 </p>
 
-
 {{ Form::close() }}
-
-@if ($errors->any())
-<div>
-    <ul>
-        {{ implode('',$errors->all('
-        <li class="error">:message</li>
-        ')) }}
-    </ul>
-</div>
-@endif
-
 @stop

@@ -22,6 +22,7 @@ class Dev extends Migration
 
             $table->string('alias', '32');
             $table->string('name', '32');
+            $table->timestamps();
 
             $table->engine = 'InnoDB';
             $table->primary('id');

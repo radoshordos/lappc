@@ -60,7 +60,7 @@ return array(
 		"file"    => "The :attribute must be :size kilobytes.",
 		"string"  => "The :attribute must be :size characters.",
 	),
-	"unique"           => "The :attribute has already been taken.",
+	"unique"           => "Položka \":attribute\" je již obsazená.",
 	"url"              => "The :attribute format is invalid.",
 
 	/*
