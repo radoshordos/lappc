@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Dev extends Migration {
+class Dev extends Migration
+{
 
     public function up()
     {
@@ -12,14 +13,15 @@ class Dev extends Migration {
 
             $table->smallInteger('id')->unsigned();
             $table->boolean('active')->default(1);
+            $table->boolean('authorized')->default(0);
 
             $table->tinyInteger('default_warranty_id')->unsigned()->default(1);
             $table->tinyInteger('default_sale_id')->unsigned()->default(1);
             $table->tinyInteger('default_availibility_id')->unsigned()->default(1);
 //            $table->tinyInteger('default_delivery_date')->unsigned()->default(1);
 
-            $table->string('alias','32');
-            $table->string('name','32');
+            $table->string('alias', '32');
+            $table->string('name', '32');
 
             $table->engine = 'InnoDB';
             $table->primary('id');
