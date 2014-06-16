@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call('DevGroupTableSeeder');
         $this->call('DevM2nGroupTableSeeder');
 
+        $this->call('ProdWarrantyTableSeeder');
+        $this->call('ProdSaleTableSeeder');
+        $this->call('ItemsAvailabilityTableSeeder');
     }
 
 }
