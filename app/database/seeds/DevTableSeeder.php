@@ -7,7 +7,7 @@ class DevTableSeeder extends Seeder
         DB::table('dev')->delete();
 
         DB::table('dev')->insert(array(
-            'id' => 0,
+            'id' => 1,
             'active' => 0,
             'alias' => 'all',
             'name' => '[ALL]'

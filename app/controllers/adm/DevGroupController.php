@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\DevGroup;
+use Authority\Tools\SB;
 
 class DevGroupController extends Controller
 {
@@ -14,7 +15,7 @@ class DevGroupController extends Controller
 
     /**
      * Display a listing of the resource.
-     * GET /adm/admin/dev
+     * GET /adm/pattern/devgroup
      *
      * @return Response
      */
@@ -37,7 +38,7 @@ class DevGroupController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * POST /adm/admin/dev
+     * POST /adm/pattern/devgroup
      *
      * @return Response
      */
@@ -59,7 +60,7 @@ class DevGroupController extends Controller
 
     /**
      * Display the specified resource.
-     * GET /adm/admin/dev/{id}
+     * GET /adm/pattern/devgroup/{id}
      *
      * @param  int $id
      * @return Response
@@ -71,31 +72,51 @@ class DevGroupController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * GET /adm.admin.devs/{id}/edit
+     * GET /adm/pattern/devgroup/{id}/edit
      *
      * @param  int $id
      * @return Response
      */
     public function edit($id)
     {
-        //
+        $devgroup = $this->devgroup->find($id);
+
+        if (is_null($devgroup)) {
+            return Redirect::route('adm.pattern.devgroup.index');
+        }
+
+        return View::make('adm.pattern.devgroup.edit', array(
+            'dev_insertable' => ['' => ''] + SB::option("SELECT * FROM dev WHERE id > 1 AND id NOT IN (SELECT dev_id FROM dev_m2n_group WHERE group_id = $id) ORDER BY id", ['id' => '->name']),
+            'devgroup' => $devgroup,
+        ));
     }
 
     /**
      * Update the specified resource in storage.
-     * PUT /adm.admin.devs/{id}
+     * PUT /adm/pattern/devgroup/{id}
      *
      * @param  int $id
      * @return Response
      */
+
     public function update($id)
     {
-        return View::make('adm.pattern.devgroup.edit');
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, DevGroup::$rules);
+
+        if ($v->passes()) {
+            $devgroup = $this->devgroup->find($id);
+            $devgroup->update($input);
+            return Redirect::route('adm.pattern.devgroup.index', $id);
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.devgroup.edit', $id)->withInput()->withErrors($v);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
-     * DELETE /adm.admin.devs/{id}
+     * DELETE /adm/pattern/devgroup/{id}
      *
      * @param  int $id
      * @return Response
