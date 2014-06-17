@@ -35,7 +35,7 @@ class DevController extends Controller
     {
         return View::make('adm.pattern.dev.create', array(
             'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-            'select_sale' => SB::option("SELECT * FROM prod_sale", ['id' => '->desc']),
+            'select_sale' => SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
             'select_availability' => SB::option("SELECT * FROM items_availability WHERE id > 0", ['id' => '->name'])
         ));
     }

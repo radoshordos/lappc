@@ -5,13 +5,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class Dev extends Migration
 {
-
     public function up()
     {
-
         Schema::create('dev', function (Blueprint $table) {
 
-            $table->smallInteger('id')->unsigned();
+            $table->increments('id')->unsigned();
             $table->boolean('active')->default(1);
             $table->boolean('authorized')->default(0);
 
@@ -25,12 +23,9 @@ class Dev extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->primary('id');
             $table->unique('name');
             $table->unique('alias');
-
         });
-
     }
 
     public function down()

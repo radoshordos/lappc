@@ -11,15 +11,14 @@ class DevM2nGroup extends Migration
         Schema::create('dev_m2n_group', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->smallInteger('group_id')->unsigned();
-            $table->smallInteger('dev_id')->unsigned();
+            $table->integer('group_id')->unsigned();
+            $table->integer('dev_id')->unsigned();
 
             $table->engine = 'InnoDB';
             $table->unique(array('group_id', 'dev_id'));
 
             $table->foreign('group_id')->references('id')->on('dev_group')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('cascade');
-
         });
     }
 
@@ -29,7 +28,6 @@ class DevM2nGroup extends Migration
             $table->dropForeign('group_id');
             $table->dropForeign('dev_id');
         });
-
     }
 
 }

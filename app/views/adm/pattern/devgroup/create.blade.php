@@ -13,7 +13,7 @@ Nová skupina výrobců
 <div class="form-group">
     {{ Form::label('name','Nová skupina výrobce',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('match_id',NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové skupiny výrobců')) }}
+        {{ Form::text('name',NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové skupiny výrobců')) }}
     </div>
 </div>
 <p class="text-center">
@@ -22,15 +22,4 @@ Nová skupina výrobců
 </p>
 
 {{ Form::close() }}
-
-@if ($errors->any())
-<div>
-    <ul>
-        {{ implode('',$errors->all('
-        <li class="error">:message</li>
-        ')) }}
-    </ul>
-</div>
-@endif
-
 @stop

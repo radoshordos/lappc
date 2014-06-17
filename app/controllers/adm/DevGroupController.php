@@ -41,9 +41,20 @@ class DevGroupController extends Controller
      *
      * @return Response
      */
+
     public function store()
     {
-        return Redirect::route('adm.ppc.devgroup.create');
+        $input = Input::all();
+        $v = Validator::make($input, DevGroup::$rules);
+
+        if ($v->passes()) {
+            $this->devgroup->create($input);
+            Session::flash('success', 'Nový záznam do skupiny výrobce byl přidán');
+            return Redirect::route('adm.pattern.devgroup.index');
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.devgroup.create')->withInput()->withErrors($v);
+        }
     }
 
     /**

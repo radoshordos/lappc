@@ -11,21 +11,17 @@ class DevGroup extends Migration
 
         Schema::create('dev_group', function (Blueprint $table) {
 
-            $table->smallInteger('id')->unsigned();
-            $table->string('name','32');
-            $table->string('desc','256')->nullable();
+            $table->increments('id')->unsigned();
+            $table->string('name', '32');
+            $table->string('desc', '256')->nullable();
 
             $table->engine = 'InnoDB';
-            $table->primary('id');
             $table->unique('name');
         });
-
     }
 
     public function down()
     {
         Schema::drop('dev_group');
-
     }
-
 }

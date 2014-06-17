@@ -11,7 +11,8 @@ class PpcKeywords extends \Eloquent
 
     public static $rules = array(
         'name' => 'required',
-        'cpc' => 'required'
+        'cpc' => 'required',
+        'match_id' => 'exists:ppc_keywords_match,id'
     );
 
     public function ppcKeywordsMatch()

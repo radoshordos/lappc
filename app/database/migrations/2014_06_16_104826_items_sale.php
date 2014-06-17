@@ -3,12 +3,12 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProdSale extends Migration
+class ItemsSale extends Migration
 {
 
     public function up()
     {
-        Schema::create('prod_sale', function (Blueprint $table) {
+        Schema::create('items_sale', function (Blueprint $table) {
 
             $table->tinyInteger('id')->unsigned();
             $table->boolean('visible')->default(1);
@@ -24,7 +24,7 @@ class ProdSale extends Migration
 
     public function down()
     {
-        Schema::drop('prod_sale');
+        Schema::drop('items_sale');
     }
 
 }

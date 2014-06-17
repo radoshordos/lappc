@@ -7,7 +7,7 @@ class DevTableSeeder extends Seeder
         DB::table('dev')->delete();
 
         DB::table('dev')->insert(array(
-            'id' => 1,
+            'id' => 0,
             'active' => 0,
             'alias' => 'all',
             'name' => '[ALL]'
@@ -16,6 +16,7 @@ class DevTableSeeder extends Seeder
         DB::table('dev')->insert(array(
             'id' => 5,
             'active' => 1,
+            'authorized' => 1,
             'alias' => 'makita',
             'name' => 'Makita'
         ));
@@ -23,6 +24,7 @@ class DevTableSeeder extends Seeder
         DB::table('dev')->insert(array(
             'id' => 6,
             'active' => 1,
+            'authorized' => 1,
             'alias' => 'maktec',
             'name' => 'Maktec'
         ));
@@ -44,6 +46,7 @@ class DevTableSeeder extends Seeder
         DB::table('dev')->insert(array(
             'id' => 30,
             'active' => 1,
+            'authorized' => 1,
             'alias' => 'dolmar',
             'name' => 'Dolmar'
         ));

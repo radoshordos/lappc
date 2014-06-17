@@ -26,7 +26,7 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('runner', 'CommandRunnerController');
     });
 
-    Route::group(array('prefix' => 'pattern'), function () {
+    Route::group(array('prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'), function () {
         Route::resource('dev', 'DevController');
         Route::resource('devgroup', 'DevGroupController');
     });
