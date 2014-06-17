@@ -24,7 +24,8 @@ Nová skupina výrobců
 <div class="panel panel-success">
     <div class="panel-heading"><strong>Přiřazení výrobci</strong></div>
     <div class="panel-body">
-        <table class="table table-bordered">
+
+        <table class="table table-bordered table-striped">
             <tbody>
             @foreach($devgroup->dev as $dev)
             <tr>
