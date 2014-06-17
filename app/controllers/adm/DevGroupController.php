@@ -87,7 +87,7 @@ class DevGroupController extends Controller
 
         return View::make('adm.pattern.devgroup.edit', array(
             'dev_insertable' => ['' => ''] + SB::option("SELECT * FROM dev WHERE id > 1 AND id NOT IN (SELECT dev_id FROM dev_m2n_group WHERE group_id = $id) ORDER BY id", ['id' => '->name']),
-            'devgroup' => $devgroup,
+            'devgroup' => $devgroup
         ));
     }
 

@@ -17,7 +17,6 @@ class DevGroup extends \Eloquent
         return $this->belongsToMany('Authority\Eloquent\Dev','dev_m2n_group','group_id','dev_id');
     }
 
-
     public function dev()
     {
         return $this->belongsToMany('Authority\Eloquent\Dev','dev_m2n_group','group_id','dev_id');

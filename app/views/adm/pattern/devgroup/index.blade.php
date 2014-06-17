@@ -18,7 +18,6 @@ Skupiny výrobců
                 <th>Název skupiny</th>
                 <th>Výrobci ve skupině</th>
                 <th><span class="glyphicon glyphicon-paperclip"></span></th>
-
                 <th></th>
             </tr>
             </thead>
@@ -27,8 +26,8 @@ Skupiny výrobců
             <tr>
                 <td>{{ $dev->id }}</td>
                 <td>{{ $dev->name }}</td>
-                <td>{{ $dev->desc }}</td>
-                <td>{{ ($dev->desc ?  substr_count($dev->desc, ', ') + 1 : '0') }}</td>
+                <td>@foreach ($dev->dev as $one) {{ $one->name.' '; }} @endforeach</td>
+                <td>{{ count($dev->dev)}}</td>
                 <td>{{ link_to_route('adm.pattern.devgroup.edit','Edit',array($dev->id),array('class' => 'btn btn-info btn-xs')) }}</td>
             </tr>
             @endforeach
