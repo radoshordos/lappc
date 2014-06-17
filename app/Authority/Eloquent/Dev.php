@@ -6,11 +6,15 @@ class Dev extends \Eloquent
 {
     protected $table = 'dev';
     protected $guarded = [];
+    public $timestamps = false;
 
     public static $rules = array(
-        'id'    => 'required|min:1|max:999|unique:dev,id',
-        'name'  => 'required|min:2|max:32|unique:dev,name',
-        'alias' => 'required|min:2|max:32|unique:dev,alias'
+        'id'    => 'required|min:1|max:999',
+        'name'  => 'required|min:2|max:32',
+        'alias' => 'required|min:2|max:32',
+        'default_warranty_id'       => 'required|numeric|exists:prod_warranty,id',
+        'default_sale_id'           => 'required|numeric|exists:items_sale,id',
+        'default_availibility_id'   => 'required|numeric|exists:items_availability,id'
     );
 
     public function prodWarranty()

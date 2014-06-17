@@ -8,14 +8,14 @@ class ItemsSaleTableSeeder extends Seeder
         DB::table('items_sale')->delete();
 
         DB::table('items_sale')->insert(array(
-            'id' => 0,
+            'id' => 1,
             'multiple' => 1,
             'name' => '0%',
             'desc' => 'Běžná cena - 0% sleva'
         ));
 
         DB::table('items_sale')->insert(array(
-            'id' => 1,
+            'id' => 2,
             'multiple' => 0.998,
             'name' => '0.2%',
             'desc' => 'Sleva - 0.2% sleva'

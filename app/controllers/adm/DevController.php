@@ -34,9 +34,9 @@ class DevController extends Controller
     public function create()
     {
         return View::make('adm.pattern.dev.create', array(
-            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-            'select_sale' => SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
-            'select_availability' => SB::option("SELECT * FROM items_availability WHERE id > 0", ['id' => '->name'])
+            'select_warranty' => [''] + SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+            'select_sale' => [''] + SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
+            'select_availability' => [''] + SB::option("SELECT * FROM items_availability WHERE id > 1", ['id' => '->name'])
         ));
     }
 
@@ -84,7 +84,18 @@ class DevController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dev = $this->dev->find($id);
+
+        if (is_null($dev)) {
+            return Redirect::route('adm.pattern.dev.index');
+        }
+
+        return View::make('adm.pattern.dev.edit', array(
+            'dev' => $dev,
+            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+            'select_sale' => SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
+            'select_availability' => SB::option("SELECT * FROM items_availability WHERE id > 1", ['id' => '->name'])
+        ));
     }
 
     /**
@@ -96,7 +107,20 @@ class DevController extends Controller
      */
     public function update($id)
     {
-        return View::make('adm.pattern.dev.edit');
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, Dev::$rules);
+
+        if ($v->passes()) {
+            $dev = $this->dev->find($id);
+            $dev->update($input);
+            return Redirect::route('adm.pattern.dev.index');
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.dev.edit', $id)->withInput()->withErrors($v);
+        }
+
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, PpcKeywords::$rules);
     }
 
     /**

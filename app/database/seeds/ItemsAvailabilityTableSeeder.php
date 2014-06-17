@@ -7,17 +7,17 @@ class ItemsAvailabilityTableSeeder extends Seeder
         DB::table('items_availability')->delete();
 
         DB::table('items_availability')->insert(array(
-            'id' => 0,
+            'id' => 1,
             'name' => 'Stejná jako neakční'
         ));
 
         DB::table('items_availability')->insert(array(
-            'id' => 1,
+            'id' => 2,
             'name' => 'Na dotaz'
         ));
 
         DB::table('items_availability')->insert(array(
-            'id' => 2,
+            'id' => 3,
             'name' => 'Skladem'
         ));
 
