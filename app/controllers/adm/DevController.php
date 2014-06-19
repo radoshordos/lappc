@@ -112,7 +112,11 @@ class DevController extends Controller
 
         if ($v->passes()) {
             $dev = $this->dev->find($id);
-            $dev->update($input);
+            try {
+                $dev->update($input);
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
             return Redirect::route('adm.pattern.dev.index');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));

@@ -15,8 +15,8 @@ class Dev extends Migration
 
             $table->tinyInteger('default_warranty_id')->unsigned()->default(1);
             $table->tinyInteger('default_sale_id')->unsigned()->default(1);
-            $table->tinyInteger('default_availibility_id')->unsigned()->default(1);
-//            $table->tinyInteger('default_delivery_date')->unsigned()->default(1);
+            $table->tinyInteger('default_availibility_id')->unsigned()->default(2);
+
 
             $table->string('alias', '32');
             $table->string('name', '32');

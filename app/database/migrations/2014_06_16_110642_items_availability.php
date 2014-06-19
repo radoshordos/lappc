@@ -12,6 +12,7 @@ class ItemsAvailability extends Migration
 
             $table->tinyInteger('id')->unsigned();
             $table->boolean('visible')->default(1);
+            $table->boolean('delivery_date')->nullable();
             $table->string('name', '64');
 
             $table->engine = 'InnoDB';

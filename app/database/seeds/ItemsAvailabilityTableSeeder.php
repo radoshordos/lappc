@@ -11,6 +11,8 @@ class ItemsAvailabilityTableSeeder extends Seeder
             'name' => 'Stejná jako neakční'
         ));
 
+//            $table->tinyInteger('default_delivery_date')->unsigned()->default(1);
+
         DB::table('items_availability')->insert(array(
             'id' => 2,
             'name' => 'Na dotaz'
