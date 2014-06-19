@@ -64,7 +64,7 @@ class TreeController extends \BaseController {
 
         return View::make('adm.pattern.tree.edit', array(
             'tree' => $tree,
-            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '->name']),
+            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->name']),
         ));
 	}
 

@@ -2,7 +2,7 @@
 
 use Authority\Eloquent\DevM2nGroup;
 
-class DevM2nGroupController extends Controller
+class DevM2nGroupController extends \BaseController
 {
     protected $dev_m2n_group;
 

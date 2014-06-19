@@ -1,6 +1,6 @@
 <?php
 
-class PhpinfoController extends Controller
+class PhpinfoController extends \BaseController
 {
     public function show()
     {

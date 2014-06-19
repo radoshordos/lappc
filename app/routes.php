@@ -8,7 +8,8 @@ Route::get('/', function () {
 
 Route::group(array('prefix' => 'adm'), function () {
 
-    Route::get('summary/tree2group2top', array('as' => 'adm.summary.tree2group2top.index', 'uses' => 'Tree2group2topController@index'));
+    Route::get('summary/tree2group', array('as' => 'adm.summary.tree2group.index', 'uses' => 'TreeGroupController@index'));
+    Route::get('summary/tree2group2top', array('as' => 'adm.summary.tree2group2top.index', 'uses' => 'TreeGroupTopController@index'));
 
     Route::group(array('prefix' => 'ppc', 'before' => 'Sentry|inGroup:Admins'), function () {
 

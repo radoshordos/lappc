@@ -2,7 +2,7 @@
 
 use Authority\Eloquent\Tree2group2top;
 
-class Tree2group2topController extends Controller
+class Tree2group2topController extends \BaseController
 {
     public function index()
     {

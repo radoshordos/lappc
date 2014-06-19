@@ -3,7 +3,7 @@
 use Authority\Eloquent\Dev;
 use Authority\Tools\SB;
 
-class DevController extends Controller
+class DevController extends \BaseController
 {
 
     protected $dev;

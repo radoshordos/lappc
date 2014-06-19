@@ -2,7 +2,7 @@
 
 use Authority\Eloquent\AdminRunner;
 
-class CommandRunnerController extends Controller
+class CommandRunnerController extends \BaseController
 {
     protected $runner;
 

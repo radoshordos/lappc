@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableTreeGroupTop extends Migration
+class TableTreeGroupTop extends Migration
 {
 
     public function up()
