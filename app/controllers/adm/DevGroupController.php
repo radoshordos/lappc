@@ -21,7 +21,7 @@ class DevGroupController extends Controller
      */
     public function index()
     {
-        $devgroup = $this->devgroup->orderBy('name')->get();
+        $devgroup = $this->devgroup->orderBy('id')->get();
         return View::make('adm.pattern.devgroup.index', array('devgroup' => $devgroup));
     }
 
@@ -56,18 +56,6 @@ class DevGroupController extends Controller
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.devgroup.create')->withInput()->withErrors($v);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     * GET /adm/pattern/devgroup/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -112,18 +100,6 @@ class DevGroupController extends Controller
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.devgroup.edit', $id)->withInput()->withErrors($v);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * DELETE /adm/pattern/devgroup/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
 }

@@ -9,8 +9,6 @@ Editace výrobce zboží
 {{-- Content --}}
 @section('content')
 
-{{ var_dump($dev) }}
-
 {{ Form::model($dev, array('method'=>'PATCH','route' => array('adm.pattern.dev.update',$dev->id),'class'=>'form-horizontal','role'=>'form')) }}
 <div class="form-group">
     {{ Form::label('id','ID',array('class'=> 'col-sm-2 control-label')) }}

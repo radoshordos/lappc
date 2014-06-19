@@ -3,14 +3,11 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Home
+Tree GroupTop
 @stop
 
 {{-- Content --}}
 @section('content')
-<h4>Informace o profilu:</h4>
-
-
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-hover">
@@ -23,8 +20,4 @@ Home
         </table>
     </div>
 </div>
-
-
-<hr/>
-
 @stop

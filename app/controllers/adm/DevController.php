@@ -21,7 +21,7 @@ class DevController extends Controller
      */
     public function index()
     {
-        $devs = $this->dev->orderBy('id')->get();
+        $devs = $this->dev->where('id','>','1')->orderBy('id')->get();
         return View::make('adm.pattern.dev.index', array('devs' => $devs));
     }
 
@@ -64,20 +64,8 @@ class DevController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     * GET /adm/admin/dev/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
-     * GET /adm.admin.devs/{id}/edit
+     * GET /adm/admin/dev/{id}/edit
      *
      * @param  int $id
      * @return Response
@@ -100,15 +88,22 @@ class DevController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * PUT /adm.admin.devs/{id}
+     * PUT /adm/admin/dev/{id}
      *
      * @param  int $id
      * @return Response
      */
     public function update($id)
     {
+        $rules = Dev::$rules;
+        if ($id !== null) {
+            $rules['id'] .= ",$id";
+            $rules['name'] .= ",$id";
+            $rules['alias'] .= ",$id";
+        }
+
         $input = array_except(Input::all(), '_method');
-        $v = Validator::make($input, Dev::$rules);
+        $v = Validator::make($input, $rules);
 
         if ($v->passes()) {
             $dev = $this->dev->find($id);
@@ -122,21 +117,5 @@ class DevController extends Controller
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.dev.edit', $id)->withInput()->withErrors($v);
         }
-
-        $input = array_except(Input::all(), '_method');
-        $v = Validator::make($input, PpcKeywords::$rules);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     * DELETE /adm.admin.devs/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 }

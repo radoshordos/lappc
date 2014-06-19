@@ -8,7 +8,7 @@ Route::get('/', function () {
 
 Route::group(array('prefix' => 'adm'), function () {
 
-    Route::get('nastaveni/tree-group-top', array('as' => 'adm.nastaveni.tree2group2top', 'uses' => 'Tree2group2topController@show'));
+    Route::get('summary/tree2group2top', array('as' => 'adm.summary.tree2group2top.index', 'uses' => 'Tree2group2topController@index'));
 
     Route::group(array('prefix' => 'ppc', 'before' => 'Sentry|inGroup:Admins'), function () {
 

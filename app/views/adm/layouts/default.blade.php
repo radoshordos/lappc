@@ -39,22 +39,16 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::route('adm.pattern.devgroup.index')}}">DEV GROUP</a></li>
-                        <li><a href="{{ URL::route('adm.pattern.dev.index') }}">DEV</a></li>
-                        <li><a href="{{ URL::route('adm.nastaveni.tree2group2top') }}">Tree TOP Group</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.dev.index') }}">Výrobci</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.devgroup.index')}}">Skupiny výrobců</a></li>
+                        <li class="divider"></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Test <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Přehled <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::route('adm.nastaveni.tree2group2top') }}">tree-group-top</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="{{ URL::route('adm.summary.tree2group2top.index') }}">Tree GroupTop</a></li>
                     </ul>
                 </li>
 

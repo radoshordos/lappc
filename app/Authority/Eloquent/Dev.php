@@ -2,27 +2,22 @@
 
 namespace Authority\Eloquent;
 
+
 class Dev extends \Eloquent
 {
     protected $table = 'dev';
     protected $guarded = [];
     public $timestamps = false;
 
-    public static $rules = self::rules();
-   public $uniq_id = Input::get("name");
+    public static $rules = array(
+        'id'   => "required|min:1|max:999|unique:dev,id",
+        'name' => 'required|min:2|max:32|unique:dev,name',
+        'alias' => 'required|min:2|max:32|unique:dev,alias',
+        'default_warranty_id'       => 'required|numeric|exists:prod_warranty,id',
+        'default_sale_id'           => 'required|numeric|exists:items_sale,id',
+        'default_availibility_id'   => 'required|numeric|exists:items_availability,id'
+    );
 
-    public static function rules ($id=0) {
-        return [
-            'id'   => "required|min:1|max:999|unique:dev,id". (Input::get("name") ? ",".Input::get("name") : NULL),
-            'name' => 'required|min:2|max:32|unique:dev,name',
-            'alias' => 'required|min:2|max:32|unique:dev,alias',
-            'default_warranty_id'       => 'required|numeric|exists:prod_warranty,id',
-            'default_sale_id'           => 'required|numeric|exists:items_sale,id',
-            'default_availibility_id'   => 'required|numeric|exists:items_availability,id',
-    ];
-}
-
-    
 
     public function prodWarranty()
     {
