@@ -2,7 +2,6 @@
 
 namespace Authority\Eloquent;
 
-
 class Dev extends \Eloquent
 {
     protected $table = 'dev';
@@ -10,14 +9,13 @@ class Dev extends \Eloquent
     public $timestamps = false;
 
     public static $rules = array(
-        'id'   => "required|min:1|max:999|unique:dev,id",
+        'id' => "required|min:1|max:999|unique:dev,id",
         'name' => 'required|min:2|max:32|unique:dev,name',
         'alias' => 'required|min:2|max:32|unique:dev,alias',
-        'default_warranty_id'       => 'required|numeric|exists:prod_warranty,id',
-        'default_sale_id'           => 'required|numeric|exists:items_sale,id',
-        'default_availibility_id'   => 'required|numeric|exists:items_availability,id'
+        'default_warranty_id' => 'required|numeric|exists:prod_warranty,id',
+        'default_sale_id' => 'required|numeric|exists:items_sale,id',
+        'default_availibility_id' => 'required|numeric|exists:items_availability,id'
     );
-
 
     public function prodWarranty()
     {

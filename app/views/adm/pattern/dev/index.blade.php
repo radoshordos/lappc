@@ -15,7 +15,7 @@ Výrobci zboží
             <thead>
             <tr>
                 <th>#</th>
-                <th>Název skupiny</th>
+                <th>Název výrobce</th>
                 <th>Alias</th>
                 <th class="text-center"><button type="button" title="Viditelný prodejce" class="btn btn-primary btn-xs">V</button></th>
                 <th class="text-center"><button type="button" title="Autorizovaný prodejce" class="btn btn-primary btn-xs">A</button></th>
