@@ -3,16 +3,16 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableTreeGroupTop extends Migration
+class TreeGroupTop extends Migration
 {
-
     public function up()
     {
         Schema::create('tree_group_top', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->tinyInteger('id')->unsigned();
             $table->string('name');
 
             $table->engine = 'InnoDB';
+            $table->primary('id');
         });
     }
 
@@ -20,5 +20,4 @@ class TableTreeGroupTop extends Migration
     {
         Schema::drop('tree_group_top');
     }
-
 }
