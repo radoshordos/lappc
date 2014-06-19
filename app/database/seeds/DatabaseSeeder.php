@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call('DevTableSeeder');
         $this->call('DevGroupTableSeeder');
         $this->call('DevM2nGroupTableSeeder');
+
+        $this->call('TreeTableSeeder');
     }
 }
