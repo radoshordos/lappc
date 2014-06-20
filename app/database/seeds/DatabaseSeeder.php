@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ItemsSaleTableSeeder');
         $this->call('ItemsAvailabilityTableSeeder');
         $this->call('TreeGroupTopTableSeeder');
-        $this->call('TreeGroupTableSeeder');
+  /*      $this->call('TreeGroupTableSeeder');
 
         // OSTATNI
         $this->call('PpcConfigSeeder');
@@ -30,5 +30,5 @@ class DatabaseSeeder extends Seeder
         $this->call('DevM2nGroupTableSeeder');
 
         $this->call('TreeTableSeeder');
-    }
+    */}
 }

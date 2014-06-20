@@ -33,7 +33,9 @@ class TreeController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        return View::make('adm.pattern.tree.create', array(
+            'select_group' => SB::option("SELECT * FROM tree_group WHERE grouptop_id = 20 AND for_prod = 1", ['id' => '[->id] - ->name'])
+        ));
 	}
 
 	/**
@@ -64,7 +66,7 @@ class TreeController extends \BaseController {
 
         return View::make('adm.pattern.tree.edit', array(
             'tree' => $tree,
-            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->name']),
+            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->name'])
         ));
 	}
 

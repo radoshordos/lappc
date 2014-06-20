@@ -20,8 +20,8 @@ class TreeDev extends Migration {
             $table->engine = 'InnoDB';
             $table->unique(array('tree_id', 'dev_id'));
 
-            $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('cascade');
 		});
 	}
 

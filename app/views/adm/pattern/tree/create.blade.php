@@ -11,10 +11,9 @@ Přidání nové skupiny zboží
 {{ Form::open(array('route' => 'adm.pattern.tree.store','class' => 'form-horizontal', 'role' => 'form')) }}
 
 <div class="form-group">
-    {{ Form::label('top','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('group_id','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('default_availibility_id',$select_availability, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí
-        dostupnost pro výrobce')) }}
+        {{ Form::select('group_id',$select_group, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
     </div>
 </div>
 

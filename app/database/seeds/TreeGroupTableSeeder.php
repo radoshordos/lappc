@@ -5,6 +5,8 @@ class TreeGroupTableSeeder extends Seeder
 
     public function run()
     {
+
+
         DB::table('tree_group')->delete();
 
         DB::table('tree_group')->insert(array(
@@ -24,6 +26,7 @@ class TreeGroupTableSeeder extends Seeder
         DB::table('tree_group')->insert(array(
             'id' => 21,
             'grouptop_id' => 20,
+            'for_prod' => 1,
             'type' => 'prodlist',
             'name' => 'Nářadí, nástroje'
         ));
@@ -31,6 +34,7 @@ class TreeGroupTableSeeder extends Seeder
         DB::table('tree_group')->insert(array(
             'id' => 22,
             'grouptop_id' => 20,
+            'for_prod' => 1,
             'type' => 'prodlist',
             'name' => 'Zahradní technika'
         ));
@@ -38,6 +42,7 @@ class TreeGroupTableSeeder extends Seeder
         DB::table('tree_group')->insert(array(
             'id' => 23,
             'grouptop_id' => 20,
+            'for_prod' => 1,
             'type' => 'prodlist',
             'name' => 'Příslušenství'
         ));
