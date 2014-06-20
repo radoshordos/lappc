@@ -5,8 +5,7 @@ class TreeGroupTableSeeder extends Seeder
 
     public function run()
     {
-
-
+        DB::table('tree')->delete();
         DB::table('tree_group')->delete();
 
         DB::table('tree_group')->insert(array(

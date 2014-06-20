@@ -13,7 +13,6 @@ class TreeGroupTopTableSeeder extends Seeder
         DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(20, 'Zboží'));
         DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(30, 'Text'));
         DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(50, 'Různé'));
-
         DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(90, 'Nákupní košík'));
 
     }
