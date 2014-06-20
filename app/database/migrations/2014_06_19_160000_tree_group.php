@@ -19,15 +19,14 @@ class TreeGroup extends Migration
             $table->engine = 'InnoDB';
             $table->primary('id');
 
-            //      $table->foreign('group_top_id')->references('id')->on('tree_group_top')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('grouptop_id')->references('id')->on('tree_group_top')->onUpdate('cascade')->onDelete('no action');
         });
     }
 
     public function down()
     {
-        Schema::drop('tree_group');
-        //Schema::drop('tree_group', function (Blueprint $table) {
-        //$table->dropForeign('group_top_id');
-        //});
+        Schema::drop('tree_group', function (Blueprint $table) {
+            $table->dropForeign('grouptop_id');
+        });
     }
 }
