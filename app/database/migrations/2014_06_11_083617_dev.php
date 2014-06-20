@@ -25,11 +25,20 @@ class Dev extends Migration
             $table->engine = 'InnoDB';
             $table->unique('name');
             $table->unique('alias');
+
+            $table->foreign('default_warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('default_sale_id')->references('id')->on('items_sale')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('default_availibility_id')->references('id')->on('items_availability')->onUpdate('cascade')->onDelete('no action');
+
         });
     }
 
     public function down()
     {
-        Schema::drop('dev');
+        Schema::drop('dev', function (Blueprint $table) {
+            $table->dropForeign('default_warranty_id');
+            $table->dropForeign('default_sale_id');
+            $table->dropForeign('default_availibility_id');
+        });
     }
 }
