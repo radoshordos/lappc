@@ -1,13 +1,13 @@
 <?php
 
-use Authority\Eloquent\Tree2group2top;
+use Authority\Eloquent\TreeGroupTop;
 
-class Tree2group2topController extends \BaseController
+class TreeGroupTopController extends \BaseController
 {
     public function index()
     {
-        $tree2group2top = Tree2group2top::all();
-        return View::make('adm.summary.tree2group2top.index')->with('tree2group2top', $tree2group2top);
+        $tree2group2top = TreeGroupTop::all();
+        return View::make('adm.summary.treegrouptop.index')->with('treegrouptop', $tree2group2top);
     }
 
 }

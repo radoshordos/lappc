@@ -11,7 +11,7 @@ Tree GroupTop
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-hover">
-            @foreach ($tree2group2top as $tgt)
+            @foreach ($treegrouptop  as $tgt)
             <tr>
                 <td>{{ $tgt->id }}</td>
                 <td>{{ $tgt->name }}</td>

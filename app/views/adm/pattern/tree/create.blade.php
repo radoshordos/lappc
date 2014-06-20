@@ -6,6 +6,19 @@
 Přidání nové skupiny zboží
 @stop
 
+{{-- JavaScript on page --}}
+@section ('script')
+<script>
+    $(document).ready(function () {
+        $("#parent_id").select2({
+            placeholder: "Zvolte rodiče skupiny",
+            allowClear: true
+        });
+    });
+</script>
+@stop
+
+
 {{-- Content --}}
 @section('content')
 {{ Form::open(array('route' => 'adm.pattern.tree.store','class' => 'form-horizontal', 'role' => 'form')) }}

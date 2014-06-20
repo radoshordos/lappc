@@ -13,7 +13,8 @@ class TreeTableSeeder extends Seeder {
             'position' => 0,
             'name' => 'Root | Nářadí, nástroje',
             'desc' => 'Root | Nářadí, nástroje',
-            'relative' => 'root-naradi-nastroje'
+            'relative' => '',
+            'absolute' => ''
         ));
 
         DB::table('tree')->insert(array(
@@ -23,7 +24,8 @@ class TreeTableSeeder extends Seeder {
             'position' => 0,
             'name' => 'Root | Zahradní technika',
             'desc' => 'Root | Zahradní technika',
-            'relative' => 'root-zahradni-technika'
+            'relative' => '',
+            'absolute' => ''
         ));
 
         DB::table('tree')->insert(array(
@@ -33,7 +35,8 @@ class TreeTableSeeder extends Seeder {
             'position' => 0,
             'name' => 'Root | Příslušenství',
             'desc' => 'Root | Příslušenství',
-            'relative' => 'root-prislusenstvi'
+            'relative' => '',
+            'absolute' => ''
         ));
 
         DB::table('tree')->insert(array(
@@ -43,7 +46,8 @@ class TreeTableSeeder extends Seeder {
             'position' => 2,
             'name' => 'Akumulátorové nářadí',
             'desc' => 'Akumulátorové nářadí',
-            'relative' => 'akumulatorove-naradi'
+            'relative' => 'akumulatorove-naradi',
+            'absolute' => 'akumulatorove-naradi'
         ));
 
         DB::table('tree')->insert(array(
@@ -53,7 +57,8 @@ class TreeTableSeeder extends Seeder {
             'position' => 2,
             'name' => 'Aku šroubováky',
             'desc' => 'Aku šroubováky',
-            'relative' => 'aku-sroubovaky'
+            'relative' => 'aku-sroubovaky',
+            'absolute' => 'akumulatorove-naradi/aku-sroubovaky'
         ));
 
         DB::table('tree')->insert(array(
@@ -63,7 +68,8 @@ class TreeTableSeeder extends Seeder {
             'position' => 4,
             'name' => 'Aku úhlové vrtačky',
             'desc' => 'Aku úhlové vrtačky',
-            'relative' => 'aku-uhlove-vrtacky'
+            'relative' => 'aku-uhlove-vrtacky',
+            'absolute' => 'akumulatorove-naradi/aku-uhlove-vrtacky'
         ));
 	}
 }

@@ -6,6 +6,18 @@
 Nová skupina výrobců
 @stop
 
+{{-- JavaScript on page --}}
+@section ('script')
+<script>
+    $(document).ready(function () {
+        $("#dev_id").select2({
+            placeholder: "Přidejte výrobce do skupiny",
+            allowClear: true
+        });
+    });
+</script>
+@stop
+
 {{-- Content --}}
 @section('content')
 {{ Form::model($devgroup, array('method'=>'PATCH','route' => array('adm.pattern.devgroup.update',$devgroup->id),'class'=>'form-horizontal','role'=>'form')) }}
@@ -46,7 +58,7 @@ Nová skupina výrobců
             <span class="input-group-btn">
                 {{ Form::submit('Přidat výrobce',array('class' => 'btn btn-success')) }}
             </span>
-            {{ Form::select('dev_id',$dev_insertable, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí')) }}
+            {{ Form::select('dev_id',$dev_insertable, NULL, array('required' => 'required', 'id'=> 'dev_id',  'class'=> 'form-control')) }}
             {{ Form::hidden('group_id',$devgroup->id) }}
         </div>
         {{ Form::close() }}

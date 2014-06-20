@@ -25,7 +25,11 @@ class TreeController extends \BaseController
     public function index()
     {
         $tree = $this->tree->where('id', '>', '1')->where('position', '>', '0')->orderBy('id')->get();
-        return View::make('adm.pattern.tree.index', array('trees' => $tree));
+        return View::make('adm.pattern.tree.index', array(
+            'trees' => $tree,
+            'input' => Input::all(),
+            'select_group' => SB::option("SELECT * FROM tree_group WHERE grouptop_id = 20 AND for_prod = 1", ['id' => '[->id] - ->name'])
+        ));
     }
 
     /**
@@ -37,8 +41,7 @@ class TreeController extends \BaseController
     public function create()
     {
         return View::make('adm.pattern.tree.create', array(
-            'select_group' => SB::option("SELECT * FROM tree_group WHERE grouptop_id = 20 AND for_prod = 1", ['id' => '[->id] - ->name']),
-            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->name'])
+            'select_parent' => [''] + SB::option("SELECT * FROM tree", ['id' => '[->id] - ->absolute - ->desc'])
         ));
     }
 
@@ -53,7 +56,12 @@ class TreeController extends \BaseController
         $input = Input::all();
         $input['id'] = ToolTree::calculateId($input['parent_id'], $input['position']);
         $input['group_id'] = ToolTree::calculateGroupId($input['id']);
+        $data = DB::table('tree')
+                ->select('absolute')
+                ->where('id', '=', $input['parent_id'])
+                ->first();
 
+        $input['absolute'] = (empty($data->absolute) ? $input['relative'] : implode('/',[$data->absolute, $input['relative']]));
         $v = Validator::make($input, Tree::$rules);
 
         if ($v->passes()) {
