@@ -7,7 +7,7 @@ class AddTriggerDev extends Migration
 
     public function up()
     {
-
+/*
         DB::unprepared('CREATE TRIGGER `dev_ai` AFTER INSERT ON `dev` FOR EACH ROW
                         BEGIN
 
