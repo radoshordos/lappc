@@ -16,6 +16,19 @@ Přidání nové skupiny zboží
         {{ Form::select('group_id',$select_group, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
     </div>
 </div>
+<div class="form-group">
+    {{ Form::label('pozicion','Rodič #ID',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::selectRange('pozicion', 1, 99, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
+    </div>
+</div>
+
+<div class="form-group">
+    {{ Form::label('pozicion','Pozice #ID',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::selectRange('pozicion', 1, 99, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
+    </div>
+</div>
 
 <p class="text-center">
     {{ link_to_route('adm.pattern.dev.index','Zobrazit všechny výrobce',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
@@ -24,3 +37,5 @@ Přidání nové skupiny zboží
 
 {{ Form::close() }}
 @stop
+
+
