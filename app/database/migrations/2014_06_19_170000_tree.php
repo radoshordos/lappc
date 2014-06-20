@@ -19,7 +19,7 @@ class Tree extends Migration
             $table->engine = 'InnoDB';
             $table->primary('id');
 
-            $table->foreign('parent_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('parent_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('tree_group')->onUpdate('cascade')->onDelete('no action');
         });
 

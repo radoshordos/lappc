@@ -4,6 +4,8 @@ class TreeTableSeeder extends Seeder {
 
 	public function run()
 	{
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('tree')->delete();
 
         DB::table('tree')->insert(array(
@@ -41,6 +43,8 @@ class TreeTableSeeder extends Seeder {
             'desc' => 'Aku úhlové vrtačky',
             'relative' => 'aku-uhlove-vrtacky'
         ));
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 	}
 }
 

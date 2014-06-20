@@ -5,6 +5,7 @@ class ProdWarrantyTableSeeder extends Seeder
 
     public function run()
     {
+        DB::table('dev')->delete();
         DB::table('prod_warranty')->delete();
 
         DB::table('prod_warranty')->insert(array(

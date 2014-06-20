@@ -4,14 +4,13 @@ class ItemsAvailabilityTableSeeder extends Seeder
 {
     public function run()
     {
+        DB::table('dev')->delete();
         DB::table('items_availability')->delete();
 
         DB::table('items_availability')->insert(array(
             'id' => 1,
             'name' => 'Stejná jako neakční'
         ));
-
-//            $table->tinyInteger('default_delivery_date')->unsigned()->default(1);
 
         DB::table('items_availability')->insert(array(
             'id' => 2,

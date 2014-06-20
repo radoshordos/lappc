@@ -5,6 +5,7 @@ class ItemsSaleTableSeeder extends Seeder
 
     public function run()
     {
+        DB::table('dev')->delete();
         DB::table('items_sale')->delete();
 
         DB::table('items_sale')->insert(array(
