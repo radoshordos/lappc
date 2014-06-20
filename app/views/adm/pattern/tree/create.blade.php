@@ -11,27 +11,38 @@ Přidání nové skupiny zboží
 {{ Form::open(array('route' => 'adm.pattern.tree.store','class' => 'form-horizontal', 'role' => 'form')) }}
 
 <div class="form-group">
-    {{ Form::label('group_id','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('parent_id','Rodič #ID',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('group_id',$select_group, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
+        {{ Form::select('parent_id',$select_parent, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('pozicion','Rodič #ID',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('position','Pozice #ID',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::selectRange('pozicion', 1, 99, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
+        {{ Form::selectRange('position', 1, 99, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Pozice produktu vzhledem k menu')) }}
     </div>
 </div>
-
 <div class="form-group">
-    {{ Form::label('pozicion','Pozice #ID',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('name','Název skupiny',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::selectRange('pozicion', 1, 99, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
+        {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název skupiny')) }}
+    </div>
+</div>
+<div class="form-group">
+    {{ Form::label('desc','Titulek skupiny',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Titulek skupiny')) }}
+    </div>
+</div>
+<div class="form-group">
+    {{ Form::label('relative','Reletivní cesta',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::text('relative',NULL,array('required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Relativní cesta')) }}
     </div>
 </div>
 
 <p class="text-center">
-    {{ link_to_route('adm.pattern.dev.index','Zobrazit všechny výrobce',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
+    {{ link_to_route('adm.pattern.tree.index','Zobrazit všechny skupiny',NULL, array('class' => 'btn btn-primary','role' => 'button')) }}
     {{ Form::submit('Vložit nového výrobce', array('class' => 'btn btn-success')) }}
 </p>
 

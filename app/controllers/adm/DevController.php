@@ -49,7 +49,6 @@ class DevController extends \BaseController
     public function store()
     {
         $input = Input::all();
-
         $input['alias'] = strtolower($input['name']);
         $v = Validator::make($input, Dev::$rules);
 
@@ -61,6 +60,7 @@ class DevController extends \BaseController
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.dev.create')->withInput()->withErrors($v);
         }
+
     }
 
     /**

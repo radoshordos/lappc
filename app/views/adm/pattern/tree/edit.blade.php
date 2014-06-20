@@ -24,19 +24,19 @@ Editace skupin zboží
 <div class="form-group">
     {{ Form::label('name','Název skupiny',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Název skupiny')) }}
+        {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název skupiny')) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('desc','Popis skupiny',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('desc','Titulek skupiny',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Popis skupiny')) }}
+        {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Titulek skupiny')) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('relative','Reletivní cesta',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('relative',NULL,array('required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Název výrobce')) }}
+        {{ Form::text('relative',NULL,array('required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Relativní cesta')) }}
     </div>
 </div>
 <p class="text-center">

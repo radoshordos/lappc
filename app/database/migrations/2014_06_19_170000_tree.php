@@ -11,10 +11,13 @@ class Tree extends Migration
             $table->integer('id')->unsigned();
             $table->integer('parent_id')->unsigned();
             $table->tinyInteger('group_id')->unsigned();
+            $table->tinyInteger('position')->unsigned();
             $table->tinyInteger('deep')->unsigned()->nulable();
+
             $table->string('name','40');
             $table->string('desc','80');
             $table->string('relative','64');
+            $table->string('absolute','256')->nulable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddProcedureTreeRecalculate extends Migration
@@ -7,7 +8,6 @@ class AddProcedureTreeRecalculate extends Migration
 
     public function up()
     {
-
         DB::unprepared('
             CREATE PROCEDURE `tree_recalculate` ()
             BEGIN
