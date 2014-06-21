@@ -43,6 +43,8 @@
                         <li><a href="{{ URL::route('adm.pattern.devgroup.index')}}">Skupiny výrobců</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Tree</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.pattern.prod.index') }}">Prod</a></li>
                     </ul>
                 </li>
 

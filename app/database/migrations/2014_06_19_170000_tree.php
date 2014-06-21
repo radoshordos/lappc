@@ -27,6 +27,7 @@ class Tree extends Migration
             $table->foreign('group_id')->references('id')->on('tree_group')->onUpdate('cascade')->onDelete('no action');
         });
 
+        DB::statement('CALL tree_recalculate');
     }
 
     public function down()

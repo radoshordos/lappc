@@ -7,6 +7,7 @@ class TreeDev extends Migration {
 
 	public function up()
 	{
+
 		Schema::create('tree_dev', function(Blueprint $table)
 		{
 			$table->increments('id')->unsigned();

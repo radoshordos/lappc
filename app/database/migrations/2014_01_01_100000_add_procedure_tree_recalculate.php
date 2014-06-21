@@ -7,6 +7,7 @@ class AddProcedureTreeRecalculate extends Migration {
 
 	public function up()
 	{
+
         DB::unprepared('
             CREATE PROCEDURE tree_recalculate ()
             BEGIN

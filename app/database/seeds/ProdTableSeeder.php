@@ -1,20 +1,21 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
-use Faker\Factory as Faker;
 
 class ProdTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$faker = Faker::create();
+        DB::table('prod')->delete();
 
-		foreach(range(1, 10) as $index)
-		{
-			Prod::create([
-
-			]);
-		}
+        DB::table('prod')->insert(array(
+            'tree_id' => 21020200,
+            'dev_id' => 5,
+            'warranty_id' => 1,
+            'price' => 2000,
+            'alias' => 'pokus',
+            'name' => 'Pokus',
+            'desc' => 'Skutečně pokus',
+        ));
 	}
-
 }
+

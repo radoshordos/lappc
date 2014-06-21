@@ -8,11 +8,11 @@ class Prod extends Migration
 
     public function up()
     {
-        Schema::create('tree_dev', function (Blueprint $table) {
+        Schema::create('prod', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('tree_id')->unsigned();
             $table->integer('dev_id')->unsigned();
-            $table->tinyInteger('warranty_id')->unsigned();
+            $table->tinyInteger('warranty_id')->unsigned()->default(1);
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');
             $table->string('name', '64');
@@ -33,7 +33,7 @@ class Prod extends Migration
 
     public function down()
     {
-        Schema::drop('tree_group', function (Blueprint $table) {
+        Schema::drop('prod', function (Blueprint $table) {
             $table->dropForeign('tree_id');
             $table->dropForeign('dev_id');
             $table->dropForeign('warranty_id');

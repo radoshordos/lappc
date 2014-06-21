@@ -6,6 +6,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Eloquent::unguard();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         // ADMIN ROLES
         $this->call('SentryGroupSeeder');
@@ -25,10 +26,14 @@ class DatabaseSeeder extends Seeder
         $this->call('PpcDbModeTableSeeder');
         $this->call('PpcKeywordsTableSeeder');
         $this->call('AdminRunnerTableSeeder');
+
         $this->call('DevTableSeeder');
         $this->call('DevGroupTableSeeder');
+        $this->call('TreeTableSeeder');
         $this->call('DevM2nGroupTableSeeder');
 
-        $this->call('TreeTableSeeder');
+        $this->call('ProdTableSeeder');
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

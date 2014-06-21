@@ -32,6 +32,7 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('devgroup', 'DevGroupController');
         Route::resource('devm2ngroup', 'DevM2nGroupController');
         Route::resource('tree', 'TreeController');
+        Route::resource('prod', 'ProdController');
     });
 
     // Session Routes
