@@ -2,9 +2,9 @@
 
 class PhpinfoController extends \BaseController
 {
-    public function show()
+    public function index()
     {
-        return View::make('adm.admin.phpinfo.show');
+        return View::make('adm.admin.phpinfo.index');
     }
 
 }

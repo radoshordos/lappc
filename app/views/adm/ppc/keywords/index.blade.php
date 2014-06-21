@@ -48,5 +48,4 @@ PPC - Klíčová slova
 {{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
 </p>
 @endif
-
 @stop
