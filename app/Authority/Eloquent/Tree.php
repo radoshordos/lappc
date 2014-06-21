@@ -11,9 +11,9 @@ class Tree extends \Eloquent
         'id' => 'required|integer',
         'parent_id' => 'required|integer',
         'position' => 'required|integer',
-        'name' => 'required|min:5|max:40',
+        'name' => 'required|min:2|max:40',
         'desc' => 'required|min:5|max:80',
-        'relative' => 'required|min:5|max:64',
+        'relative' => 'required|min:2|max:64',
     );
 
     public function scopeDeep($query, $int)
@@ -30,12 +30,12 @@ class Tree extends \Eloquent
         }
     }
 
-    public function scopeLimit($query, $int)
+    public function scopeLimit($query, $int, $default_number = 30)
     {
         if (intval($int) > 0) {
             return $query->take($int);
         } else {
-            return $query->take(30);
+            return $query->take($default_number);
         }
     }
 }

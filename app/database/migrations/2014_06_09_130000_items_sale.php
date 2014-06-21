@@ -17,6 +17,7 @@ class ItemsSale extends Migration
             $table->string('desc', '32');
 
             $table->engine = 'InnoDB';
+
             $table->primary('id');
             $table->unique('name');
         });
