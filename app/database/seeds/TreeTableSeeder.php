@@ -71,6 +71,17 @@ class TreeTableSeeder extends Seeder {
             'relative' => 'aku-uhlove-vrtacky',
             'absolute' => 'akumulatorove-naradi/aku-uhlove-vrtacky'
         ));
+
+        DB::table('tree')->insert(array(
+            'id' => 21020600,
+            'parent_id' => 21020000,
+            'group_id' => 21,
+            'position' => 4,
+            'name' => 'Aku brusky',
+            'desc' => 'Akumulátorové brusky',
+            'relative' => 'aku-uhlove-vrtacky',
+            'absolute' => 'akumulatorove-naradi/aku-uhlove-vrtacky'
+        ));
 	}
 }
 

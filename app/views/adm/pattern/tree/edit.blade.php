@@ -47,17 +47,38 @@ Editace skupin zboží
 {{ Form::close() }}
 
 <br/>
+<br/>
 
-{{ var_dump($tree->treeDev) }}
-
+@if (count($tree->treeDev)>0)
 <div class="col-md-6 col-md-offset-3">
-    <ul class="list-group">
-        <div class="list-group-item list-group-item-warning text-center">Detailní informace</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th rowspan="2">Výrobce</th>
+            <th colspan="2">Skupina a podskupiny</th>
+            <th colspan="2">Akruální skupina</th>
+        </tr>
+        <tr>
+            <th>Vše</th>
+            <th>Viditelné</th>
+            <th>Vše</th>
+            <th>Viditelné</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach ($tree->treeDev as $td)
-        <li class="list-group-item"><span class="badge">{{ $select_dev[$td->dev_id] }}</span>Viditelné produkty v aktuální skupině</li>
+        <tr>
+            <td><span class="label label-info">{{ $select_dev[$td->dev_id] }}</span></td>
+            <td><span class="label label-warning">{{ $td->dir_visible }}</span></td>
+            <td><span class="label label-warning">{{ $td->dir_all }}</span></td>
+            <td><span class="label label-warning">{{ $td->dir_visible }}</span></td>
+            <td><span class="label label-warning">{{ $td->dir_all }}</span></td>
+        </tr>
         @endforeach
-    </ul>
-</div>
+        </tbody>
+    </table>
 
+</div>
+@endif
 
 @stop
