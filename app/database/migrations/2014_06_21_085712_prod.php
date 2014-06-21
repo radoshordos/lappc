@@ -138,8 +138,8 @@ class Prod extends Migration
         });
 
 
-        DB::unprepared('DROP TRIGGER tree_dev_ai');
-        DB::unprepared('DROP TRIGGER tree_dev_au');
-        DB::unprepared('DROP TRIGGER tree_dev_ad');
+        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
+        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
+        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
     }
 }

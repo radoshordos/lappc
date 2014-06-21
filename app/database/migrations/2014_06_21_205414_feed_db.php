@@ -12,7 +12,7 @@ class FeedDb extends Migration
 
             $table->tinyInteger('id')->unsigned();
             $table->string('type', '16');
-            $table->string('filename', '12');
+            $table->string('filename', '24');
 
             $table->engine = 'InnoDB';
             $table->primary('id');
