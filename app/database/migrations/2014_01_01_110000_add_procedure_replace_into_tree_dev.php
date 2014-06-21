@@ -173,10 +173,10 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
 	}
 
 	public function down() {
-        DB::unprepared('DROP PROCEDURE proc_replase_tree_dev');
-        DB::unprepared('DROP FUNCTION fce_select_beetwen');
-        DB::unprepared('DROP FUNCTION fce_select_beetwen_visible');
-        DB::unprepared('DROP FUNCTION fce_select_beetwen_with_dev');
-        DB::unprepared('DROP FUNCTION fce_select_beetwen_with_dev_visible');
+        DB::unprepared('DROP PROCEDURE IF EXISTS proc_replase_tree_dev');
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen');
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen_with_dev_visible');
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen_with_dev');
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen_with_dev_visible');
 	}
 }
