@@ -16,25 +16,37 @@ Editace produktu
         {{ Form::select('tree_id',$select_tree, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
     </div>
 </div>
-
+<div class="form-group">
+    {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+    </div>
+</div>
+<div class="form-group">
+    {{ Form::label('warranty_id','Výchozí záruka',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
+    </div>
+</div>
 <div class="form-group">
     {{ Form::label('alias','Alias',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Alias výrobce')) }}
+        {{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('name','Název výrobce',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Název výrobce')) }}
+        {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('default_warranty_id','Výchozí záruka',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('desc','Popis',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('default_warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí záruka pro výrobce')) }}
+        {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu')) }}
     </div>
 </div>
+
 <p class="text-center">
     {{ link_to_route('adm.pattern.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
     {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
