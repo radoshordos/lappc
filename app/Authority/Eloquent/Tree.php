@@ -38,4 +38,10 @@ class Tree extends \Eloquent
             return $query->take($default_number);
         }
     }
+
+    public function treeDev()
+    {
+        return $this->hasMany('Authority\Eloquent\TreeDev','tree_id','id');
+    }
+
 }

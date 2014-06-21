@@ -12,6 +12,7 @@ class Prod extends Migration
             $table->increments('id')->unsigned();
             $table->integer('tree_id')->unsigned();
             $table->integer('dev_id')->unsigned();
+            $table->integer('mode_id')->unsigned()->default(3);
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');
@@ -29,6 +30,29 @@ class Prod extends Migration
             $table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
         });
 
+        DB::unprepared('
+            CREATE TRIGGER tree_dev_ai AFTER INSERT ON prod
+            FOR EACH ROW BEGIN
+
+                SET @ng1     = NEW.tree_id;
+                SET @ng100   = (FLOOR(NEW.tree_id / 100))*100;
+                SET @ng10000 = (FLOOR(NEW.tree_id / 10000))*10000;
+
+                CASE
+                    WHEN (MOD(@ng1, 10000) = 0)
+                          THEN
+                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
+                    WHEN (MOD(@ng1, 100)   = 0)
+                          THEN
+                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
+                                CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
+                          ELSE
+                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
+                                CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
+                                CALL proc_replase_tree_dev(@ng10000,NEW.dev_id);
+                END CASE;
+            END
+        ');
     }
 
     public function down()
@@ -38,6 +62,7 @@ class Prod extends Migration
             $table->dropForeign('dev_id');
             $table->dropForeign('warranty_id');
         });
-    }
 
+        DB::unprepared('DROP TRIGGER tree_dev_ai');
+    }
 }

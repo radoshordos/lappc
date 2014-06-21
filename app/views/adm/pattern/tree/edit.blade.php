@@ -12,7 +12,8 @@ Editace skupin zboží
 <div class="form-group">
     {{ Form::label('id','ID',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::input('number','id',NULL,array('min'=> '20000000','max'=> '29000000','required' => 'required','class'=> 'form-control', 'placeholder'=> 'ID určené pro skupinu')) }}
+        {{ Form::input('number','id',NULL,array('min'=> '20000000','max'=> '29000000','required' => 'required','class'=> 'form-control', 'placeholder'=> 'ID určené pro skupinu'))
+        }}
     </div>
 </div>
 <div class="form-group">
@@ -44,4 +45,19 @@ Editace skupin zboží
     {{ Form::submit('Editovat výrobce', array('class' => 'btn btn-info')) }}
 </p>
 {{ Form::close() }}
+
+<br/>
+
+{{ var_dump($tree->treeDev) }}
+
+<div class="col-md-6 col-md-offset-3">
+    <ul class="list-group">
+        <div class="list-group-item list-group-item-warning text-center">Detailní informace</div>
+        @foreach ($tree->treeDev as $td)
+        <li class="list-group-item"><span class="badge">{{ $select_dev[$td->dev_id] }}</span>Viditelné produkty v aktuální skupině</li>
+        @endforeach
+    </ul>
+</div>
+
+
 @stop

@@ -82,7 +82,7 @@ class TreeController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            DB::statement('CALL tree_recalculate');
+            DB::statement('CALL proc_tree_recalculate');
             return Redirect::route('adm.pattern.tree.index');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
@@ -107,6 +107,7 @@ class TreeController extends \BaseController
 
         return View::make('adm.pattern.tree.edit', array(
             'tree' => $tree,
+            'select_dev' => SB::option("SELECT * FROM dev", ['id' => '->name']),
             'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->name'])
         ));
     }

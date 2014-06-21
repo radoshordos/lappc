@@ -8,15 +8,15 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
 	public function up()
 	{
         DB::unprepared('
-            CREATE PROCEDURE replase_into_tree_dev`(IN tree_id INT(10) UNSIGNED, dev_id INT(10) UNSIGNED)
+            CREATE PROCEDURE proc_replase_tree_dev(IN tree_id INT(10) UNSIGNED, dev_id INT(10) UNSIGNED)
             BEGIN
 
                 SET @xTree  = tree_id;
                 SET @xDev   = dev_id;
 
-                REPLACE INTO tree2dev SET
+                REPLACE INTO tree_dev SET
                     tree_id     = @xTree,
-                    dev_id      = 0,
+                    dev_id      = 1,
                     dir_all     = (fce_select_beetwen(@xTree,1)),
                     dir_visible = (fce_select_beetwen_visible(@xTree,1)),
                     subdir_all  = (
@@ -40,7 +40,7 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
                             END
                         );
 
-                REPLACE INTO tree2dev SET
+                REPLACE INTO tree_dev SET
                     tree_id     = @xTree,
                     dev_id      = @xDev,
                     dir_all     = (fce_select_beetwen_with_dev(@xTree,@xDev,1)),
@@ -68,9 +68,110 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
 
             END
         ');
+
+        DB::unprepared('
+            CREATE FUNCTION fce_select_beetwen(xTree INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
+            DETERMINISTIC
+            BEGIN
+
+                DECLARE run INT(10) UNSIGNED DEFAULT 0;
+
+                IF (rangex) = 1 THEN
+                    SELECT COUNT(*) INTO run
+                    FROM prod
+                    WHERE tree_id = xTree;
+                ELSE
+                     SELECT COUNT(*) INTO run
+                     FROM prod
+                     WHERE tree_id >= (xTree - MOD(xTree, rangex))
+                     AND   tree_id <  (xTree - MOD(xTree, rangex)) + rangex;
+                END IF;
+
+                RETURN run;
+
+            END
+        ');
+
+        DB::unprepared('
+            CREATE FUNCTION fce_select_beetwen_visible(xTree INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
+            DETERMINISTIC
+            BEGIN
+
+                DECLARE run INT(10) UNSIGNED DEFAULT 0;
+
+                IF (rangex) = 1 THEN
+                    SELECT COUNT(*) INTO run
+                    FROM prod
+                    WHERE  tree_id = xTree
+                    AND mode_id > 1;
+                ELSE
+                    SELECT COUNT(*) INTO run
+                    FROM prod
+                    WHERE   tree_id >= (xTree - MOD(xTree, rangex))
+                    AND     tree_id <  (xTree - MOD(xTree, rangex)) + rangex
+                    AND     mode_id > 1;
+                END IF;
+
+                RETURN run;
+            END
+        ');
+
+        DB::unprepared('
+            CREATE FUNCTION fce_select_beetwen_with_dev(xTree INT(10) UNSIGNED, xDev INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
+            DETERMINISTIC
+            BEGIN
+
+                DECLARE run INT(10) UNSIGNED DEFAULT 0;
+
+                IF (rangex) = 1 THEN
+                    SELECT COUNT(*) INTO run
+                    FROM prod
+                    WHERE   dev_id  = xDev
+                    AND     tree_id = xTree;
+                ELSE
+                    SELECT COUNT(*)  INTO run
+                    FROM prod
+                    WHERE   dev_id   = xDev
+                    AND     tree_id >= (xTree - MOD(xTree, rangex))
+                    AND     tree_id <  (xTree - MOD(xTree, rangex)) + rangex;
+                END IF;
+
+                RETURN run;
+            END
+        ');
+
+        DB::unprepared('
+            CREATE FUNCTION fce_select_beetwen_with_dev_visible(xTree INT(10) UNSIGNED, xDev INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
+            DETERMINISTIC
+            BEGIN
+
+                DECLARE run INT(10) UNSIGNED DEFAULT 0;
+
+                IF (rangex) = 1 THEN
+                    SELECT COUNT(*) INTO run
+                    FROM prod
+                    WHERE   dev_id  = xDev
+                    AND     tree_id = xTree
+                    AND     mode_id > 1;
+                ELSE
+                    SELECT COUNT(*)  INTO run
+                    FROM prod
+                    WHERE   dev_id   =  xDev
+                    AND     tree_id >= (xTree - MOD(xTree, rangex))
+                    AND     tree_id <  (xTree - MOD(xTree, rangex)) + rangex
+                    AND     mode_id > 1;
+                END IF;
+
+                RETURN run;
+            END
+        ');
 	}
 
 	public function down() {
-        DB::unprepared('DROP PROCEDURE replase_into_tree_dev');
+        DB::unprepared('DROP PROCEDURE proc_replase_tree_dev');
+        DB::unprepared('DROP PROCEDURE fce_select_beetwen');
+        DB::unprepared('DROP PROCEDURE fce_select_beetwen_visible');
+        DB::unprepared('DROP PROCEDURE fce_select_beetwen_with_dev');
+        DB::unprepared('DROP PROCEDURE fce_select_beetwen_with_dev_visible');
 	}
 }
