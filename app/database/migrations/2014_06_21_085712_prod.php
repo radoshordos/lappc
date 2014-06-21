@@ -12,7 +12,7 @@ class Prod extends Migration
             $table->increments('id')->unsigned();
             $table->integer('tree_id')->unsigned();
             $table->integer('dev_id')->unsigned();
-            $table->integer('mode_id')->unsigned()->default(3);
+            $table->tinyInteger('mode_id')->unsigned()->default(3);
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');
@@ -28,8 +28,10 @@ class Prod extends Migration
             $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('mode_id')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('no action');
         });
 
+        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
         DB::unprepared('
             DROP TRIGGER IF EXISTS tree_dev_ai;
             CREATE TRIGGER tree_dev_ai AFTER INSERT ON prod
@@ -55,6 +57,7 @@ class Prod extends Migration
             END
         ');
 
+        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
         DB::unprepared('
             DROP TRIGGER IF EXISTS tree_dev_au;
             CREATE TRIGGER tree_dev_au AFTER UPDATE ON prod
@@ -98,6 +101,7 @@ class Prod extends Migration
             END
         ');
 
+        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
         DB::unprepared('
             DROP TRIGGER IF EXISTS tree_dev_ad;
             CREATE TRIGGER tree_dev_ad AFTER DELETE ON prod
@@ -132,6 +136,7 @@ class Prod extends Migration
             $table->dropForeign('dev_id');
             $table->dropForeign('warranty_id');
         });
+
 
         DB::unprepared('DROP TRIGGER tree_dev_ai');
         DB::unprepared('DROP TRIGGER tree_dev_au');

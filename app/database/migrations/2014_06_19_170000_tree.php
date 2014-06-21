@@ -27,6 +27,7 @@ class Tree extends Migration
             $table->foreign('group_id')->references('id')->on('tree_group')->onUpdate('cascade')->onDelete('no action');
         });
 
+        DB::unprepared('DROP PROCEDURE IF EXISTS proc_tree_recalculate');
         DB::unprepared('
             CREATE PROCEDURE proc_tree_recalculate ()
             BEGIN
@@ -70,8 +71,7 @@ class Tree extends Migration
             $table->dropForeign('group_id');
         });
 
-
-        DB::unprepared('DROP PROCEDURE proc_tree_recalculate');
+        DB::unprepared('DROP PROCEDURE IF EXISTS proc_tree_recalculate');
     }
 
 }

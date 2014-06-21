@@ -7,6 +7,7 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
 
 	public function up()
 	{
+        DB::unprepared('DROP PROCEDURE IF EXISTS proc_replase_tree_dev');
         DB::unprepared('
             CREATE PROCEDURE proc_replase_tree_dev(IN tree_id INT(10) UNSIGNED, dev_id INT(10) UNSIGNED)
             BEGIN
@@ -69,6 +70,7 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
             END
         ');
 
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen');
         DB::unprepared('
             CREATE FUNCTION fce_select_beetwen(xTree INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
             DETERMINISTIC
@@ -92,6 +94,7 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
             END
         ');
 
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen_visible');
         DB::unprepared('
             CREATE FUNCTION fce_select_beetwen_visible(xTree INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
             DETERMINISTIC
@@ -116,6 +119,7 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
             END
         ');
 
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen_with_dev');
         DB::unprepared('
             CREATE FUNCTION fce_select_beetwen_with_dev(xTree INT(10) UNSIGNED, xDev INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
             DETERMINISTIC
@@ -140,6 +144,7 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
             END
         ');
 
+        DB::unprepared('DROP FUNCTION IF EXISTS fce_select_beetwen_with_dev_visible');
         DB::unprepared('
             CREATE FUNCTION fce_select_beetwen_with_dev_visible(xTree INT(10) UNSIGNED, xDev INT(10) UNSIGNED, rangex INT(10) UNSIGNED) RETURNS INT(10) unsigned
             DETERMINISTIC
@@ -169,9 +174,9 @@ class AddProcedureReplaceIntoTreeDev extends Migration {
 
 	public function down() {
         DB::unprepared('DROP PROCEDURE proc_replase_tree_dev');
-        DB::unprepared('DROP PROCEDURE fce_select_beetwen');
-        DB::unprepared('DROP PROCEDURE fce_select_beetwen_visible');
-        DB::unprepared('DROP PROCEDURE fce_select_beetwen_with_dev');
-        DB::unprepared('DROP PROCEDURE fce_select_beetwen_with_dev_visible');
+        DB::unprepared('DROP FUNCTION fce_select_beetwen');
+        DB::unprepared('DROP FUNCTION fce_select_beetwen_visible');
+        DB::unprepared('DROP FUNCTION fce_select_beetwen_with_dev');
+        DB::unprepared('DROP FUNCTION fce_select_beetwen_with_dev_visible');
 	}
 }
