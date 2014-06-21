@@ -30,13 +30,13 @@ Skupiny zboží
     <form>
         <div class="row">
             <div class="col-xs-4">
-                {{ Form::select('treegroup',['0' => 'Všechny nadskupiny'] + $select_group, $input['treegroup'], array('id'=> 'treegroup', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('treegroup',['0' => 'Všechny nadskupiny'] + $select_group, (isset($input['treegroup']) ? $input['treegroup'] : NULL) , array('id'=> 'treegroup', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
             <div class="col-xs-4">
-                {{ Form::select('deep',['0' => 'Všechny úrovně zanoření','1','2','3'], $input['deep'], array('id'=> 'deep', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('deep',['0' => 'Všechny úrovně zanoření','1','2','3'], (isset($input['deep']) ? $input['deep'] : NULL), array('id'=> 'deep', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
             <div class="col-xs-4">
-                {{ Form::select('linit',['30' => '30 zobrazených položek','90' => '90 zobrazených položek'], $input['deep'], array('id'=> 'deep', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('limit',['30' => '30 zobrazených položek','90' => '90 zobrazených položek'], (isset($input['limit']) ? $input['limit'] : NULL), array('id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
         </div>
     </form>
