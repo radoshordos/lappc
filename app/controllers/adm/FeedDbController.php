@@ -19,4 +19,8 @@ class FeedDbController extends \BaseController
             'feed' => $feed
         ));
     }
+
+    public function edit($id) {
+        return View::make('adm.admin.feed.edit');
+    }
 }

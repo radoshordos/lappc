@@ -10,43 +10,43 @@ class FeedDbTableSeeder extends Seeder
 
         DB::table('feed_db')->insert(array(
             'id' => 1,
-            'type' => 'xmlfeed',
+            'type_id' => 1,
             'filename' => 'zbozi.xml',
         ));
 
         DB::table('feed_db')->insert(array(
             'id' => 2,
-            'type' => 'xmlfeed',
+            'type_id' => 1,
             'filename' => 'heureka.xml',
         ));
 
         DB::table('feed_db')->insert(array(
             'id' => 3,
-            'type' => 'xmlfeed',
+            'type_id' => 1,
             'filename' => 'hyperzbozi.xml',
         ));
 
         DB::table('feed_db')->insert(array(
             'id' => 4,
-            'type' => 'xmlfeed',
+            'type_id' => 1,
             'filename' => 'univerzal.xml',
         ));
 
         DB::table('feed_db')->insert(array(
             'id' => 5,
-            'type' => 'xmlfeed',
+            'type_id' => 1,
             'filename' => 'jyxo_vybereme.xml',
         ));
 
         DB::table('feed_db')->insert(array(
             'id' => 6,
-            'type' => 'xmlsitemap',
+            'type_id' => 2,
             'filename' => 'sitemap.xml',
         ));
 
         DB::table('feed_db')->insert(array(
             'id' => 7,
-            'type' => 'ppcfeed',
+            'type_id' => 3,
             'filename' => 'ppc.xml',
         ));
     }

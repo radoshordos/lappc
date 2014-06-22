@@ -4,7 +4,11 @@ Route::get('/', function () {
     return 'Hello World';
 });
 
-// Nastavení routy
+Route::get('feeds/{file?}', array('uses' => 'FeedController@show'));
+
+Route::group(array('prefix' => 'feed/{file}'), function () {
+    Route::get('feed', array('as' => 'adm.admin.feed.index', 'uses' => 'FeedDbController@index'));
+});
 
 Route::group(array('prefix' => 'adm'), function () {
 
@@ -22,8 +26,9 @@ Route::group(array('prefix' => 'adm'), function () {
     });
 
     Route::group(array('prefix' => 'admin', 'before' => 'Sentry|inGroup:Admins'), function () {
-        Route::get('feed', array('as' => 'adm.admin.feed.index', 'uses' => 'FeedDbController@index'));
+        Route::resource('feed', 'FeedDbController');
         Route::get('phpinfo', array('as' => 'adm.admin.phpinfo.index', 'uses' => 'PhpinfoController@index'));
+
         Route::match(array('GET', 'POST'),'runner/{task}', array('as' => 'adm.admin.runner.task', 'uses' => 'CommandRunnerController@task'));
         Route::resource('runner', 'CommandRunnerController');
     });

@@ -23,8 +23,8 @@ Seznam XML Feedů
             @foreach ($feed as $row)
             <tr>
                 <td>{{ $row->id }}</td>
-                <td>{{ $row->type }}</td>
-                <td>{{ $row->filename }}</td>
+                <td>{{ $row->feed_type->code }}</td>
+                <td>{{ link_to_route('adm.admin.feed.edit',$row->filename,array($row->id)) }}</td>
             </tr>
             @endforeach
             </tbody>
