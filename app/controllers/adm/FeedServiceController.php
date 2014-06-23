@@ -1,12 +1,12 @@
 <?php
 
-use Authority\Eloquent\FeedDb;
+use Authority\Eloquent\FeedService;
 
 class FeedDbController extends \BaseController
 {
     protected $feed;
 
-    function __construct(FeedDb $feed)
+    function __construct(FeedService $feed)
     {
         $this->feed = $feed;
     }

@@ -2,9 +2,9 @@
 
 namespace Authority\Eloquent;
 
-class FeedDb extends \Eloquent
+class FeedService extends \Eloquent
 {
-    protected $table = 'feed_db';
+    protected $table = 'feed_service';
     protected $guarded = [];
     public $timestamps = false;
 

@@ -7,7 +7,7 @@ Route::get('/', function () {
 Route::get('feeds/{file?}', array('uses' => 'FeedController@show'));
 
 Route::group(array('prefix' => 'feed/{file}'), function () {
-    Route::get('feed', array('as' => 'adm.admin.feed.index', 'uses' => 'FeedDbController@index'));
+    Route::get('feed', array('as' => 'adm.admin.feed.index', 'uses' => 'FeedServiceController@index'));
 });
 
 Route::group(array('prefix' => 'adm'), function () {

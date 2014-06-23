@@ -10,7 +10,7 @@ class FeedColumn extends Migration
     {
         Schema::create('feed_column', function (Blueprint $table) {
 
-            $table->tinyInteger('id')->unsigned();
+            $table->integer('id')->unsigned();
             $table->string('name', '32');
             $table->string('support', '256');
 

@@ -3,14 +3,14 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FeedDb extends Migration
+class FeedService extends Migration
 {
 
     public function up()
     {
         Schema::create('feed_service', function (Blueprint $table) {
 
-            $table->tinyInteger('id')->unsigned();
+            $table->integer('id')->unsigned();
             $table->tinyInteger('type_id')->unsigned();
             $table->string('filename', '24');
 
