@@ -9,8 +9,14 @@ class FeedService extends \Eloquent
     public $timestamps = false;
 
     public static $rules = array(
-        'filename' => 'exists:feed_db,filename',
+        'filename' => 'exists:feed_service,filename',
     );
+
+    public function feedServiceM2nColumn()
+    {
+        return $this->hasMany('Authority\Eloquent\FeedServiceM2nColumn','service_id', 'id');
+    }
+
 
     public function feedType()
     {

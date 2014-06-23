@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ProdModeTableSeeder');
 
         // OSTATNI
-        $this->call('FeedDbTableSeeder');
+        $this->call('FeedServiceTableSeeder');
         $this->call('PpcConfigSeeder');
         $this->call('PpcDbModeTableSeeder');
         $this->call('PpcKeywordsTableSeeder');

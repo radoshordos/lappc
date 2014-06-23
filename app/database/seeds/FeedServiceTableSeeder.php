@@ -1,7 +1,7 @@
 <?php
 
 
-class FeedDbTableSeeder extends Seeder
+class FeedServiceTableSeeder extends Seeder
 {
 
     public function run()

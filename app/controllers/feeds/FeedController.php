@@ -1,12 +1,12 @@
 <?php
 
-use Authority\Eloquent\FeedDb;
+use Authority\Eloquent\FeedService;
 
 class FeedController extends BaseController
 {
     public function show($filname = 'notfound.xml')
     {
-        $v = Validator::make(['filename' => $filname], FeedDb::$rules);
+        $v = Validator::make(['filename' => $filname], FeedService::$rules);
 
         if ($v->passes()) {
 

@@ -1,8 +1,11 @@
 <?php
 
 use Authority\Eloquent\FeedService;
+use Authority\Eloquent\FeedColumn;
+use Authority\Eloquent\FeedServiceM2nColumn;
 
-class FeedDbController extends \BaseController
+
+class FeedServiceController extends \BaseController
 {
     protected $feed;
 
@@ -13,14 +16,34 @@ class FeedDbController extends \BaseController
 
     public function index()
     {
-        $feed = $this->feed->orderBy('id')->get();
-
         return View::make('adm.admin.feed.index', array(
-            'feed' => $feed
+            'feed' => $this->feed->orderBy('id')->get()
         ));
     }
 
-    public function edit($id) {
-        return View::make('adm.admin.feed.edit');
+    public function edit($id)
+    {
+        return View::make('adm.admin.feed.edit', array(
+            'feed' => $this->feed->find($id),
+            'values' => FeedServiceM2nColumn::serviceId($id)->get(),
+            'column' => FeedColumn::all()
+        ));
     }
+
+    public function update($id)
+    {
+        $values = Input::get('value');
+
+        if (count($values) > 0) {
+            foreach ($values as $key => $val) {
+
+                $fsmc = FeedServiceM2nColumn::firstOrNew(array('service_id' => $id, 'column_id' => $key));
+                $fsmc->value = $val;
+                $fsmc->save();
+            }
+        }
+
+        return Redirect::route('adm.admin.feed.index');
+    }
+
 }

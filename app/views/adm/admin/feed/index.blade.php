@@ -17,14 +17,16 @@ Seznam XML Feedů
                 <th>#ID</th>
                 <th>Typ</th>
                 <th>Název souboru</th>
+                <th>URL</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($feed as $row)
             <tr>
-                <td>{{ $row->id }}</td>
+                <td>{{ link_to_route('adm.admin.feed.edit',$row->id,array($row->id)) }}</td>
                 <td>{{ $row->feed_type->code }}</td>
-                <td>{{ link_to_route('adm.admin.feed.edit',$row->filename,array($row->id)) }}</td>
+                <td>{{ $row->filename }}</td>
+                <td>{{ URL::route('home').'/feeds/'.$row->filename  }}</td>
             </tr>
             @endforeach
             </tbody>
