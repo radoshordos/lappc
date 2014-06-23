@@ -8,7 +8,7 @@ class FeedDb extends Migration
 
     public function up()
     {
-        Schema::create('feed_db', function (Blueprint $table) {
+        Schema::create('feed_service', function (Blueprint $table) {
 
             $table->tinyInteger('id')->unsigned();
             $table->tinyInteger('type_id')->unsigned();
@@ -25,7 +25,7 @@ class FeedDb extends Migration
 
     public function down()
     {
-        Schema::drop('feed_db');
+        Schema::drop('feed_service');
     }
 
 }

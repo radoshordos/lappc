@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
         // CISELNIKY
         $this->call('PpcKeywordsMatchTableSeeder');
         $this->call('FeedTypeTableSeeder');
+        $this->call('FeedColumnTableSeeder');
         $this->call('ProdWarrantyTableSeeder');
         $this->call('ItemsSaleTableSeeder');
         $this->call('ItemsAvailabilityTableSeeder');
         $this->call('TreeGroupTopTableSeeder');
         $this->call('TreeGroupTableSeeder');
         $this->call('ProdModeTableSeeder');
-
 
         // OSTATNI
         $this->call('FeedDbTableSeeder');
