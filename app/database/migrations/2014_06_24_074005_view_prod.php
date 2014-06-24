@@ -3,12 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ViewProd extends Migration {
+class ViewProd extends Migration
+{
 
-
-	public function up()
-	{
-
+    public function up()
+    {
         DB::unprepared('DROP TABLE IF EXISTS view_prod');
 
         DB::unprepared('
@@ -25,11 +24,11 @@ class ViewProd extends Migration {
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
         ');
-	}
+    }
 
-	public function down()
-	{
+    public function down()
+    {
         DB::unprepared('DROP TABLE IF EXISTS view_prod');
-	}
+    }
 
 }
