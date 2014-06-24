@@ -3,6 +3,7 @@
 use Authority\Eloquent\FeedService;
 use Authority\Eloquent\FeedServiceM2nColumn;
 use Authority\Eloquent\ViewProd;
+use Authority\Feed\Shop\;
 
 class FeedController extends BaseController
 {
@@ -17,6 +18,14 @@ class FeedController extends BaseController
                 ->where('service_id','=',$feedService->id)
                 ->where('value','=',1)
                 ->get();
+
+            switch ($feedService->id) {
+                case '1' : return new Authority\Feed\Shop\ZboziCz();
+                break;
+                case '1' : return new Authority\Feed\Shop\ZboziCz();
+                    break;
+
+            }
 
 
             $xml = View::make('feed.shopfeed', array(

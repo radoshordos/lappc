@@ -1,14 +1,30 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Admin
- * Date: 24. 6. 2014
- * Time: 15:49
- */
 
-namespace Authority\Xml\Feed;
+namespace Authority\Feed\Shop;
+
+class ZboziCz extends FeedAbstract {
+
+}
+
+//*
 
 
-class ZboziCz {
-
-} 
+SHOP
+SHOPITEM
+PRODUCT
+PRODUCTNAME
+URL
+IMGURL
+PRICE_VAT
+MAX_CPC
+DUES
+DELIVERY_DATE
+SHOP_DEPOTS
+ITEM_TYPE
+EXTRA_MESSAGE
+MANUFACTURER
+CATEGORYTEXT
+EAN
+PRODUCTNO
+VARIANT
+PRODUCTNAMEEXT

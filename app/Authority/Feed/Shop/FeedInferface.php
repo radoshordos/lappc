@@ -1,10 +1,9 @@
 <?php
 
-namespace Authority\Xml\Feed;
+namespace Authority\Feed\Shop;
 
 interface FeedInferface
 {
-
     public function tagProduct();
 
     public function tagDescription();

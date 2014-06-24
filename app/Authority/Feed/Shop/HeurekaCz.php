@@ -6,9 +6,33 @@
  * Time: 15:49
  */
 
-namespace Authority\Xml\Feed;
+namespace Authority\Feed\Shop;
+
+class HeurekaCz extends FeedAbstract {
+
+/*
+SHOP
+SHOPITEM
+ITEM_ID
+PRODUCTNAME
+PRODUCT
+URL
+IMGURL
+IMGURL_ALTERNATIVE
+VIDEO_URL
+PRICE_VAT
+ITEM_TYPE
+PARAM
+MANUFACTURER
+CATEGORYTEXT
+EAN
+ISBN
+HEUREKA_CPC
+DELIVERY_DATE
+DELIVERY
+ITEMGROUP_ID
+ACCESSORY
+*/
 
 
-class HeurekaCz {
-
-} 
+}
