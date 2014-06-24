@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class FeedServiceM2nColumn extends Migration {
 
-
 	public function up()
 	{
         Schema::create('feed_service_m2n_column', function (Blueprint $table) {

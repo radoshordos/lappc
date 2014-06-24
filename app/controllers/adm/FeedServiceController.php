@@ -23,9 +23,17 @@ class FeedServiceController extends \BaseController
 
     public function edit($id)
     {
+
+        $myValueCollection =  json_encode(FeedServiceM2nColumn::serviceId($id)->getListSelect('id'));
+
+        var_dump($myValueCollection);
+        die;
+
+        $x = $myValueCollection->toArray();
+
         return View::make('adm.admin.feed.edit', array(
             'feed' => $this->feed->find($id),
-            'values' => FeedServiceM2nColumn::serviceId($id)->get(),
+            'values' => $x,
             'column' => FeedColumn::all()
         ));
     }

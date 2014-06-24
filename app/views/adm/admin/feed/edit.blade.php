@@ -10,6 +10,8 @@ Zobrazování položek feedů
 @section('content')
 {{ Form::model($feed, array('method' => 'PATCH','route' => array('adm.admin.feed.update',$feed->id),'class' => 'form-horizontal','role' => 'form')) }}
 
+
+
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <table class='table table-hover'>
@@ -20,10 +22,11 @@ Zobrazování položek feedů
             </tr>
             </thead>
             <tbody>
-            @foreach ($values as $row)
+            @foreach ($column as $row)
+
             <tr>
-                <td>{{ $row->feedColumn->name }}</td>
-                <td><?= Form::select("value[".$row->feedColumn->id."]", ['0' => 'NE', '1' => 'ANO'], $row->value, array('class' => 'form-control')) ?></td>
+                <td>{{ $row->name }}</td>
+                <td><?= Form::select("value[".$row->id."]", ['0' => 'NE', '1' => 'ANO'], $row->value, array('class' => 'form-control')) ?></td>
             </tr>
             @endforeach
             </tbody>

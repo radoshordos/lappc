@@ -17,6 +17,13 @@ class FeedServiceM2nColumn extends \Eloquent
         }
     }
 
+    public function scopeColumnId($query, $int)
+    {
+        if (intval($int) > 0) {
+            return $query->where('column_id', '=', $int);
+        }
+    }
+
     public function feedColumn()
     {
         return $this->hasOne('Authority\Eloquent\FeedColumn','id','column_id');

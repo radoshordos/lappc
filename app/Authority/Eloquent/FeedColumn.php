@@ -13,4 +13,6 @@ class FeedColumn extends \Eloquent
         'name' => 'required'
     );
 
+
+
 }
