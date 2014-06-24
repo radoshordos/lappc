@@ -23,18 +23,15 @@ class FeedServiceController extends \BaseController
 
     public function edit($id)
     {
+        $service = FeedColumn::with(array('feedService' => function($query) use ($id)
+        {
+            $query->where('service_id', '=', $id);
 
-        $myValueCollection =  json_encode(FeedServiceM2nColumn::serviceId($id)->getListSelect('id'));
-
-        var_dump($myValueCollection);
-        die;
-
-        $x = $myValueCollection->toArray();
+        }))->get();
 
         return View::make('adm.admin.feed.edit', array(
             'feed' => $this->feed->find($id),
-            'values' => $x,
-            'column' => FeedColumn::all()
+            'service' => $service
         ));
     }
 

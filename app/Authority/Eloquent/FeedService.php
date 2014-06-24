@@ -19,11 +19,10 @@ class FeedService extends \Eloquent
         }
     }
 
-    public function column()
+    public function feedColumn()
     {
-        return $this->belongsToMany('Authority\Eloquent\FeedColumn', 'feed_column', 'customer_id', 'drink_id')->withPivot('feed_service_m2n_column','value');
+        return $this->belongsToMany('Authority\Eloquent\FeedColumn', 'feed_service_m2n_column', 'service_id', 'column_id');
     }
-
 
     public function feedServiceM2nColumn()
     {

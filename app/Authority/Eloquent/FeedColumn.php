@@ -13,6 +13,9 @@ class FeedColumn extends \Eloquent
         'name' => 'required'
     );
 
-
+    public function feedService()
+    {
+        return $this->belongsToMany('Authority\Eloquent\FeedService', 'feed_service_m2n_column', 'column_id', 'service_id')->withPivot('value');
+    }
 
 }

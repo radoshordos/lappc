@@ -8,6 +8,9 @@ Seznam XML Feedů
 
 {{-- Content --}}
 @section('content')
+
+
+
 @if ($feed->count())
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
