@@ -12,21 +12,17 @@ class FeedServiceM2nColumn extends \Eloquent
 
     public function scopeServiceId($query, $int)
     {
-        if (intval($int) > 0) {
-            return $query->where('service_id', '=', $int);
-        }
+        return $query->where('service_id', '=', $int);
     }
 
     public function scopeColumnId($query, $int)
     {
-        if (intval($int) > 0) {
-            return $query->where('column_id', '=', $int);
-        }
+        return $query->where('column_id', '=', $int);
     }
 
     public function feedColumn()
     {
-        return $this->hasOne('Authority\Eloquent\FeedColumn','id','column_id');
+        return $this->hasOne('Authority\Eloquent\FeedColumn', 'id', 'column_id');
     }
 
 }

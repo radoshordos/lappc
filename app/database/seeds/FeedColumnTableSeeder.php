@@ -10,8 +10,14 @@ class FeedColumnTableSeeder extends Seeder
 
         DB::table('feed_column')->insert(array(
             'id' => 1,
+            'name' => 'ITEM_ID',
+            'support' => 'HEUREKA'
+        ));
+
+        DB::table('feed_column')->insert(array(
+            'id' => 1,
             'name' => 'PRODUCT',
-            'support' => 'SEZNAM_CZ'
+            'support' => 'SEZNAM'
         ));
 
         DB::table('feed_column')->insert(array(
