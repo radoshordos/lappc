@@ -4,7 +4,7 @@ namespace Authority\Feed\Shop;
 
 use Authority\Eloquent\ViewProd;
 
-class HyperzboziCz extends FeedAbstract
+class HyperzboziCz extends ShopAbstract
 {
     public function __construct()
     {

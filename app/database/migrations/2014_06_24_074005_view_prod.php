@@ -14,10 +14,12 @@ class ViewProd extends Migration
             CREATE OR REPLACE VIEW
             view_prod AS
             SELECT  prod.id AS prod_id,
+                    prod.alias AS prod_alias,
                     prod.name AS prod_name,
                     prod.desc AS prod_desc,
                     prod.price AS prod_price,
                     tree.id AS tree_id,
+                    tree.absolute AS tree_absolute,
                     dev.id AS dev_id,
                     dev.name AS dev_name
             FROM    prod

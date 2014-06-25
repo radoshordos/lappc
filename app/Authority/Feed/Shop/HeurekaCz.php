@@ -3,7 +3,7 @@ namespace Authority\Feed\Shop;
 
 use Authority\Eloquent\ViewProd;
 
-class HeurekaCz extends FeedAbstract
+class HeurekaCz extends ShopAbstract
 {
     public function __construct()
     {
@@ -16,11 +16,12 @@ class HeurekaCz extends FeedAbstract
         foreach ($this->view as $row) {
             $this->out .= $this->startShopItem();
             $this->out .= $this->tagItemId($row);
+            $this->out .= $this->tagManufacturer($row);
             $this->out .= $this->tagProduct($row);
             $this->out .= $this->tagDescription($row);
-            $this->out .= $this->tagPriceVat($row);
-            $this->out .= $this->tagManufacturer($row);
             $this->out .= $this->tagEan($row);
+            $this->out .= $this->tagPriceVat($row);
+            $this->out .= $this->tagUrl($row);
             $this->out .= $this->endShopItem();
         }
         $this->out .= $this->endDocument();

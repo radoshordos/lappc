@@ -4,7 +4,7 @@ namespace Authority\Feed\Shop;
 
 use Authority\Eloquent\ViewProd;
 
-class ZboziCz extends FeedAbstract {
+class ZboziCz extends ShopAbstract {
 
     public function __construct()
     {
@@ -20,6 +20,7 @@ class ZboziCz extends FeedAbstract {
             $this->out .= $this->tagDescription($row);
             $this->out .= $this->tagPriceVat($row);
             $this->out .= $this->tagManufacturer($row);
+            $this->out .= $this->tagUrl($row);
             $this->out .= $this->endShopItem();
         }
         $this->out .= $this->endDocument();
