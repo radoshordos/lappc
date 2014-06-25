@@ -13,6 +13,8 @@ class PpcImportController extends BaseController
         if (Input::has('url-file')) {
             try {
                 $contents = file_get_contents(Input::get('url-file'));
+                var_dump($contents);
+                /*
                 $fr = new Reader($contents);
                 if ($fr) {
                     foreach ($fr->getArr() as $val) {
@@ -21,6 +23,7 @@ class PpcImportController extends BaseController
                 }
                 Session::flash('success', 'Přečteno ' . $fr->getCount() . ' záznamů');
                 return View::make('adm.ppc.import.show', array('source' => $fr->getArr(), 'count' => $fr->getCount()));
+                */
             } catch (ErrorException $e) {
                 Session::flash('error', $e->getMessage());
             }
