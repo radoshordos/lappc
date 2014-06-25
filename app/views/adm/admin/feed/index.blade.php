@@ -16,7 +16,7 @@ Seznam XML Feedů
             <thead>
             <tr>
                 <th>#ID</th>
-                <th>Typ</th>
+                <th>Class</th>
                 <th>Název souboru</th>
                 <th>URL</th>
             </tr>
@@ -24,8 +24,8 @@ Seznam XML Feedů
             <tbody>
             @foreach ($feed as $row)
             <tr>
-                <td>{{ link_to_route('adm.admin.feed.edit',$row->id,array($row->id)) }}</td>
-                <td>{{ $row->feed_type->code }}</td>
+                <td>{{ $row->id }}</td>
+                <td>{{ $row->class }}</td>
                 <td>{{ $row->filename }}</td>
                 <td>{{ URL::route('home').'/feeds/'.$row->filename  }}</td>
             </tr>

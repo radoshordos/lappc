@@ -2,15 +2,33 @@
 
 namespace Authority\Feed\Shop;
 
+use Authority\Eloquent\ViewProd;
+
 class ZboziCz extends FeedAbstract {
+
+    public function __construct()
+    {
+        $this->view = ViewProd::all();
+    }
+
+    public function feedRender()
+    {
+        $this->out .= $this->startDocument();
+        foreach ($this->view as $row) {
+            $this->out .= $this->startShopItem();
+            $this->out .= $this->tagProduct($row);
+            $this->out .= $this->tagDescription($row);
+            $this->out .= $this->tagPriceVat($row);
+            $this->out .= $this->tagManufacturer($row);
+            $this->out .= $this->endShopItem();
+        }
+        $this->out .= $this->endDocument();
+        return $this->out;
+    }
 
 }
 
-//*
-
-
-SHOP
-SHOPITEM
+/*
 PRODUCT
 PRODUCTNAME
 URL
@@ -22,9 +40,9 @@ DELIVERY_DATE
 SHOP_DEPOTS
 ITEM_TYPE
 EXTRA_MESSAGE
-MANUFACTURER
 CATEGORYTEXT
 EAN
 PRODUCTNO
 VARIANT
 PRODUCTNAMEEXT
+*/

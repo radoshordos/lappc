@@ -3,7 +3,6 @@
 use Authority\Eloquent\FeedService;
 use Authority\Eloquent\FeedServiceM2nColumn;
 use Authority\Eloquent\ViewProd;
-use Authority\Feed\Shop\;
 
 class FeedController extends BaseController
 {
@@ -13,27 +12,13 @@ class FeedController extends BaseController
         if ($v->passes()) {
 
             $feedService = FeedService::filename($filname)->first();
+            $generate = new $feedService->class;
 
-            $columns = FeedServiceM2nColumn::with('FeedColumn')
-                ->where('service_id','=',$feedService->id)
-                ->where('value','=',1)
-                ->get();
-
-            switch ($feedService->id) {
-                case '1' : return new Authority\Feed\Shop\ZboziCz();
-                break;
-                case '1' : return new Authority\Feed\Shop\ZboziCz();
-                    break;
-
-            }
+            $output = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+            $output .= $generate->feedRender();
 
 
-            $xml = View::make('feed.shopfeed', array(
-                'columns' => $columns,
-                'data' => ViewProd::all()
-            ));
-
-            $response = Response::make($xml, 200);
+            $response = Response::make($output, 200);
             $response->header('Content-Type', 'text/xml');
             return $response;
         } else {

@@ -1,21 +1,42 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Admin
- * Date: 24. 6. 2014
- * Time: 15:49
- */
-
 namespace Authority\Feed\Shop;
 
-class HeurekaCz extends FeedAbstract {
+use Authority\Eloquent\ViewProd;
+
+class HeurekaCz extends FeedAbstract
+{
+    public function __construct()
+    {
+        $this->view = ViewProd::all();
+    }
+
+    public function feedRender()
+    {
+        $this->out .= $this->startDocument();
+        foreach ($this->view as $row) {
+            $this->out .= $this->startShopItem();
+            $this->out .= $this->tagItemId($row);
+            $this->out .= $this->tagProduct($row);
+            $this->out .= $this->tagDescription($row);
+            $this->out .= $this->tagPriceVat($row);
+            $this->out .= $this->tagManufacturer($row);
+            $this->out .= $this->tagEan($row);
+            $this->out .= $this->endShopItem();
+        }
+        $this->out .= $this->endDocument();
+        return $this->out;
+    }
+}
+
+
+
 
 /*
 SHOP
 SHOPITEM
-ITEM_ID
+OK = ITEM_ID
 PRODUCTNAME
-PRODUCT
+OK = PRODUCT
 URL
 IMGURL
 IMGURL_ALTERNATIVE
@@ -23,7 +44,6 @@ VIDEO_URL
 PRICE_VAT
 ITEM_TYPE
 PARAM
-MANUFACTURER
 CATEGORYTEXT
 EAN
 ISBN
@@ -35,4 +55,3 @@ ACCESSORY
 */
 
 
-}

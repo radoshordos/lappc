@@ -4,9 +4,9 @@ namespace Authority\Feed\Shop;
 
 interface FeedInferface
 {
-    public function tagProduct();
+    public function tagProduct($row);
 
-    public function tagDescription();
+    public function tagDescription($row);
 
-    public function tagPriceVat();
+    public function tagPriceVat($row);
 }
