@@ -15,8 +15,6 @@ class DatabaseSeeder extends Seeder
 
         // CISELNIKY
         $this->call('PpcKeywordsMatchTableSeeder');
-        $this->call('FeedTypeTableSeeder');
-        $this->call('FeedColumnTableSeeder');
         $this->call('ProdWarrantyTableSeeder');
         $this->call('ItemsSaleTableSeeder');
         $this->call('ItemsAvailabilityTableSeeder');

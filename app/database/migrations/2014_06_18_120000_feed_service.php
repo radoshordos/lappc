@@ -11,14 +11,12 @@ class FeedService extends Migration
         Schema::create('feed_service', function (Blueprint $table) {
 
             $table->integer('id')->unsigned();
-            $table->tinyInteger('type_id')->unsigned();
             $table->string('filename', '24');
+            $table->string('class', '128');
 
             $table->engine = 'InnoDB';
             $table->primary('id');
             $table->unique('filename');
-
-            $table->foreign('type_id')->references('id')->on('feed_type')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TreeMixture extends Migration
+class MixtureTree extends Migration
 {
 
     public function up()
@@ -13,7 +13,6 @@ class TreeMixture extends Migration
             $table->string('name', '64');
         });
     }
-
 
     public function down()
     {
