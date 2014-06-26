@@ -13,7 +13,7 @@ Manual import
     <label for="'url-file" class="col-sm-2 control-label">Url</label>
 
     <div class="col-sm-10">
-        {{ Form::url('url-file', null ,array('class'=>'form-control','placeholder' => 'Url')) }}
+        {{ Form::url('url-file', 'C:\xampp\htdocs\lappc\ppc.xml' ,array('class'=>'form-control','placeholder' => 'Url')) }}
     </div>
 </div>
 <div class="form-group">
@@ -21,5 +21,8 @@ Manual import
         {{ Form::submit('Submit',array('class'=>'btn btn-default')) }}
     </div>
 </div>
+
+{{ var_dump($input); }}
+
 {{ Form::close() }}
 @stop

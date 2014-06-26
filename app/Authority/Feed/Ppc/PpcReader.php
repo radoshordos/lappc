@@ -1,8 +1,8 @@
 <?php
 
-namespace Authority\Feed;
+namespace Authority\Feed\Ppc;
 
-class Reader
+class PpcReader
 {
 
     protected $count = 0;

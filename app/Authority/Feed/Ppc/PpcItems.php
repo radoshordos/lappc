@@ -1,8 +1,8 @@
 <?php
 
-namespace Authority\Feed;
+namespace Authority\Feed\Ppc;
 
-class ShopItem
+class PpcItems
 {
     private $productName;
     private $product;
