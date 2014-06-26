@@ -1,4 +1,5 @@
 <?php
+
 namespace Authority\Feed\Ppc;
 
 interface PpcInterface
@@ -12,4 +13,10 @@ interface PpcInterface
     public function tagPriceVat($row);
 
     public function tagManufacturer($row);
+
+    public function tagSendReady($row);
+
+    public function tagAction($row);
+
+    public function tagActive($row);
 }
