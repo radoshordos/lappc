@@ -41,7 +41,7 @@ class Tree extends \Eloquent
 
     public function treeDev()
     {
-        return $this->hasMany('Authority\Eloquent\TreeDev','tree_id','id');
+        return $this->hasMany('Authority\Eloquent\TreeDev', 'tree_id', 'id');
     }
 
 }

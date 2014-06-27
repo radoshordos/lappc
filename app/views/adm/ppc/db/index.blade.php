@@ -6,7 +6,6 @@
 Import z XML Feed
 @stop
 
-
 {{-- Content --}}
 @section('content')
 
@@ -35,6 +34,9 @@ Import z XML Feed
                 <th>#</th>
                 <th>name <br/></th>
                 <th>price</th>
+                <th>Prodej</th>
+                <th>Akce</th>
+                <th>K zaslání</th>
             </tr>
             </thead>
             <tbody>
@@ -43,6 +45,9 @@ Import z XML Feed
                 <td>{{ $db->id }}</td>
                 <td>{{ $db->name }}</td>
                 <td>{{ $db->price }}</td>
+                <td>{{ ($db->market ? 'ANO' : 'NE') }}</td>
+                <td>{{ ($db->action ? 'ANO' : 'NE') }}</td>
+                <td>{{ ($db->send ? 'ANO' : 'NE') }}</td>
             </tr>
             @endforeach
             </tbody>
@@ -50,10 +55,8 @@ Import z XML Feed
     </div>
 </div>
 
-
 @else
 <p class="text-center">Je tu prázdno !!!</p>
 @endif
 
 @stop
-

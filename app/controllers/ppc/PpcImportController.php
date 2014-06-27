@@ -11,22 +11,19 @@ class PpcImportController extends BaseController
         if (Input::has('url-file')) {
             try {
                 $contents = file_get_contents(Input::get('url-file'));
-
-                $fr = new PpcReader($contents);
-                if ($fr) {
-                    foreach ($fr->getArr() as $val) {
-                        PpcDb::saveShopItem($val);
-                    }
-                }
-                Session::flash('success', 'Přečteno ' . $fr->getCount() . ' záznamů');
-                return View::make('adm.ppc.import.show', array('input' => Input::all(), 'source' => $fr->getArr(), 'count' => $fr->getCount()));
+                $pr = new PpcReader($contents);
+                return View::make('adm.ppc.import.show', array(
+                    'input' => Input::all(),
+                    'import_yes' => $pr->getImportYes(),
+                    'import_no' => $pr->getImportNo()
+                ));
 
             } catch (ErrorException $e) {
                 Session::flash('error', $e->getMessage());
             }
         }
         return View::make('adm.ppc.import.show', array(
-            'input' => Input::all())
+                'input' => Input::all())
         );
     }
 }

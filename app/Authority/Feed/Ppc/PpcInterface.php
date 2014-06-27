@@ -6,7 +6,7 @@ interface PpcInterface
 {
     public function tagItemId($row);
 
-    public function tagProduct($row);
+    public function tagProductName($row);
 
     public function tagUrl($row);
 

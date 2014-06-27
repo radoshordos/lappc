@@ -73,6 +73,8 @@ class PpcItems
     {
         if ($simpleXMLElement->ISMARKET) {
             $this->market = (int)$simpleXMLElement->ISMARKET;
+        } else {
+            $this->market = 0;
         }
     }
 
@@ -80,6 +82,8 @@ class PpcItems
     {
         if ($simpleXMLElement->ISACTION) {
             $this->action = (int)$simpleXMLElement->ISACTION;
+        } else {
+            $this->action = 0;
         }
     }
 
@@ -87,21 +91,23 @@ class PpcItems
     {
         if ($simpleXMLElement->ISSEND) {
             $this->send = (int)$simpleXMLElement->ISSEND;
+        } else {
+            $this->send = 0;
         }
     }
 
     public function getAllArray()
     {
         return array(
-            'item_id' => $this->itemId,
-            'dev_id' => $this->devId,
-            'tree_id' => $this->treeId,
-            'url' => $this->url,
-            'name' => $this->name,
-            'price' => $this->price,
-            'market' => $this->market,
-            'action' => $this->action,
-            'send' => $this->send
+            'item_id' => $this->getItemId(),
+            'dev_id' => $this->getDevId(),
+            'tree_id' => $this->getTreeId(),
+            'url' => $this->getUrl(),
+            'name' => $this->getName(),
+            'price' => $this->getPrice(),
+            'market' => $this->getMarket(),
+            'action' => $this->getAction(),
+            'send' => $this->getSend()
         );
     }
 
