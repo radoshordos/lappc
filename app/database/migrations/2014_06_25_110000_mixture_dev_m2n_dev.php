@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DevM2nGroup extends Migration
+class MixtureDevM2nDev extends Migration
 {
 
     public function up()
