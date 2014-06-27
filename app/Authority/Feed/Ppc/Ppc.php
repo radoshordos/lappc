@@ -20,18 +20,18 @@ class Ppc extends PpcAbstract
             $this->out .= $this->tagPriceVat($row);
             $this->out .= $this->tagUrl($row);
             $this->out .= $this->tagManufacturer($row);
+            $this->out .= $this->tagMarket($row);
             $this->out .= $this->tagAction($row);
-            $this->out .= $this->tagSendReady($row);
-            $this->out .= $this->tagActive($row);
+            $this->out .= $this->tagSend($row);
             $this->out .= $this->endShopItem();
         }
         $this->out .= $this->endDocument();
         return $this->out;
     }
 
-    public function tagSendReady($row)
+    public function tagMarket($row)
     {
-        return "  <ISSENDREADY>1</ISSENDREADY>\n";
+        return "  <ISMARKET>1</ISMARKET>\n";
     }
 
     public function tagAction($row)
@@ -39,8 +39,8 @@ class Ppc extends PpcAbstract
         return "  <ISACTION>1</ISACTION>\n";
     }
 
-    public function tagActive($row)
+    public function tagSend($row)
     {
-        return "  <ISACTIVE>1</ISACTIVE>\n";
+        return "  <ISSEND>1</ISSEND>\n";
     }
 }

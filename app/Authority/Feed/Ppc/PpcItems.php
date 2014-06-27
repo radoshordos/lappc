@@ -7,20 +7,24 @@ class PpcItems
     private $itemId;
     private $devId;
     private $treeId;
-    private $productName;
+    private $name;
     private $url;
-    private $priceVat;
-    private $action;
+    private $price;
     private $market;
+    private $action;
     private $send;
 
     public function __construct(\SimpleXMLElement $simpleXMLElement)
     {
         $this->setItemId($simpleXMLElement);
-        $this->setProductName($simpleXMLElement);
+        $this->setDevId($simpleXMLElement);
+        $this->setTreeId($simpleXMLElement);
+        $this->setName($simpleXMLElement);
         $this->setUrl($simpleXMLElement);
-        $this->setPricevat($simpleXMLElement);
-        $this->setManufacturerId($simpleXMLElement);
+        $this->setPrice($simpleXMLElement);
+        $this->setMarket($simpleXMLElement);
+        $this->setAction($simpleXMLElement);
+        $this->setSend($simpleXMLElement);
     }
 
     public function setItemId(\SimpleXMLElement $simpleXMLElement)
@@ -30,10 +34,24 @@ class PpcItems
         }
     }
 
-    public function setProductName(\SimpleXMLElement $simpleXMLElement)
+    public function setDevId(\SimpleXMLElement $simpleXMLElement)
+    {
+        if ($simpleXMLElement->DEV_ID) {
+            $this->devId = (int)$simpleXMLElement->DEV_ID;
+        }
+    }
+
+    public function setTreeId(\SimpleXMLElement $simpleXMLElement)
+    {
+        if ($simpleXMLElement->TREE_ID) {
+            $this->treeId = (int)$simpleXMLElement->TREE_ID;
+        }
+    }
+
+    public function setName(\SimpleXMLElement $simpleXMLElement)
     {
         if ($simpleXMLElement->PRODUCTNAME) {
-            $this->productName = (string)$simpleXMLElement->PRODUCTNAME;
+            $this->name = (string)$simpleXMLElement->PRODUCTNAME;
         }
     }
 
@@ -44,38 +62,63 @@ class PpcItems
         }
     }
 
-    public function setPriceVat(\SimpleXMLElement $simpleXMLElement)
+    public function setPrice(\SimpleXMLElement $simpleXMLElement)
     {
         if ($simpleXMLElement->PRICE_VAT) {
-            $this->priceVat = (string)$simpleXMLElement->PRICE_VAT;
+            $this->price = (string)$simpleXMLElement->PRICE_VAT;
         }
     }
 
-    public function setManufacturer(\SimpleXMLElement $simpleXMLElement)
+    public function setMarket(\SimpleXMLElement $simpleXMLElement)
     {
-        if ($simpleXMLElement->MANUFACTURER) {
-            $this->manufacturer = (string)$simpleXMLElement->MANUFACTURER;
+        if ($simpleXMLElement->ISMARKET) {
+            $this->market = (int)$simpleXMLElement->ISMARKET;
+        }
+    }
+
+    public function setAction(\SimpleXMLElement $simpleXMLElement)
+    {
+        if ($simpleXMLElement->ISACTION) {
+            $this->action = (int)$simpleXMLElement->ISACTION;
+        }
+    }
+
+    public function setSend(\SimpleXMLElement $simpleXMLElement)
+    {
+        if ($simpleXMLElement->ISSEND) {
+            $this->send = (int)$simpleXMLElement->ISSEND;
         }
     }
 
     public function getAllArray()
     {
-/*
-         $this->itemId;
-         $this->productName;
-         $this->product;
-         $this->url;
-         $this->priceVat;
-         $this->manufacturer;
-*/
         return array(
-            'item_id' => $this->itemId;
-            'name' =>
-            'price' =>
-            'manufacturer' => $this->manufacturer;
+            'item_id' => $this->itemId,
+            'dev_id' => $this->devId,
+            'tree_id' => $this->treeId,
+            'url' => $this->url,
+            'name' => $this->name,
+            'price' => $this->price,
+            'market' => $this->market,
+            'action' => $this->action,
+            'send' => $this->send
         );
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getDevId()
+    {
+        return $this->devId;
     }
 
     /**
@@ -89,33 +132,41 @@ class PpcItems
     /**
      * @return mixed
      */
-    public function getManufacturer()
+    public function getMarket()
     {
-        return $this->manufacturer;
+        return $this->market;
     }
 
     /**
      * @return mixed
      */
-    public function getPriceVat()
+    public function getName()
     {
-        return $this->priceVat;
+        return $this->name;
     }
 
     /**
      * @return mixed
      */
-    public function getProduct()
+    public function getPrice()
     {
-        return $this->product;
+        return $this->price;
     }
 
     /**
      * @return mixed
      */
-    public function getProductName()
+    public function getSend()
     {
-        return $this->productName;
+        return $this->send;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTreeId()
+    {
+        return $this->treeId;
     }
 
     /**
@@ -125,4 +176,5 @@ class PpcItems
     {
         return $this->url;
     }
+
 }

@@ -14,9 +14,10 @@ interface PpcInterface
 
     public function tagManufacturer($row);
 
-    public function tagSendReady($row);
+    public function tagMarket($row);
 
     public function tagAction($row);
 
-    public function tagActive($row);
+    public function tagSend($row);
+
 }

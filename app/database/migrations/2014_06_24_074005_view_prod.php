@@ -14,6 +14,7 @@ class ViewProd extends Migration
             CREATE OR REPLACE VIEW
             view_prod AS
             SELECT  prod.id AS prod_id,
+                    prod.mode_id AS prod_mode_id,
                     prod.alias AS prod_alias,
                     prod.name AS prod_name,
                     prod.desc AS prod_desc,

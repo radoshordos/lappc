@@ -28,8 +28,4 @@ abstract class PpcAbstract extends FeedAbstract implements PpcInterface
     {
         return " </SHOPITEM>\n";
     }
-
-
-
-
 }
