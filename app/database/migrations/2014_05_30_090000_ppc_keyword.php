@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePpcKeywordsTable extends Migration
+class PpcKeyword extends Migration
 {
 
     public function up()
@@ -27,7 +27,7 @@ class CreatePpcKeywordsTable extends Migration
 
     public function down()
     {
-        Schema::drop('ppc_keywords', function (Blueprint $table) {
+        Schema::dropIfExists('ppc_keywords', function (Blueprint $table) {
             $table->dropForeign('match_id');
         });
     }

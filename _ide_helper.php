@@ -6743,7 +6743,7 @@ namespace {
 		 }
 
 		/**
-		 * Determine if the request contains a non-emtpy value for an input item.
+		 * Determine if the request contains a non-empty value for an input item.
 		 *
 		 * @param string|array  $key
 		 * @return bool
@@ -9617,7 +9617,7 @@ namespace {
 		 }
 
 		/**
-		 * Determine if the request contains a non-emtpy value for an input item.
+		 * Determine if the request contains a non-empty value for an input item.
 		 *
 		 * @param string|array  $key
 		 * @return bool
@@ -11216,6 +11216,18 @@ namespace {
 		 }
 
 		/**
+		 * Set a group of global where patterns on all routes
+		 *
+		 * @param array  $patterns
+		 * @return void
+		 * @static 
+		 */
+		 public static function patterns($patterns){
+			//Method inherited from \Illuminate\Routing\Router
+			 \Illuminate\Routing\Router::patterns($patterns);
+		 }
+
+		/**
 		 * Call the given route's before filters.
 		 *
 		 * @param \Illuminate\Routing\Route  $route
@@ -11463,6 +11475,17 @@ namespace {
 		 public static function getInspector(){
 			//Method inherited from \Illuminate\Routing\Router
 			return \Illuminate\Routing\Router::getInspector();
+		 }
+
+		/**
+		 * Get the global "where" patterns.
+		 *
+		 * @return array
+		 * @static 
+		 */
+		 public static function getPatterns(){
+			//Method inherited from \Illuminate\Routing\Router
+			return \Illuminate\Routing\Router::getPatterns();
 		 }
 
 		/**

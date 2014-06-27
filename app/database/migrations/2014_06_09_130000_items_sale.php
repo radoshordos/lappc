@@ -25,7 +25,7 @@ class ItemsSale extends Migration
 
     public function down()
     {
-        Schema::drop('items_sale');
+        Schema::dropIfExists('items_sale');
     }
 
 }

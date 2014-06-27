@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Ppc2config extends Migration
+class PpcConfig extends Migration
 {
     public function up()
     {
@@ -18,7 +18,7 @@ class Ppc2config extends Migration
 
     public function down()
     {
-        Schema::drop('ppc_config');
+        Schema::dropIfExists('ppc_config');
     }
 
 }

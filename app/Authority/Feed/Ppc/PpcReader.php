@@ -2,6 +2,8 @@
 
 namespace Authority\Feed\Ppc;
 
+use Authority\Eloquent\PpcDb;
+
 class PpcReader
 {
 
@@ -13,23 +15,30 @@ class PpcReader
         $xml = simplexml_load_string($xmlSource);
         if ($xml) {
             foreach ($xml as $val) {
-                $this->arr[$this->count++] = new ShopItem($val);
+                $col = new PpcItems($val);
+
+                var_dump($col->getAllArray());
+                die;
+
+                $v = Validator::make($col->getAllArray(), PpcDb::$rules);
+
+                if ($v->passes()) {
+                    $pdb = new PpcDb;
+                    $pdb->item_id = $col->getItemId();
+                    $pdb->name = $col->getProduct();
+                    $pdb->price = $col->getPriceVat();
+                    $pdb->save();
+
+                }
             }
         }
     }
 
-    /**
-     * @return int
-     */
     public function getCount()
     {
         return $this->count;
     }
 
-
-    /**
-     * @return array
-     */
     public function getArr()
     {
         return $this->arr;

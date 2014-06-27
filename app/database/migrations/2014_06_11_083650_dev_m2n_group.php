@@ -24,7 +24,7 @@ class DevM2nGroup extends Migration
 
     public function down()
     {
-        Schema::drop('dev_m2n_group', function (Blueprint $table) {
+        Schema::dropIfExists('dev_m2n_group', function (Blueprint $table) {
             $table->dropForeign('group_id');
             $table->dropForeign('dev_id');
         });

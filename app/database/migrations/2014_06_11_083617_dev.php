@@ -32,7 +32,7 @@ class Dev extends Migration
 
     public function down()
     {
-        Schema::drop('dev', function (Blueprint $table) {
+        Schema::dropIfExists('dev', function (Blueprint $table) {
             $table->dropForeign('default_warranty_id');
             $table->dropForeign('default_sale_id');
             $table->dropForeign('default_availibility_id');

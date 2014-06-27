@@ -18,6 +18,6 @@ class TreeGroupTop extends Migration
 
     public function down()
     {
-        Schema::drop('tree_group_top');
+        Schema::dropIfExists('tree_group_top');
     }
 }

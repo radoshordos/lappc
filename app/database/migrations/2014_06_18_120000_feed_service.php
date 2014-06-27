@@ -23,7 +23,7 @@ class FeedService extends Migration
 
     public function down()
     {
-        Schema::drop('feed_service');
+        Schema::dropIfExists('feed_service');
     }
 
 }

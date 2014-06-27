@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Ppc2db extends Migration
+class PpcDb extends Migration
 {
     public function up()
     {
@@ -11,9 +11,14 @@ class Ppc2db extends Migration
 
             $table->increments('id')->unsigned();
             $table->integer('item_id')->unsigned();
-            $table->string('manufacturer')->nullable();
-            $table->string('name');
+            $table->string('dev_id');
+            $table->string('tree_id');
+            $table->string('url', 128);
+            $table->string('name', 40);
             $table->decimal('price', 9, 2)->unsigned();
+            $table->boolean('action')->default(0);
+            $table->boolean('market')->default(0);
+            $table->boolean('send')->default(0);
             $table->timestamps();
 
             $table->engine = 'InnoDB';
@@ -24,6 +29,6 @@ class Ppc2db extends Migration
 
     public function down()
     {
-        Schema::drop('ppc_db');
+        Schema::dropIfExists('ppc_db');
     }
 }

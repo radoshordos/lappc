@@ -16,7 +16,7 @@ class MixtureTree extends Migration
 
     public function down()
     {
-        Schema::drop('mixture_tree');
+        Schema::dropIfExists('mixture_tree');
     }
 
 }

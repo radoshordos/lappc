@@ -23,6 +23,6 @@ class ProdMode extends Migration {
 
 	public function down()
 	{
-        Schema::drop('prod_mode');
+        Schema::dropIfExists('prod_mode');
 	}
 }

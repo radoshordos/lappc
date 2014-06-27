@@ -24,6 +24,6 @@ class CreateRunnerTable extends Migration
 
     public function down()
     {
-        Schema::drop('runner');
+        Schema::dropIfExists('runner');
     }
 }

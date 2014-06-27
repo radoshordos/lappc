@@ -19,7 +19,7 @@ class MixtureTreeM2nTree extends Migration
 
     public function down()
     {
-        Schema::drop('mixture_tree_m2n_tree');
+        Schema::dropIfExists('mixture_tree_m2n_tree');
     }
 
 }

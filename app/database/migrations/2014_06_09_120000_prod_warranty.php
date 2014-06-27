@@ -22,7 +22,7 @@ class ProdWarranty extends Migration {
 
     public function down()
     {
-        Schema::drop('prod_warranty');
+        Schema::dropIfExists('prod_warranty');
     }
 
 }

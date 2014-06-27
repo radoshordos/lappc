@@ -131,7 +131,7 @@ class Prod extends Migration
 
     public function down()
     {
-        Schema::drop('prod', function (Blueprint $table) {
+        Schema::dropIfExists('prod', function (Blueprint $table) {
             $table->dropForeign('tree_id');
             $table->dropForeign('dev_id');
             $table->dropForeign('warranty_id');

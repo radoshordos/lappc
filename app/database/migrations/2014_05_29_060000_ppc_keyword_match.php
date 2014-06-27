@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePpcKeywordMatch extends Migration
+class PpcKeywordMatch extends Migration
 {
 
     public function up()
@@ -23,6 +23,6 @@ class CreatePpcKeywordMatch extends Migration
 
     public function down()
     {
-        Schema::drop('ppc_keywords_match');
+        Schema::dropIfExists('ppc_keywords_match');
     }
 }

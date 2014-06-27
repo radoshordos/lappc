@@ -22,6 +22,6 @@ class DevGroup extends Migration
 
     public function down()
     {
-        Schema::drop('dev_group');
+        Schema::dropIfExists('dev_group');
     }
 }

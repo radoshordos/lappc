@@ -15,6 +15,11 @@ class FeedAbstract
         return "  <PRODUCT>" . $row["prod_name"] . "</PRODUCT>\n";
     }
 
+    public function tagProductName($row)
+    {
+        return "  <PRODUCTNAME>" . $row["prod_name"] . "</PRODUCTNAME>\n";
+    }
+
     public function tagPriceVat($row)
     {
         return "  <PRICE_VAT>" . $row["prod_price"] . "</PRICE_VAT>\n";

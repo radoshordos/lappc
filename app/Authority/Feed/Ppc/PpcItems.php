@@ -4,20 +4,30 @@ namespace Authority\Feed\Ppc;
 
 class PpcItems
 {
+    private $itemId;
+    private $devId;
+    private $treeId;
     private $productName;
-    private $product;
     private $url;
-    private $imgUrl;
     private $priceVat;
-    private $manufacturer;
+    private $action;
+    private $market;
+    private $send;
 
     public function __construct(\SimpleXMLElement $simpleXMLElement)
     {
-        $this->setProduct($simpleXMLElement);
-        $this->setImageurl($simpleXMLElement);
+        $this->setItemId($simpleXMLElement);
+        $this->setProductName($simpleXMLElement);
         $this->setUrl($simpleXMLElement);
         $this->setPricevat($simpleXMLElement);
-        $this->setManufacturer($simpleXMLElement);
+        $this->setManufacturerId($simpleXMLElement);
+    }
+
+    public function setItemId(\SimpleXMLElement $simpleXMLElement)
+    {
+        if ($simpleXMLElement->ITEM_ID) {
+            $this->itemId = (int)$simpleXMLElement->ITEM_ID;
+        }
     }
 
     public function setProductName(\SimpleXMLElement $simpleXMLElement)
@@ -27,24 +37,10 @@ class PpcItems
         }
     }
 
-    public function setProduct(\SimpleXMLElement $simpleXMLElement)
-    {
-        if ($simpleXMLElement->PRODUCT) {
-            $this->product = (string)$simpleXMLElement->PRODUCT;
-        }
-    }
-
     public function setUrl(\SimpleXMLElement $simpleXMLElement)
     {
         if ($simpleXMLElement->URL) {
             $this->url = (string)$simpleXMLElement->URL;
-        }
-    }
-
-    public function setImageUrl(\SimpleXMLElement $simpleXMLElement)
-    {
-        if ($simpleXMLElement->IMGURL) {
-            $this->imgUrl = (string)$simpleXMLElement->IMGURL;
         }
     }
 
@@ -62,12 +58,32 @@ class PpcItems
         }
     }
 
+    public function getAllArray()
+    {
+/*
+         $this->itemId;
+         $this->productName;
+         $this->product;
+         $this->url;
+         $this->priceVat;
+         $this->manufacturer;
+*/
+        return array(
+            'item_id' => $this->itemId;
+            'name' =>
+            'price' =>
+            'manufacturer' => $this->manufacturer;
+        );
+
+
+    }
+
     /**
      * @return mixed
      */
-    public function getImgUrl()
+    public function getItemId()
     {
-        return $this->imgUrl;
+        return $this->itemId;
     }
 
     /**
@@ -109,5 +125,4 @@ class PpcItems
     {
         return $this->url;
     }
-
 }

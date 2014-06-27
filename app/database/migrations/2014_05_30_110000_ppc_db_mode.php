@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePpcDbMode extends Migration {
+class PpcDbMode extends Migration {
 
 	public function up()
 	{
@@ -21,6 +21,6 @@ class CreatePpcDbMode extends Migration {
 
 	public function down()
 	{
-		Schema::drop('ppc_db_mode');
+		Schema::dropIfExists('ppc_db_mode');
 	}
 }

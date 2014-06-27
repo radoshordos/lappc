@@ -23,7 +23,7 @@ class ItemsAvailability extends Migration
 
     public function down()
     {
-        Schema::drop('items_availability');
+        Schema::dropIfExists('items_availability');
     }
 
 }

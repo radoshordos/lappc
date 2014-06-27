@@ -28,7 +28,7 @@ class TreeDev extends Migration {
 
 	public function down()
 	{
-        Schema::drop('tree_dev', function (Blueprint $table) {
+        Schema::dropIfExists('tree_dev', function (Blueprint $table) {
             $table->dropForeign('parent_id');
             $table->dropForeign('group_id');
         });
