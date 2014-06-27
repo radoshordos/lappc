@@ -9,7 +9,7 @@ class MixtureTree extends \Eloquent
 
     public $timestamps = false;
 
-    public function drinks()
+    public function tree()
     {
         return $this->belongsToMany('Authority\Eloquent\Tree', 'mixture_tree_m2n_tree', 'mixture_tree_id', 'tree_id');
     }

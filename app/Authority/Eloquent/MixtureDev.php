@@ -14,7 +14,7 @@ class MixtureDev extends \Eloquent
 
     public function dev()
     {
-        return $this->belongsToMany('Authority\Eloquent\Dev', 'mixture_tree_m2n_tree', 'mixture_dev_id', 'dev_id');
+        return $this->belongsToMany('Authority\Eloquent\Dev', 'mixture_dev_m2n_dev', 'mixture_dev_id', 'dev_id');
     }
 
 }
