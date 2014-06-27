@@ -8,6 +8,7 @@ class PpcKeyword extends Migration
 
     public function up()
     {
+
         Schema::create('ppc_keywords', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('item_id')->unsigned();
@@ -23,6 +24,7 @@ class PpcKeyword extends Migration
 
             $table->foreign('match_id')->references('id')->on('ppc_keywords_match')->onUpdate('cascade')->onDelete('no action');
         });
+
     }
 
     public function down()

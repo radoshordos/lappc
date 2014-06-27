@@ -11,8 +11,8 @@ class PpcRules extends Migration
         Schema::create('ppc_rules', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned();
-            $table->int('mixture_tree_id')->unsigned()->nullable();
-            $table->int('mixture_dev_id')->unsigned()->nullable();
+            $table->integer('mixture_tree_id')->unsigned()->nullable();
+            $table->integer('mixture_dev_id')->unsigned()->nullable();
             $table->tinyInteger('name_lenght_min')->unsigned()->nullable();
             $table->tinyInteger('name_lenght_max')->unsigned()->nullable();
             $table->tinyInteger('name_count_word_min')->unsigned()->nullable();
