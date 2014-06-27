@@ -6,7 +6,6 @@
 PPC konfigurace
 @stop
 
-
 {{-- Content --}}
 @section('content')
 <form class="form-horizontal" role="form" method='post'>
@@ -28,6 +27,4 @@ PPC konfigurace
         </div>
     </div>
 </form>
-
 @stop
-
