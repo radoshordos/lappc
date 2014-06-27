@@ -11,8 +11,11 @@ class MixtureTreeM2nTree extends Migration
         Schema::create('mixture_tree_m2n_tree', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mixture_tree_id')->unsigned()->index();
-            $table->foreign('mixture_tree_id')->references('id')->on('mixture_tree')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('tree_id')->unsigned()->index();
+
+            $table->engine = 'InnoDB';
+
+            $table->foreign('mixture_tree_id')->references('id')->on('mixture_tree')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('cascade');
         });
     }

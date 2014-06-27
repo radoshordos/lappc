@@ -3,13 +3,12 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DevGroup extends Migration
+class MixtureDev extends Migration
 {
 
     public function up()
     {
-
-        Schema::create('dev_group', function (Blueprint $table) {
+        Schema::create('mixture_dev', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
             $table->string('name', '32');
@@ -22,6 +21,6 @@ class DevGroup extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('dev_group');
+        Schema::dropIfExists('mixture_dev');
     }
 }

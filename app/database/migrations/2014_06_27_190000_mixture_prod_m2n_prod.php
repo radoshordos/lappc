@@ -11,10 +11,13 @@ class CreateMixtureProdProdTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('mixture_prod_id')->unsigned()->index();
-			$table->foreign('mixture_prod_id')->references('id')->on('mixture_prods')->onDelete('cascade');
-			$table->integer('prod_id')->unsigned()->index();
+            $table->integer('prod_id')->unsigned()->index();
+
+
+            $table->engine = 'InnoDB';
+
+            $table->foreign('mixture_prod_id')->references('id')->on('mixture_prods')->onDelete('cascade');
 			$table->foreign('prod_id')->references('id')->on('prods')->onDelete('cascade');
-			$table->timestamps();
 		});
 	}
 

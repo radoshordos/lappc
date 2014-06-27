@@ -2,9 +2,9 @@
 
 namespace Authority\Eloquent;
 
-class DevM2nGroup extends \Eloquent
+class MixtureDevM2nDev extends \Eloquent
 {
-    protected $table = 'dev_m2n_group';
+    protected $table = 'mixture_tree_m2n_tree';
     protected $guarded = [];
     public $timestamps = false;
     public static $rules = array();
