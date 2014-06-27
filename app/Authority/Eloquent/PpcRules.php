@@ -2,7 +2,8 @@
 
 namespace Authority\Eloquent;
 
-class PpcRules extends \Eloquent {
+class PpcRules extends \Eloquent
+{
 
     protected $table = 'ppc_rules';
     protected $guarded = array();
@@ -10,4 +11,8 @@ class PpcRules extends \Eloquent {
     public static $rules = array(
         'modes' => 'required'
     );
+
+
+
+
 }

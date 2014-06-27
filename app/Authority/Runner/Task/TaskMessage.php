@@ -8,6 +8,7 @@ class TaskMessage extends TaskTimer
     protected $message;
     protected $db;
 
+
     public function __construct($db)
     {
         parent::__construct($db);
@@ -37,5 +38,7 @@ class TaskMessage extends TaskTimer
     {
         return $this->db->class;
     }
+
+
 
 }

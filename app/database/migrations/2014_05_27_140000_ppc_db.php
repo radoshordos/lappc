@@ -10,6 +10,7 @@ class PpcDb extends Migration
         Schema::create('ppc_db', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
+            $table->integer('feed_id')->default(1)->unsigned();
             $table->integer('item_id')->unsigned();
             $table->string('dev_id');
             $table->string('tree_id');
@@ -22,8 +23,8 @@ class PpcDb extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('item_id');
-            $table->unique('name');
+            $table->unique(array('feed_id','item_id'));
+            $table->unique(array('feed_id','name'));
         });
     }
 
