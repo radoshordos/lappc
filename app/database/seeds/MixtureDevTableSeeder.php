@@ -1,17 +1,17 @@
 <?php
 
-class DevGroupTableSeeder extends Seeder {
+class MixtureDevTableSeeder extends Seeder {
 
 	public function run()
 	{
-        DB::table('dev_group')->delete();
+        DB::table('mixture_dev')->delete();
 
-        DB::table('dev_group')->insert(array(
+        DB::table('mixture_dev')->insert(array(
             'id' => 10,
             'name' => 'Makita GROUP'
         ));
 
-        DB::table('dev_group')->insert(array(
+        DB::table('mixture_dev')->insert(array(
             'id' => 12,
             'name' => 'Dolmar Only'
         ));

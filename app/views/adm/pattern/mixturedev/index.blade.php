@@ -8,7 +8,7 @@ Skupiny výrobců
 
 {{-- Content --}}
 @section('content')
-@if ($devgroup->count())
+@if ($mixturedev->count())
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <table class="table table-striped table-hover">
@@ -22,13 +22,13 @@ Skupiny výrobců
             </tr>
             </thead>
             <tbody>
-            @foreach ($devgroup as $dev)
+            @foreach ($mixturedev as $dev)
             <tr>
                 <td>{{ $dev->id }}</td>
                 <td>{{ $dev->name }}</td>
                 <td>@foreach ($dev->dev as $one) {{ '<p>'.$one->name.'</p>'; }} @endforeach</td>
                 <td>{{ count($dev->dev)}}</td>
-                <td>{{ link_to_route('adm.pattern.devgroup.edit','Edit',array($dev->id),array('class' => 'btn btn-info btn-xs')) }}</td>
+                <td>{{ link_to_route('adm.pattern.mixturedev.edit','Edit',array($dev->id),array('class' => 'btn btn-info btn-xs')) }}</td>
             </tr>
             @endforeach
             </tbody>
@@ -37,6 +37,6 @@ Skupiny výrobců
 </div>
 @endif
 <p class="text-center">
-    {{ link_to_route('adm.pattern.devgroup.create','Přidat novou skupinu výrobců',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+    {{ link_to_route('adm.pattern.mixturedev.create','Přidat novou skupinu výrobců',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
 </p>
 @stop

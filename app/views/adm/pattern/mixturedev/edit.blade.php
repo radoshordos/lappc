@@ -20,14 +20,14 @@ Nová skupina výrobců
 
 {{-- Content --}}
 @section('content')
-{{ Form::model($devgroup, array('method'=>'PATCH','route' => array('adm.pattern.devgroup.update',$devgroup->id),'class'=>'form-horizontal','role'=>'form')) }}
+{{ Form::model($mixturedev, array('method'=>'PATCH','route' => array('adm.pattern.mixturedev.update',$mixturedev->id),'class'=>'form-horizontal','role'=>'form')) }}
 <div class="panel panel-info">
     <div class="panel-heading"><label for="name">Oprava názvu skupiny výrobců</label></div>
     <div class="panel-body">
-        {{ Form::text('name',$devgroup->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové skupiny výrobců')) }}
+        {{ Form::text('name',$mixturedev->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové skupiny výrobců')) }}
     </div>
     <div class="panel-footer text-center">
-        {{ link_to_route('adm.pattern.devgroup.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
+        {{ link_to_route('adm.pattern.mixturedev.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
         {{ Form::submit('Opravit název skupiny', array('class' => 'btn btn-info')) }}
     </div>
 </div>
@@ -39,11 +39,11 @@ Nová skupina výrobců
 
         <table class="table table-bordered table-striped">
             <tbody>
-            @foreach($devgroup->dev as $dev)
+            @foreach($mixturedev->dev as $dev)
             <tr>
                 <td>{{$dev->name}}</td>
                 <td>
-                    {{ Form::open(array('method' => 'DELETE', 'route' => array('adm.pattern.devm2ngroup.destroy', $devgroup->id."x".$dev->id ))) }}
+                    {{ Form::open(array('method' => 'DELETE', 'route' => array('adm.pattern.mixturedevm2ndev.destroy', $mixturedev->id."x".$dev->id ))) }}
                     {{ Form::submit('Smazat',array('class' => 'btn btn-danger btn-xs')) }}
                     {{ Form::close() }}
                 </td>
@@ -53,13 +53,13 @@ Nová skupina výrobců
         </table>
     </div>
     <div class="panel-footer">
-        {{ Form::open(array('route' => 'adm.pattern.devm2ngroup.store','class' => 'form-horizontal', 'role' => 'form')) }}
+        {{ Form::open(array('route' => 'adm.pattern.mixturedevm2ndev.store','class' => 'form-horizontal', 'role' => 'form')) }}
         <div class="input-group">
             <span class="input-group-btn">
                 {{ Form::submit('Přidat výrobce',array('class' => 'btn btn-success')) }}
             </span>
             {{ Form::select('dev_id',$dev_insertable, NULL, array('required' => 'required', 'id'=> 'dev_id',  'class'=> 'form-control')) }}
-            {{ Form::hidden('group_id',$devgroup->id) }}
+            {{ Form::hidden('mixture_dev_id',$mixturedev->id) }}
         </div>
         {{ Form::close() }}
     </div>

@@ -40,7 +40,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.pattern.dev.index') }}">Výrobci</a></li>
-                        <li><a href="{{ URL::route('adm.pattern.devgroup.index')}}">Skupiny výrobců</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.mixturedev.index')}}">Skupiny výrobců</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Tree</a></li>
                         <li class="divider"></li>

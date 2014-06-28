@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
         $this->call('AdminRunnerTableSeeder');
 
         $this->call('DevTableSeeder');
-        $this->call('DevGroupTableSeeder');
         $this->call('TreeTableSeeder');
-        $this->call('DevM2nGroupTableSeeder');
+        $this->call('MixtureDevTableSeeder');
+        $this->call('MixtureDevM2nDevTableSeeder');
 
         $this->call('ProdTableSeeder');
 

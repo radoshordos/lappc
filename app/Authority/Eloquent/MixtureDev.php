@@ -9,7 +9,7 @@ class MixtureDev extends \Eloquent
     public $timestamps = false;
 
     public static $rules = array(
-        'name' => 'required|min:2|max:32|unique:dev_group,name',
+        'name' => 'required|min:2|max:32|unique:mixture_dev,name',
     );
 
     public function dev()

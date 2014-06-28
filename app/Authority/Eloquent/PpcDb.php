@@ -45,5 +45,4 @@ class PpcDb extends \Eloquent
         }
     }
 
-
 }
