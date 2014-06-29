@@ -10,6 +10,7 @@ class MixtureTree extends Migration
     {
         Schema::create('mixture_tree', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->enum('purpose', array('ppc'))->default('ppc');
             $table->string('name', '64');
 
             $table->engine = 'InnoDB';

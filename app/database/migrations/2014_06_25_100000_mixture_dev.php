@@ -11,6 +11,7 @@ class MixtureDev extends Migration
         Schema::create('mixture_dev', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
+            $table->enum('purpose', array('devgroup','ppc'))->default('devgroup');
             $table->string('name', '32');
             $table->string('desc', '256')->nullable();
 
