@@ -36,6 +36,7 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('mixturedev', 'MixtureDevController');
         Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController');
         Route::resource('tree', 'TreeController');
+        Route::resource('mixturedev', 'MixtureTreeController');
         Route::resource('prod', 'ProdController');
     });
 

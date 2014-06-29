@@ -36,7 +36,6 @@ Nová skupina výrobců
 <div class="panel panel-success">
     <div class="panel-heading"><strong>Přiřazení výrobci</strong></div>
     <div class="panel-body">
-
         <table class="table table-bordered table-striped">
             <tbody>
             @foreach($mixturedev->dev as $dev)
@@ -64,5 +63,4 @@ Nová skupina výrobců
         {{ Form::close() }}
     </div>
 </div>
-
 @stop
