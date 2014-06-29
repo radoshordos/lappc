@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
 
         // CISELNIKY
         $this->call('PpcKeywordsMatchTableSeeder');
+        $this->call('PpcAdQualitySeeder');
         $this->call('ProdWarrantyTableSeeder');
         $this->call('ItemsSaleTableSeeder');
         $this->call('ItemsAvailabilityTableSeeder');
@@ -22,14 +23,13 @@ class DatabaseSeeder extends Seeder
         $this->call('TreeGroupTableSeeder');
         $this->call('ProdModeTableSeeder');
 
-
-
         // OSTATNI
         $this->call('FeedServiceTableSeeder');
         $this->call('PpcConfigSeeder');
         $this->call('PpcCampaignSeeder');
         $this->call('PpcDbModeTableSeeder');
         $this->call('PpcKeywordsTableSeeder');
+        $this->call('PpcAdSeeder');
         $this->call('AdminRunnerTableSeeder');
 
         $this->call('DevTableSeeder');
@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call('MixtureDevM2nDevTableSeeder');
 
         $this->call('ProdTableSeeder');
+        $this->call('ItemsSeeder');
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRunnerTable extends Migration
+class Runner extends Migration
 {
     public function up()
     {

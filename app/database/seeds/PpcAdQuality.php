@@ -6,30 +6,61 @@ class PpcAdQualitySeeder extends Seeder
     public function run()
     {
         DB::table('ppc_ad_quality')->delete();
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 1,
+            'visible' => 1,
+            'name' => 'Univerzální',
+            'index' => 0
+        ));
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 2,
+            'visible' => 0,
+            'name' => 'Skladem',
+            'index' => 1
+        ));
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 4,
+            'visible' => 0,
+            'name' => 'Akce',
+            'index' => 2
+        ));
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 6,
+            'visible' => 1,
+            'name' => 'Akce + Skladem',
+            'index' => 3
+        ));
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 8,
+            'visible' => 1,
+            'name' => 'Cena',
+            'index' => 4
+        ));
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 10,
+            'visible' => 1,
+            'name' => 'Cena + Skladem',
+            'index' => 5
+        ));
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 12,
+            'visible' => 1,
+            'name' => 'Cena + Akce',
+            'index' => 6
+        ));
+
+        DB::table('ppc_ad_quality')->insert(array(
+            'id' => 14,
+            'visible' => 1,
+            'name' => 'Cena + Akce + Skladem',
+            'index' => 7
+        ));
     }
 }
-
-/*
-CREATE TABLE IF NOT EXISTS `em2ad2quality` (
-  `eaq_id` tinyint(3) unsigned NOT NULL,
-  `eaq_visible` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `eaq_index` tinyint(3) unsigned NOT NULL,
-  `eaq_name` varchar(48) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`eaq_id`),
-  UNIQUE KEY `eaq_index` (`eaq_index`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Vypisuji data pro tabulku `em2ad2quality`
---
-
-INSERT INTO `em2ad2quality` (`eaq_id`, `eaq_visible`, `eaq_index`, `eaq_name`) VALUES
-(1, 1, 0, 'Univerzální'),
-(2, 0, 1, 'Skladem'),
-(4, 0, 2, 'Akce'),
-(6, 0, 3, 'Akce + Skladem'),
-(8, 1, 4, 'Cena'),
-(10, 1, 5, 'Cena + Skladem'),
-(12, 1, 6, 'Cena + Akce'),
-(14, 1, 7, 'Cena + Akce + Skladem');
-*/

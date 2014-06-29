@@ -20,6 +20,10 @@ class Items extends Migration
             $table->engine = 'InnoDB';
             $table->unique('code_product');
             $table->unique('code_ean');
+
+            $table->foreign('sale_id')->references('id')->on('items_sale')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('availability_id')->references('id')->on('items_availability')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
