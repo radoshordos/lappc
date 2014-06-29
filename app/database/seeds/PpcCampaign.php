@@ -7,12 +7,12 @@ class PpcCampaignSeeder extends Seeder
     {
         DB::table('ppc_campaign')->delete();
 
-        DB::table('items_sale')->insert(array(
+        DB::table('ppc_campaign')->insert(array(
             'name' => 'Produkty akční',
             'utm' => 'prodakce',
         ));
 
-        DB::table('items_sale')->insert(array(
+        DB::table('ppc_campaign')->insert(array(
             'name' => 'Aku universum neakční',
             'utm' => 'prodaku',
         ));

@@ -18,6 +18,7 @@ class PpcCampaign extends Migration
             $table->engine = 'InnoDB';
             $table->unique('sklik_id');
             $table->unique('name');
+            $table->unique('utm');
         });
     }
 
