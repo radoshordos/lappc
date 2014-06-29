@@ -1,13 +1,11 @@
 <?php
 
 
-class PpcAd extends Seeder
+class ppcRulesPriority extends Seeder
 {
     public function run()
     {
-        DB::table('ppc_ad')->delete();
-
-
+        DB::table('ppc_rules_priority')->delete();
     }
 }
 

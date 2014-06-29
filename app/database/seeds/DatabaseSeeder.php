@@ -22,9 +22,12 @@ class DatabaseSeeder extends Seeder
         $this->call('TreeGroupTableSeeder');
         $this->call('ProdModeTableSeeder');
 
+
+
         // OSTATNI
         $this->call('FeedServiceTableSeeder');
         $this->call('PpcConfigSeeder');
+        $this->call('PpcCampaignSeeder');
         $this->call('PpcDbModeTableSeeder');
         $this->call('PpcKeywordsTableSeeder');
         $this->call('AdminRunnerTableSeeder');

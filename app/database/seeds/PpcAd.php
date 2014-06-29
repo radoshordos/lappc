@@ -1,19 +1,16 @@
 <?php
 
 
-class PpcAd extends Seeder
+class PpcAdSeeder extends Seeder
 {
     public function run()
     {
         DB::table('ppc_ad')->delete();
-
-
     }
 }
 
 /*
- *
- * CREATE TABLE IF NOT EXISTS `em2ad` (
+  CREATE TABLE IF NOT EXISTS `em2ad` (
   `ea_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `ea_ts_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ea_id_campaign` tinyint(3) unsigned NOT NULL,

@@ -1,12 +1,11 @@
 <?php
 
 
-class PpcAd extends Seeder
+class PpcAdTargetSeeder extends Seeder
 {
     public function run()
     {
         DB::table('ppc_ad_quality')->delete();
-
 
     }
 }

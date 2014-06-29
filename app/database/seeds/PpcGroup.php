@@ -1,7 +1,7 @@
 <?php
 
 
-class PpcAd extends Seeder
+class PpcGroup extends Seeder
 {
     public function run()
     {
