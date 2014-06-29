@@ -9,6 +9,7 @@
 /bootstrap/compiled.php
 /vendor
 Thumbs.db
+_ide_helper.php
 Vagrantfile
 bootstrap.sh
 composer.lock
