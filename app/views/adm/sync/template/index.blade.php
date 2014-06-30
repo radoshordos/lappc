@@ -9,4 +9,9 @@ CSV šablony
 {{-- Content --}}
 @section('content')
 
+
+<p class="text-center">
+    {{ link_to_route('adm.sync.template.create','Přidat CSV šablonu',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+</p>
+
 @stop

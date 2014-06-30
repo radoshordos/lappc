@@ -8,19 +8,25 @@ class AdminRunnerTableSeeder extends Seeder
         DB::table('runner')->delete();
 
         DB::table('runner')->insert(array(
-            'id' => 1,
+            'id' => 11,
             'autorun' => 1,
             'class' => 'Authority\Runner\Task\Ppc\KeywordDb'
         ));
 
         DB::table('runner')->insert(array(
-            'id' => 2,
+            'id' => 12,
             'autorun' => 1,
             'class' => 'Authority\Runner\Task\Ppc\RulesApply'
         ));
 
         DB::table('runner')->insert(array(
-            'id' => 20,
+            'id' => 31,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Events\MixtureOnlyOneDev'
+        ));
+
+        DB::table('runner')->insert(array(
+            'id' => 81,
             'autorun' => 1,
             'class' => 'Authority\Runner\Task\Performance\OptimalizeTable'
         ));

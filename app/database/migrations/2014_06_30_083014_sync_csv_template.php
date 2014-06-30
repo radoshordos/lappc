@@ -9,9 +9,9 @@ class SyncCsvTemplate extends Migration {
 	{
         Schema::create('sync_csv_template', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('sklik_id')->unsigned()->nullable();
+            $table->integer('mixture_dev_id');
             $table->enum('purpose', array('manual_sync','manual_action'))->default('manual_action');
-            $table->tinyInteger('count_column')->default(0);
+            $table->tinyInteger('count_column')->unsigned()->default(0);
             $table->timestamps();
 
             $table->engine = 'InnoDB';
