@@ -37,12 +37,12 @@
             <ul class="nav navbar-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.pattern.dev.index') }}">Výrobci</a></li>
                         <li><a href="{{ URL::route('adm.pattern.mixturedev.index')}}">Seskupení výrobců</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Tree</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Skupiny</a></li>
                         <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Seskupení skupin</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.prod.index') }}">Prod</a></li>
@@ -50,7 +50,7 @@
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Přehled <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Přehled<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.summary.treegrouptop.index') }}">Tree GroupTop</a></li>
                     </ul>
@@ -58,7 +58,7 @@
 
                 @if (Sentry::getUser()->hasAccess('admin'))
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PPC <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PPC<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.ppc.db.index')}}">PPC DB</a></li>
                         <li><a href="{{ URL::route('adm.ppc.rules.index')}}">PPC rules</a></li>
@@ -68,6 +68,13 @@
                     </ul>
                 </li>
                 @endif
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sync<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::route('adm.summary.treegrouptop.index') }}">Test</a></li>
+                    </ul>
+                </li>
 
                 @if (Sentry::getUser()->hasAccess('admin'))
                 <li class="dropdown">

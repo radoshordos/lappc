@@ -13,7 +13,8 @@ class MixtureTreeController extends \BaseController
 
     public function index()
     {
-        $mixturetree = $this->mixturetree->orderBy('id')->get();
-        return View::make('adm.pattern.mixturetree.index', array('mixturetree' => $mixturetree));
+        return View::make('adm.pattern.mixturetree.index', array(
+            'mixturetree' => $this->mixturetree->orderBy('id')->get()
+        ));
     }
 }

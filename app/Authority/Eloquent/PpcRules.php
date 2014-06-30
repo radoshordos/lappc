@@ -12,7 +12,4 @@ class PpcRules extends \Eloquent
         'modes' => 'required'
     );
 
-
-
-
 }
