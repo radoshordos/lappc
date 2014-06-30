@@ -15,7 +15,6 @@ class SyncCsvTemplate extends Migration {
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('name');
         });
 	}
 

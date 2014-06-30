@@ -40,6 +40,10 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('prod', 'ProdController');
     });
 
+    Route::group(array('prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'), function () {
+        Route::resource('template', 'SyncCsvTemplateController');
+    });
+
     // Session Routes
     Route::get('login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));
     Route::get('logout', array('as' => 'adm.logout', 'uses' => 'SessionController@destroy'));
