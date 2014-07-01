@@ -8,5 +8,8 @@ CSV EDIT
 
 {{-- Content --}}
 @section('content')
+{{ Form::model($template, array('method'=>'PATCH','route' => array('adm.sync.template.update',$template->id),'class'=>'form-horizontal','role'=>'form')) }}
 
+
+{{ Form::close() }}
 @stop

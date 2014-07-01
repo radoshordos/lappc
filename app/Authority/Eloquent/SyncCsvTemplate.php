@@ -8,5 +8,14 @@ class SyncCsvTemplate extends \Eloquent
     protected $guarded = [];
     public $timestamps = false;
 
-    public static $rules = array();
+    public static $rules = array(
+        'mixture_dev_id' => 'required|exists:mixture_dev,id',
+        'purpose' => 'required'
+    );
+
+    public function mixtureDev()
+    {
+        return $this->hasOne('Authority\Eloquent\MixtureDev', 'id', 'mixture_dev_id');
+    }
+
 }
