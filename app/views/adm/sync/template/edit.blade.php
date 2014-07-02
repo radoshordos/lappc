@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-CSV EDIT
+Nastavené elementů v .csv šabloně
 @stop
 
 {{-- Content --}}
@@ -12,16 +12,28 @@ CSV EDIT
 
 
 {{ Form::close() }}
-
 <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Panel heading</div>
-
-    <!-- Table -->
+    <div class="panel-heading">Elementy dle pořadí</div>
     <table class="table">
         <thead>
 
         </thead>
+        <tbody>
+        <table class="table table-bordered table-striped">
+            <tbody>
+            @foreach($m2n as $row)
+            <tr>
+                <td>{{ '&lt'.$row->column->element }}></td>
+                <td>
+                    {{ Form::open(array('method' => 'DELETE', 'route' => array('adm.sync.templatem2ncolumn.destroy', $row->id ))) }}
+                    {{ Form::submit('Smazat',array('class' => 'btn btn-danger btn-xs')) }}
+                    {{ Form::close() }}
+                </td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
+        </tbody>
         <tfoot>
         <div class="panel-footer">
             {{ Form::open(array('route' => 'adm.sync.templatem2ncolumn.store','class' => 'form-horizontal', 'role' => 'form')) }}
@@ -35,12 +47,10 @@ CSV EDIT
             {{ Form::close() }}
         </div>
         </tfoot>
-
-        <tbody>
-
-        </tbody>
     </table>
 </div>
 
-
+<p class="text-center">
+    {{ link_to_route('adm.sync.template.index','Zobrazit všechny .csv šablony',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
+</p>
 @stop

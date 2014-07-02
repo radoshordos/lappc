@@ -1,5 +1,6 @@
 <?php
 use Authority\Eloquent\SyncCsvTemplate;
+use Authority\Eloquent\SyncTemplateM2nColmun;
 use Authority\Tools\SB;
 
 class SyncCsvTemplateController extends \BaseController
@@ -54,7 +55,8 @@ class SyncCsvTemplateController extends \BaseController
 
         return View::make('adm.sync.template.edit', array(
             'template' => $template,
-            'select_column' => [''] + SB::option("SELECT * FROM sync_csv_column", ['id' => '<->element> - ->desc'])
+            'm2n' => SyncTemplateM2nColmun::where('template_id','=',$id)->orderBy('id')->get(),
+            'select_column' => [''] + SB::option("SELECT * FROM sync_csv_column WHERE id NOT IN (SELECT column_id FROM sync_template_m2n_colmun WHERE template_id = $id)", ['id' => '<->element> - ->desc'])
         ));
     }
 

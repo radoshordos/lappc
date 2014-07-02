@@ -12,4 +12,15 @@ class SyncTemplateM2nColmun extends \Eloquent
         'template_id' => 'required|exists:sync_csv_template,id',
         'column_id' => 'required|exists:sync_csv_column,id',
     );
+
+    public function template()
+    {
+        return $this->hasOne('Authority\Eloquent\SyncCsvTemplate', 'id', 'template_id');
+    }
+
+    public function column()
+    {
+        return $this->hasOne('Authority\Eloquent\SyncCsvColumn', 'id', 'column_id');
+    }
+
 }
