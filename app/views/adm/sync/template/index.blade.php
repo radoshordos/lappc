@@ -9,14 +9,15 @@ Přehled .csv šablon
 {{-- Content --}}
 @section('content')
 
-@if ($template->count())
+@if ($template)
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
                 <th>Název výrobce</th>
                 <th>Alias</th>
+                <th>Elementy</th>
                 <th></th>
             </tr>
             </thead>
@@ -25,6 +26,7 @@ Přehled .csv šablon
             <tr>
                 <td>{{ $row->mixtureDev->name }}</td>
                 <td>{{ $row->purpose }}</td>
+                <td>{{ htmlspecialchars($tag[$row->id]) }}</td>
                 <td>{{ link_to_route('adm.sync.template.edit','Nastavit',array($row->id),array('class' => 'btn btn-info btn-xs')) }}</td>
             </tr>
             @endforeach
@@ -37,5 +39,4 @@ Přehled .csv šablon
 <p class="text-center">
     {{ link_to_route('adm.sync.template.create','Založit novou .csv šablonu',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
 </p>
-
 @stop

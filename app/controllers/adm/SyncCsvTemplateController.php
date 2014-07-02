@@ -14,8 +14,23 @@ class SyncCsvTemplateController extends \BaseController
 
     public function index()
     {
+        $tag = DB::table('sync_csv_template')
+            ->select('id', DB::raw('(SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
+                                    FROM sync_template_m2n_colmun
+                                    INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
+                                    WHERE sync_template_m2n_colmun.template_id = sync_csv_template.id ) AS list'))
+            ->orderBy('id')
+            ->get();
+
+        if (!empty($tag)) {
+            foreach ($tag as $val) {
+                $col[$val->id] = $val->list;
+            }
+        }
+
         return View::make('adm.sync.template.index', array(
-            'template' => $this->template->orderBy('id')->get()
+            'template' => $this->template->orderBy('id')->get(),
+            'tag' => $col
         ));
     }
 
@@ -55,7 +70,7 @@ class SyncCsvTemplateController extends \BaseController
 
         return View::make('adm.sync.template.edit', array(
             'template' => $template,
-            'm2n' => SyncTemplateM2nColmun::where('template_id','=',$id)->orderBy('id')->get(),
+            'm2n' => SyncTemplateM2nColmun::where('template_id', '=', $id)->orderBy('id')->get(),
             'select_column' => [''] + SB::option("SELECT * FROM sync_csv_column WHERE id NOT IN (SELECT column_id FROM sync_template_m2n_colmun WHERE template_id = $id)", ['id' => '<->element> - ->desc'])
         ));
     }
