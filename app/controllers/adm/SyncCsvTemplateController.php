@@ -31,8 +31,12 @@ class SyncCsvTemplateController extends \BaseController
         $v = Validator::make($input, SyncCsvTemplate::$rules);
 
         if ($v->passes()) {
-            $this->template->create($input);
-            Session::flash('success', 'Nová .csv šablona založena');
+            try {
+                $this->template->create($input);
+                Session::flash('success', 'Nová .csv šablona založena');
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
             return Redirect::route('adm.sync.template.index');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));

@@ -4,7 +4,7 @@ namespace Authority\Eloquent;
 
 class SyncTemplateM2nColmun extends \Eloquent
 {
-    protected $table = 'sync_csv_template';
+    protected $table = 'sync_template_m2n_colmun';
     protected $guarded = [];
     public $timestamps = false;
 
