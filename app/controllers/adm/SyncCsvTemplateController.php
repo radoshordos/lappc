@@ -21,7 +21,6 @@ class SyncCsvTemplateController extends \BaseController
     public function create()
     {
         return View::make('adm.sync.template.create', array(
-            'select_column' => [''] + SB::option("SELECT * FROM sync_csv_column", ['id' => '<->element> - ->desc']),
             'select_mixture_dev' => [''] + SB::option("SELECT * FROM mixture_dev ORDER BY purpose DESC", ['id' => '->name'])
         ));
     }
@@ -50,7 +49,28 @@ class SyncCsvTemplateController extends \BaseController
         }
 
         return View::make('adm.sync.template.edit', array(
-            'template' => $template
+            'template' => $template,
+            'select_column' => [''] + SB::option("SELECT * FROM sync_csv_column", ['id' => '<->element> - ->desc'])
         ));
     }
+
+    public function update($id)
+    {
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, SyncCsvTemplate::$rules);
+
+        if ($v->passes()) {
+            try {
+                $dev = $this->mixture_dev->find($id);
+                $dev->update($input);
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            return Redirect::route('adm.pattern.prod.index');
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.mixturedev.edit', $id)->withInput()->withErrors($v);
+        }
+    }
+
 }

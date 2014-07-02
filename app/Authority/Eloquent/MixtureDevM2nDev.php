@@ -8,7 +8,10 @@ class MixtureDevM2nDev extends \Eloquent
     protected $guarded = [];
     public $timestamps = false;
 
-    public static $rules = array();
+    public static $rules = array(
+        'mixture_dev_id' => 'required|exists:mixture_dev,id',
+        'dev_id' => 'required|exists:dev,id',
+    );
 
     public function dev()
     {

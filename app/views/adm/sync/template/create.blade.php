@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Nová csv šablona
+Založení nové .csv šablony
 @stop
 
 {{-- JavaScript on page --}}
