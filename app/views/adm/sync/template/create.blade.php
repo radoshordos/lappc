@@ -25,7 +25,7 @@ Založení nové .csv šablony
 <div class="form-group">
     {{ Form::label('mixture_dev_id','Skupana výrobců',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('mixture_dev_id',$select_mixture_dev, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zvol skupinu výrobců')) }}
+        {{ Form::select('mixture_dev_id', $select_mixture_dev, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zvol skupinu výrobců')) }}
     </div>
 </div>
 <div class="form-group">

@@ -34,5 +34,4 @@ class SyncTemplateM2nColumnController extends \BaseController
         }
         return Redirect::route('adm.sync.template.edit', $row->template_id);
     }
-
 }

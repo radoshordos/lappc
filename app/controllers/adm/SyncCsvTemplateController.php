@@ -93,5 +93,4 @@ class SyncCsvTemplateController extends \BaseController
             return Redirect::route('adm.pattern.mixturedev.edit', $id)->withInput()->withErrors($v);
         }
     }
-
 }

@@ -16,7 +16,6 @@ Nastavené elementů v .csv šabloně
     <div class="panel-heading">Elementy dle pořadí</div>
     <table class="table">
         <thead>
-
         </thead>
         <tbody>
         <table class="table table-bordered table-striped">

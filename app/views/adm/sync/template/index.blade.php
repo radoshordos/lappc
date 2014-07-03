@@ -36,6 +36,7 @@ Přehled .csv šablon
 </div>
 @endif
 
+
 <p class="text-center">
     {{ link_to_route('adm.sync.template.create','Založit novou .csv šablonu',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
 </p>
