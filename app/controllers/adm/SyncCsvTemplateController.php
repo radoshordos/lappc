@@ -14,6 +14,8 @@ class SyncCsvTemplateController extends \BaseController
 
     public function index()
     {
+
+        $col = array();
         $tag = DB::table('sync_csv_template')
             ->select('id', DB::raw('(SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
                                     FROM sync_template_m2n_colmun
@@ -30,7 +32,7 @@ class SyncCsvTemplateController extends \BaseController
 
         return View::make('adm.sync.template.index', array(
             'template' => $this->template->orderBy('id')->get(),
-            'tag' => $col
+            'tag' => (!empty($col) ? $col : NULL)
         ));
     }
 
