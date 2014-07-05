@@ -6,6 +6,17 @@
 Editace produktu
 @stop
 
+{{-- JavaScript on page --}}
+@section ('script')
+<script>
+    $(document).ready(function () {
+        $("#tree_id").select2({});
+        $("#dev_id").select2({});
+    });
+</script>
+@stop
+
+
 {{-- Content --}}
 @section('content')
 
