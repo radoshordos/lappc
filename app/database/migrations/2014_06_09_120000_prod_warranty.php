@@ -19,7 +19,6 @@ class ProdWarranty extends Migration {
         });
     }
 
-
     public function down()
     {
         Schema::dropIfExists('prod_warranty');

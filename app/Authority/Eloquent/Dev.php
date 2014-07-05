@@ -13,7 +13,8 @@ class Dev extends \Eloquent
         'name' => 'required|min:2|max:32|unique:dev,name',
         'alias' => 'required|min:2|max:32|unique:dev,alias',
         'default_warranty_id' => 'required|numeric|exists:prod_warranty,id',
-        'default_sale_id' => 'required|numeric|exists:items_sale,id',
+        'default_sale_prod_id' => 'required|numeric|exists:items_sale,id',
+        'default_sale_action_id' => 'required|numeric|exists:items_sale,id',
         'default_availibility_id' => 'required|numeric|exists:items_availability,id'
     );
 
@@ -22,9 +23,14 @@ class Dev extends \Eloquent
         return $this->hasOne('Authority\Eloquent\ProdWarranty', 'id', 'default_warranty_id');
     }
 
-    public function itemsSale()
+    public function itemsSaleProd()
     {
-        return $this->hasOne('Authority\Eloquent\ItemsSale', 'id', 'default_sale_id');
+        return $this->hasOne('Authority\Eloquent\ItemsSale', 'id', 'default_sale_prod_id');
+    }
+
+    public function itemsSaleAction()
+    {
+        return $this->hasOne('Authority\Eloquent\ItemsSale', 'id', 'default_sale_action_id');
     }
 
     public function itemsAvailability()

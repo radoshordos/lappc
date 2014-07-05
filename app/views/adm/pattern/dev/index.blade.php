@@ -10,19 +10,24 @@ Výrobci zboží
 @section('content')
 @if ($devs->count())
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Název výrobce</th>
-                <th>Alias</th>
-                <th class="text-center"><button type="button" title="Viditelný prodejce" class="btn btn-primary btn-xs">V</button></th>
-                <th class="text-center"><button type="button" title="Autorizovaný prodejce" class="btn btn-primary btn-xs">A</button></th>
-                <th>Výchozí<br />záruka</th>
-                <th>Výchozí<br />sleva</th>
-                <th>Výchozí<br />dostupnost</th>
-                <th><span class="glyphicon glyphicon-edit"></span></th>
+                <th rowspan="2">#</th>
+                <th rowspan="2">Název výrobce</th>
+                <th rowspan="2">Alias</th>
+                <th rowspan="2" class="text-center"><button type="button" title="Viditelný prodejce" class="btn btn-primary btn-xs">V</button></th>
+                <th rowspan="2" class="text-center"><button type="button" title="Autorizovaný prodejce" class="btn btn-primary btn-xs">A</button></th>
+                <th colspan="4" class="text-center">Výchozí</th>
+                <th rowspan="2"><span class="glyphicon glyphicon-edit"></span></th>
+            </tr>
+            <tr>
+                <th>záruka</th>
+                <th>sleva<br/>produktu</th>
+                <th>sleva<br/>akce</th>
+                <th>dostupnost</th>
+
             </tr>
             </thead>
             <tbody>
@@ -42,7 +47,9 @@ Výrobci zboží
                     }}
                 </td>
                 <td>{{ $dev->prod_warranty->name }}</td>
-                <td>{{ $dev->items_sale->name }}</td>
+                <td>{{ $dev->items_sale_prod->name }}</td>
+                <td>{{ $dev->items_sale_action->name }}</td>
+
                 <td>{{ $dev->items_availability->name }}</td>
                 <td>{{ link_to_route('adm.pattern.dev.edit','Edit',array($dev->id),array('class' => 'btn btn-info btn-xs')) }}</td>
             </tr>

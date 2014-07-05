@@ -11,9 +11,9 @@ Editace výrobce zboží
 
 {{ Form::model($dev, array('method'=>'PATCH','route' => array('adm.pattern.dev.update',$dev->id),'class'=>'form-horizontal','role'=>'form')) }}
 <div class="form-group">
-    {{ Form::label('id','ID',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('id','#ID',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::input('number','id',NULL,array('min'=> '1','max'=> '999','required' => 'required','class'=> 'form-control', 'placeholder'=> 'ID určené pro výrobce')) }}
+        {{ Form::input('number','id',NULL,array('min'=> '1','max'=> '999','required' => 'required','readonly' => 'readonly', 'class'=> 'form-control', 'placeholder'=> '#ID určené pro výrobce')) }}
     </div>
 </div>
 <div class="form-group">
@@ -35,9 +35,15 @@ Editace výrobce zboží
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('default_sale_id','Výchozí sleva',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('default_sale_prod_id','Výchozí sleva produktu',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('default_sale_id',$select_sale, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí sleva pro výrobce')) }}
+        {{ Form::select('default_sale_prod_id',$select_sale, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí sleva produktu výrobce')) }}
+    </div>
+</div>
+<div class="form-group">
+    {{ Form::label('default_sale_action_id','Výchozí sleva akčního produktu',array('class'=> 'col-sm-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::select('default_sale_action_id',$select_sale, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí sleva akčního produktu výrobce')) }}
     </div>
 </div>
 <div class="form-group">
