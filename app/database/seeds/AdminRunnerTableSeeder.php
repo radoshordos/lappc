@@ -31,5 +31,10 @@ class AdminRunnerTableSeeder extends Seeder
             'class' => 'Authority\Runner\Task\Performance\OptimalizeTable'
         ));
 
+        DB::table('runner')->insert(array(
+            'id' => 121,
+            'autorun' => 0,
+            'class' => 'Authority\Runner\Task\Recalculate\Tree'
+        ));
     }
 }
