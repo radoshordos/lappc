@@ -68,6 +68,5 @@ Editace výrobce zboží
     {{ link_to_route('adm.pattern.dev.index','Zobrazit všechny výrobce',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
     {{ Form::submit('Editovat výrobce', array('class' => 'btn btn-info')) }}
 </p>
-
 {{ Form::close() }}
 @stop

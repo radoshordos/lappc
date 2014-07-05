@@ -40,12 +40,6 @@ Přidat nového výrobce
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('default_sale_prod_id','Výchozí sleva',array('class'=> 'col-sm-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::select('default_sale_prod_id',$select_sale, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí sleva pro výrobce')) }}
-    </div>
-</div>
-<div class="form-group">
     {{ Form::label('default_availibility_id','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
         {{ Form::select('default_availibility_id',$select_availability, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
