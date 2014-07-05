@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProdWarranty extends Migration {
+class Dph extends Migration {
 
     public function up()
     {
