@@ -43,8 +43,7 @@ Route::group(array('prefix' => 'adm'), function () {
     Route::group(array('prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'), function () {
         Route::resource('template', 'SyncCsvTemplateController');
         Route::resource('templatem2ncolumn', 'SyncTemplateM2nColumnController');
-
-
+        Route::resource('csvimport', 'SyncCsvImportController');
     });
 
     // Session Routes
