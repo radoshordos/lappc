@@ -4,7 +4,8 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return 'HALLO WORLD';
+        return View::make('web.home');
+
 	}
 
 }
