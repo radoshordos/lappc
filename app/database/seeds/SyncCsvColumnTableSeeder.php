@@ -44,6 +44,12 @@ class SyncCsvColumnTableSeeder extends Seeder {
             'desc' => 'Pevná akční cena, na kterou se neaplikují další slevy'
         ));
 
+        DB::table('sync_csv_column')->insert(array(
+            'id' => 101,
+            'element' => 'dev_id',
+            'desc' => '#ID výrobce v e-shopu'
+        ));
+
 	}
 
 }
