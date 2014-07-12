@@ -14,6 +14,7 @@ class MixtureDev extends Migration
             $table->enum('purpose', array('autosimple','devgroup','ppc'))->default('devgroup');
             $table->string('name', '32');
             $table->string('desc', '256')->nullable();
+            $table->tinyInteger('trigger_column_count')->unsigned();
 
             $table->engine = 'InnoDB';
             $table->unique('name');

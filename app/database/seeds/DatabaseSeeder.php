@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ProdTableSeeder');
         $this->call('ItemsSeeder');
 
-        $this->call('SyncCsvColumnTableSeeder');
+        $this->call('SyncCsvTemplateTableSeeder');
         $this->call('SyncTemplateM2nColmunTableSeeder');
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

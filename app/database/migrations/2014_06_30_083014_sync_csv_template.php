@@ -9,12 +9,14 @@ class SyncCsvTemplate extends Migration {
 	{
         Schema::create('sync_csv_template', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('mixture_dev_id');
+            $table->integer('mixture_dev_id')->unsigned();
             $table->enum('purpose', array('manual_sync','manual_action'))->default('manual_action');
-            $table->tinyInteger('count_column')->unsigned()->default(0);
+            $table->tinyInteger('trigger_column_count')->unsigned()->default(0);
+            $table->string('trigger_desc')->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
+            $table->foreign('mixture_dev_id')->references('id')->on('mixture_dev')->onUpdate('cascade')->onDelete('cascade');
         });
 	}
 

@@ -22,6 +22,10 @@
     </ul>
 </nav>
 
+<p><a href="http://localhost:8000/adm/">ADM</a></p>
+<p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
+
+
 
 <script src="/web/js/jquery-1.11.1.min.js"></script>
 <script src="/web/js/bootstrap.min.js"></script>
