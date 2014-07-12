@@ -21,5 +21,10 @@ class MixtureDevM2nDevTableSeeder extends Seeder
             'mixture_dev_id' => '10',
             'dev_id' => '30'
         ));
+
+        DB::table('mixture_dev_m2n_dev')->insert(array(
+            'mixture_dev_id' => '11',
+            'dev_id' => '6'
+        ));
     }
 }

@@ -17,7 +17,7 @@ Skupiny výrobců
                 <th>#</th>
                 <th>Název skupiny</th>
                 <th>Výrobci ve skupině</th>
-                <th><span class="glyphicon glyphicon-paperclip"></span></th>
+                <th><button type="button" title="Suma výrobců v seskupení" class="btn btn-primary btn-xs">&#8721;</button></th>
                 <th></th>
             </tr>
             </thead>

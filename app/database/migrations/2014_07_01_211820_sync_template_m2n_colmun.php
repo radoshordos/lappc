@@ -31,14 +31,6 @@ class SyncTemplateM2nColmun extends Migration
                         SELECT COUNT(*)
                         FROM sync_template_m2n_colmun
                         WHERE template_id = NEW.template_id
-                    ),
-                    trigger_desc =
-                    (
-                        SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
-                        FROM sync_template_m2n_colmun
-                        INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
-                        WHERE sync_csv_template.id = NEW.template_id
-                        ORDER BY sync_template_m2n_colmun.id
                     )
                 WHERE sync_csv_template.id = NEW.template_id;
             END
@@ -55,14 +47,6 @@ class SyncTemplateM2nColmun extends Migration
                         SELECT COUNT(*)
                         FROM sync_template_m2n_colmun
                         WHERE template_id = NEW.template_id
-                    ),
-                    trigger_desc =
-                    (
-                        SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
-                        FROM sync_template_m2n_colmun
-                        INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
-                        WHERE sync_csv_template.id = NEW.template_id
-                        ORDER BY sync_template_m2n_colmun.id
                     )
                 WHERE sync_csv_template.id = NEW.template_id;
             END
@@ -79,14 +63,6 @@ class SyncTemplateM2nColmun extends Migration
                         SELECT COUNT(*)
                         FROM sync_template_m2n_colmun
                         WHERE template_id = OLD.template_id
-                    ),
-                    trigger_desc =
-                    (
-                        SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
-                        FROM sync_template_m2n_colmun
-                        INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
-                        WHERE sync_csv_template.id = OLD.template_id
-                        ORDER BY sync_template_m2n_colmun.id
                     )
                 WHERE sync_csv_template.id = OLD.template_id;
             END

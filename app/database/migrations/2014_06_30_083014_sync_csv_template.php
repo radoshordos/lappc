@@ -12,7 +12,6 @@ class SyncCsvTemplate extends Migration {
             $table->integer('mixture_dev_id')->unsigned();
             $table->enum('purpose', array('manual_sync','manual_action'))->default('manual_action');
             $table->tinyInteger('trigger_column_count')->unsigned()->default(0);
-            $table->string('trigger_desc')->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
