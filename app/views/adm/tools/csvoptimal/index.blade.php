@@ -14,20 +14,20 @@ Optimalizator .csv dat
     <table class="table">
         <thead>
         <tr>
-            <td colspan="2">{{ Form::select('menu', $select_menu, null, array('required' => 'required', 'class'=> 'form-control')) }}</td>
+            <td colspan="2">{{ Form::select('menu', $select_menu, $menu, array('required' => 'required', 'class'=> 'form-control')) }}</td>
         <tr>
         </thead>
         <tbody>
         <tr>
-            <td>{{ Form::textarea('data_input', null, ['size' => '90x20', 'class' => 'form-control']) }}</td>
-            <td>{{ Form::textarea('data_output', null, ['size' => '90x20', 'class' => 'form-control']) }}</td>
+            <td>{{ Form::textarea('data_input', $data_input, ['size' => '90x20', 'class' => 'form-control' ]) }}</td>
+            <td>{{ Form::textarea('data_output', $data_output, ['size' => '90x20', 'class' => 'form-control']) }}</td>
         </tr>
         <tr>
-            <td>Lenght : <b>{{ count('') }}</b></td>
-            <td>Lenght : <b>{{ count('') }}</b></td>
+            <td>Lenght : <b>{{ strlen($data_input) }}</b></td>
+            <td>Lenght : <b>{{ strlen($data_output) }}</b></td>
         </tr>
         <tr>
-            <td colspan="2">{{ Form::textarea('bug_output', null, ['size' => '180x10', 'class' => 'form-control']) }}</td>
+            <td colspan="2">{{ Form::textarea('data_bug', $data_bug, ['size' => '180x10', 'class' => 'form-control']) }}</td>
         <tr>
         </tbody>
     </table>

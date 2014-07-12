@@ -1,24 +1,29 @@
 <?php
 
+use Authority\Tools\Filter\Csv;
+
 class ToolCsvOptimalController extends \BaseController
 {
-
     public function index()
     {
+        $csv = new Csv(Input::all());
 
-        print_r(Input::all());
+        switch (Input::get('menu')) {
+            case 6:
+                $csv->reduceUnusableCharts();
+                break;
+        }
 
         return View::make('adm.tools.csvoptimal.index', array(
             'select_menu' => [
                 "5" => "5] ARRAY UNIQUE AND SORT | Odstraní duplicitní řádky a setřídí položky",
                 "6" => "6] REDUCE UNUSABLE CHARS | Odstraní prebytečné znaky"
-            ]
+            ],
+            'menu' => Input::get('menu'),
+            'data_input' => Input::get('data_input'),
+            'data_output' => $csv->getDataOutput(),
+            'data_bug' => $csv->getDataBug()
         ));
-
-    }
-
-    public function store() {
-        return Redirect::action('ToolCsvOptimalController@index')->withInput(array('aaa' => 'aaa'));
     }
 
 }
