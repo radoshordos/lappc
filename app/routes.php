@@ -46,6 +46,11 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('csvimport', 'SyncCsvImportController');
     });
 
+    Route::group(array('prefix' => 'tools', 'before' => 'Sentry|inGroup:Simple'), function () {
+        Route::resource('csvoptimal', 'ToolCsvOptimalController');
+    });
+
+
     // Session Routes
     Route::get('login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));
     Route::get('logout', array('as' => 'adm.logout', 'uses' => 'SessionController@destroy'));
