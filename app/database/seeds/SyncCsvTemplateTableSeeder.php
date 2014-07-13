@@ -9,13 +9,13 @@ class SyncCsvTemplateTableSeeder extends Seeder {
         DB::table('sync_csv_template')->insert(array(
             'id' => 1,
             'mixture_dev_id' => 10,
-            'purpose' => 'manual_sync',
+            'purpose' => 'sync',
         ));
 
         DB::table('sync_csv_template')->insert(array(
             'id' => 2,
             'mixture_dev_id' => 11,
-            'purpose' => 'manual_sync',
+            'purpose' => 'sync',
         ));
 	}
 

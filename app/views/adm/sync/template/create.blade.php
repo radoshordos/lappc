@@ -18,6 +18,7 @@ Založení nové .csv šablony
 </script>
 @stop
 
+
 {{-- Content --}}
 @section('content')
 {{ Form::open(array('route' => 'adm.sync.template.store','class' => 'form-horizontal', 'role' => 'form')) }}
@@ -34,6 +35,21 @@ Založení nové .csv šablony
         {{ Form::select('purpose',['manual_sync' => 'Synchroniační šablona','manual_action' => 'Akční šablona' ], NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zvol účel šablony')) }}
     </div>
 </div>
+<div class="form-group">
+    <label for="year" class="control-label input-group">Oddělovač</label>
+
+    <div class="col-sm-10">
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default active">
+                {{ Form::radio('separator', 'semicolon','true'); }}Středník
+            </label>
+            <label class="btn btn-default">
+                {{ Form::radio('separator', 'tab'); }}Tabulátor
+            </label>
+        </div>
+    </div>
+</div>
+
 
 <p class="text-center">
     {{ link_to_route('adm.sync.template.index','Zobrazit všechny .csv šablony',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
