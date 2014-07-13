@@ -1,8 +1,8 @@
 <?php
 
-namespace Authority\Tools\Filter;
+namespace Authority\Tools\Filter\Csv;
 
-class Csv
+class CsvOptimal extends CsvAbstract
 {
 
     private $data_input = NULL;

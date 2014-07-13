@@ -1,12 +1,12 @@
 <?php
 
-use Authority\Tools\Filter\Csv;
+use Authority\Tools\Filter\Csv\CsvOptimal;
 
 class ToolCsvOptimalController extends \BaseController
 {
     public function index()
     {
-        $csv = new Csv(Input::all());
+        $csv = new CsvOptimal(Input::all());
 
         switch (Input::get('menu')) {
             case 6:

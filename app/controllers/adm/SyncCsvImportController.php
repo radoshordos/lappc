@@ -1,19 +1,19 @@
 <?php
 
 use Authority\Tools\SB;
-use Authority\Tools\Filter\CsvChecker;
+use Authority\Tools\Filter\Csv\CheckerGlobal;
+use Authority\Eloquent\SyncCsvTemplate;
 
 class SyncCsvImportController extends \BaseController
 {
     public function index()
     {
-
         $input = Input::all();
-        $checker = new CsvChecker($input['data_input']);
 
         $out = array(
-            'template_id' => $input['template_id'],
-            'data_input' => $input['data_input'],
+            'template_id' => isset($input['template_id']) ? $input['template_id'] : NULL,
+            'data_input' => isset($input['data_input']) ? $input['data_input'] : NULL,
+            'check' => NULL,
             'sync_template' => [''] + SB::option('SELECT  sync_csv_template.id,sync_csv_template.purpose,
                                                           mixture_dev.name,mixture_dev.trigger_column_count,
                                                           (SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
@@ -27,16 +27,21 @@ class SyncCsvImportController extends \BaseController
                                     ORDER BY mixture_dev_id,purpose', ['id' => '[->name: &#8721;=->trigger_column_count] [->purpose] ->list'])
         );
 
+        if (isset($input['template_id']) && $input['template_id'] > 0) {
 
-        try {
-            $checker->checkColumnQuantity(5,CsvChecker::ENDOFLINE,CsvChecker::DELIMITER);
-            $out['check'] = TRUE;
-        } catch (Exception $e) {
-            $out['check'] = FALSE;
-            Session::flash('error', $e->getMessage());
+            $sct = SyncCsvTemplate::find($input['template_id']);
+            $checker = new CheckerGlobal($sct, $input['data_input']);
+
+            try {
+                $checker->checkColumnQuantity(CheckerGlobal::ENDOFLINE, CheckerGlobal::DELIMITER);
+                $out['check'] = TRUE;
+            } catch (Exception $e) {
+                $out['check'] = FALSE;
+                Session::flash('error', $e->getMessage());
+            }
         }
 
-        return View::make('adm.sync.csvimport.index',$out);
+        return View::make('adm.sync.csvimport.index', $out);
 
     }
 
