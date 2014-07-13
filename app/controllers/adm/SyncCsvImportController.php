@@ -1,13 +1,19 @@
 <?php
 
 use Authority\Tools\SB;
+use Authority\Tools\Filter\CsvChecker;
 
 class SyncCsvImportController extends \BaseController
 {
-    public function create()
+    public function index()
     {
 
-        return View::make('adm.sync.csvimport.create',array(
+        $input = Input::all();
+        $checker = new CsvChecker($input['data_input']);
+
+        $out = array(
+            'template_id' => $input['template_id'],
+            'data_input' => $input['data_input'],
             'sync_template' => [''] + SB::option('SELECT  sync_csv_template.id,sync_csv_template.purpose,
                                                           mixture_dev.name,mixture_dev.trigger_column_count,
                                                           (SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
@@ -19,7 +25,18 @@ class SyncCsvImportController extends \BaseController
                                     FROM sync_csv_template
                                     INNER JOIN mixture_dev ON mixture_dev.id = sync_csv_template.mixture_dev_id
                                     ORDER BY mixture_dev_id,purpose', ['id' => '[->name: &#8721;=->trigger_column_count] [->purpose] ->list'])
-        ));
+        );
+
+
+        try {
+            $checker->checkColumnQuantity(5,CsvChecker::ENDOFLINE,CsvChecker::DELIMITER);
+            $out['check'] = TRUE;
+        } catch (Exception $e) {
+            $out['check'] = FALSE;
+            Session::flash('error', $e->getMessage());
+        }
+
+        return View::make('adm.sync.csvimport.index',$out);
 
     }
 

@@ -43,13 +43,12 @@ Route::group(array('prefix' => 'adm'), function () {
     Route::group(array('prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'), function () {
         Route::resource('template', 'SyncCsvTemplateController');
         Route::resource('templatem2ncolumn', 'SyncTemplateM2nColumnController');
-        Route::resource('csvimport', 'SyncCsvImportController');
+        Route::any('csvimport', array('as' => 'adm.sync.csvimport.index','uses' => 'SyncCsvImportController@index'));
     });
 
     Route::group(array('prefix' => 'tools', 'before' => 'Sentry|inGroup:Simple'), function () {
         Route::any('csvoptimal', array('as' => 'adm.tools.csvoptimal.index','uses' => 'ToolCsvOptimalController@index'));
     });
-
 
     // Session Routes
     Route::get('login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));

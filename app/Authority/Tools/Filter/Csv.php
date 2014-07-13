@@ -4,16 +4,14 @@ namespace Authority\Tools\Filter;
 
 class Csv
 {
-    const DELIMITER = ";";
-    const ENDOFLINE = "\r\n";
 
     private $data_input = NULL;
     private $data_output = array();
     private $data_bug = array();
 
-    public function __construct(array $input)
+    public function __construct($data_input)
     {
-        $this->data_input = $input['data_input'];
+        $this->data_input = $data_input;
     }
 
     public function getDataBug()
