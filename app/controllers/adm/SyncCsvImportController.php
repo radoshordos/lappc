@@ -21,6 +21,7 @@ class SyncCsvImportController extends \BaseController
                                                             INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
                                                             WHERE sync_template_m2n_colmun.template_id = sync_csv_template.id
                                                             ORDER BY sync_template_m2n_colmun.id
+
                                                           ) AS list
                                     FROM sync_csv_template
                                     INNER JOIN mixture_dev ON mixture_dev.id = sync_csv_template.mixture_dev_id

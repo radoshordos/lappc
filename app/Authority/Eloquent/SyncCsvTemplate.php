@@ -13,6 +13,11 @@ class SyncCsvTemplate extends \Eloquent
         'purpose' => 'required'
     );
 
+    public static $separator = array(
+        'semicolon' => ['wildcard' => ';'],
+        'tab' => ['wildcard' => '\t']
+    );
+
     public function mixtureDev()
     {
         return $this->hasOne('Authority\Eloquent\MixtureDev', 'id', 'mixture_dev_id');

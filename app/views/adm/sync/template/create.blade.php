@@ -36,8 +36,7 @@ Založení nové .csv šablony
     </div>
 </div>
 <div class="form-group">
-    <label for="year" class="control-label input-group">Oddělovač</label>
-
+    {{ Form::label('separator','Oddělovač sloupců',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-default active">
