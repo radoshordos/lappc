@@ -49,6 +49,8 @@ class ProdController extends \BaseController
         }
 
         return View::make('adm.pattern.prod.edit', array(
+            'list_tree' => SB::option("SELECT id,name FROM prod WHERE tree_id = $prod->tree_id", ['id' => '->name']),
+            'list_prod' => SB::option("SELECT id,name FROM prod WHERE tree_id = $prod->tree_id", ['id' => '->name']),
             'prod' => $prod,
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),

@@ -20,6 +20,21 @@ Editace produktu
 {{-- Content --}}
 @section('content')
 
+<table class="table table-striped">
+    <tbody>
+    <tr>
+        <th>Skupina</th>
+        <td>f</td>
+    </tr>
+    <tr>
+        <th>Produkt</th>
+        <td>{{ Form::select('list_prod',$list_prod, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
 {{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.pattern.prod.update',$prod->id),'class'=>'form-horizontal','role'=>'form')) }}
 <div class="form-group">
     {{ Form::label('tree_id','Skupina',array('class'=> 'col-sm-2 control-label')) }}
