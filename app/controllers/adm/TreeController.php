@@ -24,7 +24,6 @@ class TreeController extends \BaseController
 
     public function index()
     {
-
         $input = Input::all();
 
         $tree = $this->tree
