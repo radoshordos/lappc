@@ -55,7 +55,7 @@ class ProdController extends \BaseController
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-        ))->with("list_tree_id", Input::get('list_tree'));
+        ))->with("list_tree_id", Input::get('list_tree') ? Input::get('list_tree') : $prod->tree_id);
     }
 
     public function update($id)
