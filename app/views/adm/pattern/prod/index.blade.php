@@ -62,7 +62,7 @@ Přehled produktů
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
                 <td>{{ $row->warranty_id }}</td>
-                <td>{{ link_to_route('adm.pattern.prod.edit',$row->prod_name,array($row->prod_id)) }}</td>
+                <td>{{ link_to_route('adm.pattern.prod.edit',$row->prod_name,array($row->prod_id,"tree_id=".$row->tree_id)) }}</td>
                 <td>{{ $row->prod_price }}</td>
             </tr>
             @endforeach

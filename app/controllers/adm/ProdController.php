@@ -9,7 +9,7 @@ class ProdController extends \BaseController
     protected $prod;
     protected $view;
 
-    function __construct(Prod $prod,ViewProd $view)
+    function __construct(Prod $prod, ViewProd $view)
     {
         $this->prod = $prod;
         $this->view = $view;
@@ -49,13 +49,13 @@ class ProdController extends \BaseController
         }
 
         return View::make('adm.pattern.prod.edit', array(
-            'list_tree' => SB::option("SELECT id,name FROM prod WHERE tree_id = $prod->tree_id", ['id' => '->name']),
-            'list_prod' => SB::option("SELECT id,name FROM prod WHERE tree_id = $prod->tree_id", ['id' => '->name']),
+            'list_tree' => SB::option("SELECT * FROM tree", ['id' => '[->id] - [->absolute] - ->name']),
+            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [Input::get('tree_id')], ['id' => '->name']),
             'prod' => $prod,
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '[->id] - ->name']),
-        ));
+            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+        ))->with("list_tree_id", Input::get('list_tree'));
     }
 
     public function update($id)
