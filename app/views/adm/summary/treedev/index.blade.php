@@ -13,11 +13,12 @@ Výrobci ve skupinách
         <table class="table table-hover">
             @foreach ($treedev as $row)
                 @if ($row->dev_id == 1)
-                <tr class='info'>
-                    @else
                 <tr class='success'>
+                    @else
+                <tr class='info'>
                     @endif
-                <td>{{ $row->tree->name }}</td>
+                <td>@if ($row->dev_id == 1) {{ $row->tree->name }} @endif</td>
+                <td>@if ($row->dev_id == 1) {{ $row->tree->deep }} @endif</td>
                 <td>{{ $row->dev->name }}</td>
                 <td>{{ $row->subdir_all }}</td>
                 <td>{{ $row->subdir_visible }}</td>
