@@ -33,6 +33,7 @@ class Prod extends Migration
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
         DB::unprepared('
+            DROP TRIGGER IF EXISTS tree_dev_ai;
             CREATE TRIGGER tree_dev_ai AFTER INSERT ON prod
             FOR EACH ROW BEGIN
 
@@ -42,22 +43,23 @@ class Prod extends Migration
 
                 CASE
                     WHEN (MOD(@ng1, 10000) = 0)
-                          THEN
-                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
+                         THEN
+                               CALL proc_replase_tree_dev(@ng10000,NEW.dev_id);
                     WHEN (MOD(@ng1, 100)   = 0)
-                          THEN
-                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
-                                CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
-                          ELSE
-                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
-                                CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
-                                CALL proc_replase_tree_dev(@ng10000,NEW.dev_id);
+                         THEN
+                               CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
+                               CALL proc_replase_tree_dev(@ng10000,NEW.dev_id);
+                         ELSE
+                               CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
+                               CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
+                               CALL proc_replase_tree_dev(@ng10000,NEW.dev_id);
                 END CASE;
             END
         ');
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
         DB::unprepared('
+            DROP TRIGGER IF EXISTS tree_dev_au;
             CREATE TRIGGER tree_dev_au AFTER UPDATE ON prod
             FOR EACH ROW BEGIN
             
@@ -72,11 +74,11 @@ class Prod extends Migration
                 CASE
                     WHEN (MOD(@ng1, 10000) = 0)
                           THEN
-                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
+                                CALL proc_replase_tree_dev(@ng10000,NEW.dev_id);
                     WHEN (MOD(@ng1, 100)   = 0)
                           THEN 
-                                CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
                                 CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
+                                CALL proc_replase_tree_dev(@ng10000,NEW.dev_id);
                           ELSE   
                                 CALL proc_replase_tree_dev(@ng1,NEW.dev_id);
                                 CALL proc_replase_tree_dev(@ng100,NEW.dev_id);
@@ -86,11 +88,11 @@ class Prod extends Migration
                 CASE
                     WHEN (MOD(@og1, 10000) = 0)
                           THEN
-                                CALL proc_replase_tree_dev(@og1,OLD.dev_id);
+                                CALL proc_replase_tree_dev(@og10000,OLD.dev_id);
                     WHEN (MOD(@og1, 100)   = 0)
                           THEN 
-                                CALL proc_replase_tree_dev(@og1,OLD.dev_id);
                                 CALL proc_replase_tree_dev(@og100,OLD.dev_id);
+                                CALL proc_replase_tree_dev(@og10000,OLD.dev_id);
                           ELSE   
                                 CALL proc_replase_tree_dev(@og1,OLD.dev_id);
                                 CALL proc_replase_tree_dev(@og100,OLD.dev_id);
@@ -101,6 +103,7 @@ class Prod extends Migration
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
         DB::unprepared('
+            DROP TRIGGER IF EXISTS tree_dev_ad;
             CREATE TRIGGER tree_dev_ad AFTER DELETE ON prod
             FOR EACH ROW BEGIN
             
@@ -111,11 +114,11 @@ class Prod extends Migration
                 CASE 
                     WHEN (MOD(@og1, 10000) = 0)
                           THEN
-                                CALL proc_replase_tree_dev(@og1,OLD.dev_id);
+                                CALL proc_replase_tree_dev(@og10000,OLD.dev_id);
                     WHEN (MOD(@og1, 100)   = 0)
                           THEN 
-                                CALL proc_replase_tree_dev(@og1,OLD.dev_id);
                                 CALL proc_replase_tree_dev(@og100,OLD.dev_id);
+                                CALL proc_replase_tree_dev(@og10000,OLD.dev_id);
                           ELSE   
                                 CALL proc_replase_tree_dev(@og1,OLD.dev_id);
                                 CALL proc_replase_tree_dev(@og100,OLD.dev_id);
