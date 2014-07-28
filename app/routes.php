@@ -27,7 +27,7 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('feed', 'FeedServiceController');
         Route::get('phpinfo', array('as' => 'adm.admin.phpinfo.index', 'uses' => 'PhpinfoController@index'));
 
-        Route::match(array('GET', 'POST'),'runner/{task}', array('as' => 'adm.admin.runner.task', 'uses' => 'CommandRunnerController@task'));
+        Route::match(array('GET', 'POST'), 'runner/{task}', array('as' => 'adm.admin.runner.task', 'uses' => 'CommandRunnerController@task'));
         Route::resource('runner', 'CommandRunnerController');
     });
 
@@ -38,16 +38,17 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('tree', 'TreeController');
         Route::resource('mixturetree', 'MixtureTreeController');
         Route::resource('prod', 'ProdController');
+        Route::match(array('GET', 'POST'), 'prod/{prod}/edit', array('as' => 'adm.pattern.prod.edit', 'uses' => 'ProdController@edit'));
     });
 
     Route::group(array('prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'), function () {
         Route::resource('template', 'SyncCsvTemplateController');
         Route::resource('templatem2ncolumn', 'SyncTemplateM2nColumnController');
-        Route::any('csvimport', array('as' => 'adm.sync.csvimport.index','uses' => 'SyncCsvImportController@index'));
+        Route::any('csvimport', array('as' => 'adm.sync.csvimport.index', 'uses' => 'SyncCsvImportController@index'));
     });
 
     Route::group(array('prefix' => 'tools', 'before' => 'Sentry|inGroup:Simple'), function () {
-        Route::any('csvoptimal', array('as' => 'adm.tools.csvoptimal.index','uses' => 'ToolCsvOptimalController@index'));
+        Route::any('csvoptimal', array('as' => 'adm.tools.csvoptimal.index', 'uses' => 'ToolCsvOptimalController@index'));
     });
 
     // Session Routes

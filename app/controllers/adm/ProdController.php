@@ -1,16 +1,18 @@
 <?php
 
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
 
 class ProdController extends \BaseController
 {
-
     protected $prod;
+    protected $view;
 
-    function __construct(Prod $prod)
+    function __construct(Prod $prod, ViewProd $view)
     {
         $this->prod = $prod;
+        $this->view = $view;
     }
 
     /**
@@ -22,13 +24,19 @@ class ProdController extends \BaseController
 
     public function index()
     {
+        $input = Input::all();
 
-        $prod = $this->prod
+        $view = $this->view
+            ->dev(Input::get('select_dev'))
+            ->tree(Input::get('select_tree'))
             ->orderBy('tree_id')
-            ->get();
+            ->paginate(2);
 
         return View::make('adm.pattern.prod.index', array(
-            'prod' => $prod
+            'view' => $view,
+            'input' => $input,
+            'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+            'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
         ));
     }
 
@@ -41,11 +49,13 @@ class ProdController extends \BaseController
         }
 
         return View::make('adm.pattern.prod.edit', array(
+            'list_tree' => SB::option("SELECT * FROM tree", ['id' => '[->id] - [->absolute] - ->name']),
+            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [Input::get('tree_id')], ['id' => '->name']),
             'prod' => $prod,
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '[->id] - ->name']),
-        ));
+            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+        ))->with("list_tree_id", Input::get('list_tree') ? Input::get('list_tree') : $prod->tree_id);
     }
 
     public function update($id)
