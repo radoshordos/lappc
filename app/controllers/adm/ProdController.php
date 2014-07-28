@@ -29,8 +29,8 @@ class ProdController extends \BaseController
         $view = $this->view
             ->dev(Input::get('select_dev'))
             ->tree(Input::get('select_tree'))
-            ->orderBy('tree_id')
-            ->paginate(2);
+            ->orderBy('dev_id','ASC')->orderBy('prod_name','ASC')
+            ->paginate(Input::get('limit'));
 
         return View::make('adm.pattern.prod.index', array(
             'view' => $view,

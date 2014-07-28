@@ -19,11 +19,13 @@ class ViewProd extends Migration
                     prod.name AS prod_name,
                     prod.desc AS prod_desc,
                     prod.price AS prod_price,
+                    prod_warranty.name AS warranty_name,
                     tree.id AS tree_id,
                     tree.absolute AS tree_absolute,
                     dev.id AS dev_id,
                     dev.name AS dev_name
             FROM    prod
+            INNER JOIN prod_warranty ON prod.warranty_id = prod_warranty.id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
         ');

@@ -61,5 +61,29 @@ class ProdTableSeeder extends Seeder {
             'name' => 'Metabo W 18 LTX 150 bez aku',
             'desc' => 'Aku úhlová bruska Metabo W 18 LTX 150 bez aku',
         ));
+
+        DB::table('prod')->insert(array(
+            'tree_id' => 21020600,
+            'dev_id' => 5,
+            'warranty_id' => 1,
+            'price' => 21690,
+            'mode_id' => 1,
+            'alias' => 'makita-bbo180z',
+            'name' => 'Makita BBO180Z',
+            'desc' => 'Akumulátorová excentrická bruska BBO180Z 18V Li-ion, bez aku',
+        ));
+
+        DB::table('prod')->insert(array(
+            'tree_id' => 21020600,
+            'dev_id' => 40,
+            'warranty_id' => 1,
+            'price' => 21690,
+            'mode_id' => 1,
+            'alias' => 'dewalt-dcg422n',
+            'name' => 'Dewalt DCG422N',
+            'desc' => 'Bruska Dewalt DCG422N, CS 14.4V XR Grinder
+',
+        ));
+
 	}
 }

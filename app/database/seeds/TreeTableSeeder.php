@@ -82,6 +82,8 @@ class TreeTableSeeder extends Seeder {
             'relative' => 'aku-uhlove-vrtacky',
             'absolute' => 'akumulatorove-naradi/aku-uhlove-vrtacky'
         ));
+
+        DB::statement('CALL proc_tree_recalculate');
 	}
 }
 

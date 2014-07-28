@@ -35,7 +35,7 @@ Přehled produktů
                 {{ Form::select('select_dev', ['' => 'Výrobce'] + $select_dev, (isset($input['select_dev']) ? $input['select_dev'] : NULL), array('id'=> 'select_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('limit', ['30' => ' Limit 30','90' => 'Limit 90'], (isset($input['limit']) ? $input['limit'] : NULL), array('id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], (isset($input['limit']) ? $input['limit'] : NULL), array('id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
         </div>
     </form>
@@ -50,7 +50,7 @@ Přehled produktů
                 <th>#ID</th>
                 <th>Výrobce</th>
                 <th>#TREE</th>
-                <th>#Záruka</th>
+                <th>Záruka</th>
                 <th>Nazev</th>
                 <th>Cena</th>
             </tr>
@@ -61,7 +61,7 @@ Přehled produktů
                 <td>{{ $row->prod_id }}</td>
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
-                <td>{{ $row->warranty_id }}</td>
+                <td>{{ $row->warranty_name }}</td>
                 <td>{{ link_to_route('adm.pattern.prod.edit',$row->prod_name,array($row->prod_id,"tree_id=".$row->tree_id)) }}</td>
                 <td>{{ $row->prod_price }}</td>
             </tr>
