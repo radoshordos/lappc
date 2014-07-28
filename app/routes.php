@@ -10,8 +10,10 @@ Route::group(array('prefix' => 'feed/{file}'), function () {
 
 Route::group(array('prefix' => 'adm'), function () {
 
-    Route::get('summary/tree2group', array('as' => 'adm.summary.tree2group.index', 'uses' => 'TreeGroupController@index'));
-    Route::get('summary/treegrouptop', array('as' => 'adm.summary.treegrouptop.index', 'uses' => 'TreeGroupTopController@index'));
+    Route::group(array('prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'), function () {
+        Route::get('treegrouptop', array('as' => 'adm.summary.treegrouptop.index', 'uses' => 'TreeGroupTopController@index'));
+        Route::get('treedev', array('as' => 'adm.summary.treedev.index', 'uses' => 'TreeDevController@index'));
+    });
 
     Route::group(array('prefix' => 'ppc', 'before' => 'Sentry|inGroup:Admins'), function () {
 

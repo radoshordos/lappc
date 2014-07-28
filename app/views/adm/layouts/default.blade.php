@@ -52,6 +52,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Přehled<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ URL::route('adm.summary.treedev.index') }}">Výrobci ve skupinách</a></li>
                         <li><a href="{{ URL::route('adm.summary.treegrouptop.index') }}">Tree GroupTop</a></li>
                     </ul>
                 </li>
