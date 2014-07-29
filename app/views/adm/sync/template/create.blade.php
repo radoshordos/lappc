@@ -21,6 +21,8 @@ Založení nové .csv šablony
 
 {{-- Content --}}
 @section('content')
+
+
 {{ Form::open(array('route' => 'adm.sync.template.store','class' => 'form-horizontal', 'role' => 'form')) }}
 
 <div class="form-group">

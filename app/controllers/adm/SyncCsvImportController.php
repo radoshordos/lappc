@@ -1,20 +1,21 @@
 <?php
 
 use Authority\Tools\SB;
+use Authority\Tools\Button\Separator;
 use Authority\Tools\Filter\Csv\CheckerGlobal;
+use Authority\Tools\Import\SyncImport;
 use Authority\Eloquent\SyncCsvTemplate;
 
 class SyncCsvImportController extends \BaseController
 {
     public function index()
     {
-        $input = Input::all();
-
         $out = array(
-            'template_id' => isset($input['template_id']) ? $input['template_id'] : NULL,
-            'data_input' => isset($input['data_input']) ? $input['data_input'] : NULL,
+            'template_id' => Input::get('template_id'),
+            'data_input' => Input::get('data_input'),
+            'separator' => Input::get('separator'),
             'check' => NULL,
-            'sync_template' => [''] + SB::option('SELECT  sync_csv_template.id,sync_csv_template.purpose,sync_csv_template.separator,
+            'sync_template' => [''] + SB::option('SELECT  sync_csv_template.id,sync_csv_template.purpose,
                                                           mixture_dev.name,mixture_dev.trigger_column_count,
                                                           (SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
                                                             FROM sync_template_m2n_colmun
@@ -25,20 +26,27 @@ class SyncCsvImportController extends \BaseController
                                     FROM sync_csv_template
                                     INNER JOIN mixture_dev ON mixture_dev.id = sync_csv_template.mixture_dev_id
                                     ORDER BY mixture_dev_id,purpose
-                                    ', ['id' => '[->name: &#8721;=->trigger_column_count] [->purpose] [->separator] ->list'])
+                                    ', ['id' => '[->name: &#8721;=->trigger_column_count] [->purpose] ->list'])
         );
 
-        if (isset($input['template_id']) && $input['template_id'] > 0) {
+        if (Input::exists('template_id') && Input::get('template_id') > 0) {
 
-            $sct = SyncCsvTemplate::find($input['template_id']);
-            $checker = new CheckerGlobal($sct, $input['data_input']);
+            if (Input::exists('validate')) {
 
-            try {
-                $checker->checkColumnQuantity(CheckerGlobal::ENDOFLINE, CheckerGlobal::DELIMITER);
-                $out['check'] = TRUE;
-            } catch (Exception $e) {
-                $out['check'] = FALSE;
-                Session::flash('error', $e->getMessage());
+                $sct = SyncCsvTemplate::find(Input::get('template_id'));
+                $checker = new CheckerGlobal($sct, Input::get('data_input'));
+
+                try {
+                    $checker->checkColumnQuantity(CheckerGlobal::ENDOFLINE, Separator::getSeparatorString(Input::get('separator')));
+                    $out['check'] = TRUE;
+                } catch (Exception $e) {
+                    $out['check'] = FALSE;
+                    Session::flash('error', $e->getMessage());
+                }
+
+            } else if (Input::exists('next')) {
+
+                $imp = new SyncImport(Input::get('template_id'), Separator::getSeparatorString(Input::get('separator')), Input::get('data_input'));
             }
         }
 
