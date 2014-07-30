@@ -11,7 +11,6 @@ class SyncCsvTemplate extends Migration {
             $table->increments('id')->unsigned();
             $table->integer('mixture_dev_id')->unsigned();
             $table->enum('purpose', array('sync','action'))->default('sync');
-            $table->enum('separator', array('semicolon','tab'))->default('semicolon');
             $table->tinyInteger('trigger_column_count')->unsigned()->default(0);
             $table->timestamps();
 
