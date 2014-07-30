@@ -12,10 +12,5 @@ class MixtureDevM2nDev extends \Eloquent
         'mixture_dev_id' => 'required|exists:mixture_dev,id',
         'dev_id' => 'required|exists:dev,id',
     );
-/*
-    public function dev()
-    {
-        return $this->hasMany('Authority\Eloquent\Dev', 'id', 'dev_id');
-    }
-*/
+
 }
