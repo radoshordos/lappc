@@ -11,7 +11,14 @@ class SyncDb extends Migration {
 
             $table->increments('id')->unsigned();
             $table->enum('purpose', array('sync','action'));
-            $table->string('name', '64')->nullable();
+            $table->integer('dev_id')->unsignet();
+            $table->string('code_product', '32')->nullable();
+            $table->string('code_ean', '32')->nullable();
+            $table->string('name', '80')->nullable();
+            $table->string('desc', '160')->nullable();
+            $table->double('price_standart')->nullable();
+            $table->double('price_action')->nullable();
+            $table->double('price_internet')->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
