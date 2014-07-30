@@ -31,13 +31,14 @@ class SyncImport
             ->get(array('sync_csv_column.element'));
     }
 
-    public function getUniqueDevIfPossible()
+    public function getUniqueDevId()
     {
         $template = SyncCsvTemplate::where('id', '=', $this->templateId)->first();
         if (intval($template->mixtureDev->trigger_column_count) == 1) {
             $mdi = MixtureDevM2nDev::where('mixture_dev_id', '=', $template->mixtureDev->id)->first();
             return $mdi->dev_id;
         }
+        return 0;
     }
 
     public function dataToArray()
@@ -45,7 +46,7 @@ class SyncImport
         $arr = array();
         $y = 0;
 
-        $dev_id = $this->getUniqueDevIfPossible();
+        $dev_id = $this->getUniqueDevId();
 
         foreach (explode("\r\n", $this->data) as $line) {
             $i = 0;
