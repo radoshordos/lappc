@@ -8,7 +8,7 @@ class SyncRecord extends Migration
 
     public function up()
     {
-        Schema::create('sync_import_record', function (Blueprint $table) {
+        Schema::create('sync_record', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('template_id')->unsigned()->nullable();
             $table->timestamps();
@@ -20,7 +20,7 @@ class SyncRecord extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('sync_import_record');
+        Schema::dropIfExists('sync_record');
     }
 
 }

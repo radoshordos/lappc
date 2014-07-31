@@ -1,6 +1,7 @@
 <?php namespace Authority\Tools\Import;
 
 use Authority\Eloquent\SyncCsvTemplate;
+use Authority\Eloquent\SyncRecord;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\SyncDb;
 
@@ -22,10 +23,7 @@ class SyncImport
 
         var_dump($this->item);
 
-
         $this->InsertToDb();
-
-
     }
 
     public function getColumnsName($templateId)
@@ -72,9 +70,9 @@ class SyncImport
 
     public function InsertToDb()
     {
-
         $timestamp = strtotime('now');
         $date = new \DateTime;
+        \DB::beginTransaction();
 
         foreach ($this->item as $val) {
             $val['created_at'] = $date;
@@ -83,8 +81,16 @@ class SyncImport
         }
 
         if ($res) {
+            SyncRecord::insert(array(
+                'id' => $timestamp,
+                'template_id' => ($this->templateId ? $this->templateId : NULL),
+                'created_at' => $date,
+                'updated_at' => $date
+            ));
+
             \Session::flash('success', 'Import proběhl úspěšně');
         }
+        \DB::commit();
     }
 
 }
