@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class SyncImportRecord extends Migration
+class SyncRecord extends Migration
 {
 
     public function up()

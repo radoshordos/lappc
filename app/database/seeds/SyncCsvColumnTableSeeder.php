@@ -18,29 +18,29 @@ class SyncCsvColumnTableSeeder extends Seeder {
 
         DB::table('sync_csv_column')->insert(array(
             'id' => 11,
-            'element' => 'codeprod',
+            'element' => 'code_prod',
         ));
 
         DB::table('sync_csv_column')->insert(array(
             'id' => 12,
-            'element' => 'codeean',
+            'element' => 'code_ean',
         ));
 
         DB::table('sync_csv_column')->insert(array(
             'id' => 21,
-            'element' => 'cena_stnd',
+            'element' => 'price_standart',
             'desc' => 'Běžná cena produktu'
         ));
 
         DB::table('sync_csv_column')->insert(array(
             'id' => 22,
-            'element' => 'cena_akce',
+            'element' => 'price_action',
             'desc' => 'Akční cena, která jde dále ovlivnovat proentuálníma slevama'
         ));
 
         DB::table('sync_csv_column')->insert(array(
             'id' => 23,
-            'element' => 'cena_inet',
+            'element' => 'price_internet',
             'desc' => 'Pevná akční cena, na kterou se neaplikují další slevy'
         ));
 
@@ -53,6 +53,8 @@ class SyncCsvColumnTableSeeder extends Seeder {
 	}
 
 }
+
+
 
 /*
 MT070E	Maktec MT070E	Aku vrtací šroubovák Maktec Li-ion 14,4V/1,1Ah	3990	0088381617635

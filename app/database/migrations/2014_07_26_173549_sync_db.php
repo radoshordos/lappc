@@ -12,7 +12,7 @@ class SyncDb extends Migration {
             $table->increments('id')->unsigned();
             $table->enum('purpose', array('sync','action'));
             $table->integer('dev_id')->unsignet();
-            $table->string('code_product', '32')->nullable();
+            $table->string('code_prod', '32')->nullable();
             $table->string('code_ean', '32')->nullable();
             $table->string('name', '80')->nullable();
             $table->string('desc', '160')->nullable();
@@ -22,6 +22,7 @@ class SyncDb extends Migration {
             $table->timestamps();
 
             $table->engine = 'InnoDB';
+            $table->unique('code_ean');
         });
 	}
 

@@ -49,7 +49,7 @@ class SyncTemplateM2nColmunTableSeeder extends Seeder
 
         DB::table('sync_template_m2n_colmun')->insert(array(
             'template_id' => 2,
-            'column_id' => 5,
+            'column_id' => 21,
         ));
 
         DB::table('sync_template_m2n_colmun')->insert(array(
@@ -61,6 +61,5 @@ class SyncTemplateM2nColmunTableSeeder extends Seeder
             'template_id' => 1,
             'column_id' => 101,
         ));
-
     }
 }

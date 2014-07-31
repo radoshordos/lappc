@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\SyncCsvTemplate;
 use Authority\Eloquent\MixtureDevM2nDev;
+use Authority\Eloquent\SyncDb;
 
 class SyncImport
 {
@@ -20,6 +21,11 @@ class SyncImport
         $this->item = $this->dataToArray();
 
         var_dump($this->item);
+
+
+        $this->InsertToDb();
+
+
     }
 
     public function getColumnsName($templateId)
@@ -61,6 +67,24 @@ class SyncImport
             $y++;
         }
         return $arr;
+    }
+
+
+    public function InsertToDb()
+    {
+
+        $timestamp = strtotime('now');
+        $date = new \DateTime;
+
+        foreach ($this->item as $val) {
+            $val['created_at'] = $date;
+            $val['updated_at'] = $date;
+            $res = SyncDb::insert($val);
+        }
+
+        if ($res) {
+            \Session::flash('success', 'Import proběhl úspěšně');
+        }
     }
 
 }
