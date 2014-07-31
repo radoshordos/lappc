@@ -75,6 +75,7 @@ class SyncImport
         \DB::beginTransaction();
 
         foreach ($this->item as $val) {
+            $val['record_id'] = $timestamp;
             $val['created_at'] = $date;
             $val['updated_at'] = $date;
             $res = SyncDb::insert($val);

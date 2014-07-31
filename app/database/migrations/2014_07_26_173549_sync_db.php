@@ -11,7 +11,8 @@ class SyncDb extends Migration {
 
             $table->increments('id')->unsigned();
             $table->enum('purpose', array('sync','action'));
-            $table->integer('dev_id')->unsignet();
+            $table->integer('record_id')->unsigned()->nullable();
+            $table->integer('dev_id')->unsigned();
             $table->string('code_prod', '32')->nullable();
             $table->string('code_ean', '32')->nullable();
             $table->string('name', '80')->nullable();
