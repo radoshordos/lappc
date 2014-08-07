@@ -19,25 +19,24 @@ Editace produktu
 ProdController@edit
 {{-- Content --}}
 @section('content')
-{{ var_dump($list_prod) }}
+{{ var_dump($chooze_tree); }}
+{{ var_dump($chooze_prod); }}
+
 <div id="lasmall">
-{{ Form::open(array('action' => array('ProdController@edit', (isset($prod->id)) ? $prod->id : 1,"tree_id=".$list_tree_id))) }}
+{{ Form::open(array('method' => 'POST','action' => array('ProdController@edit', $chooze_prod, "tree_id=".$chooze_tree))) }}
 <table class="table table-striped table-bordered">
     <tbody>
     <tr>
         <th>Skupina</th>
-        <td>{{ Form::select('list_tree',$list_tree, $list_tree_id, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}</td>
-        <td rowspan="2">
-            <button type="submit" class="btn btn-default btn-lg">
-                <span class="glyphicon glyphicon-forward"></span>
-            </button>
+        <td>
+        {{ Form::select('list_tree',$list_tree, $chooze_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
         </td>
     </tr>
     <tr>
         <th>Produkt</th>
         <td>
         @if (isset($list_prod) && !empty($list_prod))
-            {{ Form::select('list_prod',$list_prod, NULL, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+            {{ Form::select('list_prod',$list_prod, $chooze_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
         @endif
         </td>
     </tr>
