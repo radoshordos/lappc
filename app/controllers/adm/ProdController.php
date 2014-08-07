@@ -54,8 +54,8 @@ class ProdController extends \BaseController
 
     public function edit($id)
     {
-        $choozeTree = (Input::get('list_tree') ? Input::get('list_tree') : Input::get('tree_id'));
-        $prod = $this->prod->where('id', '=', (isset($id) ? $id : 0))->where('tree_id', '=', $choozeTree)->get();
+        $choozeTree = (Input::is('list_tree') ? Input::get('list_tree') : Input::get('tree_id'));
+        $prod = $this->prod->where('id', '=', $id)->where('tree_id', '=', $choozeTree)->first();
 
         $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name
                                  FROM tree
@@ -65,13 +65,13 @@ class ProdController extends \BaseController
         if (!isset($prod->tree_id)) {
             return View::make('adm.product.prod.edit', array(
                 'list_tree' => $select_tree,
-                'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [Input::get('tree_id')], ['id' => '->name'])
+                'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choozeTree], ['id' => '->name'])
             ))->with("list_tree_id", $choozeTree);
         }
 
         return View::make('adm.product.prod.edit', array(
             'list_tree' => $select_tree,
-            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [Input::get('tree_id')], ['id' => '->name']),
+            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choozeTree], ['id' => '->name']),
             'prod' => $prod,
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
