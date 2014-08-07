@@ -32,7 +32,7 @@ class ProdController extends \BaseController
             ->orderBy('dev_id','ASC')->orderBy('prod_name','ASC')
             ->paginate(Input::get('limit'));
 
-        return View::make('adm.pattern.prod.index', array(
+        return View::make('adm.product.prod.index', array(
             'view' => $view,
             'input' => $input,
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
@@ -45,7 +45,7 @@ class ProdController extends \BaseController
         $prod = $this->prod->find($id);
 
         if (is_null($prod)) {
-            return Redirect::route('adm.pattern.prod.index');
+            return Redirect::route('adm.product.prod.index');
         }
 
         return View::make('adm.pattern.prod.edit', array(
@@ -72,10 +72,10 @@ class ProdController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.pattern.prod.index');
+            return Redirect::route('adm.product.prod.index');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
-            return Redirect::route('adm.pattern.prod.edit', $id)->withInput()->withErrors($v);
+            return Redirect::route('adm.product.prod.edit', $id)->withInput()->withErrors($v);
         }
     }
 

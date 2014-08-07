@@ -28,9 +28,13 @@ Route::group(array('prefix' => 'adm'), function () {
     Route::group(array('prefix' => 'admin', 'before' => 'Sentry|inGroup:Admins'), function () {
         Route::resource('feed', 'FeedServiceController');
         Route::get('phpinfo', array('as' => 'adm.admin.phpinfo.index', 'uses' => 'PhpinfoController@index'));
-
         Route::match(array('GET', 'POST'), 'runner/{task}', array('as' => 'adm.admin.runner.task', 'uses' => 'CommandRunnerController@task'));
         Route::resource('runner', 'CommandRunnerController');
+    });
+
+    Route::group(array('prefix' => 'product', 'before' => 'Sentry|inGroup:Simple'), function () {
+        Route::resource('prod', 'ProdController');
+        Route::match(array('GET', 'POST'), 'prod/{prod}/edit', array('as' => 'adm.product.prod.edit', 'uses' => 'ProdController@edit'));
     });
 
     Route::group(array('prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'), function () {
@@ -39,8 +43,6 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController');
         Route::resource('tree', 'TreeController');
         Route::resource('mixturetree', 'MixtureTreeController');
-        Route::resource('prod', 'ProdController');
-        Route::match(array('GET', 'POST'), 'prod/{prod}/edit', array('as' => 'adm.pattern.prod.edit', 'uses' => 'ProdController@edit'));
     });
 
     Route::group(array('prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'), function () {

@@ -36,6 +36,16 @@
             @if (Sentry::check())
             <ul class="nav navbar-nav">
 
+                @if (Sentry::getUser()->hasAccess('simple'))
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prod<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::route('adm.product.prod.index') }}">Přehled produktů</a></li>
+                        <li><a href="{{ URL::route('adm.product.prod.create') }}">Nový produkt</a></li>
+                    </ul>
+                </li>
+                @endif
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení<b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -44,8 +54,6 @@
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Skupiny</a></li>
                         <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Seskupení skupin</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{ URL::route('adm.pattern.prod.index') }}">Prod</a></li>
                     </ul>
                 </li>
 
