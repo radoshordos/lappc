@@ -8,6 +8,17 @@ class ProdTableSeeder extends Seeder {
         DB::table('prod')->delete();
 
         DB::table('prod')->insert(array(
+            'tree_id' => 1,
+            'dev_id' => 1,
+            'warranty_id' => 1,
+            'mode_id' => 1,
+            'price' => 999999,
+            'alias' => 'nullprod',
+            'name' => 'Nullprod',
+            'desc' => 'Nullprod',
+        ));
+
+        DB::table('prod')->insert(array(
             'tree_id' => 21020200,
             'dev_id' => 6,
             'warranty_id' => 1,

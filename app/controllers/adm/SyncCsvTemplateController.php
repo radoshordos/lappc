@@ -96,7 +96,7 @@ class SyncCsvTemplateController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.pattern.prod.index');
+            return Redirect::route('adm.product.prod.index');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.mixturedev.edit', $id)->withInput()->withErrors($v);

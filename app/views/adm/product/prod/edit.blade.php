@@ -1,4 +1,4 @@
-@extends('......layouts.default')
+@extends('adm.layouts.default')
 
 {{-- Web site Title --}}
 @section('title')
@@ -16,36 +16,37 @@ Editace produktu
     });
 </script>
 @stop
-
-
+ProdController@edit
 {{-- Content --}}
 @section('content')
+{{ var_dump($list_prod) }}
 <div id="lasmall">
+{{ Form::open(array('action' => array('ProdController@edit', (isset($prod->id)) ? $prod->id : 1,"tree_id=".$list_tree_id))) }}
 <table class="table table-striped table-bordered">
     <tbody>
     <tr>
         <th>Skupina</th>
-        <td>
-            {{ Form::open(array('action' => array('ProdController@edit', $prod->id,"tree_id=".$list_tree_id))) }}
-            {{ Form::select('list_tree',$list_tree, $list_tree_id, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
-            {{ Form::close() }}
-        </td>
+        <td>{{ Form::select('list_tree',$list_tree, $list_tree_id, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}</td>
         <td rowspan="2">
-            <button type="button" class="btn btn-default btn-lg">
+            <button type="submit" class="btn btn-default btn-lg">
                 <span class="glyphicon glyphicon-forward"></span>
             </button>
         </td>
     </tr>
     <tr>
         <th>Produkt</th>
-        <td>{{ Form::select('list_prod',$list_prod, NULL, array('class'=> 'form-control')) }}</td>
+        <td>
+        @if (isset($list_prod) && !empty($list_prod))
+            {{ Form::select('list_prod',$list_prod, NULL, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+        @endif
+        </td>
     </tr>
     </tbody>
 </table>
+{{ Form::close() }}
 
-
-{{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.pattern.prod.update',$prod->id),'class'=>'form-horizontal','role'=>'form')) }}
-
+@if (isset($prod))
+{{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$prod->id),'class'=>'form-horizontal','role'=>'form')) }}
 
 
 <div class="row">
@@ -100,9 +101,10 @@ Editace produktu
 
 
 <p class="text-center">
-    {{ link_to_route('adm.pattern.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
+    {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
     {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
 </p>
 {{ Form::close() }}
 </div>
+@endif
 @stop

@@ -29,7 +29,7 @@ class ProdController extends \BaseController
         $view = $this->view
             ->dev(Input::get('select_dev'))
             ->tree(Input::get('select_tree'))
-            ->orderBy('dev_id','ASC')->orderBy('prod_name','ASC')
+            ->orderBy('dev_id', 'ASC')->orderBy('prod_name', 'ASC')
             ->paginate(Input::get('limit'));
 
         return View::make('adm.product.prod.index', array(
@@ -40,22 +40,43 @@ class ProdController extends \BaseController
         ));
     }
 
+    /**
+     * Display a listing of the resource.
+     * GET /adm/product/prod/create
+     *
+     * @return Response
+     */
+
+    public function create()
+    {
+        return View::make('adm.product.prod.create', array());
+    }
+
     public function edit($id)
     {
-        $prod = $this->prod->find($id);
+        $choozeTree = (Input::get('list_tree') ? Input::get('list_tree') : Input::get('tree_id'));
+        $prod = $this->prod->where('id', '=', (isset($id) ? $id : 0))->where('tree_id', '=', $choozeTree)->get();
 
-        if (is_null($prod)) {
-            return Redirect::route('adm.product.prod.index');
+        $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name
+                                 FROM tree
+                                 INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1
+                                 WHERE dir_all >0", ['id' => '[->id] - [->absolute] - ->name']);
+
+        if (!isset($prod->tree_id)) {
+            return View::make('adm.product.prod.edit', array(
+                'list_tree' => $select_tree,
+                'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [Input::get('tree_id')], ['id' => '->name'])
+            ))->with("list_tree_id", $choozeTree);
         }
 
-        return View::make('adm.pattern.prod.edit', array(
-            'list_tree' => SB::option("SELECT * FROM tree", ['id' => '[->id] - [->absolute] - ->name']),
+        return View::make('adm.product.prod.edit', array(
+            'list_tree' => $select_tree,
             'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [Input::get('tree_id')], ['id' => '->name']),
             'prod' => $prod,
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-        ))->with("list_tree_id", Input::get('list_tree') ? Input::get('list_tree') : $prod->tree_id);
+        ))->with("list_tree_id", $choozeTree);
     }
 
     public function update($id)

@@ -42,6 +42,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.product.prod.index') }}">Přehled produktů</a></li>
                         <li><a href="{{ URL::route('adm.product.prod.create') }}">Nový produkt</a></li>
+                        <li><a href="{{ URL::route('adm.product.prod.edit') }}">Opravit produkt</a></li>
                     </ul>
                 </li>
                 @endif
