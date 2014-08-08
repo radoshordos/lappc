@@ -74,7 +74,7 @@ class ProdController extends \BaseController
                 'list_prod' => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choice_tree], ['id' => '->name']),
                 'choice_tree' => $choice_tree,
                 'choice_prod' => $choice_prod
-            ))->with(array('id' => $choozeProd));
+            ))->with(array('id' => $choice_prod));
         }
 
         return View::make('adm.product.prod.edit', array(
