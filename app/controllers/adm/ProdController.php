@@ -54,17 +54,12 @@ class ProdController extends \BaseController
 
     public function edit($id)
     {
-
-        var_dump(Input::all());
-        var_dump("list_tree => " . Input::get('list_tree'));
-
         $choozeTree = (intval(Input::get('list_tree') > 1) ? Input::get('list_tree') : Input::get('tree_id'));
-        $choozeProd = (Input::is('list_prod') ? Input::get('list_prod') : $id);
+        $choozeProd = (intval(Input::get('list_prod') > 1) ? Input::get('list_prod') : $id);
 
-        Redirect::action('ProdController@edit', $choozeProd);
-
-        var_dump("choozeTree => " . $choozeTree);
-        var_dump("choozeProd => " . $choozeProd);
+        if ($id != $choozeProd) {
+            Redirect::action('ProdController@edit', $choozeProd);
+        }
 
         $prod = $this->prod->where('id', '=', $choozeProd)->where('tree_id', '=', $choozeTree)->first();
 
@@ -76,7 +71,7 @@ class ProdController extends \BaseController
         if (!isset($prod->tree_id)) {
             return View::make('adm.product.prod.edit', array(
                 'list_tree' => $select_tree,
-                'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choozeTree], ['id' => '->name']),
+                'list_prod' => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choozeTree], ['id' => '->name']),
                 'chooze_tree' => $choozeTree,
                 'chooze_prod' => $choozeProd
             ))->with(array('id' => $choozeProd));
@@ -84,7 +79,7 @@ class ProdController extends \BaseController
 
         return View::make('adm.product.prod.edit', array(
             'list_tree' => $select_tree,
-            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choozeTree], ['id' => '->name']),
+            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choozeTree], ['id' => '->name']),
             'chooze_tree' => $choozeTree,
             'chooze_prod' => $choozeProd,
             'prod' => $prod,
@@ -92,6 +87,7 @@ class ProdController extends \BaseController
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
         ))->with(array('id' => $choozeProd));
+
     }
 
     public function update($id)
@@ -114,5 +110,4 @@ class ProdController extends \BaseController
             return Redirect::route('adm.product.prod.edit', $id)->withInput()->withErrors($v);
         }
     }
-
 }

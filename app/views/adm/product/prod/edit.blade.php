@@ -11,17 +11,15 @@ Editace produktu
 <script>
     $(document).ready(function () {
         $("#list_tree").select2({});
+        $("#list_prod").select2({});
         $("#tree_id").select2({});
         $("#dev_id").select2({});
     });
 </script>
 @stop
-ProdController@edit
+
 {{-- Content --}}
 @section('content')
-{{ var_dump($chooze_tree); }}
-{{ var_dump($chooze_prod); }}
-
 <div id="lasmall">
 {{ Form::open(array('method' => 'POST','action' => array('ProdController@edit', $chooze_prod, "tree_id=".$chooze_tree))) }}
 <table class="table table-striped table-bordered">
@@ -46,7 +44,6 @@ ProdController@edit
 
 @if (isset($prod))
 {{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$prod->id),'class'=>'form-horizontal','role'=>'form')) }}
-
 
 <div class="row">
     <div class="col-xs-12 col-md-8">
