@@ -14,7 +14,6 @@ class SyncCsvTemplateController extends \BaseController
 
     public function index()
     {
-
         $col = array();
         $tag = DB::table('sync_csv_template')
             ->select('id', DB::raw('(SELECT GROUP_CONCAT("<",sync_csv_column.element,">")

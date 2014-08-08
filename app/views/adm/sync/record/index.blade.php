@@ -9,10 +9,10 @@ Záznamy importů
 {{-- Content --}}
 @section('content')
 <table class="table">
+    @foreach ($record as $row)
     <tr>
-        @foreach ($record as $row)
         <td>{{ $row->created_at }}</td>
-        @endforeach
     </tr>
+    @endforeach
 </table>
 @stop

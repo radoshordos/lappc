@@ -21,20 +21,20 @@ Editace produktu
 {{-- Content --}}
 @section('content')
 <div id="lasmall">
-{{ Form::open(array('method' => 'POST','action' => array('ProdController@edit', $chooze_prod, "tree_id=".$chooze_tree))) }}
+{{ Form::open(array('method' => 'POST','action' => array('ProdController@edit', $choice_prod, "tree_id=".$choice_tree))) }}
 <table class="table table-striped table-bordered">
     <tbody>
     <tr>
         <th>Skupina</th>
         <td>
-        {{ Form::select('list_tree',$list_tree, $chooze_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+        {{ Form::select('list_tree',$list_tree, $choice_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
         </td>
     </tr>
     <tr>
         <th>Produkt</th>
         <td>
         @if (isset($list_prod) && !empty($list_prod))
-            {{ Form::select('list_prod',$list_prod, $chooze_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+            {{ Form::select('list_prod',$list_prod, $choice_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
         @endif
         </td>
     </tr>

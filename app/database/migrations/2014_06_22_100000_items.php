@@ -13,12 +13,12 @@ class Items extends Migration
             $table->integer('prod_id')->unsigned();
             $table->tinyInteger('sale_id')->unsigned();
             $table->tinyInteger('availability_id')->unsigned();
-            $table->string('code_product',32)->nullable();
+            $table->string('code_prod',32)->nullable();
             $table->string('code_ean',32)->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('code_product');
+            $table->unique('code_prod');
             $table->unique('code_ean');
 
             $table->foreign('sale_id')->references('id')->on('items_sale')->onUpdate('cascade')->onDelete('no action');

@@ -10,4 +10,4 @@ class TreeDevController extends \BaseController
                 'treedev' => TreeDev::orderBy('tree_id', 'ASC')->orderBy('dev_id', 'ASC')->get()
             ));
     }
-} 
+}

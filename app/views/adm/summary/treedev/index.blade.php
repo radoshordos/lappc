@@ -42,8 +42,8 @@ Výrobci ve skupinách
                 @else
             <tr class='info'>
                 @endif
-                <td>@if ($row->dev_id == 1) {{ $row->tree->name }} @endif</td>
-                <td>@if ($row->dev_id == 1) {{ $row->tree->deep }} @endif</td>
+                <td>@if (isset($row->tree->name) && $row->dev_id == 1) {{ $row->tree->name }} @endif</td>
+                <td>@if (isset($row->tree->deep) && $row->dev_id == 1) {{ $row->tree->deep }} @endif</td>
                 <td>{{ $row->dev->name }}</td>
                 <td>{{ $row->subdir_all }}</td>
                 <td>{{ $row->subdir_visible }}</td>

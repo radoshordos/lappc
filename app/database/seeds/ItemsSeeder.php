@@ -11,7 +11,7 @@ class ItemsSeeder extends Seeder
             'prod_id' => 1,
             'sale_id' => 1,
             'availability_id' => 1,
-            'code_product' => 'test',
+            'code_prod' => 'test',
             'code_ean' => 'test'
         ));
 
@@ -19,7 +19,7 @@ class ItemsSeeder extends Seeder
             'prod_id' => 1,
             'sale_id' => 2,
             'availability_id' => 1,
-            'code_product' => 'test2',
+            'code_prod' => 'test2',
             'code_ean' => 'test2'
         ));
 
