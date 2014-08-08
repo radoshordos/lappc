@@ -10,10 +10,10 @@
 @section('content')
 
 <div class="jumbotron">
-  <div class="container">
-    <h1>{{trans('pages.helloworld')}}</h1>
-    <p>{{trans('pages.description')}}</p>
-  </div>
+    <div class="container">
+        <h1>{{trans('pages.helloworld')}}</h1>
+        <p>{{trans('pages.description')}}</p>
+    </div>
 </div>
 
 @if (Sentry::check() )

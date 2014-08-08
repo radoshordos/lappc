@@ -50,6 +50,7 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('templatem2ncolumn', 'SyncTemplateM2nColumnController');
         Route::any('csvimport', array('as' => 'adm.sync.csvimport.index', 'uses' => 'SyncCsvImportController@index'));
         Route::any('record', array('as' => 'adm.sync.record.index', 'uses' => 'SyncRecordController@index'));
+        Route::any('db', array('as' => 'adm.sync.db.index', 'uses' => 'SyncDbController@index'));
     });
 
     Route::group(array('prefix' => 'tools', 'before' => 'Sentry|inGroup:Simple'), function () {
