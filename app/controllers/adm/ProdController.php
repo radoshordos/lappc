@@ -54,14 +54,14 @@ class ProdController extends \BaseController
 
     public function edit($id)
     {
-        $choozeTree = (intval(Input::get('list_tree') > 1) ? Input::get('list_tree') : Input::get('tree_id'));
-        $choozeProd = (intval(Input::get('list_prod') > 1) ? Input::get('list_prod') : $id);
+        $choice_tree = (intval(Input::get('list_tree') > 1) ? Input::get('list_tree') : Input::get('tree_id'));
+        $choice_prod = (intval(Input::get('list_prod') > 1) ? Input::get('list_prod') : $id);
 
-        if ($id != $choozeProd) {
-            Redirect::action('ProdController@edit', $choozeProd);
+        if ($id != $choice_prod) {
+            Redirect::action('ProdController@edit', $choice_prod);
         }
 
-        $prod = $this->prod->where('id', '=', $choozeProd)->where('tree_id', '=', $choozeTree)->first();
+        $prod = $this->prod->where('id', '=', $choice_prod)->where('tree_id', '=', $choice_tree)->first();
 
         $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name
                                  FROM tree
@@ -71,22 +71,22 @@ class ProdController extends \BaseController
         if (!isset($prod->tree_id)) {
             return View::make('adm.product.prod.edit', array(
                 'list_tree' => $select_tree,
-                'list_prod' => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choozeTree], ['id' => '->name']),
-                'chooze_tree' => $choozeTree,
-                'chooze_prod' => $choozeProd
+                'list_prod' => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choice_tree], ['id' => '->name']),
+                'choice_tree' => $choice_tree,
+                'choice_prod' => $choice_prod
             ))->with(array('id' => $choozeProd));
         }
 
         return View::make('adm.product.prod.edit', array(
             'list_tree' => $select_tree,
-            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choozeTree], ['id' => '->name']),
-            'chooze_tree' => $choozeTree,
-            'chooze_prod' => $choozeProd,
+            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choice_tree], ['id' => '->name']),
+            'choice_tree' => $choice_tree,
+            'choice_prod' => $choice_prod,
             'prod' => $prod,
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-        ))->with(array('id' => $choozeProd));
+        ))->with(array('id' => $choice_prod));
 
     }
 
