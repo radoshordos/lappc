@@ -46,7 +46,6 @@ class SyncDbController extends \BaseController
             }
 
             $db->select(array(
-                'sync_db.id AS sync_id',
                 'sync_db.code_ean AS sync_code_ean',
                 'sync_db.code_prod AS sync_code_prod',
                 'sync_db.name AS sync_name',
@@ -59,10 +58,8 @@ class SyncDbController extends \BaseController
 
             $db->whereIn('sync_db.dev_id', $dev);
 
-
-
             return View::make('adm.sync.db.index', array(
-                'db' => $db->get(),
+                'db' => $db->paginate(intval(Input::get('limit') > 0) ? Input::get('limit') : 20),
                 'input' => Input::all(),
                 'select_mixture_dev' => $select_mixture_dev
             ));
