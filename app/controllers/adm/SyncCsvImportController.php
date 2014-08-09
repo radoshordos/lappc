@@ -12,9 +12,9 @@ class SyncCsvImportController extends \BaseController
     {
         $out = array(
             'template_id' => Input::get('template_id'),
-            'data_input' => Input::get('data_input'),
+            'check' => FALSE,
+            'data_input'=> Input::get('data_input'),
             'separator' => Input::get('separator'),
-            'check' => NULL,
             'sync_template' => [''] + SB::option('SELECT  sync_csv_template.id,sync_csv_template.purpose,
                                                           mixture_dev.name,mixture_dev.trigger_column_count,
                                                           (SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
@@ -34,13 +34,15 @@ class SyncCsvImportController extends \BaseController
             if (Input::exists('validate')) {
 
                 $sct = SyncCsvTemplate::find(Input::get('template_id'));
-                $checker = new CheckerGlobal($sct, Input::get('data_input'));
+                $checker = new CheckerGlobal($sct, Input::get('data_input'),Separator::getSeparatorString(Input::get('separator')),CheckerGlobal::ENDOFLINE);
 
                 try {
-                    $checker->checkColumnQuantity(CheckerGlobal::ENDOFLINE, Separator::getSeparatorString(Input::get('separator')));
+                    $checker->checkColumnQuantity();
                     $out['check'] = TRUE;
+                    $out['data_input'] = $checker->getDataOutput();
                 } catch (Exception $e) {
                     $out['check'] = FALSE;
+                    $out['data_input'] = $checker->getDataOutput();
                     Session::flash('error', $e->getMessage());
                 }
 

@@ -12,6 +12,7 @@ Synchronizační databáze
     $(document).ready(function () {
         $("#select_mixture_dev").select2({});
         $("#select_connect").select2({});
+        $("#join").select2({});
     });
 </script>
 @stop
@@ -28,7 +29,7 @@ Synchronizační databáze
                 {{ Form::select('select_mixture_dev', ['' => 'Seskupení výrobce'] + $select_mixture_dev, (isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL), array('id'=> 'select_mixture_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
             <div class="col-xs-4">
-                {{--  Form::select('limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], (isset($input['limit']) ? $input['limit'] : NULL), array('id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) --}}
+                {{ Form::select('join', ['left' => 'Spárované','inner' => 'Všechny'], (isset($input['join']) ? $input['join'] : NULL), array('id'=> 'join', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
         </div>
     </form>

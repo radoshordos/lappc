@@ -3,34 +3,58 @@
 class CheckerColumn extends CsvAbstract
 {
 
+    protected $line;
+
     public function __construct($item, $line)
     {
+        $this->item = $item;
+
         try {
-            $this->checkOnePriceValue($item, $line);
+            $this->fixPriceRange($line);
+            $this->checkOnePriceValue($line);
             return TRUE;
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    public function checkOnePriceValue($item, $line)
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    public function fixPriceRange($line)
+    {
+        if (isset($this->item['price_standart']) && strlen($this->item['price_standart']) > 0) {
+            $this->item['price_standart'] = str_replace(" ", "", $this->item['price_standart']);
+        }
+        if (isset($this->item['price_action']) && strlen($this->item['price_action']) > 0) {
+            $this->item['price_action'] = str_replace(" ", "", $this->item['price_action']);
+        }
+        if (isset($this->item['price_internet']) && strlen($this->item['price_internet']) > 0) {
+            $this->item['price_internet'] = str_replace(" ", "", $this->item['price_internet']);
+        }
+    }
+
+
+    public function checkOnePriceValue($line)
     {
         $counter = 0;
 
-        if (isset($item['price_standart']) && is_numeric($item['price_standart']) && intval($item['price_standart']) > 0) {
+        if (isset($this->item['price_standart']) && is_numeric($this->item['price_standart']) && intval($this->item['price_standart']) > 0) {
             $counter++;
         }
-        if (isset($item['price_action']) && is_numeric($item['price_action']) && intval($item['price_action']) > 0) {
+        if (isset($this->item['price_action']) && is_numeric($this->item['price_action']) && intval($this->item['price_action']) > 0) {
             $counter++;
         }
-        if (isset($item['price_internet']) && is_numeric($item['price_internet']) && intval($item['price_internet']) > 0) {
+        if (isset($this->item['price_internet']) && is_numeric($this->item['price_internet']) && intval($this->item['price_internet']) > 0) {
             $counter++;
         }
 
         if ($counter > 1) {
-            throw new \Exception("[LINE: " . $line . "]  Je možné zadat jen jednu hodnotu ceny. <pre>[" . implode(';',$item) . "]</pre>");
+            throw new \Exception("[LINE: " . $line . "]  Je možné zadat jen jednu hodnotu ceny. <pre>[" . implode(';', $this->item) . "]</pre>");
         } elseif ($counter == 0) {
-            throw new \Exception("[LINE: " . $line . "]  Nebyla zadaná správná cena položky. <pre>[" . implode(';',$item) . "]</pre>");
+            throw new \Exception("[LINE: " . $line . "]  Nebyla zadaná správná cena položky. <pre>[" . implode(';', $this->item) . "]</pre>");
         } else {
             return TRUE;
         }

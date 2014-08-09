@@ -4,25 +4,48 @@ namespace Authority\Tools\Filter\Csv;
 
 class CheckerGlobal extends CsvAbstract
 {
-    protected $data_input;
+    protected $separator;
+    protected $line_end;
+    protected $data_output;
     protected $count_column;
 
-    public function __construct($elo, $data_input)
+    protected $reduce = array(
+        "  " => " ",
+        "'" => "",
+        "?" => "",
+        "×" => "x",
+        ",-" => "",
+        "\"" => "",
+        "*" => "",
+        '“' => "",
+        "®" => "",
+        "™" => "",
+        "°" => "",
+        '´' => ""
+    );
+
+    public function __construct($elo, $data_input, $separator, $line_end)
     {
+        $this->separator = $separator;
+        $this->line_end = $line_end;
         $this->count_column = $elo->trigger_column_count;
-        $this->data_input = trim($data_input);
+        $this->data_output = strtr(trim($data_input), $this->reduce);
     }
 
-    public function checkColumnQuantity($endofline, $separator)
+    public function checkColumnQuantity()
     {
         $i = 0;
-        foreach (explode($endofline, $this->data_input) as $val) {
+        foreach (explode($this->line_end, $this->data_output) as $val) {
             $i++;
-            if (substr_count($val, $separator) != $this->count_column - 1) {
-                throw new \Exception("[LINE: " . $i . "]  Špatný počet sloupců: '" . $val . "'");
+            if (substr_count($val, $this->separator) != $this->count_column - 1) {
+                throw new \Exception("[LINE: " . $i . "]  Špatný počet sloupců: <pre>" . $val . "</pre>");
             }
         }
         return TRUE;
     }
 
+    public function getDataOutput()
+    {
+        return $this->data_output;
+    }
 }

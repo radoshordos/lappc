@@ -6,6 +6,7 @@ use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\SyncDb;
 use Authority\Tools\Filter\Csv\CheckerColumn;
 
+
 class SyncImport
 {
     private $columns;
@@ -67,9 +68,12 @@ class SyncImport
 
     public function InsertToDb()
     {
-        $i=0;
+        $i = 0;
+        $arr = array();
+
         foreach ($this->item as $val) {
-            $cc = new CheckerColumn($val,++$i);
+            $cc = new CheckerColumn($val, ++$i);
+            $arr[] = $cc->getItem();
         }
 
         $timestamp = strtotime('now');
@@ -77,11 +81,13 @@ class SyncImport
 
         \DB::beginTransaction();
 
-        foreach ($this->item as $val) {
+        foreach ($arr as $val) {
+            $val = array_map('trim', $val);
+
             $val['record_id'] = $timestamp;
             $val['created_at'] = $date;
             $val['updated_at'] = $date;
-            $res = SyncDb::insert($val);
+            $res = SyncDb::insert(array_filter($val));
         }
 
         if ($res) {
