@@ -7,17 +7,6 @@ class TreeTableSeeder extends Seeder {
         DB::table('tree')->delete();
 
         DB::table('tree')->insert(array(
-            'id' => 1,
-            'parent_id' => 1,
-            'group_id' => 1,
-            'position' => 0,
-            'name' => 'Null TREE',
-            'desc' => 'Null TREE',
-            'relative' => 'nulltree',
-            'absolute' => 'nulltree'
-        ));
-
-        DB::table('tree')->insert(array(
             'id' => 21000000,
             'parent_id' => 21000000,
             'group_id' => 21,

@@ -4,6 +4,7 @@ use Authority\Eloquent\SyncCsvTemplate;
 use Authority\Eloquent\SyncRecord;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\SyncDb;
+use Authority\Tools\Filter\Csv\CheckerColumn;
 
 class SyncImport
 {
@@ -20,9 +21,6 @@ class SyncImport
         $this->templateId = $templateId;
         $this->columns = $this->getColumnsName($templateId);
         $this->item = $this->dataToArray();
-
-        var_dump($this->item);
-
         $this->InsertToDb();
     }
 
@@ -67,11 +65,16 @@ class SyncImport
         return $arr;
     }
 
-
     public function InsertToDb()
     {
+        $i=0;
+        foreach ($this->item as $val) {
+            $cc = new CheckerColumn($val,++$i);
+        }
+
         $timestamp = strtotime('now');
         $date = new \DateTime;
+
         \DB::beginTransaction();
 
         foreach ($this->item as $val) {

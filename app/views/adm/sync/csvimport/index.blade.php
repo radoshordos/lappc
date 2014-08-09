@@ -29,11 +29,11 @@ Import .csv dat
     {{ Form::label('separator','Oddělovač sloupců',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default {{ ($separator == 'separator' || $separator == NULL ? 'active' : NULL) }}">
-                {{ Form::radio('separator', 'semicolon',($separator == 'semicolon' ? 'true' : 'false') ); }}Středník
+            <label class="btn btn-default {{ ($separator == 'semicolon' || $separator == NULL ? 'active' : NULL) }}">
+                {{ Form::radio('separator', 'semicolon',($separator == 'semicolon' ? 'true' : NULL) ); }}Středník
             </label>
             <label class="btn btn-default {{ ($separator == 'tab' ? 'active' : NULL) }}">
-                {{ Form::radio('separator', 'tab',($separator == 'tab' ? 'true' : 'false')); }}Tabulátor
+                {{ Form::radio('separator', 'tab',($separator == 'tab' ? 'true' : NULL)); }}Tabulátor
             </label>
         </div>
     </div>

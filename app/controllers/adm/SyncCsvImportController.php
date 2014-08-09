@@ -46,7 +46,11 @@ class SyncCsvImportController extends \BaseController
 
             } else if (Input::exists('next')) {
 
-                $imp = new SyncImport(Input::get('template_id'), Separator::getSeparatorString(Input::get('separator')), Input::get('data_input'));
+                try {
+                    $imp = new SyncImport(Input::get('template_id'), Separator::getSeparatorString(Input::get('separator')), Input::get('data_input'));
+                } catch (Exception $e) {
+                    Session::flash('error', $e->getMessage());
+                }
             }
         }
 

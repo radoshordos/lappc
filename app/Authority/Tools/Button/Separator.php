@@ -12,7 +12,6 @@ class Separator
             default :
                 return "";
         }
-
     }
 }
 
