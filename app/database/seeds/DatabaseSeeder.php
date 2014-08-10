@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call('TreeGroupTableSeeder');
         $this->call('ProdModeTableSeeder');
         $this->call('SyncCsvColumnTableSeeder');
-
+        $this->call('DphSeeder');
+        $this->call('ForexSeeder');
 
         // OSTATNI
         $this->call('FeedServiceTableSeeder');
