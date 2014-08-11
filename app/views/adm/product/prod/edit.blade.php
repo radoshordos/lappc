@@ -64,12 +64,26 @@ Editace produktu
     </div>
 </div>
 
-<div class="form-group">
-    {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div class="form-group">
+            {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
+            <div class="col-sm-10">
+                {{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+            </div>
+        </div>
+    </div>
+     <div class="col-xs-6 col-md-4">
+        <div class="form-group">
+            {{ Form::label('dph_id','DPH',array('class'=> 'col-sm-2 control-label')) }}
+            <div class="col-sm-10">
+                {{ Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
+            </div>
+        </div>
     </div>
 </div>
+
+
 <div class="form-group">
     {{ Form::label('alias','Alias',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">

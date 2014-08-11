@@ -86,6 +86,7 @@ class ProdController extends \BaseController
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+            'select_dph' => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
         ))->with(array('id' => $choice_prod));
 
     }
