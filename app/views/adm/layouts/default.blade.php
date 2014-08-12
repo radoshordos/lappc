@@ -63,6 +63,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.summary.treedev.index') }}">Výrobci ve skupinách</a></li>
                         <li><a href="{{ URL::route('adm.summary.treegrouptop.index') }}">Tree GroupTop</a></li>
+                        <li><a href="{{ URL::route('adm.summary.sale.index') }}">Přehled slev</a></li>
                     </ul>
                 </li>
 

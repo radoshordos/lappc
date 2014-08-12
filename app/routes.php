@@ -10,11 +10,6 @@ Route::group(array('prefix' => 'feed/{file}'), function () {
 
 Route::group(array('prefix' => 'adm'), function () {
 
-    Route::group(array('prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'), function () {
-        Route::get('treegrouptop', array('as' => 'adm.summary.treegrouptop.index', 'uses' => 'TreeGroupTopController@index'));
-        Route::get('treedev', array('as' => 'adm.summary.treedev.index', 'uses' => 'TreeDevController@index'));
-    });
-
     Route::group(array('prefix' => 'ppc', 'before' => 'Sentry|inGroup:Admins'), function () {
 
         Route::any('import', array('as' => 'adm.ppc.import.show', 'uses' => 'PpcImportController@show'));
@@ -43,6 +38,12 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController');
         Route::resource('tree', 'TreeController');
         Route::resource('mixturetree', 'MixtureTreeController');
+    });
+
+    Route::group(array('prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'), function () {
+        Route::get('treegrouptop', array('as' => 'adm.summary.treegrouptop.index', 'uses' => 'TreeGroupTopController@index'));
+        Route::get('treedev', array('as' => 'adm.summary.treedev.index', 'uses' => 'TreeDevController@index'));
+        Route::any('sale', array('as' => 'adm.summary.sale.index', 'uses' => 'SaleController@index'));
     });
 
     Route::group(array('prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'), function () {
