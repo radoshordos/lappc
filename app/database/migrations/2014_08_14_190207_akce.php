@@ -18,7 +18,6 @@ class Akce extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->primary('id');
         });
     }
 
