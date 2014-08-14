@@ -1,0 +1,90 @@
+nav>ul {
+    margin-left: 0;
+    padding: 1.2em;
+    background: #EEE;
+    max-width: 200px;
+    border-radius: 3px;
+}
+nav>ul ul {
+    margin-left: 1em;
+}
+nav>ul li {
+    list-style: none;
+
+}
+nav>ul a {
+    display: block;
+}
+nav>ul li.node > a {
+    font-weight: bold;
+}
+
+nav>ul ul {
+    margin-left: 0;
+}
+
+nav>ul a {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
+nav>ul ul {
+    margin-left: 0;
+}
+nav>ul ul li {
+    font-size: .9em;
+}
+nav>ul li.node > a:after {
+    content: '›';
+    margin-left: .5em;
+    font-weight: normal;
+}
+nav>ul li.node > a {
+    font-weight: bold;
+    text-transform: upperCase;
+}
+nav>ul>li {
+    border-bottom: 1px solid #DDD;
+}
+nav>ul>li:last-child {
+    border-bottom: none;
+}
+nav>ul li:last-child > a {
+    border: none;
+}
+nav>ul li>a:hover {
+    background: #999;
+}
+nav>ul a {
+    padding: 7px 0px 7px 1em;
+}
+nav>ul li li > a {
+    padding-left: 2em;
+}
+nav>ul li li li > a {
+    padding-left: 3em;
+}
+
+
+
+.mtree-skin-selector {
+
+}
+
+.mtree-skin-selector button {
+    padding: 5px 10px;
+    margin-bottom: 1px;
+    background: #BBB;
+}
+
+.mtree-skin-selector button.active {
+    background: #999;
+    font-weight: bold;
+}
+.mtree-skin-selector button.csl.active {
+    background: #FFC000;
+}
+
