@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundation 5</title>
-    <link rel="stylesheet" href="/components/foundation/css/normalize.css">
-    <link rel="stylesheet" href="/components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="/components/foundation/css/app.css">
-    <script src="/components/modernizr/modernizr.js"></script>
+    <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
+    <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="/web/components/mtree/mtree.css">
+    <link rel="stylesheet" href="/web/my/app.css">
+    <script src="/web/components/modernizr/modernizr.js"></script>
 </head>
 <body>
     <h1>Hello, world!</h1>
@@ -29,10 +30,10 @@
     <p><a href="http://localhost:8000/adm/">ADM</a></p>
     <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
 
-    <!-- body content here -->
 
-    <script src="components/jquery/jquery.min.js"></script>
-    <script src="components/foundation/js/foundation.min.js"></script>
+    <script src="/web/components/jquery/jquery.min.js"></script>
+    <script src="/web/components/mtree/mtree.js"></script>
+    <script src="/web/components/foundation/js/foundation.min.js"></script>
     <script>
         $(document).foundation();
     </script>
