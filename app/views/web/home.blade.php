@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation 5</title>
+    <title>F5</title>
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
     <link rel="stylesheet" href="/web/my/app.css">
@@ -37,7 +37,7 @@
                                 <li class="has-form">
                                     <div class="row collapse">
                                         <div class="large-8 small-9 columns">
-                                            <input type="search" size="42" placeholder="Nalést nářadí a příslušenství">
+                                            <input type="search" size="42" placeholder="Nalést nářadí i příslušenství">
                                         </div>
                                         <div class="large-4 small-3 columns">
                                             <a href="#"  class="alert button expand">Hledat</a>
@@ -82,8 +82,8 @@
                 <dl class="sub-nav">
                     <dt>Výrobce:</dt>
                     <dd class="active"><a href="#">Vše</a></dd>
-                    <dd><a href="#">Narex<span>5</span></a></dd>
-                    <dd><a href="#">Makita<span>15</span></a></dd>
+                    <dd><a href="#">Narex <span>(5)</span></a></dd>
+                    <dd><a href="#">Makita <span>(15)</span></a></dd>
                     <dd><a href="#">Maktec</a></dd>
                     <dd><a href="#">Metabo</a></dd>
                     <dd><a href="#">Proteco</a></dd>
@@ -91,15 +91,50 @@
                     <dd><a href="#">Tona</a></dd>
                 </dl>
 
-                <div class="large-6 columns">
+                <div class="small-12 columns">
                     <label>Začekuj</label>
                     <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
                     <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
                 </div>
 
-                <div class="small-3 columns" style="background-color: #b9def0;padding: 3px">
-                    Test
+                <div>
+                    <div class="th radius">
+                        <a href="#">
+                          <strong>Makita DF330DWE</strong>
+                          <img src="/web/naradi/makita-6261dwpe.jpg" />
+                        </a>
+                        <p>Akumulátorový vrtací šroubovák Makita DF330DWE 10,8V LI-Ion, 1,3Ah</p>
+                    </div>
+
+                    <div class="th radius">
+                        <a href="#">
+                          <strong>Nuair Carry</strong>
+                          <img src="/web/naradi/makita-ddf458rf3j.jpg" />
+                        </a>
+                        <p>Kompresor bezolejový Nuair Carry, vzdušník 6l, 8 bar</p>
+                    </div>
+
+                    <div class="th radius">
+                        <a  href="#">
+                          <strong>Nuair Carry</strong>
+                          <img src="/web/naradi/nuair-simply.jpg" />
+                        </a>
+                        <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                    </div>
                 </div>
+
+                    <ul class="pagination">
+                        <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                        <li class="current"><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">4</a></li>
+                        <li class="unavailable"><a href="">&hellip;</a></li>
+                        <li><a href="">12</a></li>
+                        <li><a href="">13</a></li>
+                        <li class="arrow"><a href="">&raquo;</a></li>
+                     </ul>
+
 
             </div>
         </div>
