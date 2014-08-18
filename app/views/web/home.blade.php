@@ -14,33 +14,33 @@
 <body>
     <h1>Hello, world!</h1>
 
-    <div id="container">
+    <div id="container" style="border: 1px solid #666">
             <div class="row">
                 <div class="small-12 columns">
                     <nav class="top-bar" data-topbar>
-                        <ul class="title-area">
-                            <li class="name">
-                                <h1><a href="#"></a></h1>
-                            </li>
-                        </ul>
                         <section class="top-bar-section">
                             <ul class="right">
                                 <li class="has-dropdown">
-                                    <a href="#">Right Button Dropdown</a>
+                                    <a href="#">Obchod</a>
                                     <ul class="dropdown">
-                                        <li><a href="#">First link in dropdown</a></li>
+                                        <li><a href="#">Test</a></li>
+                                        <li><a href="#">Nářadí Doležalova s.r.o.</a></li>
+
                                     </ul>
                                 </li>
+                                <li><a href="#">Kontakt</a></li>
+                                <li><a href="#">Přihlásit se</a></li>
+                                <li><a href="#">Košík</a></li>
                             </ul>
                             <!-- Left Nav Section -->
                             <ul class="left">
                                 <li class="has-form">
                                     <div class="row collapse">
                                         <div class="large-8 small-9 columns">
-                                            <input type="search" size="40" placeholder="Nalést nářadí a příslušenství">
+                                            <input type="search" size="42" placeholder="Nalést nářadí a příslušenství">
                                         </div>
                                         <div class="large-4 small-3 columns">
-                                            <a href="#" class="alert button expand">Hledat</a>
+                                            <a href="#"  class="alert button expand">Hledat</a>
                                         </div>
                                     </div>
                                 </li>
@@ -54,10 +54,6 @@
                     </ul>
                 </div>
             </div>
-
-
-
-
 
             <div class="row">
                 <div class="small-3 columns">

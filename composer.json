@@ -9,7 +9,7 @@
         "ivaynberg/select2": "3.*",
         "components/jquery": "1.*",
         "components/foundation": "5.*",
-        "components/font-awesome": "4.1.0"
+        "components/font-awesome": "4.*"
     },
     "require-dev": {
         "way/generators": "~2.6",
