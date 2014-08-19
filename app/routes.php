@@ -55,8 +55,8 @@ Route::group(array('prefix' => 'adm'), function () {
     });
 
     Route::group(array('prefix' => 'tools', 'before' => 'Sentry|inGroup:Simple'), function () {
+        Route::any('calculator', array('as' => 'adm.tools.calculator.index', 'uses' => 'ToolCalculatorController@index'));
         Route::any('csvoptimal', array('as' => 'adm.tools.csvoptimal.index', 'uses' => 'ToolCsvOptimalController@index'));
-        Route::any('csvoptimal', array('as' => 'adm.tools.calculator.index', 'uses' => 'ToolCalculatorController@index'));
     });
 
     // Session Routes

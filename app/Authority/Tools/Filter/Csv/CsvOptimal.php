@@ -25,7 +25,6 @@ class CsvOptimal extends CsvAbstract
 
     public function getDataOutput()
     {
-
         if (count($this->data_output) > 0) {
             return implode(self::ENDOFLINE, $this->data_output);
         } else {
@@ -45,4 +44,51 @@ class CsvOptimal extends CsvAbstract
             $this->data_output[$i++] = strtr($val, $reduce);
         }
     }
+
+    //////////
+    //  11  //
+    //////////
+    public function colDestroy($column)
+    {
+        {
+            $i = 0;
+            foreach (explode(self::ENDOFLINE, $this->data_input) as $val) {
+                $ex_value = explode(';', $val);
+                unset($ex_value[$column - 1]);
+                $this->data_output[$i++] = implode(';', $ex_value);
+            }
+        }
+    }
+    //////////
+    //  12  //
+    //////////
+
+    public function colReduceSpace($column)
+    {
+        {
+            $i = 0;
+            foreach (explode(self::ENDOFLINE, $this->data_input) as $val) {
+                $ex_value = explode(';', $val);
+                $ex_value[$column - 1] = trim(strtr($ex_value[$column - 1], [" " => ""]));
+                $this->data_output[$i++] = implode(';', $ex_value);
+            }
+        }
+    }
+    //////////
+    //  13  //
+    //////////
+
+    public function colRound($column)
+    {
+        {
+            $i = 0;
+            foreach (explode(self::ENDOFLINE, $this->data_input) as $val) {
+                $ex_value = explode(';', $val);
+                $ex_value[$column - 1] = round($ex_value[$column - 1]);
+                $this->data_output[$i++] = implode(';', $ex_value);
+            }
+        }
+    }
+
+
 }

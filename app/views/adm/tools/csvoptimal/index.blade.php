@@ -14,7 +14,8 @@ Optimalizator .csv dat
     <table class="table">
         <thead>
         <tr>
-            <td colspan="2">{{ Form::select('menu', $select_menu, $menu, array('required' => 'required', 'class'=> 'form-control')) }}</td>
+            <td>{{ Form::select('menu', $select_menu, $menu, ['required' => 'required', 'class'=> 'form-control']) }}</td>
+            <td>{{ Form::select('col', ['1' => '1. řádek','2' => '2. řádek','3' => '3. řádek','4' => '4. řádek','5' => '5. řádek'], $col ,['required' => 'required', 'class'=> 'form-control']) }}</td>
         <tr>
         </thead>
         <tbody>
