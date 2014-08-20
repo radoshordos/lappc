@@ -30,6 +30,8 @@ Route::group(array('prefix' => 'adm'), function () {
     Route::group(array('prefix' => 'product', 'before' => 'Sentry|inGroup:Simple'), function () {
         Route::resource('prod', 'ProdController');
         Route::match(array('GET', 'POST'), 'prod/{prod}/edit', array('as' => 'adm.product.prod.edit', 'uses' => 'ProdController@edit'));
+        Route::resource('akce', 'AkceController');
+        Route::resource('akcetemplate', 'AkcetemplateController');
     });
 
     Route::group(array('prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'), function () {

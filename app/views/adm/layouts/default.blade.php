@@ -47,6 +47,16 @@
                 </li>
                 @endif
 
+                @if (Sentry::getUser()->hasAccess('simple'))
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Akce<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::route('adm.product.akce.index') }}">Akční produkty</a></li>
+                        <li><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
+                    </ul>
+                </li>
+                @endif
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nastavení<b class="caret"></b></a>
                     <ul class="dropdown-menu">
