@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call('SyncCsvColumnTableSeeder');
         $this->call('DphSeeder');
         $this->call('ForexSeeder');
+        $this->call('BuyDeliverySeeder');
 
         // OSTATNI
         $this->call('FeedServiceTableSeeder');
