@@ -12,12 +12,17 @@ class Akce extends Migration
             $table->increments('id')->unsigned();
             $table->integer('prod_id')->unsigned();
             $table->integer('template_id')->unsigned();
-            $table->integer('sale_id')->unsigned();
-            $table->integer('availibility_id')->unsigned();
+            $table->tinyInteger('sale_id')->unsigned();
+            $table->tinyInteger('availibility_id')->unsigned();
             $table->integer('akce_price')->unsigned();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
+
+            $table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('template_id')->references('id')->on('akce_template')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('sale_id')->references('id')->on('items_sale')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('availibility_id')->references('id')->on('items_availability')->onUpdate('cascade')->onDelete('no action');
         });
     }
 
