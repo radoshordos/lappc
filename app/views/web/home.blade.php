@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F5</title>
+    <title>Hello, world!</title>
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
     <link rel="stylesheet" href="/web/my/app.css">
@@ -13,7 +13,6 @@
 </head>
 <body>
     <h1>Hello, world!</h1>
-
     <div id="container" style="border: 1px solid #666">
             <div class="row">
                 <div class="small-12 columns">
@@ -25,7 +24,6 @@
                                     <ul class="dropdown">
                                         <li><a href="#">Test</a></li>
                                         <li><a href="#">Nářadí Doležalova s.r.o.</a></li>
-
                                     </ul>
                                 </li>
                                 <li><a href="#">Kontakt</a></li>
@@ -134,8 +132,6 @@
                         <li><a href="">13</a></li>
                         <li class="arrow"><a href="">&raquo;</a></li>
                      </ul>
-
-
             </div>
         </div>
         <p><a href="http://localhost:8000/adm/">ADM</a></p>
