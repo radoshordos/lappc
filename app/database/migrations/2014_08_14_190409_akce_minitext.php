@@ -13,6 +13,7 @@ class AkceMinitext extends Migration {
             $table->string('name', 32);
 
             $table->engine = 'InnoDB';
+            $table->unique('name');
         });
 	}
 
