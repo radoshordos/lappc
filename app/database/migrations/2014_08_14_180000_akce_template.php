@@ -11,8 +11,8 @@ class AkceTemplate extends Migration
         Schema::create('akce_template', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('mixture_dev_id')->unsigned();
-            $table->smallInteger('availibility_id')->unsigned();
-            $table->smallInteger('minitext_id')->unsigned();
+            $table->integer('availibility_id')->unsigned();
+            $table->integer('minitext_id')->unsigned();
             $table->text('bonus_title', 64);
             $table->text('bonus_text', 256);
             $table->timestamps();
