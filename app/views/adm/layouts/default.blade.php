@@ -53,6 +53,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.product.akce.index') }}">Akční produkty</a></li>
                         <li><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
+                        <li><a href="{{ URL::route('adm.product.akceminitext.index') }}">Správa dostupnosti</a></li>
+                        <li><a href="{{ URL::route('adm.product.akceavailability.index') }}">Správa minitextu</a></li>
                     </ul>
                 </li>
                 @endif

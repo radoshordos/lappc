@@ -2,9 +2,7 @@
 
 namespace Authority\Eloquent;
 
-class AkceTemplate extends \Eloquent
+class AkceTempl extends \Eloquent
 {
     protected $table = 'akce_template';
-
-    public $timestamps = false;
 }

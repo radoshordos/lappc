@@ -1,12 +1,12 @@
 <?php
 
-use Authority\Eloquent\AkceTemplate;
+use Authority\Eloquent\AkceTempl;
 
 class AkceTemplateController extends \BaseController
 {
     protected $at;
 
-    function __construct(AkceTemplate $at)
+    function __construct(AkceTempl $at)
     {
         $this->at = $at;
     }

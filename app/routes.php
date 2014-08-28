@@ -31,7 +31,9 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('prod', 'ProdController');
         Route::match(array('GET', 'POST'), 'prod/{prod}/edit', array('as' => 'adm.product.prod.edit', 'uses' => 'ProdController@edit'));
         Route::resource('akce', 'AkceController');
-        Route::resource('akcetemplate', 'AkcetemplateController');
+        Route::resource('akcetemplate', 'AkceTemplateController');
+        Route::resource('akceminitext', 'AkceMinitextController');
+        Route::resource('akceavailability', 'AkceAvailabilityController');
     });
 
     Route::group(array('prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'), function () {
