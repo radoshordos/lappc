@@ -60,7 +60,6 @@ class DevController extends \BaseController
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.dev.create')->withInput()->withErrors($v);
         }
-
     }
 
     /**
