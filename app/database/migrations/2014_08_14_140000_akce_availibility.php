@@ -11,7 +11,6 @@ class AkceAvailibility extends Migration
             $table->increments('id')->unsigned();
             $table->boolean('origin')->default(0);
             $table->string('name', 168);
-            $table->date('endtime')->nullable();
 
             $table->engine = 'InnoDB';
             $table->unique(array('name', 'endtime'));
