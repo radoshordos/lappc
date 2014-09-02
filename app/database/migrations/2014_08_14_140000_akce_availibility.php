@@ -13,7 +13,7 @@ class AkceAvailibility extends Migration
             $table->string('name', 168);
 
             $table->engine = 'InnoDB';
-            $table->unique(array('name', 'endtime'));
+            $table->unique(array('name'));
         });
     }
 

@@ -1,21 +1,20 @@
 <?php
 
-use Authority\Eloquent\AkceTempl;
+use Authority\Eloquent\AkceTemplate;
 
 class AkceTemplateController extends \BaseController
 {
-    protected $at;
+    protected $akcetemplate;
 
-    function __construct(AkceTempl $at)
+    function __construct(AkceTemplate $akcetemplate)
     {
-        $this->at = $at;
+        $this->akcetemplate = $akcetemplate;
     }
 
     public function index()
     {
-
         return View::make('adm.product.akcetemplate.index', array(
-            'at' => $this->at->orderBy('id')->get()
+            'akcetemplate' => $this->akcetemplate->orderBy('id')->get()
         ));
     }
 }
