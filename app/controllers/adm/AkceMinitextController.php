@@ -30,7 +30,7 @@ class AkceMinitextController extends \BaseController
 
         if ($v->passes()) {
             $this->am->create($input);
-            Session::flash('success', 'Nový záznam výrobce byl přidán');
+            Session::flash('success', 'Nový minitext byl přidán');
             return Redirect::route('adm.product.akceminitext.index');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
