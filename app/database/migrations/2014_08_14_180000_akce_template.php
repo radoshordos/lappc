@@ -19,7 +19,7 @@ class AkceTemplate extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique(array('mixture_dev_id', 'minitext_id', 'availibility_id','endtime'));
+            $table->unique(array('mixture_dev_id', 'minitext_id', 'availibility_id','endtime'),'unique_akce_template');
 
             $table->foreign('mixture_dev_id')->references('id')->on('mixture_dev')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('availibility_id')->references('id')->on('akce_availability')->onUpdate('cascade')->onDelete('no action');
