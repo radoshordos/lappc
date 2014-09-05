@@ -14,8 +14,8 @@ class AkceTemplate extends Migration
             $table->integer('availibility_id')->unsigned();
             $table->integer('minitext_id')->unsigned();
             $table->date('endtime');
-            $table->text('bonus_title', 64);
-            $table->text('bonus_text', 256);
+            $table->text('bonus_title', 64)->nullable();
+            $table->text('bonus_text', 256)->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
