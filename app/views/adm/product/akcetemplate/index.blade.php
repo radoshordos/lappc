@@ -24,10 +24,10 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($aa as $row)
+            @foreach ($akcetemplate as $row)
             <tr>
-                <td>{{ $akcetemplate->mixture_dev_id }}</td>
-                <td>?</td>
+                <td>{{ $row->mixture_dev }}</td>
+                <td>{{ $row }}</td>
                 <td>?</td>
             </tr>
             @endforeach
