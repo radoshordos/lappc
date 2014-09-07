@@ -18,17 +18,19 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Text</th>
-                <th>Šablon &#x2211;</th>
-                <th>Produktů &#x2211;</th>
+                <th>Seskupení výrobců</th>
+                <th>Minitext</th>
+                <th>Dostupnost</th>
+                <th>Automatické<br /> zrušení</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($akcetemplate as $row)
             <tr>
-                <td>{{ $row->mixture_dev }}</td>
-                <td>{{ $row }}</td>
-                <td>?</td>
+                <td>{{ $row->mixture_dev->name }}</td>
+                <td>{{ $row->akce_minitext->name }}</td>
+                <td>{{ $row->akce_availability->name }}</td>
+                <td>{{ $row->endtime }}</td>
             </tr>
             @endforeach
             </tbody>
