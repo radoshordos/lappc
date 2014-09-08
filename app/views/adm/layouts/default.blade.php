@@ -53,6 +53,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.product.akce.index') }}">Akční produkty</a></li>
                         <li><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
+                        <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.product.akceminitext.index') }}">Správa minitextu</a></li>
                         <li><a href="{{ URL::route('adm.product.akceavailability.index') }}">Správa dostupnosti</a></li>
                     </ul>
@@ -73,8 +74,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Přehled<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::route('adm.summary.treedev.index') }}">Výrobci ve skupinách</a></li>
-                        <li><a href="{{ URL::route('adm.summary.treegrouptop.index') }}">Tree GroupTop</a></li>
+                        <li><a href="{{ URL::route('adm.summary.treedev.index') }}">Skupiny a výrobci</a></li>
+                        <li><a href="{{ URL::route('adm.summary.treegroup.index') }}">Skupiny rozdělení</a></li>
+                        <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.summary.sale.index') }}">Přehled slev</a></li>
                     </ul>
                 </li>

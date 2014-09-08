@@ -47,6 +47,14 @@ class TreeGroupTableSeeder extends Seeder
         ));
 
         DB::table('tree_group')->insert(array(
+            'id' => 25,
+            'grouptop_id' => 20,
+            'for_prod' => 1,
+            'type' => 'prodhelpless',
+            'name' => 'Zboží samostatně neprodejné'
+        ));
+
+        DB::table('tree_group')->insert(array(
             'id' => 26,
             'grouptop_id' => 20,
             'type' => 'prodfind',
@@ -70,7 +78,7 @@ class TreeGroupTableSeeder extends Seeder
         DB::table('tree_group')->insert(array(
             'id' => 29,
             'grouptop_id' => 20,
-            'type' => 'prodaction',
+            'type' => 'prodnew',
             'name' => 'Novinky'
         ));
 

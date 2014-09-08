@@ -84,12 +84,27 @@ Editace produktu
 </div>
 
 
-<div class="form-group">
-    {{ Form::label('alias','Alias',array('class'=> 'col-sm-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div class="form-group">
+            {{ Form::label('alias','Alias',array('class'=> 'col-sm-2 control-label')) }}
+            <div class="col-sm-10">
+                {{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}
+            </div>
+        </div>
+    </div>
+     <div class="col-xs-6 col-md-4">
+       <div class="form-group">
+            {{ Form::label('mode_id','Stav',array('class'=> 'col-sm-2 control-label')) }}
+            <div class="col-sm-10">
+                {{ Form::select('mode_id',$select_mode, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+            </div>
+        </div>
     </div>
 </div>
+
+
+
 <div class="form-group">
     {{ Form::label('name','Název výrobce',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
@@ -101,12 +116,6 @@ Editace produktu
     <div class="col-sm-10">
         {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu')) }}
     </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-    <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-    <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
 </div>
 
 

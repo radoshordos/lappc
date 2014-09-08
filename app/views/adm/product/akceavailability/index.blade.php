@@ -12,7 +12,7 @@ Správa akční platnosti akce
 
 {{-- Content --}}
 @section('content')
-@if ($aa->count())
+@if (count($aa)>0)
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-striped table-hover">
@@ -20,15 +20,13 @@ Správa akční platnosti akce
             <tr>
                 <th>Text</th>
                 <th>Šablon &#x2211;</th>
-                <th>Produktů &#x2211;</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($aa as $row)
             <tr>
                 <td>{{ $row->name }}</td>
-                <td>?</td>
-                <td>?</td>
+                <td>{{ $row->template_count }}</td>
             </tr>
             @endforeach
             </tbody>

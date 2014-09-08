@@ -45,7 +45,7 @@ Route::group(array('prefix' => 'adm'), function () {
     });
 
     Route::group(array('prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'), function () {
-        Route::get('treegrouptop', array('as' => 'adm.summary.treegrouptop.index', 'uses' => 'TreeGroupTopController@index'));
+        Route::get('treegroup', array('as' => 'adm.summary.treegroup.index', 'uses' => 'TreeGroupController@index'));
         Route::get('treedev', array('as' => 'adm.summary.treedev.index', 'uses' => 'TreeDevController@index'));
         Route::any('sale', array('as' => 'adm.summary.sale.index', 'uses' => 'SaleController@index'));
     });
