@@ -51,7 +51,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Akce<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ URL::route('adm.product.akce.index') }}">Akční produkty</a></li>
+                        <li><a href="{{ URL::route('adm.product.akce.index') }}">Přehled akcí</a></li>
+                        <li><a href="{{ URL::route('adm.product.akce.edit') }}">Akční produkty</a></li>
                         <li><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.product.akceminitext.index') }}">Správa minitextu</a></li>
@@ -68,6 +69,8 @@
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Skupiny</a></li>
                         <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Seskupení skupin</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.pattern.prodwarranty.index') }}">Záruky produktů</a></li>
                     </ul>
                 </li>
 

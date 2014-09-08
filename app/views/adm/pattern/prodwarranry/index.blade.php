@@ -3,11 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Přehled akcí
-@stop
-
-{{-- JavaScript on page --}}
-@section ('script')
+Záruka produktů
 @stop
 
 

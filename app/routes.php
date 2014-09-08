@@ -42,6 +42,7 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController');
         Route::resource('tree', 'TreeController');
         Route::resource('mixturetree', 'MixtureTreeController');
+        Route::resource('prodwarranty', 'ProdWarrantyController');
     });
 
     Route::group(array('prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'), function () {

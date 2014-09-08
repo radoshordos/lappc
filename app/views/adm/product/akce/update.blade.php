@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Přehled akcí
+Akce produktů
 @stop
 
 {{-- JavaScript on page --}}

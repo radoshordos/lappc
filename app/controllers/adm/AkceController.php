@@ -13,9 +13,14 @@ class AkceController extends \BaseController
 
     public function index()
     {
-
         return View::make('adm.product.akce.index', array(
             'akce' => $this->akce->orderBy('id')->get()
+        ));
+    }
+
+    public function update($id) {
+        return View::make('adm.product.akce.update', array(
+            'akce' => null
         ));
     }
 }
