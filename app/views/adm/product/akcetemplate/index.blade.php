@@ -14,7 +14,7 @@
 @section('content')
 @if ($akcetemplate->count())
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-12">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -22,6 +22,8 @@
                 <th>Minitext</th>
                 <th>Dostupnost</th>
                 <th>Automatické<br /> zrušení</th>
+                <th>Titulek</th>
+                <th>Text</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +33,8 @@
                 <td>{{ $row->akce_minitext->name }}</td>
                 <td>{{ $row->akce_availability->name }}</td>
                 <td>{{ $row->endtime }}</td>
+                <td>{{ $row->bonus_title }}</td>
+                <td>{{ Form::textarea('bonus_text', $row->bonus_text, ['size' => '45x2', 'readonly' => 'readonly', 'class' => 'form-control' ]); }}</td>
             </tr>
             @endforeach
             </tbody>

@@ -12,7 +12,8 @@ Správa akčního minitextu
 
 {{-- Content --}}
 @section('content')
-@if ($am->count())
+
+@if (count($am))
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-striped table-hover">
@@ -20,15 +21,13 @@ Správa akčního minitextu
             <tr>
                 <th>Text</th>
                 <th>Šablon &#x2211;</th>
-                <th>Produktů &#x2211;</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($am as $row)
             <tr>
                 <td>{{ $row->name }}</td>
-                <td>?</td>
-                <td>?</td>
+                <td>{{ $row->template_count }}</td>
             </tr>
             @endforeach
             </tbody>

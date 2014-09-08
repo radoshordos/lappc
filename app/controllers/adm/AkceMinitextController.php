@@ -14,7 +14,13 @@ class AkceMinitextController extends \BaseController
     public function index()
     {
         return View::make('adm.product.akceminitext.index', array(
-            'am' => $this->am->orderBy('id')->get()
+            'am' => DB::table('akce_minitext')
+                        ->select(array('akce_minitext.*',
+                            DB::raw('COUNT(akce_template.minitext_id) as template_count')
+                        ))
+                        ->leftJoin('akce_template', 'akce_template.minitext_id', '=', 'akce_minitext.id')
+                        ->groupBy('akce_minitext.id')
+                        ->get()
         ));
     }
 

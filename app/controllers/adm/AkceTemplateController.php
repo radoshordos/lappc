@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\AkceTempl;
+use Authority\Tools\SB;
 
 class AkceTemplateController extends \BaseController
 {
@@ -20,6 +21,29 @@ class AkceTemplateController extends \BaseController
 
     public function create()
     {
-        return View::make('adm.product.akcetemplate.create');
+        return View::make('adm.product.akcetemplate.create', array(
+            'select_mixture_dev' => [''] + SB::option("SELECT * FROM mixture_dev ORDER BY name,id", ['id' => '->name - [Výrobců celkem:->trigger_column_count]']),
+            'select_minitext' => [''] + SB::option("SELECT * FROM akce_minitext ORDER BY name", ['id' => '->name']),
+            'select_availability' => [''] + SB::option("SELECT * FROM akce_availability ORDER BY name", ['id' => '->name'])
+        ));
+    }
+
+    public function store()
+    {
+        $input = Input::all();
+        $v = Validator::make($input, AkceTempl::$rules);
+
+        if ($v->passes()) {
+            try {
+                $this->akcetemplate->create($input);
+                Session::flash('success', 'Nová šablona akce byla přidána');
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            return Redirect::route('adm.product.akcetemplate.index');
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.product.akcetemplate.create')->withInput()->withErrors($v);
+        }
     }
 }
