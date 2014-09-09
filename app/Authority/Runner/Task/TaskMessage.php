@@ -38,7 +38,4 @@ class TaskMessage extends TaskTimer
     {
         return $this->db->class;
     }
-
-
-
 }

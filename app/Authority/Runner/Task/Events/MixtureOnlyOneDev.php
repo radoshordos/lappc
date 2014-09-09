@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Runner\Task\Events;
+<?php namespace Authority\Runner\Task\Events;
 
 use Authority\Eloquent\MixtureDev;
 use Authority\Eloquent\MixtureDevM2nDev;
