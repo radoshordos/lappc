@@ -13,6 +13,7 @@ class Items extends Migration
             $table->integer('prod_id')->unsigned();
             $table->tinyInteger('sale_id')->unsigned();
             $table->tinyInteger('availability_id')->unsigned();
+            $table->boolean('visible')->default(1);
             $table->string('code_prod',32)->nullable();
             $table->string('code_ean',32)->nullable();
             $table->timestamps();
@@ -25,11 +26,30 @@ class Items extends Migration
             $table->foreign('availability_id')->references('id')->on('items_availability')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');
         });
+
+        DB::unprepared('DROP TRIGGER IF EXISTS items_ai');
+        DB::unprepared('
+            CREATE TRIGGER items_ai AFTER INSERT ON items
+            FOR EACH ROW BEGIN
+
+                DECLARE count_all INT;
+                DECLARE count_visible INT;
+
+                SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
+                SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible=1;
+
+                UPDATE prod SET items_count_all = count_all,
+                                items_count_visible = count_visible
+                WHERE prod.id = NEW.prod_id;
+            END
+            ');
     }
 
     public function down()
     {
         Schema::dropIfExists('items');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS items_ai');
     }
 
 }

@@ -8,8 +8,6 @@ Runner => Spuštěné skripty
 
 {{-- Content --}}
 @section('content')
-
-
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <table class="table table-striped table-hover">
@@ -35,7 +33,6 @@ Runner => Spuštěné skripty
             </tr>
             </tfoot>
         </table>
-
     </div>
 </div>
 @stop

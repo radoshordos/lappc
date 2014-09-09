@@ -14,7 +14,9 @@ class Prod extends Migration
             $table->integer('dev_id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned()->default(3);
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
-            $table->tinyInteger('dph_id')->unsigned();
+            $table->tinyInteger('dph_id')->unsigned(21);
+            $table->integer('items_count_all')->unsigned()->default(0);
+            $table->integer('items_count_visible')->unsigned()->default(0);
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');
             $table->string('name', '64');
