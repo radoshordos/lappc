@@ -13,20 +13,21 @@ class SaleController extends \BaseController
 
     public function index()
     {
+        if (Request::isMethod('post'))
+        {
+            foreach (Input::get('visible') as $key => $val) {
+                DB::update('UPDATE items_sale SET visible = ? WHERE id = ?',array($val,$key));
+            }
+        }
+
         return View::make('adm.summary.sale.index', array(
-            'sale' => $this->sale->where('id', '>', '1')->orderBy('id')->get()
+            'sale' => DB::table('items_sale')
+                ->select(array('items_sale.*',
+                     DB::raw('(SELECT COUNT(*) FROM items WHERE items.sale_id = items_sale.id) AS sale_items'),
+                     DB::raw('(SELECT COUNT(*) FROM akce WHERE akce.sale_id = items_sale.id) AS sale_akce')
+                ))
+                ->groupBy('items_sale.id')
+                ->get()
         ));
     }
 }
-
-/*
-    public function getItemsAvailibilityList() {
-        return $this->db->fetchAll($this->db->select()
-                                ->from("items2availibility", array("ia_id", "ia_name", "ia_visible"))
-                                ->columns(array("availibility_count_items" => "(SELECT COUNT(*) FROM items WHERE items.items_id_availibility=ia_id)"))
-                                ->columns(array("availibility_count_akce" => "(SELECT COUNT(*) FROM akce WHERE akce.akce_id_availibility=ia_id)"))
-                                ->where("ia_id > 0")
-                                ->order(array("ia_id"))
-        );
-    }
-*/

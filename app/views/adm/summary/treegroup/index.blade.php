@@ -10,13 +10,13 @@ Rozdělení skupin
 @section('content')
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover table-striped">
             <thead>
                 <th>#ID</th>
                 <th>Název</th>
                 <th>Specifický<br />alias</th>
                 <th>Vkládatelné<br /> produkty</th>
-                <th>Doména</th>
+                <th>Nadskupina</th>
             </thead>
             @foreach ($treegroup as $tgt)
             <tr>
