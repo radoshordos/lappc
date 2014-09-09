@@ -2,7 +2,7 @@
 
 use Authority\Eloquent\ItemsSale;
 
-class SaleController extends \BaseController
+class SummarySaleController extends \BaseController
 {
     protected $sale;
 

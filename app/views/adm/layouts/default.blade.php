@@ -81,6 +81,7 @@
                         <li><a href="{{ URL::route('adm.summary.treegroup.index') }}">Skupiny rozdělení</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.summary.sale.index') }}">Přehled slev</a></li>
+                        <li><a href="{{ URL::route('adm.summary.availability.index') }}">Přehled dostupnosti</a></li>
                     </ul>
                 </li>
 
