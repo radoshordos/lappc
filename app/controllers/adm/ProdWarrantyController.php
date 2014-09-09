@@ -42,10 +42,10 @@ class ProdWarrantyController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.product.prodwarranty.index');
+            return Redirect::route('adm.pattern.prodwarranty.index');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
-            return Redirect::route('adm.product.prodwarranty.create')->withInput()->withErrors($v);
+            return Redirect::route('adm.pattern.prodwarranty.create')->withInput()->withErrors($v);
         }
     }
 }

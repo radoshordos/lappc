@@ -14,6 +14,7 @@ Záruka produktů
         <table class="table table-striped table-hover">
             <thead>
             <tr>
+                <th>#ID</th>
                 <th>Text</th>
                 <th>Záruka v měsících</th>
                 <th>Šablon &#x2211;</th>
@@ -22,8 +23,8 @@ Záruka produktů
             <tbody>
             @foreach ($pw as $row)
             <tr>
+                <td>{{ $row->id }}</td>
                 <td>{{ $row->name }}</td>
-
                 <td>{{ $row->warranty_month }}</td>
                 <td>{{ $row->warranty_count }}</td>
             </tr>
