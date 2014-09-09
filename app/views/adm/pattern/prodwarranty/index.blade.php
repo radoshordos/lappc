@@ -17,7 +17,7 @@ Záruka produktů
                 <th>#ID</th>
                 <th>Text</th>
                 <th>Záruka v měsících</th>
-                <th>Šablon &#x2211;</th>
+                <th>Produktů &#x2211;</th>
             </tr>
             </thead>
             <tbody>
