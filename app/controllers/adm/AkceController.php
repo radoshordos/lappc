@@ -1,26 +1,36 @@
 <?php
 
-use Authority\Eloquent\Akce;
+use Authority\Eloquent\Prod;
 
 class AkceController extends \BaseController
 {
-    protected $akce;
+    protected $prod;
 
-    function __construct(Akce $akce)
+    function __construct(Prod $prod)
     {
-        $this->akce = $akce;
+        $this->prod = $prod;
     }
 
     public function index()
     {
         return View::make('adm.product.akce.index', array(
-            'akce' => $this->akce->orderBy('id')->get()
+            'akce' => $this->prod->where('prod.mode_id', '=', '4')
+                ->leftJoin('akce', 'prod.id', '=', 'akce.prod_id')
+                ->leftJoin('akce_template', 'akce.template_id', '=', 'akce_template.id')
+                ->get(array(
+                    'prod.name',
+                    'prod.id AS prod_id',
+                    'akce.template_id',
+                    'akce_template.bonus_title'
+                ))
         ));
     }
 
-    public function update($id) {
-        return View::make('adm.product.akce.update', array(
+    public function edit($id)
+    {
+        return View::make('adm.product.akce.edit', array(
             'akce' => null
         ));
     }
+
 }

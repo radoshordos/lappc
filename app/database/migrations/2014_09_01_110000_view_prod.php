@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class ViewProd extends Migration
@@ -25,11 +24,13 @@ class ViewProd extends Migration
                     tree.id AS tree_id,
                     tree.absolute AS tree_absolute,
                     dev.id AS dev_id,
-                    dev.name AS dev_name
+                    dev.name AS dev_name,
+                    akce.template_id AS akce_template_id
             FROM    prod
             INNER JOIN prod_warranty ON prod.warranty_id = prod_warranty.id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
+            LEFT JOIN akce ON prod.id = akce.prod_id WHERE prod.mode_id = 4
         ');
     }
 
@@ -37,5 +38,4 @@ class ViewProd extends Migration
     {
         DB::unprepared('DROP TABLE IF EXISTS view_prod');
     }
-
 }
