@@ -43,6 +43,40 @@ class Items extends Migration
                 WHERE prod.id = NEW.prod_id;
             END
             ');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS items_au');
+        DB::unprepared('
+            CREATE TRIGGER items_au AFTER UPDATE ON items
+            FOR EACH ROW BEGIN
+
+                DECLARE count_all INT;
+                DECLARE count_visible INT;
+
+                SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
+                SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible=1;
+
+                UPDATE prod SET items_count_all = count_all,
+                                items_count_visible = count_visible
+                WHERE prod.id = NEW.prod_id;
+            END
+            ');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS items_ad');
+        DB::unprepared('
+            CREATE TRIGGER items_ad AFTER DELETE ON items
+            FOR EACH ROW BEGIN
+
+                DECLARE count_all INT;
+                DECLARE count_visible INT;
+
+                SELECT COUNT(*) INTO count_all FROM items WHERE OLD.prod_id=items.prod_id;
+                SELECT COUNT(*) INTO count_visible FROM items WHERE OLD.prod_id=items.prod_id AND visible=1;
+
+                UPDATE prod SET items_count_all = count_all,
+                                items_count_visible = count_visible
+                WHERE prod.id = OLD.prod_id;
+            END
+            ');
     }
 
     public function down()
@@ -50,6 +84,7 @@ class Items extends Migration
         Schema::dropIfExists('items');
 
         DB::unprepared('DROP TRIGGER IF EXISTS items_ai');
+        DB::unprepared('DROP TRIGGER IF EXISTS items_au');
+        DB::unprepared('DROP TRIGGER IF EXISTS items_ad');
     }
-
 }

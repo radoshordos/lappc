@@ -37,7 +37,6 @@ class Prod extends Migration
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
         DB::unprepared('
-            DROP TRIGGER IF EXISTS tree_dev_ai;
             CREATE TRIGGER tree_dev_ai AFTER INSERT ON prod
             FOR EACH ROW BEGIN
 
@@ -63,7 +62,6 @@ class Prod extends Migration
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
         DB::unprepared('
-            DROP TRIGGER IF EXISTS tree_dev_au;
             CREATE TRIGGER tree_dev_au AFTER UPDATE ON prod
             FOR EACH ROW BEGIN
             
@@ -107,7 +105,6 @@ class Prod extends Migration
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
         DB::unprepared('
-            DROP TRIGGER IF EXISTS tree_dev_ad;
             CREATE TRIGGER tree_dev_ad AFTER DELETE ON prod
             FOR EACH ROW BEGIN
             
