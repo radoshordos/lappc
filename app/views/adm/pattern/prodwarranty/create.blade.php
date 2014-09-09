@@ -3,9 +3,8 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Záruka produktů
+Přidat novou záruku
 @stop
-
 
 {{-- Content --}}
 @section('content')
