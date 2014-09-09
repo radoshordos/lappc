@@ -14,11 +14,11 @@ class AkceAvailabilityController extends \BaseController
     public function index()
     {
         return View::make('adm.product.akceavailability.index', array(
-            'aa' => DB::table('akce_availability as aa')
+            'aa' => DB::table('akce_availability AS aa')
                 ->select(array('aa.*',
-                    DB::raw('COUNT(akce_template.availibility_id) as template_count')
+                    DB::raw('COUNT(at.availibility_id) AS template_count')
                 ))
-                ->leftJoin('akce_template', 'akce_template.availibility_id', '=', 'aa.id')
+                ->leftJoin('akce_template AS at', 'at.availibility_id', '=', 'aa.id')
                 ->groupBy('aa.id')
                 ->get()
         ));

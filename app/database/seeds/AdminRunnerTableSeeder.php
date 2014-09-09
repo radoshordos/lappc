@@ -2,7 +2,6 @@
 
 class AdminRunnerTableSeeder extends Seeder
 {
-
     public function run()
     {
         DB::table('runner')->delete();
@@ -32,15 +31,27 @@ class AdminRunnerTableSeeder extends Seeder
         ));
 
         DB::table('runner')->insert(array(
-            'id' => 121,
-            'autorun' => 0,
-            'class' => 'Authority\Runner\Task\Recalculate\Tree'
+            'id' => 151,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Clear\UnusedAkceAvailability'
         ));
 
         DB::table('runner')->insert(array(
-            'id' => 151,
+            'id' => 152,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Clear\UnusedAkceMinitext'
+        ));
+
+        DB::table('runner')->insert(array(
+            'id' => 153,
             'autorun' => 1,
             'class' => 'Authority\Runner\Task\Clear\UnusedProdWarranty'
+        ));
+
+        DB::table('runner')->insert(array(
+            'id' => 201,
+            'autorun' => 0,
+            'class' => 'Authority\Runner\Task\Recalculate\Tree'
         ));
     }
 }
