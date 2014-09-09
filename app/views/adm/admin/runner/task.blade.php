@@ -11,7 +11,7 @@ Runner => Spuštěné skripty
 
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
