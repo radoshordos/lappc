@@ -1,6 +1,6 @@
 <?php
 
-class StatsSyncController
+class StatsSyncController extends \BaseController
 {
 
 }

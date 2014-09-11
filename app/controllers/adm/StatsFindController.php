@@ -1,6 +1,6 @@
 <?php
 
-class StatsFindController
+class StatsFindController extends \BaseController
 {
 
 } 

@@ -30,7 +30,7 @@ class ViewProd extends Migration
             INNER JOIN prod_warranty ON prod.warranty_id = prod_warranty.id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
-            LEFT JOIN akce ON prod.id = akce.prod_id WHERE prod.mode_id = 4
+            LEFT JOIN akce ON prod.id = akce.prod_id AND prod.mode_id = 4
         ');
     }
 
