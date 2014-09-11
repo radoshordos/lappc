@@ -13,18 +13,17 @@ class SummarySaleController extends \BaseController
 
     public function index()
     {
-        if (Request::isMethod('post'))
-        {
+        if (Request::isMethod('post')) {
             foreach (Input::get('visible') as $key => $val) {
-                DB::update('UPDATE items_sale SET visible = ? WHERE id = ?',array($val,$key));
+                DB::update('UPDATE items_sale SET visible = ? WHERE id = ?', array($val, $key));
             }
         }
 
         return View::make('adm.summary.sale.index', array(
             'sale' => DB::table('items_sale')
                 ->select(array('items_sale.*',
-                     DB::raw('(SELECT COUNT(*) FROM items WHERE items.sale_id = items_sale.id) AS sale_items'),
-                     DB::raw('(SELECT COUNT(*) FROM akce WHERE akce.sale_id = items_sale.id) AS sale_akce')
+                    DB::raw('(SELECT COUNT(*) FROM items WHERE items.sale_id = items_sale.id) AS sale_items'),
+                    DB::raw('(SELECT COUNT(*) FROM akce WHERE akce.sale_id = items_sale.id) AS sale_akce')
                 ))
                 ->groupBy('items_sale.id')
                 ->get()

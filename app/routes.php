@@ -66,6 +66,11 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::any('csvoptimal', array('as' => 'adm.tools.csvoptimal.index', 'uses' => 'ToolCsvOptimalController@index'));
     });
 
+    Route::group(array('prefix' => 'stats', 'before' => 'Sentry|inGroup:Simple'), function () {
+        Route::any('find', array('as' => 'adm.stats.find.index', 'uses' => 'StatsFindController@index'));
+        Route::any('sync', array('as' => 'adm.stats.sync.index', 'uses' => 'StatsSyncController@index'));
+    });
+
     // Session Routes
     Route::get('login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));
     Route::get('logout', array('as' => 'adm.logout', 'uses' => 'SessionController@destroy'));

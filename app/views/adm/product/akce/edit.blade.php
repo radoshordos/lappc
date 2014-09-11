@@ -10,7 +10,9 @@ Akce produktů
 @section ('script')
 @stop
 
-
 {{-- Content --}}
 @section('content')
+
+
+
 @stop

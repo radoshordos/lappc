@@ -109,6 +109,16 @@
                     </ul>
                 </li>
 
+                @if (Sentry::getUser()->hasAccess('simple'))
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stats<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ URL::route('adm.stats.find.index') }}">Hledané produkty</a></li>
+                        <li><a href="{{ URL::route('adm.stats.sync.index') }}">Historie synchronizace</a></li>
+                    </ul>
+                </li>
+                @endif
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<b class="caret"></b></a>
                     <ul class="dropdown-menu">

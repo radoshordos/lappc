@@ -24,7 +24,6 @@ class ProdWarrantyController extends \BaseController
         ));
     }
 
-
     public function create()
     {
         return View::make('adm.pattern.prodwarranty.create', array());
