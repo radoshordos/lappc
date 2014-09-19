@@ -20,13 +20,15 @@ Přehled akcí
             <tr>
                 <th><span class="glyphicon glyphicon-lock" title="Šablona akce"></span></th>
                 <th>Název</th>
+                <th>Minitext</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($akce as $row)
             <tr>
-                <td>{{ $row->template_id }}</td>
-                <td>{{ link_to_route('adm.product.akce.edit',implode(' + ', ($row->bonus_title) ? [$row->name,$row->bonus_title] : [$row->name]),array($row->prod_id)) }}</td>
+                <td>{{ $row->akce_template_id }}</td>
+                <td>{{ link_to_route('adm.product.akce.edit',implode(' + ', ($row->akce_template_bonus_title) ? [$row->prod_name,$row->akce_template_bonus_title] : [$row->prod_name]),array($row->prod_id)) }}</td>
+                <td>{{ $row->akce_minitext_name }}</td>
             </tr>
             @endforeach
             </tbody>

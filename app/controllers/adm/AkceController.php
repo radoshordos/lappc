@@ -1,28 +1,24 @@
 <?php
 
-use Authority\Eloquent\Prod;
+use Authority\Eloquent\ViewProd;
+use Authority\Tools\SB;
 
 class AkceController extends \BaseController
 {
     protected $prod;
 
-    function __construct(Prod $prod)
+    function __construct()
     {
-        $this->prod = $prod;
+
     }
 
     public function index()
     {
+
+        $db = ViewProd::where('prod_mode_id','=','4');
+
         return View::make('adm.product.akce.index', array(
-            'akce' => $this->prod->where('prod.mode_id', '=', '4')
-                ->leftJoin('akce', 'prod.id', '=', 'akce.prod_id')
-                ->leftJoin('akce_template', 'akce.template_id', '=', 'akce_template.id')
-                ->get(array(
-                    'prod.name',
-                    'prod.id AS prod_id',
-                    'akce.template_id',
-                    'akce_template.bonus_title'
-                ))
+            'akce' => $db->get()
         ));
     }
 

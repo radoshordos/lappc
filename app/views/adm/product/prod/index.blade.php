@@ -65,7 +65,7 @@ Přehled produktů
                 <td>{{ $row->prod_id }}</td>
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
-                <td>{{ $row->warranty_name }}</td>
+                <td>{{ $row->prod_warranty_name }}</td>
                 <td>{{ link_to_route('adm.product.prod.edit',$row->prod_name,array($row->prod_id,"tree_id=".$row->tree_id)) }}</td>
                 <td>{{ $row->prod_price }}</td>
             </tr>
