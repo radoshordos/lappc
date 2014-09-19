@@ -24,17 +24,30 @@ class ProdController extends \BaseController
 
     public function index()
     {
-        $input = Input::all();
+        Input::has('select_limit') ? $input_limit = intval(Input::get('select_limit')) : $input_limit = 30;
+        Input::has('select_sort') ? $input_sort = intval(Input::get('select_sort')) : $input_sort = 1;
 
-        $view = $this->view
-            ->dev(Input::get('select_dev'))
-            ->tree(Input::get('select_tree'))
-            ->orderBy('dev_id', 'ASC')->orderBy('prod_name', 'ASC')
-            ->paginate(Input::get('limit'));
+        $db = ViewProd::dev(Input::get('select_dev'))
+            ->tree(Input::get('select_tree'));
+
+        switch($input_sort) {
+            case 2:
+                $db->orderBy('prod_name', 'DESC');
+                break;
+            case 3:
+                $db->orderBy('price', 'DESC');
+                break;
+            default:
+                $db->orderBy('prod_updated_at', 'ASC');
+                break;
+        }
 
         return View::make('adm.product.prod.index', array(
-            'view' => $view,
-            'input' => $input,
+            'view' => $db->paginate($input_limit),
+            'input_dev' =>  Input::has('select_dev') ? intval(Input::get('select_dev')) : NULL,
+            'input_tree' => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
+            'input_sort' => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
+            'input_limit' => $input_limit,
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
         ));

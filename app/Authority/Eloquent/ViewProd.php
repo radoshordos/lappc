@@ -22,4 +22,9 @@ class ViewProd extends \Eloquent
         }
     }
 
+    public function scopeIdDescending($query)
+    {
+        return $query->orderBy('id','DESC');
+    }
+
 }

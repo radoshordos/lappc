@@ -21,6 +21,7 @@ class ViewProd extends Migration
                     prod_warranty.name AS warranty_name,
                     prod.items_count_all AS prod_items_count_all,
                     prod.items_count_visible AS prod_items_count_visible,
+                    prod.updated_at AS prod_updated_at,
                     tree.id AS tree_id,
                     tree.absolute AS tree_absolute,
                     dev.id AS dev_id,

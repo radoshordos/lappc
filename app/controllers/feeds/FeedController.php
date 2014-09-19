@@ -2,7 +2,6 @@
 
 use Authority\Eloquent\FeedService;
 use Authority\Eloquent\FeedServiceM2nColumn;
-use Authority\Eloquent\ViewProd;
 
 class FeedController extends BaseController
 {

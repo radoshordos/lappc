@@ -22,20 +22,24 @@ Přehled produktů
 </script>
 @stop
 
-
 {{-- Content --}}
 @section('content')
 <blockquote>
     <form>
         <div class="row">
             <div class="col-xs-7">
-                {{ Form::select('select_tree', ['' => 'Skupina'] + $select_tree, (isset($input['select_tree']) ? $input['select_tree'] : NULL), array('id'=> 'select_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('select_tree', ['' => 'Skupina'] + $select_tree, $input_tree, array('id'=> 'select_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
             <div class="col-xs-3">
-                {{ Form::select('select_dev', ['' => 'Výrobce'] + $select_dev, (isset($input['select_dev']) ? $input['select_dev'] : NULL), array('id'=> 'select_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('select_dev', ['' => 'Výrobce'] + $select_dev, $input_dev, array('id'=> 'select_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], (isset($input['limit']) ? $input['limit'] : NULL), array('id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('select_limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], $input_limit, array('id'=> 'select_limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+            </div>
+        </div>
+        <div class="row" style="margin-top: .5em">
+            <div class="col-xs-12">
+                {{ Form::select('select_sort', ['1' => 'Seřadit dle data poslední změny', '2' => 'Seřadit dle názvu', '3' => 'Seřadit dle ceny'], $input_sort, array('id'=> 'select_sort', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
         </div>
     </form>
@@ -73,9 +77,9 @@ Přehled produktů
 
 <div class="text-center">
     <?php echo $view->appends(array(
-        'select_tree' => (isset($input['select_tree']) ? $input['select_tree'] : NULL),
-        'select_dev' => (isset($input['select_dev']) ? $input['select_dev'] : NULL),
-        'limit' => (isset($input['limit']) ? $input['limit'] : NULL),
+        'select_tree' => $input_tree,
+        'select_dev' => $input_dev,
+        'select_limit' => $input_limit,
     ))->links();
     ?>
 </div>
