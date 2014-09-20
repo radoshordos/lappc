@@ -19,7 +19,6 @@
 </head>
 <body>
 
-<!-- Navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -164,21 +163,14 @@
             @endif
             </ul>
         </div>
-        <!--/.nav-collapse -->
     </div>
 </div>
 
 <h1>@yield('title')</h1>
 @show
-<!-- ./ navbar -->
 <div class="container">
-    <!-- Notifications -->
     @include('adm/layouts/notifications')
-    <!-- ./ notifications -->
-
-    <!-- Content -->
     @yield('content')
-    <!-- ./ content -->
 </div>
 </body>
 </html>
