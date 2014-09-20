@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/js/select2/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/components/select2/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/components/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/s2b3/select2-bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/mystyle/style.css') }}">
     <script src="{{ asset('admin/js/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{ asset('admin/js/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/components/select2/select2.min.js') }}"></script>
     <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/js/restfulizer.js') }}"></script>
     @section('script')
@@ -138,21 +139,17 @@
                     </ul>
                 </li>
                 @endif
-
             </ul>
             @endif
 
             <ul class="nav navbar-nav navbar-right">
                 @if (Sentry::check())
-
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Účet<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li
-                        {{ (Request::is('adm/users/show/' . Session::get('userId')) ? 'class="active"' : '') }}>
-                        <a href="{{ URL::to('adm/users') }}/{{ Session::get('userId') }}">{{ Session::get('email')
-                            }}</a>
-                </li>
+                        <li {{ (Request::is('adm/users/show/' . Session::get('userId')) ? 'class="active"' : '') }}>
+                            <a href="{{ URL::to('adm/users') }}/{{ Session::get('userId') }}">{{ Session::get('email')}}</a>
+                        </li>
                 @if (Sentry::getUser()->hasAccess('admin'))
                 <li class="divider"></li>
                 <li><a href="{{ URL::to('adm/users') }}">Uživatelé</a></li>
@@ -173,10 +170,7 @@
 
 <h1>@yield('title')</h1>
 @show
-
 <!-- ./ navbar -->
-
-<!-- Container -->
 <div class="container">
     <!-- Notifications -->
     @include('adm/layouts/notifications')
@@ -186,9 +180,5 @@
     @yield('content')
     <!-- ./ content -->
 </div>
-
-<!-- ./ container -->
-
-
 </body>
 </html>
