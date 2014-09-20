@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/components/select2/select2.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/components/font-awesome/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/s2b3/select2-bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/mystyle/style.css') }}">
     <script src="{{ asset('admin/js/jquery-1.11.1.min.js') }}"></script>

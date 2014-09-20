@@ -13,7 +13,8 @@ class ForexSeeder extends Seeder
             'currency' => 'Kč',
             'exchange_rate' => 1,
             'round_with' => 0,
-            'round_without' => 2
+            'round_without' => 2,
+	        'step' => 1
         ));
 
         DB::table('forex')->insert(array(
@@ -23,7 +24,8 @@ class ForexSeeder extends Seeder
             'cnb_date' => '20.08.2013',
             'exchange_rate' => 25.775,
             'round_with' => 2,
-            'round_without' => 2
+            'round_without' => 2,
+            'step' => 0.01
         ));
     }
 }

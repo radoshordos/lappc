@@ -45,7 +45,6 @@ Editace produktu
 @if (isset($prod))
 {{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$prod->id),'class'=>'form-horizontal','role'=>'form')) }}
 
-
 <div class="row">
     <div class="col-xs-12 col-md-8">
         <div class="form-group">
@@ -76,9 +75,9 @@ Editace produktu
     </div>
     <div class="col-xs-6 col-md-4">
         <div class="form-group">
-            {{ Form::label('dph_id','DPH',array('class'=> 'col-sm-2 control-label')) }}
+            {{-- Form::label('dph_id','DPH',array('class'=> 'col-sm-2 control-label')) --}}
             <div class="col-sm-10">
-                {{ Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
+                {{--  Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu'))  --}}
             </div>
         </div>
     </div>
@@ -105,7 +104,7 @@ Editace produktu
 </div>
 
 <div class="row">
-    <div class="col-xs-12 col-md-8">
+    <div class="col-md-8">
         <div class="form-group">
             {{ Form::label('name','Název výrobce',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
@@ -113,11 +112,15 @@ Editace produktu
             </div>
         </div>
     </div>
-    <div class="col-xs-6 col-md-4">
-       <div class="form-group">
-            {{ Form::label('forex_id','Měna',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                {{ Form::select('forex_id',$select_forex, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="input-group btn-group-justified">
+                    <span class="input-group-addon"><i class="fa fa-money fa-lg" title="Cena, měna a DPH"></i></span>
+                    <span class="btn-group">{{ Form::input('number','price', round($prod['price'],$prod->forex->round_with), ['required' => 'required', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</span>
+                    <span class="btn-group">{{ Form::select('forex_id',$select_forex, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
+                    <span class="btn-group">{{ Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
+                </div>
             </div>
         </div>
     </div>
@@ -133,23 +136,18 @@ Editace produktu
         </div>
     </div>
     <div class="col-md-4">
-       <div class="form-group">
-            <div class="col-sm-6">
-               <div class="input-group">
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase" title="Atypický náklad"></span></div>
-                  {{ Form::select('transport_atypical',['0' => 'OK', 1 => 'Atyp'], NULL, array('required' => 'required', 'class'=> 'form-control')) }}
-                </div>
-            </div>
-            <div class="col-sm-6">
-               <div class="input-group">
-                  <div class="input-group-addon" title="Hmotnost produktu">kg</div>
-                  {{ Form::input('number','transport_weight', round($prod['transport_weight'],2), array('required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control')) }}
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="input-group btn-group-justified">
+                    <div class="input-group-addon"><i class="fa fa-car fa-lg" title="Typ nákladu"></i></div>
+                    <span class="btn-group">{{ Form::select('transport_atypical',['0' => 'Běžný rozměr', 1 => 'Atypický rozměr'], NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
+                    <span class="btn-group">{{ Form::input('number','transport_weight', round($prod['transport_weight'],2), array('required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control')) }}</span>
+                    <div class="input-group-addon" title="Hmotnost produktu">kg</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <p class="text-center">

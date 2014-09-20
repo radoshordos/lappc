@@ -25,6 +25,9 @@ class Prod extends \Eloquent
         }
     }
 
-
+	public function forex()
+	{
+		return $this->hasOne('Authority\Eloquent\Forex', 'id', 'forex_id');
+	}
 
 }

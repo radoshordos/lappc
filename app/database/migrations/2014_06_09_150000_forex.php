@@ -17,6 +17,7 @@ class Forex extends Migration
             $table->double('exchange_rate');
             $table->tinyInteger('round_with')->unsigned();
             $table->tinyInteger('round_without')->unsigned();
+	        $table->decimal('step',4,2)->unsigned();
 
             $table->engine = 'InnoDB';
             $table->primary('id');
