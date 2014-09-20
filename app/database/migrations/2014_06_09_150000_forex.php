@@ -11,6 +11,7 @@ class Forex extends Migration
         Schema::create('forex', function (Blueprint $table) {
 
             $table->tinyInteger('id')->unsigned();
+	        $table->boolean('active')->default(1);
             $table->string('code',8);
             $table->string('currency',4);
             $table->string('cnb_date',16)->nulable();
