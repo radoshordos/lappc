@@ -45,6 +45,7 @@ Editace produktu
 @if (isset($prod))
 {{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$prod->id),'class'=>'form-horizontal','role'=>'form')) }}
 
+
 <div class="row">
     <div class="col-xs-12 col-md-8">
         <div class="form-group">
@@ -73,7 +74,7 @@ Editace produktu
             </div>
         </div>
     </div>
-     <div class="col-xs-6 col-md-4">
+    <div class="col-xs-6 col-md-4">
         <div class="form-group">
             {{ Form::label('dph_id','DPH',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
@@ -93,7 +94,7 @@ Editace produktu
             </div>
         </div>
     </div>
-     <div class="col-xs-6 col-md-4">
+    <div class="col-xs-6 col-md-4">
        <div class="form-group">
             {{ Form::label('mode_id','Stav',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
@@ -103,20 +104,52 @@ Editace produktu
     </div>
 </div>
 
-
-
-<div class="form-group">
-    {{ Form::label('name','Název výrobce',array('class'=> 'col-sm-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div class="form-group">
+            {{ Form::label('name','Název výrobce',array('class'=> 'col-sm-2 control-label')) }}
+            <div class="col-sm-10">
+                {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+       <div class="form-group">
+            {{ Form::label('forex_id','Měna',array('class'=> 'col-sm-2 control-label')) }}
+            <div class="col-sm-10">
+                {{ Form::select('forex_id',$select_forex, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+            </div>
+        </div>
     </div>
 </div>
-<div class="form-group">
-    {{ Form::label('desc','Popis',array('class'=> 'col-sm-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu')) }}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            {{ Form::label('desc','Popis',array('class'=> 'col-sm-2 control-label')) }}
+            <div class="col-sm-10">
+                {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu')) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+       <div class="form-group">
+            <div class="col-sm-6">
+               <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase" title="Atypický náklad"></span></div>
+                  {{ Form::select('transport_atypical',['0' => 'OK', 1 => 'Atyp'], NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                </div>
+            </div>
+            <div class="col-sm-6">
+               <div class="input-group">
+                  <div class="input-group-addon" title="Hmotnost produktu">kg</div>
+                  {{ Form::input('number','transport_weight', round($prod['transport_weight'],2), array('required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control')) }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 
 
 <p class="text-center">

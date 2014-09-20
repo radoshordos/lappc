@@ -40,6 +40,4 @@ abstract class ShopAbstract extends FeedAbstract implements ShopInterface
             return "  <EAN>" . $row["EAN"] . "</EAN>\n";
         }
     }
-
-
 }

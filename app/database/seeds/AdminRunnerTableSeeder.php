@@ -48,6 +48,12 @@ class AdminRunnerTableSeeder extends Seeder
             'class' => 'Authority\Runner\Task\Clear\UnusedProdWarranty'
         ));
 
+	    DB::table('runner')->insert(array(
+		    'id' => 181,
+		    'autorun' => 1,
+		    'class' => 'Authority\Runner\Task\Fix\ProdWithoutItem'
+	    ));
+
         DB::table('runner')->insert(array(
             'id' => 201,
             'autorun' => 0,

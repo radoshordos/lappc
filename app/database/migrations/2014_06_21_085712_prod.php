@@ -14,13 +14,16 @@ class Prod extends Migration
             $table->integer('dev_id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned()->default(3);
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
-            $table->tinyInteger('dph_id')->unsigned(21);
+            $table->tinyInteger('forex_id')->unsigned()->default(1);
+            $table->tinyInteger('dph_id')->unsigned()->default(21);
             $table->integer('items_count_all')->unsigned()->default(0);
             $table->integer('items_count_visible')->unsigned()->default(0);
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');
             $table->string('name', '64');
             $table->string('desc', '128');
+            $table->float('transport_weight')->unsigned()->default(0.1);
+            $table->boolean('transport_atypical')->default(0);
             $table->timestamps();
 
             $table->engine = 'InnoDB';
@@ -33,6 +36,7 @@ class Prod extends Migration
             $table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('mode_id')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('dph_id')->references('id')->on('dph')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('forex_id')->references('id')->on('forex')->onUpdate('cascade')->onDelete('no action');
         });
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');

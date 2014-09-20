@@ -101,6 +101,7 @@ class ProdController extends \BaseController
             'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
             'select_dph' => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
             'select_mode' => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+            'select_forex' => SB::option("SELECT * FROM forex", ['id' => '->code (->currency)']),
         ))->with(array('id' => $choice_prod));
 
     }
