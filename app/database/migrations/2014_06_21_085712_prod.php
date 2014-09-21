@@ -16,8 +16,10 @@ class Prod extends Migration
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
             $table->tinyInteger('forex_id')->unsigned()->default(1);
             $table->tinyInteger('dph_id')->unsigned()->default(21);
-            $table->integer('items_count_all')->unsigned()->default(0);
-            $table->integer('items_count_visible')->unsigned()->default(0);
+            $table->tinyInteger('ic_all')->unsigned()->default(0);
+            $table->tinyInteger('ic_visible')->unsigned()->default(0);
+	        $table->tinyInteger('ic_price_diff_visible')->unsigned()->default(0);
+
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');
             $table->string('name', '64');

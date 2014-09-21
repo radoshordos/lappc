@@ -35,14 +35,17 @@ class Items extends Migration
 
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
-				DECLARE count_different_price_visible INT;
+				DECLARE count_price_diff_visible INT;
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
-                SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible=1;
+                SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible = 1;
+                SELECT COUNT(DISTINCT iprice) INTO count_price_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
 
-                UPDATE prod SET items_count_all = count_all,
-                                items_count_visible = count_visible
+                UPDATE prod SET ic_all = count_all,
+                                ic_visible = count_visible,
+                                ic_price_diff_visible = count_price_diff_visible
                 WHERE prod.id = NEW.prod_id;
+
             END
             ');
 
@@ -53,13 +56,17 @@ class Items extends Migration
 
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
+                DECLARE count_price_diff_visible INT;
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible=1;
+                SELECT COUNT(DISTINCT iprice) INTO count_price_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
 
-                UPDATE prod SET items_count_all = count_all,
-                                items_count_visible = count_visible
+                UPDATE prod SET ic_all = count_all,
+                                ic_visible = count_visible,
+                                ic_price_diff_visible = count_price_diff_visible
                 WHERE prod.id = NEW.prod_id;
+
             END
             ');
 
@@ -70,13 +77,17 @@ class Items extends Migration
 
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
+                DECLARE count_price_diff_visible INT;
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE OLD.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE OLD.prod_id=items.prod_id AND visible=1;
+                SELECT COUNT(DISTINCT iprice) INTO count_price_diff_visible FROM items WHERE OLD.prod_id = items.prod_id AND visible = 1;
 
-                UPDATE prod SET items_count_all = count_all,
-                                items_count_visible = count_visible
+                UPDATE prod SET ic_all = count_all,
+                                ic_visible = count_visible,
+                                ic_price_diff_visible = count_price_diff_visible
                 WHERE prod.id = OLD.prod_id;
+
             END
             ');
     }
