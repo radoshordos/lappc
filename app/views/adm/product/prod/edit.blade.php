@@ -20,7 +20,7 @@
 @section('content')
 <div id="lasmall">
 {{ Form::open(array('method' => 'POST','action' => array('ProdController@edit', $choice_prod, "tree_id=".$choice_tree))) }}
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered table-condensed">
     <tbody>
     <tr>
         <th>Skupina</th>
