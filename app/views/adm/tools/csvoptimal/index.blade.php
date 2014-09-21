@@ -20,8 +20,8 @@ Optimalizator .csv dat
         </tr>
         <tr>
             <td colspan="2">{{ Form::select('menu', $select_menu, $menu, ['required' => 'required', 'class'=> 'form-control']) }}</td>
-            <td>{{ Form::select('param1', ['1' => '[1]','2' => '[2]','3' => '[3]','4' => '[4]','5' => '[5]','6' => '[6]','7' => '[7]'], $param1 ,['required' => 'required', 'class'=> 'form-control']) }}</td>
-            <td>{{ Form::select('param2', ['1' => '[1]','2' => '[2]','3' => '[3]','4' => '[4]','5' => '[5]','6' => '[6]','7' => '[7]'], $param2 ,['required' => 'required', 'class'=> 'form-control']) }}</td>
+            <td>{{ Form::select('param1', ['1' => '[1]','2' => '[2]','3' => '[3]','4' => '[4]','5' => '[5]','6' => '[6]','7' => '[7]','8' => '[8]'], $param1 ,['required' => 'required', 'class'=> 'form-control']) }}</td>
+            <td>{{ Form::select('param2', ['1' => '[1]','2' => '[2]','3' => '[3]','4' => '[4]','5' => '[5]','6' => '[6]','7' => '[7]','8' => '[8]'], $param2 ,['required' => 'required', 'class'=> 'form-control']) }}</td>
         <tr>
         </thead>
         <tbody>
