@@ -53,28 +53,30 @@ class DevTableSeeder extends Seeder {
 
 		DB::table('dev')->insert([
 			'id'     => 35,
-			'active' => 1,
 			'alias'  => 'proma',
 			'name'   => 'Proma'
 		]);
 
 		DB::table('dev')->insert([
 			'id'     => 40,
-			'active' => 1,
 			'alias'  => 'dewalt',
 			'name'   => 'Dewalt'
 		]);
 
 		DB::table('dev')->insert([
 			'id'     => 45,
-			'active' => 1,
 			'alias'  => 'narex_bystrice',
 			'name'   => 'Narex Bystřice'
 		]);
 
 		DB::table('dev')->insert([
+			'id'     => 160,
+			'alias'  => 'fiskars',
+			'name'   => 'Fiskars'
+		]);
+
+		DB::table('dev')->insert([
 			'id'     => 620,
-			'active' => 1,
 			'alias'  => 'kinex',
 			'name'   => 'Kinex'
 		]);
