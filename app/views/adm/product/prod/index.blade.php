@@ -2,9 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-@parent
-Přehled produktů
-@stop
+@parent Přehled produktů @stop
 
 {{-- JavaScript on page --}}
 @section ('script')
@@ -55,7 +53,7 @@ Přehled produktů
                 <th>Výrobce</th>
                 <th>#TREE</th>
                 <th>Záruka</th>
-                <th>Nazev</th>
+                <th>Nazev [Položek]</th>
                 <th>Cena</th>
             </tr>
             </thead>
@@ -66,7 +64,7 @@ Přehled produktů
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
                 <td>{{ $row->prod_warranty_name }}</td>
-                <td>{{ link_to_route('adm.product.prod.edit',$row->prod_name,array($row->prod_id,"tree_id=".$row->tree_id)) }}</td>
+                <td>{{ link_to_route('adm.product.prod.edit',$row->prod_name." [".$row->prod_ic_all."]",array($row->prod_id,"tree_id=".$row->tree_id)) }}</td>
                 <td>{{ $row->prod_price }}</td>
             </tr>
             @endforeach

@@ -2020,6 +2020,10 @@ var requirejs, require, define;
 var components = {
     "packages": [
         {
+            "name": "bootstrap",
+            "main": "bootstrap-built.js"
+        },
+        {
             "name": "foundation",
             "main": "foundation-built.js"
         },
@@ -2037,6 +2041,11 @@ var components = {
         }
     ],
     "shim": {
+        "bootstrap": {
+            "deps": [
+                "jquery"
+            ]
+        },
         "foundation": {
             "exports": "window.Foundation",
             "deps": [

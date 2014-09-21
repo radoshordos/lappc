@@ -5,8 +5,8 @@
         "zendframework/zend-xmlrpc": "2.3.*",
         "barryvdh/laravel-ide-helper": "1.*",
         "dg/adminer-custom": "1.*",
-        "twbs/bootstrap": "3.*",
         "ivaynberg/select2": "3.*",
+        "components/bootstrap": "3.*",
         "components/jquery": "1.*",
         "components/foundation": "5.*",
         "components/font-awesome": "4.*"
