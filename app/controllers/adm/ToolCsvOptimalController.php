@@ -2,10 +2,11 @@
 
 use Authority\Tools\Filter\Csv\CsvOptimal;
 
-class ToolCsvOptimalController extends \BaseController {
+class ToolCsvOptimalController extends \BaseController
+{
 
-	public function index() {
-
+	public function index()
+	{
 		$csv = new CsvOptimal(Input::get('data_input'));
 
 		switch (Input::get('menu')) {
