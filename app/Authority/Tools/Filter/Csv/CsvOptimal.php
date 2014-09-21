@@ -32,6 +32,17 @@ class CsvOptimal extends CsvAbstract
         }
     }
 
+	public function clearBadCountColumn($column) {
+		$i = 0;
+		foreach (explode(self::ENDOFLINE, $this->data_input) as $val) {
+			if (count(explode(self::DELIMITER, $val)) == $column) {
+				$this->data_output[$i++] = $val;
+			} else {
+				$this->data_bug[$i++] = $val;
+			}
+		}
+	}
+
     public function reduceUnusableCharts()
     {
         $i = 0;
@@ -90,5 +101,20 @@ class CsvOptimal extends CsvAbstract
         }
     }
 
+	//////////
+	//  14  //
+	//////////
+
+	public function colTrim($column)
+	{
+		{
+			$i = 0;
+			foreach (explode(self::ENDOFLINE, $this->data_input) as $val) {
+				$ex_value = explode(';', $val);
+				$ex_value[$column - 1] = trim($ex_value[$column - 1]);
+				$this->data_output[$i++] = implode(';', $ex_value);
+			}
+		}
+	}
 
 }
