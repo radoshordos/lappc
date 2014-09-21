@@ -26,15 +26,17 @@ Optimalizator .csv dat
         </thead>
         <tbody>
         <tr>
-            <td colspan="2">{{ Form::textarea('data_input', $data_input, ['size' => '90x20', 'class' => 'form-control' ]) }}</td>
-            <td colspan="2">{{ Form::textarea('data_output', $data_output, ['size' => '90x20', 'class' => 'form-control']) }}</td>
+            <td colspan="4">{{ Form::textarea('data_input', $data_input, ['size' => '180x10', 'class' => 'form-control' ]) }}</td>
         </tr>
         <tr>
-            <td colspan="2">Lenght : <b>{{ strlen($data_input) }}</b></td>
-            <td colspan="2">Lenght : <b>{{ strlen($data_output) }}</b></td>
+            <td colspan="4">{{ Form::textarea('data_output', $data_output, ['size' => '180x10', 'class' => 'form-control']) }}</td>
         </tr>
         <tr>
-            <td colspan="4">{{ Form::textarea('data_bug', $data_bug, ['size' => '180x10', 'class' => 'form-control']) }}</td>
+            <td colspan="2">Input lenght : <b>{{ strlen($data_input) }}</b></td>
+            <td colspan="2">Output Lenght : <b>{{ strlen($data_output) }}</b></td>
+        </tr>
+        <tr>
+            <td colspan="4">{{ Form::textarea('data_bug', $data_bug, ['size' => '180x8', 'class' => 'form-control']) }}</td>
         <tr>
         </tbody>
     </table>
