@@ -104,6 +104,15 @@ class Prod extends Migration
                                 CALL proc_replase_tree_dev(@og100,OLD.dev_id);
                                 CALL proc_replase_tree_dev(@og10000,OLD.dev_id);
                 END CASE;
+
+				IF NEW.mode_id = 4 AND OLD.mode_id != 4
+					THEN
+						INSERT INTO akce (prod_id) VALUES (NEW.id);
+				END IF;
+				IF OLD.mode_id = 4 AND NEW.mode_id != 4
+					THEN
+						DELETE FROM akce WHERE prod_id = OLD.id;
+				END IF;
             END
         ');
 

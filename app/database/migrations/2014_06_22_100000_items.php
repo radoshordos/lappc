@@ -16,6 +16,7 @@ class Items extends Migration
             $table->boolean('visible')->default(1);
             $table->string('code_prod',32)->nullable();
             $table->string('code_ean',32)->nullable();
+	        $table->decimal('iprice', 9, 2)->unsigned()->default(0);
             $table->timestamps();
 
             $table->engine = 'InnoDB';
@@ -34,6 +35,7 @@ class Items extends Migration
 
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
+				DECLARE count_different_price_visible INT;
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible=1;

@@ -1,18 +1,19 @@
 <?php
 
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\Items;
 use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
 
-class ProdController extends \BaseController
-{
+class ProdController extends \BaseController {
 	protected $prod;
 	protected $view;
+	protected $items;
 
-	function __construct(Prod $prod, ViewProd $view)
-	{
+	function __construct(Prod $prod, ViewProd $view, Items $items) {
 		$this->prod = $prod;
 		$this->view = $view;
+		$this->items = $items;
 	}
 
 	/**
@@ -22,8 +23,7 @@ class ProdController extends \BaseController
 	 * @return Response
 	 */
 
-	public function index()
-	{
+	public function index() {
 		Input::has('select_limit') ? $input_limit = intval(Input::get('select_limit')) : $input_limit = 30;
 		Input::has('select_sort') ? $input_sort = intval(Input::get('select_sort')) : $input_sort = 1;
 
@@ -60,13 +60,11 @@ class ProdController extends \BaseController
 	 * @return Response
 	 */
 
-	public function create()
-	{
+	public function create() {
 		return View::make('adm.product.prod.create', []);
 	}
 
-	public function edit($id)
-	{
+	public function edit($id) {
 		$choice_tree = (intval(Input::get('list_tree') > 1) ? Input::get('list_tree') : Input::get('tree_id'));
 		$choice_prod = (intval(Input::get('list_prod') > 1) ? Input::get('list_prod') : $id);
 
@@ -91,22 +89,24 @@ class ProdController extends \BaseController
 		}
 
 		return View::make('adm.product.prod.edit', [
-			'list_tree'       => $select_tree,
-			'list_prod'       => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choice_tree], ['id' => '->name']),
-			'choice_tree'     => $choice_tree,
-			'choice_prod'     => $choice_prod,
-			'prod'            => $prod,
-			'select_dev'      => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-			'select_tree'     => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-			'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-			'select_dph'      => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
-			'select_mode'     => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-			'select_forex'    => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
+			'list_tree'           => $select_tree,
+			'list_prod'           => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choice_tree], ['id' => '->name']),
+			'choice_tree'         => $choice_tree,
+			'choice_prod'         => $choice_prod,
+			'prod'                => $prod,
+			'select_dev'          => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+			'select_tree'         => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+			'select_warranty'     => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+			'select_dph'          => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
+			'select_mode'         => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+			'select_forex'        => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
+			'select_sale'         => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
+			'select_availability' => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+			'table_items'         => $this->items->where('prod_id', '=', $id)->get()
 		])->with(['id' => $choice_prod]);
 	}
 
-	public function update($id)
-	{
+	public function update($id) {
 		$dev = $this->prod->find($id);
 		$input = array_except(Input::all(), '_method');
 		$input['id'] = $dev->id;

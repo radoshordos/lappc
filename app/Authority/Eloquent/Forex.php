@@ -1,14 +1,11 @@
-<?php
+<?php namespace Authority\Eloquent;
 
-namespace Authority\Eloquent;
+class Forex extends \Eloquent {
 
-class Forex extends \Eloquent
-{
-    protected $table = 'forex';
-    protected $guarded = [];
+	protected $table = 'forex';
+	protected $guarded = [];
 
-    public $timestamps = false;
+	public $timestamps = false;
 
-    public static $rules = array();
-
+	public static $rules = [];
 }

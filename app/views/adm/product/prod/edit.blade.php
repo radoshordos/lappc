@@ -2,9 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-@parent
-Editace produktu
-@stop
+@parent Editace produktu @stop
 
 {{-- JavaScript on page --}}
 @section ('script')
@@ -149,6 +147,35 @@ Editace produktu
     </div>
 </div>
 
+<div class="row" style="border-top:4px solid #D9EDF7;border-bottom:4px solid #D9EDF7">
+<table style="margin-top:4px;margin-bottom:4px">
+   <thead>
+        <tr>
+            <th>Zobrazit</th>
+            <th colspan="2" class="text-center">Rozdílnosti</th>
+            <th>Kód</th>
+            <th>EAN</th>
+            <th>Sleva</th>
+            <th>Dostupnost</th>
+            <th>Cena</th>
+        </tr>
+   </thead>
+   <tbody>
+        @foreach ($table_items as $item)
+        <tr>
+            <td>{{ Form::select("visible[$item->id]", ['0' => 'NE', '1' => 'ANO'], NULL, ['class' => 'form-control']) }}</td>
+            <td>{{ Form::text("diff1[$item->id]", NULL, array('class'=> 'form-control')) }}
+            <td>{{ Form::text("diff2[$item->id]", NULL, array('class'=> 'form-control')) }}
+            <td>{{ Form::text("code_prod[$item->id]", $item->code_prod, array('class'=> 'form-control')) }}
+            <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, array('class'=> 'form-control')) }}
+            <td>{{ Form::select("sale_id[$item->id]", $select_sale, NULL, ['class' => 'form-control']) }}</td>
+            <td>{{ Form::select("availability_id[$item->id]", $select_availability, NULL, ['class' => 'form-control']) }}</td>
+            <td>{{ Form::input('number',"iprice[$item->id]", round(NULL,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+</div>
 
 <p class="text-center">
     {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
