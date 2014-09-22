@@ -67,7 +67,6 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-xs-12 col-md-8">
         <div class="form-group">
@@ -159,13 +158,14 @@
         @foreach ($table_items as $item)
         <tr>
             <td>{{ Form::select("visible[$item->id]", ['0' => 'NE', '1' => 'ANO'], NULL, ['class' => 'form-control']) }}</td>
-            <td>{{ Form::text("diff1[$item->id]", NULL, array('class'=> 'form-control')) }}
-            <td>{{ Form::text("diff2[$item->id]", NULL, array('class'=> 'form-control')) }}
-            <td>{{ Form::text("code_prod[$item->id]", $item->code_prod, array('class'=> 'form-control')) }}
-            <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, array('class'=> 'form-control')) }}
+            <td>{{ Form::text("diff1[$item->id]", NULL, array('class'=> 'form-control')) }}</td>
+            <td>{{ Form::text("diff2[$item->id]", NULL, array('class'=> 'form-control')) }}</td>
+            <td>{{ Form::text("code_prod[$item->id]", $item->code_prod, array('class'=> 'form-control')) }}</td>
+            <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, array('class'=> 'form-control')) }}</td>
             <td>{{ Form::select("sale_id[$item->id]", $select_sale, NULL, ['class' => 'form-control']) }}</td>
             <td>{{ Form::select("availability_id[$item->id]", $select_availability, NULL, ['class' => 'form-control']) }}</td>
-            <td>{{ Form::input('number',"iprice[$item->id]", round(NULL,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}
+            <td>{{ Form::input('number',"iprice[$item->id]", round(NULL,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
+            <td>{{ Form::checkbox('item[$item->id]') }}</td>
         </tr>
         @endforeach
     </tbody>

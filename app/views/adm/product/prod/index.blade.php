@@ -50,6 +50,7 @@
             <thead>
             <tr>
                 <th>#ID</th>
+                <th>#M</th>
                 <th>Výrobce</th>
                 <th>#TREE</th>
                 <th>Záruka</th>
@@ -61,6 +62,7 @@
             @foreach ($view as $row)
             <tr>
                 <td>{{ $row->prod_id }}</td>
+                <td>{{ $row->prod_mode_id }}</td>
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
                 <td>{{ $row->prod_warranty_name }}</td>
