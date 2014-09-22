@@ -18,26 +18,19 @@
 
 {{-- Content --}}
 @section('content')
-
-
-<div id="lasmall">
 {{ Form::open(array('route' => array('adm.product.prod.edit', $choice_tree, $choice_prod))) }}
-<table class="table table-striped table-bordered table-condensed">
-    <tbody>
-        <tr>
-            <th>Skupina</th>
-            <td>{{ Form::select('list_tree',$list_tree, $choice_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}</td>
-        </tr>
-        <tr>
-            <th>Produkt</th>
-            <td>
-            @if (isset($list_prod) && !empty($list_prod))
-                {{ Form::select('list_prod',$list_prod, $choice_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
-            @endif
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="input-group form-group">
+    <span class="input-group-addon">Skupina</span>
+    {{ Form::select('list_tree',$list_tree, $choice_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+</div>
+
+@if (isset($list_prod) && !empty($list_prod))
+<div class="input-group form-group">
+    <span class="input-group-addon">Produkt</span>
+    {{ Form::select('list_prod',$list_prod, $choice_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+</div>
+<br />
+@endif
 {{ Form::close() }}
 
 @if (isset($prod))
