@@ -11,7 +11,7 @@
         $("#list_tree").select2({});
         $("#list_prod").select2({});
         $("#tree_id").select2({});
-        $("#xev_id").select2({});
+        $("#dev_id").select2({});
     });
 </script>
 @stop
@@ -54,35 +54,6 @@
     </div>
     <div class="col-xs-6 col-md-4">
         <div class="form-group">
-            <div class="col-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon">Záruka</span>
-                    {{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-md-8">
-        <div class="form-group">
-            {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                <div class="input-group btn-group-justified">
-                    <span class="btn-group">{{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
-                    <span class="btn-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">Záruka</span>
-                            {{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
-                        </div>
-                     </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-6 col-md-4">
-        <div class="form-group">
             {{ Form::label('difference_id','Typ',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
                 <div class="input-group">
@@ -96,12 +67,16 @@
     </div>
 </div>
 
+
 <div class="row">
     <div class="col-xs-12 col-md-8">
         <div class="form-group">
-            {{-- Form::label('alias','Alias',array('class'=> 'col-sm-2 control-label')) --}}
+            {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
-                {{-- Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) --}}
+                <div class="input-group btn-group-justified">
+                    <span class="btn-group">{{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'col-sm-2 form-control')) }}</span>
+                    <span class="btn-group">{{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
+                </div>
             </div>
         </div>
     </div>
