@@ -18,8 +18,13 @@
 
 {{-- Content --}}
 @section('content')
+
+{{ var_dump($choice_tree) }}
+
 <div id="lasmall">
-{{ Form::open(array('method' => 'POST','action' => array('ProdController@edit', $choice_prod, "tree_id=".$choice_tree))) }}
+{{ Form::open(array('route' => array('adm.product.prod.edit', $choice_tree, $choice_prod))) }}
+
+{{-- Form::open(['method' => 'GET','action' => ['ProdController@edit', $choice_tree,$choice_prod]]) --}}
 <table class="table table-striped table-bordered table-condensed">
     <tbody>
     <tr>

@@ -66,7 +66,7 @@
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
                 <td>{{ $row->prod_warranty_name }}</td>
-                <td>{{ link_to_route('adm.product.prod.edit',$row->prod_name." [".$row->prod_ic_all."]",array($row->prod_id,"tree_id=".$row->tree_id)) }}</td>
+                <td>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</td>
                 <td>{{ $row->prod_price }}</td>
             </tr>
             @endforeach

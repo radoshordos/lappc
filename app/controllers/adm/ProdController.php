@@ -68,37 +68,30 @@ class ProdController extends \BaseController
         return View::make('adm.product.prod.create', []);
     }
 
-    public function edit($id)
+    public function edit($tree = 0,$prod = 0)
     {
-        $choice_tree = (intval(Input::get('list_tree') > 1) ? Input::get('list_tree') : Input::get('tree_id'));
-        $choice_prod = (intval(Input::get('list_prod') > 1) ? Input::get('list_prod') : $id);
-
-        if ($id != $choice_prod) {
-            Redirect::action('ProdController@edit', $choice_prod);
-        }
-
-        $prod = $this->prod->where('id', '=', $choice_prod)->where('tree_id', '=', $choice_tree)->first();
+        $row = $this->prod->where('tree_id', '=', $tree)->where('id', '=', $prod)->first();
 
         $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name
                                  FROM tree
                                  INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1
                                  WHERE dir_all >0", ['id' => '[->id] - [->absolute] - ->name']);
 
-        if (!isset($prod->tree_id)) {
+        if (!isset($row->tree_id)) {
             return View::make('adm.product.prod.edit', [
                 'list_tree'   => $select_tree,
-                'list_prod'   => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choice_tree], ['id' => '->name']),
-                'choice_tree' => $choice_tree,
-                'choice_prod' => $choice_prod
-            ])->with(['id' => $choice_prod]);
+                'list_prod'   => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name']),
+                'choice_tree' => $tree,
+                'choice_prod' => $prod
+            ])->with(['id' => $prod]);
         }
 
         return View::make('adm.product.prod.edit', [
             'list_tree'           => $select_tree,
-            'list_prod'           => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choice_tree], ['id' => '->name']),
-            'choice_tree'         => $choice_tree,
-            'choice_prod'         => $choice_prod,
-            'prod'                => $prod,
+            'list_prod'           => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name']),
+            'choice_tree'         => $tree,
+            'choice_prod'         => $prod,
+            'prod'                => $row,
             'select_dev'          => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
             'select_tree'         => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_warranty'     => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
@@ -108,8 +101,8 @@ class ProdController extends \BaseController
             'select_sale'         => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
             'select_difference'   => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
             'select_availability' => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-            'table_items'         => $this->items->where('prod_id', '=', $id)->get()
-        ])->with(['id' => $choice_prod]);
+            'table_items'         => $this->items->where('prod_id', '=', $prod)->get()
+        ])->with(['id' => $prod]);
     }
 
     public function update($id)
@@ -126,7 +119,7 @@ class ProdController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.product.prod.index');
+            return Redirect::route('adm.product.prod.edit');
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.product.prod.edit', $id)->withInput()->withErrors($v);
