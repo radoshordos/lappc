@@ -11,7 +11,7 @@
         $("#list_tree").select2({});
         $("#list_prod").select2({});
         $("#tree_id").select2({});
-        $("#dev_id").select2({});
+        $("#xev_id").select2({});
     });
 </script>
 @stop
@@ -54,9 +54,11 @@
     </div>
     <div class="col-xs-6 col-md-4">
         <div class="form-group">
-            {{ Form::label('warranty_id','Záruka',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
-                {{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
+                <div class="input-group">
+                    <span class="input-group-addon">Záruka</span>
+                    {{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
+                </div>
             </div>
         </div>
     </div>
@@ -67,7 +69,15 @@
         <div class="form-group">
             {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
-                {{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                <div class="input-group btn-group-justified">
+                    <span class="btn-group">{{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
+                    <span class="btn-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Záruka</span>
+                            {{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}
+                        </div>
+                     </span>
+                </div>
             </div>
         </div>
     </div>
@@ -89,17 +99,20 @@
 <div class="row">
     <div class="col-xs-12 col-md-8">
         <div class="form-group">
-            {{ Form::label('alias','Alias',array('class'=> 'col-sm-2 control-label')) }}
+            {{-- Form::label('alias','Alias',array('class'=> 'col-sm-2 control-label')) --}}
             <div class="col-sm-10">
-                {{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}
+                {{-- Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) --}}
             </div>
         </div>
     </div>
     <div class="col-xs-6 col-md-4">
-       <div class="form-group">
+        <div class="form-group">
             {{ Form::label('mode_id','Stav',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
-                {{ Form::select('mode_id',$select_mode, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                <div class="input-group">
+                    <span class="input-group-addon">@if ($prod["mode_id"] == 4)<a href=""><span class="glyphicon glyphicon-arrow-right"></span></a>@endif</span>
+                    {{ Form::select('mode_id',$select_mode, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                </div>
             </div>
         </div>
     </div>
@@ -108,9 +121,12 @@
 <div class="row">
     <div class="col-md-8">
         <div class="form-group">
-            {{ Form::label('name','Název výrobce',array('class'=> 'col-sm-2 control-label')) }}
+            {{ Form::label('name','Název',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
-                {{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}
+                <div class="input-group btn-group-justified">
+                    <span class="btn-group">{{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}</span>
+                    <span class="btn-group">{{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}</span>
+                </div>
             </div>
         </div>
     </div>
