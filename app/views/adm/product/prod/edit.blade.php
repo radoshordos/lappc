@@ -19,34 +19,29 @@
 {{-- Content --}}
 @section('content')
 
-{{ var_dump($choice_tree) }}
 
 <div id="lasmall">
 {{ Form::open(array('route' => array('adm.product.prod.edit', $choice_tree, $choice_prod))) }}
-
-{{-- Form::open(['method' => 'GET','action' => ['ProdController@edit', $choice_tree,$choice_prod]]) --}}
 <table class="table table-striped table-bordered table-condensed">
     <tbody>
-    <tr>
-        <th>Skupina</th>
-        <td>
-        {{ Form::select('list_tree',$list_tree, $choice_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
-        </td>
-    </tr>
-    <tr>
-        <th>Produkt</th>
-        <td>
-        @if (isset($list_prod) && !empty($list_prod))
-            {{ Form::select('list_prod',$list_prod, $choice_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
-        @endif
-        </td>
-    </tr>
+        <tr>
+            <th>Skupina</th>
+            <td>{{ Form::select('list_tree',$list_tree, $choice_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}</td>
+        </tr>
+        <tr>
+            <th>Produkt</th>
+            <td>
+            @if (isset($list_prod) && !empty($list_prod))
+                {{ Form::select('list_prod',$list_prod, $choice_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+            @endif
+            </td>
+        </tr>
     </tbody>
 </table>
 {{ Form::close() }}
 
 @if (isset($prod))
-{{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$prod->id),'class'=>'form-horizontal','role'=>'form')) }}
+{{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$choice_tree, $choice_prod),'class'=>'form-horizontal','role'=>'form')) }}
 
 <div class="row">
     <div class="col-xs-12 col-md-8">
@@ -63,7 +58,7 @@
             <div class="col-sm-10">
                 <div class="input-group">
                     <span class="input-group-addon alert-danger">
-                        <input type="checkbox">
+                        {{ Form::checkbox('difference_check')  }}
                     </span>
                     {{  Form::select('difference_id',$select_difference, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek')) }}
                  </div>
