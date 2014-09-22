@@ -71,6 +71,10 @@ Route::group(array('prefix' => 'adm'), function () {
         Route::any('sync', array('as' => 'adm.stats.sync.index', 'uses' => 'StatsSyncController@index'));
     });
 
+    Route::group(array('prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'), function () {
+        Route::any('find', array('as' => 'adm.buy.toptrans.index', 'uses' => 'BuyToptransController@index'));
+    });
+
     // Session Routes
     Route::get('login', array('as' => 'adm.login', 'uses' => 'SessionController@create'));
     Route::get('logout', array('as' => 'adm.logout', 'uses' => 'SessionController@destroy'));
