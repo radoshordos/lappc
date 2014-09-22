@@ -13,6 +13,7 @@ class Prod extends Migration
             $table->integer('tree_id')->unsigned();
             $table->integer('dev_id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned()->default(3);
+            $table->tinyInteger('difference_id')->unsigned()->default(1);
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
             $table->tinyInteger('forex_id')->unsigned()->default(1);
             $table->tinyInteger('dph_id')->unsigned()->default(21);
