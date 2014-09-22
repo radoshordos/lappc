@@ -46,13 +46,13 @@ class ProdController extends \BaseController
         }
 
         return View::make('adm.product.prod.index', [
-            'view' => $db->paginate($input_limit),
-            'input_dev' => Input::has('select_dev') ? intval(Input::get('select_dev')) : null,
-            'input_tree' => Input::has('select_tree') ? intval(Input::get('select_tree')) : null,
-            'input_sort' => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
+            'view'        => $db->paginate($input_limit),
+            'input_dev'   => Input::has('select_dev') ? intval(Input::get('select_dev')) : NULL,
+            'input_tree'  => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
+            'input_sort'  => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
             'input_limit' => $input_limit,
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-            'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
+            'select_dev'  => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
         ]);
     }
 
@@ -86,29 +86,29 @@ class ProdController extends \BaseController
 
         if (!isset($prod->tree_id)) {
             return View::make('adm.product.prod.edit', [
-                'list_tree' => $select_tree,
-                'list_prod' => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choice_tree], ['id' => '->name']),
+                'list_tree'   => $select_tree,
+                'list_prod'   => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$choice_tree], ['id' => '->name']),
                 'choice_tree' => $choice_tree,
                 'choice_prod' => $choice_prod
             ])->with(['id' => $choice_prod]);
         }
 
         return View::make('adm.product.prod.edit', [
-            'list_tree' => $select_tree,
-            'list_prod' => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choice_tree], ['id' => '->name']),
-            'choice_tree' => $choice_tree,
-            'choice_prod' => $choice_prod,
-            'prod' => $prod,
-            'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-            'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-            'select_dph' => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
-            'select_mode' => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-            'select_forex' => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
-            'select_sale' => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
-            'select_difference' => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+            'list_tree'           => $select_tree,
+            'list_prod'           => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$choice_tree], ['id' => '->name']),
+            'choice_tree'         => $choice_tree,
+            'choice_prod'         => $choice_prod,
+            'prod'                => $prod,
+            'select_dev'          => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+            'select_tree'         => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+            'select_warranty'     => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+            'select_dph'          => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
+            'select_mode'         => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+            'select_forex'        => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
+            'select_sale'         => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
+            'select_difference'   => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
             'select_availability' => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-            'table_items' => $this->items->where('prod_id', '=', $id)->get()
+            'table_items'         => $this->items->where('prod_id', '=', $id)->get()
         ])->with(['id' => $choice_prod]);
     }
 

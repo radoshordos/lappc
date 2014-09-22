@@ -73,9 +73,14 @@
     </div>
     <div class="col-xs-6 col-md-4">
         <div class="form-group">
-            {{ Form::label('difference_id','Rozdílnost',array('class'=> 'col-sm-2 control-label')) }}
+            {{ Form::label('difference_id','Typ',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
-                {{  Form::select('difference_id',$select_difference, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek')) }}
+                <div class="input-group">
+                    <span class="input-group-addon alert-danger">
+                        <input type="checkbox">
+                    </span>
+                    {{  Form::select('difference_id',$select_difference, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek')) }}
+                 </div>
             </div>
         </div>
     </div>
