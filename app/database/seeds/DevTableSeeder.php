@@ -1,84 +1,154 @@
 <?php
 
-class DevTableSeeder extends Seeder {
+class DevTableSeeder extends Seeder
+{
+    public function run()
+    {
+        $dev = [
+            ['dev_id' => '5', 'dev_id_tree' => '1051000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Makita', 'dev_unique_string' => 'makita', 'dev_url_2_dev' => 'http://www.makita.cz/', 'dev_url_2_dev_short' => 'www.makita.cz'],
+            ['dev_id' => '6', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Maktec', 'dev_unique_string' => 'maktec', 'dev_url_2_dev' => 'http://www.makita.cz/', 'dev_url_2_dev_short' => 'www.makita.cz'],
+            ['dev_id' => '10', 'dev_id_tree' => '1050000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '35', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Narex', 'dev_unique_string' => 'narex', 'dev_url_2_dev' => 'http://www.narex.cz/', 'dev_url_2_dev_short' => 'www.narex.cz'],
+            ['dev_id' => '15', 'dev_id_tree' => '1053000', 'dev_id_default_warranty' => '3', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Protool', 'dev_unique_string' => 'protool', 'dev_url_2_dev' => 'http://www.protool.cz/', 'dev_url_2_dev_short' => 'www.protool.cz'],
+            ['dev_id' => '20', 'dev_id_tree' => '1052000', 'dev_id_default_warranty' => '7', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Metabo', 'dev_unique_string' => 'metabo', 'dev_url_2_dev' => 'http://www.metabo.cz/', 'dev_url_2_dev_short' => 'www.metabo.cz'],
+            ['dev_id' => '30', 'dev_id_tree' => '1054000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Dolmar', 'dev_unique_string' => 'dolmar', 'dev_url_2_dev' => 'http://www.dolmar.cz', 'dev_url_2_dev_short' => 'www.dolmar.cz'],
+            ['dev_id' => '35', 'dev_id_tree' => '1060000', 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Proma', 'dev_unique_string' => 'proma', 'dev_url_2_dev' => 'http://www.promacz.cz/', 'dev_url_2_dev_short' => 'www.promacz.cz'],
+            ['dev_id' => '40', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Dewalt', 'dev_unique_string' => 'dewalt', 'dev_url_2_dev' => 'http://www.dewalt.cz/', 'dev_url_2_dev_short' => 'www.dewalt.cz'],
+            ['dev_id' => '45', 'dev_id_tree' => '1064000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Narex Bystřice', 'dev_unique_string' => 'narex_bystrice', 'dev_url_2_dev' => 'http://www.narexby.cz/', 'dev_url_2_dev_short' => 'www.narexby.cz'],
+            ['dev_id' => '50', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Flexovit', 'dev_unique_string' => 'flexovit', 'dev_url_2_dev' => 'http://www.flexovit.nl/', 'dev_url_2_dev_short' => 'www.flexovit.nl'],
+            ['dev_id' => '65', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'ABAC', 'dev_unique_string' => 'abac', 'dev_url_2_dev' => 'http://www.transtop.cz/', 'dev_url_2_dev_short' => 'www.transtop.cz'],
+            ['dev_id' => '70', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Telwin', 'dev_unique_string' => 'telwin', 'dev_url_2_dev' => 'http://www.telwin.com/webtelwin/prodotti.nsf', 'dev_url_2_dev_short' => 'www.telwin.com'],
+            ['dev_id' => '75', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Oregon', 'dev_unique_string' => 'oregon', 'dev_url_2_dev' => 'http://www.agroles-oregon.cz/', 'dev_url_2_dev_short' => 'www.agroles-oregon.cz'],
+            ['dev_id' => '80', 'dev_id_tree' => '1055000', 'dev_id_default_warranty' => '3', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Festool', 'dev_unique_string' => 'festool', 'dev_url_2_dev' => 'http://www.festool.cz/', 'dev_url_2_dev_short' => 'www.festool.cz'],
+            ['dev_id' => '85', 'dev_id_tree' => '1058000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Knipex', 'dev_unique_string' => 'knipex', 'dev_url_2_dev' => 'http://www.knipex.cz/', 'dev_url_2_dev_short' => 'www.knipex.cz'],
+            ['dev_id' => '95', 'dev_id_tree' => '1057000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '26', 'dev_delivery_date' => '1', 'dev_name' => 'Stanley', 'dev_unique_string' => 'stanley', 'dev_url_2_dev' => 'http://www.stanleyworks.cz/', 'dev_url_2_dev_short' => 'www.stanleyworks.cz'],
+            ['dev_id' => '120', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Elko Nový Knín', 'dev_unique_string' => 'elko', 'dev_url_2_dev' => 'http://www.elkonk.cz/', 'dev_url_2_dev_short' => 'www.elkonk.cz'],
+            ['dev_id' => '130', 'dev_id_tree' => '1061000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Fein', 'dev_unique_string' => 'fein', 'dev_url_2_dev' => 'http://www.fein.de/corp/de/en/custom/index.html', 'dev_url_2_dev_short' => 'www.fein.de'],
+            ['dev_id' => '135', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '35', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Hitachi', 'dev_unique_string' => 'hitachi', 'dev_url_2_dev' => 'http://www.hitachi-powertools.cz/', 'dev_url_2_dev_short' => 'www.hitachi-powertools.cz'],
+            ['dev_id' => '140', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Lumag', 'dev_unique_string' => 'lumag_germany', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '145', 'dev_id_tree' => '1059000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Oren', 'dev_unique_string' => 'oren', 'dev_url_2_dev' => 'http://www.oren.cz', 'dev_url_2_dev_short' => 'www.oren.cz'],
+            ['dev_id' => '150', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Master', 'dev_unique_string' => 'master', 'dev_url_2_dev' => 'http://www.masterheaters.eu/', 'dev_url_2_dev_short' => 'www.masterheaters.eu'],
+            ['dev_id' => '155', 'dev_id_tree' => '1063000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '40', 'dev_id_default_availibility' => '26', 'dev_delivery_date' => '1', 'dev_name' => 'Wiha', 'dev_unique_string' => 'wiha', 'dev_url_2_dev' => 'http://www.wiha.com/', 'dev_url_2_dev_short' => 'www.wiha.com'],
+            ['dev_id' => '160', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Fiskars', 'dev_unique_string' => 'fiskars', 'dev_url_2_dev' => 'http://www.fiskars.com/cz/', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '165', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Sankyo', 'dev_unique_string' => 'sankyo', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '170', 'dev_id_tree' => '1066000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Worx', 'dev_unique_string' => 'worx', 'dev_url_2_dev' => 'http://www.promacz.cz/', 'dev_url_2_dev_short' => 'www.promacz.cz'],
+            ['dev_id' => '175', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Ferm economy', 'dev_unique_string' => 'ferm_economy', 'dev_url_2_dev' => 'http://www.satrade.cz/', 'dev_url_2_dev_short' => 'www.satrade.cz'],
+            ['dev_id' => '176', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Ferm powerline', 'dev_unique_string' => 'ferm_powerline', 'dev_url_2_dev' => 'http://www.satrade.cz/', 'dev_url_2_dev_short' => 'www.satrade.cz'],
+            ['dev_id' => '180', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Proteco', 'dev_unique_string' => 'proteco', 'dev_url_2_dev' => 'http://www.azsatelit.cz/', 'dev_url_2_dev_short' => 'www.proteco.cz'],
+            ['dev_id' => '185', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Al-ko', 'dev_unique_string' => 'al-ko', 'dev_url_2_dev' => 'http://zahrada.al-ko.cz/', 'dev_url_2_dev_short' => 'zahrada.al-ko.cz'],
+            ['dev_id' => '190', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '8', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'WAY', 'dev_unique_string' => 'way', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '195', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Lescha', 'dev_unique_string' => 'lescha', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '200', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Bow', 'dev_unique_string' => 'bow', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '202', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Aircraft', 'dev_unique_string' => 'aircraft', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '204', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Holzstar', 'dev_unique_string' => 'holzstar', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '206', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Holzkraft', 'dev_unique_string' => 'holzkraft', 'dev_url_2_dev' => 'www.bow.cz', 'dev_url_2_dev_short' => 'http://www.bow.cz'],
+            ['dev_id' => '208', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Numco', 'dev_unique_string' => 'numco', 'dev_url_2_dev' => 'http://www.numco.cz/', 'dev_url_2_dev_short' => 'www.numco.cz'],
+            ['dev_id' => '210', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Metallkraft', 'dev_unique_string' => 'metallkraft', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '212', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Optimum', 'dev_unique_string' => 'optimum', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '214', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Quantum', 'dev_unique_string' => 'quantum', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '216', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Schweißkraft', 'dev_unique_string' => 'schweißkraft', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '218', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Unicraft', 'dev_unique_string' => 'unicraft', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '220', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Sieg', 'dev_unique_string' => 'sieg', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '222', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'RÖHM', 'dev_unique_string' => 'rohm', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '224', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Karnasch', 'dev_unique_string' => 'karnasch', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '226', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'RHTC', 'dev_unique_string' => 'rhtc', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '240', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '35', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'SOLA', 'dev_unique_string' => 'sola', 'dev_url_2_dev' => 'http://www.sola.at', 'dev_url_2_dev_short' => 'www.sola.at'],
+            ['dev_id' => '245', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Virutex', 'dev_unique_string' => 'virutex', 'dev_url_2_dev' => 'http://www.virutex.cz/', 'dev_url_2_dev_short' => 'www.virutex.cz'],
+            ['dev_id' => '250', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Steinel', 'dev_unique_string' => 'steinel', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '255', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Magg', 'dev_unique_string' => 'magg', 'dev_url_2_dev' => 'http://www.magg.cz/', 'dev_url_2_dev_short' => 'www.magg.cz'],
+            ['dev_id' => '260', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Evolution', 'dev_unique_string' => 'evolution', 'dev_url_2_dev' => 'http://www.evolutiontools.cz', 'dev_url_2_dev_short' => 'www.evolutiontools.cz'],
+            ['dev_id' => '265', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'VeGA', 'dev_unique_string' => 'vega', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '270', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Claber', 'dev_unique_string' => 'claber', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '275', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'ALVE', 'dev_unique_string' => 'alve', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '290', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '2', 'dev_name' => 'Weibang', 'dev_unique_string' => 'weibang', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '295', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Tona', 'dev_unique_string' => 'tona', 'dev_url_2_dev' => 'http://www.tona.cz/cesky/firma/', 'dev_url_2_dev_short' => 'www.tona.cz'],
+            ['dev_id' => '300', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Dirotec', 'dev_unique_string' => 'dirotec', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '310', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Narex Bučovice', 'dev_unique_string' => 'narex-bucovice', 'dev_url_2_dev' => 'http://www.tools-bu.cz/', 'dev_url_2_dev_short' => 'www.tools-bu.cz/'],
+            ['dev_id' => '315', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Nuair', 'dev_unique_string' => 'nuair', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '320', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'MS Nářadí', 'dev_unique_string' => 'ms-naradi', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '325', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Paslode', 'dev_unique_string' => 'paslode', 'dev_url_2_dev' => 'http://www.duo-fast.cz/', 'dev_url_2_dev_short' => 'www.paslode.cz'],
+            ['dev_id' => '330', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Walmec', 'dev_unique_string' => 'walmec', 'dev_url_2_dev' => 'http://www.walmec.com/', 'dev_url_2_dev_short' => 'www.walmec.com'],
+            ['dev_id' => '345', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '3', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Heron', 'dev_unique_string' => 'heron', 'dev_url_2_dev' => 'http://www.heron-motor.cz/', 'dev_url_2_dev_short' => 'www.heron-motor.cz'],
+            ['dev_id' => '355', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Wagner', 'dev_unique_string' => 'wagner', 'dev_url_2_dev' => 'http://www.wagner.cz/', 'dev_url_2_dev_short' => 'www.wagner.cz/'],
+            ['dev_id' => '365', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'York', 'dev_unique_string' => 'york', 'dev_url_2_dev' => 'http://www.york.cz/index.jsp', 'dev_url_2_dev_short' => 'www.york.cz'],
+            ['dev_id' => '370', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Kasper', 'dev_unique_string' => 'kasper', 'dev_url_2_dev' => 'http://www.jesankovo.cz/index.htm', 'dev_url_2_dev_short' => 'www.kasper.cz'],
+            ['dev_id' => '385', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Reich by Holzher', 'dev_unique_string' => 'holzher', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '390', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Extol', 'dev_unique_string' => 'extol', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '395', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '2', 'dev_delivery_date' => '1', 'dev_name' => 'Gola nářadí', 'dev_unique_string' => 'gola-naradi', 'dev_url_2_dev' => 'http://www.gola-naradi.cz', 'dev_url_2_dev_short' => 'gola-naradi.cz'],
+            ['dev_id' => '400', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Banner', 'dev_unique_string' => 'banner', 'dev_url_2_dev' => 'http://www.bannerbatterien.com/banner/home/index_en1.php', 'dev_url_2_dev_short' => 'www.banner.cz'],
+            ['dev_id' => '405', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Konrád Karel', 'dev_unique_string' => 'konrad', 'dev_url_2_dev' => 'http://www.konrad.pha.cz/', 'dev_url_2_dev_short' => 'www.konrad.cz'],
+            ['dev_id' => '410', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Proxxon', 'dev_unique_string' => 'proxxon', 'dev_url_2_dev' => 'http://www.proxxon.com/eng/', 'dev_url_2_dev_short' => 'proxxon.com/eng/'],
+            ['dev_id' => '420', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Stabila', 'dev_unique_string' => 'stabila', 'dev_url_2_dev' => 'http://www.protec.cz/', 'dev_url_2_dev_short' => 'www.protec.cz'],
+            ['dev_id' => '425', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Ajax Jihlava', 'dev_unique_string' => 'ajax_jihlava', 'dev_url_2_dev' => 'http://www.ajaxjihlava.cz/', 'dev_url_2_dev_short' => 'http://www.ajaxjihlava.cz/'],
+            ['dev_id' => '435', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Hecht', 'dev_unique_string' => 'hecht', 'dev_url_2_dev' => 'http://www.werco.cz/', 'dev_url_2_dev_short' => 'www.werco.cz'],
+            ['dev_id' => '440', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'IGM', 'dev_unique_string' => 'igm', 'dev_url_2_dev' => 'http://www.fachshop.cz/', 'dev_url_2_dev_short' => 'www.igm.cz'],
+            ['dev_id' => '450', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'BeA', 'dev_unique_string' => 'bea', 'dev_url_2_dev' => 'http://www.bea-cs.cz/', 'dev_url_2_dev_short' => 'www.bea-cs.cz/'],
+            ['dev_id' => '465', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '26', 'dev_delivery_date' => '1', 'dev_name' => 'RUBI', 'dev_unique_string' => 'rubi', 'dev_url_2_dev' => 'http://www.rubi.com/ing/home/homeusr.html', 'dev_url_2_dev_short' => 'www.rubi.com'],
+            ['dev_id' => '470', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'OPP Polička', 'dev_unique_string' => 'opp-policka', 'dev_url_2_dev' => 'http://www.opp.cz/', 'dev_url_2_dev_short' => 'www.opp.cz'],
+            ['dev_id' => '475', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Normex', 'dev_unique_string' => 'normex', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '480', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'DiMartino', 'dev_unique_string' => 'dimartino', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '485', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Rivet Factory', 'dev_unique_string' => 'rivet', 'dev_url_2_dev' => 'http://www.rivetfactory.cz/cs/', 'dev_url_2_dev_short' => 'www.rivetfactory.cz'],
+            ['dev_id' => '490', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Prebena', 'dev_unique_string' => 'prebena', 'dev_url_2_dev' => 'http://www.prebena.cz/', 'dev_url_2_dev_short' => 'www.prebena.cz'],
+            ['dev_id' => '500', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Mars Svratka', 'dev_unique_string' => 'mars_svratka', 'dev_url_2_dev' => 'http://www.mars-svratka.cz/', 'dev_url_2_dev_short' => 'www.mars-svratka.cz'],
+            ['dev_id' => '505', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Pleschinger', 'dev_unique_string' => 'pleschinger', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '510', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'DenBraven', 'dev_unique_string' => 'den-braven', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '515', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Fischer', 'dev_unique_string' => 'fischer', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '520', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Omicron', 'dev_unique_string' => 'omicron', 'dev_url_2_dev' => 'http://www.omc.cz/', 'dev_url_2_dev_short' => 'www.omc.cz'],
+            ['dev_id' => '525', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '2', 'dev_delivery_date' => '1', 'dev_name' => 'Elektrode Jesenice', 'dev_unique_string' => 'elektrode jesenice', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '530', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'ESAB', 'dev_unique_string' => 'esab', 'dev_url_2_dev' => 'http://www.esab.cz/', 'dev_url_2_dev_short' => 'www.esab.cz'],
+            ['dev_id' => '535', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'GeoFennel', 'dev_unique_string' => 'geofennel', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '540', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Montolit', 'dev_unique_string' => 'montolit', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '545', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Clipper', 'dev_unique_string' => 'clipper', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '550', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Rothenberger', 'dev_unique_string' => 'rothenberger', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '555', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '35', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Cromwell', 'dev_unique_string' => 'cromwell', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '610', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'GreenLine', 'dev_unique_string' => 'greenline', 'dev_url_2_dev' => 'http://www.bow.cz/', 'dev_url_2_dev_short' => 'www.bow.cz'],
+            ['dev_id' => '620', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Kinex', 'dev_unique_string' => 'kinex', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '625', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'WD', 'dev_unique_string' => 'wd', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '702', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'AgriFab', 'dev_unique_string' => 'agrifab', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '704', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Arnold', 'dev_unique_string' => 'arnold', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '706', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Biocin', 'dev_unique_string' => 'biocin', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '708', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Britech', 'dev_unique_string' => 'britech', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '710', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Cub Cadet', 'dev_unique_string' => 'cub-cadet', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '712', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'DWT', 'dev_unique_string' => 'dwt', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '714', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Elpumps', 'dev_unique_string' => 'elpumps', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '716', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '11', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'GTM', 'dev_unique_string' => 'gtm', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '718', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Greenworks', 'dev_unique_string' => 'greenworks', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '720', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Homelite', 'dev_unique_string' => 'homelite', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '722', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Kity', 'dev_unique_string' => 'kity', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '724', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Marunaka', 'dev_unique_string' => 'marunaka', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '726', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Michelin', 'dev_unique_string' => 'michelin', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '728', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'MTD', 'dev_unique_string' => 'mtd', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '730', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Palram', 'dev_unique_string' => 'palram', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '732', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'RYOBI', 'dev_unique_string' => 'ryobi', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '734', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Riwall', 'dev_unique_string' => 'riwall', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '736', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Sandri Garden', 'dev_unique_string' => 'sandri-garden', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '738', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Scheppach', 'dev_unique_string' => 'scheppach', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '740', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Silky', 'dev_unique_string' => 'silky', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '742', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'TurfMaster', 'dev_unique_string' => 'turfmaster', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '744', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Woodster', 'dev_unique_string' => 'woodster', 'dev_url_2_dev' => 'http://www.garland.cz/', 'dev_url_2_dev_short' => 'www.garland.cz'],
+            ['dev_id' => '750', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'REMS', 'dev_unique_string' => 'rems', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '755', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '20', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Triton', 'dev_unique_string' => 'triton', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '760', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'VM', 'dev_unique_string' => 'vm', 'dev_url_2_dev' => 'http://www.vmimport.cz/', 'dev_url_2_dev_short' => 'www.vmimport.cz'],
+            ['dev_id' => '775', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'No Name', 'dev_unique_string' => 'no-name', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => '']
+        ];
 
-	public function run() {
+        DB::table('dev')->delete();
 
-		DB::table('dev')->delete();
+        DB::table('dev')->insert([
+            'id'     => 1,
+            'active' => 0,
+            'alias'  => 'all',
+            'name'   => '[ALL]'
+        ]);
 
-		DB::table('dev')->insert([
-			'id'     => 1,
-			'active' => 0,
-			'alias'  => 'all',
-			'name'   => '[ALL]'
-		]);
+        foreach ($dev as $row) {
 
-		DB::table('dev')->insert([
-			'id'         => 5,
-			'active'     => 1,
-			'authorized' => 1,
-			'alias'      => 'makita',
-			'name'       => 'Makita'
-		]);
-
-		DB::table('dev')->insert([
-			'id'         => 6,
-			'active'     => 1,
-			'authorized' => 1,
-			'alias'      => 'maktec',
-			'name'       => 'Maktec'
-		]);
-
-		DB::table('dev')->insert([
-			'id'     => 10,
-			'active' => 1,
-			'alias'  => 'narex',
-			'name'   => 'Narex'
-		]);
-
-		DB::table('dev')->insert([
-			'id'     => 20,
-			'active' => 1,
-			'alias'  => 'metabo',
-			'name'   => 'Metabo'
-		]);
-
-		DB::table('dev')->insert([
-			'id'         => 30,
-			'active'     => 1,
-			'authorized' => 1,
-			'alias'      => 'dolmar',
-			'name'       => 'Dolmar'
-		]);
-
-		DB::table('dev')->insert([
-			'id'     => 35,
-			'alias'  => 'proma',
-			'name'   => 'Proma'
-		]);
-
-		DB::table('dev')->insert([
-			'id'     => 40,
-			'alias'  => 'dewalt',
-			'name'   => 'Dewalt'
-		]);
-
-		DB::table('dev')->insert([
-			'id'     => 45,
-			'alias'  => 'narex_bystrice',
-			'name'   => 'Narex Bystřice'
-		]);
-
-		DB::table('dev')->insert([
-			'id'     => 160,
-			'alias'  => 'fiskars',
-			'name'   => 'Fiskars'
-		]);
-
-		DB::table('dev')->insert([
-			'id'     => 620,
-			'alias'  => 'kinex',
-			'name'   => 'Kinex'
-		]);
-	}
+            DB::table('dev')->insert([
+                'id'         => $row['dev_id'],
+                'active'     => 1,
+                'authorized' => 0,
+                'alias'      => $row['dev_unique_string'],
+                'name'       => $row['dev_name']
+            ]);
+        }
+    }
 }

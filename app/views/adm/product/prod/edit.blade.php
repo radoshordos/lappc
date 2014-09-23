@@ -12,7 +12,11 @@
         $("#list_prod").select2({});
         $("#tree_id").select2({});
         $("#dev_id").select2({});
-        $('#myModal').modal();
+        $('#myTab a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        })
+        $('#myTab a[href="#profile"]').tab('show');
     });
 </script>
 @stop
@@ -34,146 +38,8 @@
 @endif
 {{ Form::close() }}
 
-@if (isset($prod))
-{{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$choice_tree, $choice_prod),'class'=>'form-horizontal','role'=>'form')) }}
-
-<div class="row">
-    <div class="col-xs-12 col-md-8">
-        <div class="form-group">
-            {{ Form::label('tree_id','Skupina',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                {{ Form::select('tree_id',$select_tree, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-6 col-md-4">
-        <div class="form-group">
-            {{ Form::label('difference_id','Typ',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon alert-danger">
-                        {{ Form::checkbox('difference_check')  }}
-                    </span>
-                    {{  Form::select('difference_id',$select_difference, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek')) }}
-                    <span class="input-group-addon">  <a data-toggle="modal" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i></a></span>
-                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-md-8">
-        <div class="form-group">
-            {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                <div class="input-group btn-group-justified">
-                    <span class="btn-group">{{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'col-sm-2 form-control')) }}</span>
-                    <span class="btn-group">{{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-6 col-md-4">
-        <div class="form-group">
-            {{ Form::label('mode_id','Stav',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                <div class="input-group">
-                    <span class="input-group-addon">@if ($prod["mode_id"] == 4)<a href=""><span class="glyphicon glyphicon-arrow-right"></span></a>@endif</span>
-                    {{ Form::select('mode_id',$select_mode, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-8">
-        <div class="form-group">
-            {{ Form::label('name','Název',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                <div class="input-group btn-group-justified">
-                    <span class="btn-group">{{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}</span>
-                    <span class="btn-group">{{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <div class="col-sm-12">
-                <div class="input-group btn-group-justified">
-                    <span class="input-group-addon"><i class="fa fa-money fa-lg" title="Cena, měna a DPH"></i></span>
-                    <span class="btn-group">{{ Form::input('number','price', round($prod['price'],$prod->forex->round_with), ['required' => 'required', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</span>
-                    <span class="btn-group">{{ Form::select('forex_id',$select_forex, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
-                    <span class="btn-group">{{ Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-8">
-        <div class="form-group">
-            {{ Form::label('desc','Popis',array('class'=> 'col-sm-2 control-label')) }}
-            <div class="col-sm-10">
-                {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu')) }}
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <div class="col-sm-12">
-                <div class="input-group btn-group-justified">
-                    <div class="input-group-addon"><i class="fa fa-car fa-lg" title="Typ nákladu"></i></div>
-                    <span class="btn-group">{{ Form::select('transport_atypical',['0' => 'Běžný rozměr', 1 => 'Atypický rozměr'], NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
-                    <span class="btn-group">{{ Form::input('number','transport_weight', round($prod['transport_weight'],2), array('required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control')) }}</span>
-                    <div class="input-group-addon" title="Hmotnost produktu">kg</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row" style="border-top:4px solid #D9EDF7;border-bottom:4px solid #D9EDF7">
-<table style="margin-top:4px;margin-bottom:4px">
-   <thead>
-        <tr>
-            <th>Zobrazit</th>
-            <th colspan="2" class="text-center">Rozdílnosti</th>
-            <th>Kód</th>
-            <th>EAN</th>
-            <th>Sleva</th>
-            <th>Dostupnost</th>
-            <th>Cena</th>
-        </tr>
-   </thead>
-   <tbody>
-        @foreach ($table_items as $item)
-        <tr>
-            <td>{{ Form::select("visible[$item->id]", ['0' => 'NE', '1' => 'ANO'], NULL, ['class' => 'form-control']) }}</td>
-            <td>{{ Form::text("diff1[$item->id]", NULL, array('class'=> 'form-control')) }}</td>
-            <td>{{ Form::text("diff2[$item->id]", NULL, array('class'=> 'form-control')) }}</td>
-            <td>{{ Form::text("code_prod[$item->id]", $item->code_prod, array('class'=> 'form-control')) }}</td>
-            <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, array('class'=> 'form-control')) }}</td>
-            <td>{{ Form::select("sale_id[$item->id]", $select_sale, NULL, ['class' => 'form-control']) }}</td>
-            <td>{{ Form::select("availability_id[$item->id]", $select_availability, NULL, ['class' => 'form-control']) }}</td>
-            <td>{{ Form::input('number',"iprice[$item->id]", round(NULL,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
-            <td>{{ Form::checkbox('item[$item->id]') }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
 
 
-
-
-<p class="text-center">
-    {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
-    {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
-</p>
 
 
 
@@ -181,24 +47,172 @@
 {{ Form::close() }}
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+
+<div id="content">
+    <ul id="tabs" class="nav nav-tabs container" data-tabs="tabs">
+        <li class="active"><a href="#prod" data-toggle="tab">Produkt</a></li>
+        <li><a href="#difference" data-toggle="tab">Variace</a></li>
+        <li><a href="#pictures" data-toggle="tab">Obrázky</a></li>
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active container" style="padding-top: 2em" id="prod">
+
+        @if (isset($prod))
+        {{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$choice_tree, $choice_prod),'class'=>'form-horizontal','role'=>'form')) }}
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="form-group">
+                    {{ Form::label('tree_id','Skupina',array('class'=> 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10">
+                        {{ Form::select('tree_id',$select_tree, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <div class="form-group">
+                    {{ Form::label('difference_id','Typ',array('class'=> 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon alert-danger">
+                                {{ Form::checkbox('difference_check')  }}
+                            </span>
+                            {{  Form::select('difference_id',$select_difference, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek')) }}
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="form-group">
+                    {{ Form::label('dev_id','Výrobce',array('class'=> 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10">
+                        <div class="input-group btn-group-justified">
+                            <span class="btn-group">{{ Form::select('dev_id',$select_dev, NULL, array('required' => 'required', 'class'=> 'col-sm-2 form-control')) }}</span>
+                            <span class="btn-group">{{ Form::select('warranty_id',$select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <div class="form-group">
+                    {{ Form::label('mode_id','Stav',array('class'=> 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">@if ($prod["mode_id"] == 4)<a href=""><span class="glyphicon glyphicon-arrow-right"></span></a>@endif</span>
+                            {{ Form::select('mode_id',$select_mode, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    {{ Form::label('name','Název',array('class'=> 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10">
+                        <div class="input-group btn-group-justified">
+                            <span class="btn-group">{{ Form::text('name',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}</span>
+                            <span class="btn-group">{{ Form::text('alias',NULL,array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group btn-group-justified">
+                            <span class="input-group-addon"><i class="fa fa-money fa-lg" title="Cena, měna a DPH"></i></span>
+                            <span class="btn-group">{{ Form::input('number','price', round($prod['price'],$prod->forex->round_with), ['required' => 'required', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</span>
+                            <span class="btn-group">{{ Form::select('forex_id',$select_forex, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
+                            <span class="btn-group">{{ Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    {{ Form::label('desc','Popis',array('class'=> 'col-sm-2 control-label')) }}
+                    <div class="col-sm-10">
+                        {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group btn-group-justified">
+                            <div class="input-group-addon"><i class="fa fa-car fa-lg" title="Typ nákladu"></i></div>
+                            <span class="btn-group">{{ Form::select('transport_atypical',['0' => 'Běžný rozměr', 1 => 'Atypický rozměr'], NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
+                            <span class="btn-group">{{ Form::input('number','transport_weight', round($prod['transport_weight'],2), array('required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control')) }}</span>
+                            <div class="input-group-addon" title="Hmotnost produktu">kg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="row" style="border-top:4px solid #D9EDF7;border-bottom:4px solid #D9EDF7">
+            <table style="margin-top:4px;margin-bottom:4px">
+               <thead>
+                    <tr>
+                        <th>Zobrazit</th>
+                        <th colspan="2" class="text-center">Rozdílnosti</th>
+                        <th>Kód</th>
+                        <th>EAN</th>
+                        <th>Sleva</th>
+                        <th>Dostupnost</th>
+                        <th>Cena</th>
+                    </tr>
+               </thead>
+               <tbody>
+                    @foreach ($table_items as $item)
+                    <tr>
+                        <td>{{ Form::select("visible[$item->id]", ['0' => 'NE', '1' => 'ANO'], NULL, ['class' => 'form-control']) }}</td>
+                        <td>{{ Form::text("diff1[$item->id]", NULL, array('class'=> 'form-control')) }}</td>
+                        <td>{{ Form::text("diff2[$item->id]", NULL, array('class'=> 'form-control')) }}</td>
+                        <td>{{ Form::text("code_prod[$item->id]", $item->code_prod, array('class'=> 'form-control')) }}</td>
+                        <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, array('class'=> 'form-control')) }}</td>
+                        <td>{{ Form::select("sale_id[$item->id]", $select_sale, NULL, ['class' => 'form-control']) }}</td>
+                        <td>{{ Form::select("availability_id[$item->id]", $select_availability, NULL, ['class' => 'form-control']) }}</td>
+                        <td>{{ Form::input('number',"iprice[$item->id]", round(NULL,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
+                        <td>{{ Form::checkbox('item[$item->id]') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            </div>
+
+
+
+        <p class="text-center">
+            {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
+            {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
+        </p>
+
+
+
+        </div>
+        <div class="tab-pane" style="padding-top: 2em" id="difference">
+            <h1>difference</h1>
+            <p>orange orange orange orange orange</p>
+        </div>
+        <div class="tab-pane" style="padding-top: 2em" id="pictures">
+            <h1>Yellow</h1>
+            <p>yellow yellow yellow yellow yellow</p>
+        </div>
     </div>
-  </div>
 </div>
+
+<!-- Modal -->
+
 
 @endif
 @stop

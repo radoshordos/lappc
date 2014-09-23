@@ -50,6 +50,9 @@ class DatabaseSeeder extends Seeder
         $this->call('SyncTemplateM2nColmunTableSeeder');
         $this->call('SyncDbTableSeeder');
         $this->call('AkceTemplateSeeder');
+        $this->call('ProdDifferenceSetSeeder');
+        $this->call('ProdDifferenceN2mSetSeeder');
+        $this->call('ProdDifferenceValuesSeeder');
 	    $this->call('ProdDifferenceSeeder');
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
