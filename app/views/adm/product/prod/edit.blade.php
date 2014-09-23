@@ -12,6 +12,7 @@
         $("#list_prod").select2({});
         $("#tree_id").select2({});
         $("#dev_id").select2({});
+        $('#myModal').modal();
     });
 </script>
 @stop
@@ -54,6 +55,7 @@
                         {{ Form::checkbox('difference_check')  }}
                     </span>
                     {{  Form::select('difference_id',$select_difference, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek')) }}
+                    <span class="input-group-addon">  <a data-toggle="modal" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i></a></span>
                  </div>
             </div>
         </div>
@@ -165,11 +167,38 @@
 </table>
 </div>
 
+
+
+
 <p class="text-center">
     {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
     {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
 </p>
+
+
+
+
 {{ Form::close() }}
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endif
 @stop

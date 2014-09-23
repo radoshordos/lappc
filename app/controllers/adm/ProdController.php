@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\Items;
+use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
 
 class ProdController extends \BaseController
