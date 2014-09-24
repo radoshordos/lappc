@@ -6,6 +6,8 @@
 
 {{-- JavaScript on page --}}
 @section ('script')
+<link rel="stylesheet" href="{{ asset('admin/components/bootstrap-fileinput/css/fileinput.min.css') }}">
+<script src="{{ asset('admin/components/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         $("#list_tree").select2({});
@@ -37,13 +39,6 @@
 <br />
 @endif
 {{ Form::close() }}
-
-
-
-
-
-
-
 
 
 
@@ -207,8 +202,13 @@
             <p>orange orange orange orange orange</p>
         </div>
         <div class="tab-pane" style="padding-top: 2em" id="fotogalerie">
-            <h1>Fotogalerie</h1>
-            <p>yellow yellow yellow yellow yellow</p>
+
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <label class="control-label">Select File</label>
+                    <input id="input-1a" type="file" class="file" data-show-preview="false">
+                </div>
         </div>
     </div>
 </div>

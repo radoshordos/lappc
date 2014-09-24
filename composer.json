@@ -6,6 +6,7 @@
         "barryvdh/laravel-ide-helper": "1.*",
         "dg/adminer-custom": "1.*",
         "ivaynberg/select2": "3.*",
+        "kartik-v/bootstrap-fileinput": "2.*",
         "intervention/image": "2.*",
         "components/bootstrap": "3.*",
         "components/jquery": "1.*",
