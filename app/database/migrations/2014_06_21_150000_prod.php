@@ -23,12 +23,14 @@ class Prod extends Migration
 	        $table->tinyInteger('ic_sale_diff_visible')->unsigned()->default(0);
 	        $table->tinyInteger('ic_price_diff_visible')->unsigned()->default(0);
 
+
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');
             $table->string('name', '64');
             $table->string('desc', '128');
             $table->float('transport_weight')->unsigned()->default(0.1);
             $table->boolean('transport_atypical')->default(0);
+            $table->tinyInteger('picture_count')->unsigned()->default(0);
             $table->timestamps();
 
             $table->engine = 'InnoDB';

@@ -44,15 +44,14 @@
 
 
 
-{{ Form::close() }}
-</div>
+
 
 
 <div id="content">
     <ul id="tabs" class="nav nav-tabs container" data-tabs="tabs">
         <li class="active"><a href="#prod" data-toggle="tab">Produkt</a></li>
         <li><a href="#difference" data-toggle="tab">Variace</a></li>
-        <li><a href="#pictures" data-toggle="tab">Obrázky</a></li>
+        <li><a href="#fotogalerie" data-toggle="tab">Fotogalerie</a></li>
     </ul>
     <div id="my-tab-content" class="tab-content">
         <div class="tab-pane active container" style="padding-top: 2em" id="prod">
@@ -189,6 +188,9 @@
                 </tbody>
             </table>
             </div>
+        @endif
+        {{ Form::close() }}
+
 
 
 
@@ -204,8 +206,8 @@
             <h1>difference</h1>
             <p>orange orange orange orange orange</p>
         </div>
-        <div class="tab-pane" style="padding-top: 2em" id="pictures">
-            <h1>Yellow</h1>
+        <div class="tab-pane" style="padding-top: 2em" id="fotogalerie">
+            <h1>Fotogalerie</h1>
             <p>yellow yellow yellow yellow yellow</p>
         </div>
     </div>
@@ -214,5 +216,4 @@
 <!-- Modal -->
 
 
-@endif
 @stop
