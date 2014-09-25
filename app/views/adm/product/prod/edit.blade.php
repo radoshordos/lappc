@@ -41,10 +41,10 @@
 {{ Form::close() }}
 
 
-
 <div id="content">
     <ul id="tabs" class="nav nav-tabs container" data-tabs="tabs">
         <li class="active"><a href="#prod" data-toggle="tab">Produkt</a></li>
+        <li><a href="#source" data-toggle="tab">Obsah</a></li>
         <li><a href="#difference" data-toggle="tab">Variace</a></li>
         <li><a href="#fotogalerie" data-toggle="tab">Fotogalerie</a></li>
     </ul>
@@ -153,7 +153,7 @@
         </div>
 
 
-            <div class="row" style="border-top:4px solid #D9EDF7;border-bottom:4px solid #D9EDF7">
+            <div class="row">
             <table style="margin-top:4px;margin-bottom:4px">
                <thead>
                     <tr>
@@ -184,36 +184,34 @@
             </table>
             </div>
         @endif
+
         {{ Form::close() }}
-
-
-
-
         <p class="text-center">
             {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
             {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
         </p>
+    </div>
+    <div class="tab-pane" style="padding-top: 2em" id="source">
+        {{ Form::textarea('data_input', NULL, ['size' => '180x12', 'class' => 'form-control' ]) }}
+        {{ Form::textarea('data_input', NULL, ['size' => '180x10', 'class' => 'form-control' ]) }}
+        {{ Form::textarea('data_input', NULL, ['size' => '180x8', 'class' => 'form-control' ]) }}
+    </div>
 
 
-
-        </div>
-        <div class="tab-pane" style="padding-top: 2em" id="difference">
-            <h1>difference</h1>
-            <p>orange orange orange orange orange</p>
-        </div>
-        <div class="tab-pane" style="padding-top: 2em" id="fotogalerie">
-
-
-            <div class="row">
-                <div class="col-sm-8">
-                    <label class="control-label">Select File</label>
-                    <input id="input-1a" type="file" class="file" data-show-preview="false">
-                </div>
+    <div class="tab-pane" style="padding-top: 2em" id="difference">
+        <h1>difference</h1>
+        <p>orange orange orange orange orange</p>
+    </div>
+    <div class="tab-pane" style="padding-top: 2em" id="fotogalerie">
+        <div class="row">
+            <div class="col-sm-8">
+                <label class="control-label">Select File</label>
+                <input id="input-1a" type="file" class="file" data-show-preview="false">
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Modal -->
-
 
 @stop
