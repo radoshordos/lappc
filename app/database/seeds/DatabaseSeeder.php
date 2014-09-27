@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call('BuyDeliverySeeder');
         $this->call('AkceMinitextSeeder');
         $this->call('AkceAvailibilitySeeder');
+        $this->call('MediaTypeSeeder');
 
         // OSTATNI
         $this->call('FeedServiceTableSeeder');
