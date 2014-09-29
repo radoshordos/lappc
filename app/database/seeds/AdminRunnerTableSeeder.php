@@ -25,6 +25,12 @@ class AdminRunnerTableSeeder extends Seeder
         ));
 
         DB::table('runner')->insert(array(
+            'id' => 39,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Events\CnbUpdateForex'
+        ));
+
+        DB::table('runner')->insert(array(
             'id' => 81,
             'autorun' => 1,
             'class' => 'Authority\Runner\Task\Performance\OptimalizeTable'
