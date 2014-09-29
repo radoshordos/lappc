@@ -32,5 +32,6 @@ class CnbUpdateForex extends TaskMessage implements iRun
                 }
             }
         }
+        $this->addMessage("Nová cena k " . $date[0] . " : <b>" . $forex->exchange_rate . "</b> Kč");
     }
 }
