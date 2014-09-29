@@ -15,10 +15,11 @@ class MediaDb extends Migration
             $table->string('name', 255);
             $table->text('source')->nullable();
             $table->timestamps();
+
             $table->engine = 'InnoDB';
+            $table->foreign('variations_id')->references('id')->on('media_variations')->onUpdate('cascade')->onDelete('no action');
         });
     }
-
 
     public function down()
     {

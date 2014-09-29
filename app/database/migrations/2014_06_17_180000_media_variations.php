@@ -22,6 +22,7 @@ class MediaVariations extends Migration
             $table->string('name', 48);
 
             $table->engine = 'InnoDB';
+            $table->foreign('type_id')->references('id')->on('media_type')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

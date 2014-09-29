@@ -17,6 +17,7 @@ class ProdDescription extends Migration
 
             $table->engine = 'InnoDB';
             $table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('variations_id')->references('id')->on('media_variations')->onUpdate('cascade')->onDelete('no action');
         });
     }
 
