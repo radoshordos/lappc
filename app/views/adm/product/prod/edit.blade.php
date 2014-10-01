@@ -192,11 +192,13 @@
         </p>
     </div>
     <div class="tab-pane" style="padding-top: 2em" id="source">
-        {{ Form::textarea('data_input', NULL, ['size' => '180x12', 'class' => 'form-control' ]) }}
-        {{ Form::textarea('data_input', NULL, ['size' => '180x10', 'class' => 'form-control' ]) }}
-        {{ Form::textarea('data_input', NULL, ['size' => '180x8', 'class' => 'form-control' ]) }}
+        {{ Form::select("pmd_title1", $select_media_var, NULL, ['class' => 'form-control']) }}
+        {{ Form::textarea('data_input1', NULL, ['size' => '180x12', 'class' => 'form-control' ]) }}
+        {{ Form::select("pmd_title2", $select_media_var, NULL, ['class' => 'form-control']) }}
+        {{ Form::textarea('data_input2', NULL, ['size' => '180x10', 'class' => 'form-control' ]) }}
+        {{ Form::select("pmd_title3", $select_media_var, NULL, ['class' => 'form-control']) }}
+        {{ Form::textarea('data_input3', NULL, ['size' => '180x8', 'class' => 'form-control' ]) }}
     </div>
-
 
     <div class="tab-pane" style="padding-top: 2em" id="difference">
         <h1>difference</h1>

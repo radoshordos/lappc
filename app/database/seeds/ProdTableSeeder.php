@@ -8,6 +8,7 @@ class ProdTableSeeder extends Seeder {
         DB::table('prod')->delete();
 
         DB::table('prod')->insert(array(
+            'id' => 1,
             'tree_id' => 21020200,
             'dev_id' => 6,
             'warranty_id' => 1,
@@ -20,6 +21,7 @@ class ProdTableSeeder extends Seeder {
         ));
 
         DB::table('prod')->insert(array(
+            'id' => 2,
             'tree_id' => 21020400,
             'dev_id' => 6,
             'warranty_id' => 1,
@@ -32,6 +34,7 @@ class ProdTableSeeder extends Seeder {
         ));
 
         DB::table('prod')->insert(array(
+            'id' => 3,
             'tree_id' => 21020400,
             'dev_id' => 5,
             'warranty_id' => 1,
@@ -44,6 +47,7 @@ class ProdTableSeeder extends Seeder {
         ));
 
         DB::table('prod')->insert(array(
+            'id' => 4,
             'tree_id' => 21020600,
             'dev_id' => 5,
             'warranty_id' => 1,
@@ -56,6 +60,7 @@ class ProdTableSeeder extends Seeder {
         ));
 
         DB::table('prod')->insert(array(
+            'id' => 5,
             'tree_id' => 21020600,
             'dev_id' => 20,
             'warranty_id' => 1,
@@ -68,6 +73,7 @@ class ProdTableSeeder extends Seeder {
         ));
 
         DB::table('prod')->insert(array(
+            'id' => 6,
             'tree_id' => 21020600,
             'dev_id' => 5,
             'warranty_id' => 1,
@@ -80,6 +86,7 @@ class ProdTableSeeder extends Seeder {
         ));
 
         DB::table('prod')->insert(array(
+            'id' => 7,
             'tree_id' => 21020600,
             'dev_id' => 40,
             'warranty_id' => 1,
