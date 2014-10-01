@@ -7,9 +7,9 @@ class Prod extends \Eloquent
     protected $table = 'prod';
     protected $guarded = [];
 
-    public static $rules = array(
+    public static $rules = [
         'id' => 'required|integer',
-    );
+    ];
 
     public function scopeDev($query, $int)
     {
@@ -25,9 +25,9 @@ class Prod extends \Eloquent
         }
     }
 
-	public function forex()
-	{
-		return $this->hasOne('Authority\Eloquent\Forex', 'id', 'forex_id');
-	}
+    public function forex()
+    {
+        return $this->hasOne('Authority\Eloquent\Forex', 'id', 'forex_id');
+    }
 
 }

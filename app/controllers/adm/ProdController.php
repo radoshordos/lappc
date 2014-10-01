@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
@@ -97,22 +98,23 @@ class ProdController extends \BaseController
         } else {
 
             return View::make('adm.product.prod.edit', [
-                'list_tree'           => $select_tree,
-                'list_prod'           => [] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name']),
-                'choice_tree'         => $tree,
-                'choice_prod'         => $prod,
-                'prod'                => $row,
-                'select_dev'          => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-                'select_tree'         => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-                'select_warranty'     => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-                'select_dph'          => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
-                'select_mode'         => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-                'select_forex'        => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale'         => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
-                'select_difference'   => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
-                'select_availability' => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-                'select_media_var'    => SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
-                'table_items'         => $this->items->where('prod_id', '=', $prod)->get()
+                'list_tree'              => $select_tree,
+                'list_prod'              => SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name']),
+                'choice_tree'            => $tree,
+                'choice_prod'            => $prod,
+                'prod'                   => $row,
+                'select_dev'             => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+                'select_tree'            => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+                'select_warranty'        => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+                'select_dph'             => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
+                'select_mode'            => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+                'select_forex'           => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
+                'select_sale'            => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
+                'select_difference'      => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+                'select_availability'    => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+                'select_media_var'       => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
+                'table_items'            => $this->items->where('prod_id', '=', $prod)->get(),
+                'table_prod_description' => ProdDescription::where('prod_id', '=', $prod)->get()
             ])->with(['id' => $prod]);
         }
     }
@@ -121,7 +123,7 @@ class ProdController extends \BaseController
     public function update($tree, $prod)
     {
         $row = $this->prod->find($prod);
-        $input_prod = array_except(Input::all(), ['_method', 'visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice', 'difference_check','difference_id']);
+        $input_prod = array_except(Input::all(), ['_method', 'visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice', 'difference_check', 'difference_id']);
         $input_prod['id'] = $row->id;
         $v = Validator::make($input_prod, Prod::$rules);
 

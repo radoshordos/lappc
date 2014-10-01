@@ -1,6 +1,6 @@
 <?php
 
-class ProdDescription extends Seeder
+class ProdDescriptionSeeder extends Seeder
 {
     public function run()
     {
