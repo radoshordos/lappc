@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
         $this->call('PpcKeywordsTableSeeder');
         $this->call('PpcAdSeeder');
         $this->call('AdminRunnerTableSeeder');
+        $this->call('MediaVariationsSeeder');
+
 
         $this->call('DevTableSeeder');
         $this->call('TreeTableSeeder');
