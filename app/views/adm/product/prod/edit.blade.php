@@ -40,6 +40,8 @@
 @endif
 {{ Form::close() }}
 
+@if (isset($prod))
+{{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$choice_tree, $choice_prod),'class'=>'form-horizontal','role'=>'form')) }}
 
 <div id="content">
     <ul id="tabs" class="nav nav-tabs container" data-tabs="tabs">
@@ -50,9 +52,6 @@
     </ul>
     <div id="my-tab-content" class="tab-content">
         <div class="tab-pane active container" style="padding-top: 2em" id="prod">
-
-        @if (isset($prod))
-        {{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$choice_tree, $choice_prod),'class'=>'form-horizontal','role'=>'form')) }}
 
         <div class="row">
             <div class="col-xs-12 col-md-8">
@@ -185,11 +184,7 @@
             </div>
         @endif
 
-        {{ Form::close() }}
-        <p class="text-center">
-            {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
-            {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
-        </p>
+
     </div>
     <div class="tab-pane" style="padding-top: 2em" id="source">
         {{ Form::select("pmd_title1", $select_media_var, (isset($table_prod_description[0]) ? $table_prod_description[0]->variations_id : NULL), ['class' => 'form-control']) }}
@@ -213,6 +208,12 @@
         </div>
     </div>
 </div>
+{{ Form::close() }}
+<p class="text-center">
+    {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
+    {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
+</p>
+
 
 <!-- Modal -->
 
