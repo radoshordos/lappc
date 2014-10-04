@@ -8,11 +8,14 @@ Záznamy importů
 
 {{-- Content --}}
 @section('content')
+
+
+
 <table class="table">
     <thead>
         <tr>
-            <th>#ID</th>
             <th>Import proběhl</th>
+            <th>Seskupení výrobců</th>
             <th>Účel</th>
             <th>Položek</th>
         </tr>
@@ -20,8 +23,8 @@ Záznamy importů
     <tbody>
     @foreach ($record as $row)
     <tr>
-        <td>{{ $row->id }}</td>
         <td>{{ $row->created_at }}</td>
+        <td>{{ $row->syncCsvTemplate->mixtureDev->name }}</td>
         <td>{{ $row->purpose }}</td>
         <td>{{ $row->item_counter }}</td>
     </tr>

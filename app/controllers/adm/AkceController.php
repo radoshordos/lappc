@@ -22,11 +22,6 @@ class AkceController extends \BaseController
         ));
     }
 
-    public function edit($id)
-    {
-        return View::make('adm.product.akce.edit', array(
-            'akce' => null
-        ));
-    }
+
 
 }

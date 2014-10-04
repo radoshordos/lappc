@@ -52,9 +52,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Akce<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.product.akce.index') }}">Přehled akcí</a></li>
-                        <li><a href="{{ URL::route('adm.product.akce.edit') }}">Akční produkty</a></li>
-                        <li><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
                         <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.product.akcehuge.index') }}">Hromadné akce</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
                         <li><a href="{{ URL::route('adm.product.akceminitext.index') }}">Správa minitextu</a></li>
                         <li><a href="{{ URL::route('adm.product.akceavailability.index') }}">Správa dostupnosti</a></li>
                     </ul>

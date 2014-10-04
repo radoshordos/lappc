@@ -21,7 +21,6 @@ class SyncDb extends Migration
             $table->decimal('price_action', 9, 2)->unsigned()->nullable();
             $table->decimal('price_internet', 9, 2)->unsigned()->nullable();
             $table->timestamps();
-            $table->decimal('price', 9, 2)->unsigned();
             $table->engine = 'InnoDB';
             $table->unique('code_ean');
         });

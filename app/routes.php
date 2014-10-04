@@ -27,12 +27,12 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('runner', 'CommandRunnerController');
     });
 
-
     Route::group(['prefix' => 'product', 'before' => 'Sentry|inGroup:Simple'], function () {
         Route::resource('prod', 'ProdController');
         Route::match(['GET', 'POST'], 'prod/{tree}/{prod}/edit', ['as' => 'adm.product.prod.edit', 'uses' => 'ProdController@edit'])->where(['tree' => '[0-9]+', 'prod' => '[0-9]+']);
         Route::any('prod/{tree}/{prod}', ['as' => 'adm.product.prod.update', 'uses' => 'ProdController@update'])->where(['tree' => '[0-9]+', 'prod' => '[0-9]+']);
         Route::resource('akce', 'AkceController');
+        Route::any('akcehuge', ['as' => 'adm.product.akcehuge.index', 'uses' => 'AkceHugeController@index']);
         Route::resource('akcetemplate', 'AkceTemplateController');
         Route::resource('akceminitext', 'AkceMinitextController');
         Route::resource('akceavailability', 'AkceAvailabilityController');
