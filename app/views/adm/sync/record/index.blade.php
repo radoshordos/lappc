@@ -13,6 +13,7 @@ Záznamy importů
         <tr>
             <th>#ID</th>
             <th>Import proběhl</th>
+            <th>Účel</th>
             <th>Položek</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@ Záznamy importů
     <tr>
         <td>{{ $row->id }}</td>
         <td>{{ $row->created_at }}</td>
+        <td>{{ $row->purpose }}</td>
         <td>{{ $row->item_counter }}</td>
     </tr>
     @endforeach

@@ -10,33 +10,35 @@ use Authority\Tools\Filter\Csv\CheckerColumn;
 class SyncImport
 {
     private $columns;
-    private $templateId;
+    private $template_id;
+    private $import_type;
     private $data;
     private $item;
     private $separator;
 
-    public function __construct($templateId, $separator, $data)
+    public function __construct($template_id, $separator, $import_type, $data)
     {
         $this->data = $data;
         $this->separator = $separator;
-        $this->templateId = $templateId;
-        $this->columns = $this->getColumnsName($templateId);
+        $this->import_type = $import_type;
+        $this->template_id = $template_id;
+        $this->columns = $this->getColumnsName($template_id);
         $this->item = $this->dataToArray();
         $this->InsertToDb();
     }
 
-    public function getColumnsName($templateId)
+    public function getColumnsName($template_id)
     {
         return \DB::table('sync_template_m2n_colmun')
             ->leftJoin('sync_csv_column', 'sync_template_m2n_colmun.column_id', '=', 'sync_csv_column.id')
-            ->where('sync_template_m2n_colmun.template_id', '=', $templateId)
+            ->where('sync_template_m2n_colmun.template_id', '=', $template_id)
             ->orderBy('sync_template_m2n_colmun.id')
             ->get(['sync_csv_column.element']);
     }
 
     public function getUniqueDevId()
     {
-        $template = SyncCsvTemplate::where('id', '=', $this->templateId)->first();
+        $template = SyncCsvTemplate::where('id', '=', $this->template_id)->first();
         if (intval($template->mixtureDev->trigger_column_count) == 1) {
             $mdi = MixtureDevM2nDev::where('mixture_dev_id', '=', $template->mixtureDev->id)->first();
             return $mdi->dev_id;
@@ -86,6 +88,7 @@ class SyncImport
 
             $val = array_map('trim', $val);
             $val['record_id'] = $timestamp;
+            $val['purpose'] = $this->import_type;
             $val['created_at'] = $date;
             $val['updated_at'] = $date;
             $res = SyncDb::insert(array_filter($val));
@@ -95,7 +98,8 @@ class SyncImport
         if ($res) {
             SyncRecord::insert([
                 'id'           => $timestamp,
-                'template_id'  => ($this->templateId ? $this->templateId : NULL),
+                'template_id'  => ($this->template_id ? $this->template_id : NULL),
+                'purpose'      => $this->import_type,
                 'item_counter' => $item_counter,
                 'created_at'   => $date,
                 'updated_at'   => $date

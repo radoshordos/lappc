@@ -18,11 +18,11 @@ class SyncCsvTemplateController extends \BaseController
         $tag = DB::table('sync_csv_template')
             ->select('id', DB::raw('(SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
                                     FROM sync_template_m2n_colmun
-                                    INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
-                                    WHERE sync_template_m2n_colmun.template_id = sync_csv_template.id
-                                    ORDER BY sync_template_m2n_colmun.id ) AS list'))
-            ->orderBy('id')
-            ->get();
+                                        INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
+                                        WHERE sync_template_m2n_colmun.template_id = sync_csv_template.id
+                                        ORDER BY sync_template_m2n_colmun.id ) AS list
+                                    '))
+             ->get();
 
         if (!empty($tag)) {
             foreach ($tag as $val) {

@@ -16,5 +16,10 @@ class SyncCsvTemplateTableSeeder extends Seeder
             'id'             => 2,
             'mixture_dev_id' => 11
         ]);
+
+        DB::table('sync_csv_template')->insert([
+            'id'             => 3,
+            'mixture_dev_id' => 10
+        ]);
     }
 }
