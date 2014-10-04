@@ -11,6 +11,7 @@ class SyncRecord extends Migration
         Schema::create('sync_record', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('template_id')->unsigned()->nullable();
+            $table->integer('item_counter')->unsigned()->default(0);
             $table->timestamps();
 
             $table->engine = 'InnoDB';

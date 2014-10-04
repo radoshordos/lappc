@@ -31,7 +31,7 @@ class SyncImport
             ->leftJoin('sync_csv_column', 'sync_template_m2n_colmun.column_id', '=', 'sync_csv_column.id')
             ->where('sync_template_m2n_colmun.template_id', '=', $templateId)
             ->orderBy('sync_template_m2n_colmun.id')
-            ->get(array('sync_csv_column.element'));
+            ->get(['sync_csv_column.element']);
     }
 
     public function getUniqueDevId()
@@ -46,7 +46,7 @@ class SyncImport
 
     public function dataToArray()
     {
-        $arr = array();
+        $arr = [];
         $y = 0;
 
         $dev_id = $this->getUniqueDevId();
@@ -69,7 +69,8 @@ class SyncImport
     public function InsertToDb()
     {
         $i = 0;
-        $arr = array();
+        $item_counter = 0;
+        $arr = [];
 
         foreach ($this->item as $val) {
             $cc = new CheckerColumn($val, ++$i);
@@ -82,21 +83,23 @@ class SyncImport
         \DB::beginTransaction();
 
         foreach ($arr as $val) {
-            $val = array_map('trim', $val);
 
+            $val = array_map('trim', $val);
             $val['record_id'] = $timestamp;
             $val['created_at'] = $date;
             $val['updated_at'] = $date;
             $res = SyncDb::insert(array_filter($val));
+            $item_counter += $res;
         }
 
         if ($res) {
-            SyncRecord::insert(array(
-                'id' => $timestamp,
-                'template_id' => ($this->templateId ? $this->templateId : NULL),
-                'created_at' => $date,
-                'updated_at' => $date
-            ));
+            SyncRecord::insert([
+                'id'           => $timestamp,
+                'template_id'  => ($this->templateId ? $this->templateId : NULL),
+                'item_counter' => $item_counter,
+                'created_at'   => $date,
+                'updated_at'   => $date
+            ]);
 
             \Session::flash('success', 'Import proběhl úspěšně');
         }

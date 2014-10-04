@@ -18,7 +18,7 @@ class PpcDbCache extends Migration
 
             $table->engine = 'InnoDB';
             $table->index('mode_id');
-            $table->unique(array('feed_id', 'item_id'));
+            $table->unique(['feed_id', 'item_id']);
 
         });
     }
