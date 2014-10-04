@@ -9,9 +9,8 @@ class SyncDb extends Migration
     public function up()
     {
         Schema::create('sync_db', function (Blueprint $table) {
-
             $table->increments('id')->unsigned();
-            $table->enum('purpose', array('sync', 'action'));
+            $table->enum('purpose', array('manualsync', 'action', 'autosync', 'isystem'));
             $table->integer('record_id')->unsigned()->nullable();
             $table->integer('dev_id')->unsigned();
             $table->string('code_prod', '32')->nullable();

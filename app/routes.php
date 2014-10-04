@@ -70,7 +70,6 @@ Route::group(['prefix' => 'adm'], function () {
 
     Route::group(['prefix' => 'stats', 'before' => 'Sentry|inGroup:Simple'], function () {
         Route::any('find', ['as' => 'adm.stats.find.index', 'uses' => 'StatsFindController@index']);
-        Route::any('sync', ['as' => 'adm.stats.sync.index', 'uses' => 'StatsSyncController@index']);
     });
 
     Route::group(['prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'], function () {

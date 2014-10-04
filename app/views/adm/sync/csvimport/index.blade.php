@@ -17,7 +17,6 @@ Import .csv dat
 
 {{-- Content --}}
 @section('content')
-
 {{ Form::open(array('route' => 'adm.sync.csvimport.index','class' => 'form-horizontal', 'role' => 'form')) }}
 <div class="form-group">
     {{ Form::label('template_id','Šablona',array('class'=> 'col-sm-2 control-label')) }}
@@ -26,14 +25,25 @@ Import .csv dat
     </p>
 </div>
 <div class="form-group">
-    {{ Form::label('separator','Oddělovač sloupců',array('class'=> 'col-sm-2 control-label')) }}
-    <div class="col-sm-10">
+    <div class="col-md-6">
+        {{ Form::label('separator','Oddělovač sloupců',array('class'=> 'col-sm-4 control-label')) }}
         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default {{ ($separator == 'semicolon' || $separator == NULL ? 'active' : NULL) }}">
+            <label class="btn btn-default {{ ($separator == 'semicolon' ? 'active' : NULL) }}">
                 {{ Form::radio('separator', 'semicolon',($separator == 'semicolon' ? 'true' : NULL) ); }}Středník
             </label>
             <label class="btn btn-default {{ ($separator == 'tab' ? 'active' : NULL) }}">
                 {{ Form::radio('separator', 'tab',($separator == 'tab' ? 'true' : NULL)); }}Tabulátor
+            </label>
+        </div>
+    </div>
+    <div class="col-md-6">
+        {{ Form::label('import_type','Typ importu',array('class'=> 'col-sm-4 control-label')) }}
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default {{ ($import_type == 'manualsync' ? 'active' : NULL) }}">
+                {{ Form::radio('import_type', 'manualsync',($import_type == 'manualsync' ? 'true' : NULL) ); }}Synchronizace
+            </label>
+            <label class="btn btn-default {{ ($import_type == 'action' ? 'active' : NULL) }}">
+               {{ Form::radio('import_type', 'action',($import_type == 'action' ? 'true' : NULL)); }}Akce
             </label>
         </div>
     </div>

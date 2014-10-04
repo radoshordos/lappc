@@ -14,7 +14,8 @@ class SyncCsvImportController extends \BaseController
             'template_id' => Input::get('template_id'),
             'check' => FALSE,
             'data_input'=> Input::get('data_input'),
-            'separator' => Input::get('separator'),
+            'separator' => (Input::has('separator') ? Input::get('separator') : 'semicolon'),
+            'import_type' => (Input::has('import_type') ? Input::get('import_type') : 'manualsync'),
             'sync_template' => [''] + SB::option('SELECT  sync_csv_template.id,sync_csv_template.purpose,
                                                           mixture_dev.name,mixture_dev.trigger_column_count,
                                                           (SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
