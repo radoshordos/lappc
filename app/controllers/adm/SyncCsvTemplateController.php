@@ -39,7 +39,7 @@ class SyncCsvTemplateController extends \BaseController
     public function create()
     {
         return View::make('adm.sync.template.create', array(
-            'select_mixture_dev' => [''] + SB::option("SELECT * FROM mixture_dev ORDER BY purpose DESC", ['id' => '->name'])
+            'select_mixture_dev' => [''] + SB::option("SELECT * FROM mixture_dev ORDER BY id DESC", ['id' => '->name'])
         ));
     }
 

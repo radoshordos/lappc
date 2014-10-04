@@ -10,7 +10,6 @@ class SyncCsvTemplate extends Migration {
         Schema::create('sync_csv_template', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('mixture_dev_id')->unsigned();
-            $table->enum('purpose', array('sync','action'))->default('sync');
             $table->tinyInteger('trigger_column_count')->unsigned()->default(0);
             $table->timestamps();
 

@@ -16,8 +16,6 @@ Přehled .csv šablon
             <thead>
             <tr>
                 <th>Název výrobce</th>
-                <th>Alias</th>
-                <th>Oddělovač</th>
                 <th>Elementy</th>
                 <th></th>
             </tr>
@@ -26,8 +24,6 @@ Přehled .csv šablon
             @foreach ($template as $row)
             <tr>
                 <td>{{ $row->mixtureDev->name }}</td>
-                <td>{{ $row->purpose }}</td>
-                <td>{{ $row->separator }}</td>
                 <td>{{ htmlspecialchars($tag[$row->id]) }}</td>
                 <td>{{ link_to_route('adm.sync.template.edit','Nastavit',array($row->id),array('class' => 'btn btn-info btn-xs')) }}</td>
             </tr>

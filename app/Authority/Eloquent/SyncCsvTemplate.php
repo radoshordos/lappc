@@ -10,7 +10,6 @@ class SyncCsvTemplate extends \Eloquent
 
     public static $rules = array(
         'mixture_dev_id' => 'required|exists:mixture_dev,id',
-        'purpose' => 'required'
     );
 
     public function mixtureDev()
