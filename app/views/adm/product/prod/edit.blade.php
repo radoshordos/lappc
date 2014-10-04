@@ -49,6 +49,7 @@
         <li><a href="#source" data-toggle="tab">Obsah</a></li>
         <li><a href="#difference" data-toggle="tab">Variace</a></li>
         <li><a href="#fotogalerie" data-toggle="tab">Fotogalerie</a></li>
+        <li><a href="#akce" data-toggle="tab">Akce</a></li>
     </ul>
     <div id="my-tab-content" class="tab-content">
         <div class="tab-pane active container" style="padding-top: 2em" id="prod">
@@ -206,6 +207,10 @@
                 <input id="input-1a" type="file" class="file" data-show-preview="false">
             </div>
         </div>
+    </div>
+    <div class="tab-pane" style="padding-top: 2em" id="akce">
+        <h1>akce</h1>
+        <p>akce akce akce akce akce akce</p>
     </div>
 </div>
 {{ Form::close() }}
