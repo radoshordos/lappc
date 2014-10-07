@@ -1,6 +1,7 @@
 <?php
 
-use \Authority\Eloquent\GrabProfile;
+use Authority\Tools\SB;
+use Authority\Eloquent\GrabProfile;
 
 class GrabController extends \BaseController
 {
@@ -13,15 +14,16 @@ class GrabController extends \BaseController
 
     public function index()
     {
-
         return View::make('adm.tools.grab.index', [
+            'get_select_group' => Input::get('select_group'),
+            'select_group' => [''] + SB::option("SELECT * FROM grab_profile WHERE active = 1 ORDER BY name", ['id' => '->name']),
             'grab_profile' => $this->gp->orderBy('id')->get(),
         ]);
     }
 
     public function store()
     {
-
+/*
         if (Input::has('submit-profile-action') && Input::get('profile-action') > 0) {
 
             if (Input::get('profile-action') == 1 && count(Input::get('checkbox')) > 0) {
@@ -31,8 +33,6 @@ class GrabController extends \BaseController
                 }
                 Session::flash('success', "Smazáno položek: <b>" . $count . "</b>");
             }
-
-            return Redirect::route('adm.tools.grab.index');
         }
 
         if (Input::has('submit-add-group')) {
@@ -52,7 +52,8 @@ class GrabController extends \BaseController
                 return Redirect::route('adm.tools.grab.index')->withInput()->withErrors($v);
             }
         }
-        return Redirect::route('adm.tools.grab.index');
+*/
+        return Redirect::route('adm.tools.grab.index')->withInput(Input::all());
     }
 
 }

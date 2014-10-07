@@ -25,11 +25,16 @@ Filtrace
 <!-- Tab panes -->
 <div class="tab-content">
     <div class="tab-pane fade in active" id="profile-group" style="padding-top: 2em">
-        TEST
+        {{ Form::open(array('route' => ['adm.tools.grab.index'], 'method' => 'get', 'class' => 'form-horizontal', 'role' => 'form')) }}
+        <div class="input-group form-group">
+            <span class="input-group-addon">Volba skupiny</span>
+            {{ Form::select('select_group',$select_group, $get_select_group, array('id' => 'select_group', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+        </div>
+        {{ Form::close() }}
     </div>
     <div class="tab-pane fade" id="group" style="padding-top: 2em">
         <div class="col-md-8 col-md-offset-2">
-            {{ Form::open(array('route' => ['adm.tools.grab.index'],'class' => 'form-horizontal', 'role' => 'form')) }}
+            {{ Form::open(array('route' => ['adm.tools.grab.store'],'class' => 'form-horizontal', 'role' => 'form')) }}
             <table class="table table-striped table-bordered">
                 <tbody>
                 @foreach($grab_profile as $row)
@@ -52,7 +57,7 @@ Filtrace
         </div>
     </div>
     <div class="tab-pane fade" id="add-group" style="padding-top: 2em">
-        {{ Form::open(array('route' => ['adm.tools.grab.index'],'class' => 'form-horizontal', 'role' => 'form')) }}
+        {{ Form::open(array('route' => ['adm.tools.grab.store'],'class' => 'form-horizontal', 'role' => 'form')) }}
         <div class="form-group">
             {{ Form::label('charset','Znaková sada',array('class'=> 'col-sm-2 control-label')) }}
             <div class="col-sm-10">
