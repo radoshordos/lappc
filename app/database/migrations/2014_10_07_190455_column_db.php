@@ -15,6 +15,7 @@ class ColumnDb extends Migration
             $table->string('name', 32)->unique();
 
             $table->engine = 'InnoDB';
+            $table->foreign('table_id')->references('id')->on('column_table')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ProdDescriptionSeeder');
         $this->call('GrabModeSeeder');
         $this->call('GrabProfileSeeder');
+        $this->call('ColumnTableSeeder');
 
         // OSTATNI
         $this->call('FeedServiceTableSeeder');
@@ -43,6 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->call('AdminRunnerTableSeeder');
         $this->call('MediaVariationsSeeder');
         $this->call('GrabFunctionSeeder');
+        $this->call('ColumnDbSeeder');
 
         $this->call('DevTableSeeder');
         $this->call('TreeTableSeeder');
