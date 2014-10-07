@@ -8,9 +8,9 @@ class GrabFunction extends Migration
 
     public function up()
     {
-        Schema::create('grab_profile', function (Blueprint $table) {
+        Schema::create('grab_function', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned()->primary();
+            $table->increments('id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned();
             $table->boolean('visible')->default(1);
             $table->string('function', 32)->unique();

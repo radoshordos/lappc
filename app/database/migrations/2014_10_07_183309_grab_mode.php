@@ -7,7 +7,7 @@ class GrabMode extends Migration {
 
 	public function up()
 	{
-        Schema::create('grab_profile', function (Blueprint $table) {
+        Schema::create('grab_mode', function (Blueprint $table) {
 
             $table->tinyInteger('id')->unsigned()->primary();
             $table->string('alias', 16)->unique();
