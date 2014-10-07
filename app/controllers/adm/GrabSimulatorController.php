@@ -6,8 +6,14 @@ class GrabSimulatorController extends \BaseController
 
     public function index()
     {
-        return View::make('adm.tools.grabsimulator.index', []);
+      //  echo "--";
+      //  var_dump(Input::all());
+     //   return View::make('adm.tools.grab.index', []);
     }
+
+
+
+
 
 
     /*

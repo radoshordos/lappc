@@ -66,7 +66,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::any('calculator', ['as' => 'adm.tools.calculator.index', 'uses' => 'ToolCalculatorController@index']);
         Route::any('comparator', ['as' => 'adm.tools.comparator.index', 'uses' => 'ToolComparatorController@index']);
         Route::any('csvoptimal', ['as' => 'adm.tools.csvoptimal.index', 'uses' => 'ToolCsvOptimalController@index']);
-        Route::any('grab', ['as' => 'adm.tools.grab.index', 'uses' => 'GrabController@index']);
+        Route::resource('grab', 'GrabController');
         Route::any('grabsimulator', ['as' => 'adm.tools.grabsimulator.index', 'uses' => 'GrabSimulatorController@index']);
     });
 
