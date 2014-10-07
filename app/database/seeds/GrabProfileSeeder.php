@@ -25,7 +25,7 @@ class GrabProfileSeeder extends Seeder
 
         foreach ($filter2profile as $row) {
 
-            DB::table('dev')->insert([
+            DB::table('grab_profile')->insert([
                 'id'      => $row['fp_id'],
                 'active'  => $row['fp_visible'],
                 'charset' => $row['fp_charset'],

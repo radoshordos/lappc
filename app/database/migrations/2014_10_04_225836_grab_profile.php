@@ -10,7 +10,7 @@ class GrabProfile extends Migration
     {
         Schema::create('grab_profile', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned()->primaty();
+            $table->increments('id')->unsigned()->primary();
             $table->boolean('active')->default(1);
             $table->string('charset', 16);
             $table->string('name', 40)->unique();
