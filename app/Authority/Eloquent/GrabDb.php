@@ -14,4 +14,10 @@ class GrabDb extends \Eloquent
         'function_id' => 'required|exists:grab_function,id',
     ];
 
+    public function grabFunction()
+    {
+        return $this->hasOne('Authority\Eloquent\GrabFunction', 'id', 'function_id');
+    }
+
+
 }

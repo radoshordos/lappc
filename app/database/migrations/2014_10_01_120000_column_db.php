@@ -11,7 +11,7 @@ class ColumnDb extends Migration
 
             $table->tinyInteger('id')->unsigned()->primary();
             $table->tinyInteger('table_id')->unsigned();
-            $table->boolean('visible_filter')->default(1);
+            $table->boolean('visible_grab')->default(1);
             $table->string('name', 32)->unique();
 
             $table->engine = 'InnoDB';

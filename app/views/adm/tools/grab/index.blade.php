@@ -15,8 +15,6 @@ Filtrace
 {{-- Content --}}
 @section('content')
 
-
-
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#profile-group" role="tab" data-toggle="tab">Profily skupin</a></li>
@@ -33,17 +31,22 @@ Filtrace
             {{ Form::select('select_group',$select_group, $get_select_group, array('id' => 'select_group', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
         </div>
         {{ Form::close() }}
-            <table class="table table-striped table-bordered table-condensed">
-                <tbody>
-                @foreach($grab_db as $row)
-                    <tr>
-                        <td><input type="checkbox" name="checkbox[{{ $row->id }}]" /></td>
-                        <td>{{ Form::text('val1['.$row->id.']', $row->val1, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
-                        <td>{{ Form::text('val2['.$row->id.']', $row->val2, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+        <table class="table table-striped table-bordered table-condensed">
+            <tbody>
+            @foreach($grab_db as $row)
+                <tr>
+                    <td>{{ Form::checkbox("checkbox[".$row->id."]") }}</td>
+                    <td>{{ Form::selectRange('number', 0, 25, $row->position,['class'=> 'form-control']); }}</td>
+                    <td>{{ Form::select('active['.$row->id.']', ["0" => "Neaktivní","1" => "Aktivní"] , $row->active,['class'=> 'form-control']) }}</td>
+                    <td>{{ Form::select('column_id['.$row->id.']', $select_column , $row->column_id,['class'=> 'form-control']) }}</td>
+                    <td>{{ $row->grabFunction->grabMode->alias }}</td>
+                    <td>{{ $row->grabFunction->function }}</td>
+                    <td>{{ Form::text('val1['.$row->id.']', $row->val1, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
+                    <td>{{ Form::text('val2['.$row->id.']', $row->val2, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
     <div class="tab-pane fade" id="group" style="padding-top: 2em">
         <div class="col-md-8 col-md-offset-2">

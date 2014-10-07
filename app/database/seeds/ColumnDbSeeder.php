@@ -51,10 +51,10 @@ class ColumnDbSeeder extends Seeder
         foreach ($column_db as $row) {
 
             DB::table('column_db')->insert([
-                'id'             => $row['columna_id'],
-                'table_id'       => $row['columna_id_tables'],
-                'visible_filter' => $row['columna_visible_filter'],
-                'name'           => $row['columna_name'],
+                'id'           => $row['columna_id'],
+                'table_id'     => $row['columna_id_tables'],
+                'visible_grab' => $row['columna_visible_filter'],
+                'name'         => $row['columna_name'],
             ]);
         }
     }

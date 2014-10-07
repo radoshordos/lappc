@@ -20,7 +20,8 @@ class GrabController extends \BaseController
         return View::make('adm.tools.grab.index', [
             'get_select_group' => Input::get('select_group'),
             'select_group'     => [''] + SB::option("SELECT * FROM grab_profile WHERE active = 1 ORDER BY name", ['id' => '->name']),
-            'grab_db'          => $this->gd->where('profile_id', '=', Input::get('select_group'))->orderBy('position')->get(),
+            'select_column'    => [''] + SB::option("SELECT * FROM column_db WHERE visible_grab = 1 ORDER BY table_id,id", ['id' => '->name']),
+            'grab_db'          => $this->gd->where('profile_id', '=', Input::get('select_group'))->orderBy('column_id','position')->get(),
             'grab_profile'     => $this->gp->orderBy('id')->get(),
         ]);
     }
