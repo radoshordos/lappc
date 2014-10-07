@@ -364,7 +364,6 @@ class GrabDbSeeder extends Seeder
                 'function_id' => $row['filter_id_type'],
                 'active'      => $row['filter_active'],
                 'position'    => $row['filter_pozition'],
-                'name'        => $row['ft_name'],
                 'val1'        => $row['filter_val1'],
                 'val2'        => $row['filter_val2'],
             ]);

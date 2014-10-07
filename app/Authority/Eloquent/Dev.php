@@ -12,8 +12,8 @@ class Dev extends \Eloquent
         'id' => "required|min:1|max:999|unique:dev,id",
         'name' => 'required|min:2|max:32|unique:dev,name',
         'alias' => 'required|min:2|max:32|unique:dev,alias',
-        'default_warranty_id' => 'required|numeric|exists:prod_warranty,id',
-        'default_sale_prod_id' => 'required|numeric|exists:items_sale,id',
+        'default_warranty_id' => 'required|exists:prod_warranty,id',
+        'default_sale_prod_id' => 'required|exists:items_sale,id',
         'default_sale_action_id' => 'required|numeric|exists:items_sale,id',
         'default_availibility_id' => 'required|numeric|exists:items_availability,id'
     );

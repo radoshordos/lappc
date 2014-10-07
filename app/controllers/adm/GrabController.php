@@ -2,13 +2,16 @@
 
 use Authority\Tools\SB;
 use Authority\Eloquent\GrabProfile;
+use Authority\Eloquent\GrabDb;
 
 class GrabController extends \BaseController
 {
+    protected $gd;
     protected $gp;
 
-    function __construct(GrabProfile $gp)
+    function __construct(GrabDb $gd, GrabProfile $gp)
     {
+        $this->gd = $gd;
         $this->gp = $gp;
     }
 
@@ -16,14 +19,15 @@ class GrabController extends \BaseController
     {
         return View::make('adm.tools.grab.index', [
             'get_select_group' => Input::get('select_group'),
-            'select_group' => [''] + SB::option("SELECT * FROM grab_profile WHERE active = 1 ORDER BY name", ['id' => '->name']),
-            'grab_profile' => $this->gp->orderBy('id')->get(),
+            'select_group'     => [''] + SB::option("SELECT * FROM grab_profile WHERE active = 1 ORDER BY name", ['id' => '->name']),
+            'grab_db'          => $this->gd->where('profile_id', '=', Input::get('select_group'))->orderBy('position')->get(),
+            'grab_profile'     => $this->gp->orderBy('id')->get(),
         ]);
     }
 
     public function store()
     {
-/*
+
         if (Input::has('submit-profile-action') && Input::get('profile-action') > 0) {
 
             if (Input::get('profile-action') == 1 && count(Input::get('checkbox')) > 0) {
@@ -52,8 +56,8 @@ class GrabController extends \BaseController
                 return Redirect::route('adm.tools.grab.index')->withInput()->withErrors($v);
             }
         }
-*/
-        return Redirect::route('adm.tools.grab.index')->withInput(Input::all());
+
+        return Redirect::route('adm.tools.grab.index')->withInput();
     }
 
 }

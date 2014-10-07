@@ -20,7 +20,7 @@ class GrabDb extends Migration
             $table->string('val2', '128');
 
             $table->engine = 'InnoDB';
-            $table->unique(['profile_id', 'column_id', 'function_id']);
+            $table->unique(['profile_id', 'column_id', 'position']);
         });
     }
 
