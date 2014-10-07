@@ -135,9 +135,8 @@
                         <li><a href="{{ URL::route('adm.tools.comparator.index') }}">Comparator dat</a></li>
                         <li><a href="{{ URL::route('adm.tools.csvoptimal.index') }}">Optimalizátor .csv dat</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ URL::route('adm.tools.calculator.index') }}">Filtrační profily</a></li>
-                        <li><a href="{{ URL::route('adm.tools.calculator.index') }}">Filtrační skupiny</a></li>
-                        <li><a href="{{ URL::route('adm.tools.calculator.index') }}">Filtrační simulator</a></li>
+                        <li><a href="{{ URL::route('adm.tools.grab.index') }}">Filtrace</a></li>
+                        <li><a href="{{ URL::route('adm.tools.grabsimulator.index') }}">Filtrační simulator</a></li>
                     </ul>
                 </li>
 
