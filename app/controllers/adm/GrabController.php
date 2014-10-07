@@ -4,7 +4,6 @@ use \Authority\Eloquent\GrabProfile;
 
 class GrabController extends \BaseController
 {
-
     protected $gp;
 
     function __construct(GrabProfile $gp)
@@ -14,19 +13,30 @@ class GrabController extends \BaseController
 
     public function index()
     {
-        return View::make('adm.tools.grab.index', []);
+
+        return View::make('adm.tools.grab.index', [
+            'grab_profile' => $this->gp->orderBy('id')->get(),
+        ]);
     }
 
     public function store()
     {
 
-            var_dump(Input::has('submit-add-group'));
+        if (Input::has('submit-profile-action') && Input::get('profile-action') > 0) {
 
+            if (Input::get('profile-action') == 1 && count(Input::get('checkbox')) > 0) {
+                $count = 0;
+                foreach (array_keys(Input::get('checkbox')) as $key) {
+                    $count += GrabProfile::destroy($key);
+                }
+                Session::flash('success', "Smazáno položek: <b>" . $count . "</b>");
+            }
+
+            return Redirect::route('adm.tools.grab.index');
+        }
 
         if (Input::has('submit-add-group')) {
-            var_dump(Input::all());
-
-            $input = array_only(Input::all(), array('charset','name'));
+            $input = array_only(Input::all(), ['charset', 'name']);
             $v = Validator::make($input, GrabProfile::$rules);
 
             if ($v->passes()) {
@@ -42,6 +52,7 @@ class GrabController extends \BaseController
                 return Redirect::route('adm.tools.grab.index')->withInput()->withErrors($v);
             }
         }
+        return Redirect::route('adm.tools.grab.index');
     }
 
 }

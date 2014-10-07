@@ -14,9 +14,7 @@ Runner
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th rowspan="2">
-                    <span class="glyphicon glyphicon-check"></span>
-                </th>
+                <th rowspan="2"><span class="glyphicon glyphicon-check"></span></th>
                 <th colspan="3" class="text-center">AUTORUN</th>
                 <th rowspan="2">Denní<br /> blok</th>
                 <th rowspan="2">Manuálně<br />spuštěno</th>
@@ -33,9 +31,7 @@ Runner
             @foreach ($runner as $run)
             <tr>
                 <td>{{ Form::checkbox('alias['.$run->id.']', $run->alias); }}</td>
-                <td>
-                    {{ Form::select('autorun['.$run->id.']', array('0' => 'NE','1' => 'ANO'), $run->autorun) }}
-                </td>
+                <td>{{ Form::select('autorun['.$run->id.']', array('0' => 'NE','1' => 'ANO'), $run->autorun) }}</td>
                 <td>{{ date("d.m.Y H:i", $run->last_run_automatic) }} </td>
                 <td>{{ date("d.m.Y H:i", $run->last_run_automatic + $run->autorun_minimim_range) }} </td>
                 <td>{{ date("H:i", (mktime(0, 0, 0, date("m"), date("d"), date("Y")) + $run->autorun_first_run_day)) }} </td>
