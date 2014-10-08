@@ -24,6 +24,8 @@
 @stop
 
 {{-- Content --}}
+
+
 @section('content')
 {{ Form::open(array('route' => array('adm.product.prod.edit', $choice_tree, $choice_prod))) }}
 <div class="input-group form-group">
@@ -216,7 +218,7 @@
 {{ Form::close() }}
 <p class="text-center">
     {{ link_to_route('adm.product.prod.index','Zobrazit všechny produkty',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
-    {{ Form::submit('Editovat produkt', array('class' => 'btn btn-info')) }}
+    {{ Form::submit('Editovat produkt', array('name' => 'button-submit-edit','class' => 'btn btn-info')) }}
 </p>
 
 
