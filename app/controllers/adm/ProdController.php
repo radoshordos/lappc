@@ -184,8 +184,6 @@ class ProdController extends \BaseController
                 Session::flash('error', implode('<br />', $v->errors()->all(':message')));
                 return Redirect::route('adm.product.prod.edit', [$tree, $prod])->withInput()->withErrors($v);
             }
-
-
         }
 /*
 

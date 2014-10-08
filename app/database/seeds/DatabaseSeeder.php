@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ProdDifferenceValuesSeeder');
 	    $this->call('ProdDifferenceSeeder');
         $this->call('GrabDbSeeder');
-
+        $this->call('MediaDbSeeder');
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
