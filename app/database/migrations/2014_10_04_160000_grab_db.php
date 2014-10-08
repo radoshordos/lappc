@@ -11,9 +11,9 @@ class GrabDb extends Migration
         Schema::create('grab_db', function (Blueprint $table) {
 
             $table->increments('id')->unsigned()->primaty();
-            $table->tinyInteger('profile_id')->unsigned();
+            $table->integer('profile_id')->unsigned();
             $table->tinyInteger('column_id')->unsigned();
-            $table->tinyInteger('function_id')->unsigned();
+            $table->integer('function_id')->unsigned();
             $table->boolean('active')->default(1);
             $table->tinyInteger('position')->unsigned();
             $table->string('val1', '128');
@@ -21,6 +21,10 @@ class GrabDb extends Migration
 
             $table->engine = 'InnoDB';
             $table->unique(['profile_id', 'column_id', 'position']);
+
+            $table->foreign('profile_id')->references('id')->on('grab_profile')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('column_id')->references('id')->on('column_db')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('function_id')->references('id')->on('grab_function')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

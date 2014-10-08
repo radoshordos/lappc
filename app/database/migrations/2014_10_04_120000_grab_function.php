@@ -17,6 +17,7 @@ class GrabFunction extends Migration
             $table->string('name', 48)->unique();
 
             $table->engine = 'InnoDB';
+            $table->foreign('mode_id')->references('id')->on('grab_mode')->onUpdate('cascade')->onDelete('no action');
         });
     }
 
