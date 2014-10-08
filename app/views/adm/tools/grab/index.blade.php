@@ -31,12 +31,13 @@ Filtrace
             {{ Form::select('select_group',$select_group, $get_select_group, array('id' => 'select_group', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
         </div>
         {{ Form::close() }}
+        {{ Form::open(array('route' => ['adm.tools.grab.store','select_group' => $get_select_group],'class' => 'form-horizontal', 'role' => 'form')) }}
         <table class="table table-striped table-bordered table-condensed">
             <tbody>
             @foreach($grab_db as $row)
                 <tr>
-                    <td>{{ Form::checkbox("checkbox[".$row->id."]") }}</td>
-                    <td>{{ Form::selectRange('number', 0, 25, $row->position,['class'=> 'form-control']); }}</td>
+                    <td>{{ Form::checkbox("profile_checkbox[".$row->id."]") }}</td>
+                    <td>{{ Form::selectRange('position['.$row->id.']', 0, 25, $row->position,['class'=> 'form-control']); }}</td>
                     <td>{{ Form::select('active['.$row->id.']', ["0" => "Neaktivní","1" => "Aktivní"] , $row->active,['class'=> 'form-control']) }}</td>
                     <td>{{ Form::select('column_id['.$row->id.']', $select_column , $row->column_id,['class'=> 'form-control']) }}</td>
                     <td>{{ $row->grabFunction->grabMode->alias }}</td>
@@ -46,7 +47,14 @@ Filtrace
                 </tr>
             @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">{{ Form::submit('Uložit', array('name' => 'submit-update-profile','class' => 'btn btn-primary')) }}</td>
+                    <td colspan="4" class="text-center">{{ Form::submit('Snazat označené', array('name' => 'submit-delete-profile','class' => 'btn btn-danger')) }}</td>
+                </tr>
+            </tfoot>
         </table>
+        {{ Form::close() }}
     </div>
     <div class="tab-pane fade" id="group" style="padding-top: 2em">
         <div class="col-md-8 col-md-offset-2">
