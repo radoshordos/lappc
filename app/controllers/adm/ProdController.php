@@ -90,17 +90,17 @@ class ProdController extends \BaseController
         if (!isset($row->tree_id)) {
 
             return View::make('adm.product.prod.edit', [
-                'list_tree'   => $select_tree,
-                'list_prod'   => [''] + SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name']),
-                'choice_tree' => $tree,
-                'choice_prod' => $prod
+                'list_tree'        => $select_tree,
+                'list_prod'        => [''] + SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name [i:->ic_all]']),
+                'choice_tree'      => $tree,
+                'choice_prod'      => $prod
             ])->with(['id' => $prod]);
 
         } else {
 
             return View::make('adm.product.prod.edit', [
                 'list_tree'              => $select_tree,
-                'list_prod'              => SB::optionBind("SELECT id,name FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name']),
+                'list_prod'              => SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name [i:->ic_all]']),
                 'choice_tree'            => $tree,
                 'choice_prod'            => $prod,
                 'prod'                   => $row,
@@ -128,7 +128,7 @@ class ProdController extends \BaseController
 
         if (Input::has('button-submit-edit')) {
 
-            $input_desc1 = array_only($input, ['pmd_title1','data_input1']);
+            $input_desc1 = array_only($input, ['pmd_title1', 'data_input1']);
             if ($input_desc1['pmd_title1'] > 0) {
                 $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', $input_desc1['pmd_title1'])->update(['data' => $input_desc1['data_input1']]);
                 if ($update == 0) {
@@ -145,20 +145,25 @@ class ProdController extends \BaseController
 
             $row = $this->prod->find($prod);
 
-            $input_items = array_only($input, ['visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice']);
-            foreach (array_keys(Input::get('code_ean')) as $key) {
-                $items = Items::find($key);
-                $items->visible = $input_items['visible'][$key];
-                $items->code_prod = $input_items['code_prod'][$key];
-                $items->code_ean = $input_items['code_ean'][$key];
-                $items->sale_id = $input_items['sale_id'][$key];
-                $items->availability_id = $input_items['availability_id'][$key];
-                $items->iprice = $input_items['iprice'][$key];
-                $items->save();
-            }
 
+
+
+
+            if (Input::has('code_ean')) {
+                $input_items = array_only($input, ['visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice']);
+                foreach (array_keys(Input::get('code_ean')) as $key) {
+                    $items = Items::find($key);
+                    $items->visible = $input_items['visible'][$key];
+                    $items->code_prod = $input_items['code_prod'][$key];
+                    $items->code_ean = $input_items['code_ean'][$key];
+                    $items->sale_id = $input_items['sale_id'][$key];
+                    $items->availability_id = $input_items['availability_id'][$key];
+                    $items->iprice = $input_items['iprice'][$key];
+                    $items->save();
+                }
+            }
             $input_prod = array_only($input, [
-                'tree_id', 'dev_id', 'mode_id', 'difference_id', 'warranty_id', 'forex_id',
+                'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id',
                 'dph_id', 'price', 'alias', 'name', 'desc', 'transport_weight', 'transport_atypical'
             ]);
 
@@ -185,37 +190,37 @@ class ProdController extends \BaseController
                 return Redirect::route('adm.product.prod.edit', [$tree, $prod])->withInput()->withErrors($v);
             }
         }
-/*
+        /*
 
-        if (Input::get('pmd_title2') > 0) {
-            $input_description['pmd_title2'] = Input::get('pmd_title2');
-            $input_description['data_input2'] = Input::get('data_input2');
-            $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title2'))->update(['data' => Input::get('data_input2')]);
-            if ($update == 0) {
+                if (Input::get('pmd_title2') > 0) {
+                    $input_description['pmd_title2'] = Input::get('pmd_title2');
+                    $input_description['data_input2'] = Input::get('data_input2');
+                    $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title2'))->update(['data' => Input::get('data_input2')]);
+                    if ($update == 0) {
 
-                $pd2 = new ProdDescription;
-                $pd2->prod_id = $prod;
-                $pd2->variations_id = Input::get('pmd_title2');
-                $pd2->data = Input::get('data_input2');
-                $pd2->save();
+                        $pd2 = new ProdDescription;
+                        $pd2->prod_id = $prod;
+                        $pd2->variations_id = Input::get('pmd_title2');
+                        $pd2->data = Input::get('data_input2');
+                        $pd2->save();
 
-            }
-        }
-        if (Input::get('pmd_title3') > 0) {
-            $input_description['pmd_title3'] = Input::get('pmd_title3');
-            $input_description['data_input3'] = Input::get('data_input3');
-            $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title3'))->update(['data' => Input::get('data_input3')]);
-            if ($update == 0) {
+                    }
+                }
+                if (Input::get('pmd_title3') > 0) {
+                    $input_description['pmd_title3'] = Input::get('pmd_title3');
+                    $input_description['data_input3'] = Input::get('data_input3');
+                    $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title3'))->update(['data' => Input::get('data_input3')]);
+                    if ($update == 0) {
 
-                $pd3 = new ProdDescription;
-                $pd3->prod_id = $prod;
-                $pd3->variations_id = Input::get('pmd_title3');
-                $pd3->data = Input::get('data_input3');
-                $pd3->save();
+                        $pd3 = new ProdDescription;
+                        $pd3->prod_id = $prod;
+                        $pd3->variations_id = Input::get('pmd_title3');
+                        $pd3->data = Input::get('data_input3');
+                        $pd3->save();
 
-            }
-        }
-*/
+                    }
+                }
+        */
 
         $vpd = Validator::make($input_description, ProdDescription::$rules);
 
@@ -227,7 +232,6 @@ class ProdController extends \BaseController
 
 
         }
-
 
 
     }
