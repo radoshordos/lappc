@@ -206,7 +206,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="<?=  $prod->prodDifference->count; ?>"><?= $select_difference[$prod->prodDifference->id]; ?></th>
+                                <th colspan="<?= $prod->prodDifference->count; ?>"><?= $select_difference[$prod->prodDifference->id]; ?></th>
                             </tr>
                             <tr>
                                 <?php /* foreach ($pdis as $value) { */ ?>
@@ -216,7 +216,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <td colspan="<?/*= $prod->pd_lenght;*/ ?>"><?/*= $this->formSubmit("addvar", "Přidat variace"); */?></td>
+                                <td colspan="<?= $prod->prodDifference->count; ?>">  {{ Form::submit('Přidat variace', array('name' => 'button-add-variation','class' => 'btn btn-info')) }}</td>
                             </tr>
                         </tfoot>
                         <tbody>

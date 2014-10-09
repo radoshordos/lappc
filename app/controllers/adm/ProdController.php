@@ -55,13 +55,6 @@ class ProdController extends \BaseController
         ]);
     }
 
-    /**
-     * Display a listing of the resource.
-     * GET /adm/product/prod/create
-     *
-     * @return Response
-     */
-
     public function create()
     {
         return View::make('adm.product.prod.create', []);
@@ -136,6 +129,47 @@ class ProdController extends \BaseController
 
         if (Input::has('button-submit-edit')) {
 
+            $row = $this->prod->find($prod);
+
+            $input_prod = array_only($input, [
+                'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id',
+                'dph_id', 'price', 'alias', 'name', 'desc', 'transport_weight', 'transport_atypical'
+            ]);
+
+            $input_prod['id'] = $row->id;
+            $v = Validator::make($input_prod, Prod::$rules);
+
+            if ($v->passes()) {
+                if (intval(Input::get('difference_check')) == 1 && Input::get('difference_id') != $row->difference_id) {
+                    $this->items->where('prod_id', '=', $prod)->delete();
+                    $row->difference_id = Input::get('difference_id');
+                    $row->save();
+                }
+                try {
+                    $row->update($input_prod, $tree);
+                } catch (Exception $e) {
+                    Session::flash('error', $e->getMessage());
+                }
+                return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
+            } else {
+                Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+                return Redirect::route('adm.product.prod.edit', [$tree, $prod])->withInput()->withErrors($v);
+            }
+
+            if (Input::has('code_ean')) {
+                $input_items = array_only($input, ['visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice']);
+                foreach (array_keys(Input::get('code_ean')) as $key) {
+                    $items = Items::find($key);
+                    $items->visible = $input_items['visible'][$key];
+                    $items->code_prod = $input_items['code_prod'][$key];
+                    $items->code_ean = $input_items['code_ean'][$key];
+                    $items->sale_id = $input_items['sale_id'][$key];
+                    $items->availability_id = $input_items['availability_id'][$key];
+                    $items->iprice = $input_items['iprice'][$key];
+                    $items->save();
+                }
+            }
+
             $ida1 = array_only($input, ['data_id1', 'data_title1', 'data_input1']);
             if (intval($ida1['data_title1']) == 0 && intval($ida1['data_id1']) > 0) {
                 ProdDescription::destroy(intval($ida1['data_id1']));
@@ -184,115 +218,6 @@ class ProdController extends \BaseController
                 $pd3->save();
             }
         }
-
-
-        $row = $this->prod->find($prod);
-
-
-        if (Input::has('code_ean')) {
-            $input_items = array_only($input, ['visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice']);
-            foreach (array_keys(Input::get('code_ean')) as $key) {
-                $items = Items::find($key);
-                $items->visible = $input_items['visible'][$key];
-                $items->code_prod = $input_items['code_prod'][$key];
-                $items->code_ean = $input_items['code_ean'][$key];
-                $items->sale_id = $input_items['sale_id'][$key];
-                $items->availability_id = $input_items['availability_id'][$key];
-                $items->iprice = $input_items['iprice'][$key];
-                $items->save();
-            }
-        }
-        $input_prod = array_only($input, [
-            'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id',
-            'dph_id', 'price', 'alias', 'name', 'desc', 'transport_weight', 'transport_atypical'
-        ]);
-
-
-        $input_prod['id'] = $row->id;
-        $v = Validator::make($input_prod, Prod::$rules);
-
-        if ($v->passes()) {
-
-            if (intval(Input::get('difference_check')) == 1 && Input::get('difference_id') != $row->difference_id) {
-                $this->items->where('prod_id', '=', $prod)->delete();
-                $row->difference_id = Input::get('difference_id');
-                $row->save();
-            }
-
-            try {
-                $row->update($input_prod, $tree);
-            } catch (Exception $e) {
-                Session::flash('error', $e->getMessage());
-            }
-            return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
-        } else {
-            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
-            return Redirect::route('adm.product.prod.edit', [$tree, $prod])->withInput()->withErrors($v);
-        }
-    }
-    /*
-
-            if (Input::get('pmd_title2') > 0) {
-                $input_description['pmd_title2'] = Input::get('pmd_title2');
-                $input_description['data_input2'] = Input::get('data_input2');
-                $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title2'))->update(['data' => Input::get('data_input2')]);
-                if ($update == 0) {
-
-                    $pd2 = new ProdDescription;
-                    $pd2->prod_id = $prod;
-                    $pd2->variations_id = Input::get('pmd_title2');
-                    $pd2->data = Input::get('data_input2');
-                    $pd2->save();
-
-                }
-            }
-            if (Input::get('pmd_title3') > 0) {
-                $input_description['pmd_title3'] = Input::get('pmd_title3');
-                $input_description['data_input3'] = Input::get('data_input3');
-                $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title3'))->update(['data' => Input::get('data_input3')]);
-                if ($update == 0) {
-
-                    $pd3 = new ProdDescription;
-                    $pd3->prod_id = $prod;
-                    $pd3->variations_id = Input::get('pmd_title3');
-                    $pd3->data = Input::get('data_input3');
-                    $pd3->save();
-
-                }
-            }
-    */
-    /*
-    $vpd = Validator::make($input_description, ProdDescription::$rules);
-    if ($vpd->passes())
-    {
-
-
-    //            $pd1 = new ProdDescription;
-        //          Model::create(array('key' => 'value'));
-
-
     }
 
-
-    }
-    */
 }
-
-/*
-            if (strlen(trim($request->getParam('pmd_data1'))) > 1 || intval($request->getParam('pmd_id1')) > 0) {
-
-                $pmd1 = array(
-                    'pmd_id_prod' => intval($request->getParam('prod_id')),
-                    'pmd_id_media_var' => intval($request->getParam('pmd_title1')),
-                    'pmd_data' => htmlspecialchars(stripslashes(trim($request->getParam('pmd_data1'))))
-                );
-
-                if (intval($request->getParam('pmd_id1')) > 0 && intval($request->getParam('pmd_title1') == 0)) {
-                    $db->delete("prod2multi2description", $db->quoteInto("pmd_id = ?", intval($request->getParam('pmd_id1'))));
-                } else if (intval($request->getParam('pmd_id1')) == 0) {
-                    $db->insert("prod2multi2description", $pmd1);
-                } else if (intval($request->getParam('pmd_title1')) > 0) {
-                    $db->update("prod2multi2description", $pmd1, $db->quoteInto("pmd_id = ?", intval($request->getParam('pmd_id1'))));
-                }
-            }
-  */
