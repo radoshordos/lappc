@@ -90,10 +90,10 @@ class ProdController extends \BaseController
         if (!isset($row->tree_id)) {
 
             return View::make('adm.product.prod.edit', [
-                'list_tree'        => $select_tree,
-                'list_prod'        => [''] + SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name [i:->ic_all]']),
-                'choice_tree'      => $tree,
-                'choice_prod'      => $prod
+                'list_tree'   => $select_tree,
+                'list_prod'   => [''] + SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name [i:->ic_all]']),
+                'choice_tree' => $tree,
+                'choice_prod' => $prod
             ])->with(['id' => $prod]);
 
         } else {
@@ -116,6 +116,14 @@ class ProdController extends \BaseController
                 'select_media_var'       => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
                 'table_items'            => $this->items->where('prod_id', '=', $prod)->get(),
                 'table_prod_description' => ProdDescription::where('prod_id', '=', $prod)->get()
+
+                /*
+                'pdis' => $db->fetchAll($db->select()
+                        ->from("prod2difference2in2set")
+                        ->joinInner("prod2difference2set", Model_Zendb::ZEND_PROD2DIFF2IN2SET_2_PROD2DIFF2SET)
+                        ->where("pdis_id_difference = ? ", intval($prod->prod_id_difference))
+                );
+                */
             ])->with(['id' => $prod]);
         }
     }
@@ -128,25 +136,33 @@ class ProdController extends \BaseController
 
         if (Input::has('button-submit-edit')) {
 
-            $input_desc1 = array_only($input, ['pmd_title1', 'data_input1']);
+            /*
+                            if (intval($request->getParam('pmd_id3')) > 0 && intval($request->getParam('pmd_title3') == 0)) {
+                    $this->db->delete("prod2multi2description", $this->db->quoteInto("pmd_id = ?", intval($request->getParam('pmd_id3'))));
+                } else if (intval($request->getParam('pmd_id3')) == 0) {
+                    $this->db->insert("prod2multi2description", $pmd3);
+                } else if (intval($request->getParam('pmd_title3')) > 0) {
+                    $this->db->update("prod2multi2description", $pmd3, $this->db->quoteInto("pmd_id = ?", intval($request->getParam('pmd_id3'))));
+                }
+             */
+
+
+            $input_desc1 = array_only($input, ['pmd_id1', 'pmd_title1', 'data_input1']);
             if ($input_desc1['pmd_title1'] > 0) {
                 $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', $input_desc1['pmd_title1'])->update(['data' => $input_desc1['data_input1']]);
-                if ($update == 0) {
-                    /*
+                if ($input_desc1['pmd_title1'] == 0 && $input_desc1['data_input1']) {
+                    //  ProdDescription::destroy(ProdDescription::where('prod_id','=',$prod->id)::where('') );
+                } elseif ($update == 0) {
                     $pd1 = new ProdDescription;
                     $pd1->prod_id = $prod;
                     $pd1->variations_id = Input::get('pmd_title1');
                     $pd1->data = Input::get('data_input1');
                     $pd1->save();
-                    */
                 }
             }
 
 
             $row = $this->prod->find($prod);
-
-
-
 
 
             if (Input::has('code_ean')) {

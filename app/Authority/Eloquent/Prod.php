@@ -30,4 +30,9 @@ class Prod extends \Eloquent
         return $this->hasOne('Authority\Eloquent\Forex', 'id', 'forex_id');
     }
 
+    public function prodDifference()
+    {
+        return $this->hasOne('Authority\Eloquent\ProdDifference', 'id', 'difference_id');
+    }
+
 }

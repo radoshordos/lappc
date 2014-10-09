@@ -2,9 +2,9 @@
 
 namespace Authority\Eloquent;
 
-class ProdDifference extends \Eloquent
+class ProdDifferenceSet extends \Eloquent
 {
-    protected $table = 'prod_difference';
+    protected $table = 'prod_difference_set';
     protected $guarded = [];
 
     public $timestamps = false;

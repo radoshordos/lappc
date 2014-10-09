@@ -6,10 +6,10 @@ class PpcRules extends \Eloquent
 {
 
     protected $table = 'ppc_rules';
-    protected $guarded = array();
+    protected $guarded = [];
 
-    public static $rules = array(
+    public static $rules = [
         'modes' => 'required'
-    );
+    ];
 
 }
