@@ -136,121 +136,146 @@ class ProdController extends \BaseController
 
         if (Input::has('button-submit-edit')) {
 
-            /*
-                            if (intval($request->getParam('pmd_id3')) > 0 && intval($request->getParam('pmd_title3') == 0)) {
-                    $this->db->delete("prod2multi2description", $this->db->quoteInto("pmd_id = ?", intval($request->getParam('pmd_id3'))));
-                } else if (intval($request->getParam('pmd_id3')) == 0) {
-                    $this->db->insert("prod2multi2description", $pmd3);
-                } else if (intval($request->getParam('pmd_title3')) > 0) {
-                    $this->db->update("prod2multi2description", $pmd3, $this->db->quoteInto("pmd_id = ?", intval($request->getParam('pmd_id3'))));
-                }
-             */
-
-
-            $input_desc1 = array_only($input, ['pmd_id1', 'pmd_title1', 'data_input1']);
-            if ($input_desc1['pmd_title1'] > 0) {
-                $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', $input_desc1['pmd_title1'])->update(['data' => $input_desc1['data_input1']]);
-                if ($input_desc1['pmd_title1'] == 0 && $input_desc1['data_input1']) {
-                    //  ProdDescription::destroy(ProdDescription::where('prod_id','=',$prod->id)::where('') );
-                } elseif ($update == 0) {
-                    $pd1 = new ProdDescription;
-                    $pd1->prod_id = $prod;
-                    $pd1->variations_id = Input::get('pmd_title1');
-                    $pd1->data = Input::get('data_input1');
-                    $pd1->save();
-                }
+            $ida1 = array_only($input, ['data_id1', 'data_title1', 'data_input1']);
+            if (intval($ida1['data_title1']) == 0 && intval($ida1['data_id1']) > 0) {
+                ProdDescription::destroy(intval($ida1['data_id1']));
+            } elseif (intval($ida1['data_id1']) == 0) {
+                $pd1 = new ProdDescription;
+                $pd1->prod_id = $prod;
+                $pd1->variations_id = intval($ida1['data_title1']);
+                $pd1->data = $ida1['data_input1'];
+                $pd1->save();
+            } elseif (intval($ida1['data_title1']) > 0) {
+                $pd1 = ProdDescription::find(intval($ida1['data_id1']));
+                $pd1->variations_id = intval($ida1['data_title1']);
+                $pd1->data = $ida1['data_input1'];
+                $pd1->save();
             }
 
-
-            $row = $this->prod->find($prod);
-
-
-            if (Input::has('code_ean')) {
-                $input_items = array_only($input, ['visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice']);
-                foreach (array_keys(Input::get('code_ean')) as $key) {
-                    $items = Items::find($key);
-                    $items->visible = $input_items['visible'][$key];
-                    $items->code_prod = $input_items['code_prod'][$key];
-                    $items->code_ean = $input_items['code_ean'][$key];
-                    $items->sale_id = $input_items['sale_id'][$key];
-                    $items->availability_id = $input_items['availability_id'][$key];
-                    $items->iprice = $input_items['iprice'][$key];
-                    $items->save();
-                }
+            $ida2 = array_only($input, ['data_id2', 'data_title2', 'data_input2']);
+            if (intval($ida2['data_title2']) == 0 && intval($ida2['data_id2']) > 0) {
+                ProdDescription::destroy(intval($ida2['data_id2']));
+            } elseif (intval($ida2['data_id2']) == 0) {
+                $pd2 = new ProdDescription;
+                $pd2->prod_id = $prod;
+                $pd2->variations_id = intval($ida2['data_title2']);
+                $pd2->data = $ida2['data_input2'];
+                $pd2->save();
+            } elseif (intval($ida2['data_title2']) > 0) {
+                $pd2 = ProdDescription::find(intval($ida2['data_id2']));
+                $pd2->variations_id = intval($ida2['data_title2']);
+                $pd2->data = $ida2['data_input2'];
+                $pd2->save();
             }
-            $input_prod = array_only($input, [
-                'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id',
-                'dph_id', 'price', 'alias', 'name', 'desc', 'transport_weight', 'transport_atypical'
-            ]);
 
-
-            $input_prod['id'] = $row->id;
-            $v = Validator::make($input_prod, Prod::$rules);
-
-            if ($v->passes()) {
-
-                if (intval(Input::get('difference_check')) == 1 && Input::get('difference_id') != $row->difference_id) {
-                    $this->items->where('prod_id', '=', $prod)->delete();
-                    $row->difference_id = Input::get('difference_id');
-                    $row->save();
-                }
-
-                try {
-                    $row->update($input_prod, $tree);
-                } catch (Exception $e) {
-                    Session::flash('error', $e->getMessage());
-                }
-                return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
-            } else {
-                Session::flash('error', implode('<br />', $v->errors()->all(':message')));
-                return Redirect::route('adm.product.prod.edit', [$tree, $prod])->withInput()->withErrors($v);
+            $ida3 = array_only($input, ['data_id3', 'data_title3', 'data_input3']);
+            if (intval($ida3['data_title3']) == 0 && intval($ida3['data_id3']) > 0) {
+                ProdDescription::destroy(intval($ida3['data_id3']));
+            } elseif (intval($ida3['data_id3']) == 0) {
+                $pd3 = new ProdDescription;
+                $pd3->prod_id = $prod;
+                $pd3->variations_id = intval($ida3['data_title3']);
+                $pd3->data = $ida3['data_input3'];
+                $pd3->save();
+            } elseif (intval($ida3['data_title3']) > 0) {
+                $pd3 = ProdDescription::find(intval($ida3['data_id3']));
+                $pd3->variations_id = intval($ida3['data_title3']);
+                $pd3->data = $ida3['data_input3'];
+                $pd3->save();
             }
         }
-        /*
-
-                if (Input::get('pmd_title2') > 0) {
-                    $input_description['pmd_title2'] = Input::get('pmd_title2');
-                    $input_description['data_input2'] = Input::get('data_input2');
-                    $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title2'))->update(['data' => Input::get('data_input2')]);
-                    if ($update == 0) {
-
-                        $pd2 = new ProdDescription;
-                        $pd2->prod_id = $prod;
-                        $pd2->variations_id = Input::get('pmd_title2');
-                        $pd2->data = Input::get('data_input2');
-                        $pd2->save();
-
-                    }
-                }
-                if (Input::get('pmd_title3') > 0) {
-                    $input_description['pmd_title3'] = Input::get('pmd_title3');
-                    $input_description['data_input3'] = Input::get('data_input3');
-                    $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title3'))->update(['data' => Input::get('data_input3')]);
-                    if ($update == 0) {
-
-                        $pd3 = new ProdDescription;
-                        $pd3->prod_id = $prod;
-                        $pd3->variations_id = Input::get('pmd_title3');
-                        $pd3->data = Input::get('data_input3');
-                        $pd3->save();
-
-                    }
-                }
-        */
-
-        $vpd = Validator::make($input_description, ProdDescription::$rules);
-
-        if ($vpd->passes()) {
 
 
-//            $pd1 = new ProdDescription;
-            //          Model::create(array('key' => 'value'));
+        $row = $this->prod->find($prod);
 
 
+        if (Input::has('code_ean')) {
+            $input_items = array_only($input, ['visible', 'diff1', 'diff2', 'code_prod', 'code_ean', 'sale_id', 'availability_id', 'iprice']);
+            foreach (array_keys(Input::get('code_ean')) as $key) {
+                $items = Items::find($key);
+                $items->visible = $input_items['visible'][$key];
+                $items->code_prod = $input_items['code_prod'][$key];
+                $items->code_ean = $input_items['code_ean'][$key];
+                $items->sale_id = $input_items['sale_id'][$key];
+                $items->availability_id = $input_items['availability_id'][$key];
+                $items->iprice = $input_items['iprice'][$key];
+                $items->save();
+            }
         }
+        $input_prod = array_only($input, [
+            'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id',
+            'dph_id', 'price', 'alias', 'name', 'desc', 'transport_weight', 'transport_atypical'
+        ]);
+
+
+        $input_prod['id'] = $row->id;
+        $v = Validator::make($input_prod, Prod::$rules);
+
+        if ($v->passes()) {
+
+            if (intval(Input::get('difference_check')) == 1 && Input::get('difference_id') != $row->difference_id) {
+                $this->items->where('prod_id', '=', $prod)->delete();
+                $row->difference_id = Input::get('difference_id');
+                $row->save();
+            }
+
+            try {
+                $row->update($input_prod, $tree);
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod])->withInput()->withErrors($v);
+        }
+    }
+    /*
+
+            if (Input::get('pmd_title2') > 0) {
+                $input_description['pmd_title2'] = Input::get('pmd_title2');
+                $input_description['data_input2'] = Input::get('data_input2');
+                $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title2'))->update(['data' => Input::get('data_input2')]);
+                if ($update == 0) {
+
+                    $pd2 = new ProdDescription;
+                    $pd2->prod_id = $prod;
+                    $pd2->variations_id = Input::get('pmd_title2');
+                    $pd2->data = Input::get('data_input2');
+                    $pd2->save();
+
+                }
+            }
+            if (Input::get('pmd_title3') > 0) {
+                $input_description['pmd_title3'] = Input::get('pmd_title3');
+                $input_description['data_input3'] = Input::get('data_input3');
+                $update = ProdDescription::where('prod_id', '=', $prod)->where('variations_id', '=', Input::get('pmd_title3'))->update(['data' => Input::get('data_input3')]);
+                if ($update == 0) {
+
+                    $pd3 = new ProdDescription;
+                    $pd3->prod_id = $prod;
+                    $pd3->variations_id = Input::get('pmd_title3');
+                    $pd3->data = Input::get('data_input3');
+                    $pd3->save();
+
+                }
+            }
+    */
+    /*
+    $vpd = Validator::make($input_description, ProdDescription::$rules);
+    if ($vpd->passes())
+    {
+
+
+    //            $pd1 = new ProdDescription;
+        //          Model::create(array('key' => 'value'));
 
 
     }
+
+
+    }
+    */
 }
 
 /*
