@@ -199,8 +199,40 @@
     </div>
     @if ($prod->difference_id > 1)
     <div class="tab-pane" id="difference" style="padding-top: 2em">
-        <h1>difference</h1>
-        <p>orange orange orange orange orange</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="<? /* $prod->pd_lenght; */ ?>"><?/* $prod_id_difference[$prod->prod_id_difference]; */ ?></th>
+                            </tr>
+                            <tr>
+                                <?php /* foreach ($pdis as $value) { */ ?>
+                                    <td><? /* $value->pds_name; */?></td>
+                                <?php /* } */ ?>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="<?/*= $prod->pd_lenght;*/ ?>"><?/*= $this->formSubmit("addvar", "Přidat variace"); */?></td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <?php /* foreach ($pdis as $value) { */ ?>
+                                    <td>
+                                        <?php /*
+                                        $pdv = Model_Zendb::zFormOption($db->select()
+                                                                ->from("prod2difference2values", array("pdv_id", "pdv_name"))
+                                                                ->where("pdv_id_set=?", intval($value->pdis_id_set))
+                                                                ->order(array($value->pds_sortby)), array('->pdv_id', '->pdv_name'));
+
+                                        echo $this->formSelect("modi[$value->pds_id]", $prod->prod_id_dev, array("multiple" => "multiple", "size" => "50"), $pdv);
+                                        */?>
+                                    </td>
+                                <?php /* } */ ?>
+                            </tr>
+                        </tbody>
+                    </table>
     </div>
     @endif
     <div class="tab-pane" id="fotogalerie" style="padding-top: 2em">

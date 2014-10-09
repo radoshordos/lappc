@@ -6,23 +6,22 @@ use Illuminate\Database\Migrations\Migration;
 class ProdDifference extends Migration
 {
 
-	public function up()
-	{
-		Schema::create('prod_difference', function (Blueprint $table) {
+    public function up()
+    {
+        Schema::create('prod_difference', function (Blueprint $table) {
 
-			$table->increments('id')->unsigned();
-			$table->boolean('visible')->default(1);
-			$table->tinyInteger('count')->unsigned();
-			$table->string('name', 48);
+            $table->increments('id')->unsigned();
+            $table->boolean('visible')->default(1);
+            $table->tinyInteger('count')->unsigned();
+            $table->string('name', 48)->unique();
 
-			$table->engine = 'InnoDB';
-			$table->unique('name');
-		});
-	}
+            $table->engine = 'InnoDB';
+        });
+    }
 
-	public function down()
-	{
-		Schema::dropIfExists('prod_difference');
-	}
+    public function down()
+    {
+        Schema::dropIfExists('prod_difference');
+    }
 
 }
