@@ -46,7 +46,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('mixturetree', 'MixtureTreeController');
         Route::resource('prodwarranty', 'ProdWarrantyController');
         Route::resource('proddifference', 'ProdDifferenceController');
-        Route::match(['GET', 'POST'], 'prodvariation', ['as' => 'adm.pattern.prodvariation.index', 'uses' => 'ProdVariationController@index']);
+        Route::resource('prodvariation', 'ProdVariationController');
     });
 
     Route::group(['prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'], function () {
