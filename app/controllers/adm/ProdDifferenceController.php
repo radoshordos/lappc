@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\ProdDifference;
 use Authority\Eloquent\ProdDifferenceSet;
+use Authority\Tools\SB;
 
 class ProdDifferenceController extends \BaseController
 {
@@ -9,7 +10,7 @@ class ProdDifferenceController extends \BaseController
     protected $pd;
     protected $ps;
 
-    function __construct(ProdDifference $pd,ProdDifferenceSet $pds)
+    function __construct(ProdDifference $pd, ProdDifferenceSet $pds)
     {
         $this->pd = $pd;
         $this->pds = $pds;
@@ -19,7 +20,9 @@ class ProdDifferenceController extends \BaseController
     {
         return View::make('adm.pattern.proddifference.index', [
             'prod_difference'     => ProdDifference::orderBy('id')->get(),
-            'prod_difference_set' => ProdDifferenceSet::orderBy('id')->get()
+            'prod_difference_set' => ProdDifferenceSet::orderBy('id')->get(),
+            'select_difference'   => [''] + SB::option('SELECT * FROM prod_difference WHERE visible = 1 AND id > 1',['id' => '->name']),
+            'choice_tab2'         => intval(Input::get('choice_tab2'))
         ]);
     }
 

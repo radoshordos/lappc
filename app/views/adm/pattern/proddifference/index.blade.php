@@ -6,7 +6,6 @@
 DIFF PROD
 @stop
 
-
 {{-- JavaScript on page --}}
 @section ('script')
 <link rel="stylesheet" href="{{ asset('admin/components/bootstrap-fileinput/css/fileinput.min.css') }}">
@@ -16,12 +15,10 @@ DIFF PROD
         if(location.hash) {
             $('a[href=' + location.hash + ']').tab('show');
         }
-
         $(document.body).on("click", "a[data-toggle]", function(event) {
             location.hash = this.getAttribute("href");
         });
     });
-
     $(window).on('popstate', function() {
         var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
         $('a[href=' + anchor + ']').tab('show');
@@ -29,10 +26,10 @@ DIFF PROD
 </script>
 @stop
 
-
-
 {{-- Content --}}
 @section('content')
+
+
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Differenční seskupení</a></li>
@@ -87,7 +84,57 @@ DIFF PROD
         </div>
    </div>
     <div class="tab-pane fade" id="tab2" style="padding-top: 2em">
+        <form action="#tabs-2" method="get">
+            <div class="input-group form-group">
+                <span class="input-group-addon">Zvolite seskupení</span>
+                {{ Form::select('choice_tab2', $select_difference, $choice_tab2, ['class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            </div>
+        </form>
 
+        @if ($choice_tab2 > 0)
+            @if ($pdis_use > 0)
+                <table>
+                    <thead>
+                        <tr class="center">
+                            <th>Skupina</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td class="right">Celkem použito : <strong><?= intval(count($pdis_use)); ?></strong> položek</td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <?php foreach ($pdis_use as $row) { ?>
+                            <tr>
+                                <td><input type="text" name="pdis_id_set" readonly="readonly" size="32" maxlength="32" value="<?= $pdis_name[$row->pdis_id_set]; ?>" /></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                @endif
+                @if (count($pdis_use) < $pdis_pd_lenght)
+                <form action="#tabs-2" method="post">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="center">Skupina</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td>{{ Form::submit('Přidej název nového seskupení', ['name' => 'submit-new-column-group','class' => 'btn btn-success']) }}</td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr class="center">
+                                <td><?= $this->formSelect("pdis_id_set", $_POST["pdis_id_set"], NULL, $pdis_pds_id); ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                @endif
+        @endif
     </div>
     <div class="tab-pane fade" id="tab3" style="padding-top: 2em">
         <div class="col-md-6 col-md-offset-3">
