@@ -45,6 +45,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('tree', 'TreeController');
         Route::resource('mixturetree', 'MixtureTreeController');
         Route::resource('prodwarranty', 'ProdWarrantyController');
+        Route::resource('proddifference', 'ProdDifferenceController');
     });
 
     Route::group(['prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'], function () {

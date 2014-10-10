@@ -202,16 +202,16 @@
     </div>
     @if ($prod->difference_id > 1)
     <div class="tab-pane" id="difference" style="padding-top: 2em">
-
+        {{ var_dump($table_prod_description_set); }}
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="<?= $prod->prodDifference->count; ?>"><?= $select_difference[$prod->prodDifference->id]; ?></th>
+                                <th colspan="{{ $prod->prodDifference->count; }}">{{ $select_difference[$prod->prodDifference->id]; }}</th>
                             </tr>
                             <tr>
-                                <?php /* foreach ($pdis as $value) { */ ?>
-                                    <td><? /* $value->pds_name; */?></td>
-                                <?php /* } */ ?>
+                                @foreach($table_prod_description_set as $value) {
+                                    <td>{{ $value->prodDifferenceSet->name; }}</td>
+                                @endforeach
                             </tr>
                         </thead>
                         <tfoot>
@@ -221,9 +221,15 @@
                         </tfoot>
                         <tbody>
                             <tr>
-                                <?php /* foreach ($pdis as $value) { */ ?>
+                                @foreach ($table_prod_description_set as $value) {  ?>
                                     <td>
-                                        <?php /*
+                                        <?php
+
+                                        var_dump($value);
+                                        $pdv = ProdDifferenceValues::where('set_id', '=', $value->set_id)->get(['id', 'name']);
+
+                                        var_dump($pdv);
+                                        /*
                                         $pdv = Model_Zendb::zFormOption($db->select()
                                                                 ->from("prod2difference2values", array("pdv_id", "pdv_name"))
                                                                 ->where("pdv_id_set=?", intval($value->pdis_id_set))
@@ -232,7 +238,7 @@
                                         echo $this->formSelect("modi[$value->pds_id]", $prod->prod_id_dev, array("multiple" => "multiple", "size" => "50"), $pdv);
                                         */?>
                                     </td>
-                                <?php /* } */ ?>
+                                @endforeach
                             </tr>
                         </tbody>
                     </table>

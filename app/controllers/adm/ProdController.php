@@ -2,6 +2,8 @@
 
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\ProdDescription;
+use Authority\Eloquent\ProdDifferenceM2nSet;
+use Authority\Eloquent\ProdDifferenceValues;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
@@ -92,31 +94,35 @@ class ProdController extends \BaseController
         } else {
 
             return View::make('adm.product.prod.edit', [
-                'list_tree'              => $select_tree,
-                'list_prod'              => SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name [i:->ic_all]']),
-                'choice_tree'            => $tree,
-                'choice_prod'            => $prod,
-                'prod'                   => $row,
-                'select_dev'             => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-                'select_tree'            => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-                'select_warranty'        => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-                'select_dph'             => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
-                'select_mode'            => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-                'select_forex'           => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale'            => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
-                'select_difference'      => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
-                'select_availability'    => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-                'select_media_var'       => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
-                'table_items'            => $this->items->where('prod_id', '=', $prod)->get(),
-                'table_prod_description' => ProdDescription::where('prod_id', '=', $prod)->get()
+                'list_tree'                     => $select_tree,
+                'list_prod'                     => SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name [i:->ic_all]']),
+                'choice_tree'                   => $tree,
+                'choice_prod'                   => $prod,
+                'prod'                          => $row,
+                'select_dev'                    => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+                'select_tree'                   => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+                'select_warranty'               => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+                'select_dph'                    => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
+                'select_mode'                   => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+                'select_forex'                  => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
+                'select_sale'                   => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
+                'select_difference'             => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+                'select_availability'           => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+                'select_media_var'              => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
+                'table_items'                   => $this->items->where('prod_id', '=', $prod)->get(),
+                'table_prod_description'        => ProdDescription::where('prod_id', '=', $prod)->get(),
+                'table_prod_description_set'    => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
+
+
 
                 /*
-                'pdis' => $db->fetchAll($db->select()
-                        ->from("prod2difference2in2set")
-                        ->joinInner("prod2difference2set", Model_Zendb::ZEND_PROD2DIFF2IN2SET_2_PROD2DIFF2SET)
-                        ->where("pdis_id_difference = ? ", intval($prod->prod_id_difference))
-                );
+                                                                        $pdv = Model_Zendb::zFormOption($db->select()
+                                                                            ->from("prod2difference2values", array("pdv_id", "pdv_name"))
+                                                                            ->where("pdv_id_set=?", intval($value->pdis_id_set))
+                                                                            ->order(array($value->pds_sortby)), array('->pdv_id', '->pdv_name'));
                 */
+
+
             ])->with(['id' => $prod]);
         }
     }
