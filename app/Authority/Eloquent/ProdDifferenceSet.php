@@ -10,7 +10,9 @@ class ProdDifferenceSet extends \Eloquent
     public $timestamps = false;
 
     public static $rules = [
-        'name' => 'required',
+        'id'     => "required|unique:prod_difference_set,id",
+        'name'   => 'required',
+        'sortby' => 'required'
     ];
 
 }

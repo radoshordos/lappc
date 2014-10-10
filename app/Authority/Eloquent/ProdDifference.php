@@ -10,6 +10,7 @@ class ProdDifference extends \Eloquent
     public $timestamps = false;
 
     public static $rules = [
+        'id' => "required|unique:prod_difference,id",
         'name' => 'required',
     ];
 

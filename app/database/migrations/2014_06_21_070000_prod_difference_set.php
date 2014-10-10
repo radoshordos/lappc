@@ -13,7 +13,7 @@ class ProdDifferenceSet extends Migration
             $table->tinyInteger('id')->unsigned();
             $table->boolean('visible')->default(1);
             $table->string('name', '32')->unique();
-            $table->string('sortby', '16')->default('pds_id');
+            $table->string('sortby', '16')->default('id');
 
             $table->engine = 'InnoDB';
             $table->primary('id');

@@ -23,7 +23,7 @@
     $(document).submit(function(event) {
         var data_title1 = document.getElementById("data_title1").value;
         var data_title2 = document.getElementById("data_title2").value;
-        var data_title3 = document.getElementById("data_title2").value;
+        var data_title3 = document.getElementById("data_title3").value;
         if((data_title1 === data_title2 && data_title1 > 0) || (data_title1 === data_title3 && data_title1 > 0) || (data_title2 === data_title3 && data_title2 > 0))
         {
                 event.preventDefault();
