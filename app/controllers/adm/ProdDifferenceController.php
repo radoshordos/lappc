@@ -23,6 +23,13 @@ class ProdDifferenceController extends \BaseController
             'prod_difference_set' => ProdDifferenceSet::orderBy('id')->get(),
             'select_difference'   => [''] + SB::option('SELECT * FROM prod_difference WHERE visible = 1 AND id > 1',['id' => '->name']),
             'choice_tab2'         => intval(Input::get('choice_tab2'))
+
+
+            /*
+            $pdis_use = $db->fetchAll($db->select()
+                ->from("prod2difference2in2set")
+                ->where("pdis_id_difference=?", intval($_GET['pd_id']))->order(array("pdis_id")));
+            */
         ]);
     }
 

@@ -92,7 +92,7 @@ DIFF PROD
         </form>
 
         @if ($choice_tab2 > 0)
-            @if ($pdis_use > 0)
+            @if ($prod_difference_set->prodDifference->count > 0)
                 <table>
                     <thead>
                         <tr class="center">
@@ -101,7 +101,7 @@ DIFF PROD
                     </thead>
                     <tfoot>
                         <tr>
-                            <td class="right">Celkem použito : <strong><?= intval(count($pdis_use)); ?></strong> položek</td>
+                            <td class="right">Celkem použito : <strong><?= intval(count($prod_difference_set->prodDifference->count)); ?></strong> položek</td>
                         </tr>
                     </tfoot>
                     <tbody>

@@ -19,4 +19,9 @@ class ProdDifferenceM2nSet extends \Eloquent
         return $this->hasOne('Authority\Eloquent\ProdDifferenceSet', 'id', 'set_id');
     }
 
+    public function prodDifference()
+    {
+        return $this->hasOne('Authority\Eloquent\ProdDifference', 'id', 'difference_id');
+    }
+
 }
