@@ -9,16 +9,26 @@
 <link rel="stylesheet" href="{{ asset('admin/components/bootstrap-fileinput/css/fileinput.min.css') }}">
 <script src="{{ asset('admin/components/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function (e) {
         $("#list_tree").select2({});
         $("#list_prod").select2({});
         $("#tree_id").select2({});
         $("#dev_id").select2({});
         $('#myTab a').click(function (e) {
-          e.preventDefault()
-          $(this).tab('show')
+            e.preventDefault();
+            $(this).tab('show');
         })
         $('#myTab a[href="#profile"]').tab('show');
+    });
+    $(document).submit(function(event) {
+        var data_title1 = document.getElementById("data_title1").value;
+        var data_title2 = document.getElementById("data_title2").value;
+        var data_title3 = document.getElementById("data_title2").value;
+        if((data_title1 === data_title2 && data_title1 > 0) || (data_title1 === data_title3 && data_title1 > 0) || (data_title2 === data_title3 && data_title2 > 0))
+        {
+                event.preventDefault();
+                alert( "Duplicitní položky obsahu titulků" );
+        }
     });
 </script>
 @stop
@@ -191,13 +201,13 @@
     </div>
     <div class="tab-pane" style="padding-top: 2em" id="source">
         {{ Form::hidden('data_id1', (isset($table_prod_description[0]) ? $table_prod_description[0]->id : NULL)); }}
-        {{ Form::select("data_title1", $select_media_var, (isset($table_prod_description[0]) ? $table_prod_description[0]->variations_id : NULL), ['class' => 'form-control']) }}
+        {{ Form::select("data_title1", $select_media_var, (isset($table_prod_description[0]) ? $table_prod_description[0]->variations_id : NULL), ['id' => 'data_title1','class' => 'form-control']) }}
         {{ Form::textarea('data_input1', (isset($table_prod_description[0]) ? $table_prod_description[0]->data : NULL), ['size' => '180x13', 'class' => 'form-control' ]) }}
         {{ Form::hidden('data_id2', (isset($table_prod_description[1]) ? $table_prod_description[1]->id : NULL)); }}
-        {{ Form::select("data_title2", $select_media_var, (isset($table_prod_description[1]) ? $table_prod_description[1]->variations_id : NULL), ['class' => 'form-control']) }}
+        {{ Form::select("data_title2", $select_media_var, (isset($table_prod_description[1]) ? $table_prod_description[1]->variations_id : NULL), ['id' => 'data_title2','class' => 'form-control']) }}
         {{ Form::textarea('data_input2', (isset($table_prod_description[1]) ? $table_prod_description[1]->data : NULL), ['size' => '180x9', 'class' => 'form-control' ]) }}
         {{ Form::hidden('data_id3', (isset($table_prod_description[2]) ? $table_prod_description[2]->id : NULL)); }}
-        {{ Form::select("data_title3", $select_media_var, (isset($table_prod_description[2]) ? $table_prod_description[2]->variations_id : NULL), ['class' => 'form-control']) }}
+        {{ Form::select("data_title3", $select_media_var, (isset($table_prod_description[2]) ? $table_prod_description[2]->variations_id : NULL), ['id' => 'data_title3','class' => 'form-control']) }}
         {{ Form::textarea('data_input3', (isset($table_prod_description[2]) ? $table_prod_description[2]->data : NULL), ['size' => '180x5', 'class' => 'form-control' ]) }}
     </div>
     @if ($prod->difference_id > 1)

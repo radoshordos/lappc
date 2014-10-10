@@ -20,7 +20,7 @@ Nová variace
 <div class="form-group">
     {{ Form::label('set_id', 'Zařazení',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('set_id',$select_difference_set, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Shoda slov')) }}
+        {{ Form::select('set_id',$select_difference_set, Input::get('select_difference_set'), array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Shoda slov')) }}
     </div>
 </div>
 

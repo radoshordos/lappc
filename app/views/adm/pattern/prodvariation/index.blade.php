@@ -39,6 +39,6 @@ Produktové variace
 @endif
 
 <p class="text-center">
-{{ link_to_route('adm.pattern.prodvariation.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+{{ link_to_route('adm.pattern.prodvariation.create','Přidat nové klíčové slovo',['select_difference_set' => $choice_difference_set], array('class'=>'btn btn-success','role'=> 'button')) }}
 </p>
 @stop
