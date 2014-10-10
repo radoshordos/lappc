@@ -39,7 +39,27 @@ DIFF PROD
         </div>
     </div>
     <div class="tab-pane fade" id="tab2" style="padding-top: 2em"></div>
-    <div class="tab-pane fade" id="tab3" style="padding-top: 2em"></div>
+    <div class="tab-pane fade" id="tab3" style="padding-top: 2em">
+        <div class="col-md-6 col-md-offset-3">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>Skupina</th>
+                        <th>Řadit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($prod_difference_set as $row)
+                    <tr>
+                        <td>{{ $row->id }}</td>
+                        <td>{{ $row->name }}</td>
+                        <td>{{ $row->sortby }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
 @stop
