@@ -9,7 +9,7 @@ class ProdDifferenceN2mSet extends Migration {
 	public function up()
 	{
         Schema::create('prod_difference_n2m_set', function (Blueprint $table) {
-            $table->smallInteger('id')->primary()->unsigned();
+            $table->increments('id')->unsigned();
             $table->smallInteger('difference_id')->unsigned();
             $table->tinyInteger('set_id')->unsigned();
 

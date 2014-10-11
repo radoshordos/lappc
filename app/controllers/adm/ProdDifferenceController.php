@@ -9,29 +9,27 @@ class ProdDifferenceController extends \BaseController
 {
 
     protected $pd;
-    protected $ps;
+    protected $pds;
+    protected $pdms;
 
-    function __construct(ProdDifference $pd, ProdDifferenceSet $pds)
+    function __construct(ProdDifference $pd, ProdDifferenceSet $pds, ProdDifferenceM2nSet $pdms)
     {
         $this->pd = $pd;
         $this->pds = $pds;
+        $this->pdms = $pdms;
     }
 
     public function index()
     {
         return View::make('adm.pattern.proddifference.index', [
-            'prod_difference'     => ProdDifference::orderBy('id')->get(),
-            'prod_difference_set' => ProdDifferenceSet::orderBy('id')->get(),
-            'prod_difference_n2m' => ProdDifferenceM2nSet::where('difference_id', '=', intval(Input::get('choice_tab2')))->orderBy('id')->get(),
-            'select_difference'   => [''] + SB::option('SELECT * FROM prod_difference WHERE visible = 1 AND id > 1', ['id' => '->name']),
-            'choice_tab2'         => intval(Input::get('choice_tab2'))
-
-
-            /*
-            $pdis_use = $db->fetchAll($db->select()
-                ->from("prod2difference2in2set")
-                ->where("pdis_id_difference=?", intval($_GET['pd_id']))->order(array("pdis_id")));
-            */
+            'prod_difference'         => ProdDifference::orderBy('id')->get(),
+            'prod_difference_set'     => ProdDifferenceSet::orderBy('id')->get(),
+            'prod_difference_n2m'     => ProdDifferenceM2nSet::where('difference_id', '=', intval(Input::get('choice_tab2')))->orderBy('id')->get(),
+            'select_difference'       => [''] + SB::option('SELECT * FROM prod_difference WHERE visible = 1 AND id > 1', ['id' => '->name']),
+            'select_difference_set'   => [''] + SB::option('SELECT * FROM prod_difference_set WHERE visible = 1 AND id > 1', ['id' => '->name']),
+            'choice_tab2'             => intval(Input::get('choice_tab2')),
+            'choice_tab2_set'         => intval(Input::get('choice_tab2_set')),
+            'prod_difference_current' => ProdDifference::where('id', '=', intval(Input::get('choice_tab2')))->orderBy('id')->first()
         ]);
     }
 
@@ -69,16 +67,14 @@ class ProdDifferenceController extends \BaseController
                 return Redirect::route('adm.pattern.proddifference.index')->withInput()->withErrors($v);
             }
         } else if (Input::has('choice_tab2')) {
-            return Redirect::route('adm.pattern.proddifference.index');
+            $input = Input::all();
+            try {
+                $this->pdms->create(['difference_id' => $input['choice_tab2'], 'set_id' => $input['choice_tab2_set']]);
+                Session::flash('success', 'Přidána položka nového seskupení');
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            return Redirect::action('ProdDifferenceController@index', ['choice_tab2' => $input['choice_tab2']]);
         }
-
-
-
-
-        //array(5) { ["_token"]=> string(40) "2yv3hpTyUNW0Cs1e3W3bCzvS3GEr7F7m657pUBMB" ["submit-new-difference"]=> string(33) "Přidej název nového seskupení" ["id"]=> string(1) "1" ["count"]=> string(1) "1" ["name"]=> string(6) "ghjhgj" }
-
-        var_dump(Input::all());
-        die;
-
     }
 }

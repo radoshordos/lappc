@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-DIFF PROD
+Produktové rozdílnosti
 @stop
 
 {{-- JavaScript on page --}}
@@ -28,9 +28,6 @@ DIFF PROD
 
 {{-- Content --}}
 @section('content')
-{{ var_dump($prod_difference_n2m); }}
-
-
 <ul class="nav nav-tabs" role="tablist">
     <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Differenční seskupení</a></li>
     <li><a href="#tab2" role="tab" data-toggle="tab">Nastavit seskupení</a></li>
@@ -82,59 +79,60 @@ DIFF PROD
             </table>
             {{ Form::close() }}
         </div>
-   </div>
+    </div>
     <div class="tab-pane fade" id="tab2" style="padding-top: 2em">
-        {{ Form::open(['route' => ['adm.pattern.proddifference.store','#tab2'], 'method' => 'get','class' => 'form-horizontal', 'role' => 'form']) }}
+        {{ Form::open(['route' => ['adm.pattern.proddifference.store','choice_tab2'=> $choice_tab2,'#tab2'], 'method' => 'get','class' => 'form-horizontal', 'role' => 'form']) }}
             <div class="input-group form-group">
                 <span class="input-group-addon">Zvolite seskupení</span>
                 {{ Form::select('choice_tab2', $select_difference, $choice_tab2, ['class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
         {{ Form::close() }}
-
-        @if ($choice_tab2 > 0)
-
-            @if  (1==1)
-                <table>
+        @if (isset($prod_difference_current) && intval($prod_difference_current->count) > intval(count($prod_difference_n2m)))
+            <div class="col-md-4 col-md-offset-4">
+                {{ Form::open(['route' => ['adm.pattern.proddifference.store','choice_tab2'=> $choice_tab2,'#tab2'], 'class' => 'form-horizontal', 'role' => 'form']) }}
+                {{ Form::hidden('choice_tab2',$choice_tab2) }}
+                <table class="table table-hover table-striped table-bordered">
                     <thead>
-                        <tr class="center">
-                            <th>Skupina</th>
+                        <tr>
+                            <th class="text-center">Skupina</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <td class="right">Celkem použito : <strong><? /* intval(count($prod_difference_set->prodDifference->count)); */?></strong> položek</td>
+                            <td class="text-center">{{ Form::submit('Přidej název nového seskupení', ['name' => 'submit-new-column-group','class' => 'btn btn-success']) }}</td>
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php /*foreach ($pdis_use as $row) {
-                            <tr>
-                                <td><input type="text" name="pdis_id_set" readonly="readonly" size="32" maxlength="32" value=" $pdis_name[$row->pdis_id_set]; " /></td>
-                            </tr>
-                        } */ ?>
+                        <tr>
+                            <td>{{ Form::select('choice_tab2_set', $select_difference_set, $choice_tab2_set, ['class'=> 'form-control', 'required' => 'required']) }}</td>
+                        </tr>
                     </tbody>
                 </table>
-                @endif
-                @if (1==1)
-                <form action="#tabs-2" method="post" count($pdis_use) < $pdis_pd_lenght>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="center">Skupina</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <td>{{ Form::submit('Přidej název nového seskupení', ['name' => 'submit-new-column-group','class' => 'btn btn-success']) }}</td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr class="center">
-                                <td><? /* $this->formSelect("pdis_id_set", $_POST["pdis_id_set"], NULL, $pdis_pds_id); */?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
-                @endif
+                {{ Form::close() }}
+            </div>
+        @endif
+        @if (count($prod_difference_n2m)>0)
+        <div class="col-md-4 col-md-offset-4">
+            <table class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">Využité položky</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td class="text-right">Celkem použito : <strong>{{ intval(count($prod_difference_n2m)) }}</strong> položek</td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                @foreach ($prod_difference_n2m as $row)
+                    <tr>
+                        <td>{{Form::text('name', $row->prodDifferenceSet->name, array('readonly' => 'readonly', 'class'=> 'form-control')) }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
         @endif
     </div>
     <div class="tab-pane fade" id="tab3" style="padding-top: 2em">
@@ -152,7 +150,7 @@ DIFF PROD
                     <tr>
                         <td>{{ $row->id }}</td>
                         <td>{{ $row->name }}</td>
-                        <td>{{ $row->sortby }}</td>
+                        <td>{{ $row->sortby == 'id' ? 'dle #ID' : 'dle Názvu' }}</td>
                     </tr>
                 @endforeach
                 </tbody>

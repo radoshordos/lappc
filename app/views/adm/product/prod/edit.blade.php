@@ -19,6 +19,16 @@
             $(this).tab('show');
         })
         $('#myTab a[href="#profile"]').tab('show');
+        if(location.hash) {
+            $('a[href=' + location.hash + ']').tab('show');
+        }
+        $(document.body).on("click", "a[data-toggle]", function(event) {
+            location.hash = this.getAttribute("href");
+        });
+    });
+    $(window).on('popstate', function() {
+        var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
+        $('a[href=' + anchor + ']').tab('show');
     });
     $(document).submit(function(event) {
         var data_title1 = document.getElementById("data_title1").value;
@@ -26,8 +36,8 @@
         var data_title3 = document.getElementById("data_title3").value;
         if((data_title1 === data_title2 && data_title1 > 0) || (data_title1 === data_title3 && data_title1 > 0) || (data_title2 === data_title3 && data_title2 > 0))
         {
-                event.preventDefault();
-                alert( "Duplicitní položky obsahu titulků" );
+            event.preventDefault();
+            alert( "Duplicitní položky obsahu titulků" );
         }
     });
 </script>
