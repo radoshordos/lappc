@@ -28,7 +28,7 @@ DIFF PROD
 
 {{-- Content --}}
 @section('content')
-
+{{ var_dump($prod_difference_n2m); }}
 
 
 <ul class="nav nav-tabs" role="tablist">
@@ -84,15 +84,16 @@ DIFF PROD
         </div>
    </div>
     <div class="tab-pane fade" id="tab2" style="padding-top: 2em">
-        <form action="#tabs-2" method="get">
+        {{ Form::open(['route' => ['adm.pattern.proddifference.store','#tab2'], 'method' => 'get','class' => 'form-horizontal', 'role' => 'form']) }}
             <div class="input-group form-group">
                 <span class="input-group-addon">Zvolite seskupení</span>
                 {{ Form::select('choice_tab2', $select_difference, $choice_tab2, ['class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
-        </form>
+        {{ Form::close() }}
 
         @if ($choice_tab2 > 0)
-            @if ($prod_difference_set->prodDifference->count > 0)
+
+            @if  (1==1)
                 <table>
                     <thead>
                         <tr class="center">
@@ -101,20 +102,20 @@ DIFF PROD
                     </thead>
                     <tfoot>
                         <tr>
-                            <td class="right">Celkem použito : <strong><?= intval(count($prod_difference_set->prodDifference->count)); ?></strong> položek</td>
+                            <td class="right">Celkem použito : <strong><? /* intval(count($prod_difference_set->prodDifference->count)); */?></strong> položek</td>
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php foreach ($pdis_use as $row) { ?>
+                        <?php /*foreach ($pdis_use as $row) {
                             <tr>
-                                <td><input type="text" name="pdis_id_set" readonly="readonly" size="32" maxlength="32" value="<?= $pdis_name[$row->pdis_id_set]; ?>" /></td>
+                                <td><input type="text" name="pdis_id_set" readonly="readonly" size="32" maxlength="32" value=" $pdis_name[$row->pdis_id_set]; " /></td>
                             </tr>
-                        <?php } ?>
+                        } */ ?>
                     </tbody>
                 </table>
                 @endif
-                @if (count($pdis_use) < $pdis_pd_lenght)
-                <form action="#tabs-2" method="post">
+                @if (1==1)
+                <form action="#tabs-2" method="post" count($pdis_use) < $pdis_pd_lenght>
                     <table>
                         <thead>
                             <tr>
@@ -128,7 +129,7 @@ DIFF PROD
                         </tfoot>
                         <tbody>
                             <tr class="center">
-                                <td><?= $this->formSelect("pdis_id_set", $_POST["pdis_id_set"], NULL, $pdis_pds_id); ?></td>
+                                <td><? /* $this->formSelect("pdis_id_set", $_POST["pdis_id_set"], NULL, $pdis_pds_id); */?></td>
                             </tr>
                         </tbody>
                     </table>

@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\ProdDifference;
 use Authority\Eloquent\ProdDifferenceSet;
+use Authority\Eloquent\ProdDifferenceM2nSet;
 use Authority\Tools\SB;
 
 class ProdDifferenceController extends \BaseController
@@ -21,7 +22,8 @@ class ProdDifferenceController extends \BaseController
         return View::make('adm.pattern.proddifference.index', [
             'prod_difference'     => ProdDifference::orderBy('id')->get(),
             'prod_difference_set' => ProdDifferenceSet::orderBy('id')->get(),
-            'select_difference'   => [''] + SB::option('SELECT * FROM prod_difference WHERE visible = 1 AND id > 1',['id' => '->name']),
+            'prod_difference_n2m' => ProdDifferenceM2nSet::where('difference_id', '=', intval(Input::get('choice_tab2')))->orderBy('id')->get(),
+            'select_difference'   => [''] + SB::option('SELECT * FROM prod_difference WHERE visible = 1 AND id > 1', ['id' => '->name']),
             'choice_tab2'         => intval(Input::get('choice_tab2'))
 
 
@@ -66,12 +68,17 @@ class ProdDifferenceController extends \BaseController
                 Session::flash('error', implode('<br />', $v->errors()->all(':message')));
                 return Redirect::route('adm.pattern.proddifference.index')->withInput()->withErrors($v);
             }
+        } else if (Input::has('choice_tab2')) {
+            return Redirect::route('adm.pattern.proddifference.index');
         }
+
+
 
 
         //array(5) { ["_token"]=> string(40) "2yv3hpTyUNW0Cs1e3W3bCzvS3GEr7F7m657pUBMB" ["submit-new-difference"]=> string(33) "Přidej název nového seskupení" ["id"]=> string(1) "1" ["count"]=> string(1) "1" ["name"]=> string(6) "ghjhgj" }
 
         var_dump(Input::all());
         die;
+
     }
 }
