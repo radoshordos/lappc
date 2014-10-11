@@ -8,8 +8,6 @@ Produktové variace
 
 {{-- Content --}}
 @section('content')
-
-
 {{ Form::open(array('route' => ['adm.pattern.prodvariation.index'], 'method' => 'get', 'role' => 'form')) }}
 <div class="input-group form-group">
     <span class="input-group-addon">Volba variace</span>
@@ -39,6 +37,6 @@ Produktové variace
 @endif
 
 <p class="text-center">
-{{ link_to_route('adm.pattern.prodvariation.create','Přidat nové klíčové slovo',['select_difference_set' => $choice_difference_set], array('class'=>'btn btn-success','role'=> 'button')) }}
+{{ link_to_route('adm.pattern.prodvariation.create','Přidat variaci',['select_difference_set' => $choice_difference_set], array('class'=>'btn btn-success','role'=> 'button')) }}
 </p>
 @stop
