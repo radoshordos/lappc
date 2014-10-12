@@ -121,6 +121,14 @@ Filtrace
         <div class="col-md-8 col-md-offset-2">
             {{ Form::open(['route' => ['adm.tools.grab.store','#group'],'class' => 'form-horizontal', 'role' => 'form']) }}
             <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th><span class="glyphicon glyphicon-ok"></span></th>
+                        <th>Viditelnost</th>
+                        <th>Znaková sada</th>
+                        <th>Název</th>
+                    </tr>
+                </thead>
                 <tbody>
                 @foreach($grab_profile as $row)
                     <tr>

@@ -10,7 +10,7 @@ class GrabProfile extends \Eloquent
 
     public static $rules = [
         'charset' => 'required|min:2',
-        'name'    => 'required'
+        'name'    => 'required|unique:grab_profile,name'
     ];
 
 }
