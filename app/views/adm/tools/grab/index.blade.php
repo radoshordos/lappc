@@ -10,7 +10,7 @@ Filtrace
 @section ('script')
 <script>
     $(document).ready(function() {
-        $("#select_function").select2({});
+        $("#function_id").select2({});
         $("#select_group").select2({});
         if(location.hash) {
             $('a[href=' + location.hash + ']').tab('show');
@@ -46,30 +46,48 @@ Filtrace
         </div>
         {{ Form::close() }}
 
-        {{ Form::open(['route' => ['adm.tools.grab.index'], 'method' => 'get', 'class' => 'form-horizontal', 'role' => 'form']) }}
-        <table>
-            <thead>
-                <tr>
-                    <th class="text-center">Pozice</th>
-                    <th class="text-center">Použití</th>
-                    <th class="text-center">Funkce</th>
-                    <th class="text-center">Param 1</th>
-                    <th class="text-center">Param 2</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ Form::selectRange('position', 1, 25, NULL, ['class'=> 'form-control'] ); }}</td>
-                    <td>{{ Form::select('select_column',$select_column, NULL, ['required' => 'required','class'=> 'form-control']) }}</td>
-                    <td  class="col-sm-7">{{ Form::select('select_function',$select_function, NULL, ['id' => 'select_function','required' => 'required','class'=> 'form-control']) }}</td>
-                    <td>{{ Form::text('val1', NULL, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
-                    <td>{{ Form::text('val2', NULL, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
-                    <td>{{ Form::submit('Přidat', ['name' => 'submit-insert-profile','class' => 'btn btn-success']) }}</td>
-                </tr>
-            </tbody>
-        </table>
+        @if ($get_select_group > 0)
+        {{ Form::open(['route' => ['adm.tools.grab.store'], 'class' => 'form-horizontal', 'role' => 'form']) }}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-1">
+                        {{ Form::selectRange('position', 1, 25, NULL, ['class'=> 'form-control'] ); }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ Form::select('column_id',$select_column, NULL, ['required' => 'required','class'=> 'form-control']); }}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                        <span class="input-group-addon">Funkce</span>
+                        {{ Form::select('function_id',$select_function, NULL, ['id' => 'function_id','required' => 'required','class'=> 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        {{ Form::submit('Přidat', ['name' => 'submit-insert-profile-column','class' => 'btn btn-success']) }}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em">
+                    <div class="col-md-3">
+                        {{ Form::hidden('profile_id', $get_select_group)  }}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Parametr 1</span>
+                            {{ Form::text('val1', NULL, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Parametr 2</span>
+                            {{ Form::text('val2', NULL, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{ Form::close() }}
+        @endif
 
         @if (count($grab_db)>0)
         {{ Form::open(['route' => ['adm.tools.grab.store','select_group' => $get_select_group],'class' => 'form-horizontal', 'role' => 'form']) }}
