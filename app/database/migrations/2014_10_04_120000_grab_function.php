@@ -13,6 +13,7 @@ class GrabFunction extends Migration
             $table->increments('id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned();
             $table->boolean('visible')->default(1);
+            $table->tinyInteger('params')->unsigned()->default(2);
             $table->string('function', 32)->unique();
             $table->string('name', 48)->unique();
 

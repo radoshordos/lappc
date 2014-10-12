@@ -9,7 +9,7 @@ class GrabProfile extends \Eloquent
     public $timestamps = false;
 
     public static $rules = [
-        'charset' => 'required',
+        'charset' => 'required|min:2',
         'name'    => 'required'
     ];
 

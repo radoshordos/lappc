@@ -22,7 +22,7 @@ class GrabDb extends Migration
             $table->engine = 'InnoDB';
             $table->unique(['profile_id', 'column_id', 'position']);
 
-            $table->foreign('profile_id')->references('id')->on('grab_profile')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('profile_id')->references('id')->on('grab_profile')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('column_id')->references('id')->on('column_db')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('function_id')->references('id')->on('grab_function')->onUpdate('cascade')->onDelete('no action');
         });
