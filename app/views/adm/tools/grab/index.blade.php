@@ -9,6 +9,20 @@ Filtrace
 {{-- JavaScript on page --}}
 @section ('script')
 <script>
+    $(document).ready(function() {
+        $("#select_function").select2({});
+        $("#select_group").select2({});
+        if(location.hash) {
+            $('a[href=' + location.hash + ']').tab('show');
+        }
+        $(document.body).on("click", "a[data-toggle]", function(event) {
+            location.hash = this.getAttribute("href");
+        });
+    });
+    $(window).on('popstate', function() {
+        var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
+        $('a[href=' + anchor + ']').tab('show');
+    });
 </script>
 @stop
 
@@ -25,10 +39,10 @@ Filtrace
 <!-- Tab panes -->
 <div class="tab-content">
     <div class="tab-pane fade in active" id="profile-group" style="padding-top: 2em">
-        {{ Form::open(array('route' => ['adm.tools.grab.index'], 'method' => 'get', 'class' => 'form-horizontal', 'role' => 'form')) }}
+        {{ Form::open(['route' => ['adm.tools.grab.index'], 'method' => 'get', 'class' => 'form-horizontal', 'role' => 'form']) }}
         <div class="input-group form-group">
             <span class="input-group-addon">Volba skupiny</span>
-            {{ Form::select('select_group',$select_group, $get_select_group, array('id' => 'select_group', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+            {{ Form::select('select_group',$select_group, $get_select_group, ['id' => 'select_group', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
         </div>
         {{ Form::close() }}
 
@@ -48,16 +62,17 @@ Filtrace
                 <tr>
                     <td>{{ Form::selectRange('position', 1, 25, NULL, ['class'=> 'form-control'] ); }}</td>
                     <td>{{ Form::select('select_column',$select_column, NULL, ['required' => 'required','class'=> 'form-control']) }}</td>
-                    <td>{{ Form::select('select_function',$select_function, NULL, ['required' => 'required','class'=> 'form-control']) }}</td>
+                    <td  class="col-sm-7">{{ Form::select('select_function',$select_function, NULL, ['id' => 'select_function','required' => 'required','class'=> 'form-control']) }}</td>
                     <td>{{ Form::text('val1', NULL, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
                     <td>{{ Form::text('val2', NULL, ["size" => "15", "maxlength" => "128",'class'=> 'form-control']) }}</td>
-                    <td>{{ Form::submit('Přidat', array('name' => 'submit-insert-profile','class' => 'btn btn-success')) }}</td>
+                    <td>{{ Form::submit('Přidat', ['name' => 'submit-insert-profile','class' => 'btn btn-success']) }}</td>
                 </tr>
             </tbody>
         </table>
         {{ Form::close() }}
 
-        {{ Form::open(array('route' => ['adm.tools.grab.store','select_group' => $get_select_group],'class' => 'form-horizontal', 'role' => 'form')) }}
+        @if (count($grab_db)>0)
+        {{ Form::open(['route' => ['adm.tools.grab.store','select_group' => $get_select_group],'class' => 'form-horizontal', 'role' => 'form']) }}
         <table class="table table-striped table-bordered table-condensed">
             <tbody>
             @foreach($grab_db as $row)
@@ -81,11 +96,12 @@ Filtrace
             </tfoot>
         </table>
         {{ Form::close() }}
+        @endif
     </div>
 
     <div class="tab-pane fade" id="group" style="padding-top: 2em">
         <div class="col-md-8 col-md-offset-2">
-            {{ Form::open(['route' => ['adm.tools.grab.store'],'class' => 'form-horizontal', 'role' => 'form']) }}
+            {{ Form::open(['route' => ['adm.tools.grab.store','#group'],'class' => 'form-horizontal', 'role' => 'form']) }}
             <table class="table table-striped table-bordered">
                 <tbody>
                 @foreach($grab_profile as $row)
@@ -107,18 +123,19 @@ Filtrace
             {{ Form::close() }}
         </div>
     </div>
+
     <div class="tab-pane fade" id="add-group" style="padding-top: 2em">
-        {{ Form::open(['route' => ['adm.tools.grab.store'], 'class' => 'form-horizontal', 'role' => 'form']) }}
+        {{ Form::open(['route' => ['adm.tools.grab.store','#group'], 'class' => 'form-horizontal', 'role' => 'form']) }}
         <div class="form-group">
             {{ Form::label('charset','Znaková sada',['class'=> 'col-sm-2 control-label']) }}
             <div class="col-sm-10">
-                {{ Form::text('charset', NULL, ["size" => "12", "maxlength" => "16", "required" => "required","class" => "form-control"]) }}
+                <input type="text" name="charset" size="24" maxlength="40" required = "required" class='form-control' name="" />
             </div>
         </div>
         <div class="form-group">
-            {{ Form::label('name','Název skupiny',array('class'=> 'col-sm-2 control-label')) }}
+            {{ Form::label('name','Název skupiny',['class'=> 'col-sm-2 control-label']) }}
             <div class="col-sm-10">
-                {{ Form::text('name', NULL, ["size" => "24", "maxlength" => "40", "required" => "required", 'class'=> 'form-control']) }}
+                <input type="text" name="name" size="24" maxlength="40" required = "required" class='form-control' name="" />
             </div>
         </div>
         <p class="text-center">

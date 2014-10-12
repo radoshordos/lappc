@@ -34,6 +34,7 @@ class GrabController extends \BaseController
     {
         $count = 0;
 
+
         if (Input::has('submit-profile-action')) {
 
             if (Input::get('profile-action') == 1 && count(Input::get('checkbox')) > 0) {
@@ -43,6 +44,7 @@ class GrabController extends \BaseController
                 Session::flash('success', "Smazáno položek: <b>" . $count . "</b>");
                 return Redirect::route('adm.tools.grab.index')->withInput();
             }
+
         } else  if (Input::has('submit-update-profile')) {
             $input = Input::all();
             foreach (array_keys(Input::get('column_id')) as $key) {
@@ -56,6 +58,7 @@ class GrabController extends \BaseController
             }
             return Redirect::route('adm.tools.grab.index', ['select_group' => $input['select_group']]);
         } else if (Input::has('submit-add-group')) {
+            die;
             $input = array_only(Input::all(), ['charset', 'name']);
             $v = Validator::make($input, GrabProfile::$rules);
 
