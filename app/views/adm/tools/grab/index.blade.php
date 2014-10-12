@@ -124,7 +124,7 @@ Filtrace
                 <tbody>
                 @foreach($grab_profile as $row)
                     <tr>
-                        <td><input type="checkbox" name="checkbox[{{ $row->id }}]" /></td>
+                        <td><input type="checkbox" name="checkbox[{{ $row->id }}]" />{{ Form::hidden('id['.$row->id.']',$row->id); }}</td>
                         <td>{{ Form::select('active['.$row->id.']', ['0' => 'Nezobrazovat','1' => 'Zobrazovat'], $row->active,['class'=> 'form-control']) }}</td>
                         <td>{{ Form::text('charset['.$row->id.']', $row->charset, ["size" => "12", "maxlength" => "16","required" => "required",'class'=> 'form-control']) }}</td>
                         <td>{{ Form::text('name['.$row->id.']', $row->name, ["size" => "24", "maxlength" => "40","required" => "required",'class'=> 'form-control']) }}</td>
@@ -133,8 +133,9 @@ Filtrace
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" class="text-center">{{ Form::select('profile-action', ['0' => 'Žádná akce','1' => 'Smazat položku','2' => 'Klonovat položku'], NULL,['class'=> 'form-control']) }}</td>
-                        <td colspan="1" class="text-center">{{ Form::submit('Provést zvolenou akci', ['name' => 'submit-profile-action','class' => 'btn btn-primary']) }}</td>
+                        <td colspan="2" class="text-center">{{ Form::select('profile-action', ['0' => 'Žádná akce','1' => 'Smazat položku','2' => 'Klonovat položku'], NULL,['class'=> 'form-control']) }}</td>
+                        <td class="text-center">{{ Form::submit('Provést zvolenou akci', ['name' => 'submit-profile-action','class' => 'btn btn-warning']) }}</td>
+                        <td class="text-center">{{ Form::submit('Uložit', ['name' => 'submit-profile-update-column','class' => 'btn btn-primary']) }}</td>
                     </tr>
                 </tfoot>
             </table>

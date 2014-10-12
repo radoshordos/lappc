@@ -30,7 +30,6 @@ class GrabController extends \BaseController
     public function store()
     {
         $count = 0;
-
         if (Input::has('submit-insert-profile-column')) {
             $input = array_only(Input::all(), ['column_id', 'function_id', 'profile_id', 'position', 'val1', 'val2']);
             $v = Validator::make($input, GrabDb::$rules);
@@ -89,6 +88,18 @@ class GrabController extends \BaseController
             }
         }
 
+        if (Input::has('submit-profile-update-column') && count(Input::get('id')) > 0) {
+            $input = Input::all();
+            foreach (array_keys(Input::get('id')) as $key) {
+                $row = GrabProfile::find($key);
+                $row->active = $input['active'][$key];
+                $row->charset = $input['charset'][$key];
+                $row->name = $input['name'][$key];
+                $row->save();
+            }
+            return Redirect::route('adm.tools.grab.index');
+        }
+
         if (Input::has('submit-update-profile')) {
             $input = Input::all();
             foreach (array_keys(Input::get('column_id')) as $key) {
@@ -131,44 +142,4 @@ class GrabController extends \BaseController
         }
         return Redirect::route('adm.tools.grab.index');
     }
-
-    function cloneFilters()
-    {
-
-        $db = Model_Zendb::myfactory();
-
-        if (!empty($_POST["form_fp_yes"])) {
-            foreach ($_POST["form_fp_yes"] as $key => $val) {
-                if ($val == 1) {
-
-
-                    $bind = [
-                        "fp_id_category" => $_POST["db_fp_id_category"][$key],
-                        "fp_visible"     => $_POST["db_fp_visible"][$key],
-                        "fp_charset"     => $_POST["db_fp_charset"][$key],
-                        "fp_name"        => "Clone " . $_POST["db_fp_name"][$key]
-                    ];
-
-                    $table_filter = $db->fetchAll($db->select()->from("filter")->where($db->quoteInto("filter_id_profile = ?", intval($key))));
-                    $db->beginTransaction();
-                    $db->insert("filter2profile", $bind);
-                    $lastInsertId = $db->lastInsertId();
-
-                    foreach ($table_filter as $key => $value) {
-
-                        $db->insert("filter", [
-                            "filter_id_profile" => $lastInsertId,
-                            "filter_id_column"  => $value->filter_id_column,
-                            "filter_id_type"    => $value->filter_id_type,
-                            "filter_pozition"   => $value->filter_pozition,
-                            "filter_val1"       => $value->filter_val1,
-                            "filter_val2"       => $value->filter_val2,
-                        ]);
-                    }
-                    $db->commit();
-                }
-            }
-        }
-    }
-
 }
