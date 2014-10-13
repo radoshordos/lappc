@@ -6,8 +6,10 @@
 Simulace filtru
 @stop
 
-{{-- Content --}}
+{{-- Content @if (!empty($grab))  {{$grab->toArray()}}; @endif --}}
 @section('content')
+
+
 {{ Form::open(['route' => ['adm.tools.grabsimulator.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
 <div class="panel panel-default">
     <div class="panel-body">
