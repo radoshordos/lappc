@@ -1,12 +1,29 @@
 <?php namespace Authority\Tools\Grab;
 
-
 class Script
 {
+    private $source;
+    private $name;
+    private $val1;
+    private $val2;
 
-    public function concateString($source, $begin, $end)
+    public function setParameters($source, $name, $val1, $val2)
     {
-        return $begin . $source . $end;
+        $this->source = $source;
+        $this->name = $name;
+        $this->val1 = $val1;
+        $this->val2 = $val2;
+    }
+
+    public function applyScript()
+    {
+        $method = $this->name;
+        return $this->$method();
+    }
+
+    public function concateString()
+    {
+        return $this->val1 . $this->source . $this->val2;
     }
 
     public function ucfirst($string)
@@ -31,9 +48,9 @@ class Script
         return $new;
     }
 
-    public function loadSimpleCutArrayMultiple($str, $start, $end)
+    public function loadSimpleCutArrayMultiple()
     {
-
+        /*
         $arr = [];
         $i = 0;
         if (!empty($str)) {
@@ -53,6 +70,7 @@ class Script
             } while (intval($pozStart) > 0 && intval($pozEnd) > 0 && intval($pozStart) < intval($pozEnd));
             return $arr;
         }
+        */
         return NULL;
     }
 
@@ -138,29 +156,29 @@ class Script
         return strtr($result, [chr(10) . chr(32) => chr(10), chr(13) . chr(32) => chr(13)]);
     }
 
-    public function loadSimpleCutString($str, $start, $end)
+    public function loadSimpleCutString()
     {
+        if (!empty($this->source)) {
 
-        if (!empty($str)) {
+            $start = strpos($this->source, $this->val1) + strlen($this->val1);
+            $end = strpos($this->source, $this->val2, $start);
 
-            $pozStart = strpos($str, $start) + strlen($start);
-            $pozEnd = strpos($str, $end, $pozStart);
-
-            if (empty($end)) {
-                return trim(substr($str, $pozStart));
-            } elseif ($pozStart > 0 && $pozEnd > 0 && $pozStart < $pozEnd) {
-                return trim(substr($str, $pozStart, $pozEnd - $pozStart));
+            if (empty($this->val2)) {
+                return trim(substr($this->source, $start));
+            } elseif ($start > 0 && $end > 0 && $start < $end) {
+                return trim(substr($this->source, $start, $end - $start));
             }
         }
     }
 
-    public function loadSqlFromSync($arr)
+    public function loadSqlFromSync()
     {
         /*
         $db = Model_Zendb::myfactory();
         $db->setFetchMode(Zend_Db::FETCH_ASSOC);
         return $db->fetchRow($db->select()->from("sync2items")->where("si_items_code_product = ?", $arr));
         */
+        return "HOVNO";
     }
 
     public function rawUrlDecode($str)
@@ -219,9 +237,9 @@ class Script
         return $val1;
     }
 
-    public function stripTags($str)
+    public function stripTags()
     {
-        return strip_tags($str);
+        return strip_tags($this->source);
     }
 
     public function clearMultiSpace($mixed)

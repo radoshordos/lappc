@@ -9,7 +9,6 @@ Simulace filtru
 {{-- Content @if (!empty($grab))  {{$grab->toArray()}}; @endif --}}
 @section('content')
 
-
 {{ Form::open(['route' => ['adm.tools.grabsimulator.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
 <div class="panel panel-default">
     <div class="panel-body">
@@ -36,12 +35,14 @@ Simulace filtru
 </div>
 {{ Form::close() }}
 
+
+
 @if ($profile_id > 0)
 <table>
     <tbody>
         <tr>
-            <td>{{ Form::textarea('reading', NULL, ['size' => '80x35','class'=> 'form-control']); }}</td>
-            <td>{{ Form::textarea('results', NULL, ['size' => '80x35','class'=> 'form-control']); }}</td>
+            <td>{{ Form::textarea('reading', $grab_input, ['size' => '80x35','readonly' => 'readonly' ,'class'=> 'form-control']); }}</td>
+            <td>{{ Form::textarea('results', print_r($grab_output,1), ['size' => '80x35','readonly' => 'readonly','class'=> 'form-control']); }}</td>
         </tr>
     </tbody>
 </table>
