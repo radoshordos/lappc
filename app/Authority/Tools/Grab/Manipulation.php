@@ -27,10 +27,9 @@ class Manipulation
     {
         if (\URL::isValidUrl(trim($source)) == true) {
             if (strtoupper($this->charset) == "UTF-8") {
-
                 return file_get_contents(trim($source));
             } else {
-                return iconv($this->charset, "UTF-8", trim($source));
+                return iconv($this->charset, "UTF-8", trim(file_get_contents($source)));
             }
         }
     }
@@ -62,13 +61,11 @@ class Manipulation
             foreach ($line as $row) {
                 $i = 0;
 
-                if ($counter == 0) {
+                if ($counter++ == 0) {
                     $source = $this->source;
                 } else {
-                    $source = $this->get2Namespace($row->ColumnDb->name);
+                    $source = $this->getNamespace($row->ColumnDb->name);
                 }
-
-
 
                 $script->setParameters($source, $row->grabFunction->function, $row->val1, $row->val2);
                 $result = $script->applyScript();

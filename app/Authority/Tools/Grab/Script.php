@@ -9,7 +9,7 @@ class Script
 
     public function setParameters($source, $name, $val1, $val2)
     {
-        $this->source = $source;
+        $this->source = htmlspecialchars_decode($source);
         $this->name = $name;
         $this->val1 = $val1;
         $this->val2 = $val2;
@@ -167,6 +167,8 @@ class Script
                 return trim(substr($this->source, $start));
             } elseif ($start > 0 && $end > 0 && $start < $end) {
                 return trim(substr($this->source, $start, $end - $start));
+            } else {
+                return "CHYBA loadSimpleCutString";
             }
         }
     }

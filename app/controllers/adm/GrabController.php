@@ -18,6 +18,7 @@ class GrabController extends \BaseController
     public function index()
     {
         return View::make('adm.tools.grab.index', [
+            'column_id'        => Input::get('column_id'),
             'get_select_group' => Input::get('select_group'),
             'select_group'     => [''] + SB::option("SELECT * FROM grab_profile WHERE active = 1 ORDER BY name", ['id' => '->name']),
             'select_column'    => [''] + SB::option("SELECT * FROM column_db WHERE visible_grab = 1 ORDER BY table_id,id", ['id' => '->name']),
@@ -30,6 +31,7 @@ class GrabController extends \BaseController
     public function store()
     {
         $count = 0;
+        $input = Input::all();
         if (Input::has('submit-insert-profile-column')) {
             $input = array_only(Input::all(), ['column_id', 'function_id', 'profile_id', 'position', 'val1', 'val2']);
             $v = Validator::make($input, GrabDb::$rules);
@@ -89,7 +91,6 @@ class GrabController extends \BaseController
         }
 
         if (Input::has('submit-profile-update-column') && count(Input::get('id')) > 0) {
-            $input = Input::all();
             foreach (array_keys(Input::get('id')) as $key) {
 
 
@@ -106,7 +107,7 @@ class GrabController extends \BaseController
                     return Redirect::route('adm.tools.grab.index')->withInput()->withErrors($v);
                 }
             }
-            return Redirect::route('adm.tools.grab.index');
+            return Redirect::route('adm.tools.grab.index', ['select_group' => $input['select_group']]);
         }
 
         if (Input::has('submit-update-profile')) {
@@ -149,6 +150,6 @@ class GrabController extends \BaseController
                 return Redirect::route('adm.tools.grab.index')->withInput()->withErrors($v);
             }
         }
-        return Redirect::route('adm.tools.grab.index');
+        return Redirect::route('adm.tools.grab.index', ['select_group' => $input['select_group']]);
     }
 }

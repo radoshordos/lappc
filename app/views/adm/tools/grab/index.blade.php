@@ -55,7 +55,7 @@ Filtrace
                         {{ Form::selectRange('position', 1, 25, NULL, ['class'=> 'form-control'] ); }}
                     </div>
                     <div class="col-md-2">
-                        {{ Form::select('column_id',$select_column, NULL, ['required' => 'required','class'=> 'form-control']); }}
+                        {{ Form::select('column_id',$select_column, $column_id, ['required' => 'required','class'=> 'form-control']); }}
                     </div>
                     <div class="col-md-8">
                         <div class="input-group">
@@ -108,8 +108,8 @@ Filtrace
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="4" class="text-center">{{ Form::submit('Uložit', ['name' => 'submit-update-profile','class' => 'btn btn-primary']) }}</td>
                     <td colspan="4" class="text-center">{{ Form::submit('Snazat označené', ['name' => 'submit-delete-profile','class' => 'btn btn-danger']) }}</td>
+                    <td colspan="4" class="text-center">{{ Form::submit('Uložit', ['name' => 'submit-update-profile','class' => 'btn btn-primary']) }}</td>
                 </tr>
             </tfoot>
         </table>
