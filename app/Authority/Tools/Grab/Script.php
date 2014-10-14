@@ -26,26 +26,26 @@ class Script
         return $this->val1 . $this->source . $this->val2;
     }
 
-    public function ucfirst($string)
+    public function ucfirst()
     {
-        return ucfirst($string);
+        return ucfirst($this->source);
     }
 
-    public function ucwords($string)
+    public function ucwords()
     {
-        return ucwords($string);
+        return ucwords($this->source);
     }
 
-    public function clearEmptyRows($arr)
+    public function clearEmptyRows()
     {
-        $new = [];
-        if (!empty($arr) && is_array($arr)) {
-            foreach ($arr as $val) {
+        $arr = [];
+        if (!empty($this->source) && is_array($this->source)) {
+            foreach ($this->source as $val) {
                 if (!empty($val) && strlen(trim($val)) > 0)
-                    $new[] = $val;
+                    $arr[] = $val;
             }
         }
-        return $new;
+        return $arr;
     }
 
     public function loadSimpleCutArrayMultiple()
@@ -76,7 +76,6 @@ class Script
 
     public function createAliasName($string)
     {
-
         $chars = [
             '&' => '-', '/' => '-', '"' => '-', '+' => '-', ' ' => '-',
             '=' => '-', '>' => '-', '<' => '-', '\'' => '', '(' => '',
@@ -89,22 +88,20 @@ class Script
         return str_replace(['--'], "-", $str2);
     }
 
-    public function explode2ColumnArrays($str, $delimiter = "LINERN")
+    public function explode2ColumnArrays()
     {
-
         $chars = ['&#13;' => "\n", '&#10;' => "\r"];
-        $str = str_replace(array_keys($chars), array_values($chars), $str);
-        if (empty($delimiter) || $delimiter == 'LINE' || strtoupper($delimiter) == 'LINEN') {
-            $delimiter = "\n";
-        } else if (strtoupper($delimiter) == 'LINER') {
-            $delimiter = "\r";
-        } else if (strtoupper($delimiter) == 'LINERN') {
-            $delimiter = "\r\n";
-        } else if (strtoupper($delimiter) == 'LINERNRN') {
-            $delimiter = "\r\n\r\n";
+        $str = str_replace(array_keys($chars), array_values($chars), $this->source);
+        if (empty($this->val1) || $this->val1 == 'LINE' || strtoupper($this->val1) == 'LINEN') {
+            $this->val1 = "\n";
+        } else if (strtoupper($this->val1) == 'LINER') {
+            $this->val1 = "\r";
+        } else if (strtoupper($this->val1) == 'LINERN') {
+            $this->val1 = "\r\n";
+        } else if (strtoupper($this->val1) == 'LINERNRN') {
+            $this->val1 = "\r\n\r\n";
         }
-
-        return explode($delimiter, $str);
+        return explode($this->val1, $str);
     }
 
     public function fileGetContents($string)
@@ -119,41 +116,44 @@ class Script
         return str_replace(["\0x0d\0x0a", "\0x0d", "\0x0a"], '', $string);
     }
 
-    public function filterSanitizeSpecialCharts($string)
+    public function filterSanitizeSpecialCharts()
     {
-        $string1 = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
+        $string1 = filter_var($this->source, FILTER_SANITIZE_SPECIAL_CHARS);
         $string2 = $this->stripClRf(str_replace(["&#9;", "&#13;", "  ", "&#38;nbsp;"], "", $string1));
-        return $string = strtr($string2, ["&#10;" => "\n", "&#38;" => "&"]);
+        return strtr($string2, ["&#10;" => "\n", "&#38;" => "&"]);
     }
 
-    public function htmlspecialcharsDecode($string)
+    public function htmlspecialcharsDecode()
     {
-        return htmlspecialchars_decode($string);
+        return htmlspecialchars_decode($this->source);
     }
 
-    public function ifStrlenIsBigerReturn($string, $int, $str)
+    public function ifStrlenIsBigerReturn()
     {
-        if (strlen($string) > intval($int)) {
-            return $str;
+        if (strlen($this->source) > intval($this->val1)) {
+            return $this->val2;
         }
-        return $string;
+        return $this->source;
     }
 
-    public function implode2String($piecesarray, $glue = "LINE")
+    public function implode2String()
     {
+        if (is_array($this->source)) {
+            if (strtoupper($this->val1) == 'LINE' || strtoupper($this->val1) == 'LINER') {
+                $glue = "\r";
+            } elseif (strtoupper($this->val1) == 'LINERN') {
+                $glue = "\r\n";
+            } elseif (strtoupper($this->val1) == 'LINEN') {
+                $glue = "\n";
+            } elseif (strtoupper($this->val1) == 'NO') {
+                $glue = "";
+            } else {
+                $glue = $this->val1;
+            }
 
-        if (strtoupper($glue) == 'LINE' || strtoupper($glue) == 'LINER') {
-            $glue = "\r";
-        } elseif (strtoupper($glue) == 'LINERN') {
-            $glue = "\r\n";
-        } elseif (strtoupper($glue) == 'LINEN') {
-            $glue = "\n";
-        } elseif (strtoupper($glue) == 'NO') {
-            $glue = "";
+            $data = implode($glue, $this->source);
+            return strtr($data, [chr(10) . chr(32) => chr(10), chr(13) . chr(32) => chr(13)]);
         }
-
-        $result = implode($glue, $piecesarray);
-        return strtr($result, [chr(10) . chr(32) => chr(10), chr(13) . chr(32) => chr(13)]);
     }
 
     public function loadSimpleCutString()
@@ -188,17 +188,17 @@ class Script
         }
     }
 
-    public function togeterTwoColumn($array, $glue)
+    public function togeterTwoColumn()
     {
         $final = [];
-        if (count($array) % 2 == 0) {
+        if (count($this->source) % 2 == 0) {
             $double = [];
-            foreach ($array as $k => $v) {
+            foreach ($this->source as $k => $v) {
                 if ($k % 2 == 0) {
                     $double[0] = $v;
                 } else {
                     $double[1] = $v;
-                    $final[] = implode($glue, $double);
+                    $final[] = implode($this->val1, $double);
                 }
             }
         }
@@ -232,9 +232,9 @@ class Script
         return asort($arr);
     }
 
-    public function setValueToColumn($val1)
+    public function setValueToColumn()
     {
-        return $val1;
+        return $this->val1;
     }
 
     public function stripTags()
@@ -244,7 +244,6 @@ class Script
 
     public function clearMultiSpace($mixed)
     {
-
         for ($i = 0; $i < strlen($mixed); $i++) {
             $newstr = $newstr . substr($mixed, $i, 1);
             if (substr($mixed, $i, 1) == ' ') {
@@ -257,28 +256,27 @@ class Script
         return $newstr;
     }
 
-    public function strReplace($string, $from, $to)
+    public function strReplace()
     {
-        if ($to == "LINE") {
-            $to = "\n";
-        } elseif ($to == "LINERN") {
-            $to = "\r\n";
+        if ($this->val2 == "LINE") {
+            $this->val2 = "\n";
+        } elseif ($this->val2 == "LINERN") {
+            $this->val2 = "\r\n";
         }
 
-        if ($from == "LINE") {
-            $from = "\n";
-        } elseif ($from == "LINERN") {
-            $from = "\r\n";
+        if ($this->val1 == "LINE") {
+            $this->val1 = "\n";
+        } elseif ($this->val1 == "LINERN") {
+            $this->val1 = "\r\n";
         }
 
-
-        return str_replace($from, $to, $string);
+        return str_replace($this->val1, $this->val2, $this->source);
     }
 
-    public function setValueFromOtherColumnArray($col_name, $col_id)
+    public function setValueFromOtherColumnArray()
     {
-        if (isset($col_name["$col_id"])) {
-            return $col_name["$col_id"];
+        if (isset($this->val1[$this->val2])) {
+            return $this->val1[$this->val2];
         }
     }
 
