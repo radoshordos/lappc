@@ -1,4 +1,5 @@
 <?php
+
 use Authority\Eloquent\MixtureTree;
 use Authority\Tools\SB;
 
@@ -13,8 +14,8 @@ class MixtureTreeController extends \BaseController
 
     public function index()
     {
-        return View::make('adm.pattern.mixturetree.index', array(
-            'template' => $this->mixturetree->orderBy('id')->get()
-        ));
+        return View::make('adm.pattern.mixturetree.index', [
+            'mixturetree' => $this->mixturetree->orderBy('id')->get()
+        ]);
     }
 }

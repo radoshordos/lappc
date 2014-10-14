@@ -20,8 +20,9 @@ class MixtureDevController extends \BaseController
      */
     public function index()
     {
-        $mixture_dev = $this->mixture_dev->orderBy('id')->get();
-        return View::make('adm.pattern.mixturedev.index', array('mixturedev' => $mixture_dev));
+        return View::make('adm.pattern.mixturedev.index', [
+            'mixturedev' => $this->mixture_dev->orderBy('id')->get()
+        ]);
     }
 
     /**
@@ -72,10 +73,10 @@ class MixtureDevController extends \BaseController
             return Redirect::route('adm.pattern.mixturedev.index');
         }
 
-        return View::make('adm.pattern.mixturedev.edit', array(
+        return View::make('adm.pattern.mixturedev.edit', [
             'dev_insertable' => [''] + SB::option("SELECT * FROM dev WHERE id > 1 AND id NOT IN (SELECT dev_id FROM mixture_dev_m2n_dev WHERE mixture_dev_id = $id) ORDER BY id", ['id' => '->name']),
-            'mixturedev' => $mixture_dev
-        ));
+            'mixturedev'     => $mixture_dev
+        ]);
     }
 
     /**

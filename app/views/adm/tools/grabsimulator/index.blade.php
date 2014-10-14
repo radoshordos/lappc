@@ -35,9 +35,7 @@ Simulace filtru
 </div>
 {{ Form::close() }}
 
-
-
-@if ($profile_id > 0)
+@if (!empty($grab_input))
 <table>
     <tbody>
         <tr>
