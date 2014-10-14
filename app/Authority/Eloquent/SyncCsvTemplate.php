@@ -1,16 +1,14 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class SyncCsvTemplate extends \Eloquent
 {
     protected $table = 'sync_csv_template';
     protected $guarded = [];
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
-    public static $rules = array(
+    public static $rules = [
         'mixture_dev_id' => 'required|exists:mixture_dev,id',
-    );
+    ];
 
     public function mixtureDev()
     {

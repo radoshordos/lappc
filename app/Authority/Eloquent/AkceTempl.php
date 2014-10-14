@@ -1,18 +1,16 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class AkceTempl extends \Eloquent
 {
     protected $table = 'akce_template';
     protected $guarded = [];
 
-    public static $rules = array(
-        'mixture_dev_id' => 'exists:mixture_dev,id',
+    public static $rules = [
+        'mixture_dev_id'  => 'exists:mixture_dev,id',
         'availibility_id' => 'exists:ppc_keywords_match,id',
-        'minitext_id' => 'exists:akce_minitext,id',
-        'endtime' => 'required'
-    );
+        'minitext_id'     => 'exists:akce_minitext,id',
+        'endtime'         => 'required'
+    ];
 
     public function akceMinitext()
     {

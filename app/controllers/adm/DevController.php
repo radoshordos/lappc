@@ -21,8 +21,8 @@ class DevController extends \BaseController
      */
     public function index()
     {
-        $devs = $this->dev->where('id','>','1')->orderBy('id')->get();
-        return View::make('adm.pattern.dev.index', array('devs' => $devs));
+        $devs = $this->dev->where('id', '>', '1')->orderBy('id')->get();
+        return View::make('adm.pattern.dev.index', ['devs' => $devs]);
     }
 
     /**
@@ -33,11 +33,11 @@ class DevController extends \BaseController
      */
     public function create()
     {
-        return View::make('adm.pattern.dev.create', array(
-            'select_warranty' => [''] + SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-            'select_sale' => [''] + SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
+        return View::make('adm.pattern.dev.create', [
+            'select_warranty'     => [''] + SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+            'select_sale'         => [''] + SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
             'select_availability' => [''] + SB::option("SELECT * FROM items_availability WHERE id > 1", ['id' => '->name'])
-        ));
+        ]);
     }
 
     /**
@@ -77,12 +77,12 @@ class DevController extends \BaseController
             return Redirect::route('adm.pattern.dev.index');
         }
 
-        return View::make('adm.pattern.dev.edit', array(
-            'dev' => $dev,
-            'select_warranty' => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-            'select_sale' => SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
+        return View::make('adm.pattern.dev.edit', [
+            'dev'                 => $dev,
+            'select_warranty'     => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+            'select_sale'         => SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
             'select_availability' => SB::option("SELECT * FROM items_availability WHERE id > 1", ['id' => '->name'])
-        ));
+        ]);
     }
 
     /**
@@ -95,7 +95,7 @@ class DevController extends \BaseController
     public function update($id)
     {
         $rules = Dev::$rules;
-        if ($id !== null) {
+        if ($id !== NULL) {
             $rules['id'] .= ",$id";
             $rules['name'] .= ",$id";
             $rules['alias'] .= ",$id";

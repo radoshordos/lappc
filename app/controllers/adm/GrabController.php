@@ -99,13 +99,17 @@ class GrabController extends \BaseController
         if (Input::has('submit-profile-update-column') && count(Input::get('id')) > 0) {
             foreach (array_keys(Input::get('id')) as $key) {
 
-
                 $row = GrabProfile::find($key);
                 $row->active = $input['active'][$key];
                 $row->charset = $input['charset'][$key];
                 $row->name = $input['name'][$key];
 
-                $v = Validator::make($row->toArray(), GrabProfile::$rules);
+                $rules = GrabProfile::$rules;
+                if ($key !== NULL) {
+                    $rules['name'] .= ",$key";
+                }
+
+                $v = Validator::make($row->toArray(), $rules);
                 if ($v->passes()) {
                     $row->save();
                 } else {
@@ -113,7 +117,7 @@ class GrabController extends \BaseController
                     return Redirect::route('adm.tools.grab.index')->withInput()->withErrors($v);
                 }
             }
-            return Redirect::route('adm.tools.grab.index', ['select_group' => $input['select_group']]);
+            return Redirect::route('adm.tools.grab.index');
         }
 
         if (Input::has('submit-update-profile')) {

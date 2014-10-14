@@ -1,12 +1,11 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class ProdDescription extends \Eloquent
 {
     protected $table = 'prod_description';
     protected $guarded = [];
-    public $timestamps = false;
+
+    public $timestamps = FALSE;
 
     public static $rules = [
     ];

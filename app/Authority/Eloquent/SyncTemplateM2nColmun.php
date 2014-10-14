@@ -1,17 +1,15 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class SyncTemplateM2nColmun extends \Eloquent
 {
     protected $table = 'sync_template_m2n_colmun';
     protected $guarded = [];
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
-    public static $rules = array(
+    public static $rules = [
         'template_id' => 'required|exists:sync_csv_template,id',
-        'column_id' => 'required|exists:sync_csv_column,id',
-    );
+        'column_id'   => 'required|exists:sync_csv_column,id',
+    ];
 
     public function template()
     {

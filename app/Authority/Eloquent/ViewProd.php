@@ -1,12 +1,10 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class ViewProd extends \Eloquent
 {
     protected $table = 'view_prod';
 
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
     public function scopeDev($query, $int)
     {
@@ -24,7 +22,7 @@ class ViewProd extends \Eloquent
 
     public function scopeIdDescending($query)
     {
-        return $query->orderBy('id','DESC');
+        return $query->orderBy('id', 'DESC');
     }
 
 }

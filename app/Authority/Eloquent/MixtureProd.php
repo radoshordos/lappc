@@ -1,13 +1,11 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class MixtureProd extends \Eloquent
 {
     protected $table = 'mixture_prod';
     protected $guarded = [];
 
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
     public function prod()
     {

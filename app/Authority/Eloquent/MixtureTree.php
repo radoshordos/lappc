@@ -1,13 +1,11 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class MixtureTree extends \Eloquent
 {
     protected $table = 'mixture_tree';
     protected $guarded = [];
 
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
     public function tree()
     {

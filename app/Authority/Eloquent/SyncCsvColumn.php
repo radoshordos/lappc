@@ -1,16 +1,14 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class SyncCsvColumn extends \Eloquent
 {
     protected $table = 'sync_csv_column';
     protected $guarded = [];
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
-    public static $rules = array(
+    public static $rules = [
         'element' => 'required'
-    );
+    ];
 
 
 }

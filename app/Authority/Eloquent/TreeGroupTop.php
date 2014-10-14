@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class TreeGroupTop extends \Eloquent
 {

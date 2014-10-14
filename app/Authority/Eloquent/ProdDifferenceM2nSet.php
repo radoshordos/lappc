@@ -1,17 +1,15 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class ProdDifferenceM2nSet extends \Eloquent
 {
     protected $table = 'prod_difference_n2m_set';
     protected $guarded = [];
 
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
     public static $rules = [
         'difference_id' => 'required|exists:prod_difference,id',
-        'set_id' => 'required|exists:prod_difference_set,id',
+        'set_id'        => 'required|exists:prod_difference_set,id',
     ];
 
     public function prodDifferenceSet()

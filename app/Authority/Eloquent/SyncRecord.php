@@ -1,12 +1,10 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class SyncRecord extends \Eloquent
 {
     protected $table = 'sync_record';
     protected $guarded = [];
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
     public function syncCsvTemplate()
     {
