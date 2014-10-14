@@ -20,7 +20,7 @@ Správa skupin výrobců
 
 {{-- Content --}}
 @section('content')
-{{ Form::model($mixturedev, array('method'=>'PATCH','route' => array('adm.pattern.mixturedev.update',$mixturedev->id),'class'=>'form-horizontal','role'=>'form')) }}
+{{ Form::model($mixturedev, ['method'=>'PATCH','route' => array('adm.pattern.mixturedev.update',$mixturedev->id),'class'=>'form-horizontal','role'=>'form']) }}
 <div class="panel panel-info">
     <div class="panel-heading"><label for="name">Oprava názvu skupiny výrobců</label></div>
     <div class="panel-body">

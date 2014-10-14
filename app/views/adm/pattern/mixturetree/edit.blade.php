@@ -20,7 +20,7 @@ Správa grup skupin
 
 {{-- Content --}}
 @section('content')
-{{ Form::model($mixturetree, array('method'=>'PATCH','route' => array('adm.pattern.mixturetree.update',$mixturetree->id),'class'=>'form-horizontal','role'=>'form')) }}
+{{ Form::model($mixturetree, ['method'=>'PATCH', 'route' => array('adm.pattern.mixturetree.update',$mixturetree->id),'class'=>'form-horizontal','role'=>'form']) }}
 <div class="panel panel-info">
     <div class="panel-heading"><label for="name">Oprava názvu grupy spupin</label></div>
     <div class="panel-body">

@@ -69,7 +69,7 @@
                         <li><a href="{{ URL::route('adm.pattern.mixturedev.index')}}">Seskupení výrobců</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Skupiny</a></li>
-                        <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Seskupení skupin</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Grupy skupin</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.prodwarranty.index') }}">Záruky produktů</a></li>
                         <li class="divider"></li>

@@ -5,17 +5,17 @@ use Authority\Tools\SB;
 
 class MixtureTreeController extends \BaseController
 {
-    protected $mixturetree;
+    protected $mt;
 
-    function __construct(MixtureTree $mixturetree)
+    function __construct(MixtureTree $mt)
     {
-        $this->mixturetree = $mixturetree;
+        $this->mt = $mt;
     }
 
     public function index()
     {
         return View::make('adm.pattern.mixturetree.index', [
-            'mixturetree' => $this->mixturetree->orderBy('id')->get()
+            'mixturetree' => $this->mt->orderBy('id')->get()
         ]);
     }
 
@@ -30,7 +30,7 @@ class MixtureTreeController extends \BaseController
         $v = Validator::make($input, MixtureTree::$rules);
 
         if ($v->passes()) {
-            $this->mixturetree->create($input);
+            $this->mt->create($input);
             Session::flash('success', 'Nový záznam do grupy skupin byl přidán');
             return Redirect::route('adm.pattern.mixturetree.index');
         } else {
@@ -41,16 +41,31 @@ class MixtureTreeController extends \BaseController
 
     public function edit($id)
     {
-        $mixture_tree = $this->mixturetree->find($id);
+        $mixture_tree = $this->mt->find($id);
 
         if (is_null($mixture_tree)) {
             return Redirect::route('adm.pattern.mixturetree.index');
         }
 
-        return View::make('adm.pattern.mixturedev.edit', [
+        return View::make('adm.pattern.mixturetree.edit', [
             'tree_insertable' => [''] + SB::option("SELECT * FROM tree WHERE id > 1 AND id NOT IN (SELECT tree_id FROM mixture_tree_m2n_tree WHERE mixture_tree_id = $id) ORDER BY id", ['id' => '->name']),
             'mixturetree'     => $mixture_tree
         ]);
+    }
+
+    public function update($id)
+    {
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, MixtureTree::$rules);
+
+        if ($v->passes()) {
+            $mixture_tree = $this->mt->find($id);
+            $mixture_tree->update($input);
+            return Redirect::route('adm.pattern.mixturetree.index', $id);
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.mixturetree.edit', $id)->withInput()->withErrors($v);
+        }
     }
 
 }
