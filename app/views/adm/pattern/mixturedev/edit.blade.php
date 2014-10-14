@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Nová skupina výrobců
+Správa skupin výrobců
 @stop
 
 {{-- JavaScript on page --}}
