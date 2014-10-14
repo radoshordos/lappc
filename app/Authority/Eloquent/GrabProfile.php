@@ -6,7 +6,7 @@ class GrabProfile extends \Eloquent
     protected $table = 'grab_profile';
     protected $guarded = [];
 
-    public $timestamps = false;
+    public $timestamps = FALSE;
 
     public static $rules = [
         'charset' => 'required|min:2',

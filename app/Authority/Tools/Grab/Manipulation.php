@@ -17,7 +17,7 @@ class Manipulation
         $this->script = new Script();
         $this->profile_id = intval($profile_id);
         $this->charset = GrabProfile::where('id', '=', $profile_id)->pluck('charset');
-        $this->source = htmlentities($this->executeSource($source));
+        $this->source = $this->executeSource($source);
         $this->namespace_output = $this->initNamespaceOutput();
 
         $this->callManipulation();
@@ -25,7 +25,7 @@ class Manipulation
 
     private function executeSource($source)
     {
-        if (\URL::isValidUrl(trim($source)) == true) {
+        if (\URL::isValidUrl(trim($source)) == TRUE) {
             if (strtoupper($this->charset) == "UTF-8") {
                 return file_get_contents(trim($source));
             } else {
@@ -50,7 +50,6 @@ class Manipulation
         foreach (array_keys($this->namespace_output) as $key) {
 
             $counter = 0;
-            $data = $this->getNamespace($key);
             $line = GrabDb::where('active', '=', 1)
                 ->where('profile_id', '=', $this->profile_id)
                 ->where('column_id', '=', ColumnDb::where('name', '=', $key)->pluck('id'))
@@ -68,17 +67,20 @@ class Manipulation
                 }
 
                 $script->setParameters($source, $row->grabFunction->function, $row->val1, $row->val2);
-                $result = $script->applyScript();
 
 
-                if (is_array($data)) {
+
+                if (is_array($source)) {
                     if ($row->GrabFunction->grabMode->alias == "array" || $row->GrabFunction->grabMode->alias == "arrays2string") {
-                        $this->set2Namespace($row->ColumnDb->name, $result);
+                        $this->set2Namespace($row->ColumnDb->name, $script->applyScript());
                     } else {
-                        $this->set2NamespaceArray($row->ColumnDb->name, $i++, $result);
+                        foreach ($source as $value) {
+                            $script->setSource($value);
+                            $this->set2NamespaceArray($row->ColumnDb->name, $i++, $script->applyScript());
+                        }
                     }
                 } else {
-                    $this->set2Namespace($row->ColumnDb->name, $result);
+                    $this->set2Namespace($row->ColumnDb->name, $script->applyScript());
                 }
             }
         }

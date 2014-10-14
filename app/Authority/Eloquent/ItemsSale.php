@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Eloquent;
+<?php namespace Authority\Eloquent;
 
 class ItemsSale extends \Eloquent
 {

@@ -9,10 +9,15 @@ class Script
 
     public function setParameters($source, $name, $val1, $val2)
     {
-        $this->source = htmlspecialchars_decode($source);
+        $this->source = $source;
         $this->name = $name;
         $this->val1 = $val1;
         $this->val2 = $val2;
+    }
+
+    public function setSource($source)
+    {
+        $this->source = $source;
     }
 
     public function applyScript()
@@ -214,24 +219,24 @@ class Script
         }
     }
 
-    public function trim($str)
+    public function trim()
     {
-        return trim($str);
+        return trim($this->source);
     }
 
-    public function strToLower($str)
+    public function strToLower()
     {
-        return strtolower($str);
+        return strtolower($this->source);
     }
 
-    public function strToUpper($str)
+    public function strToUpper()
     {
-        return strtolower($str);
+        return strtolower($this->source);
     }
 
-    public function sortColumnArrays($arr)
+    public function sortColumnArrays()
     {
-        return asort($arr);
+        return asort($this->source);
     }
 
     public function setValueToColumn()
@@ -244,18 +249,18 @@ class Script
         return strip_tags($this->source);
     }
 
-    public function clearMultiSpace($mixed)
+    public function clearMultiSpace()
     {
-        for ($i = 0; $i < strlen($mixed); $i++) {
-            $newstr = $newstr . substr($mixed, $i, 1);
-            if (substr($mixed, $i, 1) == ' ') {
-                while (substr($mixed, $i + 1, 1) == ' ') {
+        $new_str = "";
+        for ($i = 0; $i < strlen($this->source); $i++) {
+            $new_str = $new_str . substr($this->source, $i, 1);
+            if (substr($this->source, $i, 1) == ' ') {
+                while (substr($this->source, $i + 1, 1) == ' ') {
                     $i++;
                 }
             }
         }
-
-        return $newstr;
+        return $new_str;
     }
 
     public function strReplace()
@@ -282,9 +287,9 @@ class Script
         }
     }
 
-    public function csUtf2Ascii($string)
+    public function csUtf2Ascii()
     {
-        return strtr($string, ["\xc3\xa1" => "a", "\xc3\xa4" => "a", "\xc4\x8d" => "c", "\xc4\x8f" => "d", "\xc3\xa9" => "e", "\xc4\x9b" => "e", "\xc3\xad" => "i", "\xc4\xbe" => "l", "\xc4\xba" => "l", "\xc5\x88" => "n", "\xc3\xb3" => "o", "\xc3\xb6" => "o", "\xc5\x91" => "o", "\xc3\xb4" => "o", "\xc5\x99" => "r", "\xc5\x95" => "r", "\xc5\xa1" => "s", "\xc5\xa5" => "t", "\xc3\xba" => "u", "\xc5\xaf" => "u", "\xc3\xbc" => "u", "\xc5\xb1" => "u", "\xc3\xbd" => "y", "\xc5\xbe" => "z", "\xc3\x81" => "A", "\xc3\x84" => "A", "\xc4\x8c" => "C", "\xc4\x8e" => "D", "\xc3\x89" => "E", "\xc4\x9a" => "E", "\xc3\x8d" => "I", "\xc4\xbd" => "L", "\xc4\xb9" => "L", "\xc5\x87" => "N", "\xc3\x93" => "O", "\xc3\x96" => "O", "\xc5\x90" => "O", "\xc3\x94" => "O", "\xc5\x98" => "R", "\xc5\x94" => "R", "\xc5\xa0" => "S", "\xc5\xa4" => "T", "\xc3\x9a" => "U", "\xc5\xae" => "U", "\xc3\x9c" => "U", "\xc5\xb0" => "U", "\xc3\x9d" => "Y", "\xc5\xbd" => "Z"]);
+        return strtr($this->source, ["\xc3\xa1" => "a", "\xc3\xa4" => "a", "\xc4\x8d" => "c", "\xc4\x8f" => "d", "\xc3\xa9" => "e", "\xc4\x9b" => "e", "\xc3\xad" => "i", "\xc4\xbe" => "l", "\xc4\xba" => "l", "\xc5\x88" => "n", "\xc3\xb3" => "o", "\xc3\xb6" => "o", "\xc5\x91" => "o", "\xc3\xb4" => "o", "\xc5\x99" => "r", "\xc5\x95" => "r", "\xc5\xa1" => "s", "\xc5\xa5" => "t", "\xc3\xba" => "u", "\xc5\xaf" => "u", "\xc3\xbc" => "u", "\xc5\xb1" => "u", "\xc3\xbd" => "y", "\xc5\xbe" => "z", "\xc3\x81" => "A", "\xc3\x84" => "A", "\xc4\x8c" => "C", "\xc4\x8e" => "D", "\xc3\x89" => "E", "\xc4\x9a" => "E", "\xc3\x8d" => "I", "\xc4\xbd" => "L", "\xc4\xb9" => "L", "\xc5\x87" => "N", "\xc3\x93" => "O", "\xc3\x96" => "O", "\xc5\x90" => "O", "\xc3\x94" => "O", "\xc5\x98" => "R", "\xc5\x94" => "R", "\xc5\xa0" => "S", "\xc5\xa4" => "T", "\xc3\x9a" => "U", "\xc5\xae" => "U", "\xc3\x9c" => "U", "\xc5\xb0" => "U", "\xc3\x9d" => "Y", "\xc5\xbd" => "Z"]);
     }
 
 }

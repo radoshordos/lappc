@@ -18,7 +18,9 @@ class GrabController extends \BaseController
     public function index()
     {
         return View::make('adm.tools.grab.index', [
+            'function_id'      => Input::get('function_id'),
             'column_id'        => Input::get('column_id'),
+            'position'         => intval(Input::get('position')) + 1,
             'get_select_group' => Input::get('select_group'),
             'select_group'     => [''] + SB::option("SELECT * FROM grab_profile WHERE active = 1 ORDER BY name", ['id' => '->name']),
             'select_column'    => [''] + SB::option("SELECT * FROM column_db WHERE visible_grab = 1 ORDER BY table_id,id", ['id' => '->name']),
@@ -43,7 +45,11 @@ class GrabController extends \BaseController
                 } catch (Exception $e) {
                     Session::flash('error', $e->getMessage());
                 }
-                return Redirect::route('adm.tools.grab.index', ['select_group' => $input['profile_id']]);
+                return Redirect::route('adm.tools.grab.index', [
+                    'select_group' => $input['profile_id'],
+                    'position'     => $input['position'],
+                    'column_id'    => $input['column_id']
+                ]);
             } else {
                 Session::flash('error', implode('<br />', $v->errors()->all(':message')));
                 return Redirect::route('adm.tools.grab.index')->withInput()->withErrors($v);

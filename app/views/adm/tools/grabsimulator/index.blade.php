@@ -39,7 +39,7 @@ Simulace filtru
 <table>
     <tbody>
         <tr>
-            <td>{{ Form::textarea('reading', $grab_input, ['size' => '80x35','readonly' => 'readonly' ,'class'=> 'form-control']); }}</td>
+            <td>{{ Form::textarea('reading', htmlspecialchars($grab_input), ['size' => '80x35','readonly' => 'readonly' ,'class'=> 'form-control']); }}</td>
             <td>{{ Form::textarea('results', print_r($grab_output,1), ['size' => '80x35','readonly' => 'readonly','class'=> 'form-control']); }}</td>
         </tr>
     </tbody>

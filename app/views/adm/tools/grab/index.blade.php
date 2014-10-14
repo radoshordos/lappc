@@ -52,7 +52,7 @@ Filtrace
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-1">
-                        {{ Form::selectRange('position', 1, 25, NULL, ['class'=> 'form-control'] ); }}
+                        {{ Form::selectRange('position', 1, 25, $position, ['class'=> 'form-control'] ); }}
                     </div>
                     <div class="col-md-2">
                         {{ Form::select('column_id',$select_column, $column_id, ['required' => 'required','class'=> 'form-control']); }}
