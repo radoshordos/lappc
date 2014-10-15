@@ -10,7 +10,7 @@ class ProdDifference extends Migration
     {
         Schema::create('prod_difference', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned();
+            $table->integer('id')->unsigned()->primary();
             $table->boolean('visible')->default(1);
             $table->tinyInteger('count')->unsigned();
             $table->string('name', 48)->unique();
