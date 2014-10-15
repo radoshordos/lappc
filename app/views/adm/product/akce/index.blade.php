@@ -27,7 +27,7 @@ Přehled akcí
             @foreach ($akce as $row)
             <tr>
                 <td>{{ $row->akce_template_id }}</td>
-                <td>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</td>
+                <td>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id,"#akce"]) }}</td>
                 <td>{{ $row->akce_minitext_name }}</td>
             </tr>
             @endforeach

@@ -9,11 +9,12 @@ class AkceItems extends Migration {
 	{
 		Schema::create('akce_items', function (Blueprint $table) {
 			$table->increments('id')->unsigned();
-			$table->integer('akce_id')->unsigned();
 			$table->integer('item_id')->unsigned();
+			$table->tinyInteger('sale_id')->unsigned();
+			$table->tinyInteger('availability_id')->unsigned();
+			$table->decimal('aiprice', 9, 2)->unsigned()->default(0);
 
 			$table->engine = 'InnoDB';
-			$table->foreign('akce_id')->references('id')->on('akce')->onUpdate('cascade')->onDelete('cascade');
 			$table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
 		});
 	}

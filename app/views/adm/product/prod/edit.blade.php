@@ -72,7 +72,7 @@
         @endif
         <li><a href="#fotogalerie" data-toggle="tab">Fotogalerie</a></li>
         <li><a href="#aktivita" data-toggle="tab">Aktivita</a></li>
-        @if ($prod->mode_id == 4)
+    @if ($prod->mode_id == 4 && isset($prod->akce->template_id))
         <li><a href="#akce" data-toggle="tab">Akce</a></li>
         @endif
     </ul>
@@ -144,7 +144,7 @@
                     <div class="col-sm-12">
                         <div class="input-group btn-group-justified">
                             <span class="input-group-addon"><i class="fa fa-money fa-lg" title="Cena, měna a DPH"></i></span>
-                            <span class="btn-group">{{ Form::input('number','price', round($prod['price'],$prod->forex->round_with), ['required' => 'required', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</span>
+                            <span class="btn-group">{{ Form::number('price', round($prod['price'],$prod->forex->round_with), ['required' => 'required', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</span>
                             <span class="btn-group">{{ Form::select('forex_id',$select_forex, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
                             <span class="btn-group">{{ Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
                         </div>
@@ -199,7 +199,7 @@
                         <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, ['class'=> 'form-control']) }}</td>
                         <td>{{ Form::select("sale_id[$item->id]", $select_sale, $item->sale_id, ['class' => 'form-control']) }}</td>
                         <td>{{ Form::select("availability_id[$item->id]", $select_availability, $item->availability_id, ['class' => 'form-control']) }}</td>
-                        <td>{{ Form::input('number',"iprice[$item->id]", round($item->iprice,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
+                        <td>{{ Form::number("iprice[$item->id]", round($item->iprice,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
                         <td>{{ Form::checkbox('item[$item->id]') }}</td>
                     </tr>
                     @endforeach
@@ -281,21 +281,21 @@
                 </div>
             </div>
         </div>
-        @if (isset($prod->akce->prod_id)) {
+        @if (isset($prod->akce->prod_id))
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">O aktuální akci</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-3">Vyrvořeno</div>
-                    <div class="col-xs-9">{{ $prod->akce->created_at }}</div>
+                    <div class="col-md-3">Vyrvořeno</div>
+                    <div class="col-md-9">{{ $prod->akce->created_at }}</div>
                 </div>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-3">Upraveno</div>
-                    <div class="col-xs-9"></div>
+                    <div class="col-md-3">Upraveno</div>
+                    <div class="col-md-9"></div>
                 </div>
             </div>
         </div>
@@ -309,10 +309,61 @@
             </div>
         </div>
     </div>
-    @if ($prod->mode_id == 4)
+    @if ($prod->mode_id == 4 && isset($prod->akce->template_id))
     <div class="tab-pane" id="akce" style="padding-top: 2em">
-        <h1>akce</h1>
-        <p>akce akce akce akce akce akce</p>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Akce produktu {{ $prod->name  }}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">Akční koncová cena s DPH</div>
+                    <div class="col-md-3">{{ Form::number('akce_price', NULL /* round($prod['akce_price']   ,$prod->forex->round_with)*/, ['min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']); }}</div>
+                    <div class="col-md-3">Koncová cena s DPH</div>
+                    <div class="col-md-3">{{ Form::number('price', round($prod['price'],$prod->forex->round_with), ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
+                </div>
+            </div>
+        </div>
+        @if (count($table_items)>0))
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Akce položek produktu {{ $prod->name }}</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">#ID</th>
+                            <th rowspan="2">Kód</th>
+                            <th colspan="2">Sleva</th>
+                            <th colspan="2">Dostupnost</th>
+                            <th rowspan="2">Cena</th>
+                        </tr>
+                        <tr>
+                            <th>Prod</th>
+                            <th>Akce</th>
+                            <th>Prod</th>
+                            <th>Akce</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($table_items as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->code_prod }}</td>
+                            <td>{{ Form::text('virtual_item_sale[$item->id]', $item->itemsSale->name, ['readonly' => 'readonly', 'class'=> 'form-control btn-group']) }}</td>
+                            <td>{{ Form::select("ai_sale_id[$item->id]", $select_sale, NULL, ['class' => 'form-control']) }}</td>
+                            <td>{{ Form::text('virtual_item_availability[$item->id]', $item->itemsAvailability->name, ['readonly' => 'readonly', 'class'=> 'form-control btn-group']) }}</td>
+                            <td>{{ Form::select("ai_availability_id[$item->id]", $select_availability_action, NULL, ['class' => 'form-control']) }}</td>
+                            <td>{{ Form::number("ai_iprice[$item->id]", /* round($item->iprice,$prod->forex->round_with)*/ NULL , ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            @endif
+        </div>
     </div>
     @endif
 </div>

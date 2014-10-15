@@ -108,6 +108,7 @@ class ProdController extends \BaseController
                 'select_sale'                   => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
                 'select_difference'             => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
                 'select_availability'           => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+                'select_availability_action'    => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
                 'select_media_var'              => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
                 'table_items'                   => $this->items->where('prod_id', '=', $prod)->get(),
                 'table_prod_description'        => ProdDescription::where('prod_id', '=', $prod)->get(),

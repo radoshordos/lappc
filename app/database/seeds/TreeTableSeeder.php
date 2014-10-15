@@ -97,6 +97,11 @@ class TreeTableSeeder extends Seeder
 
         foreach ($tree as $row) {
 
+            $lastChar = substr($row['tree_abs_path'], -1);
+            if ($lastChar == '/') {
+                $row['tree_abs_path'] = substr($row['tree_abs_path'], 0, -1);
+            }
+
             DB::table('tree')->insert([
                 'id'        => $row['tree_id'] + 20000000,
                 'parent_id' => 21000000,
