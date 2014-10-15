@@ -28,6 +28,11 @@ class Prod extends \Eloquent
         return $this->hasOne('Authority\Eloquent\Forex', 'id', 'forex_id');
     }
 
+    public function dev()
+    {
+        return $this->hasOne('Authority\Eloquent\Dev', 'id', 'dev_id');
+    }
+
     public function akce()
     {
         return $this->hasOne('Authority\Eloquent\Akce', 'prod_id', 'id');

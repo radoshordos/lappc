@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
         $this->call('TreeTableSeeder');
         $this->call('MixtureDevTableSeeder');
         $this->call('MixtureDevM2nDevTableSeeder');
+        $this->call('ProdDifferenceValuesSeeder');
 
         $this->call('ProdTableSeeder');
         $this->call('ItemsSeeder');
@@ -60,7 +61,7 @@ class DatabaseSeeder extends Seeder
         $this->call('AkceTemplateSeeder');
         $this->call('ProdDifferenceSetSeeder');
         $this->call('ProdDifferenceN2mSetSeeder');
-        $this->call('ProdDifferenceValuesSeeder');
+
 	    $this->call('ProdDifferenceSeeder');
         $this->call('GrabDbSeeder');
         $this->call('MediaDbSeeder');

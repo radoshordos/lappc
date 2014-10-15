@@ -13,6 +13,8 @@ class Items extends Migration
             $table->integer('prod_id')->unsigned();
             $table->tinyInteger('sale_id')->unsigned();
             $table->tinyInteger('availability_id')->unsigned();
+            $table->smallInteger('diff_val1_id')->unsigned()->default(1);
+            $table->smallInteger('diff_val2_id')->unsigned()->default(1);
             $table->boolean('visible')->default(1);
             $table->string('code_prod',32)->nullable();
             $table->string('code_ean',32)->nullable();
@@ -22,10 +24,13 @@ class Items extends Migration
             $table->engine = 'InnoDB';
             $table->unique('code_prod');
             $table->unique('code_ean');
+            $table->unique(['prod_id','diff_val1_id','diff_val2_id']);
 
             $table->foreign('sale_id')->references('id')->on('items_sale')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('availability_id')->references('id')->on('items_availability')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('diff_val1_id')->references('id')->on('prod_difference_values')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('diff_val2_id')->references('id')->on('prod_difference_values')->onUpdate('cascade')->onDelete('no action');
         });
 
         DB::unprepared('DROP TRIGGER IF EXISTS items_ai');

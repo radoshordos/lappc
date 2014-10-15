@@ -207,6 +207,14 @@
             </table>
         </div>
         @endif
+        <p class="text-center">
+            @if ($prod->mode_id == 1)
+                {{ Form::submit('Smazat produkt', array('name' => 'button-submit-delete-prod','class' => 'btn btn-danger','style' => 'margin-right:5em')) }}
+            @elseif ($prod->mode_id > 1 && $prod->ic_all > 0)
+                {{ Form::submit('Smazat položku', array('name' => 'button-submit-delete-item','class' => 'btn btn-danger','style' => 'margin-right:5em')) }}
+            @endif
+            {{ Form::submit('Editovat produkt', array('name' => 'button-submit-edit','class' => 'btn btn-info','style' => 'margin-left:5em')) }}
+        </p>
     </div>
     <div class="tab-pane" style="padding-top: 2em" id="source">
         {{ Form::hidden('data_id1', (isset($table_prod_description[0]) ? $table_prod_description[0]->id : NULL)); }}
@@ -221,46 +229,26 @@
     </div>
     @if ($prod->difference_id > 1)
     <div class="tab-pane" id="difference" style="padding-top: 2em">
-        {{ var_dump($table_prod_description_set); }}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan="{{ $prod->prodDifference->count; }}">{{ $select_difference[$prod->prodDifference->id]; }}</th>
-                            </tr>
-                            <tr>
-                                @foreach($table_prod_description_set as $value) {
-                                    <td>{{ $value->prodDifferenceSet->name; }}</td>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <td colspan="<?= $prod->prodDifference->count; ?>">  {{ Form::submit('Přidat variace', array('name' => 'button-add-variation','class' => 'btn btn-info')) }}</td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                @foreach ($table_prod_description_set as $value) {  ?>
-                                    <td>
-                                        <?php
-
-                                        var_dump($value);
-                                        $pdv = ProdDifferenceValues::where('set_id', '=', $value->set_id)->get(['id', 'name']);
-
-                                        var_dump($pdv);
-                                        /*
-                                        $pdv = Model_Zendb::zFormOption($db->select()
-                                                                ->from("prod2difference2values", array("pdv_id", "pdv_name"))
-                                                                ->where("pdv_id_set=?", intval($value->pdis_id_set))
-                                                                ->order(array($value->pds_sortby)), array('->pdv_id', '->pdv_name'));
-
-                                        echo $this->formSelect("modi[$value->pds_id]", $prod->prod_id_dev, array("multiple" => "multiple", "size" => "50"), $pdv);
-                                        */?>
-                                    </td>
-                                @endforeach
-                            </tr>
-                        </tbody>
-                    </table>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" colspan="{{ $prod->prodDifference->count; }}">{{ $select_difference[$prod->prodDifference->id]; }}</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td class="text-center" colspan="{{$prod->prodDifference->count; }}">{{ Form::submit('Přidat nové variace', array('name' => 'button-add-variation','class' => 'btn btn-info')) }}</td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                @foreach ($table_prod_description_set as $value)
+                    <?php $pdv = Authority\Eloquent\ProdDifferenceValues::where('set_id', '=', $value->set_id)->orderBy($value->prodDifferenceSet->sortby)->get(['id', 'name']); ?>
+                    <td>{{ Form::select('variation['.$value->set_id.']['.$value->pds_id.']',\Authority\Tools\SB::optionBind('SELECT * FROM prod_difference_values WHERE set_id = ?', [$value->set_id] ,['id' => '->name']),NULL, ['multiple' => 'multiple', 'size' => '36','class' => 'form-control']); }}</td>
+                @endforeach
+                </tr>
+            </tbody>
+        </table>
     </div>
     @endif
     <div class="tab-pane" id="aktivita" style="padding-top: 2em">
@@ -368,13 +356,5 @@
     @endif
 </div>
 {{ Form::close() }}
-<p class="text-center">
-    @if ($prod->mode_id == 1)
-        {{ Form::submit('Smazat produkt', array('name' => 'button-submit-delete-prod','class' => 'btn btn-danger','style' => 'margin-right:5em')) }}
-    @elseif ($prod->mode_id > 1 && $prod->ic_all > 0)
-        {{ Form::submit('Smazat položku', array('name' => 'button-submit-delete-item','class' => 'btn btn-danger','style' => 'margin-right:5em')) }}
-    @endif
-    {{ Form::submit('Editovat produkt', array('name' => 'button-submit-edit','class' => 'btn btn-info','style' => 'margin-left:5em')) }}
-</p>
 @endif
 @stop

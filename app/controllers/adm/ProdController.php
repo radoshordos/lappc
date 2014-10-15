@@ -94,26 +94,25 @@ class ProdController extends \BaseController
         } else {
 
             return View::make('adm.product.prod.edit', [
-                'list_tree'                     => $select_tree,
-                'list_prod'                     => SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']),
-                'choice_tree'                   => $tree,
-                'choice_prod'                   => $prod,
-                'prod'                          => $row,
-                'select_dev'                    => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-                'select_tree'                   => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-                'select_warranty'               => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-                'select_dph'                    => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
-                'select_mode'                   => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-                'select_forex'                  => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale'                   => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
-                'select_difference'             => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
-                'select_availability'           => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-                'select_availability_action'    => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
-                'select_media_var'              => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
-                'table_items'                   => $this->items->where('prod_id', '=', $prod)->get(),
-                'table_prod_description'        => ProdDescription::where('prod_id', '=', $prod)->get(),
-                'table_prod_description_set'    => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
-
+                'list_tree'                  => $select_tree,
+                'list_prod'                  => SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']),
+                'choice_tree'                => $tree,
+                'choice_prod'                => $prod,
+                'prod'                       => $row,
+                'select_dev'                 => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+                'select_tree'                => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+                'select_warranty'            => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
+                'select_dph'                 => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
+                'select_mode'                => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+                'select_forex'               => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
+                'select_sale'                => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
+                'select_difference'          => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+                'select_availability'        => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+                'select_availability_action' => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
+                'select_media_var'           => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
+                'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
+                'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get(),
+                'table_prod_description_set' => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
 
 
                 /*
@@ -131,12 +130,10 @@ class ProdController extends \BaseController
 
     public function update($tree, $prod)
     {
-
         $input = Input::all();
+        $row = $this->prod->find($prod);
 
         if (Input::has('button-submit-edit')) {
-
-            $row = $this->prod->find($prod);
 
             $input_prod = array_only($input, [
                 'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id',
@@ -225,6 +222,43 @@ class ProdController extends \BaseController
                 $pd3->save();
             }
         }
-    }
+        if (Input::has('button-add-variation') && Input::has('variation')) {
+            $i = 0;
+            if (count(Input::get('variation')) == $row->prodDifference->count && count(Input::get('variation')) > 0) {
+                $variation = Input::get('variation');
+                foreach (array_keys(Input::get('variation')) as $key) {
+                    $arr[$i++] = $key;
+                }
 
+                if (count($arr) == 1) {
+                    foreach ($variation[$arr[0]] as $v1) {
+                        Items::create([
+                            'prod_id'         => $row->id,
+                            'sale_id'         => $row->dev->default_sale_prod_id,
+                            'availability_id' => $row->dev->default_availibility_id,
+                            'diff_val1_id'    => $v1,
+                            'diff_val2_id'    => 1,
+                            'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
+                            'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
+                        ]);
+                    }
+                } elseif (count($arr) == 2) {
+                    foreach ($variation[$arr[0]] as $v1) {
+                        foreach ($variation[$arr[1]] as $v2) {
+                            Items::create([
+                                'prod_id'         => $row->id,
+                                'sale_id'         => $row->dev->default_sale_prod_id,
+                                'availability_id' => $row->dev->default_availibility_id,
+                                'diff_val1_id'    => $v1,
+                                'diff_val2_id'    => $v2,
+                                'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
+                                'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
+                            ]);
+                        }
+                    }
+                }
+            }
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
+        }
+    }
 }

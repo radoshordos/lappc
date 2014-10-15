@@ -16,7 +16,7 @@ class ItemsSeeder extends Seeder
         ));
 
         DB::table('items')->insert(array(
-            'prod_id' => 1,
+            'prod_id' => 2,
             'sale_id' => 2,
             'availability_id' => 3,
             'code_prod' => 'test2',
