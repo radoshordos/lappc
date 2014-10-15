@@ -44,8 +44,6 @@
 @stop
 
 {{-- Content --}}
-
-
 @section('content')
 {{ Form::open(array('route' => array('adm.product.prod.edit', $choice_tree, $choice_prod))) }}
 <div class="input-group form-group">
@@ -73,6 +71,7 @@
         <li><a href="#difference" data-toggle="tab">Variace</a></li>
         @endif
         <li><a href="#fotogalerie" data-toggle="tab">Fotogalerie</a></li>
+        <li><a href="#aktivita" data-toggle="tab">Aktivita</a></li>
         @if ($prod->mode_id == 4)
         <li><a href="#akce" data-toggle="tab">Akce</a></li>
         @endif
@@ -264,6 +263,44 @@
                     </table>
     </div>
     @endif
+    <div class="tab-pane" id="aktivita" style="padding-top: 2em">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">O produktu</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">Vyrvořeno</div>
+                    <div class="col-xs-9">{{ $prod->created_at }}</div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">Upraveno</div>
+                    <div class="col-xs-9"></div>
+                </div>
+            </div>
+        </div>
+        @if (isset($prod->akce->prod_id)) {
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">O aktuální akci</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">Vyrvořeno</div>
+                    <div class="col-xs-9">{{ $prod->akce->created_at }}</div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">Upraveno</div>
+                    <div class="col-xs-9"></div>
+                </div>
+            </div>
+        </div>
+        @endif
+    </div>
     <div class="tab-pane" id="fotogalerie" style="padding-top: 2em">
         <div class="row">
             <div class="col-sm-8">

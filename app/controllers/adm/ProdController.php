@@ -86,7 +86,7 @@ class ProdController extends \BaseController
 
             return View::make('adm.product.prod.edit', [
                 'list_tree'   => $select_tree,
-                'list_prod'   => [''] + SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name [i:->ic_all]']),
+                'list_prod'   => [''] + SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']),
                 'choice_tree' => $tree,
                 'choice_prod' => $prod
             ])->with(['id' => $prod]);
@@ -95,7 +95,7 @@ class ProdController extends \BaseController
 
             return View::make('adm.product.prod.edit', [
                 'list_tree'                     => $select_tree,
-                'list_prod'                     => SB::optionBind("SELECT id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name [i:->ic_all]']),
+                'list_prod'                     => SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']),
                 'choice_tree'                   => $tree,
                 'choice_prod'                   => $prod,
                 'prod'                          => $row,
