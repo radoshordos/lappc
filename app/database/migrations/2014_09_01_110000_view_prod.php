@@ -28,6 +28,7 @@ class ViewProd extends Migration
                     prod_warranty.name AS prod_warranty_name,
                     tree.id AS tree_id,
                     tree.absolute AS tree_absolute,
+                    tree.group_id AS tree_group_id,
                     dev.id AS dev_id,
                     dev.name AS dev_name,
                     akce.template_id AS akce_template_id,

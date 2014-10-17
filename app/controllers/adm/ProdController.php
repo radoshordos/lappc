@@ -249,7 +249,7 @@ class ProdController extends \BaseController
                 } elseif (count($arr) == 2) {
                     foreach ($variation[$arr[0]] as $v1) {
                         foreach ($variation[$arr[1]] as $v2) {
-                            
+
                             $count = Items::where('prod_id', '=', $row->id)->where('diff_val1_id', '=', $v1)->where('diff_val2_id', '=', 1)->count();
                             if ($count == 0) {
                                 Items::create([
