@@ -33,13 +33,16 @@
                             <!-- Left Nav Section -->
                             <ul class="left">
                                 <li class="has-form">
+                                    {{ Form::open(array('url' => '', 'method' => 'POST')); }}
                                     <div class="row collapse">
                                         <div class="large-8 small-9 columns">
-                                            <input type="search" size="42" placeholder="Nalést nářadí i příslušenství">
+                                            {{ Form::open(array('url' => '', 'method' => 'POST')); }}
+                                            {{ Form::input('search','prodsearch',$prodsearch,['size' => '42', "placeholder" => "Nalést nářadí i příslušenství"])  }}
                                         </div>
                                         <div class="large-4 small-3 columns">
-                                            <a href="#"  class="alert button expand">Hledat</a>
+                                            {{ Form::submit('Hledat', ['name' => 'submitsearch','class' => 'alert button expand']) }}
                                         </div>
+                                        {{ Form::close() }}
                                     </div>
                                 </li>
                             </ul>

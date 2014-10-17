@@ -9,11 +9,11 @@ class RecordFind extends Migration
     public function up()
     {
         Schema::create('record_find', function (Blueprint $table) {
-            $table->integer('id')->unsigned();
+            $table->increments('id')->unsigned();
             $table->dateTime('find_at');
             $table->string('filter_find', '64');
-            $table->integer('count_dev')->unsigned();
-            $table->integer('count_prod')->unsigned();
+            $table->integer('count_dev')->unsigned()->default(0);
+            $table->integer('count_prod')->unsigned()->default(0);
         });
     }
 

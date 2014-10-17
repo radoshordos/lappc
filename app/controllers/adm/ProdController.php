@@ -113,16 +113,6 @@ class ProdController extends \BaseController
                 'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
                 'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get(),
                 'table_prod_description_set' => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
-
-
-                /*
-                                                                        $pdv = Model_Zendb::zFormOption($db->select()
-                                                                            ->from("prod2difference2values", array("pdv_id", "pdv_name"))
-                                                                            ->where("pdv_id_set=?", intval($value->pdis_id_set))
-                                                                            ->order(array($value->pds_sortby)), array('->pdv_id', '->pdv_name'));
-                */
-
-
             ])->with(['id' => $prod]);
         }
     }

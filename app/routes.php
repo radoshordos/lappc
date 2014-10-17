@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
+Route::match(['GET', 'POST'], '/', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
 
 Route::get('feeds/{file?}', ['uses' => 'FeedController@show']);
 
