@@ -232,28 +232,36 @@ class ProdController extends \BaseController
 
                 if (count($arr) == 1) {
                     foreach ($variation[$arr[0]] as $v1) {
-                        Items::create([
-                            'prod_id'         => $row->id,
-                            'sale_id'         => $row->dev->default_sale_prod_id,
-                            'availability_id' => $row->dev->default_availibility_id,
-                            'diff_val1_id'    => $v1,
-                            'diff_val2_id'    => 1,
-                            'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
-                            'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
-                        ]);
-                    }
-                } elseif (count($arr) == 2) {
-                    foreach ($variation[$arr[0]] as $v1) {
-                        foreach ($variation[$arr[1]] as $v2) {
+
+                        $count = Items::where('prod_id', '=', $row->id)->where('diff_val1_id', '=', $v1)->where('diff_val2_id', '=', 1)->count();
+                        if ($count == 0) {
                             Items::create([
                                 'prod_id'         => $row->id,
                                 'sale_id'         => $row->dev->default_sale_prod_id,
                                 'availability_id' => $row->dev->default_availibility_id,
                                 'diff_val1_id'    => $v1,
-                                'diff_val2_id'    => $v2,
+                                'diff_val2_id'    => 1,
                                 'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
                                 'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
                             ]);
+                        }
+                    }
+                } elseif (count($arr) == 2) {
+                    foreach ($variation[$arr[0]] as $v1) {
+                        foreach ($variation[$arr[1]] as $v2) {
+                            
+                            $count = Items::where('prod_id', '=', $row->id)->where('diff_val1_id', '=', $v1)->where('diff_val2_id', '=', 1)->count();
+                            if ($count == 0) {
+                                Items::create([
+                                    'prod_id'         => $row->id,
+                                    'sale_id'         => $row->dev->default_sale_prod_id,
+                                    'availability_id' => $row->dev->default_availibility_id,
+                                    'diff_val1_id'    => $v1,
+                                    'diff_val2_id'    => $v2,
+                                    'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
+                                    'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
+                                ]);
+                            }
                         }
                     }
                 }
