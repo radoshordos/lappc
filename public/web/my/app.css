@@ -107,4 +107,30 @@ nav>ul li li li > a {
 .mtree-skin-selector button.csl.active {
     background: #FFC000;
 }
+/*
 
+.ui-menu-item {
+    border: 2px solid #7a43b6;
+    background-color: #fcd113;
+    width: 40em;
+    padding: 2px;
+    list-style-type: none;
+}
+
+.ui-menu-item::hover {
+    background-color: red;
+}
+
+.ui-autocomplete {
+    margin-top: 35px !important;
+    padding: 0px;
+}
+
+.xui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    background-color: grey;
+    background-image: none;
+    padding: 2px;
+    border-radius: 0;
+    width: 40em;
+}
+*/

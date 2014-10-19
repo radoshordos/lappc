@@ -8,20 +8,10 @@
     <title>Hello, world!</title>
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="/web/components/jquery-ui/themes/base/autocomplete.css">
+    <link rel="stylesheet" href="/web/components/jquery-ui/themes/smoothness/jquery-ui.min.css">
     <link rel="stylesheet" href="/web/my/app.css">
 </head>
 <body>
-    <script>
-        $('#response').autocomplete({
-            source: 'getdata',
-            minLength: 1,
-            select:function(e,ui) {
-                console.log(ui);
-                $('#response').val(ui.item.id);
-            }
-        });
-    </script>
     <h1>Hello, world!</h1>
     <div id="container" style="border: 1px solid #666">
             <div class="row">
@@ -45,11 +35,11 @@
                                 <li class="has-form">
                                     {{ Form::open(array('url' => '', 'files' => true)); }}
                                     <div class="row collapse">
-                                        <div class="large-8 small-9 columns">
+                                        <div class="large-8 small-9 columns ui-widget">
                                             {{ Form::input('search','term',$term,['size' => '42', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"])  }}
                                         </div>
                                         <div class="large-4 small-3 columns">
-                                            {{ Form::input('text','response',NULL,['id' => 'response','disabled']) }}
+                                            {{-- Form::input('text','response',NULL,['id' => 'response','disabled']) --}}
                                             {{ Form::submit('Hledat', ['name' => 'submitsearch','class' => 'alert button expand']) }}
                                         </div>
                                         {{ Form::close() }}
@@ -133,7 +123,6 @@
                         <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                     </div>
                 </div>
-
                     <ul class="pagination">
                         <li class="arrow unavailable"><a href="">&laquo;</a></li>
                         <li class="current"><a href="">1</a></li>
@@ -154,6 +143,17 @@
     <script src="/web/guru.js"></script>
     <script>
         $(document).foundation();
+
+        $(function() {
+            $('#term').autocomplete({
+                source: 'getdata',
+                minLength: 1,
+                select:function(e,ui) {
+                    console.log(ui);
+                    $('#response').val(ui.item.id);
+                }
+            });
+        });
     </script>
 </body>
 </html>

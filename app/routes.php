@@ -1,25 +1,23 @@
 <?php
 Route::match(['GET', 'POST'], '/', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
 
+Route::get('autocomplete', function () {
+    return View::make('web.autocomplete');
+});
+
+Route::get('tmp', function () {
+    return View::make('web.tmp');
+});
+
 Route::get('getdata', function () {
 
     $term = Input::get('term');
-
-    $data = [
-        'R' => 'Red',
-        'O' => 'Orange',
-        'Y' => 'Yellow',
-        'G' => 'Green',
-        'B' => 'Blue',
-        'I' => 'Indigo',
-    ];
-
+    $data = \Authority\Eloquent\ViewProd::where('prod_name', 'LIKE', "%$term%")->limit(10)->get();
     $result = [];
 
-    foreach ($data as $key => $color) {
-        if (strpos(Str::lower($color), $term) !== FALSE) {
-            $result[] = ['value' => $color, 'id' => $key];
-        }
+    foreach ($data as $key => $row) {
+            $result[] = ['id' => $row->id, 'value' => $row->prod_name];
+
     }
     return Response::json($result);
 });
