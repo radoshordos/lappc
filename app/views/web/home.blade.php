@@ -8,9 +8,20 @@
     <title>Hello, world!</title>
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="/web/components/jquery-ui/themes/base/autocomplete.css">
     <link rel="stylesheet" href="/web/my/app.css">
 </head>
 <body>
+    <script>
+        $('#response').autocomplete({
+            source: 'getdata',
+            minLength: 1,
+            select:function(e,ui) {
+                console.log(ui);
+                $('#response').val(ui.item.id);
+            }
+        });
+    </script>
     <h1>Hello, world!</h1>
     <div id="container" style="border: 1px solid #666">
             <div class="row">
@@ -32,16 +43,13 @@
                             <!-- Left Nav Section -->
                             <ul class="left">
                                 <li class="has-form">
-                                    {{ Form::open(array('url' => '', 'method' => 'POST')); }}
+                                    {{ Form::open(array('url' => '', 'files' => true)); }}
                                     <div class="row collapse">
                                         <div class="large-8 small-9 columns">
-                                            {{ Form::open(array('url' => '', 'method' => 'POST')); }}
-
-
-
-                                            {{ Form::input('search','prodsearch',$prodsearch,['size' => '42', "placeholder" => "Nalést nářadí i příslušenství"])  }}
+                                            {{ Form::input('search','term',$term,['size' => '42', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"])  }}
                                         </div>
                                         <div class="large-4 small-3 columns">
+                                            {{ Form::input('text','response',NULL,['id' => 'response','disabled']) }}
                                             {{ Form::submit('Hledat', ['name' => 'submitsearch','class' => 'alert button expand']) }}
                                         </div>
                                         {{ Form::close() }}

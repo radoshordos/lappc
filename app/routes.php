@@ -1,6 +1,29 @@
 <?php
-
 Route::match(['GET', 'POST'], '/', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
+
+Route::get('getdata', function () {
+
+    $term = Input::get('term');
+
+    $data = [
+        'R' => 'Red',
+        'O' => 'Orange',
+        'Y' => 'Yellow',
+        'G' => 'Green',
+        'B' => 'Blue',
+        'I' => 'Indigo',
+    ];
+
+    $result = [];
+
+    foreach ($data as $key => $color) {
+        if (strpos(Str::lower($color), $term) !== FALSE) {
+            $result[] = ['value' => $color, 'id' => $key];
+        }
+    }
+    return Response::json($result);
+});
+
 
 Route::get('feeds/{file?}', ['uses' => 'FeedController@show']);
 
