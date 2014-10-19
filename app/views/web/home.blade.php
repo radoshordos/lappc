@@ -37,6 +37,9 @@
                                     <div class="row collapse">
                                         <div class="large-8 small-9 columns">
                                             {{ Form::open(array('url' => '', 'method' => 'POST')); }}
+
+
+
                                             {{ Form::input('search','prodsearch',$prodsearch,['size' => '42', "placeholder" => "Nalést nářadí i příslušenství"])  }}
                                         </div>
                                         <div class="large-4 small-3 columns">

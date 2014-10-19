@@ -10,6 +10,7 @@
         "intervention/image": "2.*",
         "components/bootstrap": "3.*",
         "components/jquery": "1.*",
+        "components/jqueryui": "1.*",
         "components/foundation": "5.*",
         "components/font-awesome": "4.*"
     },
