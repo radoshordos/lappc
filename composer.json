@@ -8,6 +8,7 @@
         "ivaynberg/select2": "3.*",
         "kartik-v/bootstrap-fileinput": "2.*",
         "intervention/image": "2.*",
+        "slushie/laravel-assetic": "dev-master",
         "components/bootstrap": "3.*",
         "components/jquery": "1.*",
         "components/jqueryui": "1.*",
@@ -38,6 +39,7 @@
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
             "php artisan optimize",
+            "php artisan asset:warm",
             "php artisan migrate:refresh",
             "php artisan db:seed"
         ]

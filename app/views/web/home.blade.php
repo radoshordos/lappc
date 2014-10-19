@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
     <link rel="stylesheet" href="/web/my/app.css">
-    <script src="/web/components/modernizr/modernizr.js"></script>
 </head>
 <body>
     <h1>Hello, world!</h1>
@@ -144,8 +143,7 @@
         <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
     </div>
 
-    <script src="/web/components/jquery/jquery.min.js"></script>
-    <script src="/web/components/foundation/js/foundation.min.js"></script>
+    <script src="/web/guru.js"></script>
     <script>
         $(document).foundation();
     </script>
