@@ -69,6 +69,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('prodwarranty', 'ProdWarrantyController');
         Route::resource('proddifference', 'ProdDifferenceController');
         Route::resource('prodvariation', 'ProdVariationController');
+        Route::get('multiplechanges', ['as' => 'adm.pattern.multiplechanges.index', 'uses' => 'ProdMultipleChangesController@index']);
     });
 
     Route::group(['prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'], function () {

@@ -1,6 +1,25 @@
 <?php
 
-class ProdMultipleChangesController extends \BaseController {
+use \Authority\Tools\SB;
+
+class ProdMultipleChangesController extends \BaseController
+{
+
+    public function index()
+    {
+        return View::make('adm.pattern.multiplechanges.index', [
+            'select_dev'                     => SB::option('SELECT * FROM dev WHERE active = 1 ORDER BY id', ['id' => '[->id] - ->name']),
+            'select_tree'                    => SB::option('SELECT * FROM view_tree WHERE tree_dir_all > 0', ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], TRUE),
+            'choice_select_dev'              => Input::get('select_dev'),
+            'choice_select_tree'             => Input::get('select_tree'),
+            'select_sale'                    => SB::option('SELECT * FROM items_sale', ['id' => '->desc'], TRUE),
+            'select_availability'            => SB::option('SELECT * FROM items_availability WHERE id > 1', ['id' => '->name'], TRUE),
+            'choice_old_select_sale'         => Input::get('old_select_sale'),
+            'choice_new_select_sale'         => Input::get('new_select_sale'),
+            'choice_old_select_availability' => Input::get('old_select_availability'),
+            'choice_new_select_availability' => Input::get('new_select_availability'),
+        ]);
+    }
 
 }
 

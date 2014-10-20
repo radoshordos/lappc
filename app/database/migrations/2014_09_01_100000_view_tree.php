@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class ViewTree extends Migration {
-
 
 	public function up()
 	{
@@ -16,12 +14,15 @@ class ViewTree extends Migration {
             SELECT  tree.id AS tree_id,
                     tree.name AS tree_name,
                     tree.desc AS tree_desc,
-                    tree_dev.subdir_all AS tree_subdir_all
+                    tree.absolute AS tree_absolute,
+                    tree_dev.subdir_all AS tree_subdir_all,
+                    tree_dev.subdir_visible AS tree_subdir_visible,
+                    tree_dev.dir_all AS tree_dir_all,
+                    tree_dev.dir_visible AS tree_dir_visible
             FROM    tree
             INNER JOIN tree_dev ON tree_dev.tree_id = tree.id AND tree_dev.dev_id = 1
         ');
 	}
-
 
 	public function down()
 	{

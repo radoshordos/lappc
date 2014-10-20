@@ -72,6 +72,7 @@
                         <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Grupy skupin</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.prodwarranty.index') }}">Záruky produktů</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.multiplechanges.index') }}">Hromadné změny produktů</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.proddifference.index') }}">Produktové rozdílnosti</a></li>
                         <li><a href="{{ URL::route('adm.pattern.prodvariation.index') }}">Produktové variace</a></li>
