@@ -27,7 +27,7 @@ class RecordItemsPurchased extends Migration
 
     public function down()
     {
-		Schema::dropIfExists('record_items_purchased');
+        Schema::dropIfExists('record_items_purchased');
     }
 
 }
