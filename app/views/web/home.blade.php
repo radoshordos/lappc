@@ -8,7 +8,7 @@
     <title>Hello, world!</title>
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="/web/components/jquery-ui/themes/smoothness/jquery-ui.min.css">
+    <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/web/my/app.css">
 </head>
 <body>

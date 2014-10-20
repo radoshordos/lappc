@@ -2032,12 +2032,12 @@ var components = {
             "main": "jquery-built.js"
         },
         {
-            "name": "modernizr",
-            "main": "modernizr-built.js"
+            "name": "jquery-ui",
+            "main": "jquery-ui-built.js"
         },
         {
-            "name": "typeaheadjs",
-            "main": "typeaheadjs-built.js"
+            "name": "modernizr",
+            "main": "modernizr-built.js"
         },
         {
             "name": "select2",
@@ -2056,6 +2056,12 @@ var components = {
                 "jquery",
                 "modernizr"
             ]
+        },
+        "jquery-ui": {
+            "deps": [
+                "jquery"
+            ],
+            "exports": "jQuery"
         },
         "modernizr": {
             "exports": "window.Modernizr"

@@ -9,6 +9,8 @@
         "kartik-v/bootstrap-fileinput": "2.*",
         "intervention/image": "2.*",
         "slushie/laravel-assetic": "dev-master",
+        "nervo/yuicompressor": "dev-master",
+        "mrclay/minify": "dev-master",
         "components/bootstrap": "3.*",
         "components/jquery": "1.*",
         "components/jqueryui": "1.*",

@@ -1,13 +1,8 @@
 <?php
-/**
- * Configure laravel-assetic in this file.
- * File modified by AARYAN ADITYA
- * @package slushie/laravel-assetic
- */
 
 return [
     'groups'  => [
-        'singlejs-main'  => [
+        'web-guru-js'  => [
             'filters' => [
                 'js_min'
             ],
@@ -15,11 +10,11 @@ return [
                 'web/components/jquery/jquery.min.js',
                 'web/components/modernizr/modernizr.js',
                 'web/components/foundation/js/foundation.min.js',
-                'web/components/jquery-ui/jquery-ui.min.js'
+                'web/components/jquery-ui/jquery-ui.min.js',
             ],
             'output'  => 'web/guru.js'
         ],
-        'singlecss-main' => [
+        'web-guru-css' => [
             'filters' => [
                 'css_import',
                 'css_rewrite'
@@ -27,6 +22,7 @@ return [
             'assets'  => [
                 'web/components/foundation/css/normalize.css',
                 'web/components/foundation/css/foundation.min.css',
+                'web/components/jquery-ui/jquery-ui.min.css',
                 'web/my/app.css'
             ],
             'output'  => 'web/guru.css'
