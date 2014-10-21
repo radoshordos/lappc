@@ -45,23 +45,23 @@
 
 {{-- Content --}}
 @section('content')
-{{ Form::open(array('route' => array('adm.product.prod.edit', $choice_tree, $choice_prod))) }}
+{{ Form::open(['route' => ['adm.product.prod.edit', $choice_tree, $choice_prod]]) }}
 <div class="input-group form-group">
     <span class="input-group-addon">Skupina</span>
-    {{ Form::select('list_tree',$list_tree, $choice_tree, array('id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+    {{ Form::select('list_tree',$list_tree, $choice_tree, ['id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
 </div>
 
 @if (isset($list_prod) && !empty($list_prod))
 <div class="input-group form-group">
     <span class="input-group-addon">Produkt</span>
-    {{ Form::select('list_prod',$list_prod, $choice_prod, array('id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+    {{ Form::select('list_prod',$list_prod, $choice_prod, ['id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
 </div>
 <br />
 @endif
 {{ Form::close() }}
 
 @if (isset($prod))
-{{ Form::model($prod, array('method'=>'PATCH','route' => array('adm.product.prod.update',$choice_tree, $choice_prod),'class'=>'form-horizontal','role'=>'form')) }}
+{{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form']) }}
 
 <div id="content">
     <ul id="tabs" class="nav nav-tabs container" data-tabs="tabs">
@@ -82,9 +82,9 @@
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <div class="form-group">
-                    {{ Form::label('tree_id', 'Skupina', array('class'=> 'col-sm-2 control-label')) }}
+                    {{ Form::label('tree_id', 'Skupina', ['class'=> 'col-sm-2 control-label']) }}
                     <div class="col-sm-10">
-                        {{ Form::select('tree_id', $select_tree, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                        {{ Form::select('tree_id', $select_tree, NULL, ['required' => 'required', 'class'=> 'form-control']) }}
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                     <div class="col-sm-12">
                         <div class="input-group">
                             <span class="input-group-addon">Typ</span>
-                            {{  Form::select('difference_id', $select_difference, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek')) }}
+                            {{  Form::select('difference_id', $select_difference, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek']) }}
                             <span class="input-group-addon alert-danger">
                                 {{ Form::checkbox('difference_check')  }}
                             </span>
@@ -106,11 +106,11 @@
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <div class="form-group">
-                    {{ Form::label('dev_id', 'Výrobce', array('class'=> 'col-sm-2 control-label')) }}
+                    {{ Form::label('dev_id', 'Výrobce', ['class'=> 'col-sm-2 control-label']) }}
                     <div class="col-sm-10">
                         <div class="input-group btn-group-justified">
-                            <span class="btn-group">{{ Form::select('dev_id', $select_dev, NULL, array('required' => 'required', 'class'=> 'col-sm-2 form-control')) }}</span>
-                            <span class="btn-group">{{ Form::select('warranty_id', $select_warranty, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
+                            <span class="btn-group">{{ Form::select('dev_id', $select_dev, NULL, ['required' => 'required', 'class'=> 'col-sm-2 form-control']) }}</span>
+                            <span class="btn-group">{{ Form::select('warranty_id', $select_warranty, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu']) }}</span>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     <div class="col-sm-12">
                         <div class="input-group">
                             <span class="input-group-addon">Stav</span>
-                            {{ Form::select('mode_id', $select_mode, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+                            {{ Form::select('mode_id', $select_mode, NULL, ['required' => 'required', 'class'=> 'form-control']) }}
                         </div>
                     </div>
                 </div>
@@ -130,11 +130,11 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="form-group">
-                    {{ Form::label('name', 'Název', array('class'=> 'col-sm-2 control-label')) }}
+                    {{ Form::label('name', 'Název', ['class'=> 'col-sm-2 control-label']) }}
                     <div class="col-sm-10">
                         <div class="input-group btn-group-justified">
-                            <span class="btn-group">{{ Form::text('name', NULL, array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu')) }}</span>
-                            <span class="btn-group">{{ Form::text('alias', NULL, array('required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu')) }}</span>
+                            <span class="btn-group">{{ Form::text('name', NULL, ['required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název produktu']) }}</span>
+                            <span class="btn-group">{{ Form::text('alias', NULL, ['required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Alias produktu']) }}</span>
                         </div>
                     </div>
                 </div>
@@ -145,8 +145,8 @@
                         <div class="input-group btn-group-justified">
                             <span class="input-group-addon"><i class="fa fa-money fa-lg" title="Cena, měna a DPH"></i></span>
                             <span class="btn-group">{{ Form::number('price', round($prod['price'],$prod->forex->round_with), ['required' => 'required', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</span>
-                            <span class="btn-group">{{ Form::select('forex_id',$select_forex, NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
-                            <span class="btn-group">{{ Form::select('dph_id',$select_dph, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu')) }}</span>
+                            <span class="btn-group">{{ Form::select('forex_id',$select_forex, NULL, ['required' => 'required', 'class'=> 'form-control']) }}</span>
+                            <span class="btn-group">{{ Form::select('dph_id',$select_dph, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu']) }}</span>
                         </div>
                     </div>
                 </div>
@@ -156,9 +156,9 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="form-group">
-                    {{ Form::label('desc','Popis',array('class'=> 'col-sm-2 control-label')) }}
+                    {{ Form::label('desc','Popis',['class'=> 'col-sm-2 control-label']) }}
                     <div class="col-sm-10">
-                        {{ Form::text('desc',NULL,array('required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu')) }}
+                        {{ Form::text('desc',NULL,['required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu']) }}
                     </div>
                 </div>
             </div>
@@ -167,8 +167,8 @@
                     <div class="col-sm-12">
                         <div class="input-group btn-group-justified">
                             <div class="input-group-addon"><i class="fa fa-car fa-lg" title="Typ nákladu"></i></div>
-                            <span class="btn-group">{{ Form::select('transport_atypical',['0' => 'Běžný rozměr', 1 => 'Atypický rozměr'], NULL, array('required' => 'required', 'class'=> 'form-control')) }}</span>
-                            <span class="btn-group">{{ Form::input('number','transport_weight', round($prod['transport_weight'],2), array('required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control')) }}</span>
+                            <span class="btn-group">{{ Form::select('transport_atypical',['0' => 'Běžný rozměr', 1 => 'Atypický rozměr'], NULL, ['required' => 'required', 'class'=> 'form-control']) }}</span>
+                            <span class="btn-group">{{ Form::input('number','transport_weight', round($prod['transport_weight'],2), ['required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control']) }}</span>
                             <div class="input-group-addon" title="Hmotnost produktu">kg</div>
                         </div>
                     </div>
@@ -209,11 +209,11 @@
         @endif
         <p class="text-center">
             @if ($prod->mode_id == 1)
-                {{ Form::submit('Smazat produkt', array('name' => 'button-submit-delete-prod','class' => 'btn btn-danger','style' => 'margin-right:5em')) }}
+                {{ Form::submit('Smazat produkt', ['name' => 'button-submit-delete-prod','class' => 'btn btn-danger','style' => 'margin-right:5em']) }}
             @elseif ($prod->mode_id > 1 && $prod->ic_all > 0)
-                {{ Form::submit('Smazat položku', array('name' => 'button-submit-delete-item','class' => 'btn btn-danger','style' => 'margin-right:5em')) }}
+                {{ Form::submit('Smazat položku', ['name' => 'button-submit-delete-item','class' => 'btn btn-danger','style' => 'margin-right:5em']) }}
             @endif
-            {{ Form::submit('Editovat produkt', array('name' => 'button-submit-edit','class' => 'btn btn-info','style' => 'margin-left:5em')) }}
+            {{ Form::submit('Editovat produkt', ['name' => 'button-submit-edit','class' => 'btn btn-info','style' => 'margin-left:5em']) }}
         </p>
     </div>
     <div class="tab-pane" style="padding-top: 2em" id="source">
@@ -237,7 +237,7 @@
             </thead>
             <tfoot>
                 <tr>
-                    <td class="text-center" colspan="{{$prod->prodDifference->count; }}">{{ Form::submit('Přidat nové variace', array('name' => 'button-add-variation','class' => 'btn btn-info')) }}</td>
+                    <td class="text-center" colspan="{{$prod->prodDifference->count; }}">{{ Form::submit('Přidat nové variace', ['name' => 'button-add-variation','class' => 'btn btn-info']) }}</td>
                 </tr>
             </tfoot>
             <tbody>
@@ -290,10 +290,22 @@
         @endif
     </div>
     <div class="tab-pane" id="fotogalerie" style="padding-top: 2em">
-        <div class="row">
-            <div class="col-sm-8">
-                <label class="control-label">Select File</label>
-                <input id="input-1a" type="file" class="file" data-show-preview="false">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Upload obrázku</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row col-sm-offset-1 col-md-9">
+                    {{ Form::label('input-1a','Vyber soubor') }}
+                    {{ Form::file('input-1a',['id' => 'input-1a', 'data-show-preview' => 'false', 'class'=> 'file']) }}
+                </div>
+                <div class="row col-sm-offset-1 col-md-9">
+                    {{ Form::label('upload_url-label','Url obrázku') }}
+                    {{ Form::text('upload_url', NULL, ['class'=> 'form-control']) }}
+                </div>
+                <div class="row col-sm-offset-1 col-md-9">
+                    {{ Form::submit('submit_url', ['class'=> 'form-control btn-success']) }}
+                </div>
             </div>
         </div>
     </div>
@@ -304,15 +316,15 @@
                 <h3 class="panel-title">Akce produktu {{ $prod->name  }}</h3>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-3">Akční koncová cena s DPH</div>
-                    <div class="col-md-3">{{ Form::number('akce_price', NULL /* round($prod['akce_price']   ,$prod->forex->round_with)*/, ['min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']); }}</div>
-                    <div class="col-md-3">Koncová cena s DPH</div>
-                    <div class="col-md-3">{{ Form::number('price', round($prod['price'],$prod->forex->round_with), ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2"><b>Šablona</b></div>
+                        <div class="col-md-10">{{ Form::select('template_id', $select_akce_template, NULL, ['required' => 'required','class'=> 'form-control']); }}</div>
+                    </div>
                 </div>
             </div>
         </div>
-        @if (count($table_items)>0))
+        @if (count($table_items)>0)
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Akce položek produktu {{ $prod->name }}</h3>
@@ -325,13 +337,13 @@
                             <th rowspan="2">Kód</th>
                             <th colspan="2">Sleva</th>
                             <th colspan="2">Dostupnost</th>
-                            <th rowspan="2">Cena</th>
+                            <th>{{ Form::number('price', round($prod['price'],$prod->forex->round_with) , ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</th>
                         </tr>
                         <tr>
                             <th>Prod</th>
                             <th>Akce</th>
                             <th>Prod</th>
-                            <th>Akce</th>
+                            <th>Akce</th><th>Cena v {{$prod->forex->currency}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -346,6 +358,13 @@
                             <td>{{ Form::number("ai_iprice[$item->id]", /* round($item->iprice,$prod->forex->round_with)*/ NULL , ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <td colspan="3"><strong>GLOBAL RESET</strong></td>
+                            <td>{{ Form::select('globa_lsale', [''] + $select_sale, NULL, ['class' => 'form-control']); }}</td>
+                            <td></td>
+                            <td>{{ Form::select('global_availability', [''] + $select_availability_action, NULL, ['class' => 'form-control']); }}</td>
+                            <td>{{ Form::number('global_iprice', NULL, ['min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']); }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

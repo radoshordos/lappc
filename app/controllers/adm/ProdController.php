@@ -3,7 +3,7 @@
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
-use Authority\Eloquent\ProdDifferenceValues;
+use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
@@ -77,25 +77,26 @@ class ProdController extends \BaseController
             ->where('id', '=', $true_prod)
             ->first();
 
-        $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name
-                                 FROM tree
-                                 INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1
-                                 WHERE dir_all > 0", ['id' => '[->id] - [->absolute] - ->name']);
+        $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name FROM tree INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1 WHERE dir_all > 0", ['id' => '[->id] - [->absolute] - ->name']);
+        $list_prod = SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']);
+
 
         if (!isset($row->tree_id)) {
 
             return View::make('adm.product.prod.edit', [
                 'list_tree'   => $select_tree,
-                'list_prod'   => [''] + SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']),
+                'list_prod'   => [''] + $list_prod,
                 'choice_tree' => $tree,
                 'choice_prod' => $prod
             ])->with(['id' => $prod]);
 
         } else {
 
+            $dev_in_mixture = MixtureDevM2nDev::where('dev_id', '=', $row->dev_id)->lists('mixture_dev_id');
+
             return View::make('adm.product.prod.edit', [
                 'list_tree'                  => $select_tree,
-                'list_prod'                  => SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ? ORDER BY dev_id,name", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']),
+                'list_prod'                  => $list_prod,
                 'choice_tree'                => $tree,
                 'choice_prod'                => $prod,
                 'prod'                       => $row,
@@ -110,6 +111,11 @@ class ProdController extends \BaseController
                 'select_availability'        => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
                 'select_availability_action' => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
                 'select_media_var'           => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
+                'select_akce_template'       => SB::option("SELECT at.id,at.bonus_title,am.name AS minitext_name,aa.name AS availability_name
+                                                            FROM akce_template AS at
+                                                            INNER JOIN akce_minitext AS am ON am.id = at.minitext_id
+                                                            INNER JOIN akce_availability AS aa ON aa.id = at.availibility_id
+                                                            WHERE mixture_dev_id IN (" . implode(',', $dev_in_mixture) . ")", ['id' => '->minitext_name] [->availability_name] + ->bonus_title'], TRUE),
                 'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
                 'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get(),
                 'table_prod_description_set' => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
