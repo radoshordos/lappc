@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Runner extends Migration
 {
@@ -15,10 +15,9 @@ class Runner extends Migration
             $table->integer("autorun_first_run_day")->unsigned()->default(18000);
             $table->integer("last_run_automatic")->unsigned()->default(0);
             $table->integer("last_run_manual")->unsigned()->default(0);
-            $table->string("class", "128");
+            $table->string("class", "128")->unique();
 
             $table->engine = 'InnoDB';
-            $table->unique('class');
         });
     }
 

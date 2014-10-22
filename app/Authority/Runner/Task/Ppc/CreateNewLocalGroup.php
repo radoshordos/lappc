@@ -5,7 +5,6 @@ namespace Authority\Runner\Task\Ppc;
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 
-
 class RulesApply extends TaskMessage implements iRun
 {
 

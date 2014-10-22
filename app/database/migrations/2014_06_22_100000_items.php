@@ -33,6 +33,21 @@ class Items extends Migration
             $table->foreign('diff_val2_id')->references('id')->on('prod_difference_values')->onUpdate('cascade')->onDelete('no action');
         });
 
+/*     SELECT MIN(items.iprice * items_sale.multiple) INTO items_min_price_visible_with_sale
+                FROM items
+                INNER JOIN items_sale ON items.sale_id = items_sale.id
+                WHERE   items.visible = 1 AND
+                        items.iprice > 0
+                        items.prod_id = OLD.prod_id;
+*/
+/*
+        SELECT MIN(akce.aiprice * items_sale.multiple) INTO akce_min_price_visible_with_sale
+                FROM akce
+                INNER JOIN items_sale ON items.sale_id = items_sale.id
+                WHERE   items.visible = 1 AND
+                        items.iprice > 0
+                        items.prod_id = OLD.prod_id;
+*/
         DB::unprepared('DROP TRIGGER IF EXISTS items_ai');
         DB::unprepared('
             CREATE TRIGGER items_ai AFTER INSERT ON items
@@ -49,6 +64,7 @@ class Items extends Migration
                 SELECT COUNT(DISTINCT iprice) INTO count_price_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
                 SELECT COUNT(DISTINCT sale_id) INTO count_sale_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
                 SELECT COUNT(DISTINCT availability_id) INTO count_availability_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
+
 
                 UPDATE prod SET ic_all = count_all,
                                 ic_visible = count_visible,

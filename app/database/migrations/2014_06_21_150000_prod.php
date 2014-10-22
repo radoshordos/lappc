@@ -45,6 +45,8 @@ class Prod extends Migration
             $table->foreign('forex_id')->references('id')->on('forex')->onUpdate('cascade')->onDelete('no action');
         });
 
+
+
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
         DB::unprepared('
             CREATE TRIGGER tree_dev_ai AFTER INSERT ON prod
