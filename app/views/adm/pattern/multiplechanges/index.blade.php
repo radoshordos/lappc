@@ -54,7 +54,7 @@ Hromadné změny prouktů
             <tbody>
                 <tr>
                     <td>Aktuální</td>
-                    <td>{{ Form::select('old_select_sale',$select_sale, $choice_old_select_sale, ['class'=> 'form-control']) }}</td>
+                         <td>{{ Form::select('old_select_sale',$select_sale, $choice_old_select_sale, ['class'=> 'form-control']) }}</td>
                     <td>{{ Form::select('old_select_availability',$select_availability, $choice_old_select_availability, ['class'=> 'form-control']) }}</td>
                 </tr>
                 <tr>
