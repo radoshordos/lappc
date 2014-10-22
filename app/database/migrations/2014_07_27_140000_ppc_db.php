@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class PpcDb extends Migration
 {
@@ -23,8 +23,8 @@ class PpcDb extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique(array('feed_id','item_id'));
-            $table->unique(array('feed_id','name'));
+            $table->unique(['feed_id', 'item_id']);
+            $table->unique(['feed_id', 'name']);
         });
     }
 

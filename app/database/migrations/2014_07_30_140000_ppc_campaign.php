@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class PpcCampaign extends Migration
 {
@@ -10,15 +10,12 @@ class PpcCampaign extends Migration
         Schema::create('ppc_campaign', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
-            $table->integer('sklik_id')->unsigned()->nullable();
-            $table->string('name','48');
-            $table->string('utm','24');
+            $table->integer('sklik_id')->unsigned()->nullable()->unique();
+            $table->string('name', '48')->unique();
+            $table->string('utm', '24')->unique();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('sklik_id');
-            $table->unique('name');
-            $table->unique('utm');
         });
     }
 

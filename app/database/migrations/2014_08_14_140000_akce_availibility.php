@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AkceAvailibility extends Migration
 {
@@ -10,10 +10,9 @@ class AkceAvailibility extends Migration
         Schema::create('akce_availability', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->boolean('origin')->default(0);
-            $table->string('name', 168);
+            $table->string('name', 168)->unique();
 
             $table->engine = 'InnoDB';
-            $table->unique(array('name'));
         });
     }
 
