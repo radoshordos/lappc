@@ -11,11 +11,10 @@ class PpcDbMode extends Migration {
 		{
 			$table->tinyInteger('id')->unsigned();
             $table->boolean('active');
-            $table->string('alias','16');
+			$table->string('alias', '16')->unique();
             $table->string('desc','32');
 
             $table->engine = 'InnoDB';
-            $table->unique('alias');
 		});
 	}
 
