@@ -1,26 +1,21 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class RulesPriority extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
 	public function up()
 	{
-		//
+        Schema::create('rules_priory', function (Blueprint $table) {
+            $table->tinyInteger('id')->unsigned()->primary();
+            $table->boolean('visible')->default(0);
+            $table->string('name')->unique();
+            $table->engine = 'InnoDB';
+        });
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
+    public function down()
 	{
 		Schema::dropIfExists('rules_priory');
 	}
