@@ -74,8 +74,7 @@ class SyncDbTableSeeder extends Seeder {
             'code_prod' => 'MT450K',
             'name' => 'Maktec MT450K',
             'desc' => 'Pila ocaska Maktec s kufrem, 1010W',
-            'price_standard' => '3490',
-            'code_ean'  => ''
+            'price_standard' => '3490'
         ));
 
         DB::table('sync_db')->insert(array(
