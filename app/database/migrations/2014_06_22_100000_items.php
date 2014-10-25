@@ -53,11 +53,17 @@ class Items extends Migration
             CREATE TRIGGER items_ai AFTER INSERT ON items
             FOR EACH ROW BEGIN
 
+                DECLARE prod_mode_id INT;
+                DECLARE prod_price INT;
+                DECLARE correct_price INT;
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
 				DECLARE count_price_diff_visible INT;
 				DECLARE count_sale_diff_visible INT;
 				DECLARE count_availability_diff_visible INT;
+
+                SELECT prod.price INTO prod_price FROM prod WHERE prod.id = NEW.prod_id;
+                SELECT prod.mode_id INTO prod_mode_id FROM prod WHERE prod.id = NEW.prod_id;
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible = 1;
@@ -65,14 +71,12 @@ class Items extends Migration
                 SELECT COUNT(DISTINCT sale_id) INTO count_sale_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
                 SELECT COUNT(DISTINCT availability_id) INTO count_availability_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
 
-
                 UPDATE prod SET ic_all = count_all,
                                 ic_visible = count_visible,
                                 ic_sale_diff_visible = count_sale_diff_visible,
                                 ic_availability_diff_visible = count_availability_diff_visible,
 								ic_price_diff_visible = count_price_diff_visible
                 WHERE prod.id = NEW.prod_id;
-
             END
             ');
 
