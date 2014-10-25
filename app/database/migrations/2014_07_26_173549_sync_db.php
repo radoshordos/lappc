@@ -18,7 +18,7 @@ class SyncDb extends Migration
             $table->string('code_ean', '32')->nullable()->unique();
             $table->string('name', '80')->nullable();
             $table->string('desc', '160')->nullable();
-            $table->decimal('price_standart', 9, 2)->unsigned()->nullable();
+            $table->decimal('price_standard', 9, 2)->unsigned()->nullable();
             $table->decimal('price_action', 9, 2)->unsigned()->nullable();
             $table->decimal('price_internet', 9, 2)->unsigned()->nullable();
             $table->string('img_source', 255)->nullable();

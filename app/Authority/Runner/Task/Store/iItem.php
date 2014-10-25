@@ -12,7 +12,9 @@ interface iItem
 
     function getSyncItemsCodeEan();
 
-    function getSyncItemsPriceEnd();
+    function getSyncItemsPriceStandard();
+
+    function getSyncItemsPriceAction();
 
     function getSyncItemsAvailabilityCount();
 
@@ -34,7 +36,9 @@ interface iItem
 
     function setSyncItemsCodeEan();
 
-    function setSyncItemsPriceEnd();
+    function setSyncItemsPriceStandard();
+
+    function setSyncItemsPriceAction();
 
     function setSyncItemsAvailabilityCount();
 }

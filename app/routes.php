@@ -83,7 +83,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('template', 'SyncCsvTemplateController');
         Route::resource('templatem2ncolumn', 'SyncTemplateM2nColumnController');
         Route::any('csvimport', ['as' => 'adm.sync.csvimport.index', 'uses' => 'SyncCsvImportController@index']);
-        Route::any('record', ['as' => 'adm.sync.record.index', 'uses' => 'SyncRecordController@index']);
+        Route::any('record', ['as' => 'adm.sync.record.index', 'uses' => 'RecordSyncImportController@index']);
         Route::any('db', ['as' => 'adm.sync.db.index', 'uses' => 'SyncDbController@index']);
     });
 

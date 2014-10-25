@@ -10,9 +10,8 @@
   $(function() {
     $( "#tags" ).autocomplete({
             source: 'getdata',
-            minLength: 1,
+            minLength: 2,
             select:function(e,ui) {
-                console.log(ui);
                 $('#response').val(ui.item.id);
             }
     });

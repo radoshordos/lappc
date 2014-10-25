@@ -100,7 +100,8 @@ class SyncImport
                 'template_id'  => ($this->template_id ? $this->template_id : NULL),
                 'purpose'      => $this->import_type,
                 'item_counter' => $item_counter,
-                'create_at'    => $date
+                'name'         => __CLASS__,
+                'created_at'   => $date
             ]);
 
             \Session::flash('success', 'Import proběhl úspěšně');

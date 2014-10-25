@@ -13,7 +13,8 @@ abstract class AbstractRunDev
     protected $syncProdDesc;
     protected $syncItemsCodeProduct;
     protected $syncItemsCodeEan;
-    protected $syncItemsPriceEnd;
+    protected $syncItemsPriceStandard;
+    protected $syncItemsPriceAction;
     protected $syncItemsAvailabilityCount;
     protected $syncCommonGroup;
     protected $syncProdImgSource;
@@ -36,7 +37,7 @@ abstract class AbstractRunDev
         $this->setSyncItemsAvailabilityCount();
         $this->setSyncItemsCodeProduct();
         $this->setSyncItemsCodeEan();
-        $this->setSyncItemsPriceEnd();
+        $this->setSync();
         $this->setSyncCommonGroup();
     }
 
@@ -65,11 +66,6 @@ abstract class AbstractRunDev
         return $this->syncIdDev;
     }
 
-    public function getSyncItemsPriceEnd()
-    {
-        return $this->syncItemsPriceEnd;
-    }
-
     public function addCounterAll()
     {
         return $this->counterAll++;
@@ -94,9 +90,9 @@ abstract class AbstractRunDev
     {
         $column_id = intval(SyncDb::where('dev_id', '=', $this->getSyncIdDev())->where('code_prod', '=', $this->getSyncItemsCodeProduct())->orWhere('code_ean', '=', $this->getSyncItemsCodeEan())->pluck('id'));
         if ($column_id == 0) {
-            SyncDb::create(array_merge($this->getAllValues(), ['created_at' => date("Y-m-d H:i:s", strtotime('now'))]));
+            return SyncDb::create(array_merge($this->getAllValues(), ['created_at' => date("Y-m-d H:i:s", strtotime('now'))]));
         } else {
-            SyncDb::where('id', ' =', $column_id)->update(array_merge($this->getAllValues()));
+            return SyncDb::where('id', '=', $column_id)->update($this->getAllValues());
         }
     }
 
@@ -113,6 +109,8 @@ abstract class AbstractRunDev
             'dev_id'             => $this->getSyncIdDev(),
             'name'               => $this->getSyncProdName(),
             'desc'               => $this->getSyncProdDesc(),
+            'price_standard'     => $this->getSyncItemsPriceStandard(),
+            'price_action'       => $this->getSyncItemsPriceAction(),
             'img_source'         => $this->getSyncProdImgSource(),
             'availability_count' => $this->getSyncItemsAvailabilityCount(),
             'code_ean'           => $this->getSyncItemsCodeEan(),
@@ -131,6 +129,16 @@ abstract class AbstractRunDev
     public function getSyncProdDesc()
     {
         return $this->syncProdDesc;
+    }
+
+    public function getSyncItemsPriceStandard()
+    {
+        return $this->syncItemsPriceStandard;
+    }
+
+    public function getSyncItemsPriceAction()
+    {
+        return $this->syncItemsPriceAction;
     }
 
     public function getSyncProdImgSource()

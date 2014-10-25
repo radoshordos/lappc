@@ -43,7 +43,7 @@ class SyncBow extends TaskMessage implements iSync
                 $bow = new RunBow((array)$row, $record_id);
                 if ($bow->isUseRequired() === TRUE) {
                     $suc++;
-                    $bow->insertData2Db();
+                    var_dump($bow->insertData2Db());
                 }
             }
         }
@@ -52,7 +52,8 @@ class SyncBow extends TaskMessage implements iSync
             'id'           => $record_id,
             'purpose'      => 'autosync',
             'item_counter' => $suc,
-            'create_at'    => date("Y-m-d H:i:s", $record_id)
+            'name'         => __CLASS__,
+            'created_at'   => date("Y-m-d H:i:s", $record_id)
         ]);
 
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");

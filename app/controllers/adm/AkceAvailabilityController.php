@@ -24,7 +24,6 @@ class AkceAvailabilityController extends \BaseController
         ));
     }
 
-
     public function create()
     {
         return View::make('adm.product.akceavailability.create');

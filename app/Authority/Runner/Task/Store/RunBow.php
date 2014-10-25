@@ -1,72 +1,106 @@
 <?php namespace Authority\Runner\Task\Store;
 
-class RunBow extends AbstractRunDev implements iItem {
+class RunBow extends AbstractRunDev implements iItem
+{
 
     const ROOT = 'SHOP';
 
-    function __construct($shopitem, $record_id) {
-        parent::__construct($shopitem, $record_id);
+    function __construct($shop_item, $record_id)
+    {
+        parent::__construct($shop_item, $record_id);
     }
 
-    private function analyseIdDev($dev_name) {
-       
-        switch ($dev_name) {
-            case 'BOW' : return 200;
-            case 'Aircraft®' : return 202;
-            case 'greenLine' : return 0;
-            case 'FSB - Sanchez Bielsa' : return 0;                                
-            case 'Holzstar®' : return 204;
-            case 'Holzkraft®' : return 206;
-            case 'Karnasch®' : return 0;                
-            case 'Metallkraft® ' : return 210;
-            case 'NUMCO' : return 208;
-            case 'OPTIMUM®' : return 212;
-            case 'quantum® ' : return 214;
-            case 'RHTC' : return 0;                
-            case 'RÖHM®' : return 0;                
-            case 'SIEG' : return 220;
-            case 'Schweißkraft®' : return 216;                
-            case 'Thermdrill' : return 0;
-            case 'Unicraft®' : return 218;
-            default : return 0;
-        }
+    function setSyncProdName()
+    {
+        (!empty($this->shopItem['PRODUCTNAME']) ? $this->syncProdName = (string)$this->shopItem['PRODUCTNAME'] : NULL);
     }
 
-    function setSyncProdName() {
-        (!empty($this->shopItem['PRODUCTNAME']) ? $this->syncProdName = (string) $this->shopItem['PRODUCTNAME']: NULL);
+    function setSyncItemsCodeProduct()
+    {
+        (!empty($this->shopItem['PRODUCTNO']) ? $this->syncItemsCodeProduct = (string)$this->shopItem['PRODUCTNO'] : NULL);
     }
 
-    function setSyncItemsCodeProduct() {
-        (!empty($this->shopItem['PRODUCTNO']) ? $this->syncItemsCodeProduct = (string) $this->shopItem['PRODUCTNO'] : NULL);
+    public function setSyncItemsCodeEan()
+    {
+        (!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = (string)$this->shopItem['EAN'] : NULL);
     }
 
-    public function setSyncItemsCodeEan() {
-        (!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = (string) $this->shopItem['EAN'] : NULL);
+    public function setSyncCommonGroup()
+    {
+        $chars = ['<![CDATA[' => "", ']]>' => ''];
+        (!empty($this->shopItem['CATEGORY']) ? $this->syncCommonGroup = (string)str_replace(array_keys($chars), array_values($chars), $this->shopItem['CATEGORY']) : NULL);
     }
 
-    public function setSyncItemsPriceEnd() {
-        (!empty($this->shopItem['PRICE']->COMMON) ? $this->syncItemsPriceEnd = intval($this->shopItem['PRICE']->COMMON * self::DPH) : NULL);
-    }
-
-    public function setSyncCommonGroup() {
-        $chars = array('<![CDATA[' => "", ']]>' => '');
-        (!empty($this->shopItem['CATEGORY']) ? $this->syncCommonGroup = (string) str_replace(array_keys($chars), array_values($chars), $this->shopItem['CATEGORY']) : NULL);
-    }
-
-    public function setSyncItemsAvailabilityCount() {
+    public function setSyncItemsAvailabilityCount()
+    {
         (($this->shopItem['INSTOCK'] == 'ano') ? $this->syncItemsAvailabilityCount = 1 : $this->syncItemsAvailabilityCount = 0);
     }
 
-    public function setSyncIdDev() {
+    function setSyncItemsPriceStandard()
+    {
+        (!empty($this->shopItem['PRICE']->COMMON) ? $this->syncItemsPriceEnd = intval($this->shopItem['PRICE']->COMMON * self::DPH) : NULL);
+    }
+
+    function setSyncItemsPriceAction()
+    {
+        (!empty($this->shopItem['PRICE']->ACTION) ? $this->syncItemsPriceEnd = intval($this->shopItem['PRICE']->ACTION * self::DPH) : NULL);
+    }
+
+    public function setSyncIdDev()
+    {
         (isset($this->shopItem['MANUFACTURER'])) ? $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']) : $this->syncIdDev = 0;
     }
 
-    public function setSyncProdDesc() {
-        
+    private function analyseIdDev($dev_name)
+    {
+
+        switch ($dev_name) {
+            case 'BOW' :
+                return 200;
+            case 'Aircraft®' :
+                return 202;
+            case 'greenLine' :
+                return 0;
+            case 'FSB - Sanchez Bielsa' :
+                return 0;
+            case 'Holzstar®' :
+                return 204;
+            case 'Holzkraft®' :
+                return 206;
+            case 'Karnasch®' :
+                return 0;
+            case 'Metallkraft® ' :
+                return 210;
+            case 'NUMCO' :
+                return 208;
+            case 'OPTIMUM®' :
+                return 212;
+            case 'quantum® ' :
+                return 214;
+            case 'RHTC' :
+                return 0;
+            case 'RÖHM®' :
+                return 0;
+            case 'SIEG' :
+                return 220;
+            case 'Schweißkraft®' :
+                return 216;
+            case 'Thermdrill' :
+                return 0;
+            case 'Unicraft®' :
+                return 218;
+            default :
+                return 0;
+        }
     }
 
-    public function setSyncProdImgSource() {
-        
+    public function setSyncProdDesc()
+    {
+        return NULL;
     }
 
+    public function setSyncProdImgSource()
+    {
+        return NULL;
+    }
 }
