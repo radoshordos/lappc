@@ -1,22 +1,23 @@
 <?php
 
-class MixtureDevTableSeeder extends Seeder {
+class MixtureDevTableSeeder extends Seeder
+{
 
-	public function run()
-	{
+    public function run()
+    {
         DB::table('mixture_dev')->delete();
 
-        DB::table('mixture_dev')->insert(array(
-            'id' => 10,
+        DB::table('mixture_dev')->insert([
+            'id'      => 10,
             'purpose' => 'devgroup',
-            'name' => 'Makita GROUP'
-        ));
+            'name'    => 'Makita GROUP'
+        ]);
 
-        DB::table('mixture_dev')->insert(array(
-            'id' => 11,
+        DB::table('mixture_dev')->insert([
+            'id'      => 11,
             'purpose' => 'autosimple',
-            'name' => 'ONLY Maktec'
-        ));
+            'name'    => 'ONLY Maktec'
+        ]);
 
-	}
+    }
 }

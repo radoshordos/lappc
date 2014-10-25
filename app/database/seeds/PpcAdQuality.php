@@ -1,66 +1,65 @@
 <?php
 
-
 class PpcAdQualitySeeder extends Seeder
 {
     public function run()
     {
         DB::table('ppc_ad_quality')->delete();
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 1,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 1,
             'visible' => 1,
-            'name' => 'Univerzální',
-            'index' => 0
-        ));
+            'name'    => 'Univerzální',
+            'index'   => 0
+        ]);
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 2,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 2,
             'visible' => 0,
-            'name' => 'Skladem',
-            'index' => 1
-        ));
+            'name'    => 'Skladem',
+            'index'   => 1
+        ]);
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 4,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 4,
             'visible' => 0,
-            'name' => 'Akce',
-            'index' => 2
-        ));
+            'name'    => 'Akce',
+            'index'   => 2
+        ]);
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 6,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 6,
             'visible' => 1,
-            'name' => 'Akce + Skladem',
-            'index' => 3
-        ));
+            'name'    => 'Akce + Skladem',
+            'index'   => 3
+        ]);
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 8,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 8,
             'visible' => 1,
-            'name' => 'Cena',
-            'index' => 4
-        ));
+            'name'    => 'Cena',
+            'index'   => 4
+        ]);
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 10,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 10,
             'visible' => 1,
-            'name' => 'Cena + Skladem',
-            'index' => 5
-        ));
+            'name'    => 'Cena + Skladem',
+            'index'   => 5
+        ]);
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 12,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 12,
             'visible' => 1,
-            'name' => 'Cena + Akce',
-            'index' => 6
-        ));
+            'name'    => 'Cena + Akce',
+            'index'   => 6
+        ]);
 
-        DB::table('ppc_ad_quality')->insert(array(
-            'id' => 14,
+        DB::table('ppc_ad_quality')->insert([
+            'id'      => 14,
             'visible' => 1,
-            'name' => 'Cena + Akce + Skladem',
-            'index' => 7
-        ));
+            'name'    => 'Cena + Akce + Skladem',
+            'index'   => 7
+        ]);
     }
 }
