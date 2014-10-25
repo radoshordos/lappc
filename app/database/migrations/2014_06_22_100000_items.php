@@ -55,6 +55,9 @@ class Items extends Migration
 
                 DECLARE prod_mode_id INT;
                 DECLARE prod_price INT;
+                DECLARE akce_item_price INT;
+                DECLARE akce_sale_id INT;
+
                 DECLARE correct_price INT;
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
@@ -64,6 +67,8 @@ class Items extends Migration
 
                 SELECT prod.price INTO prod_price FROM prod WHERE prod.id = NEW.prod_id;
                 SELECT prod.mode_id INTO prod_mode_id FROM prod WHERE prod.id = NEW.prod_id;
+                SELECT akce_item.aiprice INTO akce_item_price FROM akce_items WHERE akce_items.item_id = NEW.id;
+                SELECT akce_item.sale_id INTO akce_sale_id FROM akce_items WHERE akce_items.item_id = NEW.id;
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible = 1;
