@@ -1,5 +1,7 @@
 <?php namespace Authority\Runner\Task\Store;
 
+use Authority\Eloquent\SyncDb;
+
 abstract class AbstractRunDev
 {
     const DPH = 1.21;
@@ -14,14 +16,12 @@ abstract class AbstractRunDev
     protected $syncItemsAvailabilityCount;
     protected $syncCommonGroup;
     protected $syncProdImgSource;
-    private $db;
     private $counterAll = 0;
     private $counterSync = 0;
 
     public function __construct($shopitem)
     {
         $this->shopItem = $shopitem;
-        $this->db = Model_Zendb::myfactory();
         $this->initSetters();
     }
 
@@ -90,33 +90,33 @@ abstract class AbstractRunDev
 
     public function insertData2Db()
     {
-
-        // User::firstOrCreate( array('id'=>1, 'name'=>'hey') );
-
-
-        $bool = $this->db->fetchOne($this->db->select()->from('sync2items')->where('si_items_code_product = ?', $this->getSyncItemsCodeProduct()));
-        if (intval($bool) == 0) {
-            $this->db->insert("sync2items", array_merge($this->getAllValues(), ['si_cd_create' => new Zend_Db_Expr('CURDATE()')]));
+        $column_id = intval(SyncDb::where('dev_id', '=', $this->getSyncIdDev())->where('code_prod', '=', $this->getSyncItemsCodeProduct())->orWhere('code_ean', '=', $this->getSyncItemsCodeEan())->pluck('id'));
+        if ($column_id == 0) {
+            SyncDb::create(array_merge($this->getAllValues(), ['created_at' => date("Y-m-d H:i:s", strtotime('now'))]));
         } else {
-            $this->db->update("sync2items", $this->getAllValues(), [$this->db->quoteInto('si_items_code_product = ?', $this->getSyncItemsCodeProduct())]);
+            SyncDb::where('id', ' =', $column_id)->update(array_merge($this->getAllValues()));
         }
+    }
+
+    public function getSyncItemsCodeEan()
+    {
+        return $this->syncItemsCodeEan;
     }
 
     public function getAllValues()
     {
         return [
-            'si_id_mode'                 => 1,
-            'si_id_store'                => 2,
-            'si_actual'                  => 1,
-            'si_prod_id_dev'             => $this->getSyncIdDev(),
-            'si_prod_name'               => $this->getSyncProdName(),
-            'si_prod_desc'               => $this->getSyncProdDesc(),
-            'si_prod_img_source'         => $this->getSyncProdImgSource(),
-            'si_prod_availability_count' => $this->getSyncItemsAvailabilityCount(),
-            'si_items_code_ean'          => $this->getSyncItemsCodeEan(),
-            'si_items_code_product'      => $this->getSyncItemsCodeProduct(),
-            'si_items_price_end'         => $this->getSyncItemsPriceEnd(),
-            'si_common_group'            => $this->getSyncCommonGroup()
+            'purpose'            => 'autosync',
+            'dev_id'             => $this->getSyncIdDev(),
+            'name'               => $this->getSyncProdName(),
+            'desc'               => $this->getSyncProdDesc(),
+            'img_source'         => $this->getSyncProdImgSource(),
+            'availability_count' => $this->getSyncItemsAvailabilityCount(),
+            'code_ean'           => $this->getSyncItemsCodeEan(),
+            'code_prod'          => $this->getSyncItemsCodeProduct(),
+            'updated_at'         => $this->getSyncItemsPriceEnd(),
+            'common_group'       => $this->getSyncCommonGroup(),
+            'updated_at'         => date("Y-m-d H:i:s", strtotime('now'))
         ];
     }
 
@@ -135,11 +135,6 @@ abstract class AbstractRunDev
         return $this->syncItemsAvailabilityCount;
     }
 
-    public function getSyncItemsCodeEan()
-    {
-        return $this->syncItemsCodeEan;
-    }
-
     public function getSyncCommonGroup()
     {
         return $this->syncCommonGroup;
@@ -149,5 +144,4 @@ abstract class AbstractRunDev
     {
         return $this->shopItem;
     }
-
 }

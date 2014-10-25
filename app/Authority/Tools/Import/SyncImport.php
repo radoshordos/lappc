@@ -6,7 +6,6 @@ use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\SyncDb;
 use Authority\Tools\Filter\Csv\CheckerColumn;
 
-
 class SyncImport
 {
     private $columns;

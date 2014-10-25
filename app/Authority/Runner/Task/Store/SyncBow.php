@@ -9,15 +9,15 @@ class SyncBow extends TaskMessage implements iSync
     public function __construct($table_cron)
     {
         parent::__construct($table_cron);
-        $this->remotelyPrepareSynchonized();
-        $this->runSynchonizedData();
+        $this->remotelyPrepareSynchronize();
+        $this->runSynchronizeData();
     }
 
     public function remotelyPrepareSynchronize()
     {
-        $down1 = new Sync_Model_Downloader($this->getSyncUploadDitectory(), $this->getFile(), 'http://www.bow.cz/sellersXML/xmlfeed.zip');
-        $down1->runDownload();
-        $down1->unzipDownload();
+        $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), 'http://www.bow.cz/sellersXML/xmlfeed.zip');
+        $down->runDownload();
+        $down->unzipDownload();
     }
 
     public function getFile()
@@ -25,15 +25,10 @@ class SyncBow extends TaskMessage implements iSync
         return self::DEV_NAME . "-" . date('Y-m') . ".zip";
     }
 
-    public function getSyncUploadDirectory()
-    {
-        return __DIR__ . "/data/";
-    }
-
     public function runSynchronizeData()
     {
         $all = $suc = 0;
-        $xml = simplexml_load_file($this->getSyncUploadDitectory() . "/export.xml");
+        $xml = simplexml_load_file($this->getSyncUploadDirectory() . "/export.xml");
 
         foreach ($xml->SHOP as $item) {
             foreach ($item as $row) {
@@ -45,8 +40,13 @@ class SyncBow extends TaskMessage implements iSync
                 }
             }
         }
-        $this->addComment("Přečteno záznamů : <b>" . $all . "</b>");
-        $this->addComment("Zpracováno záznamů : <b>" . $suc . "</b>");
+        $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
+        $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
+    }
+
+    public function getSyncUploadDirectory()
+    {
+        return __DIR__ . "/data/";
     }
 
 }

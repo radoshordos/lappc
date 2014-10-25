@@ -3,6 +3,7 @@
 class SyncDb extends \Eloquent
 {
     protected $table = 'sync_db';
+    protected $guarded = [];
 
     public $incrementing = TRUE;
 

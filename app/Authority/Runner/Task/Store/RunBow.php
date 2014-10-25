@@ -58,7 +58,7 @@ class RunBow extends AbstractRunDev implements iItem {
     }
 
     public function setSyncIdDev() {
-        $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']);
+        (isset($this->shopItem['MANUFACTURER'])) ? $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']) : $this->syncIdDev = 0;
     }
 
     public function setSyncProdDesc() {

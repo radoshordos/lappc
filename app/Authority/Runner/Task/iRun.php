@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Runner\Task;
+<?php namespace Authority\Runner\Task;
 
 interface iRun {
 
