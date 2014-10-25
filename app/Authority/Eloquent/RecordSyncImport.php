@@ -1,8 +1,8 @@
 <?php namespace Authority\Eloquent;
 
-class SyncRecord extends \Eloquent
+class RecordSyncImport extends \Eloquent
 {
-    protected $table = 'sync_record';
+    protected $table = 'record_sync_import';
     protected $guarded = [];
     public $timestamps = FALSE;
 

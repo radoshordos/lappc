@@ -4,8 +4,8 @@ class RunBow extends AbstractRunDev implements iItem {
 
     const ROOT = 'SHOP';
 
-    function __construct($shopitem) {
-        parent::__construct($shopitem);
+    function __construct($shopitem, $record_id) {
+        parent::__construct($shopitem, $record_id);
     }
 
     private function analyseIdDev($dev_name) {

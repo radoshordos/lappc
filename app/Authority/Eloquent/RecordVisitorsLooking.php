@@ -1,8 +1,8 @@
 <?php namespace Authority\Eloquent;
 
-class RecordFind extends \Eloquent
+class RecordVisitorsLooking extends \Eloquent
 {
-    protected $table = 'record_find';
+    protected $table = 'record_visitors_looking';
     protected $guarded = [];
 
     public $timestamps = FALSE;

@@ -1,19 +1,19 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class SyncRecord extends Migration
+class RecordSyncImport extends Migration
 {
 
     public function up()
     {
-        Schema::create('sync_record', function (Blueprint $table) {
+        Schema::create('record_sync_import', function (Blueprint $table) {
             $table->integer('id')->primary()->unsigned();
             $table->integer('template_id')->unsigned()->nullable();
-            $table->enum('purpose', array('manualsync', 'action', 'autosync', 'isystem'));
+            $table->enum('purpose', ['manualsync', 'action', 'autosync', 'isystem']);
             $table->integer('item_counter')->unsigned()->default(0);
-            $table->timestamps();
+            $table->dateTime('create_at');
 
             $table->engine = 'InnoDB';
             $table->foreign('template_id')->references('id')->on('sync_csv_template')->onUpdate('cascade')->onDelete('cascade');
@@ -22,7 +22,7 @@ class SyncRecord extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('sync_record');
+        Schema::dropIfExists('record_sync_import');
     }
 
 }

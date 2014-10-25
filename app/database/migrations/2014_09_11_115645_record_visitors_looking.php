@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class RecordFind extends Migration
+class RecordVisitorsLooking extends Migration
 {
 
     public function up()
     {
-        Schema::create('record_find', function (Blueprint $table) {
+        Schema::create('record_visitors_looking', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->dateTime('find_at');
             $table->string('filter_find', '64');
@@ -19,7 +19,7 @@ class RecordFind extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('record_find');
+        Schema::dropIfExists('record_visitors_looking');
     }
 
 }

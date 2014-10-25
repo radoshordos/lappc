@@ -1,5 +1,6 @@
 <?php namespace Authority\Runner\Task\Store;
 
+use Authority\Eloquent\RecordSyncImport;
 use Authority\Runner\Task\TaskMessage;
 
 class SyncBow extends TaskMessage implements iSync
@@ -20,6 +21,11 @@ class SyncBow extends TaskMessage implements iSync
         $down->unzipDownload();
     }
 
+    public function getSyncUploadDirectory()
+    {
+        return __DIR__ . "/data/";
+    }
+
     public function getFile()
     {
         return self::DEV_NAME . "-" . date('Y-m') . ".zip";
@@ -29,24 +35,28 @@ class SyncBow extends TaskMessage implements iSync
     {
         $all = $suc = 0;
         $xml = simplexml_load_file($this->getSyncUploadDirectory() . "/export.xml");
+        $record_id = strtotime('now');
 
         foreach ($xml->SHOP as $item) {
             foreach ($item as $row) {
                 $all++;
-                $bow = new RunBow((array)$row);
+                $bow = new RunBow((array)$row, $record_id);
                 if ($bow->isUseRequired() === TRUE) {
                     $suc++;
                     $bow->insertData2Db();
                 }
             }
         }
+
+        RecordSyncImport::create([
+            'id'           => $record_id,
+            'purpose'      => 'autosync',
+            'item_counter' => $suc,
+            'create_at'    => date("Y-m-d H:i:s", $record_id)
+        ]);
+
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
-    }
-
-    public function getSyncUploadDirectory()
-    {
-        return __DIR__ . "/data/";
     }
 
 }

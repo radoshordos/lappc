@@ -7,6 +7,7 @@ abstract class AbstractRunDev
     const DPH = 1.21;
 
     protected $shopItem;
+    protected $recordId;
     protected $syncIdDev;
     protected $syncProdName;
     protected $syncProdDesc;
@@ -19,9 +20,10 @@ abstract class AbstractRunDev
     private $counterAll = 0;
     private $counterSync = 0;
 
-    public function __construct($shopitem)
+    public function __construct($shopitem, $record_id)
     {
         $this->shopItem = $shopitem;
+        $this->recordId = $record_id;
         $this->initSetters();
     }
 
@@ -107,6 +109,7 @@ abstract class AbstractRunDev
     {
         return [
             'purpose'            => 'autosync',
+            'record_id'          => $this->getRecordId(),
             'dev_id'             => $this->getSyncIdDev(),
             'name'               => $this->getSyncProdName(),
             'desc'               => $this->getSyncProdDesc(),
@@ -118,6 +121,11 @@ abstract class AbstractRunDev
             'common_group'       => $this->getSyncCommonGroup(),
             'updated_at'         => date("Y-m-d H:i:s", strtotime('now'))
         ];
+    }
+
+    public function getRecordId()
+    {
+        return $this->recordId;
     }
 
     public function getSyncProdDesc()
@@ -144,4 +152,5 @@ abstract class AbstractRunDev
     {
         return $this->shopItem;
     }
+
 }

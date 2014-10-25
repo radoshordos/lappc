@@ -78,7 +78,7 @@ class SyncImport
             $arr[] = $cc->getItem();
         }
 
-        $timestamp = strtotime('now');
+        $record_id = strtotime('now');
         $date = new \DateTime;
 
         \DB::beginTransaction();
@@ -86,22 +86,21 @@ class SyncImport
         foreach ($arr as $val) {
 
             $val = array_map('trim', $val);
-            $val['record_id'] = $timestamp;
+            $val['record_id'] = $record_id;
             $val['purpose'] = $this->import_type;
             $val['created_at'] = $date;
-            $val['updated_at'] = $date;
             $res = SyncDb::insert(array_filter($val));
             $item_counter += $res;
         }
 
         if ($res) {
-            SyncRecord::insert([
-                'id'           => $timestamp,
+
+            RecordSyncImport::create([
+                'id'           => $record_id,
                 'template_id'  => ($this->template_id ? $this->template_id : NULL),
                 'purpose'      => $this->import_type,
                 'item_counter' => $item_counter,
-                'created_at'   => $date,
-                'updated_at'   => $date
+                'create_at'    => $date
             ]);
 
             \Session::flash('success', 'Import proběhl úspěšně');
