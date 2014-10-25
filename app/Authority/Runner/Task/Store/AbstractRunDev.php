@@ -98,7 +98,6 @@ abstract class AbstractRunDev implements iItem
         if ($column_id == 0) {
             return SyncDb::create(array_merge($this->getAllValues(), ['created_at' => date("Y-m-d H:i:s", strtotime('now'))]));
         } else {
-            var_dump($column_id);
             return SyncDb::where('id', '=', $column_id)->update($this->getAllValues());
         }
     }

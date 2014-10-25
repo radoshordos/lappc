@@ -20,12 +20,12 @@ class RunProma extends AbstractRunDev implements iItem
     }
 
     public function setSyncItemsCodeEan() {
-        (!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = intval($this->shopItem['EAN']) : NULL);
+        (!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = (string)trim($this->shopItem['EAN']) : NULL);
     }
 
     public function setSyncItemsPriceStandard()
     {
-        (!empty($this->shopItem['PRICE']) ? $this->syncItemsPriceEnd = intval($this->shopItem['PRICE']) : NULL);
+        (!empty($this->shopItem['PRICE']) ? $this->syncItemsPriceStandard = doubleval($this->shopItem['PRICE']) : NULL);
     }
 
     public function setSyncIdDev() {
