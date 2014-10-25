@@ -1,30 +1,18 @@
-<?php namespace Authority\Store;
+<?php namespace Authority\Runner\Task\Store;
 
-class Cron_Model_ZeroRunSyncProma extends Cron_Model_Storehouse_RunAbstractDev implements Cron_Model_Storehouse_iItem {
+class RunProma extends AbstractRunDev implements iItem
+{
 
     const ROOT = 'SHOP';
 
-    function __construct($shopitem) {
-        parent::__construct($shopitem);
+    function __construct($shop_item, $record_id)
+    {
+        parent::__construct($shop_item, $record_id);
     }
 
-    private function analyseIdDev($dev_name, $guarante_months = 0) {
-        switch ($dev_name) {
-            case 'FERM' :
-                if ($guarante_months == 36) {
-                    return 176;
-                } else {
-                    return 175;
-                }
-            case 'WORX' :
-            case 'WORX Garden' : return 170;
-            case 'PROMA' : return 35;
-            default : return 0;
-        }
-    }
-
-    function setSyncProdName() {
-        (!empty($this->shopItem['PRODUCT']) ? $this->syncProdName = (string) $this->shopItem['PRODUCT'] : NULL);
+    function setSyncProdName()
+    {
+        (!empty($this->shopItem['PRODUCT']) ? $this->syncProdName = (string)$this->shopItem['PRODUCT'] : NULL);
     }
 
     function setSyncItemsCodeProduct() {
@@ -35,12 +23,32 @@ class Cron_Model_ZeroRunSyncProma extends Cron_Model_Storehouse_RunAbstractDev i
         (!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = intval($this->shopItem['EAN']) : NULL);
     }
 
-    public function setSyncItemsPriceEnd() {
+    public function setSyncItemsPriceStandard()
+    {
         (!empty($this->shopItem['PRICE']) ? $this->syncItemsPriceEnd = intval($this->shopItem['PRICE']) : NULL);
     }
 
     public function setSyncIdDev() {
         $this->syncIdDev = $this->analyseIdDev($this->shopItem['BRAND'], $this->shopItem['GUARANTEE_MONTHS']);
+    }
+
+    private function analyseIdDev($dev_name, $guarante_months = 0)
+    {
+        switch ($dev_name) {
+            case 'FERM' :
+                if ($guarante_months == 36) {
+                    return 176;
+                } else {
+                    return 175;
+                }
+            case 'WORX' :
+            case 'WORX Garden' :
+                return 170;
+            case 'PROMA' :
+                return 35;
+            default :
+                return 0;
+        }
     }
 
     public function setSyncItemsAvailabilityCount() {
@@ -59,4 +67,8 @@ class Cron_Model_ZeroRunSyncProma extends Cron_Model_Storehouse_RunAbstractDev i
         return NULL;
     }
 
+    function setSyncItemsPriceAction()
+    {
+        return NULL;
+    }
 }

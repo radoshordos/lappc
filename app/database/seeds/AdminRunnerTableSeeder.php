@@ -78,5 +78,11 @@ class AdminRunnerTableSeeder extends Seeder
             'class'   => 'Authority\Runner\Task\Store\SyncBow'
         ]);
 
+        DB::table('runner')->insert([
+            'id'      => 1004,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Store\SyncProma'
+        ]);
+
     }
 }
