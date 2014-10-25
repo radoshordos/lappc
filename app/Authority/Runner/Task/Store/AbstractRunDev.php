@@ -2,7 +2,7 @@
 
 use Authority\Eloquent\SyncDb;
 
-abstract class AbstractRunDev
+abstract class AbstractRunDev implements iItem
 {
     const DPH = 1.21;
 
@@ -21,9 +21,9 @@ abstract class AbstractRunDev
     private $counterAll = 0;
     private $counterSync = 0;
 
-    public function __construct($shopitem, $record_id)
+    public function __construct($shop_item, $record_id)
     {
-        $this->shopItem = $shopitem;
+        $this->shopItem = $shop_item;
         $this->recordId = $record_id;
         $this->initSetters();
     }
@@ -37,7 +37,8 @@ abstract class AbstractRunDev
         $this->setSyncItemsAvailabilityCount();
         $this->setSyncItemsCodeProduct();
         $this->setSyncItemsCodeEan();
-        $this->setSync();
+        $this->setSyncItemsPriceStandard();
+        $this->setSyncItemsPriceAction();
         $this->setSyncCommonGroup();
     }
 
@@ -48,7 +49,7 @@ abstract class AbstractRunDev
 
     public function isUseRequired()
     {
-        return ((strlen($this->getSyncItemsCodeProduct()) > 0) && (strlen($this->getSyncProdName()) > 0) && (intval($this->getSyncIdDev()) > 0) && (intval($this->getSyncItemsPriceEnd()) > 19)) ? TRUE : FALSE;
+        return ((strlen($this->getSyncItemsCodeProduct()) > 1) && (strlen($this->getSyncProdName()) > 1) && (intval($this->getSyncIdDev()) > 0) && (intval($this->getSyncItemsPriceStandard()) > 19)) ? true : false;
     }
 
     public function getSyncItemsCodeProduct()
@@ -64,6 +65,11 @@ abstract class AbstractRunDev
     public function getSyncIdDev()
     {
         return $this->syncIdDev;
+    }
+
+    public function getSyncItemsPriceStandard()
+    {
+        return $this->syncItemsPriceStandard;
     }
 
     public function addCounterAll()
@@ -88,10 +94,11 @@ abstract class AbstractRunDev
 
     public function insertData2Db()
     {
-        $column_id = intval(SyncDb::where('dev_id', '=', $this->getSyncIdDev())->where('code_prod', '=', $this->getSyncItemsCodeProduct())->orWhere('code_ean', '=', $this->getSyncItemsCodeEan())->pluck('id'));
+        $column_id = intval(SyncDb::where('dev_id', '=', $this->getSyncIdDev())->where('code_prod', '=', $this->getSyncItemsCodeProduct())->pluck('id'));
         if ($column_id == 0) {
             return SyncDb::create(array_merge($this->getAllValues(), ['created_at' => date("Y-m-d H:i:s", strtotime('now'))]));
         } else {
+            var_dump($column_id);
             return SyncDb::where('id', '=', $column_id)->update($this->getAllValues());
         }
     }
@@ -115,7 +122,6 @@ abstract class AbstractRunDev
             'availability_count' => $this->getSyncItemsAvailabilityCount(),
             'code_ean'           => $this->getSyncItemsCodeEan(),
             'code_prod'          => $this->getSyncItemsCodeProduct(),
-            'updated_at'         => $this->getSyncItemsPriceEnd(),
             'common_group'       => $this->getSyncCommonGroup(),
             'updated_at'         => date("Y-m-d H:i:s", strtotime('now'))
         ];
@@ -129,11 +135,6 @@ abstract class AbstractRunDev
     public function getSyncProdDesc()
     {
         return $this->syncProdDesc;
-    }
-
-    public function getSyncItemsPriceStandard()
-    {
-        return $this->syncItemsPriceStandard;
     }
 
     public function getSyncItemsPriceAction()

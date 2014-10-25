@@ -38,17 +38,17 @@ class RunBow extends AbstractRunDev implements iItem
 
     function setSyncItemsPriceStandard()
     {
-        (!empty($this->shopItem['PRICE']->COMMON) ? $this->syncItemsPriceEnd = intval($this->shopItem['PRICE']->COMMON * self::DPH) : NULL);
+        (intval($this->shopItem['PRICE']->COMMON) > 0 ? $this->syncItemsPriceStandard = intval($this->shopItem['PRICE']->COMMON * self::DPH) : NULL);
     }
 
     function setSyncItemsPriceAction()
     {
-        (!empty($this->shopItem['PRICE']->ACTION) ? $this->syncItemsPriceEnd = intval($this->shopItem['PRICE']->ACTION * self::DPH) : NULL);
+        (intval($this->shopItem['PRICE']->ACTION) > 0 ? $this->syncItemsPriceAction = intval($this->shopItem['PRICE']->ACTION * self::DPH) : NULL);
     }
 
     public function setSyncIdDev()
     {
-        (isset($this->shopItem['MANUFACTURER'])) ? $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']) : $this->syncIdDev = 0;
+        (isset($this->shopItem['MANUFACTURER'])) ? $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']) : $this->syncIdDev = NULL;
     }
 
     private function analyseIdDev($dev_name)

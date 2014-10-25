@@ -43,7 +43,7 @@ class SyncBow extends TaskMessage implements iSync
                 $bow = new RunBow((array)$row, $record_id);
                 if ($bow->isUseRequired() === TRUE) {
                     $suc++;
-                    var_dump($bow->insertData2Db());
+                    $bow->insertData2Db();
                 }
             }
         }
