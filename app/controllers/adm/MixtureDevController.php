@@ -12,12 +12,6 @@ class MixtureDevController extends \BaseController
         $this->mixture_dev = $mixture_dev;
     }
 
-    /**
-     * Display a listing of the resource.
-     * GET /adm/pattern/mixturedev
-     *
-     * @return Response
-     */
     public function index()
     {
         return View::make('adm.pattern.mixturedev.index', [
@@ -25,23 +19,10 @@ class MixtureDevController extends \BaseController
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * GET /adm/admin/dev/create
-     *
-     * @return Response
-     */
     public function create()
     {
         return View::make('adm.pattern.mixturedev.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     * POST /adm/pattern/mixturedev
-     *
-     * @return Response
-     */
 
     public function store()
     {
@@ -58,13 +39,6 @@ class MixtureDevController extends \BaseController
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * GET /adm/pattern/mixturedev/{id}/edit
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function edit($id)
     {
         $mixture_dev = $this->mixture_dev->find($id);
@@ -78,14 +52,6 @@ class MixtureDevController extends \BaseController
             'mixturedev'     => $mixture_dev
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     * PUT /adm/pattern/mixturedev/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
 
     public function update($id)
     {

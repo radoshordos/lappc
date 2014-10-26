@@ -28,7 +28,7 @@ Skupiny výrobců
                 <td>{{ $dev->name }}</td>
                 <td>@foreach ($dev->dev as $one) {{ '<p>'.$one->name.'</p>'; }} @endforeach</td>
                 <td>{{ $dev->trigger_column_count }}</td>
-                <td>@if ($dev->purpose != 'autosimple') {{ link_to_route('adm.pattern.mixturedev.edit','Edit',array($dev->id),array('class' => 'btn btn-info btn-xs')) }} @endif</td>
+                <td>@if ($dev->purpose != 'autosimple') {{ link_to_route('adm.pattern.mixturedev.edit','Edit',[$dev->id],['class' => 'btn btn-info btn-xs']) }} @endif</td>
             </tr>
             @endforeach
             </tbody>
@@ -37,6 +37,6 @@ Skupiny výrobců
 </div>
 @endif
 <p class="text-center">
-    {{ link_to_route('adm.pattern.mixturedev.create','Přidat novou grupu výrobců',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+    {{ link_to_route('adm.pattern.mixturedev.create','Přidat novou grupu výrobců',NULL, ['class'=>'btn btn-success','role'=> 'button']) }}
 </p>
 @stop

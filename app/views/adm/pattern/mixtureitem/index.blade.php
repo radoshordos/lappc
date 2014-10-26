@@ -8,7 +8,6 @@ Grupy položek
 
 {{-- Content --}}
 @section('content')
-
 @if ($mixtureitem->count())
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -23,8 +22,6 @@ Grupy položek
             </thead>
             <tbody>
             @foreach ($mixtureitem as $row)
-
-            {{ var_dump($row->items); }}
             <tr>
                 <td>{{ $row->id }}</td>
                 <td>{{ $row->name }}</td>
