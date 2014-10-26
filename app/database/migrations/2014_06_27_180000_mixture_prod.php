@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class MixtureProd extends Migration
 {
@@ -9,11 +9,10 @@ class MixtureProd extends Migration
     {
         Schema::create('mixture_prod', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->enum('purpose', array('rules_simple'))->default('rules_simple');
-            $table->string('name', '64');
+            $table->enum('purpose', ['rules_simple'])->default('rules_simple');
+            $table->string('name', '160')->unique();
 
             $table->engine = 'InnoDB';
-            $table->unique('name');
         });
     }
 

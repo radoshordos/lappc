@@ -22,6 +22,7 @@ class Prod extends Migration
 	        $table->tinyInteger('ic_availability_diff_visible')->unsigned()->default(0);
 	        $table->tinyInteger('ic_sale_diff_visible')->unsigned()->default(0);
 	        $table->tinyInteger('ic_price_diff_visible')->unsigned()->default(0);
+            $table->tinyInteger('ia_price_sale_visible')->unsigned()->default(0);
 
             $table->decimal('price', 9, 2)->unsigned();
             $table->string('alias', '64');

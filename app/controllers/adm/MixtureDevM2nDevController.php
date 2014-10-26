@@ -17,7 +17,11 @@ class MixtureDevM2nDevController extends \BaseController
         $v = Validator::make($input, MixtureDevM2nDev::$rules);
 
         if ($v->passes()) {
-            $this->mdmd->create($input);
+            try {
+                $this->mdmd->create($input);
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
             return Redirect::route('adm.pattern.mixturedev.edit', $input['mixture_dev_id']);
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));

@@ -4,7 +4,6 @@ class MixtureDevM2nDev extends \Eloquent
 {
     protected $table = 'mixture_dev_m2n_dev';
     protected $guarded = [];
-
     public $timestamps = FALSE;
 
     public static $rules = [

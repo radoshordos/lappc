@@ -41,12 +41,11 @@ class Items extends Migration
                         items.prod_id = OLD.prod_id;
 */
 /*
-        SELECT MIN(akce.aiprice * items_sale.multiple) INTO akce_min_price_visible_with_sale
-                FROM akce
-                INNER JOIN items_sale ON items.sale_id = items_sale.id
+				SELECT MIN(akce.aiprice * items_sale.multiple) INTO min_price_visible FROM items
+    	        INNER JOIN items_sale ON items.sale_id = items_sale.id
                 WHERE   items.visible = 1 AND
-                        items.iprice > 0
-                        items.prod_id = OLD.prod_id;
+                        items.iprice > 0 AND
+                        items.prod_id = NEW.prod_id;
 */
         DB::unprepared('DROP TRIGGER IF EXISTS items_ai');
         DB::unprepared('
@@ -58,12 +57,15 @@ class Items extends Migration
                 DECLARE akce_item_price INT;
                 DECLARE akce_sale_id INT;
 
-                DECLARE correct_price INT;
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
-				DECLARE count_price_diff_visible INT;
 				DECLARE count_sale_diff_visible INT;
 				DECLARE count_availability_diff_visible INT;
+				DECLARE count_price_diff_visible INT;
+				DECLARE items_action_price_sale_visible DOUBLE;
+				DECLARE min_price_visible DOUBLE;
+
+
 
                 SELECT prod.price INTO prod_price FROM prod WHERE prod.id = NEW.prod_id;
                 SELECT prod.mode_id INTO prod_mode_id FROM prod WHERE prod.id = NEW.prod_id;
@@ -80,7 +82,7 @@ class Items extends Migration
                                 ic_visible = count_visible,
                                 ic_sale_diff_visible = count_sale_diff_visible,
                                 ic_availability_diff_visible = count_availability_diff_visible,
-								ic_price_diff_visible = count_price_diff_visible
+								ic_price_min_visible = min_price_visible
                 WHERE prod.id = NEW.prod_id;
             END
             ');
@@ -107,7 +109,7 @@ class Items extends Migration
                                 ic_sale_diff_visible = count_sale_diff_visible,
                                 ic_availability_diff_visible = count_availability_diff_visible,
 								ic_price_diff_visible = count_price_diff_visible
-                WHERE prod.id = NEW.prod_id;
+                WHERE prod.id = OLD.prod_id;
 
             END
             ');

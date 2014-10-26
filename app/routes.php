@@ -61,11 +61,13 @@ Route::group(['prefix' => 'adm'], function () {
 
     Route::group(['prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'], function () {
         Route::resource('dev', 'DevController');
+        Route::resource('tree', 'TreeController');
         Route::resource('mixturedev', 'MixtureDevController');
         Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController');
-        Route::resource('tree', 'TreeController');
-        Route::resource('mixturetreem2ntree', 'MixtureTreeM2nTreeController');
         Route::resource('mixturetree', 'MixtureTreeController');
+        Route::resource('mixturetreem2ntree', 'MixtureTreeM2nTreeController');
+        Route::resource('mixtureprod', 'MixtureProdController');
+        Route::resource('mixtureprodm2nprod', 'MixtureProdM2nProdController');
         Route::resource('prodwarranty', 'ProdWarrantyController');
         Route::resource('proddifference', 'ProdDifferenceController');
         Route::resource('prodvariation', 'ProdVariationController');

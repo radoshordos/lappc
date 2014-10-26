@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class MixtureTree extends Migration
 {
@@ -10,11 +10,10 @@ class MixtureTree extends Migration
     {
         Schema::create('mixture_tree', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->enum('purpose', array('ppc'))->default('ppc');
-            $table->string('name', '64');
+            $table->enum('purpose', ['ppc'])->default('ppc');
+            $table->string('name', '160')->unique();
 
             $table->engine = 'InnoDB';
-            $table->unique('name');
         });
     }
 

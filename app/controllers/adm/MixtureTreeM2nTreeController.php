@@ -15,9 +15,12 @@ class MixtureTreeM2nTreeController extends \BaseController
     {
         $input = Input::all();
         $v = Validator::make($input, MixtureTreeM2nTree::$rules);
-
         if ($v->passes()) {
-            $this->mtmt->create($input);
+            try {
+                $this->mtmt->create($input);
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
             return Redirect::route('adm.pattern.mixturetree.edit', $input['mixture_tree_id']);
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));

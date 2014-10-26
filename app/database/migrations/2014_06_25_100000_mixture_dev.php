@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class MixtureDev extends Migration
 {
@@ -11,13 +11,12 @@ class MixtureDev extends Migration
         Schema::create('mixture_dev', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
-            $table->enum('purpose', array('autosimple','devgroup','ppc'))->default('devgroup');
-            $table->string('name', '32');
+            $table->enum('purpose', ['autosimple','devgroup','ppc'])->default('devgroup');
+            $table->string('name', '160')->unique();
             $table->string('desc', '256')->nullable();
             $table->tinyInteger('trigger_column_count')->unsigned();
 
             $table->engine = 'InnoDB';
-            $table->unique('name');
         });
     }
 

@@ -4,12 +4,11 @@ class MixtureTree extends \Eloquent
 {
     protected $table = 'mixture_tree';
     protected $guarded = [];
+    public $timestamps = false;
 
     public static $rules = [
         'name' => 'required|min:2|max:32|unique:mixture_dev,name'
     ];
-
-    public $timestamps = FALSE;
 
     public function tree()
     {
