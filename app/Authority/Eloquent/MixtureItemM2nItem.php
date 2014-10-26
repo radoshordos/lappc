@@ -8,7 +8,7 @@ class MixtureItemM2nItem extends \Eloquent
 
     public static $rules = [
         'mixture_item_id' => 'required|exists:mixture_item,id',
-        'item_id'         => 'required|exists:item,id'
+        'item_id'         => 'required|exists:items,id'
     ];
 
 }

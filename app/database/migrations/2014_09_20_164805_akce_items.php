@@ -12,7 +12,7 @@ class AkceItems extends Migration {
 			$table->integer('item_id')->unsigned();
 			$table->tinyInteger('sale_id')->unsigned();
 			$table->tinyInteger('availability_id')->unsigned();
-			$table->decimal('aiprice', 9, 2)->unsigned()->default(0);
+	//		$table->decimal('aiprice', 9, 2)->unsigned()->default(0);
 
 			$table->engine = 'InnoDB';
 			$table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');

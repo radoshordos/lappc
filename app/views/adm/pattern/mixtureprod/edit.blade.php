@@ -22,7 +22,7 @@ Správa grupy produktů
 @section('content')
 {{ Form::model($mixtureprod, ['method'=>'PATCH','route' => array('adm.pattern.mixtureprod.update',$mixtureprod->id),'class'=>'form-horizontal','role'=>'form']) }}
 <div class="panel panel-info">
-    <div class="panel-heading"><label for="name">Oprava názvu skupiny výrobců</label></div>
+    <div class="panel-heading"><label for="name">Oprava názvu skupiny produktů</label></div>
     <div class="panel-body">
         {{ Form::text('name',$mixtureprod->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové grupy produktů')) }}
     </div>

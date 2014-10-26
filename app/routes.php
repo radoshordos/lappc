@@ -68,6 +68,8 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('mixturetreem2ntree', 'MixtureTreeM2nTreeController');
         Route::resource('mixtureprod', 'MixtureProdController');
         Route::resource('mixtureprodm2nprod', 'MixtureProdM2nProdController');
+        Route::resource('mixtureitem', 'MixtureItemController');
+        Route::resource('mixtureitemm2nitem', 'MixtureItemM2nItemController');
         Route::resource('prodwarranty', 'ProdWarrantyController');
         Route::resource('proddifference', 'ProdDifferenceController');
         Route::resource('prodvariation', 'ProdVariationController');

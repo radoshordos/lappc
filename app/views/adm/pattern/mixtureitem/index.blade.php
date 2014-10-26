@@ -3,12 +3,13 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Grupy produktů
+Grupy položek
 @stop
 
 {{-- Content --}}
 @section('content')
-@if ($mixtureprod->count())
+
+@if ($mixtureitem->count())
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <table class="table table-striped table-hover">
@@ -16,17 +17,19 @@ Grupy produktů
             <tr>
                 <th>#</th>
                 <th>Název grupy</th>
-                <th>Produkty v grupě</th>
+                <th>Položky v grupě</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($mixtureprod as $row)
+            @foreach ($mixtureitem as $row)
+
+            {{ var_dump($row->items); }}
             <tr>
                 <td>{{ $row->id }}</td>
                 <td>{{ $row->name }}</td>
-                <td>@foreach ($row->prod as $one) {{ '<p>'.$one->name.'</p>'; }} @endforeach</td>
-                <td>{{ link_to_route('adm.pattern.mixtureprod.edit','Edit',array($row->id),array('class' => 'btn btn-info btn-xs')) }}</td>
+                <td>@foreach ($row->items as $one) {{ '<p>'.$one->id.'</p>'; }} @endforeach</td>
+                <td>{{ link_to_route('adm.pattern.mixtureitem.edit','Edit', [$row->id],['class' => 'btn btn-info btn-xs']) }}</td>
             </tr>
             @endforeach
             </tbody>
@@ -35,6 +38,6 @@ Grupy produktů
 </div>
 @endif
 <p class="text-center">
-    {{ link_to_route('adm.pattern.mixtureprod.create','Přidat novou grupu produktů',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+    {{ link_to_route('adm.pattern.mixtureitem.create','Přidat novou grupu položek',NULL, ['class'=>'btn btn-success','role'=> 'button']) }}
 </p>
 @stop

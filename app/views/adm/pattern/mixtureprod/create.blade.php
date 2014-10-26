@@ -16,7 +16,7 @@ Nová grupa produktů
     </div>
 </div>
 <p class="text-center">
-    {{ link_to_route('adm.pattern.mixtureprod.index','Zobrazit všechny položky',NULL, ['class'=>'btn btn-primary','role'=> 'button']) }}
+    {{ link_to_route('adm.pattern.mixtureprod.index','Zobrazit všechny produkty',NULL, ['class'=>'btn btn-primary','role'=> 'button']) }}
     {{ Form::submit('Vytvořit novou grupu produktů', ['class' => 'btn btn-success']) }}
 </p>
 {{ Form::close() }}

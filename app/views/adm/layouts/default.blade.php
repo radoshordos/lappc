@@ -68,9 +68,10 @@
                         <li><a href="{{ URL::route('adm.pattern.dev.index') }}">Výrobci</a></li>
                         <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Skupiny</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ URL::route('adm.pattern.mixturedev.index')}}">Seskupení výrobců</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.mixturedev.index')}}">Grupy výrobců</a></li>
                         <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Grupy skupin</a></li>
                         <li><a href="{{ URL::route('adm.pattern.mixtureprod.index')}}">Grupy produktů</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.mixtureitem.index')}}">Grupy položek</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.prodwarranty.index') }}">Záruky produktů</a></li>
                         <li><a href="{{ URL::route('adm.pattern.multiplechanges.index') }}">Hromadné změny produktů</a></li>

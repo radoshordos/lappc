@@ -10,9 +10,9 @@ class MixtureItem extends \Eloquent
         'name' => 'required|min:24|max:160|unique:mixture_item,name'
     ];
 
-    public function prod()
+    public function items()
     {
-        return $this->belongsToMany('Authority\Eloquent\Item', 'mixture_item_m2n_item', 'mixture_item_id', 'item_id');
+        return $this->belongsToMany('Authority\Eloquent\Items', 'mixture_item_m2n_item', 'mixture_item_id', 'item_id');
     }
 
 }

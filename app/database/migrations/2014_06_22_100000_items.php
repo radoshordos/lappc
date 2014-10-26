@@ -46,6 +46,10 @@ class Items extends Migration
                 WHERE   items.visible = 1 AND
                         items.iprice > 0 AND
                         items.prod_id = NEW.prod_id;
+
+                SELECT akce_item.aiprice INTO akce_item_price FROM akce_items WHERE akce_items.item_id = NEW.id;
+                SELECT akce_item.sale_id INTO akce_sale_id FROM akce_items WHERE akce_items.item_id = NEW.id;
+
 */
         DB::unprepared('DROP TRIGGER IF EXISTS items_ai');
         DB::unprepared('
@@ -65,12 +69,8 @@ class Items extends Migration
 				DECLARE items_action_price_sale_visible DOUBLE;
 				DECLARE min_price_visible DOUBLE;
 
-
-
                 SELECT prod.price INTO prod_price FROM prod WHERE prod.id = NEW.prod_id;
                 SELECT prod.mode_id INTO prod_mode_id FROM prod WHERE prod.id = NEW.prod_id;
-                SELECT akce_item.aiprice INTO akce_item_price FROM akce_items WHERE akce_items.item_id = NEW.id;
-                SELECT akce_item.sale_id INTO akce_sale_id FROM akce_items WHERE akce_items.item_id = NEW.id;
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible = 1;
@@ -81,8 +81,7 @@ class Items extends Migration
                 UPDATE prod SET ic_all = count_all,
                                 ic_visible = count_visible,
                                 ic_sale_diff_visible = count_sale_diff_visible,
-                                ic_availability_diff_visible = count_availability_diff_visible,
-								ic_price_min_visible = min_price_visible
+                                ic_availability_diff_visible = count_availability_diff_visible
                 WHERE prod.id = NEW.prod_id;
             END
             ');
@@ -110,7 +109,6 @@ class Items extends Migration
                                 ic_availability_diff_visible = count_availability_diff_visible,
 								ic_price_diff_visible = count_price_diff_visible
                 WHERE prod.id = OLD.prod_id;
-
             END
             ');
 

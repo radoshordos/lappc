@@ -15,9 +15,9 @@ Skupiny výrobců
             <thead>
             <tr>
                 <th>#</th>
-                <th>Název skupiny</th>
-                <th>Výrobci ve skupině</th>
-                <th><button type="button" title="Suma výrobců v seskupení" class="btn btn-primary btn-xs">&#8721;</button></th>
+                <th>Název grupy</th>
+                <th>Výrobci v grupě</th>
+                <th><button type="button" title="Suma výrobců v grupě" class="btn btn-primary btn-xs">&#8721;</button></th>
                 <th></th>
             </tr>
             </thead>
@@ -37,6 +37,6 @@ Skupiny výrobců
 </div>
 @endif
 <p class="text-center">
-    {{ link_to_route('adm.pattern.mixturedev.create','Přidat novou skupinu výrobců',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+    {{ link_to_route('adm.pattern.mixturedev.create','Přidat novou grupu výrobců',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
 </p>
 @stop

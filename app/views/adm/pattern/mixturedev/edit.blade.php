@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Správa skupin výrobců
+Správa grup výrobců
 @stop
 
 {{-- JavaScript on page --}}
@@ -11,7 +11,7 @@ Správa skupin výrobců
 <script>
     $(document).ready(function () {
         $("#dev_id").select2({
-            placeholder: "Přidejte výrobce do skupiny",
+            placeholder: "Přidejte výrobce do grupy",
             allowClear: true
         });
     });
@@ -22,13 +22,13 @@ Správa skupin výrobců
 @section('content')
 {{ Form::model($mixturedev, ['method'=>'PATCH','route' => array('adm.pattern.mixturedev.update',$mixturedev->id),'class'=>'form-horizontal','role'=>'form']) }}
 <div class="panel panel-info">
-    <div class="panel-heading"><label for="name">Oprava názvu skupiny výrobců</label></div>
+    <div class="panel-heading"><label for="name">Oprava názvu grupy výrobců</label></div>
     <div class="panel-body">
-        {{ Form::text('name',$mixturedev->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové skupiny výrobců')) }}
+        {{ Form::text('name',$mixturedev->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové grupy výrobců')) }}
     </div>
     <div class="panel-footer text-center">
         {{ link_to_route('adm.pattern.mixturedev.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
-        {{ Form::submit('Opravit název skupiny', array('class' => 'btn btn-info')) }}
+        {{ Form::submit('Opravit název grupy', array('class' => 'btn btn-info')) }}
     </div>
 </div>
 {{ Form::close() }}
