@@ -38,7 +38,7 @@ Správa grupy produktů
     <div class="panel-body">
         <table class="table table-bordered table-striped">
             <tbody>
-            @foreach($mixtureprod->dev as $row)
+            @foreach($mixtureprod->prod as $row)
             <tr>
                 <td>{{$row->name}}</td>
                 <td>
@@ -57,7 +57,7 @@ Správa grupy produktů
             <span class="input-group-btn">
                 {{ Form::submit('Přidat výrobce',array('class' => 'btn btn-success')) }}
             </span>
-            {{ Form::select('prod_id',$dev_insertable, NULL, array('required' => 'required', 'id'=> 'prod_id',  'class'=> 'form-control')) }}
+            {{ Form::select('prod_id',$prod_insertable, NULL, array('required' => 'required', 'id'=> 'prod_id',  'class'=> 'form-control')) }}
             {{ Form::hidden('mixture_prod_id',$mixtureprod->id) }}
         </div>
         {{ Form::close() }}

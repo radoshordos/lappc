@@ -43,12 +43,12 @@ return array(
 		"string"  => "The :attribute may not be greater than :max characters.",
 	),
 	"mimes"            => "The :attribute must be a file of type: :values.",
-	"min"              => array(
+	"min"              => [
 		"numeric" => "The :attribute must be at least :min.",
 		"file"    => "The :attribute must be at least :min kilobytes.",
-		"string"  => "The :attribute must be at least :min characters.",
-	),
-	"not_in"           => "The selected :attribute is invalid.",
+		"string"  => "Položka \":attribute\" musí mít alespoň :min znaků.",
+    ],
+    "not_in"           => "The selected :attribute is invalid.",
 	"numeric"          => "The :attribute must be a number.",
 	"regex"            => "The :attribute format is invalid.",
 	"required"         => "Položka \":attribute\" je povinná.",

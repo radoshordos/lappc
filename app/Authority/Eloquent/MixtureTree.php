@@ -7,7 +7,7 @@ class MixtureTree extends \Eloquent
     public $timestamps = false;
 
     public static $rules = [
-        'name' => 'required|min:2|max:32|unique:mixture_dev,name'
+        'name' => 'required|min:24|max:160|unique:mixture_dev,name'
     ];
 
     public function tree()

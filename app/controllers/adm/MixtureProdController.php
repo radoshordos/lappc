@@ -48,8 +48,8 @@ class MixtureProdController extends \BaseController
         }
 
         return View::make('adm.pattern.mixtureprod.edit', [
-            'tree_insertable' => [''] + SB::option("SELECT * FROM tree WHERE id > 1 AND id NOT IN (SELECT tree_id FROM mixture_tree_m2n_tree WHERE mixture_tree_id = $id) ORDER BY id", ['id' => '->name']),
-            'MixtureProd'     => $mixprod
+            'prod_insertable' => [''] + SB::option("SELECT * FROM prod WHERE id > 1 AND id NOT IN (SELECT prod_id FROM mixture_prod_m2n_prod WHERE mixture_prod_id = $id) ORDER BY id", ['id' => '[->tree_id] - ->name']),
+            'mixtureprod'     => $mixprod
         ]);
     }
 

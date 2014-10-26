@@ -1,6 +1,6 @@
 <?php
 
-use Authority\Eloquent\Mixture;
+use Authority\Eloquent\MixtureProdM2nProd;
 
 class MixtureProdM2nProdController extends \BaseController
 {
