@@ -9,7 +9,7 @@ class HomeController extends BaseController
     public function showWelcome()
     {
         if (Input::has('term')) {
-            $counter = RecordVisitorsLooking::where('filter_find', '=', Input::get('term'))->where('find_at', '>', new Carbon('last hour'))->orderBy('id')->count();
+            $counter = RecordVisitorsLooking::where('find_at', '>', new Carbon('last hour'))->where('filter_find', '=', Input::get('term'))->orderBy('id')->count();
             if ($counter == 0) {
                 $dt = new DateTime;
                 RecordVisitorsLooking::create([
