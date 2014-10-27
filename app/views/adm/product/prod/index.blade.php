@@ -22,25 +22,28 @@
 
 {{-- Content --}}
 @section('content')
+{{ Form::open(['route' => ['adm.product.prod.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
 <blockquote>
-    <form>
         <div class="row">
             <div class="col-xs-7">
-                {{ Form::select('select_tree', ['' => 'Skupina'] + $select_tree, $input_tree, array('id'=> 'select_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('select_tree', ['' => 'Skupina'] + $select_tree, $input_tree, ['id'=> 'select_tree', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-3">
-                {{ Form::select('select_dev', ['' => 'Výrobce'] + $select_dev, $input_dev, array('id'=> 'select_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('select_dev', ['' => 'Výrobce'] + $select_dev, $input_dev, ['id'=> 'select_dev', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('select_limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], $input_limit, array('id'=> 'select_limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('select_limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], $input_limit, ['id'=> 'select_limit', 'class'=> 'form-control']) }}
             </div>
         </div>
         <div class="row" style="margin-top: .5em">
-            <div class="col-xs-12">
+            <div class="col-xs-10">
                 {{ Form::select('select_sort', ['1' => 'Seřadit dle data poslední změny', '2' => 'Seřadit dle názvu', '3' => 'Seřadit dle ceny'], $input_sort, array('id'=> 'select_sort', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
+            <div class="col-xs-2">
+                {{ Form::submit('submit',['class'=> 'form-control btn-primary'])  }}
+            </div>
         </div>
-    </form>
+
 </blockquote>
 
 @if ($view->count())
@@ -54,7 +57,7 @@
                 <th>Výrobce</th>
                 <th>#TREE</th>
                 <th>Záruka</th>
-                <th>Nazev [Položek]</th>
+                <th class="text-center col-xs-2">Název [i]<br />{{ Form::text('search_name',$search_name,['class'=> 'form-control']) }}</th>
                 <th>Cena</th>
             </tr>
             </thead>
@@ -74,6 +77,7 @@
         </table>
     </div>
 </div>
+{{ Form::close() }}
 
 <div class="text-center">
     <?php echo $view->appends(array(

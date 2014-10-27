@@ -1,10 +1,10 @@
 <?php
 
+use Authority\Eloquent\Items;
+use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
-use Authority\Eloquent\MixtureDevM2nDev;
-use Authority\Eloquent\Items;
 use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
 
@@ -32,7 +32,8 @@ class ProdController extends \BaseController
         Input::has('select_sort') ? $input_sort = intval(Input::get('select_sort')) : $input_sort = 1;
 
         $db = ViewProd::dev(Input::get('select_dev'))
-            ->tree(Input::get('select_tree'));
+            ->tree(Input::get('select_tree'))
+            ->where('prod_name', 'LIKE', '%' . Input::get('search_name') . '%');
 
         switch ($input_sort) {
             case 2:
@@ -52,6 +53,7 @@ class ProdController extends \BaseController
             'input_tree'  => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
             'input_sort'  => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
             'input_limit' => $input_limit,
+            'search_name' => Input::get('search_name'),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
             'select_dev'  => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
         ]);
