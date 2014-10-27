@@ -13,12 +13,12 @@ class AkceHugeController extends \BaseController
             'action_record'        => $action_record,
             'item_action'          => SyncDb::where('purpose', '=', 'action')->where('record_id', '=', $action_record)->orderBy('code_prod')->get(['id', 'code_prod', 'name']),
             'select_action_record' => [''] + SB::option(
-                    "SELECT sync_record.*,
+                    "SELECT record_sync_import.*,
                             mixture_dev.name
-                     FROM sync_record
-                     LEFT JOIN sync_csv_template ON sync_record.template_id = sync_csv_template.id
+                     FROM record_sync_import
+                     LEFT JOIN sync_csv_template ON record_sync_import.template_id = sync_csv_template.id
                      LEFT JOIN mixture_dev ON sync_csv_template.mixture_dev_id = mixture_dev.id
-                     WHERE sync_record.purpose = 'action'
+                     WHERE record_sync_import.purpose = 'action'
                      ORDER BY id", ['id' => '->name - [Datum importu: ->created_at] - (Záznamů &#8721; = ->item_counter)'])
         ]);
     }

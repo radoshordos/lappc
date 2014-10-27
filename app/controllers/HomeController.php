@@ -1,6 +1,6 @@
 <?php
 
-use \Authority\Eloquent\RecordFind;
+use \Authority\Eloquent\RecordVisitorsLooking;
 
 class HomeController extends BaseController
 {
@@ -9,7 +9,7 @@ class HomeController extends BaseController
     {
         if (Input::has('term')) {
             $dt = new DateTime;
-            RecordFind::create([
+            RecordVisitorsLooking::create([
                 'find_at'     => $dt->format('Y-m-d H:i:s'),
                 'filter_find' => Input::get('term'),
                 'count_dev'   => 0,

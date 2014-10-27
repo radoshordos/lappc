@@ -100,8 +100,8 @@ Route::group(['prefix' => 'adm'], function () {
     });
 
     Route::group(['prefix' => 'stats', 'before' => 'Sentry|inGroup:Simple'], function () {
-        Route::any('find', ['as' => 'adm.stats.find.index', 'uses' => 'StatsFindController@index']);
-        Route::match(['GET'], 'prodgraph', ['as' => 'adm.stats.prodgraph.index', 'uses' => 'StatsProdGraphController@index']);
+        Route::get('recordvisitors', ['as' => 'adm.stats.recordvisitors.index', 'uses' => 'RecordVisitorsLookingController@index']);
+        Route::get('prodgraph', ['as' => 'adm.stats.prodgraph.index', 'uses' => 'StatsProdGraphController@index']);
     });
 
     Route::group(['prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'], function () {
