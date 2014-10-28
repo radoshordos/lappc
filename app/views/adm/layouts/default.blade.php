@@ -111,6 +111,8 @@
                         <li><a href="{{ URL::route('adm.sync.db.index') }}">Synchronizační DB</a></li>
                         <li><a href="{{ URL::route('adm.sync.record.index') }}">Synchronizační záznamy</a></li>
                         <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.sync.manualimport.index') }}">Sychnonizační import</a></li>
+                        <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.sync.csvimport.index') }}">CSV Import</a></li>
                         <li><a href="{{ URL::route('adm.sync.template.index') }}">CSV šablony</a></li>
                     </ul>
