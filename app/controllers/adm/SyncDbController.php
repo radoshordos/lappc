@@ -12,10 +12,10 @@ class SyncDbController extends \BaseController
 
         if (strlen(Input::get('select_connect')) == 0 || count($dev) == 0) {
 
-            return View::make('adm.sync.db.index', array(
+            return View::make('adm.sync.db.index', [
                 'input' => Input::all(),
                 'select_mixture_dev' => $select_mixture_dev
-            ));
+            ]);
 
         } else {
 
@@ -45,24 +45,24 @@ class SyncDbController extends \BaseController
                     break;
             }
 
-            $db->select(array(
+            $db->select([
                 'sync_db.code_ean AS sync_code_ean',
                 'sync_db.code_prod AS sync_code_prod',
                 'sync_db.name AS sync_name',
                 'sync_db.desc AS sync_desc',
-                'sync_db.price_standart AS sync_price_standart',
+                'sync_db.price_standard AS sync_price_standard',
                 'items.code_ean AS items_code_ean',
                 'items.code_prod AS items_code_prod',
                 'prod.name AS prod_name'
-            ));
+            ]);
 
             $db->whereIn('sync_db.dev_id', $dev);
 
-            return View::make('adm.sync.db.index', array(
+            return View::make('adm.sync.db.index', [
                 'db' => $db->paginate(intval(Input::get('limit') > 0) ? Input::get('limit') : 20),
                 'input' => Input::all(),
                 'select_mixture_dev' => $select_mixture_dev
-            ));
+            ]);
         }
     }
 }

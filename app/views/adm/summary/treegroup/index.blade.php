@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Rozdělení skupin
+Rozdělení nadskupin
 @stop
 
 {{-- Content --}}

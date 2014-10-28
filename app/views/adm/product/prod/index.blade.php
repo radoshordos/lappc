@@ -40,7 +40,7 @@
                 {{ Form::select('select_sort', ['1' => 'Seřadit dle data poslední změny', '2' => 'Seřadit dle názvu', '3' => 'Seřadit dle ceny'], $input_sort, array('id'=> 'select_sort', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::submit('submit',['class'=> 'form-control btn-primary'])  }}
+                {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                 <th>Výrobce</th>
                 <th>#TREE</th>
                 <th>Záruka</th>
-                <th class="text-center col-xs-2">Název [i]<br />{{ Form::text('search_name',$search_name,['class'=> 'form-control']) }}</th>
+                <th class="col-xs-2">Název [i]<br />{{ Form::text('search_name',$search_name) }}</th>
                 <th>Cena</th>
             </tr>
             </thead>
@@ -69,7 +69,7 @@
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
                 <td>{{ $row->prod_warranty_name }}</td>
-                <td>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</td>
+                <td class="col-xs-3">{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</td>
                 <td>{{ $row->prod_price }}</td>
             </tr>
             @endforeach
