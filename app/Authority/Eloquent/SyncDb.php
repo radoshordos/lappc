@@ -12,4 +12,9 @@ class SyncDb extends \Eloquent
         'dev_id'  => 'required|exists:dev,id'
     ];
 
+    public function dev()
+    {
+        return $this->hasOne('Authority\Eloquent\Dev', 'id', 'dev_id');
+    }
+
 }

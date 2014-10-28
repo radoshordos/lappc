@@ -94,7 +94,7 @@ abstract class AbstractRunDev implements iItem
 
     public function insertData2Db()
     {
-        $column_id = intval(SyncDb::where('dev_id', '=', $this->getSyncIdDev())->where('code_prod', '=', $this->getSyncItemsCodeProduct())->pluck('id'));
+        $column_id = intval(SyncDb::where('purpose', '=', 'autosync')->where('dev_id', '=', $this->getSyncIdDev())->where('code_prod', '=', $this->getSyncItemsCodeProduct())->where('purpose', '=', 'autosync')->pluck('id'));
         if ($column_id == 0) {
             return SyncDb::create(array_merge($this->getAllValues(), ['created_at' => date("Y-m-d H:i:s", strtotime('now'))]));
         } else {

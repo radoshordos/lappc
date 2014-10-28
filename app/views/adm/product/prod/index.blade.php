@@ -43,7 +43,6 @@
                 {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}
             </div>
         </div>
-
 </blockquote>
 
 @if ($view->count())

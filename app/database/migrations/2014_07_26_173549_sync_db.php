@@ -28,8 +28,9 @@ class SyncDb extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique(['dev_id', 'code_prod']);
+            $table->unique(['purpose', 'dev_id', 'code_prod']);
             $table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
         });
     }
 
