@@ -15,7 +15,7 @@ class SyncDb extends Migration
             $table->integer('record_id')->unsigned()->nullable();
             $table->integer('dev_id')->unsigned();
             $table->string('code_prod', '32')->nullable();
-            $table->string('code_ean', '32')->nullable()->unique();
+            $table->string('code_ean', '32')->nullable();
             $table->string('name', '80')->nullable();
             $table->string('desc', '160')->nullable();
             $table->decimal('price_standard', 9, 2)->unsigned()->nullable();
@@ -29,6 +29,7 @@ class SyncDb extends Migration
 
             $table->engine = 'InnoDB';
             $table->unique(['purpose', 'dev_id', 'code_prod']);
+            $table->unique(['purpose', 'code_ean']);
             $table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
         });
