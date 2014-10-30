@@ -1,6 +1,7 @@
 <?php
 Route::match(['GET', 'POST'], '/', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
 
+
 Route::get('autocomplete', function () {
     return View::make('web.autocomplete');
 });
@@ -10,11 +11,9 @@ Route::get('tmp', function () {
 });
 
 Route::get('getdata', function () {
-
     $term = Input::get('term');
     $data = \Authority\Eloquent\ViewProd::where('prod_name', 'LIKE', "%$term%")->limit(10)->get();
     $result = [];
-
     foreach ($data as $key => $row) {
             $result[] = ['id' => $row->id, 'value' => $row->prod_name];
 
@@ -144,3 +143,6 @@ Route::group(['prefix' => 'adm'], function () {
 Route::get('adm', ['as' => 'adm.home', function () {
     return View::make('adm.home');
 }]);
+
+Route::match(['GET', 'POST'], '/{poz1}', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
+Route::match(['GET', 'POST'], '/{poz1}/{poz2}', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);

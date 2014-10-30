@@ -13,41 +13,42 @@
 </head>
 <body>
     <h1>Hello, world!</h1>
+    Registrace & Přihlášení
     <div id="container" style="border: 1px solid #666">
-            <div class="row">
-                <div class="small-12 columns">
-                    <nav class="top-bar" data-topbar>
-                        <section class="top-bar-section">
-                            <ul class="right">
-                                <li class="has-dropdown">
-                                    <a href="#">Obchod</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Test</a></li>
-                                        <li><a href="#">Nářadí Doležalova s.r.o.</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Kontakt</a></li>
-                                <li><a href="#">Přihlásit se</a></li>
-                                <li><a href="#">Košík</a></li>
+    <div class="row">
+        <div class="small-12 columns">
+            <nav class="top-bar" data-topbar>
+                <section class="top-bar-section">
+                    <ul class="right">
+                        <li class="has-dropdown">
+                            <a href="#">Obchod</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Test</a></li>
+                                <li><a href="#">Nářadí Doležalova s.r.o.</a></li>
                             </ul>
-                            <!-- Left Nav Section -->
-                            <ul class="left">
-                                <li class="has-form">
-                                    {{ Form::open(array('url' => '', 'files' => true)); }}
-                                    <div class="row collapse">
-                                        <div class="large-8 small-9 columns ui-widget">
-                                            {{ Form::input('search','term',$term,['size' => '42', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"])  }}
-                                        </div>
-                                        <div class="large-4 small-3 columns">
-                                            {{-- Form::input('text','response',NULL,['id' => 'response','disabled']) --}}
-                                            {{ Form::submit('Hledat', ['name' => 'submitsearch','class' => 'alert button expand']) }}
-                                        </div>
-                                        {{ Form::close() }}
+                        </li>
+                        <li><a href="#">Kontakt</a></li>
+                        <li><a href="#">Přihlásit se</a></li>
+                        <li><a href="#">Košík</a></li>
+                    </ul>
+                    <!-- Left Nav Section -->
+                    <ul class="left">
+                        <li class="has-form">
+                            {{ Form::open(array('url' => '', 'files' => true)); }}
+                            <div class="row collapse">
+                                <div class="large-8 small-9 columns ui-widget">
+                                    {{ Form::input('search','term',$term,['size' => '42', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"]) }}
                                     </div>
-                                </li>
-                            </ul>
-                        </section>
-                    </nav>
+                                <div class="large-4 small-3 columns">
+                                    {{-- Form::input('text','response',NULL,['id' => 'response','disabled']) --}}
+                                    {{ Form::submit('Hledat', ['name' => 'submitsearch','class' => 'alert button expand']) }}
+                                </div>
+                                {{ Form::close() }}
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
                     <ul class="breadcrumbs">
                         <li><a href="#">Úvod</a></li>
                         <li><a href="#">Akumulátorové nářadí</a></li>
@@ -57,7 +58,7 @@
             </div>
 
             <div class="row">
-                <div class="small-3 columns">
+                <div class="small-3 columns" style="border: 1px solid #86D2B6">
                     <nav>
                         <ul>
                             <li><a href="#">Akumulátorové nářadí</a>
@@ -79,7 +80,7 @@
                     </nav>
                 </div>
 
-            <div class="small-9 columns">
+                <div class="small-9 columns" style="border: 1px solid #86D2B6">
                 <dl class="sub-nav">
                     <dt>Výrobce:</dt>
                     <dd class="active"><a href="#">Vše</a></dd>
@@ -98,31 +99,154 @@
                     <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
                 </div>
 
-                <div>
-                    <div class="th radius">
-                        <a href="#">
-                          <strong>Makita DF330DWE</strong>
-                          <img src="/web/naradi/makita-6261dwpe.jpg" />
-                        </a>
-                        <p>Akumulátorový vrtací šroubovák Makita DF330DWE 10,8V LI-Ion, 1,3Ah</p>
-                    </div>
+                    <ul id="prodlist" class="small-block-grid-3">
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
+                                <span class="success label">2 ks skladem</span>
+                                <span class="label">3690 Kč</span>
+                            </a>
 
-                    <div class="th radius">
-                        <a href="#">
-                          <strong>Nuair Carry</strong>
-                          <img src="/web/naradi/makita-ddf458rf3j.jpg" />
-                        </a>
-                        <p>Kompresor bezolejový Nuair Carry, vzdušník 6l, 8 bar</p>
-                    </div>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Makita DST221Z</h3>
+                                <img src="/web/naradi/200/makita-dst221z.jpg">
+                            </a>
 
-                    <div class="th radius">
-                        <a  href="#">
-                          <strong>Nuair Carry</strong>
-                          <img src="/web/naradi/nuair-simply.jpg" />
+                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
+                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg">
+
+                            </a>
+
+                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
+                            <span class="success label">2 ks skladem</span>
+                            <span class="label">3690 Kč</span>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
+                                <span class="success label">2 ks skladem</span>
+                                <span class="label">3690 Kč</span>
+                            </a>
+
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Makita DST221Z</h3>
+                                <img src="/web/naradi/200/makita-dst221z.jpg">
+                            </a>
+
+                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
+                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg">
+
+                            </a>
+
+                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
+                            <span class="success label">2 ks skladem</span>
+                            <span class="label">3690 Kč</span>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
+                                <span class="success label">2 ks skladem</span>
+                                <span class="label">3690 Kč</span>
                         </a>
                         <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                    </div>
-                </div>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Makita DST221Z</h3>
+                                <img src="/web/naradi/200/makita-dst221z.jpg">
+                            </a>
+
+                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
+                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg">
+
+                            </a>
+
+                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
+                            <span class="success label">2 ks skladem</span>
+                            <span class="label">3690 Kč</span>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
+                                <span class="success label">2 ks skladem</span>
+                                <span class="label">3690 Kč</span>
+                            </a>
+
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Makita DST221Z</h3>
+                                <img src="/web/naradi/200/makita-dst221z.jpg">
+                            </a>
+
+                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
+                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg"/>
+
+                            </a>
+
+                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
+                            <span class="success label">2 ks skladem</span>
+                            <span class="label">3690 Kč</span>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
+                                <span class="success label">2 ks skladem</span>
+                                <span class="label">3690 Kč</span>
+                            </a>
+
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Makita DST221Z</h3>
+                                <img src="/web/naradi/200/makita-dst221z.jpg">
+                            </a>
+
+                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
+                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg"/>
+
+                            </a>
+
+                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
+                            <span class="success label">2 ks skladem</span>
+                            <span class="label">3690 Kč</span>
+                        </li>
+                    </ul>
+
+
                     <ul class="pagination">
                         <li class="arrow unavailable"><a href="">&laquo;</a></li>
                         <li class="current"><a href="">1</a></li>
@@ -133,7 +257,7 @@
                         <li><a href="">12</a></li>
                         <li><a href="">13</a></li>
                         <li class="arrow"><a href="">&raquo;</a></li>
-                     </ul>
+                    </ul>
             </div>
         </div>
         <p><a href="http://localhost:8000/adm/">ADM</a></p>
