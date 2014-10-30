@@ -6,6 +6,30 @@
 Uživatelé hledají
 @stop
 
+{{-- JavaScript on page --}}
+@section ('script')
+<script>
+    $(document).ready(function (e) {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+        $('#myTab a[href="#profile"]').tab('show');
+        if(location.hash) {
+            $('a[href=' + location.hash + ']').tab('show');
+        }
+        $(document.body).on("click", "a[data-toggle]", function(event) {
+            location.hash = this.getAttribute("href");
+        });
+    });
+    $(window).on('popstate', function() {
+        var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
+        $('a[href=' + anchor + ']').tab('show');
+    });
+</script>
+@stop
+
+
 {{-- Content --}}
 @section('content')
 <ul class="nav nav-tabs" role="tablist">
@@ -28,11 +52,11 @@ Uživatelé hledají
             </thead>
             <tfoot>
                 <tr>
-                     <td colspan="5" class="text-right">Zobrazeno : <strong>{{ count($recordvisitors) }}</strong> výsledků</td>
+                     <td colspan="5" class="text-right">Zobrazeno : <strong>{{ count($window1) }}</strong> výsledků</td>
                 </tr>
             </tfoot>
             <tbody>
-                @foreach ($recordvisitors as $row)
+            @foreach ($window1 as $row)
                 <tr>
                     <td>{{ $row->id; }}</td>
                     <td>{{ $row->find_at; }}</td>
@@ -40,56 +64,59 @@ Uživatelé hledají
                     <td>{{ $row->count_prod; }}</td>
                     <td>{{ $row->count_dev; }}</td>
                 </tr>
-                @endforeach
+            @endforeach
             </tbody>
         </table>
     </div>
-    <div class="tab-pane fade in active" id="favorite" style="padding-top: 2em">
-    <table>
+    <div class="tab-pane fade" id="favorite" style="padding-top: 2em">
+        <table class="table table-bordered table-striped table-condensed table-hover">
         <thead>
             <tr class="center">
-                <th>Počet</th>
                 <th>Hledaný výraz</th>
+                <th>Počet</th>
+                <th>&sum; Produktů</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <td colspan="3" class="right">Zobrazeno : <strong>{{ count($res) }}</strong> výsledků</td>
+                <td colspan="3" class="text-right">Zobrazeno : <strong>{{ count($window2) }}</strong> výsledků</td>
             </tr>
         </tfoot>
         <tbody>
-                @foreach ($recordvisitors as $row)
-                    <tr>
-                        <td class="center"><?= $row->pocet; ?></td>
-                        <td><?= $row->lpf_filter_find; ?></td>
-                    </tr>
-                @endforeach
+        @foreach ($window2 as $row)
+            <tr>
+                <td>{{ $row->filter_find }}</td>
+                <td>{{ $row->pocet  }}</td>
+                <td>{{ $row->count_prod  }}</td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
     </div>
-    <div class="tab-pane fade in active" id="zero" style="padding-top: 2em">
-        <table>
+    <div class="tab-pane fade" id="zero" style="padding-top: 2em">
+        <table class="table table-bordered table-striped table-condensed table-hover">
             <thead>
                 <tr class="center">
+                <th>Hledaný výraz</th>
                     <th>Počet</th>
-                    <th>Hledaný výraz</th>
-                    <th>SUMA</th>
+
+                    <th>&sum; Produktů</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <td colspan="4" class="right">Zobrazeno : <strong>{{ count($res) }}</strong> výsledků</td>
+                    <td colspan="4" class="text-right">Zobrazeno : <strong>{{ count($window3) }}</strong> výsledků</td>
                 </tr>
             </tfoot>
-                @foreach ($recordvisitors as $row)
-                    <tbody>
-                        <tr>
-                            <td class="center"><?= $row->pocet; ?></td>
-                            <td><?= $row->lpf_filter_find ?></td>
-                            <td class="center"><?= $row->lpf_result_count_prod; ?></td>
-                        </tr>
-                    </tbody>
-                @endforeach
+            <tbody>
+            @foreach ($window3 as $row)
+                <tr>
+                    <td>{{ $row->filter_find }}</td>
+                    <td>{{ $row->pocet  }}</td>
+                    <td>{{ $row->count_prod  }}</td>
+                </tr>
+            @endforeach
+            </tbody>
         </table>
     </div>
 </div>
