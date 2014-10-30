@@ -11,7 +11,6 @@ Založení nové .csv šablony
 <script>
     $(document).ready(function () {
         $("#mixture_dev_id").select2({
-            minimumResultsForSearch: 3,
             allowClear: true
         });
     });
@@ -31,7 +30,6 @@ Založení nové .csv šablony
         {{ Form::select('mixture_dev_id', $select_mixture_dev, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zvol skupinu výrobců')) }}
     </div>
 </div>
-
 
 
 <p class="text-center">

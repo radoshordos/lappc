@@ -14,7 +14,7 @@ class SyncCsvTemplateController extends \BaseController
 
     public function index()
     {
-        $col = array();
+        $col = [];
         $tag = DB::table('sync_csv_template')
             ->select('id', DB::raw('(SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
                                     FROM sync_template_m2n_colmun
@@ -30,17 +30,17 @@ class SyncCsvTemplateController extends \BaseController
             }
         }
 
-        return View::make('adm.sync.template.index', array(
+        return View::make('adm.sync.template.index', [
             'template' => $this->template->orderBy('id')->get(),
             'tag' => (!empty($col) ? $col : NULL)
-        ));
+        ]);
     }
 
     public function create()
     {
-        return View::make('adm.sync.template.create', array(
-            'select_mixture_dev' => [''] + SB::option("SELECT * FROM mixture_dev ORDER BY id DESC", ['id' => '->name'])
-        ));
+        return View::make('adm.sync.template.create', [
+            'select_mixture_dev' => SB::option("SELECT * FROM mixture_dev ORDER BY id DESC", ['id' => '->name'], true)
+        ]);
     }
 
     public function store()
@@ -70,17 +70,17 @@ class SyncCsvTemplateController extends \BaseController
             return Redirect::route('adm.sync.template.index');
         }
 
-        return View::make('adm.sync.template.edit', array(
+        return View::make('adm.sync.template.edit', [
             'template' => $template,
             'm2n' => SyncTemplateM2nColmun::where('template_id', '=', $id)->orderBy('id')->get(),
-            'select_column' => [''] + SB::option("SELECT *
+            'select_column' => SB::option("SELECT *
                                                   FROM sync_csv_column
                                                   WHERE id NOT IN (
                                                       SELECT column_id
                                                       FROM sync_template_m2n_colmun
                                                       WHERE template_id = $id)"
-                    ,['id' => '<->element> - ->desc'])
-        ));
+                , ['id' => '<->element> - ->desc'], true)
+        ]);
     }
 
     public function update($id)
