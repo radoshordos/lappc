@@ -8,7 +8,6 @@ Uživatelé hledají
 
 {{-- Content --}}
 @section('content')
-
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#last" role="tab" data-toggle="tab">Poslední hledané výrazy</a></li>
   <li><a href="#favorite" role="tab" data-toggle="tab">Nejčasněji hledané výrazy</a></li>
@@ -49,13 +48,13 @@ Uživatelé hledají
     <table>
         <thead>
             <tr class="center">
-                <th>PoÄ?et</th>
-                <th>HledanĂ˝ vĂ˝raz</th>
+                <th>Počet</th>
+                <th>Hledaný výraz</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <td colspan="3" class="right">Zobrazeno : <strong><?= count($res) ?></strong> Ĺ?ĂĄdkĹŻ</td>
+                <td colspan="3" class="right">Zobrazeno : <strong>{{ count($res) }}</strong> výsledků</td>
             </tr>
         </tfoot>
         <tbody>
@@ -67,23 +66,19 @@ Uživatelé hledají
                 @endforeach
         </tbody>
     </table>
-
-
     </div>
     <div class="tab-pane fade in active" id="zero" style="padding-top: 2em">
-
-
         <table>
             <thead>
                 <tr class="center">
-                    <th>PoÄ?et</th>
-                    <th>HledanĂ˝ vĂ˝raz</th>
+                    <th>Počet</th>
+                    <th>Hledaný výraz</th>
                     <th>SUMA</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <td colspan="4" class="right">Zobrazeno : <strong><?= count($res) ?></strong> Ĺ?ĂĄdkĹŻ</td>
+                    <td colspan="4" class="right">Zobrazeno : <strong>{{ count($res) }}</strong> výsledků</td>
                 </tr>
             </tfoot>
                 @foreach ($recordvisitors as $row)
@@ -96,8 +91,6 @@ Uživatelé hledají
                     </tbody>
                 @endforeach
         </table>
-
-        
     </div>
 </div>
 @stop
