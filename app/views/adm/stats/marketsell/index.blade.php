@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Statistiky produktů
+Statistiky prodeje v obchodu
 @stop
 
 {{-- JavaScript on page --}}
@@ -16,7 +16,7 @@ Statistiky produktů
         var data = google.visualization.arrayToDataTable([
           ['M\u011bsíc', 'Cena celkem s dopravou', 'Cena celkem','Doprava'],
           @foreach($source as $val)
-            [{{substr($val->_month, 0, 7)}},  {{ $val->price_all }},  {{ $val->result_price_only }},  {{ $val->price_transport }}],
+            [{{ "'".substr($val->month, 0, 7)."'"}},  {{ $val->price_all }},  {{ $val->result_price_only }},  {{ $val->price_transport }}],
           @endforeach
         ]);
         var options = {
@@ -25,6 +25,23 @@ Statistiky produktů
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
+      $(document).ready(function (e) {
+          $('#myTab a').click(function (e) {
+              e.preventDefault();
+              $(this).tab('show');
+          })
+          $('#myTab a[href="#profile"]').tab('show');
+          if(location.hash) {
+              $('a[href=' + location.hash + ']').tab('show');
+          }
+          $(document.body).on("click", "a[data-toggle]", function(event) {
+              location.hash = this.getAttribute("href");
+          });
+      });
+      $(window).on('popstate', function() {
+          var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
+          $('a[href=' + anchor + ']').tab('show');
+      });
 </script>
 @stop
 
@@ -59,69 +76,56 @@ Statistiky produktů
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade in active" id="profile-group" style="padding-top: 2em">
+    <div class="tab-pane fade in active" id="graph" style="padding-top: 2em">
         <div id="chart_div" style="width: 1200px; height: 600px;"></div>
     </div>
-    <div class="tab-pane fade" id="profile-group" style="padding-top: 2em">
-
+    <div class="tab-pane fade" id="table" style="padding-top: 2em">
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Měsíc</th>
+                    <th>Počet<br />objednávek<br />celkem</th>
+                    <th>Počet<br />objednávek<br />úspěšných</th>
+                    <th>Průmerna<br />cena<br />nakupu</th>
+                    <th>Cena<br />+TRA</th>
+                    <th>Cena</th>
+                    <th>TRA</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr style="background-color: #add978">
+                    <th>SUMA</th>
+                    <td>{{ $sum->sum_month_count_buy_all }}</td>
+                    <td>{{ $sum->sum_month_count_buy_success }}</td>
+                    <td>A/N</td>
+                    <td>{{ round($sum->sum_month_price_all, 0) }}</td>
+                    <td>{{ round($sum->sum_month_price_only, 0) }}</td>
+                    <td>{{ round($sum->sum_month_price_transport, 0) }}</td>
+                </tr>
+                <tr style="background-color: #7aba7b">
+                    <th>PRŮMER</th>
+                    <td>{{ round(($sum->sum_month_count_buy_all / $sum->sum_count_row), 0) }}</td>
+                    <td>{{ round(($sum->sum_month_count_buy_success / $sum->sum_count_row), 0) }}</td>
+                    <td>{{ round(($sum->sum_month_price_all / $sum->sum_month_count_buy_success), -1) }}</td>
+                    <td>{{ round(($sum->sum_month_price_all / $sum->sum_count_row), 0) }}</td>
+                    <td>{{ round(($sum->sum_month_price_only / $sum->sum_count_row), 0) }}</td>
+                    <td>{{ round(($sum->sum_month_price_transport / $sum->sum_count_row), 0) }}</td>
+                </tr>
+            </tfoot>
+            <tbody>
+            @foreach($source as $row)
+                <tr>
+                    <td>{{ substr($row->month, 0, 7) }}</td>
+                    <td>{{ $row->count_buy_all }}</td>
+                    <td>{{ $row->count_buy_success }}</td>
+                    <td>{{ round($row->result_price_prumer, -1)}}</td>
+                    <td>{{ round($row->price_all, 0) }}</td>
+                    <td>{{ round($row->result_price_only, 0) }}</td>
+                    <td>{{ round($row->price_transport, 0) }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
-
-
-
 @stop
-
-
-<!-- /*
-
-
-
-<table>
-    <thead>
-        <tr>
-            <th>Měsíc</th>
-            <th>Počet<br />objednávek<br />celkem</th>
-            <th>Počet<br />objednávek<br />úspěšných</th>
-            <th>Průmerna<br />cena<br />nakupu</th>
-            <th>Cena<br />+TRA</th>
-            <th>Cena</th>
-            <th>TRA</th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>SUMA</th>
-            <td>< $sum->sum_month_count_buy_all; ?></td>
-            <td>< $sum->sum_month_count_buy_success; ?></td>
-            <td>A/N</td>
-            <td>< $sum->sum_month_price_all; ?></td>
-            <td>< $sum->sum_month_price_only; ?></td>
-            <td>< $sum->sum_month_price_transport; ?></td>
-        </tr>
-        <tr>
-            <th>PRŮMER</th>
-            <td>< round(($sum->sum_month_count_buy_all / $sum->sum_count_row), 0); ?></td>
-            <td>< round(($sum->sum_month_count_buy_success / $sum->sum_count_row), 0); ?></td>
-            <td>< round(($sum->sum_month_price_all / $sum->sum_month_count_buy_success), -1); ?></td>
-            <td>< round(($sum->sum_month_price_all / $sum->sum_count_row), 0); ?></td>
-            <td>< round(($sum->sum_month_price_only / $sum->sum_count_row), 0); ?></td>
-            <td>< round(($sum->sum_month_price_transport / $sum->sum_count_row), 0); ?></td>
-        </tr>
-</tfoot>
-                    <tbody>
-
-                            <tr class="right">
-                                <td> substr($v->lm_month, 0, 7) </td>
-                                <td> $v->lm_count_buy_all </td>
-                                <td> $v->lm_count_buy_success </td>
-                                <td> round($v->result_price_prumer, -1) </td>
-                                <td> $v->lm_price_all </td>
-                                <td> $v->result_price_only </td>
-                                <td> $v->lm_price_transport </td>
-                            </tr>
-                    </tbody>
-                </table>
-
-
-
- */ -->
