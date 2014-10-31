@@ -16,7 +16,7 @@ Statistiky produktů
         var data = google.visualization.arrayToDataTable([
           ['M\u011bsíc', 'Cena celkem s dopravou', 'Cena celkem','Doprava'],
           @foreach($source as $val)
-          [{{substr($val->_month, 0, 7)}},  {{ $val->price_all }},  {{ $val->result_price_only }},  {{ $val->price_transport }}],
+            [{{substr($val->_month, 0, 7)}},  {{ $val->price_all }},  {{ $val->result_price_only }},  {{ $val->price_transport }}],
           @endforeach
         ]);
         var options = {
@@ -52,51 +52,62 @@ Statistiky produktů
 </div>
 </div>
 {{ Form::close() }}
-<div id="chart_div" style="width: 1200px; height: 600px;"></div>
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#graph" role="tab" data-toggle="tab">Graf</a></li>
+  <li><a href="#table" role="tab" data-toggle="tab">Tabulka</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="profile-group" style="padding-top: 2em">
+        <div id="chart_div" style="width: 1200px; height: 600px;"></div>
+    </div>
+    <div class="tab-pane fade" id="profile-group" style="padding-top: 2em">
+
+    </div>
+</div>
+
+
+
 @stop
 
 
 <!-- /*
 
-            <script type="text/javascript">
-
-            </script>
-
-
 
 
 <table>
-                    <thead>
-                        <tr>
-                            <th>Měsíc</th>
-                            <th>Počet<br />objednávek<br />celkem</th>
-                            <th>Počet<br />objednávek<br />úspěšných</th>
-                            <th>Průmerna<br />cena<br />nakupu</th>
-                            <th>Cena<br />+TRA</th>
-                            <th>Cena</th>
-                            <th>TRA</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr class="right">
-                            <th>SUMA</th>
-                            <td>< $sum->sum_month_count_buy_all; ?></td>
-                            <td>< $sum->sum_month_count_buy_success; ?></td>
-                            <td>A/N</td>
-                            <td>< $sum->sum_month_price_all; ?></td>
-                            <td>< $sum->sum_month_price_only; ?></td>
-                            <td>< $sum->sum_month_price_transport; ?></td>
-                        </tr>
-                        <tr class="right">
-                            <th>PRŮMER</th>
-                            <td>< round(($sum->sum_month_count_buy_all / $sum->sum_count_row), 0); ?></td>
-                            <td>< round(($sum->sum_month_count_buy_success / $sum->sum_count_row), 0); ?></td>
-                            <td>< round(($sum->sum_month_price_all / $sum->sum_month_count_buy_success), -1); ?></td>
-                            <td>< round(($sum->sum_month_price_all / $sum->sum_count_row), 0); ?></td>
-                            <td>< round(($sum->sum_month_price_only / $sum->sum_count_row), 0); ?></td>
-                            <td>< round(($sum->sum_month_price_transport / $sum->sum_count_row), 0); ?></td>
-                        </tr>
-                    </tfoot>
+    <thead>
+        <tr>
+            <th>Měsíc</th>
+            <th>Počet<br />objednávek<br />celkem</th>
+            <th>Počet<br />objednávek<br />úspěšných</th>
+            <th>Průmerna<br />cena<br />nakupu</th>
+            <th>Cena<br />+TRA</th>
+            <th>Cena</th>
+            <th>TRA</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>SUMA</th>
+            <td>< $sum->sum_month_count_buy_all; ?></td>
+            <td>< $sum->sum_month_count_buy_success; ?></td>
+            <td>A/N</td>
+            <td>< $sum->sum_month_price_all; ?></td>
+            <td>< $sum->sum_month_price_only; ?></td>
+            <td>< $sum->sum_month_price_transport; ?></td>
+        </tr>
+        <tr>
+            <th>PRŮMER</th>
+            <td>< round(($sum->sum_month_count_buy_all / $sum->sum_count_row), 0); ?></td>
+            <td>< round(($sum->sum_month_count_buy_success / $sum->sum_count_row), 0); ?></td>
+            <td>< round(($sum->sum_month_price_all / $sum->sum_month_count_buy_success), -1); ?></td>
+            <td>< round(($sum->sum_month_price_all / $sum->sum_count_row), 0); ?></td>
+            <td>< round(($sum->sum_month_price_only / $sum->sum_count_row), 0); ?></td>
+            <td>< round(($sum->sum_month_price_transport / $sum->sum_count_row), 0); ?></td>
+        </tr>
+</tfoot>
                     <tbody>
 
                             <tr class="right">
