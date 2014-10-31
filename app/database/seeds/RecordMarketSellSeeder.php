@@ -46,7 +46,7 @@ class RecordMarketSellSeeder extends Seeder
         foreach ($log2market as $row) {
 
             DB::table('record_market_sell')->insert([
-                'id'                => $row['is_id'],
+                'id'                => $row['lm_id'],
                 'month'             => $row['lm_month'],
                 'count_buy_all'     => $row['lm_count_buy_all'],
                 'count_buy_success' => $row['lm_count_buy_success'],

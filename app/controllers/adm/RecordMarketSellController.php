@@ -1,9 +1,20 @@
 <?php
 
+use Authority\Eloquent\RecordMarketSell;
+
 class RecordMarketSellController extends \BaseController
 {
     public function index()
     {
+        return View::make('adm.stats.marketsell.index', [
+            'choice-month-start' => Input::get('month-start'),
+            'choice-month-end'   => Input::get('month-end'),
+            'max_insert_month'   => substr(RecordMarketSell::max('month'), 0, 7),
+            'min_insert_month'   => substr(RecordMarketSell::min('month'), 0, 7)
+        ]);
+    }
+}
+
 /*
 $inc = 0;
 $max_insert_month = substr($db->fetchOne($db->select()->from("log2market", array("MAX(lm_month)"))), 0, 7);
@@ -35,5 +46,3 @@ if (!empty($_POST["submit-month-record"])) {
 }
 */
 
-    }
-}

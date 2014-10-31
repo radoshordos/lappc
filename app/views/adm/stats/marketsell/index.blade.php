@@ -8,17 +8,25 @@ Statistiky produktů
 
 {{-- Content --}}
 @section('content')
-            <form action="" method="post">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><input type="month" name="month-start" min="<?= $min_insert_month ?>" max="<?= $max_insert_month ?>" value="<?= (!empty($_POST["month-start"]) ? $_POST["month-start"] : $min_insert_month); ?>" /></td>
-                            <td><input type="month" name="month-end"  min="<?= $min_insert_month ?>"  max="<?= $max_insert_month ?>" value="<?= (!empty($_POST["month-end"]) ? $_POST["month-end"] : $max_insert_month); ?>" /></td>
-                            <td><?= $this->formSubmit("submit-month-record", "Provést"); ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+<form action="" method="post">
+<table>
+    <tbody>
+        <tr>
+            <td>{{ Form::selectMonth('month-start',['min'=> $min_insert_month,'max'=> $max_insert_month, 'value' => (!empty($_POST["month-start"]) ? $_POST["month-start"] : $min_insert_month);) }}</td>
+            <td>{{ Form::selectMonth('month-end',['min'=> $min_insert_month,'max'=> $max_insert_month, 'value' => $max_insert_month]) }}</td>
+            <td>{{ Form::submit("Provést",["name" => "submit-month-record"]) }}</td>
+        </tr>
+    </tbody>
+</table>
+</form>
+@stop
+
+
+            <td><input type="month" name="month-start" min="<?= $min_insert_month ?>" max="<?= $max_insert_month ?>" value="<?= (!empty($_POST["month-start"]) ? $_POST["month-start"] : $min_insert_month); ?>" /></td>
+            <td><input type="month" name="month-end"  min="<?= $min_insert_month ?>"  max="<?= $max_insert_month ?>" value="<?= (!empty($_POST["month-end"]) ? $_POST["month-end"] : $max_insert_month); ?>" /></td>
+            <td><?= $this->formSubmit("submit-month-record", "Provést"); ?></td>
+
+
 
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
@@ -42,9 +50,6 @@ Statistiky produktů
             </script>
             <div id="chart_div"></div>
 
-
-
-@stop
 
 
 <table>
