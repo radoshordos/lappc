@@ -8,16 +8,16 @@ class ProdWarrantyTableSeeder extends Seeder
         DB::table('dev')->delete();
         DB::table('prod_warranty')->delete();
 
-        DB::table('prod_warranty')->insert(array(
-            'id' => 1,
+        DB::table('prod_warranty')->insert([
+            'id'             => 1,
             'warranty_month' => 24,
-            'name' => '24 měsíců'
-        ));
+            'name'           => '24 měsíců'
+        ]);
 
-        DB::table('prod_warranty')->insert(array(
-            'id' => 2,
+        DB::table('prod_warranty')->insert([
+            'id'             => 2,
             'warranty_month' => 36,
-            'name' => '36 měsíců'
-        ));
+            'name'           => '36 měsíců'
+        ]);
     }
 }

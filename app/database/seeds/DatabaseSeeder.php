@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call('GrabModeSeeder');
         $this->call('GrabProfileSeeder');
         $this->call('ColumnTableSeeder');
+        $this->call('RecordMarketSellSeeder');
 
         // OSTATNI
         $this->call('FeedServiceTableSeeder');
