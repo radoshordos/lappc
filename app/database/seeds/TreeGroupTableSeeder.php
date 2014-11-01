@@ -119,36 +119,35 @@ class TreeGroupTableSeeder extends Seeder
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 34,
+            'id' => 35,
             'grouptop_id' => 20,
-            'for_prod' => 1,
             'type' => 'prodhelpless',
             'name' => 'Zboží samostatně neprodejné'
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 35,
+            'id' => 36,
             'grouptop_id' => 20,
             'type' => 'prodfind',
             'name' => 'Vyhledánání'
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 36,
+            'id' => 37,
             'grouptop_id' => 20,
             'type' => 'prodaction',
             'name' => 'Akce'
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 37,
+            'id' => 38,
             'grouptop_id' => 20,
             'type' => 'prodaction',
             'name' => 'Výprodej'
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 38,
+            'id' => 39,
             'grouptop_id' => 20,
             'type' => 'prodnew',
             'name' => 'Novinky'
