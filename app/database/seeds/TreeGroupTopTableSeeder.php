@@ -8,12 +8,12 @@ class TreeGroupTopTableSeeder extends Seeder
         DB::table('tree_group')->delete();
         DB::table('tree_group_top')->delete();
 
-        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(1, '[NULL]'));
-        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(10, 'Úvodní strana'));
-        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(20, 'Zboží'));
-        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(30, 'Text'));
-        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(50, 'Různé'));
-        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', array(90, 'Nákupní košík'));
+        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', [1, '[NULL]']);
+        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', [10, 'Úvodní strana']);
+        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', [20, 'Zboží']);
+        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', [50, 'Text']);
+        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', [80, 'Různé']);
+        DB::insert('INSERT INTO tree_group_top (id, name) VALUES (?, ?)', [90, 'Nákupní košík']);
 
     }
 }
