@@ -9,7 +9,6 @@ class ItemsSeeder extends Seeder
 
         DB::table('items')->insert([
             'prod_id'         => 1,
-            'sale_id'         => 1,
             'availability_id' => 2,
             'code_prod'       => 'test',
             'code_ean'        => 'test'
@@ -17,7 +16,6 @@ class ItemsSeeder extends Seeder
 
         DB::table('items')->insert([
             'prod_id'         => 2,
-            'sale_id'         => 2,
             'availability_id' => 3,
             'code_prod'       => 'test2',
             'code_ean'        => 'test2'

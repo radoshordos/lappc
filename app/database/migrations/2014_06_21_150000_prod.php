@@ -13,6 +13,7 @@ class Prod extends Migration
             $table->integer('tree_id')->unsigned();
             $table->integer('dev_id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned()->default(3);
+            $table->tinyInteger('sale_id')->unsigned()->default(1);
             $table->tinyInteger('difference_id')->unsigned()->default(1);
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
             $table->tinyInteger('forex_id')->unsigned()->default(1);
@@ -23,30 +24,24 @@ class Prod extends Migration
 	        $table->tinyInteger('ic_sale_diff_visible')->unsigned()->default(0);
 	        $table->tinyInteger('ic_price_diff_visible')->unsigned()->default(0);
             $table->tinyInteger('ia_price_sale_visible')->unsigned()->default(0);
-
             $table->decimal('price', 9, 2)->unsigned();
-            $table->string('alias', '64');
-            $table->string('name', '64');
-            $table->string('desc', '128');
+            $table->string('alias', '64')->unique();
+            $table->string('name', '64')->unique();
+            $table->string('desc', '128')->unique();
             $table->float('transport_weight')->unsigned()->default(0.1);
             $table->boolean('transport_atypical')->default(0);
             $table->tinyInteger('picture_count')->unsigned()->default(0);
             $table->timestamps();
-
             $table->engine = 'InnoDB';
-            $table->unique('alias');
-            $table->unique('name');
-            $table->unique('desc');
 
             $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('sale_id')->references('id')->on('prod_sale')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('mode_id')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('dph_id')->references('id')->on('dph')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('forex_id')->references('id')->on('forex')->onUpdate('cascade')->onDelete('no action');
         });
-
-
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
         DB::unprepared('

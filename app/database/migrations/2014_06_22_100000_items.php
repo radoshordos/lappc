@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Items extends Migration
 {
@@ -11,46 +11,23 @@ class Items extends Migration
 
             $table->increments('id')->unsigned();
             $table->integer('prod_id')->unsigned();
-            $table->tinyInteger('sale_id')->unsigned();
             $table->tinyInteger('availability_id')->unsigned();
             $table->smallInteger('diff_val1_id')->unsigned()->default(1);
             $table->smallInteger('diff_val2_id')->unsigned()->default(1);
             $table->boolean('visible')->default(1);
-            $table->string('code_prod',32)->nullable();
-            $table->string('code_ean',32)->nullable();
-	        $table->decimal('iprice', 9, 2)->unsigned()->default(0);
+            $table->string('code_prod', 32)->nullable()->unique();
+            $table->string('code_ean', 32)->nullable()->unique();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('code_prod');
-            $table->unique('code_ean');
             $table->unique(['prod_id','diff_val1_id','diff_val2_id']);
 
-            $table->foreign('sale_id')->references('id')->on('items_sale')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('availability_id')->references('id')->on('items_availability')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('diff_val1_id')->references('id')->on('prod_difference_values')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('diff_val2_id')->references('id')->on('prod_difference_values')->onUpdate('cascade')->onDelete('no action');
         });
 
-/*     SELECT MIN(items.iprice * items_sale.multiple) INTO items_min_price_visible_with_sale
-                FROM items
-                INNER JOIN items_sale ON items.sale_id = items_sale.id
-                WHERE   items.visible = 1 AND
-                        items.iprice > 0
-                        items.prod_id = OLD.prod_id;
-*/
-/*
-				SELECT MIN(akce.aiprice * items_sale.multiple) INTO min_price_visible FROM items
-    	        INNER JOIN items_sale ON items.sale_id = items_sale.id
-                WHERE   items.visible = 1 AND
-                        items.iprice > 0 AND
-                        items.prod_id = NEW.prod_id;
-
-                SELECT akce_item.aiprice INTO akce_item_price FROM akce_items WHERE akce_items.item_id = NEW.id;
-                SELECT akce_item.sale_id INTO akce_sale_id FROM akce_items WHERE akce_items.item_id = NEW.id;
-
-*/
         DB::unprepared('DROP TRIGGER IF EXISTS items_ai');
         DB::unprepared('
             CREATE TRIGGER items_ai AFTER INSERT ON items
@@ -59,7 +36,6 @@ class Items extends Migration
                 DECLARE prod_mode_id INT;
                 DECLARE prod_price INT;
                 DECLARE akce_item_price INT;
-                DECLARE akce_sale_id INT;
 
                 DECLARE count_all INT;
                 DECLARE count_visible INT;
@@ -74,8 +50,6 @@ class Items extends Migration
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible = 1;
-                SELECT COUNT(DISTINCT iprice) INTO count_price_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
-                SELECT COUNT(DISTINCT sale_id) INTO count_sale_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
                 SELECT COUNT(DISTINCT availability_id) INTO count_availability_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
 
                 UPDATE prod SET ic_all = count_all,
@@ -99,8 +73,6 @@ class Items extends Migration
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE NEW.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE NEW.prod_id=items.prod_id AND visible=1;
-                SELECT COUNT(DISTINCT iprice) INTO count_price_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
-                SELECT COUNT(DISTINCT sale_id) INTO count_sale_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
                 SELECT COUNT(DISTINCT availability_id) INTO count_availability_diff_visible FROM items WHERE NEW.prod_id = items.prod_id AND visible = 1;
 
                 UPDATE prod SET ic_all = count_all,
@@ -125,8 +97,6 @@ class Items extends Migration
 
                 SELECT COUNT(*) INTO count_all FROM items WHERE OLD.prod_id=items.prod_id;
                 SELECT COUNT(*) INTO count_visible FROM items WHERE OLD.prod_id=items.prod_id AND visible=1;
-                SELECT COUNT(DISTINCT iprice) INTO count_price_diff_visible FROM items WHERE OLD.prod_id = items.prod_id AND visible = 1;
-                SELECT COUNT(DISTINCT sale_id) INTO count_sale_diff_visible FROM items WHERE OLD.prod_id = items.prod_id AND visible = 1;
                 SELECT COUNT(DISTINCT availability_id) INTO count_availability_diff_visible FROM items WHERE OLD.prod_id = items.prod_id AND visible = 1;
 
                 UPDATE prod SET ic_all = count_all,

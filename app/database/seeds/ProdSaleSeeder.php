@@ -1,11 +1,11 @@
 <?php
 
-class ItemsSaleTableSeeder extends Seeder
+class ProdSaleSeeder extends Seeder
 {
 
     public function run()
     {
-        $items2sale = [
+        $prod2sale = [
             ['is_id' => '5', 'is_visible' => '0', 'is_multiple' => '0.99', 'is_desc' => 'Sleva - 1% sleva', 'is_name' => '1%'],
             ['is_id' => '10', 'is_visible' => '0', 'is_multiple' => '0.98', 'is_desc' => 'Sleva - 2% sleva', 'is_name' => '2%'],
             ['is_id' => '15', 'is_visible' => '1', 'is_multiple' => '0.97', 'is_desc' => 'Sleva - 3% sleva', 'is_name' => '3%'],
@@ -45,25 +45,25 @@ class ItemsSaleTableSeeder extends Seeder
         ];
 
         DB::table('dev')->delete();
-        DB::table('items_sale')->delete();
+        DB::table('prod_sale')->delete();
 
-        DB::table('items_sale')->insert([
+        DB::table('prod_sale')->insert([
             'id'       => 1,
             'multiple' => 1,
             'name'     => '0%',
             'desc'     => 'Běžná cena - 0% sleva'
         ]);
 
-        DB::table('items_sale')->insert([
+        DB::table('prod_sale')->insert([
             'id'       => 2,
             'multiple' => 0.998,
             'name'     => '0.2%',
             'desc'     => 'Sleva - 0.2% sleva'
         ]);
 
-        foreach ($items2sale as $row) {
+        foreach ($prod2sale as $row) {
 
-            DB::table('items_sale')->insert([
+            DB::table('prod_sale')->insert([
                 'id'       => $row['is_id'],
                 'multiple' => $row['is_multiple'],
                 'name'     => $row['is_name'],

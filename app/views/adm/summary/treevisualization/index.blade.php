@@ -25,7 +25,7 @@ Vizualizace skupin
         data.addColumn('string', 'ToolTip');
         data.addRows([
             @foreach($the as $row)
-                [{{ "'".$row->id."'" }}, {{ "'".$row->parent_id."'" }}, {{ "'".$row->name."'" }}],
+                [{{ "'".$row->id."'" }}, {{ "'".$row->parent_id."'" }}, {{ "'".$row->desc."'" }}],
             @endforeach
         ]);
         var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));

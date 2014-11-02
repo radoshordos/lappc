@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call('PpcKeywordsMatchTableSeeder');
         $this->call('PpcAdQualitySeeder');
         $this->call('ProdWarrantyTableSeeder');
-        $this->call('ItemsSaleTableSeeder');
+        $this->call('ProdSaleSeeder');
         $this->call('ItemsAvailabilityTableSeeder');
         $this->call('TreeGroupTopTableSeeder');
         $this->call('TreeGroupTableSeeder');

@@ -177,29 +177,32 @@
         </div>
         @if ($prod->ic_all > 0)
         <div class="row">
-            <table style="margin-top:4px;margin-bottom:4px">
+            <table class="table table-bordered table-striped" style="margin-top:4px;margin-bottom:4px">
                 <thead>
-                    <tr>
-                        <th>Zobrazit</th>
-                        <th colspan="2" class="text-center">Rozdílnosti</th>
+                    <tr style="background-color: #CCCCCC">
+                        <th class="text-center">Zobrazit</th>
+                        @if ($prod->prodDifference->count > 0)
+                        <th colspan="{{ $prod->prodDifference->count }}" class="text-center">Rozdílnosti</th>
+                        @endif
                         <th>Kód</th>
                         <th>EAN</th>
-                        <th>Sleva</th>
                         <th>Dostupnost</th>
-                        <th>Cena</th>
+                        <th><span class="glyphicon glyphicon-remove"></span></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($table_items as $item)
                     <tr>
                         <td>{{ Form::select("visible[$item->id]", ['0' => 'NE', '1' => 'ANO'], $item->visible, ['class' => 'form-control']) }}</td>
+                        @if ($prod->prodDifference->count > 0)
                         <td>{{ Form::text("diff1[$item->id]", $item->diff1, ['class'=> 'form-control']) }}</td>
+                        @endif
+                        @if ($prod->prodDifference->count > 1)
                         <td>{{ Form::text("diff2[$item->id]", $item->diff2, ['class'=> 'form-control']) }}</td>
+                        @endif
                         <td>{{ Form::text("code_prod[$item->id]", $item->code_prod, ['class'=> 'form-control']) }}</td>
                         <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, ['class'=> 'form-control']) }}</td>
-                        <td>{{ Form::select("sale_id[$item->id]", $select_sale, $item->sale_id, ['class' => 'form-control']) }}</td>
                         <td>{{ Form::select("availability_id[$item->id]", $select_availability, $item->availability_id, ['class' => 'form-control']) }}</td>
-                        <td>{{ Form::number("iprice[$item->id]", round($item->iprice,$prod->forex->round_with), ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
                         <td>{{ Form::checkbox('item[$item->id]') }}</td>
                     </tr>
                     @endforeach
