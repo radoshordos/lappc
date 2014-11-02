@@ -17,11 +17,11 @@ class SyncManualImportController extends \BaseController
         }
 
         return View::make('adm.sync.manualimport.index', [
-            'data' => $db->paginate($input_limit),
+            'data'         => $db->paginate($input_limit),
             'choice_limit' => $input_limit,
             'choice_mddev' => Input::get('select_mddev'),
             'select_mddev' => SB::option('SELECT DISTINCT sd.dev_id,md.id AS mdid,md.purpose,md.name FROM sync_db as sd LEFT JOIN mixture_dev_m2n_dev as mdmd ON sd.dev_id = mdmd.dev_id INNER JOIN mixture_dev as md ON md.id = mdmd.mixture_dev_id ORDER BY md.purpose DESC,md.name', ['mdid' => '->name'], true)
         ]);
     }
 
-} 
+}

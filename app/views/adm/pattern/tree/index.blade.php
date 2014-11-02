@@ -34,19 +34,19 @@ Skupiny zboží
             <div class="col-xs-4">
                 {{ Form::select('treegroup',
                     ['0' => 'Všechny nadskupiny'] + $select_group, (isset($input['treegroup']) ? $input['treegroup'] : NULL),
-                    array('id'=> 'treegroup', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                    ['id'=> 'treegroup', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-4">
                 {{ Form::select('deep',
                     ['0' => 'Všechny úrovně zanoření','1' => '1. úroveň zanoření','2'=> '2. úroveň zanoření','3'=> '3. úroveň zanoření'],
                     (isset($input['deep']) ? $input['deep'] : NULL),
-                    array('id'=> 'deep', 'class'=> 'form-control', 'onchange' => 'this.form.submit()'))
+                    ['id'=> 'deep', 'class'=> 'form-control', 'onchange' => 'this.form.submit()'])
                 }}
             </div>
             <div class="col-xs-4">
                 {{ Form::select('limit',
                     ['30' => '30 zobrazených položek','90' => '90 zobrazených položek'], (isset($input['limit']) ? $input['limit'] : NULL),
-                    array('id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()'))
+                    ['id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()'])
                 }}
             </div>
         </div>
@@ -75,7 +75,7 @@ Skupiny zboží
                 <td>{{ $tree->name }}</td>
                 <td>{{ $tree->desc }}</td>
                 <td>{{ $tree->absolute }}</td>
-                <td>{{ link_to_route('adm.pattern.tree.edit','Edit',array($tree->id),array('class' => 'btn btn-info btn-xs')) }}</td>
+                <td>{{ link_to_route('adm.pattern.tree.edit','Edit',array($tree->id),['class' => 'btn btn-info btn-xs']) }}</td>
             </tr>
             @endforeach
             </tbody>
@@ -84,6 +84,6 @@ Skupiny zboží
 </div>
 @endif
 <p class="text-center">
-    {{ link_to_route('adm.pattern.tree.create','Přidat novou skupinu',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+    {{ link_to_route('adm.pattern.tree.create','Přidat novou skupinu',NULL, ['class'=>'btn btn-success','role'=> 'button']) }}
 </p>
 @stop

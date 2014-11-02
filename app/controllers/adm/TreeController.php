@@ -1,8 +1,8 @@
 <?php
 
 use Authority\Eloquent\Tree;
-use Authority\Tools\ToolTree;
 use Authority\Tools\SB;
+use Authority\Tools\ToolTree;
 
 
 class TreeController extends \BaseController
@@ -35,11 +35,11 @@ class TreeController extends \BaseController
             ->limit(Input::get('limit'))
             ->get();
 
-        return View::make('adm.pattern.tree.index', array(
+        return View::make('adm.pattern.tree.index', [
             'trees' => $tree,
             'input' => $input,
             'select_group' => SB::option("SELECT * FROM tree_group WHERE grouptop_id = 20 AND for_prod = 1", ['id' => '[->id] - ->name'])
-        ));
+        ]);
     }
 
     /**
@@ -50,9 +50,9 @@ class TreeController extends \BaseController
      */
     public function create()
     {
-        return View::make('adm.pattern.tree.create', array(
-            'select_parent' => [''] + SB::option("SELECT * FROM tree", ['id' => '[->id] - ->absolute - ->desc'])
-        ));
+        return View::make('adm.pattern.tree.create', [
+            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->absolute - ->desc'], true)
+        ]);
     }
 
     /**
@@ -104,11 +104,11 @@ class TreeController extends \BaseController
             return Redirect::route('adm.pattern.tree.index');
         }
 
-        return View::make('adm.pattern.tree.edit', array(
+        return View::make('adm.pattern.tree.edit', [
             'tree' => $tree,
             'select_dev' => SB::option("SELECT * FROM dev", ['id' => '->name']),
             'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->name'])
-        ));
+        ]);
     }
 
     /**
