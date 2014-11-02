@@ -10,7 +10,7 @@ Rozdělení nadskupin
 @section('content')
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <table class="table table-bordered table-hover table-striped">
+        <table class="table table-bordered table-hover table-striped table-condensed">
             <thead>
                 <th>#ID</th>
                 <th>Název</th>
