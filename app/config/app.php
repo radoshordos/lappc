@@ -110,7 +110,8 @@ return [
         'Way\Generators\GeneratorsServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'Slushie\LaravelAssetic\LaravelAsseticServiceProvider'
+        'Slushie\LaravelAssetic\LaravelAsseticServiceProvider',
+        'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider'
     ],
 
     /*
@@ -177,6 +178,6 @@ return [
         'Str'         => 'Illuminate\Support\Str',
         'URL'         => 'Illuminate\Support\Facades\URL',
         'Validator'   => 'Illuminate\Support\Facades\Validator',
-        'View'        => 'Illuminate\Support\Facades\View'
+        'View'        => 'Illuminate\Support\Facades\View',
     ],
 ];

@@ -11,6 +11,7 @@
         "slushie/laravel-assetic": "dev-master",
         "nervo/yuicompressor": "dev-master",
         "mrclay/minify": "dev-master",
+        "fitztrev/laravel-html-minify": "1.*",
         "components/bootstrap": "3.*",
         "components/jquery": "1.*",
         "components/jqueryui": "1.*",
