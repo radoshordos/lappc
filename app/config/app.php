@@ -110,8 +110,7 @@ return [
         'Way\Generators\GeneratorsServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'Slushie\LaravelAssetic\LaravelAsseticServiceProvider',
-        'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider'
+        'Slushie\LaravelAssetic\LaravelAsseticServiceProvider'
     ],
 
     /*

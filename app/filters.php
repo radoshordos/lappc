@@ -17,28 +17,24 @@ App::before(function ($request) {
 
 App::after(function($request, $response)
 {
+    // HTML Minification
+//    if(App::Environment() != 'local')
+//    {
+//        if ($response instanceof Illuminate\Http\Response && str_contains($response->headers->get('content-type'), 'text/html'))
+//        {
+//            $output = $response->getOriginalContent();
 
-    if(App::Environment() != 'local')
-    {
-        if($response instanceof Illuminate\Http\Response)
-        {
-            $output = $response->getOriginalContent();
+//            $filters = [
+//                '/<!--([^\[|(<!)].*)/'     => '', // Remove HTML Comments (breaks with HTML5 Boilerplate)
+//                '/(?<!\S)\/\/\s*[^\r\n]*/' => '', // Remove comments in the form /* */
+//                '/\s{2,}/'                 => ' ', // Shorten multiple white spaces
+//                '/(\r?\n)/'                => '', // Collapse new lines
+//            ];
+//            $output = preg_replace(array_keys($filters), array_values($filters), $output);
 
-            $filters = array(
-                //Remove HTML comments except IE conditions
-                '/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s'	=> '',
-                // Remove comments in the form /* */
-                '/(?<!\S)\/\/\s*[^\r\n]*/'				=> '',
-                // Shorten multiple white spaces
-                '/\s{2,}/'						=> '',
-                // Collapse new lines
-                '/(\r?\n)/'						=> '',
-            );
-
-            $output = preg_replace(array_keys($filters), array_values($filters), $output);
-            $response->setContent($output);
-        }
-    }
+//            $response->setContent($output);
+//        }
+//    }
 });
 
 /*
