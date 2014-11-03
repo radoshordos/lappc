@@ -1,6 +1,6 @@
 <?php namespace Authority\Tools\Grab;
 
-class Script
+class ActionMethods
 {
     private $source;
     private $name;
@@ -79,18 +79,15 @@ class Script
         return NULL;
     }
 
-    public function createAliasName($string)
+    public function friendlyUrl()
     {
-        $chars = [
-            '&' => '-', '/' => '-', '"' => '-', '+' => '-', ' ' => '-',
-            '=' => '-', '>' => '-', '<' => '-', '\'' => '', '(' => '',
-            ')' => '', '?' => '', 'ø' => '', '#' => '', ':' => '',
-            ',' => '', '§' => '', '.' => '', '“' => '', '×' => '', '`' => '', "--" => "-"
-        ];
-
-        $str1 = mb_convert_case(self::csUtf2Ascii($string), MB_CASE_LOWER, "ASCII");
-        $str2 = str_replace(['--'], "-", str_replace(array_keys($chars), array_values($chars), trim(strtolower(strip_tags($str1)))));
-        return str_replace(['--'], "-", $str2);
+        $url = $this->source;
+        $url = preg_replace('~[^\\pL0-9_]+~u', '-', $url);
+        $url = trim($url, "-");
+        $url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
+        $url = strtolower($url);
+        $url = preg_replace('~[^-a-z0-9_]+~', '', $url);
+        return $url;
     }
 
     public function explode2ColumnArrays()

@@ -9,6 +9,11 @@ class Prod extends \Eloquent
         'id' => 'required|integer',
     ];
 
+    public static $rules_picture = [
+        'img_big'    => 'required',
+        'img_normal' => 'required',
+    ];
+
     public function scopeDev($query, $int)
     {
         if (!empty($int)) {
@@ -26,6 +31,11 @@ class Prod extends \Eloquent
     public function forex()
     {
         return $this->hasOne('Authority\Eloquent\Forex', 'id', 'forex_id');
+    }
+
+    public function tree()
+    {
+        return $this->hasOne('Authority\Eloquent\Tree', 'id', 'tree_id');
     }
 
     public function dev()

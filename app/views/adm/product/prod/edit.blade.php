@@ -307,7 +307,7 @@
                     {{ Form::text('upload_url', NULL, ['class'=> 'form-control']) }}
                 </div>
                 <div class="row col-sm-offset-1 col-md-9">
-                    {{ Form::submit('submit_url', ['class'=> 'form-control btn-success']) }}
+                    {{ Form::submit('Zpracovat obrázek', ['name' => 'picture-work','class'=> 'form-control btn-success']) }}
                 </div>
             </div>
         </div>
@@ -358,7 +358,6 @@
                             <td>{{ Form::select("ai_sale_id[$item->id]", $select_sale, NULL, ['class' => 'form-control']) }}</td>
                             <td>{{ Form::text('virtual_item_availability[$item->id]', $item->itemsAvailability->name, ['readonly' => 'readonly', 'class'=> 'form-control btn-group']) }}</td>
                             <td>{{ Form::select("ai_availability_id[$item->id]", $select_availability_action, NULL, ['class' => 'form-control']) }}</td>
-                            <td>{{ Form::number("ai_iprice[$item->id]", /* round($item->iprice,$prod->forex->round_with)*/ NULL , ['required' => 'required', 'min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</td>
                         </tr>
                     @endforeach
                         <tr>

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class ProdPicture extends Migration
 {
@@ -11,12 +11,11 @@ class ProdPicture extends Migration
 
 			$table->increments('id')->unsigned();
 			$table->integer('prod_id')->unsigned();
-			$table->string('img_big', 80);
-			$table->string('img_normal', 80);
-			$table->string('img_snormal', 80);
-			$table->string('img_small', 80);
+            $table->string('img_big', 160);
+            $table->string('img_normal', 160);
 
 			$table->engine = 'InnoDB';
+            $table->unique(['prod_id', 'img_big']);
 			$table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');
 		});
 

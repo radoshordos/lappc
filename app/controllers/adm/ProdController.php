@@ -5,8 +5,11 @@ use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
+use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
+use Authority\Tools\Grab\ActionMethods;
 use Authority\Tools\SB;
+use Intervention\Image\Facades\Image;
 
 class ProdController extends \BaseController
 {
@@ -66,7 +69,6 @@ class ProdController extends \BaseController
 
     public function edit($tree = 0, $prod = 0)
     {
-
         Input::has("list_tree") ? $true_tree = Input::get("list_tree") : $true_tree = $tree;
         Input::has("list_prod") ? $true_prod = Input::get("list_prod") : $true_prod = $prod;
 
@@ -108,7 +110,7 @@ class ProdController extends \BaseController
                 'select_dph'                 => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
                 'select_mode'                => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
                 'select_forex'               => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale'                => SB::option("SELECT * FROM items_sale WHERE visible = 1", ['id' => '->name']),
+                'select_sale' => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->name']),
                 'select_difference'          => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
                 'select_availability'        => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
                 'select_availability_action' => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
@@ -125,11 +127,49 @@ class ProdController extends \BaseController
         }
     }
 
-
     public function update($tree, $prod)
     {
         $input = Input::all();
         $row = $this->prod->find($prod);
+
+        if (Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url'))) {
+
+            $input_picture = array_only($input, ['picture-work', 'upload_url']);
+            $path = realpath(__DIR__ . '\..\..\..\public\web\naradi' . '\\' . $row->tree->absolute . '\\');
+            $hash = substr(md5(file_get_contents(Input::get('upload_url'))), 0, 8);
+            $grab = new ActionMethods();
+            $grab->setSource($row->name);
+
+            try {
+                $img = Image::make(Input::get('upload_url'));
+                $name_big = $grab->friendlyUrl() . '(' . $img->width() . 'x' . $img->height() . ')-' . $hash . '.jpg';
+                $name_normal = $grab->friendlyUrl() . '.jpg';
+
+                $img->resize(1024, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save($path . '\\' . $name_big, 95);
+
+                $img->sharpen(8)->resize(192, 192, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->resizeCanvas(192, 192)->save($path . '\\' . $name_normal, 95);
+
+                $aff = ProdPicture::create([
+                    'prod_id'    => $row->id,
+                    'img_big'    => $name_big,
+                    'img_normal' => $name_normal,
+                ]);
+
+                if ($aff) {
+                    Session::flash('success', 'Obrázek byl uložen');
+                }
+
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
+        }
 
         if (Input::has('button-submit-edit')) {
 
@@ -266,5 +306,6 @@ class ProdController extends \BaseController
             }
             return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
         }
+
     }
 }

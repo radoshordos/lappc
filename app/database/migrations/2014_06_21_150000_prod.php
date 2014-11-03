@@ -30,6 +30,8 @@ class Prod extends Migration
             $table->string('desc', '128')->unique();
             $table->float('transport_weight')->unsigned()->default(0.1);
             $table->boolean('transport_atypical')->default(0);
+            $table->string('img_big', '160');
+            $table->string('img_normal', '160');
             $table->tinyInteger('picture_count')->unsigned()->default(0);
             $table->timestamps();
             $table->engine = 'InnoDB';
