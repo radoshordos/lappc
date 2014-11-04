@@ -61,7 +61,7 @@
 {{ Form::close() }}
 
 @if (isset($prod))
-{{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form']) }}
+{{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form','files'=> true]) }}
 
 <div id="content">
     <ul id="tabs" class="nav nav-tabs container" data-tabs="tabs">

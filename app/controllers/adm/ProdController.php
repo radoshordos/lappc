@@ -7,9 +7,9 @@ use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
 use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
-use Authority\Tools\Grab\ActionMethods;
+use Authority\Tools\Image\ProdImage;
 use Authority\Tools\SB;
-use Intervention\Image\Facades\Image;
+
 
 class ProdController extends \BaseController
 {
@@ -110,11 +110,11 @@ class ProdController extends \BaseController
                 'select_dph'                 => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
                 'select_mode'                => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
                 'select_forex'               => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale' => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->name']),
+                'select_sale'                => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->name']),
                 'select_difference'          => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
                 'select_availability'        => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
                 'select_availability_action' => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
-                'select_media_var'           => [""] + SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name']),
+                'select_media_var'           => SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name'], true),
                 'select_akce_template'       => SB::option("SELECT at.id,at.bonus_title,am.name AS minitext_name,aa.name AS availability_name
                                                             FROM akce_template AS at
                                                             INNER JOIN akce_minitext AS am ON am.id = at.minitext_id
@@ -132,39 +132,39 @@ class ProdController extends \BaseController
         $input = Input::all();
         $row = $this->prod->find($prod);
 
-        if (Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url'))) {
+        if (Input::hasFile('input-1a')) {
+            $file = Input::file('input-1a')->getClientMimeType();
+            if ($file == 'image/jpeg' || $file == 'image/png') {
+                try {
+                    $img = new ProdImage(Input::file('input-1a')->getPathname(), $row->tree->absolute, $row->name);
+                    $img->createProdPictures();
+                    $aff = ProdPicture::create([
+                        'prod_id'    => $row->id,
+                        'img_big'    => $img->getImgBig(),
+                        'img_normal' => $img->getImgNormal()
+                    ]);
+                    if ($aff) {
+                        Session::flash('success', "Obrázek byl uploadován a zpracován: ". $img->getOutputPath());
+                    }
+                } catch (Exception $e) {
+                    Session::flash('error', $e->getMessage());
+                }
+            }
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
+        }
 
-            $input_picture = array_only($input, ['picture-work', 'upload_url']);
-            $path = realpath(__DIR__ . '\..\..\..\public\web\naradi' . '\\' . $row->tree->absolute . '\\');
-            $hash = substr(md5(file_get_contents(Input::get('upload_url'))), 0, 8);
-            $grab = new ActionMethods();
-            $grab->setSource($row->name);
-
+        if ((Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url')))) {
             try {
-                $img = Image::make(Input::get('upload_url'));
-                $name_big = $grab->friendlyUrl() . '(' . $img->width() . 'x' . $img->height() . ')-' . $hash . '.jpg';
-                $name_normal = $grab->friendlyUrl() . '.jpg';
-
-                $img->resize(1024, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })->save($path . '\\' . $name_big, 95);
-
-                $img->sharpen(8)->resize(192, 192, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })->resizeCanvas(192, 192)->save($path . '\\' . $name_normal, 95);
-
+                $img = new ProdImage(Input::get('upload_url'), $row->tree->absolute, $row->name);
+                $img->createProdPictures();
                 $aff = ProdPicture::create([
                     'prod_id'    => $row->id,
-                    'img_big'    => $name_big,
-                    'img_normal' => $name_normal,
+                    'img_big'    => $img->getImgBig(),
+                    'img_normal' => $img->getImgNormal()
                 ]);
-
                 if ($aff) {
-                    Session::flash('success', 'Obrázek byl uložen');
+                    Session::flash('success', "Obrázek byl zpracován a uložen: ". $img->getOutputPath());
                 }
-
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
@@ -306,6 +306,6 @@ class ProdController extends \BaseController
             }
             return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
         }
-
+        return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
     }
 }
