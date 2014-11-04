@@ -29,11 +29,13 @@ class ProdImage
         return $this->image->mime();
     }
 
+    public function getImagePath()
+    {
+        return $this->image_path;
+    }
+
     public function getExtension()
     {
-        if ($this->getMime() == 'image/png') {
-            return "png";
-        }
         return "jpg";
     }
 
@@ -70,12 +72,13 @@ class ProdImage
     {
         try {
 
-            $this->image->resize(1024, 800, function ($constraint) {
+            $source = Image::canvas($this->image->width(), $this->image->height(), '#FFFFFF')->insert($this->getImagePath());
+
+            $source->resize(1024, 800, function ($constraint) {
                 $constraint->aspectRatio();
-                $constraint->upsize();
             })->save($this->getOutputPath() . '\\' . $this->getImgBig(), $quality);
 
-            $this->image->sharpen(8)->resize(192, 192, function ($constraint) {
+            $source->sharpen(8)->resize(192, 192, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->resizeCanvas(192, 192)->save($this->getOutputPath() . '\\' . $this->getImgNormal(), $quality);
