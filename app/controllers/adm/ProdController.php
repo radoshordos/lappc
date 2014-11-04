@@ -121,6 +121,7 @@ class ProdController extends \BaseController
                                                             INNER JOIN akce_availability AS aa ON aa.id = at.availibility_id
                                                             WHERE mixture_dev_id IN (" . implode(',', $dev_in_mixture) . ")", ['id' => '->minitext_name] [->availability_name] + ->bonus_title'], TRUE),
                 'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
+                'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->get(),
                 'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get(),
                 'table_prod_description_set' => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
             ])->with(['id' => $prod]);

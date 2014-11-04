@@ -303,14 +303,25 @@
                     {{ Form::file('input-1a',['id' => 'input-1a', 'data-show-preview' => 'false', 'class'=> 'file']) }}
                 </div>
                 <div class="row col-sm-offset-1 col-md-9">
-                    {{ Form::label('upload_url-label','Url obrázku') }}
-                    {{ Form::text('upload_url', NULL, ['class'=> 'form-control']) }}
-                </div>
-                <div class="row col-sm-offset-1 col-md-9">
-                    {{ Form::submit('Zpracovat obrázek', ['name' => 'picture-work','class'=> 'form-control btn-success']) }}
+                    {{ Form::label('upload_url','Zadej URL') }}
+                    <div class="input-group">
+                        {{ Form::text('upload_url', NULL, ['class'=> 'form-control']) }}
+                        <span class="input-group-btn">
+                            {{ Form::submit('Zpracovat obrázek', ['name' => 'picture-work','class'=> 'form-control btn-success']) }}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
+
+        @if ($prod->picture_count > 0)
+            <div class="well well-lg">
+            @foreach($table_prod_picture as $row)
+
+                <img src="{{ '/web/naradi/'.$prod->tree->absolute."/".$row->img_normal }}" class="img-thumbnail" alt="{{ $row->img_normal }}" />
+            @endforeach
+            </div>
+        @endif
     </div>
     @if ($prod->mode_id == 4 && isset($prod->akce->template_id))
     <div class="tab-pane" id="akce" style="padding-top: 2em">

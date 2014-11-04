@@ -146,5 +146,7 @@ Route::get('adm', ['as' => 'adm.home', function () {
     return View::make('adm.home');
 }]);
 
-Route::match(['GET', 'POST'], '/{poz1}', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
-Route::match(['GET', 'POST'], '/{poz1}/{poz2}', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
+Route::get('/naradi/', ['as' => 'fotogalery']);
+
+Route::match(['GET', 'POST'], '/{poz1}', ['as' => 'home1', 'uses' => 'NOHomeController@showWelcome']);
+Route::match(['GET', 'POST'], '/{poz1}/{poz2}', ['as' => 'home2', 'uses' => 'NOHomeController@showWelcome']);
