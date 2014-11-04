@@ -24,6 +24,19 @@ class ProdImage
         $this->grab->setSource($product_name);
     }
 
+    public function getMime()
+    {
+        return $this->image->mime();
+    }
+
+    public function getExtension()
+    {
+        if ($this->getMime() == 'image/png') {
+            return "png";
+        }
+        return "jpg";
+    }
+
     public function getQuarterHash()
     {
         if ($this->quarter === NULL) {
@@ -40,7 +53,7 @@ class ProdImage
     public function getImgBig()
     {
         if ($this->img_big === NULL) {
-            $this->img_big = $this->grab->friendlyUrl() . '(' . $this->image->width() . 'x' . $this->image->height() . ')-' . $this->getQuarterHash() . '.jpg';
+            $this->img_big = $this->grab->friendlyUrl() . '(' . $this->image->width() . 'x' . $this->image->height() . ')-' . $this->getQuarterHash() . '.' . $this->getExtension();
         }
         return $this->img_big;
     }
@@ -48,7 +61,7 @@ class ProdImage
     public function getImgNormal()
     {
         if ($this->img_normal === NULL) {
-            $this->img_normal = $this->grab->friendlyUrl() . '-' . $this->getQuarterHash() . '.jpg';
+            $this->img_normal = $this->grab->friendlyUrl() . '-' . $this->getQuarterHash() . '.' . $this->getExtension();
         }
         return $this->img_normal;
     }
