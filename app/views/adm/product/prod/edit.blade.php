@@ -72,7 +72,7 @@
         @endif
         <li><a href="#fotogalerie" data-toggle="tab">Fotogalerie</a></li>
         <li><a href="#aktivita" data-toggle="tab">Aktivita</a></li>
-    @if ($prod->mode_id == 4 && isset($prod->akce->template_id))
+    @if ($prod->mode_id == 4 && isset($prod->akce->atemplate_id))
         <li><a href="#akce" data-toggle="tab">Akce</a></li>
         @endif
     </ul>
@@ -272,7 +272,7 @@
                 </div>
             </div>
         </div>
-        @if (isset($prod->akce->prod_id))
+        @if (isset($prod->akce->aprod_id))
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">O aktuální akci</h3>
@@ -323,7 +323,7 @@
             </div>
         @endif
     </div>
-    @if ($prod->mode_id == 4 && isset($prod->akce->template_id))
+    @if ($prod->mode_id == 4 && isset($prod->akce->atemplate_id))
     <div class="tab-pane" id="akce" style="padding-top: 2em">
         <div class="panel panel-primary">
             <div class="panel-heading">
