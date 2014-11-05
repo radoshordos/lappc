@@ -32,15 +32,15 @@ class ViewProd extends Migration
                     tree.group_id AS tree_group_id,
                     dev.id AS dev_id,
                     dev.name AS dev_name,
-                    akce.template_id AS akce_template_id,
+                    akce.atemplate_id AS akce_template_id,
                     akce_template.bonus_title AS akce_template_bonus_title,
                     akce_minitext.name AS akce_minitext_name
             FROM    prod
             INNER JOIN prod_warranty ON prod.warranty_id = prod_warranty.id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
-            LEFT JOIN akce ON prod.id = akce.prod_id AND prod.mode_id = 4
-            LEFT JOIN akce_template ON akce.template_id = akce_template.id
+            LEFT JOIN akce ON prod.id = akce.aprod_id AND prod.mode_id = 4
+            LEFT JOIN akce_template ON akce.atemplate_id = akce_template.id
             LEFT JOIN akce_minitext ON akce_template.minitext_id = akce_minitext.id
         ');
     }

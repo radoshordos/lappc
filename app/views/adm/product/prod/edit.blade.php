@@ -332,8 +332,20 @@
             <div class="panel-body">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-2"><b>Šablona</b></div>
+                        <div class="col-md-2">{{ Form::label('template_id','Šablona') }}</div>
                         <div class="col-md-10">{{ Form::select('template_id', $select_akce_template, NULL, ['required' => 'required','class'=> 'form-control']); }}</div>
+                    </div>
+                    <div class="row" style="margin-top: 2em">
+                        <div class="col-md-2">{{ Form::label('aprice','Akční cena v '. $prod->forex->currency) }}</div>
+                        <div class="col-md-2">{{ Form::number('aprice', round($prod['price'],$prod->forex->round_with) , ['min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
+                        <div class="col-md-2">{{ Form::label('vprice','Běžná cena v '. $prod->forex->currency) }}</div>
+                        <div class="col-md-2">{{ Form::number('vprice', round($prod['price'],$prod->forex->round_with) , ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
+                    </div>
+                    <div class="row" style="margin-top: 2em">
+                        <div class="col-md-2">{{ Form::label('aprice','Akční cena v '. $prod->forex->currency) }}</div>
+                        <div class="col-md-2">{{ Form::number('aprice', round($prod['price'],$prod->forex->round_with) , ['min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
+                        <div class="col-md-2">{{ Form::label('vprice','Běžná cena v '. $prod->forex->currency) }}</div>
+                        <div class="col-md-2">{{ Form::number('vprice', round($prod['price'],$prod->forex->round_with) , ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
                     </div>
                 </div>
             </div>
@@ -351,7 +363,7 @@
                             <th rowspan="2">Kód</th>
                             <th colspan="2">Sleva</th>
                             <th colspan="2">Dostupnost</th>
-                            <th>{{ Form::number('price', round($prod['price'],$prod->forex->round_with) , ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</th>
+                            <th></th>
                         </tr>
                         <tr>
                             <th>Prod</th>
@@ -365,15 +377,13 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->code_prod }}</td>
-                            <td>{{ Form::text('virtual_item_sale[$item->id]', $item->itemsSale->name, ['readonly' => 'readonly', 'class'=> 'form-control btn-group']) }}</td>
-                            <td>{{ Form::select("ai_sale_id[$item->id]", $select_sale, NULL, ['class' => 'form-control']) }}</td>
+
                             <td>{{ Form::text('virtual_item_availability[$item->id]', $item->itemsAvailability->name, ['readonly' => 'readonly', 'class'=> 'form-control btn-group']) }}</td>
                             <td>{{ Form::select("ai_availability_id[$item->id]", $select_availability_action, NULL, ['class' => 'form-control']) }}</td>
                         </tr>
                     @endforeach
                         <tr>
                             <td colspan="3"><strong>GLOBAL RESET</strong></td>
-                            <td>{{ Form::select('globa_lsale', [''] + $select_sale, NULL, ['class' => 'form-control']); }}</td>
                             <td></td>
                             <td>{{ Form::select('global_availability', [''] + $select_availability_action, NULL, ['class' => 'form-control']); }}</td>
                             <td>{{ Form::number('global_iprice', NULL, ['min'=> '0', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']); }}</td>
