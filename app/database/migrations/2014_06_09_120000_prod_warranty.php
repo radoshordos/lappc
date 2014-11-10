@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class ProdWarranty extends Migration {
 
@@ -9,13 +9,10 @@ class ProdWarranty extends Migration {
     {
         Schema::create('prod_warranty', function (Blueprint $table) {
 
-            $table->tinyInteger('id')->unsigned();
+            $table->tinyInteger('id')->unsigned()->primary();
             $table->tinyInteger('warranty_month')->unsigned();
-            $table->string('name');
-
+            $table->string('name')->unique();
             $table->engine = 'InnoDB';
-            $table->primary('id');
-            $table->unique('name');
         });
     }
 

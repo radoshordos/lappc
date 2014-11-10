@@ -22,7 +22,7 @@ class FeedAbstract
 
     public function tagPriceVat($row)
     {
-        return "  <PRICE_VAT>" . $row["prod_price"] . "</PRICE_VAT>\n";
+        return "  <PRICE_VAT>" . round($row["query_price"]) . "</PRICE_VAT>\n";
     }
 
     public function tagManufacturer($row)
