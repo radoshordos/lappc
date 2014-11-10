@@ -18,7 +18,6 @@ class ViewProd extends Migration
                     prod.alias AS prod_alias,
                     prod.name AS prod_name,
                     prod.desc AS prod_desc,
-                    prod.price AS prod_price,
                     prod.ic_all AS prod_ic_all,
                     prod.ic_visible AS prod_ic_visible,
                     prod.ic_availability_diff_visible AS prod_ic_availability_diff_visible,
@@ -32,15 +31,18 @@ class ViewProd extends Migration
                     tree.group_id AS tree_group_id,
                     dev.id AS dev_id,
                     dev.name AS dev_name,
-                    akce.atemplate_id AS akce_template_id,
+                    akce.akce_template_id AS akce_template_id,
                     akce_template.bonus_title AS akce_template_bonus_title,
-                    akce_minitext.name AS akce_minitext_name
-            FROM    prod
+                    akce_minitext.name AS akce_minitext_name,
+                    IF (akce.akce_sale_id > 0, (SELECT multiple FROM prod_sale WHERE prod_sale.id = akce_sale_id), (SELECT multiple FROM prod_sale WHERE prod_sale.id = prod.sale_id)) AS query_sale_multiple,
+                    IF (akce.akce_price > 0, (SELECT akce.akce_price * query_sale_multiple), (SELECT prod.price * query_sale_multiple)) AS query_price
+
+            FROM prod
             INNER JOIN prod_warranty ON prod.warranty_id = prod_warranty.id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
-            LEFT JOIN akce ON prod.id = akce.aprod_id AND prod.mode_id = 4
-            LEFT JOIN akce_template ON akce.atemplate_id = akce_template.id
+            LEFT JOIN akce ON prod.id = akce.akce_prod_id AND prod.mode_id = 4 AND akce.akce_template_id > 1
+            LEFT JOIN akce_template ON akce.akce_template_id = akce_template.id
             LEFT JOIN akce_minitext ON akce_template.minitext_id = akce_minitext.id
         ');
     }

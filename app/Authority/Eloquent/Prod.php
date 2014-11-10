@@ -45,7 +45,7 @@ class Prod extends \Eloquent
 
     public function akce()
     {
-        return $this->hasOne('Authority\Eloquent\Akce', 'aprod_id', 'id');
+        return $this->hasOne('Authority\Eloquent\Akce', 'akce_prod_id', 'id');
     }
 
     public function prodDifference()

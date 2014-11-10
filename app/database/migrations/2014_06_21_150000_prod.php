@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Prod extends Migration
 {
@@ -24,7 +24,7 @@ class Prod extends Migration
 	        $table->tinyInteger('ic_sale_diff_visible')->unsigned()->default(0);
 	        $table->tinyInteger('ic_price_diff_visible')->unsigned()->default(0);
             $table->tinyInteger('ia_price_sale_visible')->unsigned()->default(0);
-            $table->decimal('price', 9, 2)->unsigned();
+            $table->decimal('price', 9, 2)->unsigned()->default(999999);
             $table->string('alias', '64')->unique();
             $table->string('name', '64')->unique();
             $table->string('desc', '128')->unique();
@@ -113,7 +113,7 @@ class Prod extends Migration
 
 				IF NEW.mode_id = 4 AND OLD.mode_id != 4
 					THEN
-						INSERT INTO akce (aprod_id,created_at) VALUES (NEW.id,NOW());
+						INSERT INTO akce (akce_prod_id,created_at) VALUES (NEW.id,NOW());
 				END IF;
 				IF OLD.mode_id = 4 AND NEW.mode_id != 4
 					THEN

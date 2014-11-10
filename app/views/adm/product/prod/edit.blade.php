@@ -313,11 +313,9 @@
                 </div>
             </div>
         </div>
-
         @if ($prod->picture_count > 0)
             <div class="well well-lg">
             @foreach($table_prod_picture as $row)
-
                 <img src="{{ '/web/naradi/'.$prod->tree->absolute."/".$row->img_normal }}" class="img-thumbnail" alt="{{ $row->img_normal }}" />
             @endforeach
             </div>
