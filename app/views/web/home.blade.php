@@ -210,17 +210,18 @@
 
 
                 <div class="small-9 columns" style="border: 1px solid #86D2B6">
-                <dl class="sub-nav">
-                    <dt>Výrobce:</dt>
-                    <dd class="active"><a href="#">Vše</a></dd>
-                    <dd><a href="#">Narex <span>(5)</span></a></dd>
-                    <dd><a href="#">Makita <span>(15)</span></a></dd>
-                    <dd><a href="#">Maktec</a></dd>
-                    <dd><a href="#">Metabo</a></dd>
-                    <dd><a href="#">Proteco</a></dd>
-                    <dd><a href="#">Worx</a></dd>
-                    <dd><a href="#">Tona</a></dd>
-                </dl>
+                    <dl id="dev-container" class="sub-nav">
+                        <dt>Výrobci:</dt>
+                        <dd class="active"><a href="#">Všichni</a></dd>
+                        <dd><a href="#">Narex <span>(5)</span></a></dd>
+                        <dd><a href="#">Makita <span>(15)</span></a></dd>
+                        <dd><a href="#">Maktec<span>(1)</span></a></dd>
+                        <dd><a href="#">Metabo<span>(8)</span></a></dd>
+                        <dd><a href="#">Proteco</a></dd>
+                        <dd><a href="#">Worx</a></dd>
+                        <dd><a href="#">Tona</a></dd>
+                    </dl>
+
 
                 <div class="small-12 columns">
                     <label>Začekuj</label>
