@@ -8,25 +8,40 @@ ProdList
 }
 
 #prodlist p {
-    font-size:.8em;
+    margin-top: 5px;
+    font-size: .9em;
+}
+
+#prodlist p::first-letter {
+    text-transform: capitalize
 }
 
 #prodlist img {
-    margin: 2px 5px;
-    padding: 2px;
-    width: 200px !important;
-    height: 200px !important;
+    margin: 0px;
+    padding: 0px;
+    width: 220px;
+    height: 220px;
+    border: 1px solid #eee;
 }
 
 #prodlist .prod {
-    margin: 6px;
-    width: 220px;
-    max-height: 320px;
+    padding: 0 2px;
+    margin: 6px 4px;
+    width: 234px;
+    height: 346px;
 }
 
 #prodlist span {
-    font-size: 0.9em;
+    font-size: 1em;
+    width: 108px;
 }
+
+#prodlist span.price {
+    font-weight: bolder;
+}
+
+
+
 
 /* --------------------------------------------------
 Global

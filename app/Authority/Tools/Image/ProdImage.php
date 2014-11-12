@@ -39,10 +39,10 @@ class ProdImage
         return "jpg";
     }
 
-    public function getQuarterHash()
+    public function getSixthHash()
     {
         if ($this->quarter === NULL) {
-            $this->quarter = substr(md5(file_get_contents($this->image_path)), 0, 8);
+            $this->quarter = substr(md5(file_get_contents($this->image_path)), 2, 8);
         }
         return $this->quarter;
     }
@@ -55,7 +55,7 @@ class ProdImage
     public function getImgBig()
     {
         if ($this->img_big === NULL) {
-            $this->img_big = $this->grab->friendlyUrl() . '(' . $this->image->width() . 'x' . $this->image->height() . ')-' . $this->getQuarterHash() . '.' . $this->getExtension();
+            $this->img_big = $this->grab->friendlyUrl() . '(' . $this->image->width() . 'x' . $this->image->height() . ')-' . $this->getSixthHash() . '.' . $this->getExtension();
         }
         return $this->img_big;
     }
@@ -63,12 +63,12 @@ class ProdImage
     public function getImgNormal()
     {
         if ($this->img_normal === NULL) {
-            $this->img_normal = $this->grab->friendlyUrl() . '-' . $this->getQuarterHash() . '.' . $this->getExtension();
+            $this->img_normal = $this->grab->friendlyUrl() . '-' . $this->getSixthHash() . '.' . $this->getExtension();
         }
         return $this->img_normal;
     }
 
-    public function createProdPictures($quality = 95)
+    public function createProdPictures($width, $height,$quality = 95)
     {
         try {
 
@@ -76,12 +76,13 @@ class ProdImage
 
             $source->resize(1024, 800, function ($constraint) {
                 $constraint->aspectRatio();
+                $constraint->upsize();
             })->save($this->getOutputPath() . '\\' . $this->getImgBig(), $quality);
 
-            $source->sharpen(8)->resize(192, 192, function ($constraint) {
+            $source->sharpen(8)->resize($width, $height, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->resizeCanvas(192, 192)->save($this->getOutputPath() . '\\' . $this->getImgNormal(), $quality);
+            })->resizeCanvas($width, $height)->save($this->getOutputPath() . '\\' . $this->getImgNormal(), $quality);
 
         } catch (Exception $e) {
             Session::flash('error', $e->getMessage());

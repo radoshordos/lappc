@@ -226,156 +226,145 @@
                     <label>Začekuj</label>
                     <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
                     <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-
                     <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
                     <span class="success radius label"><input id="che" type="checkbox"><label for="che">Skladem</label></span>
 
                 </div>
-
                     <ul id="prodlist" class="small-block-grid-3">
                         <li class="prod th radius">
                             <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="label">3690 Kč</span>
+                                <img src="/web/naradi/220/makita-bda340z-c8b4eb23.jpg" width="220" height="220">
+                                    <span class="success label">2 ks skladem</span>
+                                    <span class="price label">3690 Kč</span>
                             </a>
-
                             <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                         <li class="prod th radius">
                             <a href="/ddd">
-                                <h3>Makita DST221Z</h3>
-                                <img src="/web/naradi/200/makita-dst221z.jpg">
-                            </a>
-
-                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
-                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg">
-
-                            </a>
-
-                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
-                            <span class="success label">2 ks skladem</span>
-                            <span class="label">3690 Kč</span>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="label">3690 Kč</span>
+                                <img src="/web/naradi/220/makita-bda340z-f8d3d9f8.jpg" width="220" height="220">
+                                    <span class="success label">1-2 dny</span>
+                                    <span class="price label">3690 Kč</span>
                             </a>
-
                             <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                         <li class="prod th radius">
                             <a href="/ddd">
-                                <h3>Makita DST221Z</h3>
-                                <img src="/web/naradi/200/makita-dst221z.jpg">
-                            </a>
-
-                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
-                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg">
-
-                            </a>
-
-                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
-                            <span class="success label">2 ks skladem</span>
-                            <span class="label">3690 Kč</span>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="label">3690 Kč</span>
-                        </a>
-                        <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Makita DST221Z</h3>
-                                <img src="/web/naradi/200/makita-dst221z.jpg">
+                                <img src="/web/naradi/220/makita-bda340z-cd1728a8.jpg" width="220" height="220">
+                                    <span class="success label">na objednávku</span>
+                                    <span class="price label">3690 Kč</span>
                             </a>
-
-                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
-                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg">
-
-                            </a>
-
-                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
-                            <span class="success label">2 ks skladem</span>
-                            <span class="label">3690 Kč</span>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="label">3690 Kč</span>
-                            </a>
-
                             <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                         <li class="prod th radius">
                             <a href="/ddd">
-                                <h3>Makita DST221Z</h3>
-                                <img src="/web/naradi/200/makita-dst221z.jpg">
-                            </a>
-
-                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
-                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg"/>
-
-                            </a>
-
-                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
-                            <span class="success label">2 ks skladem</span>
-                            <span class="label">3690 Kč</span>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/200/festool-df-500-q-plus.jpg" width="200" height="200">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="label">3690 Kč</span>
+                                <img src="/web/naradi/220/makita-bda340z-c8b4eb23.jpg" width="220" height="220">
+                                    <span class="success label">2 ks skladem</span>
+                                    <span class="price label">3690 Kč</span>
                             </a>
-
                             <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                         <li class="prod th radius">
                             <a href="/ddd">
-                                <h3>Makita DST221Z</h3>
-                                <img src="/web/naradi/200/makita-dst221z.jpg">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-f8d3d9f8.jpg" width="220" height="220">
+                                    <span class="success label">1-2 dny</span>
+                                    <span class="price label">3690 Kč</span>
                             </a>
-
-                            <p>Aku sponkovačka Makita DST221Z, Li-ion 18V,bez aku</p>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                         <li class="prod th radius">
                             <a href="/ddd">
-                                <h3>Metabo BS 14,4 LT 4.0 Ah</h3>
-                                <img src="/web/naradi/200/metabo-bs-144-li-cbbad593b8cbf379.jpg"/>
-
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-cd1728a8.jpg" width="220" height="220">
+                                    <span class="success label">na objednávku</span>
+                                    <span class="price label">3690 Kč</span>
                             </a>
-
-                            <p>Akumulátorový vrtací šroubovák Metabo BS 14,4 LT 14,4V Li-Ion, 4Ah</p>
-                            <span class="success label">2 ks skladem</span>
-                            <span class="label">3690 Kč</span>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-c8b4eb23.jpg" width="220" height="220">
+                                    <span class="success label">2 ks skladem</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-f8d3d9f8.jpg" width="220" height="220">
+                                    <span class="success label">1-2 dny</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-cd1728a8.jpg" width="220" height="220">
+                                    <span class="success label">na objednávku</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-c8b4eb23.jpg" width="220" height="220">
+                                    <span class="success label">2 ks skladem</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-f8d3d9f8.jpg" width="220" height="220">
+                                    <span class="success label">1-2 dny</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-cd1728a8.jpg" width="220" height="220">
+                                    <span class="success label">na objednávku</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-c8b4eb23.jpg" width="220" height="220">
+                                    <span class="success label">2 ks skladem</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-f8d3d9f8.jpg" width="220" height="220">
+                                    <span class="success label">1-2 dny</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/220/makita-bda340z-cd1728a8.jpg" width="220" height="220">
+                                    <span class="success label">na objednávku</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                     </ul>
 
