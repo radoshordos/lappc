@@ -14,10 +14,21 @@ ProdList
     font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
     text-align: center;
     font-size:1em;
+    margin: 2px 5px 10px 5px;
+}
+
+.prod .akce {
+    position: relative;
+    color: #ffffff;
+    background: red;
+    top: 10px;
+    z-index: 3;
+    padding: 3px;
+    opacity: .75;
 }
 
 #prodlist p {
-    margin-top: 5px;
+    margin-top: 7px;
     font-size: .9em;
 }
 
@@ -31,6 +42,7 @@ ProdList
     width: 220px;
     height: 220px;
     border: 1px solid #eee;
+    z-index: -3;
 }
 
 #prodlist .prod {

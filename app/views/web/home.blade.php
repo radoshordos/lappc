@@ -341,11 +341,13 @@
                             <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                         <li class="prod th radius">
+
                             <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
+                                <span class="akce">Šeky 40000 Kč</span>
                                 <img src="/web/naradi/220/makita-bda340z-c8b4eb23.jpg" width="220" height="220">
-                                    <span class="success label">2 ks skladem</span>
-                                    <span class="price label">3690 Kč</span>
+                                <span class="success label">2 ks skladem</span>
+                                <span class="price label">3690 Kč</span>
                             </a>
                             <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
@@ -353,14 +355,15 @@
                             <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
                                 <img src="/web/naradi/220/makita-bda340z-f8d3d9f8.jpg" width="220" height="220">
-                                    <span class="success label">1-2 dny</span>
-                                    <span class="price label">3690 Kč</span>
+                                <span class="success label">1-2 dny</span>
+                                <span class="price label">3690 Kč</span>
                             </a>
                             <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
                         </li>
                         <li class="prod th radius">
                             <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
+                                <span class="akce">AKCE</span>
                                 <img src="/web/naradi/220/makita-bda340z-cd1728a8.jpg" width="220" height="220">
                                     <span class="success label">na objednávku</span>
                                     <span class="price label">3690 Kč</span>
