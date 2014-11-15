@@ -58,42 +58,27 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="small-3 columns" style="border: 1px solid #86D2B6">
-                <nav>
-                    <a class="item">
-                    <label>Ruční nářadí</label>
-                    </a>
-
-                        <ul style="display: block">
-                            <li><a href="#">Aku šroubováky</a></li>
-                            <li><a href="#">Aku úhlové vrtačky</a></li>
-                            <li><a href="#">Aku brusky</a></li>
-                            <li><a href="#">Aku kladiva</a></li>
-                            <li><a href="#">Aku pily</a></li>
-                        </ul>
-                    </nav>
-
-
-
-
-
+    <div id="menubox" class="row">
+    <div class="small-3 columns">
                 @foreach($tree_group as $row)
-                <div class="icon-bar vertical one-up small-3">
+        <div class="icon-bar vertical">
                 <a class="item">
                     <label>{{ $row->name }}</label>
-                    @if($row->id == 22)
-
-                    @endif
                 </a>
                 </div>
+        @if($row->id == 22)
+        <ul style="display: block">
+            <li><a href="#">Aku šroubováky</a></li>
+            <li><a href="#">Aku úhlové vrtačky</a></li>
+            <li><a href="#">Aku brusky</a></li>
+            <li><a href="#">Aku kladiva</a></li>
+            <li><a href="#">Aku pily</a></li>
+        </ul>
+        @endif
                 @endforeach
-
             </div>
 
-
-
-                <div class="small-9 columns" style="border: 1px solid #86D2B6">
+                <div class="small-9 columns">
                     <dl id="dev-container" class="sub-nav">
                         <dt>Výrobci:</dt>
                         <dd class="active"><a href="#">Všichni</a></dd>
@@ -107,14 +92,14 @@
                     </dl>
 
 
-                <div class="small-12 columns">
+                    <div class="small-9 columns">
                     <label>Začekuj</label>
                     <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
                     <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
                     <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
                     <span class="success radius label"><input id="che" type="checkbox"><label for="che">Skladem</label></span>
-
                 </div>
+
                     <ul id="prodlist" class="small-block-grid-3">
                         <li class="prod th radius">
                             <a href="/ddd">

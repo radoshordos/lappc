@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Dph extends Migration {
 
@@ -9,15 +9,11 @@ class Dph extends Migration {
     {
         Schema::create('dph', function (Blueprint $table) {
 
-            $table->tinyInteger('id')->unsigned();
+            $table->tinyInteger('id')->unsigned()->primary();
             $table->boolean('visible')->default(1);
-            $table->double('multiplier');
-            $table->string('name');
-
+            $table->double('multiplier')->unique();
+            $table->string('name')->unique();
             $table->engine = 'InnoDB';
-            $table->primary('id');
-            $table->unique('multiplier');
-            $table->unique('name');
         });
     }
 

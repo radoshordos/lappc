@@ -1,4 +1,23 @@
 /* --------------------------------------------------
+Menu
+-------------------------------------------------- */
+div#menubox div {
+
+}
+
+div.icon-bar.vertical a.item {
+    width: 14.5em;
+    padding: .8em;
+    margin: 0;
+}
+
+div.icon-bar.vertical a.item label {
+    padding-left: 1.2em;
+    margin: 0;
+    text-align: left;
+}
+
+/* --------------------------------------------------
 Dev Container
 -------------------------------------------------- */
 
@@ -77,130 +96,9 @@ li  {font-size: 0.9em}
 /* --------------------------------------------------
 Container
 -------------------------------------------------- */
+
 div#container, div.container { position: relative; width: 990px; margin: 0 auto; padding: 0; }
 
 /* --------------------------------------------------
 Grid
 -------------------------------------------------- */
-
-
-/* --------------------------------------------------
-Navigation
--------------------------------------------------- */
-/*
-nav>ul {
-    margin-left: 0;
-    padding: 1em;
-    background: #EEE;
-    max-width: 230px;
-    border-radius: 3px;
-}
-nav>ul ul {
-    margin-left: 1em;
-}
-nav>ul li {
-    list-style: none;
-
-}
-nav>ul a {
-    display: block;
-}
-nav>ul li.node > a {
-    font-weight: bold;
-}
-
-nav>ul ul {
-    margin-left: 0;
-}
-
-nav>ul a {
-    -webkit-transition: all 300ms ease-out;
-    -moz-transition: all 300ms ease-out;
-    -ms-transition: all 300ms ease-out;
-    -o-transition: all 300ms ease-out;
-    transition: all 300ms ease-out;
-}
-
-nav>ul ul {
-    margin-left: 0;
-}
-nav>ul ul li {
-    font-size: .9em;
-}
-nav>ul li.node > a:after {
-    content: '›';
-    margin-left: .5em;
-    font-weight: normal;
-}
-nav>ul li.node > a {
-    font-weight: bold;
-    text-transform: upperCase;
-}
-nav>ul>li {
-    border-bottom: 1px solid #DDD;
-}
-nav>ul>li:last-child {
-    border-bottom: none;
-}
-nav>ul li:last-child > a {
-    border: none;
-}
-nav>ul li>a:hover {
-    background: #999;
-}
-nav>ul a {
-    padding: 7px 0px 7px 1em;
-}
-nav>ul li li > a {
-    padding-left: 2em;
-}
-nav>ul li li li > a {
-    padding-left: 3em;
-}
-
-
-
-.mtree-skin-selector {
-
-}
-
-.mtree-skin-selector button {
-    padding: 5px 10px;
-    margin-bottom: 1px;
-    background: #BBB;
-}
-
-.mtree-skin-selector button.active {
-    background: #999;
-    font-weight: bold;
-}
-.mtree-skin-selector button.csl.active {
-    background: #FFC000;
-}
-/*
-
-.ui-menu-item {
-    border: 2px solid #7a43b6;
-    background-color: #fcd113;
-    width: 40em;
-    padding: 2px;
-    list-style-type: none;
-}
-
-.ui-menu-item::hover {
-    background-color: red;
-}
-
-.ui-autocomplete {
-    margin-top: 35px !important;
-    padding: 0px;
-}
-
-.xui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
-    background-color: grey;
-    background-image: none;
-    padding: 2px;
-    border-radius: 0;
-    width: 40em;
-}
-*/

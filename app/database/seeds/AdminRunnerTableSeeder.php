@@ -62,7 +62,7 @@ class AdminRunnerTableSeeder extends Seeder
 
 	    DB::table('runner')->insert([
 		    'id' => 181,
-		    'autorun' => 1,
+            'autorun' => 1,
 		    'class' => 'Authority\Runner\Task\Fix\ProdWithoutItem'
 	    ]);
 
@@ -85,9 +85,15 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
-            'id'      => 1004,
+            'id'      => 1006,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncGarland'
+        ]);
+
+        DB::table('runner')->insert([
+            'id'      => 1008,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Store\SyncIgm'
         ]);
 
         DB::table('runner')->insert([
