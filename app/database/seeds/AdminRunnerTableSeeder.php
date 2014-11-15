@@ -89,5 +89,11 @@ class AdminRunnerTableSeeder extends Seeder
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncGarland'
         ]);
+
+        DB::table('runner')->insert([
+            'id'      => 2002,
+            'autorun' => 0,
+            'class'   => 'Authority\Runner\Task\OneRun\CreatePicture'
+        ]);
     }
 }

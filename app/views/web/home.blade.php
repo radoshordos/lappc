@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="en"> <![endif]-->
-<html class="no-js" lang="en">
+<!--[if IE 9]><html class="lt-ie10" lang="cs"> <![endif]-->
+<html class="no-js" lang="cs">
 
 <head>
     <meta charset="utf-8">
@@ -48,152 +48,36 @@
                             </div>
                         </li>
                     </ul>
-
-
-
-
-
-
-
-
-
                 </section>
             </nav>
-                    <ul class="breadcrumbs">
-                        <li><a href="#">Úvod</a></li>
-                        <li><a href="#">Akumulátorové nářadí</a></li>
-                        <li><a href="#">Aku kladiva</a></li>
-                    </ul>
-                </div>
-            </div>
-                                                <nav>
-                                                <a class="item">
-                                                <label>Ruční nářadí</label>
-                                                </a>
-
-                                                <ul style="display: block">
-                                                  <li><a href="#">Aku šroubováky</a></li>
-                                                  <li><a href="#">Aku úhlové vrtačky</a></li>
-                                                  <li><a href="#">Aku brusky</a></li>
-                                                  <li><a href="#">Aku kladiva</a></li>
-                                                  <li><a href="#">Aku pily</a></li>
-                                                </ul>
-                                                </nav>
-            <div class="row">
-                <div class="small-3 columns" style="border: 1px solid #86D2B6">
-
-
-<ul class="mtree transit">
-  <li><a href="#">Africa</a>
-    <ul>
-      <li><a href="#">Algeria</a></li>
-      <li><a href="#">Marocco</a></li>
-      <li><a href="#">Libya</a></li>
-      <li><a href="#">Somalia</a></li>
-      <li><a href="#">Kenya</a></li>
-      <li><a href="#">Mauritania</a></li>
-      <li><a href="#">South Africa</a></li>
-    </ul>
-  </li>
-  <li><a href="#">America</a>
-    <ul>
-      <li><a href="#">North-America</a>
-        <ul>
-          <li><a href="#">Canada</a></li>
-          <li><a href="#">USA</a>
-            <ul>
-              <li><a href="#">New York</a></li>
-              <li><a href="#">California</a>
-                <ul>
-                  <li><a href="#">Los Angeles</a></li>
-                  <li><a href="#">San Diego</a></li>
-                  <li><a href="#">Sacramento</a></li>
-                  <li><a href="#">San Francisco</a></li>
-                  <li><a href="#">Bakersville</a></li>
+                <ul class="breadcrumbs">
+                    <li><a href="#">Úvod</a></li>
+                    <li><a href="#">Akumulátorové nářadí</a></li>
+                    <li><a href="#">Aku kladiva</a></li>
                 </ul>
-              </li>
-              <li><a href="#">Lousiana</a></li>
-              <li><a href="#">Texas</a></li>
-              <li><a href="#">Nevada</a></li>
-              <li><a href="#">Montana</a></li>
-              <li><a href="#">Virginia</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#">Middle-America</a>
-        <ul>
-          <li><a href="#">Mexico</a></li>
-          <li><a href="#">Honduras</a></li>
-          <li><a href="#">Guatemala</a></li>
-         </ul>
-      </li>
-      <li><a href="#">South-America</a>
-        <ul>
-          <li><a href="#">Brazil</a></li>
-          <li><a href="#">Argentina</a></li>
-          <li><a href="#">Uruguay</a></li>
-          <li><a href="#">Chile</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><a href="#">Asia</a>
-    <ul>
-      <li><a href="#">China</a></li>
-      <li><a href="#">India</a></li>
-      <li><a href="#">Malaysia</a></li>
-      <li><a href="#">Thailand</a></li>
-      <li><a href="#">Vietnam</a></li>
-      <li><a href="#">Singapore</a></li>
-      <li><a href="#">Indonesia</a></li>
-      <li><a href="#">Mongolia</a></li>
-   </ul>
-  </li>
-  <li><a href="#">Europe</a>
-    <ul>
-      <li><a href="#">North</a>
-        <ul>
-          <li><a href="#">Norway</a></li>
-          <li><a href="#">Sweden</a></li>
-          <li><a href="#">Finland</a></li>
-        </ul>
-      </li>
-      <li><a href="#">East</a>
-        <ul>
-          <li><a href="#">Romania</a></li>
-          <li><a href="#">Bulgaria</a></li>
-          <li><a href="#">Poland</a></li>
-        </ul>
-      </li>
-      <li><a href="#">South</a>
-        <ul>
-          <li><a href="#">Italy</a></li>
-          <li><a href="#">Greece</a></li>
-          <li><a href="#">Spain</a></li>
-        </ul>
-      </li>
-      <li><a href="#">West</a>
-        <ul>
-          <li><a href="#">France</a></li>
-          <li><a href="#">England</a></li>
-          <li><a href="#">Portugal</a></li>
-        </ul>
-      </li>
-   </ul>
-  </li>
-  <li><a href="#">Oceania</a>
-    <ul>
-      <li><a href="#">Australia</a></li>
-      <li><a href="#">New Zealand</a></li>
-    </ul>
-  </li>
-  <li><a href="#">Arctica</a></li>
-  <li><a href="#">Antarctica</a></li>
-</ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-3 columns" style="border: 1px solid #86D2B6">
+                <nav>
+                    <a class="item">
+                    <label>Ruční nářadí</label>
+                    </a>
+
+                        <ul style="display: block">
+                            <li><a href="#">Aku šroubováky</a></li>
+                            <li><a href="#">Aku úhlové vrtačky</a></li>
+                            <li><a href="#">Aku brusky</a></li>
+                            <li><a href="#">Aku kladiva</a></li>
+                            <li><a href="#">Aku pily</a></li>
+                        </ul>
+                    </nav>
 
 
-{{--
+
+
+
                 @foreach($tree_group as $row)
                 <div class="icon-bar vertical one-up small-3">
                 <a class="item">
@@ -204,7 +88,7 @@
                 </a>
                 </div>
                 @endforeach
---}}
+
             </div>
 
 
@@ -303,7 +187,36 @@
                         <li class="prod th radius">
                             <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/228/maktec-mt070e-8ce42857.jpg" width="228" height="228">
+                                <img src="/web/naradi/228/dewalt-dcd732m2.jpg" width="228" height="228">
+                                <span class="success label">1-2 dny</span>
+                                <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <span class="akce">AKCE</span>
+                                <img src="/web/naradi/228/maktec-mt070e-773f6fe0.jpg" width="228" height="228">
+                                    <span class="success label">na objednávku</span>
+                                    <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <span class="akce">Šeky 40000 Kč</span>
+                                <img src="/web/naradi/228/maktec-mt070e-6a93372b.jpg" width="228" height="228">
+                                <span class="success label">2 ks skladem</span>
+                                <span class="price label">3690 Kč</span>
+                            </a>
+                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
+                        </li>
+                        <li class="prod th radius">
+                            <a href="/ddd">
+                                <h3>Festool DF 500 Q-Plus</h3>
+                                <img src="/web/naradi/228/makita-bda340rfj.jpg" width="228" height="228">
                                 <span class="success label">1-2 dny</span>
                                 <span class="price label">3690 Kč</span>
                             </a>
@@ -342,36 +255,7 @@
                             <a href="/ddd">
                                 <h3>Festool DF 500 Q-Plus</h3>
                                 <span class="akce">AKCE</span>
-                                <img src="/web/naradi/228/maktec-mt070e-773f6fe0.jpg" width="228" height="228">
-                                    <span class="success label">na objednávku</span>
-                                    <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">Šeky 40000 Kč</span>
-                                <img src="/web/naradi/228/maktec-mt070e-6a93372b.jpg" width="228" height="228">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/228/maktec-mt070e-8ce42857.jpg" width="228" height="228">
-                                <span class="success label">1-2 dny</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">AKCE</span>
-                                <img src="/web/naradi/228/maktec-mt070e-773f6fe0.jpg" width="228" height="228">
+                                <img src="/web/naradi/228/makita-bfl120fz.jpg" width="228" height="228">
                                     <span class="success label">na objednávku</span>
                                     <span class="price label">3690 Kč</span>
                             </a>
@@ -398,13 +282,11 @@
     <script src="/web/guru.js"></script>
     <script>
         $(document).foundation();
-
         $(function() {
             $('#term').autocomplete({
                 source: 'getdata',
                 minLength: 1,
                 select:function(e,ui) {
-                    console.log(ui);
                     $('#response').val(ui.item.id);
                 }
             });

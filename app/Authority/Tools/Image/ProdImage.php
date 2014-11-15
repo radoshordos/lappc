@@ -42,7 +42,7 @@ class ProdImage
     public function getSixthHash()
     {
         if ($this->quarter === NULL) {
-            $this->quarter = substr(md5(file_get_contents($this->image_path)), 2, 8);
+            $this->quarter = substr(md5(file_get_contents($this->image_path)), 2, 6);
         }
         return $this->quarter;
     }
