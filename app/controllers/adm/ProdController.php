@@ -138,7 +138,7 @@ class ProdController extends \BaseController
             if ($file == 'image/jpeg' || $file == 'image/png') {
                 try {
                     $img = new ProdImage(Input::file('input-1a')->getPathname(), $row->tree->absolute, $row->name);
-                    $img->createProdPictures(220,220);
+                    $img->createProdPictures(228,228);
                     $aff = ProdPicture::create([
                         'prod_id'    => $row->id,
                         'img_big'    => $img->getImgBig(),
@@ -157,7 +157,7 @@ class ProdController extends \BaseController
         if ((Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url')))) {
             try {
                 $img = new ProdImage(Input::get('upload_url'), $row->tree->absolute, $row->name);
-                $img->createProdPictures(220,220);
+                $img->createProdPictures(228,228);
                 $aff = ProdPicture::create([
                     'prod_id'    => $row->id,
                     'img_big'    => $img->getImgBig(),

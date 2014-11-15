@@ -16,6 +16,10 @@ ProdList
     font-size:1em;
     margin: 2px 5px 10px 5px;
 }
+li.prod {
+    margin: 0px;
+    padding: 0px;
+}
 
 .prod .akce {
     position: relative;
@@ -28,7 +32,7 @@ ProdList
 }
 
 #prodlist p {
-    margin-top: 7px;
+    margin: 7px 2px 2px 2px;
     font-size: .9em;
 }
 
@@ -39,22 +43,22 @@ ProdList
 #prodlist img {
     margin: 0px;
     padding: 0px;
-    width: 220px;
-    height: 220px;
+    width: 228px;
+    height: 228px;
     border: 1px solid #eee;
     z-index: -3;
 }
 
 #prodlist .prod {
-    padding: 0 2px;
-    margin: 6px 4px;
-    width: 234px;
+    padding: 0px;
+    margin: 6px 3px;
+    width: 236px;
     height: 346px;
 }
 
 #prodlist span {
     font-size: 1em;
-    width: 108px;
+    width: 112px;
 }
 
 #prodlist span.price {
