@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\RecordVisitorsLooking;
 use Authority\Eloquent\TreeGroup;
+use Authority\Eloquent\ViewProd;
 use Carbon\Carbon;
 
 class HomeController extends BaseController
@@ -24,6 +25,7 @@ class HomeController extends BaseController
 
         return View::make('web.home', [
             'tree_group' => TreeGroup::where('type', '=', 'prodlist')->get(),
+            'prod_list' => ViewProd::where('prod_mode_id', '>', 1)->get(),
             'term' => Input::get('term')
         ]);
     }

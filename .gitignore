@@ -5,6 +5,7 @@
 .vagrant
 /app/config/defaultMailConfig.php
 /app/config/local/*
+/public/web/naradi/*
 /app/Authority/Runner/Task/Store/data/*
 /app/config/sendGridConfig.php
 /bootstrap/compiled.php

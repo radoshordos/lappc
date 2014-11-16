@@ -101,151 +101,21 @@
                 </div>
 
                     <ul id="prodlist" class="small-block-grid-3">
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">Šeky 40000 Kč</span>
-                                <img src="/web/naradi/228/maktec-mt070e-6a93372b.jpg" width="228" height="228">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/228/maktec-mt070e-8ce42857.jpg" width="228" height="228">
-                                <span class="success label">1-2 dny</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">AKCE</span>
-                                <img src="/web/naradi/228/maktec-mt070e-773f6fe0.jpg" width="228" height="228">
-                                    <span class="success label">na objednávku</span>
-                                    <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">Šeky 40000 Kč</span>
-                                <img src="/web/naradi/228/maktec-mt070e-6a93372b.jpg" width="228" height="228">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/228/maktec-mt070e-8ce42857.jpg" width="228" height="228">
-                                <span class="success label">1-2 dny</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">AKCE</span>
-                                <img src="/web/naradi/228/maktec-mt070e-773f6fe0.jpg" width="228" height="228">
-                                    <span class="success label">na objednávku</span>
-                                    <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">Šeky 40000 Kč</span>
-                                <img src="/web/naradi/228/maktec-mt070e-6a93372b.jpg" width="228" height="228">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/228/dewalt-dcd732m2.jpg" width="228" height="228">
-                                <span class="success label">1-2 dny</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">AKCE</span>
-                                <img src="/web/naradi/228/maktec-mt070e-773f6fe0.jpg" width="228" height="228">
-                                    <span class="success label">na objednávku</span>
-                                    <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">Šeky 40000 Kč</span>
-                                <img src="/web/naradi/228/maktec-mt070e-6a93372b.jpg" width="228" height="228">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/228/makita-bda340rfj.jpg" width="228" height="228">
-                                <span class="success label">1-2 dny</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">AKCE</span>
-                                <img src="/web/naradi/228/maktec-mt070e-773f6fe0.jpg" width="228" height="228">
-                                    <span class="success label">na objednávku</span>
-                                    <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">Šeky 40000 Kč</span>
-                                <img src="/web/naradi/228/maktec-mt070e-6a93372b.jpg" width="228" height="228">
-                                <span class="success label">2 ks skladem</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <img src="/web/naradi/228/maktec-mt070e-8ce42857.jpg" width="228" height="228">
-                                <span class="success label">1-2 dny</span>
-                                <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
-                        <li class="prod th radius">
-                            <a href="/ddd">
-                                <h3>Festool DF 500 Q-Plus</h3>
-                                <span class="akce">AKCE</span>
-                                <img src="/web/naradi/228/makita-bfl120fz.jpg" width="228" height="228">
-                                    <span class="success label">na objednávku</span>
-                                    <span class="price label">3690 Kč</span>
-                            </a>
-                            <p>Frézka Festool domino DF 500 Q-Plus na oválné kolíkové otvory</p>
-                        </li>
+                        @foreach($prod_list as $row)
+                            <li class="prod th radius">
+                                <a href="/ddd">
+                                    <h3>{{ $row->prod_name  }}</h3>
+                                    @if ($row->prod_id % 7 == 0)
+                                        <span class="akce">Šeky 40000 Kč</span>
+                                    @endif
+                                    <img src="{{ '/web/naradi/' . $row->tree_absolute .'/'. $row->prod_img_normal  }}" width="228" height="228">
+                                    <span class="success label">2 ks skladem</span>
+                                    <span class="price label">{{ $row->query_price }} Kč</span>
+                                </a>
+                                <p>{{ $row->prod_desc }}</p>
+                            </li>
+                        @endforeach;
+
                     </ul>
                     <ul class="pagination">
                         <li class="arrow unavailable"><a href="">&laquo;</a></li>
