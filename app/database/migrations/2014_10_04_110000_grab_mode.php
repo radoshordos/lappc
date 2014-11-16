@@ -12,7 +12,6 @@ class GrabMode extends Migration {
             $table->tinyInteger('id')->unsigned()->primary();
             $table->string('alias', 16)->unique();
             $table->string('name', 32)->unique();
-
             $table->engine = 'InnoDB';
         });
 	}

@@ -63,11 +63,11 @@ class TreeGroupTableSeeder extends Seeder
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 26,
+            'id'          => 26,
             'grouptop_id' => 20,
-            'for_prod' => 1,
-            'type' => 'prodlist',
-            'name' => 'Dřevoobráběcí stroje'
+            'for_prod'    => 1,
+            'type'        => 'prodlist',
+            'name'        => 'Dílenské vybavení'
         ]);
 
         DB::table('tree_group')->insert([
@@ -75,7 +75,7 @@ class TreeGroupTableSeeder extends Seeder
             'grouptop_id' => 20,
             'for_prod' => 1,
             'type' => 'prodlist',
-            'name' => 'Kovoobráběcí stoje'
+            'name' => 'Dřevoobráběcí stroje'
         ]);
 
         DB::table('tree_group')->insert([
@@ -83,19 +83,11 @@ class TreeGroupTableSeeder extends Seeder
             'grouptop_id' => 20,
             'for_prod' => 1,
             'type' => 'prodlist',
-            'name' => 'Stavební mechanizace'
+            'name' => 'Kovoobráběcí stoje'
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 29,
-            'grouptop_id' => 20,
-            'for_prod' => 1,
-            'type' => 'prodlist',
-            'name' => 'Dílenské vybavení'
-        ]);
-
-        DB::table('tree_group')->insert([
-            'id' => 30,
+            'id'   => 29,
             'grouptop_id' => 20,
             'for_prod' => 1,
             'type' => 'prodlist',
@@ -103,11 +95,11 @@ class TreeGroupTableSeeder extends Seeder
         ]);
 
         DB::table('tree_group')->insert([
-            'id' => 31,
+            'id'   => 30,
             'grouptop_id' => 20,
             'for_prod' => 1,
             'type' => 'prodlist',
-            'name' => 'Zahradní vybavení'
+            'name' => 'Stavební mechanizace'
         ]);
 
         DB::table('tree_group')->insert([
