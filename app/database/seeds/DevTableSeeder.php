@@ -6,7 +6,6 @@ class DevTableSeeder extends Seeder
     {
 
         $dev = [
-            ['dev_id' => '0', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => '@[ALL]', 'dev_unique_string' => NULL, 'dev_url_2_dev' => NULL, 'dev_url_2_dev_short' => NULL],
             ['dev_id' => '5', 'dev_id_tree' => '1051000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Makita', 'dev_unique_string' => 'makita', 'dev_url_2_dev' => 'http://www.makita.cz/', 'dev_url_2_dev_short' => 'www.makita.cz'],
             ['dev_id' => '6', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Maktec', 'dev_unique_string' => 'maktec', 'dev_url_2_dev' => 'http://www.makita.cz/', 'dev_url_2_dev_short' => 'www.makita.cz'],
             ['dev_id' => '10', 'dev_id_tree' => '1050000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '35', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Narex', 'dev_unique_string' => 'narex', 'dev_url_2_dev' => 'http://www.narex.cz/', 'dev_url_2_dev_short' => 'www.narex.cz'],

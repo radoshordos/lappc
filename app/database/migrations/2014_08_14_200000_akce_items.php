@@ -10,7 +10,7 @@ class AkceItems extends Migration
     {
         Schema::create('akce_items', function (Blueprint $table) {
             $table->increments('ai_id')->unsigned();
-            $table->increments('ai_id_akce')->unsigned();
+            $table->integer('ai_id_akce')->unsigned();
             $table->integer('ai_item_id')->unsigned();
             $table->integer('ai_id_diff1')->unsigned();
             $table->integer('ai_id_diff2')->unsigned();

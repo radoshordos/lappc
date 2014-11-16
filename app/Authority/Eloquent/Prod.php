@@ -10,6 +10,7 @@ class Prod extends \Eloquent
         'tree_id'    => 'required|exists:tree,id',
         'dev_id'     => 'required|exists:dev,id',
         'name'       => "required|unique:prod,name",
+        'desc'       => "required|unique:prod,desc",
         'alias'      => "required|unique:prod,alias",
     ];
 

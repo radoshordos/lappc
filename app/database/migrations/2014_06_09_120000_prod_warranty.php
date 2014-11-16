@@ -10,7 +10,7 @@ class ProdWarranty extends Migration {
         Schema::create('prod_warranty', function (Blueprint $table) {
 
             $table->tinyInteger('id')->unsigned()->primary();
-            $table->tinyInteger('warranty_month')->unsigned();
+            $table->smallInteger('warranty_month')->unsigned();
             $table->string('name')->unique();
             $table->engine = 'InnoDB';
         });

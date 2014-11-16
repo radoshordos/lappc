@@ -9,6 +9,7 @@ class ProdWarranty extends \Eloquent
 
     public static $rules = [
         'name' => 'required',
+        'warranty_month' => 'required|min:24|max:1201'
     ];
 
 }

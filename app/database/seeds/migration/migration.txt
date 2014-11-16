@@ -1,22 +1,27 @@
 SELECT	prod_id AS id,
-		prod_ti_create,
+		prod_ti_create AS ti_create,
 		prod_id_tree AS tree_id,
 		prod_id_dev AS dev_id,
 		prod_id_mode AS mode_id,
 		prod_id_difference AS difference_id,
 		prod_id_warranty AS warranty_id,
 		prod_id_dph AS dph_id,
-		prod_alias_name_primary,
+		prod_alias_name_primary AS alias,
 		prod_name AS name,
-		prod_desc AS pdesc,
+		prod_desc AS des,
 		prod_img_big AS img_big,
 		prod_img_normal AS img_normal,
 		(SELECT MAX(items_price_end) FROM items WHERE items.items_id_prod = prod.prod_id) AS price
 FROM prod
 WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1120000
-
-
+AND prod.prod_id > 0
 
 SELECT * FROM items
 INNER JOIN prod on items.items_id = prod.prod_id
 WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1120000
+
+
+SELECT prod_desc, count(prod_id) as count
+FROM  prod
+GROUP BY prod_desc
+HAVING count > 1
