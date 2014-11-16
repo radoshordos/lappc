@@ -6,7 +6,11 @@ class Prod extends \Eloquent
     protected $guarded = [];
 
     public static $rules = [
-        'id' => 'required|integer',
+        'id'         => 'required|integer',
+        'tree_id'    => 'required|exists:tree,id',
+        'dev_id'     => 'required|exists:dev,id',
+        'name'       => "required|unique:prod,name",
+        'alias'      => "required|unique:prod,alias",
     ];
 
     public static $rules_picture = [
