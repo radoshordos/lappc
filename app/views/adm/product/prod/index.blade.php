@@ -68,7 +68,7 @@
                 <td>{{ $row->dev_name }}</td>
                 <td>{{ $row->tree_id }}</td>
                 <td>{{ $row->prod_warranty_name }}</td>
-                <td class="col-xs-3">{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</td>
+                <td class="col-xs-3 "><small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small></td>
                 <td>{{ $row->prod_price }}</td>
             </tr>
             @endforeach
@@ -77,14 +77,8 @@
     </div>
 </div>
 {{ Form::close() }}
-
 <div class="text-center">
-    <?php echo $view->appends(array(
-        'select_tree' => $input_tree,
-        'select_dev' => $input_dev,
-        'select_limit' => $input_limit,
-    ))->links();
-    ?>
+    {{ $view->appends(['select_tree' => $input_tree,'select_dev' => $input_dev,'select_limit' => $input_limit])->links(); }}
 </div>
 @endif
 @stop

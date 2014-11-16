@@ -1878,24 +1878,88 @@ class ProdTableSeeder extends Seeder
         ];
 
         DB::table('prod')->delete();
+        $now = strtotime('now');
 
         foreach ($prod as $row) {
-            DB::table('prod')->insert([
-                'id'            => $row['id'],
-                'tree_id'       => $row['tree_id'] + 20000000,
-                'dev_id'        => $row['dev_id'],
-                'warranty_id'   => $row['warranty_id'],
-                'dph_id'        => $row['dph_id'],
-                'mode_id'       => $row['mode_id'],
-                'difference_id' => $row['difference_id'],
-                'alias'         => $row['alias'],
-                'name'          => $row['name'],
-                'desc'          => $row['des'],
-                'created_at'    => date("Y-m-d H:i:s", $row['ti_create']),
-                'img_big'       => $row['img_big'],
-                'img_normal'    => $row['img_normal'],
-                'price'         => $row['price'],
-            ]);
+
+            $tree = $this->getTree($row['tree_id']);
+
+            if ($row['id'] % 20 == 1 && $tree > 0) {
+
+                DB::table('prod')->insert([
+                    'id'            => $row['id'],
+                    'tree_id'       => $tree,
+                    'dev_id'        => $row['dev_id'],
+                    'warranty_id'   => $row['warranty_id'],
+                    'dph_id'        => $row['dph_id'],
+                    'mode_id'       => $row['mode_id'],
+                    'difference_id' => $row['difference_id'],
+                    'alias'         => $row['alias'],
+                    'name'          => $row['name'],
+                    'desc'          => $row['des'],
+                    'img_big'       => $row['img_big'],
+                    'img_normal'    => $row['img_normal'],
+                    'price'         => $row['price'],
+                    'created_at'    => date("Y-m-d H:i:s", $row['ti_create']),
+                    'updated_at'    => $now
+                ]);
+            }
         }
     }
+
+
+    function getTree($tree)
+    {
+        $arr = [
+                '1109000' => 22020000,
+                '1110020' => 21020000,
+                '1110021' => 21020200,
+                '1110022' => 21020400,
+                '1110023' => 21020600,
+                '1110024' => 21020800,
+                '1110025' => 21021000,
+                '1110026' => 21021200,
+                '1110027' => 21021400,
+                '1110028' => 21021600,
+                '1110029' => 21021800,
+                '1110030' => 21022000,
+                '1110032' => 21024000,
+                '1110040' => 21040000,
+                '1110060' => 21060000,
+                '1110080' => 21080000,
+                '1110100' => 21100000,
+                '1110120' => 21120000,
+                '1110160' => 21140000,
+                '1110180' => 21160000,
+                '1110200' => 21180000,
+                '1110240' => 21200000,
+                '1112000' => 22040000,
+                '1112100' => 22040200,
+                '1112200' => 22040400,
+                '1112300' => 22040600,
+                '1112400' => 22040800,
+                '1112500' => 22041000,
+                '1114000' => 22060000,
+                '1114020' => 22060200,
+                '1114060' => 22060400,
+                '1114080' => 22060600,
+                '1114100' => 22060800,
+                '1114120' => 22061000,
+                '1114140' => 22061200,
+                '1114180' => 22061400,
+                '1114200' => 22061600,
+                '1114220' => 22061800,
+                '1114240' => 22062000,
+                '1114260' => 22062200,
+                '1114280' => 22062400,
+                '1114320' => 22062600,
+                '1114340' => 22062800,
+                '1114360' => 22063000,
+                '1114380' => 22063200,
+                '1114400' => 22063400
+        ];
+
+        return isset($arr[$tree]) ? $arr[$tree] : NULL;
+    }
+
 }

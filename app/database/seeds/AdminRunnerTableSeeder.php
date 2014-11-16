@@ -101,5 +101,12 @@ class AdminRunnerTableSeeder extends Seeder
             'autorun' => 0,
             'class'   => 'Authority\Runner\Task\OneRun\CreatePicture'
         ]);
+
+        DB::table('runner')->insert([
+            'id'      => 2004,
+            'autorun' => 0,
+            'class'   => 'Authority\Runner\Task\OneRun\TreeMigrationTable'
+        ]);
+
     }
 }
