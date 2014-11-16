@@ -59,24 +59,8 @@
         </div>
 
     <div id="menubox" class="row">
-    <div class="small-3 columns">
-                @foreach($tree_group as $row)
-        <div class="icon-bar vertical">
-                <a class="item">
-                    <label>{{ $row->name }}</label>
-                </a>
-                </div>
-        @if($row->id == 22)
-        <ul style="display: block">
-            <li><a href="#">Aku šroubováky</a></li>
-            <li><a href="#">Aku úhlové vrtačky</a></li>
-            <li><a href="#">Aku brusky</a></li>
-            <li><a href="#">Aku kladiva</a></li>
-            <li><a href="#">Aku pily</a></li>
-        </ul>
-        @endif
-                @endforeach
-            </div>
+            @include('web.layout.leftmenu')
+
 
                 <div class="small-9 columns">
                     <dl id="dev-container" class="sub-nav">
@@ -115,7 +99,6 @@
                                 <p>{{ $row->prod_desc }}</p>
                             </li>
                         @endforeach;
-
                     </ul>
                     <ul class="pagination">
                         <li class="arrow unavailable"><a href="">&laquo;</a></li>

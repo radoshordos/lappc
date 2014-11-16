@@ -4,11 +4,14 @@ Menu
 div#menubox div {
 
 }
+div.icon-bar.vertical {
+    padding: .4em;
+}
 
 div.icon-bar.vertical a.item {
     width: 14.5em;
     padding: .8em;
-    margin: 0;
+
 }
 
 div.icon-bar.vertical a.item label {
@@ -55,6 +58,10 @@ li.prod {
     font-size: .9em;
 }
 
+#prodlist a:hover h3 {
+    text-decoration: underline;
+}
+
 #prodlist p::first-letter {
     text-transform: capitalize
 }
@@ -72,7 +79,7 @@ li.prod {
     padding: 0px;
     margin: 6px 3px;
     width: 236px;
-    height: 346px;
+    height: 356px;
 }
 
 #prodlist span {

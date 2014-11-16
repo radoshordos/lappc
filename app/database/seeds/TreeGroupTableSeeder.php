@@ -63,11 +63,11 @@ class TreeGroupTableSeeder extends Seeder
         ]);
 
         DB::table('tree_group')->insert([
-            'id'          => 26,
+            'id'       => 26,
             'grouptop_id' => 20,
-            'for_prod'    => 1,
-            'type'        => 'prodlist',
-            'name'        => 'Dílenské vybavení'
+            'for_prod' => 1,
+            'type'     => 'prodlist',
+            'name'     => 'Měřící technika'
         ]);
 
         DB::table('tree_group')->insert([
@@ -87,11 +87,11 @@ class TreeGroupTableSeeder extends Seeder
         ]);
 
         DB::table('tree_group')->insert([
-            'id'   => 29,
+            'id'       => 29,
             'grouptop_id' => 20,
             'for_prod' => 1,
-            'type' => 'prodlist',
-            'name' => 'Měřící technika'
+            'type'     => 'prodlist',
+            'name'     => 'Dílenské vybavení'
         ]);
 
         DB::table('tree_group')->insert([
