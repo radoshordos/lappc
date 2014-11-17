@@ -8,12 +8,10 @@
             <label>{{ $row->tree_group_name }}</label>
         </a>
     </div>
-
-
     @endif
-        @if ($row->tree_deep == 1)
-            <li><a href="#">{{ $row->tree_name }}</a></li>
-        @endif
+    @if ($row->tree_deep == 1)
+        <li><a href="{{ $row->tree_absolute }}">{{ $row->tree_name }}</a></li>
+    @endif
 @endforeach
 </div>
 

@@ -1,14 +1,9 @@
 <?php
-Route::match(['GET', 'POST'], '/', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
-
 
 Route::get('autocomplete', function () {
     return View::make('web.autocomplete');
 });
 
-Route::get('tmp', function () {
-    return View::make('web.tmp');
-});
 
 Route::get('getdata', function () {
     $term = Input::get('term');
@@ -16,7 +11,6 @@ Route::get('getdata', function () {
     $result = [];
     foreach ($data as $key => $row) {
             $result[] = ['id' => $row->id, 'value' => $row->prod_name];
-
     }
     return Response::json($result);
 });
@@ -146,7 +140,7 @@ Route::get('adm', ['as' => 'adm.home', function () {
     return View::make('adm.home');
 }]);
 
-Route::get('/naradi/', ['as' => 'fotogalery']);
 
-Route::match(['GET', 'POST'], '/{poz1}', ['as' => 'home1', 'uses' => 'NOHomeController@showWelcome']);
-Route::match(['GET', 'POST'], '/{poz1}/{poz2}', ['as' => 'home2', 'uses' => 'NOHomeController@showWelcome']);
+Route::match(['GET', 'POST'], '/', ['as' => 'web.home', 'uses' => 'HomeController@show']);
+Route::match(['GET', 'POST'], '/{url01}', ['as' => 'web.url01', 'uses' => 'Url01Controller@show']);
+Route::match(['GET', 'POST'], '/{url01}/{url02}', ['as' => 'web.url02', 'uses' => 'Url02Controller@show']);

@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class HomeController extends BaseController
 {
 
-    public function showWelcome()
+    public function show()
     {
         if (Input::has('term')) {
             $counter = RecordVisitorsLooking::where('find_at', '>', new Carbon('last hour'))->where('filter_find', '=', Input::get('term'))->orderBy('id')->count();
@@ -26,7 +26,7 @@ class HomeController extends BaseController
 
         return View::make('web.home', [
             'tree_group' => TreeGroup::where('type', '=', 'prodlist')->get(),
-            'view_tree' => ViewTree::where('tree_subdir_all', '>', 0)->get(),
+            'view_tree' => ViewTree::where('tree_subdir_all', '>', 0)->orderBy('tree_id')->get(),
             'prod_list' => ViewProd::where('prod_mode_id', '>', 1)->limit(15)->get(),
             'term' => Input::get('term')
         ]);

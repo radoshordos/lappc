@@ -61,28 +61,29 @@
     <div id="menubox" class="row">
             @include('web.layout.leftmenu')
 
-
                 <div class="small-9 columns">
-                    <dl id="dev-container" class="sub-nav">
-                        <dt>Výrobci:</dt>
-                        <dd class="active"><a href="#">Všichni</a></dd>
-                        <dd><a href="#">Narex <span>(5)</span></a></dd>
-                        <dd><a href="#">Makita <span>(15)</span></a></dd>
-                        <dd><a href="#">Maktec<span>(1)</span></a></dd>
-                        <dd><a href="#">Metabo<span>(8)</span></a></dd>
-                        <dd><a href="#">Proteco</a></dd>
-                        <dd><a href="#">Worx</a></dd>
-                        <dd><a href="#">Tona</a></dd>
-                    </dl>
 
+                    <div class="panel clearfix">
+                        <dl id="dev-container" class="sub-nav">
+                            <dt>Výrobci:</dt>
+                            <dd class="active"><a href="#">Všichni</a></dd>
+                            <dd><a href="#">Narex <span>(5)</span></a></dd>
+                            <dd><a href="#">Makita <span>(15)</span></a></dd>
+                            <dd><a href="#">Maktec<span>(1)</span></a></dd>
+                            <dd><a href="#">Metabo<span>(8)</span></a></dd>
+                            <dd><a href="#">Proteco<span>(5)</span></a></dd>
+                            <dd><a href="#">Worx<span>(18)</span></a></dd>
+                            <dd><a href="#">Tona<span>(2)</span></a></dd>
+                        </dl>
+                    </div>
 
-                    <div class="small-9 columns">
-                    <label>Začekuj</label>
-                    <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-                    <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-                    <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
-                    <span class="success radius label"><input id="che" type="checkbox"><label for="che">Skladem</label></span>
-                </div>
+                    <div class="panel clearfix">
+                        <label>Začekuj</label>
+                        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+                        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+                        <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
+                        <span class="success radius label"><input id="che" type="checkbox"><label for="che">Skladem</label></span>
+                    </div>
 
                     <ul id="prodlist" class="small-block-grid-3">
                         @foreach($prod_list as $row)
@@ -100,6 +101,7 @@
                             </li>
                         @endforeach;
                     </ul>
+                    
                     <ul class="pagination">
                         <li class="arrow unavailable"><a href="">&laquo;</a></li>
                         <li class="current"><a href="">1</a></li>
