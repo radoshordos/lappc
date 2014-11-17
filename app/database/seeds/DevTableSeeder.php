@@ -145,7 +145,7 @@ class DevTableSeeder extends Seeder
             'id'     => 1,
             'active' => 0,
             'alias'  => 'all',
-            'name'   => '[ALL]'
+            'name'   => 'Vše'
         ]);
 
         foreach ($dev as $row) {

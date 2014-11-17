@@ -65,16 +65,14 @@
                 <div class="small-9 columns">
 
                     <div class="panel clearfix">
+
+
                         <dl id="dev-container" class="sub-nav">
                             <dt>Výrobci:</dt>
                             <dd class="active"><a href="#">Všichni</a></dd>
-                            <dd><a href="#">Narex <span>(5)</span></a></dd>
-                            <dd><a href="#">Makita <span>(15)</span></a></dd>
-                            <dd><a href="#">Maktec<span>(1)</span></a></dd>
-                            <dd><a href="#">Metabo<span>(8)</span></a></dd>
-                            <dd><a href="#">Proteco<span>(5)</span></a></dd>
-                            <dd><a href="#">Worx<span>(18)</span></a></dd>
-                            <dd><a href="#">Tona<span>(2)</span></a></dd>
+                            @foreach ($dev_list as $row)
+                                <dd><a href="{{ '/'.$row->tree->absolute .'/'. $row->dev->alias }}">{{ $row->dev->name." <span>(".$row->subdir_visible.")</span>"; }}</a></dd>
+                            @endforeach
                         </dl>
                     </div>
 
@@ -86,8 +84,35 @@
                     </div>
 
                     <ul id="prodlist" class="small-block-grid-3">
+                        @foreach($view_prod as $row)
+                            <li class="prod th radius">
+                                <a href="{{ '/'.$row->tree_absolute .'/'. $row->prod_alias }}">
+                                    <h3>{{ $row->prod_name  }}</h3>
+                                    @if ($row->prod_id % 7 == 0)
+                                        <span class="akce">Šeky 40000 Kč</span>
+                                    @endif
+                                    <img src="{{ '/web/naradi/' . $row->tree_absolute .'/'. $row->prod_img_normal  }}" width="228" height="228">
+                                    <span class="success label">2 ks skladem</span>
+                                    <span class="price label">{{ $row->query_price }} Kč</span>
+                                </a>
+                                <p>{{ $row->prod_desc }}</p>
+                            </li>
+                        @endforeach;
                     </ul>
 
+                    <div class="panel clearfix">
+                        <ul class="pagination">
+                            <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                            <li class="current"><a href="">1</a></li>
+                            <li><a href="">2</a></li>
+                            <li><a href="">3</a></li>
+                            <li><a href="">4</a></li>
+                            <li class="unavailable"><a href="">&hellip;</a></li>
+                            <li><a href="">12</a></li>
+                            <li><a href="">13</a></li>
+                            <li class="arrow"><a href="">&raquo;</a></li>
+                        </ul>
+                    </div>
             </div>
         </div>
         <p><a href="http://localhost:8000/adm/">ADM</a></p>

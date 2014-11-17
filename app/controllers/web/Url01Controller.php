@@ -10,7 +10,9 @@ class Url01Controller extends EshopController
 
     public function show($url01)
     {
-        return $url01;
+
+
+        return $this->isTree([$url01]);
     }
 
 }
