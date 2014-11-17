@@ -394,6 +394,18 @@ Dev Container
     border-radius: .5em;
 }
 
+#dev-container dt a {
+    width: 5em;
+    border: 1px solid #666;
+    background: lightskyblue;
+}
+
+#dev-container dd a {
+    width: 6.3em;
+    padding: 2px 5px;
+    border: 1px solid #666;
+    background: lightskyblue;
+}
 /* --------------------------------------------------
 ProdList
 -------------------------------------------------- */
@@ -456,9 +468,6 @@ li.prod {
     font-weight: bolder;
 }
 
-
-
-
 /* --------------------------------------------------
 Global
 -------------------------------------------------- */
@@ -469,7 +478,12 @@ li  {font-size: 0.9em}
 Container
 -------------------------------------------------- */
 
-div#container, div.container { position: relative; width: 990px; margin: 0 auto; padding: 0; }
+div#container, div.container {
+    position: relative;
+    width: 994px;
+    margin: 0 auto;
+    padding: 0;
+}
 
 /* --------------------------------------------------
 Grid

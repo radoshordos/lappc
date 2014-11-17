@@ -1,5 +1,5 @@
 <?php $group_id = 0; ?>
-<div class="small-3 columns">
+
 @foreach($view_tree as $row)
     @if ($group_id != $row->tree_group_id)
     <?php $group_id = $row->tree_group_id; ?>

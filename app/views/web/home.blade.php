@@ -59,6 +59,7 @@
         </div>
 
     <div id="menubox" class="row">
+            @include('web.layout.actionmenu')
             @include('web.layout.leftmenu')
 
                 <div class="small-9 columns">
@@ -78,7 +79,6 @@
                     </div>
 
                     <div class="panel clearfix">
-                        <label>Začekuj</label>
                         <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
                         <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
                         <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
@@ -88,7 +88,7 @@
                     <ul id="prodlist" class="small-block-grid-3">
                         @foreach($prod_list as $row)
                             <li class="prod th radius">
-                                <a href="/ddd">
+                                <a href="{{ $row->tree_absolute .'/'. $row->prod_alias }}">
                                     <h3>{{ $row->prod_name  }}</h3>
                                     @if ($row->prod_id % 7 == 0)
                                         <span class="akce">Šeky 40000 Kč</span>
@@ -101,18 +101,20 @@
                             </li>
                         @endforeach;
                     </ul>
-                    
-                    <ul class="pagination">
-                        <li class="arrow unavailable"><a href="">&laquo;</a></li>
-                        <li class="current"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li class="unavailable"><a href="">&hellip;</a></li>
-                        <li><a href="">12</a></li>
-                        <li><a href="">13</a></li>
-                        <li class="arrow"><a href="">&raquo;</a></li>
-                    </ul>
+
+                    <div class="panel clearfix">
+                        <ul class="pagination">
+                            <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                            <li class="current"><a href="">1</a></li>
+                            <li><a href="">2</a></li>
+                            <li><a href="">3</a></li>
+                            <li><a href="">4</a></li>
+                            <li class="unavailable"><a href="">&hellip;</a></li>
+                            <li><a href="">12</a></li>
+                            <li><a href="">13</a></li>
+                            <li class="arrow"><a href="">&raquo;</a></li>
+                        </ul>
+                    </div>
             </div>
         </div>
         <p><a href="http://localhost:8000/adm/">ADM</a></p>

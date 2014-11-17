@@ -4,7 +4,6 @@ Route::get('autocomplete', function () {
     return View::make('web.autocomplete');
 });
 
-
 Route::get('getdata', function () {
     $term = Input::get('term');
     $data = \Authority\Eloquent\ViewProd::where('prod_name', 'LIKE', "%$term%")->limit(10)->get();
@@ -15,8 +14,6 @@ Route::get('getdata', function () {
     return Response::json($result);
 });
 
-
-Route::get('feeds/{file?}', ['uses' => 'FeedController@show']);
 
 Route::group(['prefix' => 'feed/{file}'], function () {
     Route::get('feed', ['as' => 'feed.index', 'uses' => 'FeedServiceController@index']);
@@ -140,7 +137,15 @@ Route::get('adm', ['as' => 'adm.home', function () {
     return View::make('adm.home');
 }]);
 
+Route::get('feeds/{file?}', ['uses' => 'FeedController@show']);
 
 Route::match(['GET', 'POST'], '/', ['as' => 'web.home', 'uses' => 'HomeController@show']);
 Route::match(['GET', 'POST'], '/{url01}', ['as' => 'web.url01', 'uses' => 'Url01Controller@show']);
 Route::match(['GET', 'POST'], '/{url01}/{url02}', ['as' => 'web.url02', 'uses' => 'Url02Controller@show']);
+Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}', ['as' => 'web.url03', 'uses' => 'Url03Controller@show']);
+Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}/{url04}', ['as' => 'web.url04', 'uses' => 'Url04Controller@show']);
+
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array('url' => Request::url()), 404);
+});
