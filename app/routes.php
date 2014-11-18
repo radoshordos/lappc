@@ -1,9 +1,5 @@
 <?php
-
-Route::get('autocomplete', function () {
-    return View::make('web.autocomplete');
-});
-
+/*
 Route::get('getdata', function () {
     $term = Input::get('term');
     $data = \Authority\Eloquent\ViewProd::where('prod_name', 'LIKE', "%$term%")->limit(10)->get();
@@ -13,6 +9,9 @@ Route::get('getdata', function () {
     }
     return Response::json($result);
 });
+*/
+
+Route::get('getdata', ['uses' => 'SearchDataController@ajax']);
 
 
 Route::group(['prefix' => 'feed/{file}'], function () {

@@ -2,16 +2,7 @@
 <!--[if IE 9]><html class="lt-ie10" lang="cs"> <![endif]-->
 <html class="no-js" lang="cs">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello, world!</title>
-    <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
-    <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="/web/my/app.css">
-    <link rel="stylesheet" href="/web/my/jtree.css">
-</head>
+@include('web.layout.blockhead')
 <body>
     <h1>Hello, world!</h1>
     Registrace & Přihlášení
@@ -32,21 +23,8 @@
                         <li><a href="#">Přihlásit se</a></li>
                         <li><a href="#">Košík</a></li>
                     </ul>
-                    <!-- Left Nav Section -->
                     <ul class="left">
-                        <li class="has-form">
-                            {{ Form::open(array('url' => '', 'files' => true)); }}
-                            <div class="row collapse">
-                                <div class="large-8 small-9 columns ui-widget">
-                                    {{ Form::input('search','term',$term,['size' => '42', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"]) }}
-                                    </div>
-                                <div class="large-4 small-3 columns">
-                                    {{-- Form::input('text','response',NULL,['id' => 'response','disabled']) --}}
-                                    {{ Form::submit('Hledat', ['name' => 'submitsearch','class' => 'alert button expand']) }}
-                                </div>
-                                {{ Form::close() }}
-                            </div>
-                        </li>
+                        @include('web.layout.boxsearch')
                     </ul>
                 </section>
             </nav>
@@ -64,19 +42,6 @@
 
                 <div class="small-9 columns">
 
-                    <div class="panel clearfix">
-                        <dl id="dev-container" class="sub-nav">
-                            <dt>Výrobci:</dt>
-                            <dd class="active"><a href="#">Všichni</a></dd>
-                            <dd><a href="#">Narex <span>(5)</span></a></dd>
-                            <dd><a href="#">Makita <span>(15)</span></a></dd>
-                            <dd><a href="#">Maktec<span>(1)</span></a></dd>
-                            <dd><a href="#">Metabo<span>(8)</span></a></dd>
-                            <dd><a href="#">Proteco<span>(5)</span></a></dd>
-                            <dd><a href="#">Worx<span>(18)</span></a></dd>
-                            <dd><a href="#">Tona<span>(2)</span></a></dd>
-                        </dl>
-                    </div>
 
                     <div class="panel clearfix">
                         <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
@@ -93,19 +58,7 @@
         <p><a href="http://localhost:8000/adm/">ADM</a></p>
         <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
     </div>
-
     <script src="/web/guru.js"></script>
-    <script>
-        $(document).foundation();
-        $(function() {
-            $('#term').autocomplete({
-                source: 'getdata',
-                minLength: 1,
-                select:function(e,ui) {
-                    $('#response').val(ui.item.id);
-                }
-            });
-        });
-    </script>
+    <script src="/web/js/ajax.js"></script>
 </body>
 </html>
