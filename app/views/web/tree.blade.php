@@ -28,11 +28,7 @@
                     </ul>
                 </section>
             </nav>
-                <ul class="breadcrumbs">
-                    <li><a href="#">Úvod</a></li>
-                    <li><a href="#">Akumulátorové nářadí</a></li>
-                    <li><a href="#">Aku kladiva</a></li>
-                </ul>
+            @include('web.layout.blocknav')
             </div>
         </div>
 
@@ -52,7 +48,7 @@
                     </div>
 
                     <ul id="prodlist" class="small-block-grid-3">
-                        @foreach($view_prod as $row)
+                        @foreach($vp_list as $row)
                             <li class="prod th radius">
                                 <a href="{{ '/'.$row->tree_absolute .'/'. $row->prod_alias }}">
                                     <h3>{{ $row->prod_name  }}</h3>

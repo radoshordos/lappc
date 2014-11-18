@@ -28,11 +28,7 @@
                     </ul>
                 </section>
             </nav>
-                <ul class="breadcrumbs">
-                    <li><a href="#">Úvod</a></li>
-                    <li><a href="#">Akumulátorové nářadí</a></li>
-                    <li><a href="#">Aku kladiva</a></li>
-                </ul>
+            @include('web.layout.blocknav')
             </div>
         </div>
 
@@ -41,8 +37,6 @@
             @include('web.layout.leftmenu')
 
                 <div class="small-9 columns">
-
-
                     <div class="panel clearfix">
                         <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
                         <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
@@ -52,7 +46,6 @@
 
                     <ul id="prodlist" class="small-block-grid-3">
                     </ul>
-
             </div>
         </div>
         <p><a href="http://localhost:8000/adm/">ADM</a></p>

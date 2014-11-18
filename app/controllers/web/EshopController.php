@@ -16,10 +16,15 @@ class EshopController extends Controller
 
     protected function isProudct($urlPart)
     {
-        $row = ViewProd::where('prod_alias', '=', $urlPart)->first();
-        if (isset($row) && $row->count() > 0) {
-            return $urlPart . " JE produkt";
+        $vp = ViewProd::where('prod_alias', '=', $urlPart)->first();
+        if (isset($vp) && $vp->count() > 0) {
+            return View::make('web.prod', [
+                'vp'      => $vp,
+                'vt_list' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
+                'term'    => Input::get('term')
+            ]);
         }
+        return NULL;
     }
 
     protected function isTreeWithDev(array $treePart, $dev)
@@ -38,18 +43,19 @@ class EshopController extends Controller
         if (isset($row) && $row->count() > 0) {
 
             if (isset($dev) && $dev->count() > 0) {
-                $vp = ViewProd::whereBetween('tree_id', [$row->tree_id, ($row->tree_id + 9999)])->where('dev_id', '=', $dev->id)->get();
+                $vp = ViewProd::whereBetween('tree_id', [$row->tree_id, ($row->tree_id + 9999)])->where('dev_id', '=', $dev->id);
             } else {
-                $vp = ViewProd::whereBetween('tree_id', [$row->tree_id, ($row->tree_id + 9999)])->get();
+                $vp = ViewProd::whereBetween('tree_id', [$row->tree_id, ($row->tree_id + 9999)]);
             }
 
             return View::make('web.tree', [
                 'db_dev'    => $dev,
-                'view_tree' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-                'view_prod' => $vp,
+                'vt_list'   => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
+                'vp_list'   => $vp->get(),
                 'dev_list'  => TreeDev::where('tree_id', '=', $row->tree_id)->where('subdir_visible', '>', 0)->get(),
                 'term'      => Input::get('term')
             ]);
         }
+        return NULL;
     }
 }

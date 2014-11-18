@@ -1,6 +1,6 @@
 <?php $group_id = 0; ?>
 
-@foreach($view_tree as $row)
+@foreach($vt_list as $row)
     @if ($group_id != $row->tree_group_id)
     <?php $group_id = $row->tree_group_id; ?>
     <div class="icon-bar vertical">
