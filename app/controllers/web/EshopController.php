@@ -43,9 +43,8 @@ class EshopController extends Controller
                 $vp = ViewProd::whereBetween('tree_id', [$row->tree_id, ($row->tree_id + 9999)])->get();
             }
 
-
-
             return View::make('web.tree', [
+                'db_dev'    => $dev,
                 'view_tree' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
                 'view_prod' => $vp,
                 'dev_list'  => TreeDev::where('tree_id', '=', $row->tree_id)->where('subdir_visible', '>', 0)->get(),
