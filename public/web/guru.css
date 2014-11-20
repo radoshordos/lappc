@@ -386,6 +386,14 @@ div.icon-bar.vertical a.item label {
 }
 
 /* --------------------------------------------------
+Menu Action
+-------------------------------------------------- */
+
+#menu-action {
+    margin-bottom: 10px;
+}
+
+/* --------------------------------------------------
 Dev Container
 -------------------------------------------------- */
 
@@ -394,18 +402,30 @@ Dev Container
     border-radius: .5em;
 }
 
-#dev-container dt a {
-    width: 5em;
-    border: 1px solid #666;
-    background: lightskyblue;
+
+#dev-container dt {
+    padding: 0 1px;
 }
 
 #dev-container dd a {
-    width: 6.3em;
+    display: block;
+    min-width: 7.2em;
+    max-width: 10em;
+    text-align: center;
     padding: 2px 5px;
     border: 1px solid #666;
-    background: lightskyblue;
+    background: cornflowerblue;
+    color: #ffffff;
 }
+
+#dev-container a.active {
+    background: indianred;
+}
+
+#dev-container dd a:hover {
+    background: #004276;
+}
+
 /* --------------------------------------------------
 ProdList
 -------------------------------------------------- */
