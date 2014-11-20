@@ -13,7 +13,7 @@ SELECT	prod_id AS id,
 		prod_img_normal AS img_normal,
 		(SELECT MAX(items_price_end) FROM items WHERE items.items_id_prod = prod.prod_id) AS price
 FROM prod
-WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1120000
+WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1133000
 AND prod.prod_id > 0
 
 SELECT * FROM items
