@@ -67,7 +67,10 @@ Registrace & Přihlášení
             </ul>
 
             <div class="panel clearfix">
-                {{ $vp_list->links(); }}
+                <ul class="pagination">
+                    <?php echo with(new ZurbPresenter($vp_list))->render(); ?>
+                </ul>
+
             </div>
         </div>
     </div>
