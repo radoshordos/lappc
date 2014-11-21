@@ -111,7 +111,7 @@ class TreeGroupTableSeeder extends Seeder
             'grouptop_id' => 20,
             'for_prod' => 1,
             'type' => 'prodlist',
-            'name' => 'Kovoobráběcí stoje'
+            'name' => 'Kovoobráběcí stroje'
         ]);
 
         DB::table('tree_group')->insert([

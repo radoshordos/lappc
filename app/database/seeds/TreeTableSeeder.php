@@ -5,13 +5,28 @@ class TreeTableSeeder extends Seeder
 
     public function run()
     {
+
+
+        $top = [
+            ['mid' => '17000000','pz' => '0','pid' => '17000000','tree_id' => '1102000', 'tree_id_parent' => '0', 'tree_id_division' => '26', 'tree_title' => 'Akční ceny nářadí, akce nářadí', 'tree_name' => 'AKČNÍ CENY, AKCE', 'tree_desc' => 'Akční ceny nářadí, akce nářadí', 'tree_abs_path' => 'akcni-ceny-naradi/', 'tree_rel_path' => 'akcni-ceny-naradi', 'tree_body' => 'NULL'],
+            ['mid' => '19000000','pz' => '0','pid' => '19000000','tree_id' => '1102000','tree_id' => '1103000', 'tree_id_parent' => '0', 'tree_id_division' => '27', 'tree_title' => 'Novinky', 'tree_name' => 'NOVINKY', 'tree_desc' => 'Novinky', 'tree_abs_path' => 'novinky/', 'tree_rel_path' => 'novinky', 'tree_body' => NULL],
+            ['mid' => '21000000','pz' => '0','pid' => '21000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Akumulátorové nářadí', 'tree_name' => 'Akumulátorové nářadí', 'tree_desc' => 'Akumulátorové nářadí', 'tree_abs_path' => 'akumulatorove-naradi/', 'tree_rel_path' => 'akumulatorove-naradi', 'tree_body' => NULL],
+            ['mid' => '22000000','pz' => '0','pid' => '22000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Elektrické nářadí', 'tree_name' => 'Elektrické nářadí', 'tree_desc' => 'Elektrické nářadí', 'tree_abs_path' => 'akumulatorove-naradi/', 'tree_rel_path' => 'elektricke-naradi', 'tree_body' => NULL],
+            ['mid' => '23000000','pz' => '0','pid' => '23000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Pneu nářadí', 'tree_name' => 'Pneu nářadí', 'tree_desc' => 'Pneu nářadí', 'tree_abs_path' => 'pneu-naradi/', 'tree_rel_path' => 'pneu-naradi', 'tree_body' => NULL],
+            ['mid' => '24000000','pz' => '0','pid' => '24000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Ruční nářadí', 'tree_name' => 'Ruční nářadí', 'tree_desc' => 'Ruční nářadí', 'tree_abs_path' => 'rucni-naradi/', 'tree_rel_path' => 'rucni-naradi', 'tree_body' => NULL],
+            ['mid' => '25000000','pz' => '0','pid' => '25000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Zahradní vybavení', 'tree_name' => 'Zahradní vybavení', 'tree_desc' => 'Zahradní vybavení', 'tree_abs_path' => 'zahradni-vybaveni/', 'tree_rel_path' => 'zahradni-vybaveni', 'tree_body' => NULL],
+            ['mid' => '26000000','pz' => '0','pid' => '26000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Měřící technika', 'tree_name' => 'Měřící technika', 'tree_desc' => 'Měřící technika', 'tree_abs_path' => 'meríci-technika/', 'tree_rel_path' => 'meríci-technika', 'tree_body' => NULL],
+            ['mid' => '27000000','pz' => '0','pid' => '27000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Dřevoobráběcí stroje', 'tree_name' => 'Dřevoobráběcí stroje', 'tree_desc' => 'Dřevoobráběcí stroje', 'tree_abs_path' => 'drevoobrabeci-stroje/', 'tree_rel_path' => 'drevoobrabeci-stroje', 'tree_body' => NULL],
+            ['mid' => '28000000','pz' => '0','pid' => '28000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Kovoobráběcí stroje', 'tree_name' => 'Kovoobráběcí stroje', 'tree_desc' => 'Kovoobráběcí stroje', 'tree_abs_path' => 'kovoobrabeci-stroje/', 'tree_rel_path' => 'kovoobrabeci-stroje', 'tree_body' => NULL],
+            ['mid' => '29000000','pz' => '0','pid' => '29000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Dílenské vybavení', 'tree_name' => 'Dílenské vybavení', 'tree_desc' => 'Dílenské vybavení', 'tree_abs_path' => 'dilenske-vybaveni/', 'tree_rel_path' => 'dilenske-vybaveni', 'tree_body' => NULL],
+            ['mid' => '30000000','pz' => '0','pid' => '30000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Stavební mechanizace', 'tree_name' => 'Stavební mechanizace', 'tree_desc' => 'Stavební mechanizace', 'tree_abs_path' => 'stavebni-mechanizace/', 'tree_rel_path' => 'stavebni-mechanizace', 'tree_body' => NULL],
+            ['mid' => '31000000','pz' => '0','pid' => '31000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Příslušenství', 'tree_name' => 'Příslušenství', 'tree_desc' => 'Příslušenství', 'tree_abs_path' => 'príslusenstvi/', 'tree_rel_path' => 'príslusenstvi', 'tree_body' => NULL],
+        ];
+
         $tree = [
             ['mid' => '22020000','pz' => '02','pid' => '22000000','tree_id' => '1109000', 'tree_id_parent' => '0', 'tree_id_division' => '21', 'tree_id_gravity' => '1', 'tree_id_expansion' => '1', 'tree_visible' => '1', 'tree_insert' => '1', 'tree_title' => 'Setové sady nářadí', 'tree_name' => 'SADY NÁŘADÍ', 'tree_desc' => 'Setové sady nářadí', 'tree_abs_path' => 'sady-naradi/', 'tree_rel_path' => 'sady-naradi', 'tree_body' => NULL],
             ['tree_id' => '1101000', 'tree_id_parent' => '0', 'tree_id_division' => '25', 'tree_title' => 'Vyhledávání zboží', 'tree_name' => 'Vyhledávání zboží', 'tree_desc' => 'Vyhledávání zboží', 'tree_abs_path' => 'vyhledavani-zbozi/', 'tree_rel_path' => 'vyhledavani-zbozi', 'tree_body' => NULL],
-            ['mid' => '17000000','pz' => '0','pid' => '17000000','tree_id' => '1102000', 'tree_id_parent' => '0', 'tree_id_division' => '26', 'tree_title' => 'Akční ceny nářadí, akce nářadí', 'tree_name' => 'AKČNÍ CENY, AKCE', 'tree_desc' => 'Akční ceny nářadí, akce nářadí', 'tree_abs_path' => 'akcni-ceny-naradi/', 'tree_rel_path' => 'akcni-ceny-naradi', 'tree_body' => 'NULL'],
-            ['mid' => '19000000','pz' => '0','pid' => '19000000','tree_id' => '1102000','tree_id' => '1103000', 'tree_id_parent' => '0', 'tree_id_division' => '27', 'tree_title' => 'Novinky', 'tree_name' => 'NOVINKY', 'tree_desc' => 'Novinky', 'tree_abs_path' => 'novinky/', 'tree_rel_path' => 'novinky', 'tree_body' => NULL],
             ['tree_id' => '1104000', 'tree_id_parent' => '0', 'tree_id_division' => '21', 'tree_insert' => '1', 'tree_title' => 'VÝPRODEJ', 'tree_name' => 'VÝPRODEJ', 'tree_desc' => NULL, 'tree_abs_path' => 'vyprodej/', 'tree_rel_path' => 'vyprodej', 'tree_body' => NULL],
-            ['mid' => '21000000','pz' => '2','pid' => '21000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Akumulátorové nářadí', 'tree_name' => 'Akumulátorové nářadí', 'tree_desc' => 'Akumulátorové nářadí', 'tree_abs_path' => 'akumulatorove-naradi/', 'tree_rel_path' => 'akumulatorove-naradi', 'tree_body' => NULL],
             ['mid' => '21020000','pz' => '2','pid' => '21000000','tree_id' => '1110020', 'tree_id_parent' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Aku šroubováky', 'tree_name' => 'Aku šroubováky', 'tree_desc' => 'Aku šroubováky', 'tree_abs_path' => 'akumulatorove-naradi/aku-sroubovaky/', 'tree_rel_path' => 'aku-sroubovaky', 'tree_body' => NULL],
             ['mid' => '21020200','pz' => '2','pid' => '21020000','tree_id' => '1110021', 'tree_id_parent' => '1110020', 'tree_id_division' => '21', 'tree_insert' => '1', 'tree_title' => 'Akumulátorové šroubováky s napětím do 4,8V', 'tree_name' => 'Napětí do 4,8V', 'tree_desc' => 'Akumulátorové šroubováky s napětím do 4,8V', 'tree_abs_path' => 'akumulatorove-naradi/aku-sroubovaky/4,8v/', 'tree_rel_path' => '4,8v', 'tree_body' => NULL],
             ['mid' => '21020400','pz' => '4','pid' => '21020000','tree_id' => '1110022', 'tree_id_parent' => '1110020', 'tree_id_division' => '21', 'tree_insert' => '1', 'tree_title' => 'Akumulátorové šroubováky s napětím 7,2V', 'tree_name' => 'Napětí 7,2V', 'tree_desc' => 'Akumulátorové šroubováky s napětím 7,2V', 'tree_abs_path' => 'akumulatorove-naradi/aku-sroubovaky/7,2v/', 'tree_rel_path' => '7,2v', 'tree_body' => NULL],
@@ -568,7 +583,7 @@ class TreeTableSeeder extends Seeder
 
         DB::table('tree')->delete();
 
-        foreach ($tree as $row) {
+        foreach (array_merge($top, $tree) as $row) {
 
             $lastChar = substr($row['tree_abs_path'], -1);
             if ($lastChar == '/') {
