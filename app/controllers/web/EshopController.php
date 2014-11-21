@@ -51,7 +51,7 @@ class EshopController extends Controller
             return View::make('web.tree', [
                 'db_dev'    => $dev,
                 'vt_list'   => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-                'vp_list'   => $vp->get(),
+                'vp_list'   => $vp->where('prod_mode_id', '>', '1')->orderBy('query_price')->paginate(15),
                 'dev_list'  => TreeDev::where('tree_id', '=', $row->tree_id)->where('subdir_visible', '>', 0)->get(),
                 'term'      => Input::get('term')
             ]);
