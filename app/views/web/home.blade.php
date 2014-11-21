@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="cs"> <![endif]-->
+<!--[if IE 9]>
+<html class="lt-ie10" lang="cs"> <![endif]-->
 <html class="no-js" lang="cs">
 
 @include('web.layout.blockhead')
 <body>
-    <h1>Hello, world!</h1>
-    Registrace & Přihlášení
-    <div id="container" style="border: 1px solid #666">
+<h1>Hello, world!</h1>
+Registrace & Přihlášení
+<div id="container" style="border: 1px solid #666">
     <div class="row">
         <div class="small-12 columns">
             <nav class="top-bar" data-topbar>
@@ -29,29 +30,31 @@
                 </section>
             </nav>
             @include('web.layout.blocknav')
-            </div>
         </div>
+    </div>
 
     <div id="menubox" class="row">
-            @include('web.layout.actionmenu')
-            @include('web.layout.leftmenu')
+        @include('web.layout.actionmenu')
+        @include('web.layout.leftmenu')
 
-                <div class="small-9 columns">
-                    <div class="panel clearfix">
-                        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-                        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-                        <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
-                        <span class="success radius label"><input id="che" type="checkbox"><label for="che">Skladem</label></span>
-                    </div>
-
-                    <ul id="prodlist" class="small-block-grid-3">
-                    </ul>
+        <div class="small-9 columns">
+            <div class="panel clearfix">
+                <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+                <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+                <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
+                <span class="success radius label"><input id="che" type="checkbox"><label
+                            for="che">Skladem</label></span>
             </div>
+
+            <ul id="prodlist" class="small-block-grid-3">
+            </ul>
         </div>
-        <p><a href="http://localhost:8000/adm/">ADM</a></p>
-        <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
     </div>
-    <script src="/web/guru.js"></script>
-    <script src="/web/js/ajax.js"></script>
+    <p><a href="http://localhost:8000/adm/">ADM</a></p>
+
+    <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
+</div>
+<script src="/web/guru.js"></script>
+<script src="/web/js/ajax.js"></script>
 </body>
 </html>

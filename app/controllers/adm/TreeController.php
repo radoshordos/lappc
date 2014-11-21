@@ -107,7 +107,7 @@ class TreeController extends \BaseController
         return View::make('adm.pattern.tree.edit', [
             'tree' => $tree,
             'select_dev' => SB::option("SELECT * FROM dev", ['id' => '->name']),
-            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->name'])
+            'select_parent' => SB::option("SELECT * FROM tree WHERE deep <= 2", ['id' => '[->id] - ->desc'])
         ]);
     }
 
