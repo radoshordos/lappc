@@ -17,8 +17,30 @@ class SearchDataController extends Controller
 
     public function storeroom()
     {
-        Input::get('term');
-        $data = ViewProd::where('prod_storeroom', '>', 0)->limit(15)->get();
-        return View::make('web.ajax.prodlist', ["prod" => $data]);
+        $dev = Input::get('dev');
+        $tree = Input::get('tree');
+        $store = Input::get('store');
+        $action = Input::get('action');
+
+        $db = ViewProd::where('prod_mode_id', '>', '1')->orderBy('query_price');
+
+        if ($store == 'true') {
+            $db->where('prod_storeroom', '>', 0);
+        }
+
+        if ($action == 'true') {
+            $db->where('prod_mode_id', '=', 4);
+        }
+
+        if (intval($tree) > 0) {
+            $db->whereBetween('tree_id', [intval($tree), intval($tree) + 9999]);
+        }
+
+        if (intval($dev) > 0) {
+            $db->where('dev_id', intval($dev));
+        }
+
+        $data = $db->limit(15)->paginate();
+        return View::make('web.layout.boxprodlist', ["vp_list" => $data]);
     }
 }

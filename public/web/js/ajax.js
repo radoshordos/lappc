@@ -8,14 +8,29 @@ $(function() {
         }
     });
 
-    $('#check').click(function () {
-        var value = $(this).val();
+    $('#action').click(function () {
+        prodList();
+    });
+
+    $('#store').click(function () {
+        prodList();
+    });
+
+    function prodList() {
+
+        var store = $('#store').is(':checked');
+        var action = $('#action').is(':checked');
+        var tree = $('#tree').val();
+        var dev = $('#dev').val();
+
         $.ajax({
+            method: "GET",
             url: '/getstoreroom',
-            data: {check: "value"},
+            data: {store: store, action: action, tree: tree, dev: dev},
             success: function (data) {
-                $("#prodlist").html(data);
+                $("#area").html(data);
             }
         });
-    });
+    }
+
 });

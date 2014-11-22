@@ -14,27 +14,3 @@
     @endif
 @endforeach
 </div>
-
-{{--
-@if ($paginator->getLastPage() > 1)
-    <ul class="ui pagination menu">
-    @if ($paginator->getCurrentPage() > 1)
-    <li></li>
-    @else
-    <li></li>
-    @endif
-    @for ($i = 1; $i <= $paginator->getLastPage(); $i++)
-    @if ($paginator->getCurrentPage() == $i )
-    <li class="active">{{ $i }}</li>
-    @else
-    <li>{{ $i }}</li>
-    @endif
-    @endfor
-    @if ($paginator->getCurrentPage() < $paginator->getLastPage())
-    <li></li>
-    @else
-    <li></li>
-    @endif
-    </ul>
-@endif
---}}

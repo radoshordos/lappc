@@ -38,16 +38,6 @@ Registrace & Přihlášení
         @include('web.layout.leftmenu')
 
         <div class="small-9 columns">
-            <div class="panel clearfix">
-                <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-                <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-                <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
-                <span class="success radius label"><input id="che" type="checkbox"><label
-                            for="che">Skladem</label></span>
-            </div>
-
-            <ul id="prodlist" class="small-block-grid-3">
-            </ul>
         </div>
     </div>
     <p><a href="http://localhost:8000/adm/">ADM</a></p>
