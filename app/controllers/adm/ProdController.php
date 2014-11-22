@@ -96,7 +96,16 @@ class ProdController extends \BaseController
 
         } else {
 
+            $select_akce_template = NULL;
             $dev_in_mixture = MixtureDevM2nDev::where('dev_id', '=', $row->dev_id)->lists('mixture_dev_id');
+
+            if ($row->mode_id == 4) {
+                $select_akce_template = SB::option("SELECT at.id,at.bonus_title,am.name AS minitext_name,aa.name AS availability_name
+                                                    FROM akce_template AS at
+                                                    INNER JOIN akce_minitext AS am ON am.id = at.minitext_id
+                                                    INNER JOIN akce_availability AS aa ON aa.id = at.availibility_id
+                                                    WHERE mixture_dev_id IN (" . implode(',', $dev_in_mixture) . ")", ['id' => '->minitext_name] [->availability_name] + ->bonus_title'], true);
+            }
 
             return View::make('adm.product.prod.edit', [
                 'list_tree'                  => $select_tree,
@@ -115,11 +124,7 @@ class ProdController extends \BaseController
                 'select_availability'        => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
                 'select_availability_action' => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
                 'select_media_var'           => SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name'], true),
-                'select_akce_template'       => SB::option("SELECT at.id,at.bonus_title,am.name AS minitext_name,aa.name AS availability_name
-                                                            FROM akce_template AS at
-                                                            INNER JOIN akce_minitext AS am ON am.id = at.minitext_id
-                                                            INNER JOIN akce_availability AS aa ON aa.id = at.availibility_id
-                                                            WHERE mixture_dev_id IN (" . implode(',', $dev_in_mixture) . ")", ['id' => '->minitext_name] [->availability_name] + ->bonus_title'], TRUE),
+                'select_akce_template'       => $select_akce_template,
                 'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
                 'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->get(),
                 'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get(),

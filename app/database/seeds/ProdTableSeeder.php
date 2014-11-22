@@ -9,7 +9,6 @@ class ProdTableSeeder extends Seeder
     {
         include "migration/prod.php";
 
-
         DB::table('prod')->delete();
         $now = strtotime('now');
 

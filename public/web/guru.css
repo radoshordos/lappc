@@ -429,6 +429,11 @@ Dev Container
 /* --------------------------------------------------
 ProdList
 -------------------------------------------------- */
+#prodlist {
+    padding-left: 8px;
+}
+
+
 #prodlist h3 {
     font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
     text-align: center;
@@ -438,6 +443,10 @@ ProdList
 li.prod {
     margin: 0px;
     padding: 0px;
+}
+
+li.th {
+    border: 3px solid white;
 }
 
 .prod .akce {
@@ -468,14 +477,18 @@ li.prod {
     padding: 0px;
     width: 228px;
     height: 228px;
-    border: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-rigt: 1px solid #eee;
+    border-left: 1px solid #eee;
+
     z-index: -3;
 }
 
 #prodlist .prod {
     padding: 0px;
     margin: 6px 3px;
-    width: 236px;
+    width: 234px;
     height: 356px;
 }
 
@@ -500,7 +513,7 @@ Container
 
 div#container, div.container {
     position: relative;
-    width: 994px;
+    width: 997px;
     margin: 0 auto;
     padding: 0;
 }

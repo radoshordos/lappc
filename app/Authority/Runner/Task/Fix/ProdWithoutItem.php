@@ -15,7 +15,7 @@ class ProdWithoutItem extends TaskMessage implements iRun
 	public function run()
 	{
 		$count = 0;
-		$row = Prod::where('items_count_all', '=', '0')->get(['id']);
+		$row = Prod::where('ic_all', '=', '0')->get(['id']);
 
 		if (count($row) > 0) {
 			foreach ($row as $val) {
