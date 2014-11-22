@@ -17,24 +17,21 @@ Založení nové .csv šablony
 </script>
 @stop
 
-
 {{-- Content --}}
 @section('content')
-
-
-{{ Form::open(array('route' => 'adm.sync.template.store','class' => 'form-horizontal', 'role' => 'form')) }}
+{{ Form::open(['route' => 'adm.sync.template.store','class' => 'form-horizontal', 'role' => 'form']) }}
 
 <div class="form-group">
-    {{ Form::label('mixture_dev_id','Skupana výrobců',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('mixture_dev_id','Skupana výrobců',['class'=> 'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        {{ Form::select('mixture_dev_id', $select_mixture_dev, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zvol skupinu výrobců')) }}
+        {{ Form::select('mixture_dev_id', $select_mixture_dev, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zvol skupinu výrobců']) }}
     </div>
 </div>
 
-
 <p class="text-center">
-    {{ link_to_route('adm.sync.template.index','Zobrazit všechny .csv šablony',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
-    {{ Form::submit('Založit novou .csv šablonu', array('class' => 'btn btn-success')) }}
+    {{ link_to_route('adm.sync.template.index','Zobrazit všechny .csv šablony',NULL, ['class'=>'btn btn-primary','role'=> 'button']) }}
+    {{ Form::submit('Založit novou .csv šablonu', ['class' => 'btn btn-success']) }}
 </p>
+
 {{ Form::close() }}
 @stop

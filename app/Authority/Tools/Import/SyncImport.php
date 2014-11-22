@@ -1,9 +1,10 @@
 <?php namespace Authority\Tools\Import;
 
-use Authority\Eloquent\SyncCsvTemplate;
-use Authority\Eloquent\SyncRecord;
 use Authority\Eloquent\MixtureDevM2nDev;
+use Authority\Eloquent\RecordSyncImport;
+use Authority\Eloquent\SyncCsvTemplate;
 use Authority\Eloquent\SyncDb;
+use Authority\Eloquent\SyncRecord;
 use Authority\Tools\Filter\Csv\CheckerColumn;
 
 class SyncImport

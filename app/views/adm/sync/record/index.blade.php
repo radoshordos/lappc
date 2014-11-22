@@ -16,7 +16,6 @@ Záznamy importů
             <th>Seskupení výrobců</th>
             <th>Účel</th>
             <th>Položek / Aktivních</th>
-
         </tr>
     </thead>
     <tbody>
@@ -24,7 +23,7 @@ Záznamy importů
     <tr>
         <td>{{ $row->created_at }}</td>
         <td>{{ $row->name }}</td>
-        <td>{{ isset($row->syncCsvTemplate->mixtureDev) ? $row->syncCsvTemplate->mixtureDev->name : NULL }}</td>
+        <td>{{ isset($row->syncCsvTemplate->mixtureDev->name) ? $row->syncCsvTemplate->mixtureDev->name : NULL }}</td>
         <td>{{ $row->purpose }}</td>
         <td>{{ $row->item_counter }} / {{ $row->rsi_actual_count }}</td>
     </tr>
