@@ -1,7 +1,7 @@
 <?php
 
-use Authority\Tools\SB;
 use Authority\Eloquent\SyncDb;
+use Authority\Tools\SB;
 
 class AkceHugeController extends \BaseController
 {
@@ -11,7 +11,17 @@ class AkceHugeController extends \BaseController
 
         return View::make('adm.product.akcehuge.index', [
             'action_record'        => $action_record,
-            'item_action'          => SyncDb::where('purpose', '=', 'action')->where('record_id', '=', $action_record)->orderBy('code_prod')->get(['id', 'code_prod', 'name']),
+            'item_action' => SyncDb::where('purpose', '=', 'action')
+                ->leftJoin('items', 'sync_db.item_id', '=', 'items.id')
+                ->leftJoin('prod', 'items.prod_id', '=', 'prod.id')
+                ->where('record_id', '=', $action_record)
+                ->orderBy('sync_db.code_prod')
+                ->get([
+                    'sync_db.id AS sync_db_id',
+                    'sync_db.code_prod AS sync_db_code_prod',
+                    'sync_db.name AS sync_db_name',
+                    'prod.name AS prod_name'
+                ]),
             'select_action_record' => [''] + SB::option(
                     "SELECT record_sync_import.*,
                             mixture_dev.name

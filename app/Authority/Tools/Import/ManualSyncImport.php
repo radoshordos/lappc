@@ -3,11 +3,10 @@
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\RecordSyncImport;
 use Authority\Eloquent\SyncCsvTemplate;
-use Authority\Eloquent\SyncDb;
 use Authority\Eloquent\SyncRecord;
 use Authority\Tools\Filter\Csv\CheckerColumn;
 
-class SyncImport
+class ManualSyncImport
 {
     private $columns;
     private $template_id;
@@ -81,7 +80,6 @@ class SyncImport
 
         $record_id = strtotime('now');
         $date = new \DateTime;
-
         \DB::beginTransaction();
 
         foreach ($arr as $val) {
@@ -90,23 +88,24 @@ class SyncImport
             $val['record_id'] = $record_id;
             $val['purpose'] = $this->import_type;
             $val['created_at'] = $date;
-            $res = SyncDb::insert(array_filter($val));
-            $item_counter += $res;
+
+            $tsi = new TotalSyncImport(array_filter($val));
+            $res = $tsi->insertData2SyncDb();
+            if (!empty($res)) {
+                $item_counter++;
+            }
         }
 
-        if ($res) {
+        RecordSyncImport::create([
+            'id'           => $record_id,
+            'template_id'  => ($this->template_id ? $this->template_id : NULL),
+            'purpose'      => $this->import_type,
+            'item_counter' => $item_counter,
+            'name'         => __CLASS__,
+            'created_at'   => $date
+        ]);
 
-            RecordSyncImport::create([
-                'id'           => $record_id,
-                'template_id'  => ($this->template_id ? $this->template_id : NULL),
-                'purpose'      => $this->import_type,
-                'item_counter' => $item_counter,
-                'name'         => __CLASS__,
-                'created_at'   => $date
-            ]);
-
-            \Session::flash('success', 'Import proběhl úspěšně');
-        }
+        \Session::flash('success', 'Import proběhl úspěšně');
         \DB::commit();
     }
 

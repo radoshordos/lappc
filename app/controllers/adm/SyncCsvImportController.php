@@ -3,7 +3,7 @@
 use Authority\Tools\SB;
 use Authority\Tools\Button\Separator;
 use Authority\Tools\Filter\Csv\CheckerGlobal;
-use Authority\Tools\Import\SyncImport;
+use Authority\Tools\Import\ManualSyncImport;
 use Authority\Eloquent\SyncCsvTemplate;
 
 class SyncCsvImportController extends \BaseController
@@ -54,7 +54,7 @@ class SyncCsvImportController extends \BaseController
             } else if (Input::exists('next')) {
 
                 try {
-                    $imp = new SyncImport(Input::get('template_id'), Separator::getSeparatorString($separator), $import_type, Input::get('data_input'));
+                    $imp = new ManualSyncImport(Input::get('template_id'), Separator::getSeparatorString($separator), $import_type, Input::get('data_input'));
                 } catch (Exception $e) {
                     Session::flash('error', $e->getMessage());
                 }

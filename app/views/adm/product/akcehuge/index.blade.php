@@ -22,9 +22,14 @@ Hromadné akce
 <table class="table table-striped">
     @foreach($item_action as $row)
     <tr>
-        <td><input type="checkbox" name="select[{{$row->id}}]" /></td>
-        <td>{{ $row->code_prod }}</td>
-        <td>{{ $row->name }}</td>
+        <td><input type="checkbox" name="select[{{$row->sync_db_id}}]" /></td>
+        <td>{{ $row->sync_db_code_prod }}</td>
+        <td>{{ $row->sync_db_name }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>{{ $row->prod_name }}</td>
     </tr>
     @endforeach
 </table>

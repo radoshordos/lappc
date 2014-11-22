@@ -1,6 +1,6 @@
 <?php namespace Authority\Runner\Task\Store;
 
-use Authority\Eloquent\SyncDb;
+use Authority\Tools\Import\TotalSyncImport;
 
 abstract class AbstractRunDev implements iItem
 {
@@ -94,12 +94,8 @@ abstract class AbstractRunDev implements iItem
 
     public function insertData2Db()
     {
-        $column_id = intval(SyncDb::where('purpose', '=', 'autosync')->where('dev_id', '=', $this->getSyncIdDev())->where('code_prod', '=', $this->getSyncItemsCodeProduct())->where('purpose', '=', 'autosync')->pluck('id'));
-        if ($column_id == 0) {
-            return SyncDb::create(array_merge($this->getAllValues(), ['created_at' => date("Y-m-d H:i:s", strtotime('now'))]));
-        } else {
-            return SyncDb::where('id', '=', $column_id)->update($this->getAllValues());
-        }
+        $tsi = new TotalSyncImport($this->getAllValues());
+        return $tsi->insertData2SyncDb();
     }
 
     public function getSyncItemsCodeEan()
@@ -121,8 +117,7 @@ abstract class AbstractRunDev implements iItem
             'availability_count' => $this->getSyncItemsAvailabilityCount(),
             'code_ean'           => $this->getSyncItemsCodeEan(),
             'code_prod'          => $this->getSyncItemsCodeProduct(),
-            'common_group'       => $this->getSyncCommonGroup(),
-            'updated_at'         => date("Y-m-d H:i:s", strtotime('now'))
+            'common_group'       => $this->getSyncCommonGroup()
         ];
     }
 
