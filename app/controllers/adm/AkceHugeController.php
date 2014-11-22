@@ -11,7 +11,7 @@ class AkceHugeController extends \BaseController
 
         return View::make('adm.product.akcehuge.index', [
             'action_record'        => $action_record,
-            'item_action' => SyncDb::where('purpose', '=', 'action')
+            'item_action'          => SyncDb::where('purpose', '=', 'action')
                 ->leftJoin('items', 'sync_db.item_id', '=', 'items.id')
                 ->leftJoin('prod', 'items.prod_id', '=', 'prod.id')
                 ->where('record_id', '=', $action_record)
