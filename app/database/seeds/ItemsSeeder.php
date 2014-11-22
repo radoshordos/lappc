@@ -22,7 +22,7 @@ class ItemsSeeder extends Seeder
                     'diff_val2_id'    => $row['items_id_diff2'],
                     'code_prod'       => $row['items_code_product'],
                     'created_at'      => date("Y-m-d H:i:s", $row['items_ti_create']),
-                    'updated_at'      => $now
+                    'updated_at'      => date("Y-m-d H:i:s", $now),
                 ]);
             }
 

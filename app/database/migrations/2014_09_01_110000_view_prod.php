@@ -18,6 +18,7 @@ class ViewProd extends Migration
                     prod.alias AS prod_alias,
                     prod.name AS prod_name,
                     prod.desc AS prod_desc,
+                    prod.storeroom AS prod_storeroom,
                     prod.ic_all AS prod_ic_all,
                     prod.ic_visible AS prod_ic_visible,
                     prod.ic_availability_diff_visible AS prod_ic_availability_diff_visible,

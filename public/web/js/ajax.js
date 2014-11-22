@@ -7,4 +7,15 @@ $(function() {
             $('#response').val(ui.item.id);
         }
     });
+
+    $('#check').click(function () {
+        var value = $(this).val();
+        $.ajax({
+            url: '/getstoreroom',
+            data: {check: "value"},
+            success: function (data) {
+                $("#prodlist").html(data);
+            }
+        });
+    });
 });

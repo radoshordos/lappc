@@ -17,12 +17,20 @@ WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1133000
 AND prod.prod_id > 0
 ORDER BY id
 
-SELECT items.*
+
+SELECT  items_id,
+        items_id_prod,
+        items_is_visible,
+        items_id_availibility,
+        items_id_diff1,
+        items_id_diff2,
+        items_code_product,
+        items_ti_create
 FROM items
-INNER JOIN prod IN items.items_id = prod.prod_id
+INNER JOIN prod ON items.items_id = prod.prod_id
 WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1133000
 AND prod.prod_id > 0
-ORDER BY items_id_prod
+ORDER BY prod_id_tree
 
 
 SELECT prod_desc, count(prod_id) as count

@@ -37,15 +37,11 @@ Registrace & Přihlášení
         @include('web.layout.actionmenu')
         @include('web.layout.leftmenu')
         <div id="product" class="small-9 columns">
-
             <h1>{{ $vp->prod_name; }}</h1>
-
             <a class="th" role="button" aria-label="Thumbnail" href="{{ '/web/naradi/' . $vp->tree_absolute .'/'. $vp->prod_img_big }}">
                 <img aria-hidden="true" src="{{ '/web/naradi/' . $vp->tree_absolute .'/'. $vp->prod_img_normal }}"/>
             </a>
-
             {{ $vp->query_price }} Kč
-
         </div>
     </div>
     <p><a href="http://localhost:8000/adm/">ADM</a></p>

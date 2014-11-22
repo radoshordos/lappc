@@ -42,10 +42,9 @@ Registrace & Přihlášení
             @include('web.layout.boxdev')
 
             <div class="panel clearfix">
-                <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-                <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-                <a href="#" class="button tiny"><input id="checkbox2" type="checkbox">Skladem</a>
-                <span class="success radius label"><input id="che" type="checkbox"><label for="che">Skladem</label></span>
+                {{ Form::open(['url' => '', 'files' => true]); }}
+                    <a href="#" class="button"><input id="check" type="checkbox"><label for="check">Skladem</label></a>
+                {{ Form::close() }}
             </div>
 
             <ul id="prodlist" class="small-block-grid-3">
@@ -57,15 +56,17 @@ Registrace & Přihlášení
                                 <span class="akce">Šeky 40000 Kč</span>
                             @endif
                             <img src="{{ '/web/naradi/' . $row->tree_absolute .'/'. $row->prod_img_normal  }}" width="228" height="228">
-                            <span class="success label">2 ks skladem</span>
+                            @if ($row->prod_storeroom > 0)
+                                <span class="success label">{{ $row->prod_storeroom }} ks skladem</span>
+                            @else
+                                <span class="secondary label">není skladem</span>
+                            @endif
                             <span class="price label">{{ $row->query_price }} Kč</span>
                         </a>
-
                         <p>{{ $row->prod_desc }}</p>
                     </li>
                 @endforeach;
             </ul>
-
             <div class="panel clearfix">
                 <ul class="pagination">
                     <?php echo with(new ZurbPresenter($vp_list))->render(); ?>
@@ -75,7 +76,6 @@ Registrace & Přihlášení
         </div>
     </div>
     <p><a href="http://localhost:8000/adm/">ADM</a></p>
-
     <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
 </div>
 <script src="/web/guru.js"></script>

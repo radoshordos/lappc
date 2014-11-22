@@ -12,7 +12,7 @@ Route::get('getdata', function () {
 */
 
 Route::get('getdata', ['uses' => 'SearchDataController@ajax']);
-
+Route::get('getstoreroom', ['uses' => 'SearchDataController@storeroom']);
 
 Route::group(['prefix' => 'feed/{file}'], function () {
     Route::get('feed', ['as' => 'feed.index', 'uses' => 'FeedServiceController@index']);

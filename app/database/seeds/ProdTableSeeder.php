@@ -31,6 +31,7 @@ class ProdTableSeeder extends Seeder
                     'desc'          => $row['des'],
                     'img_big'       => $row['img_big'],
                     'img_normal'    => $row['img_normal'],
+                    'storeroom'     => ($row['id'] % 3),
                     'price'         => $row['price'],
                     'created_at'    => date("Y-m-d H:i:s", $row['ti_create']),
                     'updated_at'    => $now
