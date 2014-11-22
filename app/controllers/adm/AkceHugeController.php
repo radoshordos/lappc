@@ -24,12 +24,15 @@ class AkceHugeController extends \BaseController
                 ]),
             'select_action_record' => [''] + SB::option(
                     "SELECT record_sync_import.*,
-                            mixture_dev.name
+                            mixture_dev.name,
+                            COUNT(sync_db.record_id) AS rsi_actual_count
                      FROM record_sync_import
+                     INNER JOIN sync_db ON sync_db.record_id = record_sync_import.id
                      LEFT JOIN sync_csv_template ON record_sync_import.template_id = sync_csv_template.id
                      LEFT JOIN mixture_dev ON sync_csv_template.mixture_dev_id = mixture_dev.id
                      WHERE record_sync_import.purpose = 'action'
-                     ORDER BY id", ['id' => '->name - [Datum importu: ->created_at] - (Záznamů &#8721; = ->item_counter)'])
+                     GROUP BY record_sync_import.id
+                     ORDER BY id", ['id' => '->name - [Datum importu: ->created_at] - (Záznamů &#8721; = ->rsi_actual_count)'])
         ]);
     }
 
