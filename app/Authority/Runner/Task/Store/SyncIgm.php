@@ -31,24 +31,21 @@ class SyncIgm extends TaskMessage implements iSync
 
     public function runSynchronizeData()
     {
-        $all = $suc = $i = 0;
+        $all = $suc = 0;
         $xml = (array)simplexml_load_file($this->getSyncUploadDirectory() . $this->getFile());
         $record_id = strtotime('now');
 
         foreach ((array)$xml as $item) {
             foreach ((array)$item as $row) {
-                $i++;
 
                 $all++;
                 $igm = new RunIgm((array)$row, $record_id);
                 $igm->setSyncIdDev();
 
-                /*
                 if ($igm->isUseRequired() === TRUE) {
                     $suc++;
-                    $igm->insertData2Db();
+//                    $igm->insertData2Db();
                 }
-                */
             }
         }
         /*

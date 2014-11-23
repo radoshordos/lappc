@@ -22,6 +22,8 @@ interface iItem
 
     function getSyncProdImgSource();
 
+    function getSyncProdWeight();
+
     function setSyncProdDesc();
 
     function setSyncProdName();
@@ -41,4 +43,6 @@ interface iItem
     function setSyncItemsPriceAction();
 
     function setSyncItemsAvailabilityCount();
+
+    function setSyncProdWeight();
 }

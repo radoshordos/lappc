@@ -106,4 +106,9 @@ class RunGarland extends AbstractRunDev implements iItem
     {
         return NULL;
     }
+
+    function setSyncProdWeight()
+    {
+        return NULL;
+    }
 }

@@ -102,4 +102,9 @@ class RunBow extends AbstractRunDev implements iItem
     {
         return NULL;
     }
+
+    function setSyncProdWeight()
+    {
+        return NULL;
+    }
 }

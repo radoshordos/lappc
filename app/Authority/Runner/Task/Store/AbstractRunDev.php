@@ -11,6 +11,7 @@ abstract class AbstractRunDev implements iItem
     protected $syncIdDev;
     protected $syncProdName;
     protected $syncProdDesc;
+    protected $syncProdWeight;
     protected $syncItemsCodeProduct;
     protected $syncItemsCodeEan;
     protected $syncItemsPriceStandard;
@@ -117,6 +118,7 @@ abstract class AbstractRunDev implements iItem
             'availability_count' => $this->getSyncItemsAvailabilityCount(),
             'code_ean'           => $this->getSyncItemsCodeEan(),
             'code_prod'          => $this->getSyncItemsCodeProduct(),
+            'weight' => $this->getSyncProdWeight(),
             'common_group'       => $this->getSyncCommonGroup()
         ];
     }
@@ -139,6 +141,11 @@ abstract class AbstractRunDev implements iItem
     public function getSyncProdImgSource()
     {
         return $this->syncProdImgSource;
+    }
+
+    public function getSyncProdWeight()
+    {
+        return $this->syncProdWeight;
     }
 
     public function getSyncItemsAvailabilityCount()

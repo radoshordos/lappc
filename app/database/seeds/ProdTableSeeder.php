@@ -16,7 +16,7 @@ class ProdTableSeeder extends Seeder
 
             $tree = $this->getTree($row['tree_id']);
 
-            if ($row['id'] % 5 == 1 && $tree > 0) {
+            if ($row['id'] % 3 == 1 && $tree > 0) {
 
                 DB::table('prod')->insert([
                     'id'            => $row['id'],
@@ -31,7 +31,7 @@ class ProdTableSeeder extends Seeder
                     'desc'          => $row['des'],
                     'img_big'       => $row['img_big'],
                     'img_normal'    => $row['img_normal'],
-                    'storeroom'     => ($row['id'] % 3),
+                    'storeroom'     => rand(0,2),
                     'price'         => $row['price'],
                     'created_at'    => date("Y-m-d H:i:s", $row['ti_create']),
                     'updated_at'    => $now
@@ -39,7 +39,6 @@ class ProdTableSeeder extends Seeder
             }
         }
     }
-
 
     function getTree($tree)
     {

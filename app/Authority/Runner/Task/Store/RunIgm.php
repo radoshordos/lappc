@@ -41,33 +41,27 @@ class RunIgm extends AbstractRunDev implements iItem
 
     private function analyseIdDev($dev_name)
     {
-
-        echo $dev_name . "<br />\n";
-   /*
-800 - IGM
-802 - CTM
-804 - FACHMAN
-806 - JET
-808 - Silky
-810 - Titebond
-812 - Uvex
-       */ /*
         switch ($dev_name) {
-            case 'FERM' :
-                if ($guarante_months == 36) {
-                    return 176;
-                } else {
-                    return 175;
-                }
-            case 'WORX' :
-            case 'WORX Garden' :
-                return 170;
-            case 'PROMA' :
-                return 35;
+            case 'IGM Basic Line' :
+            case 'IGM Expert Line' :
+            case 'IGM Professional Tools' :
+            case 'IGM Profi Line' :
+                return 800;
+            case 'CMT Orange Tools' :
+                return 802;
+            case 'IGM Fachmann Tools' :
+                return 804;
+            case 'JET' :
+                return 806;
+            case 'Silky' :
+                return 808;
+            case 'Titebond' :
+                return 810;
+            case 'Uvex' :
+                return 812;
             default :
                 return 0;
         }
-        */
     }
 
     public function setSyncItemsAvailabilityCount()
@@ -80,7 +74,6 @@ class RunIgm extends AbstractRunDev implements iItem
         return NULL;
     }
 
-
     public function setSyncProdImgSource()
     {
         return NULL;
@@ -89,5 +82,19 @@ class RunIgm extends AbstractRunDev implements iItem
     function setSyncItemsPriceAction()
     {
         return NULL;
+    }
+
+    function getSyncWeight()
+    {
+        // TODO: Implement getSyncWeight() method.
+    }
+
+    function setSyncWeight()
+    {
+
+        (!empty($this->shopItem['MAINUNITWEIGHT']) ? $this->syncProdDesc = (string)trim($this->shopItem['MAINUNITWEIGHT']) : NULL);
+
+
+        // TODO: Implement setSyncWeight() method.
     }
 }
