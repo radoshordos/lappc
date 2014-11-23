@@ -8,11 +8,10 @@ $(function() {
         }
     });
 
-
     $("#prod-sort li").on("click", function (e) {
         e.preventDefault();
-        $(this).siblings("li").css("fontWeight", "normal");
-        $(this).css("fontWeight", "bold");
+        $(this).siblings("li").css("font-weight", "normal");
+        $(this).css("font-weight", "bold");
     });
 
     $('#action').click(function () {

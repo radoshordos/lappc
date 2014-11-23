@@ -52,6 +52,8 @@ class SearchDataController extends Controller
         }
 
         $data = $db->limit(15)->paginate();
+        $data->setBaseUrl('');
+
         return View::make('web.layout.boxprodlist', ["vp_list" => $data]);
     }
 }
