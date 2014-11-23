@@ -20,7 +20,7 @@ interface iItem
 
     function getSyncCommonGroup();
 
-    function getSyncProdImgSource();
+    function getSyncProdImgSourceArray();
 
     function getSyncProdWeight();
 
@@ -32,7 +32,7 @@ interface iItem
 
     function setSyncCommonGroup();
 
-    function setSyncProdImgSource();
+    function setSyncProdImgSourceArray();
 
     function setSyncItemsCodeProduct();
 

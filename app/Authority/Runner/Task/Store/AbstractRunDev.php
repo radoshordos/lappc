@@ -18,7 +18,7 @@ abstract class AbstractRunDev implements iItem
     protected $syncItemsPriceAction;
     protected $syncItemsAvailabilityCount;
     protected $syncCommonGroup;
-    protected $syncProdImgSource;
+    protected $syncProdImgSourceArray;
     private $counterAll = 0;
     private $counterSync = 0;
 
@@ -34,12 +34,13 @@ abstract class AbstractRunDev implements iItem
         $this->setSyncIdDev();
         $this->setSyncProdName();
         $this->setSyncProdDesc();
-        $this->setSyncProdImgSource();
+        $this->setSyncProdImgSourceArray();
         $this->setSyncItemsAvailabilityCount();
         $this->setSyncItemsCodeProduct();
         $this->setSyncItemsCodeEan();
         $this->setSyncItemsPriceStandard();
         $this->setSyncItemsPriceAction();
+        $this->setSyncProdWeight();
         $this->setSyncCommonGroup();
     }
 
@@ -95,7 +96,7 @@ abstract class AbstractRunDev implements iItem
 
     public function insertData2Db()
     {
-        $tsi = new TotalSyncImport($this->getAllValues());
+        $tsi = new TotalSyncImport($this->getAllValues(),$this->getSyncProdImgSourceArray());
         return $tsi->insertData2SyncDb();
     }
 
@@ -114,13 +115,13 @@ abstract class AbstractRunDev implements iItem
             'desc'               => $this->getSyncProdDesc(),
             'price_standard'     => $this->getSyncItemsPriceStandard(),
             'price_action'       => $this->getSyncItemsPriceAction(),
-            'img_source'         => $this->getSyncProdImgSource(),
             'availability_count' => $this->getSyncItemsAvailabilityCount(),
             'code_ean'           => $this->getSyncItemsCodeEan(),
             'code_prod'          => $this->getSyncItemsCodeProduct(),
-            'weight' => $this->getSyncProdWeight(),
+            'weight'             => $this->getSyncProdWeight(),
             'common_group'       => $this->getSyncCommonGroup()
         ];
+
     }
 
     public function getRecordId()
@@ -138,9 +139,9 @@ abstract class AbstractRunDev implements iItem
         return $this->syncItemsPriceAction;
     }
 
-    public function getSyncProdImgSource()
+    public function getSyncProdImgSourceArray()
     {
-        return $this->syncProdImgSource;
+        return $this->syncProdImgSourceArray;
     }
 
     public function getSyncProdWeight()

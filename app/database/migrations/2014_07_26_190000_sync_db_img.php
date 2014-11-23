@@ -10,7 +10,11 @@ class SyncDbImg extends Migration
     {
         Schema::create('sync_db_img', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->integer('sync_id')->unsigned();
             $table->string('url', '255');
+            $table->engine = 'InnoDB';
+
+            $table->foreign('sync_id')->references('id')->on('sync_db')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

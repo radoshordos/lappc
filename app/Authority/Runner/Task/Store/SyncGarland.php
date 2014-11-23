@@ -37,18 +37,15 @@ class SyncGarland extends TaskMessage implements iSync
         $record_id = strtotime('now');
 
         foreach ($xml['ARTIKL'] as $row) {
-
             $all++;
             $garland = new RunGarland((array)$row, $record_id);
             $garland->setSyncIdDev();
-/*
             if ($garland->isUseRequired() === true) {
                 $garland->insertData2Db($this->db);
                 $suc++;
             }
-*/
-       }
-/*
+        }
+
         RecordSyncImport::create([
             'id'           => $record_id,
             'purpose'      => 'autosync',
@@ -56,9 +53,8 @@ class SyncGarland extends TaskMessage implements iSync
             'name'         => __CLASS__,
             'created_at'   => date("Y-m-d H:i:s", $record_id)
         ]);
-*/
-      //  $this->addComment("Přečteno záznamů : <b>" . $all . "</b>");
-      //  $this->addComment("Zpracováno záznamů : <b>" . $suc . "</b>");
-    }
 
+        $this->addComment("Přečteno záznamů : <b>" . $all . "</b>");
+        $this->addComment("Zpracováno záznamů : <b>" . $suc . "</b>");
+    }
 }

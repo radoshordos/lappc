@@ -2,15 +2,17 @@
 
 use Authority\Eloquent\Items;
 use Authority\Eloquent\SyncDb;
+use Authority\Eloquent\SyncDbImg;
 
 class TotalSyncImport
 {
     private $columns;
+    private $images;
     private $dev_id;
     private $code_prod;
     private $purpose;
 
-    public function  __construct(array $data)
+    public function  __construct(array $data, array $images = NULL)
     {
         if (!isset($data['dev_id'])) {
             throw new \RuntimeException("NOT column dev_id");
@@ -23,6 +25,7 @@ class TotalSyncImport
         }
 
         $this->columns = $data;
+        $this->images = $images;
         $this->dev_id = $data['dev_id'];
         $this->code_prod = $data['code_prod'];
         $this->purpose = $data['purpose'];
@@ -65,10 +68,22 @@ class TotalSyncImport
 
         $sync_id = $this->syncDbId();
         if ($sync_id == 0) {
-            return SyncDb::create(array_merge($this->columns, $additional));
-        } else {
-            return SyncDb::where('id', '=', $sync_id)->update(array_merge($this->columns, $additional));
+            $newDBcol = SyncDb::create(array_merge($this->columns, $additional));
+            if (count($this->images) > 0) {
+                foreach ($this->images as $val) {
+                    if (is_array($val)) {
+                        foreach ($val as $v) {
+                            SyncDbImg::create(['sync_id' => $newDBcol->id, 'url' => $v]);
+                        }
+                    } else {
+                        SyncDbImg::create(['sync_id' => $newDBcol->id, 'url' => $val]);
+                    }
+                }
+                return $newDBcol;
+            } else {
+                return SyncDb::where('id', '=', $sync_id)->update(array_merge($this->columns, $additional));
+            }
         }
-    }
 
+    }
 }

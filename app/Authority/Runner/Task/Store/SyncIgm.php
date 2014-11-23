@@ -31,8 +31,13 @@ class SyncIgm extends TaskMessage implements iSync
 
     public function runSynchronizeData()
     {
+
         $all = $suc = 0;
-        $xml = (array)simplexml_load_file($this->getSyncUploadDirectory() . $this->getFile());
+        $file = file_get_contents($this->getSyncUploadDirectory() . $this->getFile());
+        $chars = ['<![CDATA[' => "", ']]>' => ''];
+        $file = (string)str_replace(array_keys($chars), array_values($chars), $file);
+
+        $xml = (array)simplexml_load_string($file);
         $record_id = strtotime('now');
 
         foreach ((array)$xml as $item) {
@@ -44,19 +49,19 @@ class SyncIgm extends TaskMessage implements iSync
 
                 if ($igm->isUseRequired() === TRUE) {
                     $suc++;
-//                    $igm->insertData2Db();
+                    $igm->insertData2Db();
                 }
             }
         }
-        /*
-                RecordSyncImport::create([
-                    'id'           => $record_id,
-                    'purpose'      => 'autosync',
-                    'item_counter' => $suc,
-                    'name'         => __CLASS__,
-                    'created_at'   => date("Y-m-d H:i:s", $record_id)
-                ]);
-        */
+
+        RecordSyncImport::create([
+            'id'           => $record_id,
+            'purpose'      => 'autosync',
+            'item_counter' => $suc,
+            'name'         => __CLASS__,
+            'created_at'   => date("Y-m-d H:i:s", $record_id)
+        ]);
+
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }

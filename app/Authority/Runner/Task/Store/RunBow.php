@@ -98,12 +98,12 @@ class RunBow extends AbstractRunDev implements iItem
         return NULL;
     }
 
-    public function setSyncProdImgSource()
+    function setSyncProdWeight()
     {
         return NULL;
     }
 
-    function setSyncProdWeight()
+    function setSyncProdImgSourceArray()
     {
         return NULL;
     }
