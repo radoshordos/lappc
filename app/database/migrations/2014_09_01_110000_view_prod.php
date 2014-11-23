@@ -25,6 +25,7 @@ class ViewProd extends Migration
                     prod.ic_price_diff_visible AS prod_ic_price_diff_visible,
                     prod.img_normal AS prod_img_normal,
                     prod.img_big AS prod_img_big,
+                    prod.created_at AS prod_created_at,
                     prod.updated_at AS prod_updated_at,
                     prod_warranty.name AS prod_warranty_name,
                     tree.id AS tree_id,

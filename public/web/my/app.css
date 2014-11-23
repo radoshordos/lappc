@@ -20,6 +20,26 @@ div.icon-bar.vertical a.item label {
     text-align: left;
 }
 
+
+div#prod-sort li {
+    float:left;
+    margin:0 .1em;
+    list-style-type: none;
+}
+
+div#prod-sort li a {
+    margin:0 .2em;
+}
+
+div#prod-sort li a:hover,div#prod-filter a:hover label  {
+    text-decoration: underline;
+}
+
+div#prod-sort li:first-child {
+    font-weight:bold;
+}
+
+
 /* --------------------------------------------------
 Menu Action
 -------------------------------------------------- */

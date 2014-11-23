@@ -8,6 +8,13 @@ $(function() {
         }
     });
 
+
+    $("#prod-sort li").on("click", function (e) {
+        e.preventDefault();
+        $(this).siblings("li").css("fontWeight", "normal");
+        $(this).css("fontWeight", "bold");
+    });
+
     $('#action').click(function () {
         prodList();
     });
@@ -16,7 +23,24 @@ $(function() {
         prodList();
     });
 
-    function prodList() {
+    $('#cheap').click(function () {
+        prodList('cheap');
+    });
+
+    $('#expensive').click(function () {
+        prodList('expensive');
+    });
+
+    $('#sell').click(function () {
+        prodList('sell');
+    });
+
+    $('#fresh').click(function () {
+        prodList('fresh');
+    });
+
+    function prodList(sort) {
+        sort = typeof sort !== 'undefined' ? sort : 'cheap';
 
         var store = $('#store').is(':checked');
         var action = $('#action').is(':checked');
@@ -26,7 +50,7 @@ $(function() {
         $.ajax({
             method: "GET",
             url: '/getstoreroom',
-            data: {store: store, action: action, tree: tree, dev: dev},
+            data: {store: store, action: action, tree: tree, dev: dev, sort: sort},
             success: function (data) {
                 $("#area").html(data);
             }
