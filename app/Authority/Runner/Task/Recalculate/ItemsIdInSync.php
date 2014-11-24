@@ -16,14 +16,13 @@ class ItemsIdInSync extends TaskMessage implements iRun
 
     public function run()
     {
-
         $i = 0;
         $distinct_dev = SyncDb::distinct()->get(["dev_id"]);
 
-        if ($distinct_dev->count > 0) {
+        if ($distinct_dev->count() > 0) {
             foreach ($distinct_dev as $val) {
 
-                $row = Items::join('prod', 'items.id_prod', '=', 'prod.id')
+                $row = Items::join('prod', 'items.prod_id', '=', 'prod.id')
                     ->join('sync_db', 'sync_db.code_prod', '=', 'items.code_prod')
                     ->whereNotNull('items.code_prod')
                     ->whereNull('sync_db.item_id')
@@ -43,6 +42,6 @@ class ItemsIdInSync extends TaskMessage implements iRun
             }
         }
 
-        $this->addComment("Propojeno pomocí ID s položkama : <b>" . $i . "</b>");
+        $this->addMessage("Propojeno pomocí ID s položkama : <b>" . $i . "</b>");
     }
 }
