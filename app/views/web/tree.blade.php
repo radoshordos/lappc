@@ -40,7 +40,7 @@ Registrace & Přihlášení
         <div class="small-9 columns">
             @include('web.layout.boxdev')
             @include('web.layout.blockprodfilter')
-            @include('web.layout.boxsorting')
+                @include('web.layout.boxsorting')
             @include('web.layout.boxprodlist')
         </div>
     </div>

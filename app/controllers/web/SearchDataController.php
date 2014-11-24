@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\ViewProd;
+use Authority\Web\Query\AjaxTree;
 
 class SearchDataController extends Controller
 {
@@ -21,7 +22,14 @@ class SearchDataController extends Controller
         $tree = Input::get('tree');
         $store = Input::get('store');
         $action = Input::get('action');
+
         $sort = Input::get('sort');
+
+        if (strlen($sort) > 0 && strlen($sort) < 16) {
+            Session::put('tree.sort', $sort);
+        } else {
+            $sort = Session::get('tree.sort');
+        }
 
         $db = ViewProd::where('prod_mode_id', '>', '1');
 
@@ -41,15 +49,8 @@ class SearchDataController extends Controller
             $db->where('dev_id', intval($dev));
         }
 
-        if ($sort == 'expensive') {
-            $db->orderBy('query_price','DESC');
-        } else if ($sort == 'sell') {
-            $db->orderBy('query_price','ASC');
-        } else if ($sort == 'fresh') {
-            $db->orderBy('prod_created_at','DESC');
-        } else {
-            $db->orderBy('query_price','ASC');
-        }
+        $ajaxTree = new AjaxTree();
+        $db = $ajaxTree->orderBySort($db,$sort);
 
         $data = $db->limit(15)->paginate();
         $data->setBaseUrl('');

@@ -1,4 +1,5 @@
 <div id="area">
+
     <ul id="prodlist" class="small-block-grid-3">
         @foreach($vp_list as $row)
         <li class="prod th radius">

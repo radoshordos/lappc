@@ -8,11 +8,13 @@ $(function() {
         }
     });
 
-    $("#prod-sort li").on("click", function (e) {
+
+    $("#prod-sort li a").on("click", function (e) {
         e.preventDefault();
-        $(this).siblings("li").css("font-weight", "normal");
-        $(this).css("font-weight", "bold");
+        $( "#prod-sort li a" ).removeClass( "active" );
+        $( this ).addClass( "active" );
     });
+
 
     $('#action').click(function () {
         prodList();
@@ -38,18 +40,20 @@ $(function() {
         prodList('fresh');
     });
 
+
     function prodList(sort) {
-        sort = typeof sort !== 'undefined' ? sort : 'cheap';
 
         var store = $('#store').is(':checked');
         var action = $('#action').is(':checked');
         var tree = $('#tree').val();
         var dev = $('#dev').val();
 
+        var data = {store: store, action: action, tree: tree, dev: dev, sort: sort};
+
         $.ajax({
             method: "GET",
             url: '/getstoreroom',
-            data: {store: store, action: action, tree: tree, dev: dev, sort: sort},
+            data: data,
             success: function (data) {
                 $("#area").html(data);
             }
