@@ -6,3 +6,12 @@ h1 {
     text-align: center;
     font-size: 1.5em;
 }
+
+
+table.table thead tr {
+    background-color: #b7dde8;
+}
+
+table.table tfoot tr {
+    background-color: #cee4ea;
+}

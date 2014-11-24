@@ -43,7 +43,7 @@ class ProdController extends \BaseController
                 $db->orderBy('prod_name', 'DESC');
                 break;
             case 3:
-                $db->orderBy('prod_price', 'DESC');
+                $db->orderBy('query_price', 'ASC');
                 break;
             default:
                 $db->orderBy('prod_updated_at', 'ASC');

@@ -9,27 +9,31 @@ class SyncCsvColumnTableSeeder extends Seeder
 
         DB::table('sync_csv_column')->insert([
             'id'      => 2,
-            'element' => 'name'
+            'element' => 'name',
+            'desc'    => 'Název produktu'
         ]);
 
         DB::table('sync_csv_column')->insert([
             'id'      => 5,
-            'element' => 'desc'
+            'element' => 'desc',
+            'desc'    => 'Popis produktu'
         ]);
 
         DB::table('sync_csv_column')->insert([
             'id'      => 11,
-            'element' => 'code_prod'
+            'element' => 'code_prod',
+            'desc'    => 'Kód produktu'
         ]);
 
         DB::table('sync_csv_column')->insert([
             'id'      => 12,
-            'element' => 'code_ean'
+            'element' => 'code_ean',
+            'desc'    => 'EAN produktu'
         ]);
 
         DB::table('sync_csv_column')->insert([
             'id'      => 21,
-            'element' => 'price_standart',
+            'element' => 'price_standard',
             'desc'    => 'Běžná cena produktu'
         ]);
 

@@ -15,12 +15,17 @@ class AkceHugeController extends \BaseController
                 ->leftJoin('items', 'sync_db.item_id', '=', 'items.id')
                 ->leftJoin('prod', 'items.prod_id', '=', 'prod.id')
                 ->where('record_id', '=', $action_record)
-                ->orderBy('sync_db.code_prod')
+                ->whereNotNull('price_action')
+                ->orWhereNotNull('price_internet')
+                ->whereNotNull('item_id')
+                ->orderBy('prod_name')
                 ->get([
                     'sync_db.id AS sync_db_id',
                     'sync_db.code_prod AS sync_db_code_prod',
-                    'sync_db.name AS sync_db_name',
-                    'prod.name AS prod_name'
+                    'sync_db.price_action AS sync_db_price_action',
+                    'sync_db.price_internet AS sync_db_price_internet',
+                    'prod.name AS prod_name',
+                    'prod.price AS prod_price',
                 ]),
             'select_action_record' => [''] + SB::option(
                     "SELECT record_sync_import.*,

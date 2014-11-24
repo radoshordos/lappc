@@ -25,8 +25,8 @@ class CheckerColumn extends CsvAbstract
 
     public function fixPriceRange($line)
     {
-        if (isset($this->item['price_standart']) && strlen($this->item['price_standart']) > 0) {
-            $this->item['price_standart'] = str_replace(" ", "", $this->item['price_standart']);
+        if (isset($this->item['price_standard']) && strlen($this->item['price_standard']) > 0) {
+            $this->item['price_standard'] = str_replace(" ", "", $this->item['price_standard']);
         }
         if (isset($this->item['price_action']) && strlen($this->item['price_action']) > 0) {
             $this->item['price_action'] = str_replace(" ", "", $this->item['price_action']);
@@ -41,7 +41,7 @@ class CheckerColumn extends CsvAbstract
     {
         $counter = 0;
 
-        if (isset($this->item['price_standart']) && is_numeric($this->item['price_standart']) && intval($this->item['price_standart']) > 0) {
+        if (isset($this->item['price_standard']) && is_numeric($this->item['price_standard']) && intval($this->item['price_standard']) > 0) {
             $counter++;
         }
         if (isset($this->item['price_action']) && is_numeric($this->item['price_action']) && intval($this->item['price_action']) > 0) {

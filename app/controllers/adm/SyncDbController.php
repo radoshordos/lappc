@@ -46,6 +46,7 @@ class SyncDbController extends \BaseController
             }
 
             $db->select([
+                'sync_db.id AS sync_id',
                 'sync_db.code_ean AS sync_code_ean',
                 'sync_db.code_prod AS sync_code_prod',
                 'sync_db.name AS sync_name',

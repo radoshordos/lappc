@@ -56,8 +56,8 @@
                 <th>Výrobce</th>
                 <th>#TREE</th>
                 <th>Záruka</th>
-                <th class="col-xs-2">Název [i]<br />{{ Form::text('search_name',$search_name) }}</th>
-                <th>Cena</th>
+                <th class="col-xs-2">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
+                <th>Eshop cena</th>
             </tr>
             </thead>
             <tbody>
@@ -69,7 +69,7 @@
                 <td>{{ $row->tree_id }}</td>
                 <td>{{ $row->prod_warranty_name }}</td>
                 <td class="col-xs-3 "><small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small></td>
-                <td>{{ $row->prod_price }}</td>
+                <td>{{ $row->quere_price }}</td>
             </tr>
             @endforeach
             </tbody>

@@ -50,8 +50,8 @@ Synchronizační databáze
 <form action="">
 <table class="table table-condensed">
     <thead>
-        <tr style="background-color:#BDBDBD">
-            <td><input type="checkbox" id="select_all" name="select_all" /></td>
+        <tr>
+            <th>{{ Form::checkbox('select_all', NULL ,NULL, ['id'=>'select_all']) }}</th>
             <td></td>
             <td></td>
             <td></td>
@@ -62,16 +62,16 @@ Synchronizační databáze
     <tbody>
     @foreach ($db as $row)
     <tr class="bg-success">
-        <td class="bg-warning" class="checkbox"><input type="checkbox" name="select[]" /></td>
+        <td>{{ Form::checkbox("select[".$row->sync_id."]",NULL) }}</td>
         <td>{{ $row->sync_code_prod }}</td>
         <td>{{ $row->sync_code_ean }}</td>
         <td>{{ $row->sync_name }}</td>
         <td>{{ $row->sync_desc }}</td>
-        <td>{{ $row->sync_price_standart }}</td>
+        <td>{{ $row->sync_price_standard }}</td>
     </tr>
     @if ($row->prod_name)
     <tr class="bg-info">
-        <td class="bg-warning"></td>
+        <td></td>
         <td></td>
         <td></td>
         <td>{{ $row->prod_name }}</td>
@@ -82,13 +82,8 @@ Synchronizační databáze
     @endforeach
     </tbody>
     <tfoot>
-        <tr style="background-color:#BDBDBD">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td colspan="6"></td>
         </tr>
     </tfoot>
 </table>
