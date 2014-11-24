@@ -37,7 +37,7 @@ class TotalSyncImport
             SyncDb::where('code_prod', '=', $this->code_prod)
                 ->where('dev_id', '=', $this->dev_id)
                 ->where('purpose', '=', $this->purpose)
-                ->pluck('id')
+                ->lists('sync_db.id AS sync_db_id')
         );
     }
 
@@ -46,7 +46,7 @@ class TotalSyncImport
         return intval(
             Items::join('prod', 'items.prod_id', '=', 'prod.id')
                 ->where('items.code_prod', '=', $this->code_prod)
-                ->where('prod.dev_id', '=', $this->dev_id)->pluck('items.id')
+                ->where('prod.dev_id', '=', 176)->lists('items.id AS items_id')
         );
     }
 

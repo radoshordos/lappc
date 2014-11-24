@@ -18,7 +18,6 @@ class Dev extends Migration
             $table->tinyInteger('default_availibility_id')->unsigned()->default(2);
             $table->string('alias', '32')->unique();
             $table->string('name', '32')->unique();
-            $table->timestamps();
             $table->engine = 'InnoDB';
 
             $table->foreign('default_warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');

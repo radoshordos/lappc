@@ -10,7 +10,7 @@ Runner
 @section('content')
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        {{ Form::open(array('action' => 'CommandRunnerController@task', 'method' => 'POST')) }}
+        {{ Form::open(['action' => 'CommandRunnerController@task', 'method' => 'POST']) }}
         <table class="table table-striped table-hover">
             <thead>
             <tr>
