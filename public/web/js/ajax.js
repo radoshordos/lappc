@@ -8,13 +8,11 @@ $(function() {
         }
     });
 
-
     $("#prod-sort li a").on("click", function (e) {
         e.preventDefault();
         $( "#prod-sort li a" ).removeClass( "active" );
         $( this ).addClass( "active" );
     });
-
 
     $('#action').click(function () {
         prodList();
