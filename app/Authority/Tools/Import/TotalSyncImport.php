@@ -34,19 +34,21 @@ class TotalSyncImport
     private function syncDbId()
     {
         return intval(
-            SyncDb::where('code_prod', '=', $this->code_prod)
+            SyncDb::select('sync_db.id AS sync_db_id')
+                ->where('code_prod', '=', $this->code_prod)
                 ->where('dev_id', '=', $this->dev_id)
                 ->where('purpose', '=', $this->purpose)
-                ->lists('sync_db.id AS sync_db_id')
+                ->pluck('sync_db_id')
         );
     }
 
     private function itemsId()
     {
-        return intval(
-            Items::join('prod', 'items.prod_id', '=', 'prod.id')
+        return intval(Items::select('items.id AS items_id')
+                ->join('prod', 'items.prod_id', '=', 'prod.id')
                 ->where('items.code_prod', '=', $this->code_prod)
-                ->where('prod.dev_id', '=', 176)->lists('items.id AS items_id')
+                ->where('prod.dev_id', '=', $this->dev_id)
+                ->pluck('items_id')
         );
     }
 
@@ -68,22 +70,21 @@ class TotalSyncImport
 
         $sync_id = $this->syncDbId();
         if ($sync_id == 0) {
-            $newDBcol = SyncDb::create(array_merge($this->columns, $additional));
+            $newSyncDb = SyncDb::create(array_merge($this->columns, $additional));
             if (count($this->images) > 0) {
                 foreach ($this->images as $val) {
                     if (is_array($val)) {
                         foreach ($val as $v) {
-                            SyncDbImg::create(['sync_id' => $newDBcol->id, 'url' => $v]);
+                            SyncDbImg::create(['sync_id' => $newSyncDb->id, 'url' => $v]);
                         }
                     } else {
-                        SyncDbImg::create(['sync_id' => $newDBcol->id, 'url' => $val]);
+                        SyncDbImg::create(['sync_id' => $newSyncDb->id, 'url' => $val]);
                     }
                 }
-                return $newDBcol;
+                return $newSyncDb;
             } else {
                 return SyncDb::where('id', '=', $sync_id)->update(array_merge($this->columns, $additional));
             }
         }
-
     }
 }

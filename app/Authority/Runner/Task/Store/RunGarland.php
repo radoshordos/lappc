@@ -57,7 +57,6 @@ class RunGarland extends AbstractRunDev implements iItem
 
     public function setSyncItemsAvailabilityCount()
     {
-
         if (intval($this->shopItem['STAVVOLNY']) > 0) {
             $this->syncItemsAvailabilityCount = intval($this->shopItem['STAVVOLNY']);
         } else {
@@ -97,11 +96,6 @@ class RunGarland extends AbstractRunDev implements iItem
         (!empty($this->shopItem['POPIS']) ? $this->syncProdDesc = (string)$this->shopItem['POPIS'] : NULL);
     }
 
-    public function setSyncProdImgSource()
-    {
-        (!empty($this->shopItem['NAHLED_BIG']) ? $this->syncProdImgSource = (string)$this->shopItem['NAHLED_BIG'] : NULL);
-    }
-
     function setSyncItemsPriceAction()
     {
         return NULL;
@@ -109,6 +103,11 @@ class RunGarland extends AbstractRunDev implements iItem
 
     function setSyncProdWeight()
     {
-        return NULL;
+        return $this->syncProdWeight = 0;
+    }
+
+    function setSyncProdImgSourceArray()
+    {
+        (!empty($this->shopItem['NAHLED_BIG']) ? $this->syncProdImgSource = (array)$this->shopItem['NAHLED_BIG'] : NULL);
     }
 }

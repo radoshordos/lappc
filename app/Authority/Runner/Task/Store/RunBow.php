@@ -93,12 +93,12 @@ class RunBow extends AbstractRunDev implements iItem
         }
     }
 
-    public function setSyncProdDesc()
+    function setSyncProdWeight()
     {
-        return NULL;
+        return $this->syncProdWeight = 0;
     }
 
-    function setSyncProdWeight()
+    public function setSyncProdDesc()
     {
         return NULL;
     }
