@@ -7,7 +7,7 @@ class HeurekaCz extends ShopAbstract
 {
     public function __construct()
     {
-        $this->view = ViewProd::all();
+        $this->view = ViewProd::leftJoin('tree','tree.id','=','view_prod.tree_id')->get(['*']);
     }
 
     public function feedRender()

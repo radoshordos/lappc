@@ -42,7 +42,7 @@ class FeedAbstract
 
     public function tagCategoryText($row)
     {
-        return "  <CATEGORYTEXT>" . $row["tree_category_text"] . "</CATEGORYTEXT>\n";
+        return "  <CATEGORYTEXT>" . $row["category_text"] . "</CATEGORYTEXT>\n";
     }
 
 } 
