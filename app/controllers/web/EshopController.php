@@ -43,6 +43,8 @@ class EshopController extends Controller
 
         if (isset($row) && $row->count() > 0) {
 
+            $sort = NULL;
+
             if (isset($dev) && $dev->count() > 0) {
                 $vp = ViewProd::whereBetween('tree_id', [$row->tree_id, ($row->tree_id + 9999)])->where('dev_id', '=', $dev->id);
             } else {
