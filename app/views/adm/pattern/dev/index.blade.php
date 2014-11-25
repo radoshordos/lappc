@@ -30,6 +30,11 @@ Výrobci zboží
 
             </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <td class="text-right" colspan="10">Zobrazeno <b>{{ count($devs) }}</b> záznamů</td>
+            </tr>
+            </tfoot>
             <tbody>
             @foreach ($devs as $dev)
             <tr>
@@ -47,8 +52,8 @@ Výrobci zboží
                     }}
                 </td>
                 <td>{{ $dev->prod_warranty->name }}</td>
-                <td>{{ $dev->items_sale_prod->name }}</td>
-                <td>{{ $dev->items_sale_action->name }}</td>
+                <td>{{ $dev->prod_sale_prod->name }}</td>
+                <td>{{ $dev->prod_sale_action->name }}</td>
                 <td>{{ $dev->items_availability->name }}</td>
                 <td>{{ link_to_route('adm.pattern.dev.edit','Edit',array($dev->id),array('class' => 'btn btn-info btn-xs')) }}</td>
             </tr>
