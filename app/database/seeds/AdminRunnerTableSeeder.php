@@ -114,5 +114,10 @@ class AdminRunnerTableSeeder extends Seeder
             'class'   => 'Authority\Runner\Task\OneRun\TreeMigrationTable'
         ]);
 
+        DB::table('runner')->insert([
+            'id'      => 2006,
+            'autorun' => 0,
+            'class'   => 'Authority\Runner\Task\OneRun\TreeCategoryText'
+        ]);
     }
 }

@@ -13,15 +13,14 @@ class FeedController extends BaseController
             $feedService = FeedService::filename($filname)->first();
             $generate = new $feedService->class;
 
-            $output = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+            $output = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
             $output .= $generate->feedRender();
-
 
             $response = Response::make($output, 200);
             $response->header('Content-Type', 'text/xml');
             return $response;
         } else {
-            return Response::view('errors.missing', array(), 404);
+            return Response::view('errors.missing', [], 404);
         }
     }
 }

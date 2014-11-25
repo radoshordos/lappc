@@ -3,7 +3,7 @@
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 
-class Tree extends TaskMessage implements iRun
+class TreeCategoryText extends TaskMessage implements iRun
 {
 
     public function __construct($db)
@@ -14,7 +14,6 @@ class Tree extends TaskMessage implements iRun
 
     public function run()
     {
-        \DB::statement('CALL proc_tree_recalculate');
-        $this->addMessage("Zavolán přepočet skupin (TREE)");
+
     }
 }
