@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call('AkceMinitextSeeder');
         $this->call('AkceAvailibilitySeeder');
         $this->call('MediaTypeSeeder');
-        $this->call('ProdDescriptionSeeder');
         $this->call('GrabModeSeeder');
         $this->call('GrabProfileSeeder');
         $this->call('ColumnTableSeeder');
@@ -55,6 +54,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call('ProdTableSeeder');
         $this->call('ItemsSeeder');
+        $this->call('ProdDescriptionSeeder');
 
         $this->call('SyncCsvTemplateTableSeeder');
         $this->call('SyncTemplateM2nColmunTableSeeder');
