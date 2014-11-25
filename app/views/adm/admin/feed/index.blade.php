@@ -27,7 +27,7 @@ Seznam XML Feedů
                 <td>{{ $row->id }}</td>
                 <td>{{ $row->class }}</td>
                 <td>{{ $row->filename }}</td>
-                <td>{{ URL::route('home').'/feeds/'.$row->filename  }}</td>
+                <td>{{ URL::route('web.home').'/feeds/'.$row->filename  }}</td>
             </tr>
             @endforeach
             </tbody>

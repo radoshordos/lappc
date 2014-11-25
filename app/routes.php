@@ -31,7 +31,7 @@ Route::group(['prefix' => 'adm'], function () {
     });
 
     Route::group(['prefix' => 'admin', 'before' => 'Sentry|inGroup:Admins'], function () {
-        Route::resource('feed', 'FeedServiceController');
+        Route::get('feed', ['as' => 'adm.admin.feed.index', 'uses' => 'FeedServiceController@index']);
         Route::get('phpinfo', ['as' => 'adm.admin.phpinfo.index', 'uses' => 'PhpinfoController@index']);
         Route::match(['GET', 'POST'], 'runner/{task}', ['as' => 'adm.admin.runner.task', 'uses' => 'CommandRunnerController@task']);
         Route::resource('runner', 'CommandRunnerController');
