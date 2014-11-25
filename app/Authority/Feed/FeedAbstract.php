@@ -37,7 +37,12 @@ class FeedAbstract
 
     public function tagUrlImg($row)
     {
-        return "  <IMGURL>" . implode('/', [\URL::route('web.home'), "naradi" , $row["tree_absolute"], $row["prod_img_normal"]]) . "</IMGURL>\n";
+        return "  <IMGURL>" . implode('/', [\URL::route('web.home'), "naradi", $row["tree_absolute"], $row["prod_img_normal"]]) . "</IMGURL>\n";
+    }
+
+    public function tagCategoryText($row)
+    {
+        return "  <CATEGORYTEXT>" . $row["tree_category_text"] . "</CATEGORYTEXT>\n";
     }
 
 } 

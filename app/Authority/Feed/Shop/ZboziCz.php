@@ -22,6 +22,7 @@ class ZboziCz extends ShopAbstract {
             $this->out .= $this->tagManufacturer($row);
             $this->out .= $this->tagUrl($row);
             $this->out .= $this->tagUrlImg($row);
+            $this->out .= $this->tagCategoryText($row);
             $this->out .= $this->endShopItem();
         }
         $this->out .= $this->endDocument();

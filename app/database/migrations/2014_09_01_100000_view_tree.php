@@ -16,6 +16,7 @@ class ViewTree extends Migration {
                     tree.name AS tree_name,
                     tree.desc AS tree_desc,
                     tree.absolute AS tree_absolute,
+                    tree.category_text AS tree_category_text,
                     tree_dev.subdir_all AS tree_subdir_all,
                     tree_dev.subdir_visible AS tree_subdir_visible,
                     tree_dev.dir_all AS tree_dir_all,
