@@ -70,6 +70,7 @@ Statistiky prodeje v obchodu
 </div>
 {{ Form::close() }}
 
+@if (!empty($submit))
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#graph" role="tab" data-toggle="tab">Graf</a></li>
   <li><a href="#table" role="tab" data-toggle="tab">Tabulka</a></li>
@@ -92,6 +93,7 @@ Statistiky prodeje v obchodu
                     <th>TRA</th>
                 </tr>
             </thead>
+            @if ($sum)
             <tfoot>
                 <tr style="background-color: #add978">
                     <th>SUMA</th>
@@ -112,6 +114,7 @@ Statistiky prodeje v obchodu
                     <td>{{ round(($sum->sum_month_price_transport / $sum->sum_count_row), 0) }}</td>
                 </tr>
             </tfoot>
+            @endif
             <tbody>
             @foreach($source as $row)
                 <tr>
@@ -128,4 +131,5 @@ Statistiky prodeje v obchodu
         </table>
     </div>
 </div>
+@endif
 @stop

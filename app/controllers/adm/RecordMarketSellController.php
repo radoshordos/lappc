@@ -30,15 +30,15 @@ class RecordMarketSellController extends \BaseController
                 ->where('month', '<=', Input::get('month-end') . "-01")
                 ->orderBy('month')
                 ->first();
-
         }
 
         return View::make('adm.stats.marketsell.index', [
+            'submit' => Input::get('submit_month_record'),
             'source' => $row,
             'sum' => $sum,
             'choice_month_start' => Input::get('month-start'),
-            'choice_month_end'   => Input::get('month-end'),
-            'max_insert_month'   => substr(RecordMarketSell::max('month'), 0, 7),
+            'choice_month_end' => Input::get('month-end'),
+            'max_insert_month' => substr(RecordMarketSell::max('month'), 0, 7),
             'min_insert_month' => substr(RecordMarketSell::min('month'), 0, 7)
         ]);
     }
