@@ -8,7 +8,7 @@ class ZboziCz extends ShopAbstract {
 
     public function __construct()
     {
-        $this->view = ViewProd::all();
+        $this->view = ViewProd::join('tree','tree.id','=','view_prod.tree_id')->all();
     }
 
     public function feedRender()
