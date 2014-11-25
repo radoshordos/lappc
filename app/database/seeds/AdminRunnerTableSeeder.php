@@ -60,11 +60,11 @@ class AdminRunnerTableSeeder extends Seeder
             'class' => 'Authority\Runner\Task\Clear\UnusedCsvImport'
         ]);
 
-	    DB::table('runner')->insert([
-		    'id' => 181,
+        DB::table('runner')->insert([
+            'id' => 181,
             'autorun' => 1,
-		    'class' => 'Authority\Runner\Task\Fix\ProdWithoutItem'
-	    ]);
+            'class' => 'Authority\Runner\Task\Fix\ProdWithoutItem'
+        ]);
 
         DB::table('runner')->insert([
             'id' => 802,
@@ -79,45 +79,45 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
-            'id'      => 1002,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncBow'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 1004,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncProma'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 1006,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncGarland'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 1008,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncIgm'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 2002,
+            'id' => 806,
             'autorun' => 0,
-            'class'   => 'Authority\Runner\Task\OneRun\CreatePicture'
+            'class' => 'Authority\Runner\Task\Recalculate\TreeCategoryText'
         ]);
 
         DB::table('runner')->insert([
-            'id'      => 2004,
-            'autorun' => 0,
-            'class'   => 'Authority\Runner\Task\OneRun\TreeMigrationTable'
+            'id' => 1002,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Store\SyncBow'
         ]);
 
         DB::table('runner')->insert([
-            'id'      => 2006,
+            'id' => 1004,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Store\SyncProma'
+        ]);
+
+        DB::table('runner')->insert([
+            'id' => 1006,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Store\SyncGarland'
+        ]);
+
+        DB::table('runner')->insert([
+            'id' => 1008,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Store\SyncIgm'
+        ]);
+
+        DB::table('runner')->insert([
+            'id' => 2002,
             'autorun' => 0,
-            'class'   => 'Authority\Runner\Task\OneRun\TreeCategoryText'
+            'class' => 'Authority\Runner\Task\OneRun\CreatePicture'
+        ]);
+
+        DB::table('runner')->insert([
+            'id' => 2004,
+            'autorun' => 0,
+            'class' => 'Authority\Runner\Task\OneRun\TreeMigrationTable'
         ]);
     }
 }
