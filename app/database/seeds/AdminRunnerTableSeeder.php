@@ -5,7 +5,7 @@ class AdminRunnerTableSeeder extends Seeder
     public function run()
     {
         DB::table('runner')->delete();
-
+/*
         DB::table('runner')->insert([
             'id' => 11,
             'autorun' => 1,
@@ -17,7 +17,7 @@ class AdminRunnerTableSeeder extends Seeder
             'autorun' => 1,
             'class' => 'Authority\Runner\Task\Ppc\RulesApply'
         ]);
-
+*/
         DB::table('runner')->insert([
             'id' => 31,
             'autorun' => 1,
@@ -61,9 +61,15 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
-            'id' => 181,
+            'id' => 702,
             'autorun' => 1,
             'class' => 'Authority\Runner\Task\Fix\ProdWithoutItem'
+        ]);
+
+        DB::table('runner')->insert([
+            'id' => 704,
+            'autorun' => 1,
+            'class' => 'Authority\Runner\Task\Fix\ProdWithoutAkce'
         ]);
 
         DB::table('runner')->insert([
