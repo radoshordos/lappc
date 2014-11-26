@@ -18,6 +18,7 @@ class Tree extends Migration
             $table->string('relative','64');
             $table->string('absolute','256')->nulable();
             $table->string('category_text','256')->nulable();
+            $table->string('category_nav','512')->nulable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';

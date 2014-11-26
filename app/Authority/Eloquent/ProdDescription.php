@@ -8,5 +8,6 @@ class ProdDescription extends \Eloquent
     public $timestamps = FALSE;
 
     public static $rules = [
+        'prod_id' => 'required|exists:prod,id'
     ];
 }

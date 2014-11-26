@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\Dev;
+use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\TreeDev;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
@@ -21,8 +22,10 @@ class EshopController extends Controller
         if (isset($vp) && $vp->count() > 0) {
             return View::make('web.prod', [
                 'vp'      => $vp,
+                'term'    => Input::get('term'),
+                'vt_tree' => ViewTree::where('tree_id', '=', $vp->tree_id)->first(),
                 'vt_list' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-                'term'    => Input::get('term')
+                'pd_list' => ProdDescription::where('prod_id', '=', $vp->prod_id),
             ]);
         }
         return NULL;

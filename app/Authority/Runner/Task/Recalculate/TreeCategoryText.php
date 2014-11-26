@@ -1,8 +1,8 @@
 <?php namespace Authority\Runner\Task\Recalculate;
 
+use Authority\Eloquent\Tree;
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
-use Authority\Eloquent\Tree;
 use Authority\Tools\ToolTree;
 
 class TreeCategoryText extends TaskMessage implements iRun
@@ -28,9 +28,10 @@ class TreeCategoryText extends TaskMessage implements iRun
             $tt = new ToolTree();
             $tree = Tree::find($id);
             $tree->category_text = $tt->getCategoryText($id);
+            $tree->category_nav = $tt->getCategoryNav($id);
             $tree->save();
         }
-        $this->addMessage("HOTOVO");
+        $this->addMessage("Text OK");
     }
 
 }

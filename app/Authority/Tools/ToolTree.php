@@ -36,4 +36,25 @@ class ToolTree
         return implode(" | ", $arr);
     }
 
+    public function getCategoryNav($id)
+    {
+        $arr = [];
+        if ($id % 1000000 != 0) {
+            $deep3 = Tree::select('absolute','desc','name')->where('id', '=', intval(intval($id / 1000000) * 1000000))->first(['absolute','desc','name']);
+            $arr[] = "<li><a title=\"".$deep3->desc."\" href=\"/".$deep3->absolute."\">".$deep3->name."</a></li>";
+        }
+        if ($id % 10000 != 0) {
+            $deep2 = Tree::select('absolute','desc','name')->where('id', '=', intval(intval($id / 10000) * 10000))->first(['absolute','desc','name']);
+            $arr[] = "<li><a title=\"".$deep2->desc."\" href=\"/".$deep2->absolute."\">".$deep2->name."</a></li>";
+        }
+        if ($id % 100 != 0) {
+            $deep1 = Tree::select('absolute','desc','name')->where('id', '=', intval(intval($id / 100) * 100))->first(['absolute','desc','name']);
+            $arr[] = "<li><a title=\"".$deep1->desc."\" href=\"/".$deep1->absolute."\">".$deep1->name."</a></li>";
+        }
+        $deep0 = Tree::select('absolute','desc','name')->where('id', '=', intval($id))->first(['absolute','desc','name']);
+        $arr[] = "<li><a title=\"".$deep0->desc."\" href=\"/".$deep0->absolute."\">".$deep0->name."</a></li>";
+
+        return implode("", $arr);
+    }
+
 }

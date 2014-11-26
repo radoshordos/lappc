@@ -42,6 +42,11 @@ Registrace & Přihlášení
                 <img aria-hidden="true" src="{{ '/web/naradi/' . $vp->tree_absolute .'/'. $vp->prod_img_normal }}"/>
             </a>
             {{ $vp->query_price }} Kč
+
+            @foreach($pd_list as $pd)
+                {{ $pd }}
+            @endforeach
+
         </div>
     </div>
     <p><a href="http://localhost:8000/adm/">ADM</a></p>
