@@ -6,6 +6,10 @@
     @else
     <title>Hello, world!</title>
     @endif
+    @if (!empty($vp))
+    <meta name="description" content="{{ $vp->prod_desc }}">
+    <meta name="keywords" content="{{ $vp->prod_name.", ".$vp->tree_name.", ".$vp->dev_name }}">
+    @endif
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
     <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">

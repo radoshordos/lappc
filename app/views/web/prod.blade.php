@@ -43,8 +43,12 @@ Registrace & Přihlášení
             </a>
             {{ $vp->query_price }} Kč
 
+
             @foreach($pd_list as $pd)
-                {{ $pd }}
+                   <h3>{{ $pd->mediaVariations->name  }}<h3>
+                  <ul class="prod-desc">
+                        <li>{{ str_replace("\r\n", "</li><li>", $pd->data) }}</li>
+                  <ul>
             @endforeach
 
         </div>

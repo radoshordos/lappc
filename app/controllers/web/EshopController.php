@@ -25,7 +25,7 @@ class EshopController extends Controller
                 'term'    => Input::get('term'),
                 'vt_tree' => ViewTree::where('tree_id', '=', $vp->tree_id)->first(),
                 'vt_list' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-                'pd_list' => ProdDescription::where('prod_id', '=', $vp->prod_id),
+                'pd_list' => ProdDescription::where('prod_id', '=', $vp->prod_id)->get(),
             ]);
         }
         return NULL;

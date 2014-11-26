@@ -8,6 +8,13 @@ class ProdDescription extends \Eloquent
     public $timestamps = FALSE;
 
     public static $rules = [
-        'prod_id' => 'required|exists:prod,id'
+        'prod_id'       => 'required|exists:prod,id',
+        'variations_id' => 'required|exists:media_variations,id',
     ];
+
+
+    public function mediaVariations()
+    {
+        return $this->hasOne('Authority\Eloquent\MediaVariations', 'id', 'variations_id');
+    }
 }
