@@ -89,7 +89,6 @@ class TreeController extends \BaseController
     {
         $tt = new ToolTree();
         $input = array_except(Input::all(), '_method');
-        $input['category_text'] = $tt->getCategoryText($input['id']);
 
         $v = Validator::make($input, Tree::$rules);
 
@@ -97,6 +96,12 @@ class TreeController extends \BaseController
             try {
                 $tree = $this->tree->find($id);
                 $tree->update($input);
+
+                $fix = Tree::find($id);
+                $fix['category_text'] = $tt->getCategoryText($input['id']);
+                $fix->save();
+
+                Session::flash('success', 'Provedena aktualizace skupiny #ID: ' . $input['id']);
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
