@@ -3,7 +3,7 @@
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 use Authority\Eloquent\Tree;
-use Authority\Modelx\ModTree;
+use Authority\Tools\ToolTree;
 
 class TreeCategoryText extends TaskMessage implements iRun
 {
@@ -25,8 +25,10 @@ class TreeCategoryText extends TaskMessage implements iRun
     public function run()
     {
         foreach ($this->getTreeIdLists() as $id) {
-            $mt = new ModTree();
-            $mt->updateTreeId($id);
+            $tt = new ToolTree();
+            $tree = Tree::find($id);
+            $tree->category_text = $tt->getCategoryText($id);
+            $tree->save();
         }
         $this->addMessage("HOTOVO");
     }

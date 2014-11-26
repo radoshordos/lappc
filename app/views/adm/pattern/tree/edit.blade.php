@@ -32,6 +32,12 @@
         </div>
     </div>
     <div class="form-group">
+        {{ Form::label('position','Pozice #ID',['class'=> 'col-sm-2 control-label']) }}
+        <div class="col-sm-10">
+            {{ Form::selectRange('position', 1, 99, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Pozice produktu vzhledem k menu']) }}
+        </div>
+    </div>
+    <div class="form-group">
         {{ Form::label('name','Název skupiny',['class'=> 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
             {{ Form::text('name',NULL,['required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Název skupiny']) }}

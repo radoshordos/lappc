@@ -28,9 +28,9 @@ class TreeController extends \BaseController
             ->get();
 
         return View::make('adm.pattern.tree.index', [
-            'trees' => $tree,
-            'input' => $input,
-            'search_desc' => Input::get('search_desc'),
+            'trees'        => $tree,
+            'input'        => $input,
+            'search_desc'  => Input::get('search_desc'),
             'select_group' => SB::option("SELECT * FROM tree_group WHERE grouptop_id = 20 AND for_prod = 1", ['id' => '[->id] - ->name'])
         ]);
     }
@@ -79,15 +79,31 @@ class TreeController extends \BaseController
         }
 
         return View::make('adm.pattern.tree.edit', [
-            'tree' => $tree,
-            'select_dev' => SB::option("SELECT * FROM dev", ['id' => '->name']),
+            'tree'          => $tree,
+            'select_dev'    => SB::option("SELECT * FROM dev", ['id' => '->name']),
             'select_parent' => SB::option("SELECT * FROM tree WHERE deep <= 2", ['id' => '[->id] - ->desc'])
         ]);
     }
 
     public function update($id)
     {
-        //
-    }
+        $tt = new ToolTree();
+        $input = array_except(Input::all(), '_method');
+        $input['category_text'] = $tt->getCategoryText($input['id']);
 
+        $v = Validator::make($input, Tree::$rules);
+
+        if ($v->passes()) {
+            try {
+                $tree = $this->tree->find($id);
+                $tree->update($input);
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            return Redirect::route('adm.pattern.tree.index');
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.tree.index', $id)->withInput()->withErrors($v);
+        }
+    }
 }

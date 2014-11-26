@@ -1,6 +1,6 @@
-<?php
+<?php namespace Authority\Tools;
 
-namespace Authority\Tools;
+use Authority\Eloquent\Tree;
 
 class ToolTree
 {
@@ -18,6 +18,35 @@ class ToolTree
     static function calculateGroupId($id)
     {
         return substr($id, 0, 2);
+    }
+
+    public function getCategoryText($id)
+    {
+        $arr = [];
+        if ($id % 1000000 != 0) {
+            $arr[] = Tree::select('name')->where('id', '=', intval(intval($id / 1000000) * 1000000))->pluck('name');
+        }
+        if ($id % 10000 != 0) {
+            $arr[] = Tree::select('name')->where('id', '=', intval(intval($id / 10000) * 10000))->pluck('name');
+        }
+        if ($id % 100 != 0) {
+            $arr[] = Tree::select('name')->where('id', '=', intval(intval($id / 100) * 100))->pluck('name');
+        }
+        $arr[] = Tree::select('name')->where('id', '=', intval($id))->pluck('name');
+        return implode(" | ", $arr);
+    }
+
+    public function getDeep($id)
+    {
+        if ($id % 1000000 != 0) {
+            return 0;
+        } elseif ($id % 10000 != 0) {
+            return 1;
+        } elseif ($id % 100 != 0) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
 
 }
