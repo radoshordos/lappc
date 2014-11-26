@@ -3,6 +3,7 @@
 use Authority\Eloquent\Tree;
 use Authority\Tools\SB;
 use Authority\Tools\ToolTree;
+use Authority\Tools\Grab\ActionMethods;
 
 class TreeController extends \BaseController
 {

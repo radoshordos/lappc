@@ -36,17 +36,4 @@ class ToolTree
         return implode(" | ", $arr);
     }
 
-    public function getDeep($id)
-    {
-        if ($id % 1000000 != 0) {
-            return 0;
-        } elseif ($id % 10000 != 0) {
-            return 1;
-        } elseif ($id % 100 != 0) {
-            return 2;
-        } else {
-            return 3;
-        }
-    }
-
 }
