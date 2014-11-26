@@ -4,23 +4,14 @@ use Authority\Eloquent\Tree;
 use Authority\Tools\SB;
 use Authority\Tools\ToolTree;
 
-
 class TreeController extends \BaseController
 {
-
     protected $tree;
 
     function __construct(Tree $tree)
     {
         $this->tree = $tree;
     }
-
-    /**
-     * Display a listing of the resource.
-     * GET /adm/pattern/tree
-     *
-     * @return Response
-     */
 
     public function index()
     {
@@ -31,6 +22,7 @@ class TreeController extends \BaseController
             ->groupId(Input::get('treegroup'))
             ->where('id', '>', '1')
             ->where('position', '>', '0')
+            ->where('desc', 'LIKE', '%' . Input::get('search_desc') . '%')
             ->orderBy('id')
             ->limit(Input::get('limit'))
             ->get();
@@ -38,16 +30,11 @@ class TreeController extends \BaseController
         return View::make('adm.pattern.tree.index', [
             'trees' => $tree,
             'input' => $input,
+            'search_desc' => Input::get('search_desc'),
             'select_group' => SB::option("SELECT * FROM tree_group WHERE grouptop_id = 20 AND for_prod = 1", ['id' => '[->id] - ->name'])
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * GET /adm/pattern/tree/create
-     *
-     * @return Response
-     */
     public function create()
     {
         return View::make('adm.pattern.tree.create', [
@@ -55,12 +42,6 @@ class TreeController extends \BaseController
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * POST /adm/pattern/tree
-     *
-     * @return Response
-     */
     public function store()
     {
         $input = Input::all();
@@ -89,13 +70,6 @@ class TreeController extends \BaseController
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * GET /adm/pattern/tree/{id}/edit
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function edit($id)
     {
         $tree = $this->tree->find($id);
@@ -111,26 +85,7 @@ class TreeController extends \BaseController
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     * PUT /adm/pattern/tree/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * DELETE /adm/pattern/tree/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy($id)
     {
         //
     }

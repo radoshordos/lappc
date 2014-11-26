@@ -2,28 +2,28 @@
 
 {{-- Web site Title --}}
 @section('title')
-@parent Přehled produktů @stop
+    @parent Přehled produktů @stop
 
 {{-- JavaScript on page --}}
 @section ('script')
-<script>
-    $(document).ready(function () {
-        $("#select_tree").select2({
-            minimumResultsForSearch: 3,
-            allowClear: true
+    <script>
+        $(document).ready(function () {
+            $("#select_tree").select2({
+                minimumResultsForSearch: 3,
+                allowClear: true
+            });
+            $("#select_dev").select2({
+                minimumResultsForSearch: 3,
+                allowClear: true
+            });
         });
-        $("#select_dev").select2({
-            minimumResultsForSearch: 3,
-            allowClear: true
-        });
-    });
-</script>
+    </script>
 @stop
 
 {{-- Content --}}
 @section('content')
-{{ Form::open(['route' => ['adm.product.prod.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
-<blockquote>
+    {{ Form::open(['route' => ['adm.product.prod.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
+    <blockquote>
         <div class="row">
             <div class="col-xs-7">
                 {{ Form::select('select_tree', ['' => 'Skupina'] + $select_tree, $input_tree, ['id'=> 'select_tree', 'class'=> 'form-control']) }}
@@ -43,42 +43,44 @@
                 {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}
             </div>
         </div>
-</blockquote>
+    </blockquote>
 
-@if ($view->count())
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>#ID</th>
-                <th>#M</th>
-                <th>Výrobce</th>
-                <th>#TREE</th>
-                <th>Záruka</th>
-                <th class="col-xs-2">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
-                <th>Eshop cena</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($view as $row)
-            <tr>
-                <td>{{ $row->prod_id }}</td>
-                <td>{{ $row->prod_mode_id }}</td>
-                <td>{{ $row->dev_name }}</td>
-                <td>{{ $row->tree_id }}</td>
-                <td>{{ $row->prod_warranty_name }}</td>
-                <td class="col-xs-3 "><small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small></td>
-                <td>{{ $row->quere_price }}</td>
-            </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-{{ Form::close() }}
-<div class="text-center">
-    {{ $view->appends(['select_tree' => $input_tree,'select_dev' => $input_dev,'select_limit' => $input_limit])->links(); }}
-</div>
-@endif
+    @if ($view->count())
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>#M</th>
+                        <th>Výrobce</th>
+                        <th>#TREE</th>
+                        <th>Záruka</th>
+                        <th class="col-xs-2">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
+                        <th>Eshop cena</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($view as $row)
+                        <tr>
+                            <td>{{ $row->prod_id }}</td>
+                            <td>{{ $row->prod_mode_id }}</td>
+                            <td>{{ $row->dev_name }}</td>
+                            <td>{{ $row->tree_id }}</td>
+                            <td>{{ $row->prod_warranty_name }}</td>
+                            <td class="col-xs-3 ">
+                                <small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small>
+                            </td>
+                            <td>{{ $row->query_price }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{ Form::close() }}
+        <div class="text-center">
+            {{ $view->appends(['select_tree' => $input_tree,'select_dev' => $input_dev,'select_limit' => $input_limit])->links(); }}
+        </div>
+    @endif
 @stop

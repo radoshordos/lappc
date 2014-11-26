@@ -22,13 +22,6 @@ class ProdController extends \BaseController
         $this->items = $items;
     }
 
-    /**
-     * Display a listing of the resource.
-     * GET /adm/product/prod
-     *
-     * @return Response
-     */
-
     public function index()
     {
         Input::has('select_limit') ? $input_limit = intval(Input::get('select_limit')) : $input_limit = 30;

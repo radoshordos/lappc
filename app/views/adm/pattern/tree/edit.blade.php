@@ -17,8 +17,12 @@
     {{ Form::model($tree, ['method'=>'PATCH','route' => array('adm.pattern.tree.update',$tree->id),'class'=>'form-horizontal','role'=>'form']) }}
     <div class="form-group">
         {{ Form::label('id','ID',['class'=> 'col-sm-2 control-label']) }}
-        <div class="col-sm-10">
-            {{ Form::input('number','id',NULL,['min'=> '20000000','max'=> '29000000','required' => 'required','class'=> 'form-control', 'placeholder'=> 'ID určené pro skupinu']) }}
+        <div class="col-sm-4">
+            {{ Form::number('id',NULL,['min'=> '20000000','max'=> '29000000','required' => 'required','readonly' => 'readonly','class'=> 'form-control', 'placeholder'=> 'ID určené pro skupinu']) }}
+        </div>
+        {{ Form::label('deep','Zanoření',['class'=> 'col-sm-2 control-label']) }}
+        <div class="col-sm-4">
+            {{ Form::number('deep',NULL,['min'=> '20000000','max'=> '29000000','required' => 'required','readonly' => 'readonly','class'=> 'form-control', 'placeholder'=> 'ID určené pro skupinu']) }}
         </div>
     </div>
     <div class="form-group">
@@ -42,7 +46,19 @@
     <div class="form-group">
         {{ Form::label('relative','Reletivní cesta',['class'=> 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
-            {{ Form::text('relative',NULL,['required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Relativní cesta']) }}
+            {{ Form::text('relative',NULL,['required' => 'required', 'maxlength' => '64', 'class'=> 'form-control', 'placeholder'=> 'Relativní cesta']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ Form::label('absolute','Absolutní cesta',['class'=> 'col-sm-2 control-label']) }}
+        <div class="col-sm-10">
+            {{ Form::text('absolute',NULL,['required' => 'required', 'readonly' => 'readonly', 'maxlength' => '256', 'class'=> 'form-control', 'placeholder'=> 'Absolutní cesta']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ Form::label('category_text','Text kategorie',['class'=> 'col-sm-2 control-label']) }}
+        <div class="col-sm-10">
+            {{ Form::text('category_text',NULL,['required' => 'required', 'readonly' => 'readonly', 'maxlength' => '256', 'class'=> 'form-control']) }}
         </div>
     </div>
     <p class="text-center">
@@ -61,7 +77,7 @@
                 <tr>
                     <th rowspan="2">Výrobce</th>
                     <th colspan="2">Skupina a podskupiny</th>
-                    <th colspan="2">Akruální skupina</th>
+                    <th colspan="2">Aktuální skupina</th>
                 </tr>
                 <tr>
                     <th>Vše</th>
