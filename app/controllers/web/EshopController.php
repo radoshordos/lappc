@@ -30,7 +30,7 @@ class EshopController extends Controller
         }
         return NULL;
     }
-    
+
     protected function isTreeWithDev(array $treePart, $dev)
     {
         $row = Dev::where('alias', '=', $dev)->cacheTags('alias')->first();

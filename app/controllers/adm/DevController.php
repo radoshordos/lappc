@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\Dev;
+use Authority\Eloquent\SyncDb;
 use Authority\Tools\SB;
 
 class DevController extends \BaseController
@@ -21,8 +22,10 @@ class DevController extends \BaseController
      */
     public function index()
     {
-        $devs = $this->dev->where('id', '>', '1')->orderBy('id')->get();
-        return View::make('adm.pattern.dev.index', ['devs' => $devs]);
+        return View::make('adm.pattern.dev.index', [
+            'devs' => $this->dev->where('id', '>', '1')->orderBy('id')->get(),
+            'dev_sync' => SyncDb::distinct()->select('dev_id')->where('purpose','=','autosync')->lists('dev_id')
+        ]);
     }
 
     /**
@@ -35,7 +38,7 @@ class DevController extends \BaseController
     {
         return View::make('adm.pattern.dev.create', [
             'select_warranty'     => [''] + SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-            'select_sale'         => [''] + SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
+            'select_sale'         => [''] + SB::option("SELECT * FROM prod_sale", ['id' => '->desc']),
             'select_availability' => [''] + SB::option("SELECT * FROM items_availability WHERE id > 1", ['id' => '->name'])
         ]);
     }
@@ -80,7 +83,7 @@ class DevController extends \BaseController
         return View::make('adm.pattern.dev.edit', [
             'dev'                 => $dev,
             'select_warranty'     => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-            'select_sale'         => SB::option("SELECT * FROM items_sale", ['id' => '->desc']),
+            'select_sale'         => SB::option("SELECT * FROM prod_sale", ['id' => '->desc']),
             'select_availability' => SB::option("SELECT * FROM items_availability WHERE id > 1", ['id' => '->name'])
         ]);
     }

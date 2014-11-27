@@ -1,5 +1,6 @@
 <?php namespace Authority\Runner\Task\Store;
 
+use Authority\Eloquent\RecordSyncImport;
 use Authority\Runner\Task\TaskMessage;
 
 class SyncIgm extends TaskMessage implements iSync
@@ -47,7 +48,7 @@ class SyncIgm extends TaskMessage implements iSync
                 $igm = new RunIgm((array)$row, $record_id);
                 $igm->setSyncIdDev();
 
-                if ($igm->isUseRequired() === TRUE) {
+                if ($igm->isUseRequired() === true) {
                     $suc++;
                     $igm->insertData2Db();
                 }

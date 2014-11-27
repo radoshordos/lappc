@@ -8,6 +8,7 @@ Výrobci zboží
 
 {{-- Content --}}
 @section('content')
+
 @if ($devs->count())
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -19,6 +20,7 @@ Výrobci zboží
                 <th rowspan="2">Alias</th>
                 <th rowspan="2" class="text-center"><button type="button" title="Viditelný prodejce" class="btn btn-primary btn-xs">V</button></th>
                 <th rowspan="2" class="text-center"><button type="button" title="Autorizovaný prodejce" class="btn btn-primary btn-xs">A</button></th>
+                <th rowspan="2" class="text-center"><button type="button" title="Má záznam v automatické synchronizaci" class="btn btn-primary btn-xs">S</button></th>
                 <th colspan="4" class="text-center">Výchozí</th>
                 <th rowspan="2"><span class="glyphicon glyphicon-edit"></span></th>
             </tr>
@@ -32,7 +34,7 @@ Výrobci zboží
             </thead>
             <tfoot>
             <tr>
-                <td class="text-right" colspan="10">Zobrazeno <b>{{ count($devs) }}</b> záznamů</td>
+                <td class="text-right" colspan="11">Zobrazeno <b>{{ count($devs) }}</b> záznamů</td>
             </tr>
             </tfoot>
             <tbody>
@@ -49,6 +51,11 @@ Výrobci zboží
                 <td class="text-center">{{ ($dev->authorized ?
                         '<button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-star"></span></button>' :
                         '<button type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-ban-circle"></span></button>' )
+                    }}
+                </td>
+                <td class="text-center">{{ (in_array($dev->id,$dev_sync) ?
+                        '<button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>' :
+                        '<button type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span></button>' )
                     }}
                 </td>
                 <td>{{ $dev->prod_warranty->name }}</td>
