@@ -115,12 +115,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-4">
+            <div class="col-md-4">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Stav</span>
-                            {{ Form::select('mode_id', $select_mode, NULL, ['required' => 'required', 'class'=> 'form-control']) }}
+                        <div class="input-group btn-group-justified">
+                            <span class="btn-group">{{ Form::select('sale_id', $select_sale, NULL, ['required' => 'required', 'class'=> 'form-control']) }}</span>
+                            <span class="btn-group">{{ Form::select('mode_id', $select_mode, NULL, ['required' => 'required', 'class'=> 'form-control']) }}</span>
                         </div>
                     </div>
                 </div>

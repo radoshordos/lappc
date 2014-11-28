@@ -92,7 +92,7 @@ class ProdController extends \BaseController
             $select_akce_template = NULL;
             $dev_in_mixture = MixtureDevM2nDev::where('dev_id', '=', $row->dev_id)->lists('mixture_dev_id');
 
-            if ($row->mode_id == 4) {
+            if ($row->mode_id == 4 && count($dev_in_mixture) > 0) {
                 $select_akce_template = SB::option("SELECT at.id,at.bonus_title,am.name AS minitext_name,aa.name AS availability_name
                                                     FROM akce_template AS at
                                                     INNER JOIN akce_minitext AS am ON am.id = at.minitext_id
@@ -112,7 +112,7 @@ class ProdController extends \BaseController
                 'select_dph'                 => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
                 'select_mode'                => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
                 'select_forex'               => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale'                => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->name']),
+                'select_sale'                => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
                 'select_difference'          => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
                 'select_availability'        => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
                 'select_availability_action' => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
@@ -131,19 +131,20 @@ class ProdController extends \BaseController
         $input = Input::all();
         $row = $this->prod->find($prod);
 
+
         if (Input::hasFile('input-1a')) {
             $file = Input::file('input-1a')->getClientMimeType();
             if ($file == 'image/jpeg' || $file == 'image/png') {
                 try {
                     $img = new ProdImage(Input::file('input-1a')->getPathname(), $row->tree->absolute, $row->name);
-                    $img->createProdPictures(228,228);
+                    $img->createProdPictures(228, 228);
                     $aff = ProdPicture::create([
                         'prod_id'    => $row->id,
                         'img_big'    => $img->getImgBig(),
                         'img_normal' => $img->getImgNormal()
                     ]);
                     if ($aff) {
-                        Session::flash('success', "Obrázek byl uploadován a zpracován: ". $img->getOutputPath());
+                        Session::flash('success', "Obrázek byl uploadován a zpracován: " . $img->getOutputPath());
                     }
                 } catch (Exception $e) {
                     Session::flash('error', $e->getMessage());
@@ -155,14 +156,14 @@ class ProdController extends \BaseController
         if ((Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url')))) {
             try {
                 $img = new ProdImage(Input::get('upload_url'), $row->tree->absolute, $row->name);
-                $img->createProdPictures(228,228);
+                $img->createProdPictures(228, 228);
                 $aff = ProdPicture::create([
                     'prod_id'    => $row->id,
                     'img_big'    => $img->getImgBig(),
                     'img_normal' => $img->getImgNormal()
                 ]);
                 if ($aff) {
-                    Session::flash('success', "Obrázek byl zpracován a uložen: ". $img->getOutputPath());
+                    Session::flash('success', "Obrázek byl zpracován a uložen: " . $img->getOutputPath());
                 }
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
@@ -178,7 +179,15 @@ class ProdController extends \BaseController
             ]);
 
             $input_prod['id'] = $row->id;
-            $v = Validator::make($input_prod, Prod::$rules);
+
+            $rules = Prod::$rules;
+            if ($row->id !== NULL) {
+                $rules['name'] .= ",$row->id";
+                $rules['desc'] .= ",$row->id";
+                $rules['alias'] .= ",$row->id";
+            }
+            $v = Validator::make($input_prod, $rules);
+
 
             if ($v->passes()) {
                 if (intval(Input::get('difference_check')) == 1 && Input::get('difference_id') != $row->difference_id) {

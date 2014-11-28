@@ -51,7 +51,7 @@ class ProdSaleSeeder extends Seeder
             'id'       => 1,
             'multiple' => 1,
             'name'     => '0%',
-            'desc'     => 'Běžná cena - 0% sleva'
+            'desc'     => 'Běžná - 0% sleva'
         ]);
 
         DB::table('prod_sale')->insert([
