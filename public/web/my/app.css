@@ -1,9 +1,10 @@
 /* --------------------------------------------------
 Menu
 -------------------------------------------------- */
-div#menubox div {
-
+div#menubox h2 {
+    font-size: 1.7em;
 }
+
 div.icon-bar.vertical {
     padding: .4em;
 }
@@ -11,7 +12,6 @@ div.icon-bar.vertical {
 div.icon-bar.vertical a.item {
     width: 14.5em;
     padding: .8em;
-
 }
 
 div.icon-bar.vertical a.item label {
@@ -19,7 +19,6 @@ div.icon-bar.vertical a.item label {
     margin: 0;
     text-align: left;
 }
-
 
 div#prod-sort li {
     float:left;

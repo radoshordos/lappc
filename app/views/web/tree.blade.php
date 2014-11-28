@@ -36,13 +36,13 @@ Registrace & Přihlášení
     <div id="menubox" class="row">
         @include('web.layout.actionmenu')
         @include('web.layout.leftmenu')
-
-        <div class="small-9 columns">
-            @include('web.layout.boxdev')
-            @include('web.layout.blockprodfilter')
-            @include('web.layout.boxsorting')
-            @include('web.layout.boxprodlist')
-        </div>
+            <div class="small-9 columns">
+                <h2>{{ $vt_tree->tree_desc }}</h2>
+                @include('web.layout.boxdev')
+                @include('web.layout.blockprodfilter')
+                @include('web.layout.boxsorting')
+                @include('web.layout.boxprodlist')
+            </div>
     </div>
     <p><a href="http://localhost:8000/adm/">ADM</a></p>
     <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
