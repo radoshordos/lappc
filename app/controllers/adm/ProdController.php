@@ -1,5 +1,6 @@
 <?php
 
+use Authority\Eloquent\Akce;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\Prod;
@@ -132,6 +133,21 @@ class ProdController extends \BaseController
         $input = Input::all();
         $row = $this->prod->find($prod);
 
+        if (Input::has("save-action")) {
+            $ainput = array_only($input, ['akce_id', 'akce_prod_id', "akce_template_id", "akce_price"]);
+            try {
+                $akce = Akce::where('akce_id', '=', $ainput['akce_id'])->first();
+                $akce->akce_template_id = $ainput['akce_template_id'];
+                $akce->akce_price = $ainput['akce_price'];
+                $akce->akce_updated_at = DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now'));
+                $akce->setKeyName('akce_id');
+                $akce->save();
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            Session::flash('success', "Akce byla uložena");
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod, "#akce"]);
+        }
 
         if (Input::hasFile('input-1a')) {
             $file = Input::file('input-1a')->getClientMimeType();

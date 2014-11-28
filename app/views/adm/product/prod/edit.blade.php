@@ -14,6 +14,7 @@
         $("#list_prod").select2({});
         $("#tree_id").select2({});
         $("#dev_id").select2({});
+        $("#akce_template_id").select2({});
         $('#myTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
@@ -324,29 +325,31 @@
 
     @if ($prod->mode_id == 4 && isset($prod->akce->akce_prod_id))
     <div class="tab-pane" id="akce" style="padding-top: 2em">
+
+
+        {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form']) }}
+
         <div class="panel panel-primary">
+            {{ Form::hidden('akce_id',$prod->akce->akce_id);  }}
+            {{ Form::hidden('akce_prod_id',$prod->id);  }}
             <div class="panel-heading">
                 <h3 class="panel-title">Akce produktu {{ $prod->name  }}</h3>
             </div>
             <div class="panel-body">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-2">{{ Form::label('template_id','Šablona') }}</div>
-                        @if (isset($select_akce_template)))
-                        <div class="col-md-10">{{ Form::select('template_id', $select_akce_template, NULL, ['required' => 'required','class'=> 'form-control']); }}</div>
+                        <div class="col-md-2">{{ Form::label('akce_template_id','Šablona') }}</div>
+                        @if (isset($select_akce_template))
+                        <div class="col-md-10">{{ Form::select('akce_template_id', $select_akce_template, $prod->akce->akce_template_id, ['required' => 'required','class'=> 'form-control']); }}</div>
                         @endif
                     </div>
                     <div class="row" style="margin-top: 2em">
-                        <div class="col-md-2">{{ Form::label('aprice','Akční cena v '. $prod->forex->currency) }}</div>
-                        <div class="col-md-2">{{ Form::number('aprice', round($prod['price'],$prod->forex->round_with) , ['min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
+                        <div class="col-md-2">{{ Form::label('akce_price','Akční cena v '. $prod->forex->currency) }}</div>
+                        <div class="col-md-2">{{ Form::number('akce_price', round($prod['price'],$prod->forex->round_with) , ['min'=> '1', 'max'=> $prod->price, 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
                         <div class="col-md-2">{{ Form::label('vprice','Běžná cena v '. $prod->forex->currency) }}</div>
-                        <div class="col-md-2">{{ Form::number('vprice', round($prod['price'],$prod->forex->round_with) , ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
+                        <div class="col-md-2">{{ Form::number('vprice', round($prod['price'],$prod->forex->round_with) , ['readonly' => 'readonly', 'min'=> '1', 'max'=> $prod->price, 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
                     </div>
                     <div class="row" style="margin-top: 2em">
-                        <div class="col-md-2">{{ Form::label('aprice','Akční cena v '. $prod->forex->currency) }}</div>
-                        <div class="col-md-2">{{ Form::number('aprice', round($prod['price'],$prod->forex->round_with) , ['min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
-                        <div class="col-md-2">{{ Form::label('vprice','Běžná cena v '. $prod->forex->currency) }}</div>
-                        <div class="col-md-2">{{ Form::number('vprice', round($prod['price'],$prod->forex->round_with) , ['readonly' => 'readonly', 'min'=> '1', 'max'=>'9999999', 'step' => $prod->forex->step, 'class'=> 'form-control btn-group']) }}</div>
                     </div>
                 </div>
             </div>
@@ -378,7 +381,6 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->code_prod }}</td>
-
                             <td>{{ Form::text('virtual_item_availability[$item->id]', $item->itemsAvailability->name, ['readonly' => 'readonly', 'class'=> 'form-control btn-group']) }}</td>
                             <td>{{ Form::select("ai_availability_id[$item->id]", $select_availability_action, NULL, ['class' => 'form-control']) }}</td>
                         </tr>
@@ -393,6 +395,9 @@
                 </table>
             </div>
             </div>
+            <p class="text-center">
+            {{ Form::submit('Uložit akci',['name' => 'save-action','class' => 'btn btn-success']); }}
+            </p>
             @endif
         </div>
     </div>

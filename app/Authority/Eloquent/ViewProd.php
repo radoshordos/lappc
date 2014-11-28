@@ -25,4 +25,9 @@ class ViewProd extends \Eloquent
         return $query->orderBy('id', 'DESC');
     }
 
+    public function akce()
+    {
+        return $this->hasOne('Authority\Eloquent\Akce', 'akce_prod_id', 'prod_id');
+    }
+
 }

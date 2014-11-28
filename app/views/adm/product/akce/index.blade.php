@@ -51,12 +51,13 @@ Přehled akcí
                 <tr>
                     <th class="col-xs-1"><span class="glyphicon glyphicon-lock" title="Šablona akce"></span></th>
                     <th class="col-xs-4">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
-                    <th class="col-xs-7">Minitext</th>
+                    <th class="col-xs-3">Minitext</th>
+                    <th class="col-xs-4">Dostupnost</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <td class="text-center" colspan="3">{{ $akce->appends(['select_mixture_dev' => $choice_mixture_dev,'select_availability' => $choice_availability,'select_minitext' => $choice_minitext])->links(); }}</td>
+                    <td class="text-center" colspan="4">{{ $akce->appends(['select_mixture_dev' => $choice_mixture_dev,'select_availability' => $choice_availability,'select_minitext' => $choice_minitext])->links(); }}</td>
                 </tr>
             </tfoot>
             <tbody>
@@ -65,6 +66,7 @@ Přehled akcí
                     <td>{{ $row->akce_template_id }}</td>
                     <td>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id,"#akce"]) }}</td>
                     <td>{{ $row->akce_minitext_name }}</td>
+                    <td>{{ $row->akce->akceAvailability->name }}</td>
                 </tr>
             @endforeach
             </tbody>

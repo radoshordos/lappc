@@ -2,7 +2,6 @@
     "require": {
         "laravel/framework": "4.2.*",
         "cartalyst/sentry": "2.*",
-        "zendframework/zend-xmlrpc": "2.3.*",
         "barryvdh/laravel-ide-helper": "1.*",
         "dg/adminer-custom": "1.*",
         "ivaynberg/select2": "3.*",
