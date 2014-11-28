@@ -174,7 +174,7 @@ class ProdController extends \BaseController
         if (Input::has('button-submit-edit')) {
 
             $input_prod = array_only($input, [
-                'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id',
+                'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id','sale_id',
                 'dph_id', 'price', 'alias', 'name', 'desc', 'transport_weight', 'transport_atypical'
             ]);
 

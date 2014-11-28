@@ -17,11 +17,11 @@
         $('#myTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
-        })
+        });
         $('#myTab a[href="#profile"]').tab('show');
         if(location.hash) {
             $('a[href=' + location.hash + ']').tab('show');
-        }
+        };
         $(document.body).on("click", "a[data-toggle]", function(event) {
             location.hash = this.getAttribute("href");
         });
@@ -72,7 +72,7 @@
         @endif
         <li><a href="#fotogalerie" data-toggle="tab">Fotogalerie</a></li>
         <li><a href="#aktivita" data-toggle="tab">Aktivita</a></li>
-    @if ($prod->mode_id == 4 && isset($prod->akce->atemplate_id))
+    @if ($prod->mode_id == 4 && isset($prod->akce->akce_prod_id))
         <li><a href="#akce" data-toggle="tab">Akce</a></li>
         @endif
     </ul>
@@ -272,7 +272,7 @@
                 </div>
             </div>
         </div>
-        @if (isset($prod->akce->aprod_id))
+        @if (isset($prod->akce->akce_prod_id))
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">O aktuální akci</h3>
@@ -321,7 +321,8 @@
             </div>
         @endif
     </div>
-    @if ($prod->mode_id == 4 && isset($prod->akce->atemplate_id))
+
+    @if ($prod->mode_id == 4 && isset($prod->akce->akce_prod_id))
     <div class="tab-pane" id="akce" style="padding-top: 2em">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -331,7 +332,9 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-2">{{ Form::label('template_id','Šablona') }}</div>
+                        @if (isset($select_akce_template)))
                         <div class="col-md-10">{{ Form::select('template_id', $select_akce_template, NULL, ['required' => 'required','class'=> 'form-control']); }}</div>
+                        @endif
                     </div>
                     <div class="row" style="margin-top: 2em">
                         <div class="col-md-2">{{ Form::label('aprice','Akční cena v '. $prod->forex->currency) }}</div>
