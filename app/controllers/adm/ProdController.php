@@ -97,7 +97,8 @@ class ProdController extends \BaseController
                                                     FROM akce_template AS at
                                                     INNER JOIN akce_minitext AS am ON am.id = at.minitext_id
                                                     INNER JOIN akce_availability AS aa ON aa.id = at.availibility_id
-                                                    WHERE mixture_dev_id IN (" . implode(',', $dev_in_mixture) . ")", ['id' => '->minitext_name] [->availability_name] + ->bonus_title'], true);
+                                                    WHERE at.id > 1 AND
+                                                          mixture_dev_id IN (" . implode(',', $dev_in_mixture) . ")", ['id' => '->minitext_name] [->availability_name] + ->bonus_title'], true);
             }
 
             return View::make('adm.product.prod.edit', [
@@ -106,17 +107,17 @@ class ProdController extends \BaseController
                 'choice_tree'                => $tree,
                 'choice_prod'                => $prod,
                 'prod'                       => $row,
-                'select_dev'                 => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-                'select_tree'                => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-                'select_warranty'            => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
-                'select_dph'                 => SB::option("SELECT * FROM dph WHERE visible = 1", ['id' => '->name']),
-                'select_mode'                => SB::option("SELECT * FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-                'select_forex'               => SB::option("SELECT * FROM forex WHERE active = 1", ['id' => '->currency']),
+                'select_dev'                 => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+                'select_tree'                => SB::option("SELECT id,name,absolute FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+                'select_warranty'            => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
+                'select_dph'                 => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
+                'select_mode'                => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+                'select_forex'               => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
                 'select_sale'                => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
-                'select_difference'          => SB::option("SELECT * FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
-                'select_availability'        => SB::option("SELECT * FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-                'select_availability_action' => SB::option("SELECT * FROM items_availability WHERE visible = 1", ['id' => '->name']),
-                'select_media_var'           => SB::option("SELECT * FROM media_variations WHERE type_id = 6", ['id' => '->name'], true),
+                'select_difference'          => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+                'select_availability'        => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+                'select_availability_action' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1", ['id' => '->name']),
+                'select_media_var'           => SB::option("SELECT id,name FROM media_variations WHERE type_id = 6", ['id' => '->name'], true),
                 'select_akce_template'       => $select_akce_template,
                 'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
                 'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->get(),
@@ -174,7 +175,7 @@ class ProdController extends \BaseController
         if (Input::has('button-submit-edit')) {
 
             $input_prod = array_only($input, [
-                'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id','sale_id',
+                'tree_id', 'dev_id', 'mode_id', 'warranty_id', 'forex_id', 'sale_id',
                 'dph_id', 'price', 'alias', 'name', 'desc', 'transport_weight', 'transport_atypical'
             ]);
 

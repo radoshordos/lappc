@@ -50,15 +50,15 @@
             <div class="col-md-12">
                 <table class="table table-striped table-hover">
                     <thead>
-                    <tr>
-                        <th>#ID</th>
-                        <th>#M</th>
-                        <th>Výrobce</th>
-                        <th>#TREE</th>
-                        <th>Záruka</th>
-                        <th class="col-xs-2">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
-                        <th>Eshop cena</th>
-                    </tr>
+                        <tr>
+                            <th>#ID</th>
+                            <th>#M</th>
+                            <th>Výrobce</th>
+                            <th>#TREE</th>
+                            <th>Záruka</th>
+                            <th class="col-xs-2">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
+                            <th>Eshop cena</th>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach ($view as $row)
