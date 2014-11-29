@@ -14,7 +14,7 @@
                 @else
                     <span class="secondary label">není skladem</span>
                 @endif
-                <span class="price label">{{ $row->query_price }} Kč</span>
+                <span class="price label">{{ $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id) }}</span>
             </a>
             <p>{{ $row->prod_desc }}</p>
         </li>

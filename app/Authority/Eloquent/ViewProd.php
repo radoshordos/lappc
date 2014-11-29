@@ -30,4 +30,9 @@ class ViewProd extends \Eloquent
         return $this->hasOne('Authority\Eloquent\Akce', 'akce_prod_id', 'prod_id');
     }
 
+    public function prod()
+    {
+        return $this->hasOne('Authority\Eloquent\Prod', 'id', 'prod_id');
+    }
+
 }

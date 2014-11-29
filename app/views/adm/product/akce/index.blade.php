@@ -59,13 +59,16 @@ Přehled akcí
                 <tr>
                     <th class="col-xs-1"><span class="glyphicon glyphicon-lock" title="Šablona akce"></span></th>
                     <th class="col-xs-4">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
-                    <th class="col-xs-3">Minitext</th>
-                    <th class="col-xs-4">Dostupnost</th>
+                    <th class="col-xs-2">Minitext</th>
+                    <th class="col-xs-2">Akční<br />dostupnost</th>
+                    <th class="col-xs-1 text-center">Prod<br />cena</th>
+                    <th class="col-xs-1 text-center">Total<br />sleva</th>
+                    <th class="col-xs-1 text-center">Final<br />cena</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <td class="text-center" colspan="4">{{ $akce->appends(['select_mixture_dev' => $choice_mixture_dev,'select_availability' => $choice_availability,'select_minitext' => $choice_minitext])->links(); }}</td>
+                    <td class="text-center" colspan="7">{{ $akce->appends(['select_mixture_dev' => $choice_mixture_dev,'select_availability' => $choice_availability,'select_minitext' => $choice_minitext])->links(); }}</td>
                 </tr>
             </tfoot>
             <tbody>
@@ -74,7 +77,10 @@ Přehled akcí
                     <td>{{ $row->akce_template_id }}</td>
                     <td>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id,"#akce"]) }}</td>
                     <td>{{ $row->akce_minitext_name }}</td>
-                    <td>{{ $row->akce->akceAvailability->name }}</td>
+                    <td>{{ isset($row->akce->akceAvailability->name) ? $row->akce->akceAvailability->name : NULL }}</td>
+                    <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->prod->price,$row->prod_forex_id) }}</td>
+                    <td class="col-xs-1 text-center">{{ (($row->prod->price - $row->query_price) / $row->prod->price) * 100 }} %</td>
+                    <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id)  }}</td>
                 </tr>
             @endforeach
             </tbody>

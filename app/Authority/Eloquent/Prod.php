@@ -59,4 +59,8 @@ class Prod extends \Eloquent
         return $this->hasOne('Authority\Eloquent\ProdDifference', 'id', 'difference_id');
     }
 
+    public function prodSale()
+    {
+        return $this->hasOne('Authority\Eloquent\ProdSale', 'id', 'sale_id');
+    }
 }

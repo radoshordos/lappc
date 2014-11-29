@@ -56,8 +56,11 @@
                             <th>Výrobce</th>
                             <th>#TREE</th>
                             <th>Záruka</th>
+                            <th>Prod<br />sleva</th>
+                            <th class="text-right">Prod<br />cena</th>
                             <th class="col-xs-2">{{ Form::text('search_name',$search_name,['placeholder'=> 'Název']) }}</th>
-                            <th>Eshop cena</th>
+                            <th>Final<br />sleva</th>
+                            <th class="text-right">Final<br />cena</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,10 +71,13 @@
                             <td>{{ $row->dev_name }}</td>
                             <td>{{ $row->tree_id }}</td>
                             <td>{{ $row->prod_warranty_name }}</td>
-                            <td class="col-xs-3 ">
+                            <td>{{ $row->prod->prodSale->name }}</td>
+                            <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->prod->price,$row->prod->forex_id)  }}</td>
+                            <td class="col-xs-3">
                                 <small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small>
                             </td>
-                            <td>{{ $row->query_price }}</td>
+                            <td class="col-xs-1">{{ (($row->prod->price - $row->query_price) / $row->prod->price) * 100 }} %</td>
+                            <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id)  }}</td>
                         </tr>
                     @endforeach
                     </tbody>

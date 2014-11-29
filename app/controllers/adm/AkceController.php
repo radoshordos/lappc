@@ -3,6 +3,7 @@
 use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\ViewProd;
+use Authority\Tools\Forex\PriceForex;
 use Authority\Tools\SB;
 
 class AkceController extends \BaseController
@@ -42,6 +43,7 @@ class AkceController extends \BaseController
             ->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - ->akce_template_bonus_title'], true);
 
         return View::make('adm.product.akce.index', [
+            'pf'                  => new PriceForex,
             'akce'                => $akce->paginate(100),
             'search_name'         => Input::get('search_name'),
             'choice_minitext'     => Input::get('select_minitext'),

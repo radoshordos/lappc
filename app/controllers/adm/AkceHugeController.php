@@ -5,7 +5,7 @@ use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\RecordSyncImport;
 use Authority\Eloquent\SyncDb;
-
+use Authority\Tools\Forex\PriceForex;
 use Authority\Tools\SB;
 
 class AkceHugeController extends \BaseController
@@ -13,10 +13,6 @@ class AkceHugeController extends \BaseController
     public function index()
     {
         $action_record = (Input::has('select_action_record') ? Input::get('select_action_record') : NULL);
-
-        $pp = new PriceProvider();
-
-        var_dump($pp);
 
         $item_action = SyncDb::select(
             [
@@ -30,7 +26,8 @@ class AkceHugeController extends \BaseController
                 'prod.tree_id AS prod_tree_id',
                 'prod.ic_all AS prod_ic_all',
                 'prod.name AS prod_name',
-                'prod.price AS prod_price'
+                'prod.price AS prod_price',
+                'prod.forex_id AS prod_forex_id'
             ])
             ->leftJoin('items', 'sync_db.item_id', '=', 'items.id')
             ->leftJoin('prod', 'items.prod_id', '=', 'prod.id')
@@ -75,6 +72,7 @@ class AkceHugeController extends \BaseController
         }
 
         return View::make('adm.product.akcehuge.index', [
+            'pf'                   => new PriceForex(),
             'action_record'        => $action_record,
             'dfilter'              => Input::get('dfilter'),
             'choice_action_record' => Input::get('select_action_record'),

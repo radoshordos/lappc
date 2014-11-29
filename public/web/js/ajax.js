@@ -1,4 +1,6 @@
 $(document).foundation();
+
+
 $(function() {
     $('#term').autocomplete({
         source: '/getdata',
@@ -46,6 +48,18 @@ $(function() {
         var tree = $('#tree').val();
         var dev = $('#dev').val();
 
+        var hash = [];
+        if (store == true) {
+            hash.push('store-true');
+        }
+        if (action == true) {
+            hash.push('action-true');
+        }
+        if (sort) {
+            hash.push("sort-" + sort);
+        }
+
+        location.hash = hash.join("-");
         var data = {store: store, action: action, tree: tree, dev: dev, sort: sort};
 
         $.ajax({

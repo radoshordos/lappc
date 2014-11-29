@@ -107,8 +107,7 @@ Hromadné akce
             @else
                 <td class="col-xs-4"></td>
             @endif
-
-            <td>{{ $row->prod_price }} / {{ (($row->sync_db_price_internet != NULL) ? $row->sync_db_price_internet : $row->sync_db_price_action) }}</td>
+            <td>{{ $pf->priceWithCurrencyWith($row->prod_price,$row->prod_forex_id) }} / {{ $pf->priceWithCurrencyWith((($row->sync_db_price_internet != NULL) ? $row->sync_db_price_internet : $row->sync_db_price_action),$row->prod_forex_id) }}</td>
         </tr>
         @endforeach
     </tbody>

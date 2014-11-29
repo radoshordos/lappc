@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\ViewProd;
+use Authority\Tools\Forex\PriceForex;
 use Authority\Web\Query\AjaxTree;
 
 class SearchDataController extends Controller
@@ -55,6 +56,10 @@ class SearchDataController extends Controller
         $data = $db->limit(15)->paginate();
         $data->setBaseUrl('');
 
-        return View::make('web.layout.boxprodlist', ["vp_list" => $data]);
+
+        return View::make('web.layout.boxprodlist', [
+            'pf'      => new PriceForex,
+            "vp_list" => $data
+        ]);
     }
 }

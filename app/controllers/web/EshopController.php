@@ -5,6 +5,7 @@ use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\TreeDev;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
+use Authority\Tools\Forex\PriceForex;
 use Authority\Web\Query\AjaxTree;
 
 class EshopController extends Controller
@@ -63,6 +64,7 @@ class EshopController extends Controller
             $vp = $ajaxTree->orderBySort($vp,$sort);
 
             return View::make('web.tree', [
+                'pf'        => new PriceForex,
                 'db_dev'    => $dev,
                 'vt_tree'   => $row,
                 'vt_list'   => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
