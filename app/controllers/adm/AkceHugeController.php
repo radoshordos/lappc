@@ -1,8 +1,10 @@
 <?php
 
+use Authority\Eloquent\Akce;
+use Authority\Eloquent\AkceTempl;
+use Authority\Eloquent\Prod;
 use Authority\Eloquent\RecordSyncImport;
 use Authority\Eloquent\SyncDb;
-use Authority\Eloquent\AkceTempl;
 use Authority\Tools\SB;
 
 class AkceHugeController extends \BaseController
@@ -91,4 +93,53 @@ class AkceHugeController extends \BaseController
         ]);
     }
 
+
+    public function store()
+    {
+        $count = 0;
+        if (Input::has('add-huge-action') && count(Input::get('select')) > 0 && Input::get('select_template') > 0) {
+            try {
+                foreach (Input::get('select') as $key => $val) {
+                    if ($val == 'on') {
+                        $count++;
+                        \DB::transaction(function () use ($key) {
+                            $prod = Prod::find($key);
+                            $prod->mode_id = 4;
+                            $prod->save();
+
+                            $akce = Akce::where('akce_prod_id', '=', $key)->first();
+                            $akce->akce_template_id = Input::get('select_template');
+                            $akce->akce_sale_id = Input::get('select_sale');
+                            $akce->akce_updated_at = DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now'));
+                            $akce->setKeyName('akce_prod_id');
+                            $akce->save();
+                        });
+                    }
+                }
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+                return Redirect::route('adm.product.akcehuge.index');
+            }
+            Session::flash('success', "Proběhl hromadný import, vloženo <b>" . $count . "</b> akcí");
+        }
+
+        elseif (Input::has('delete-huge-action')) {
+            try {
+                foreach (Input::get('select') as $key => $val) {
+                    if ($val == 'on') {
+                        $count++;
+                        $prod = Prod::find($key);
+                        $prod->mode_id = 3;
+                        $prod->save();
+                    }
+                }
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+                return Redirect::route('adm.product.akcehuge.index');
+            }
+            Session::flash('warning', "Proběhlo zrušení akcí u <b>" . $count . "</b> produktů");
+        }
+
+        return Redirect::route('adm.product.akcehuge.index', ['select_action_record' => Input::get('select_action_record'), 'dfilter' => Input::get('dfilter')]);
+    }
 }

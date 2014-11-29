@@ -64,9 +64,10 @@ Hromadné akce
 </p>
 {{ Form::close() }}
 
+{{ Form::open(['route' => ['adm.product.akcehuge.store', 'dfilter' => $dfilter, 'select_action_record' => $choice_action_record],'method' => 'POST','class' => 'form-horizontal', 'role' => 'form']) }}
 @if (intval($choice_action_record)>0)
-{{ Form::open(['route' => ['adm.product.akcehuge.index', 'dfilter' => $dfilter, 'select_action_record' => $choice_action_record],'method' => 'POST','class' => 'form-horizontal', 'role' => 'form']) }}
 @if ($dfilter == 'mode3')
+
 <table class="table table-striped table-bordered table-hover">
     <tbody>
         <tr>
@@ -94,7 +95,7 @@ Hromadné akce
         @foreach($item_action as $row)
         <tr>
             @if (isset($row->prod_id))
-            <td>{{ Form::checkbox("select[".$row->sync_db_id."]",NULL) }}</td>
+            <td>{{ Form::checkbox("select[".$row->prod_id."]",NULL) }}</td>
             @else
             <td></td>
             @endif
@@ -122,10 +123,9 @@ Hromadné akce
 @if ($dfilter == 'mode3')
     {{ Form::submit('Nastavit hromadnou akci',['name' => 'add-huge-action','class' => 'btn btn-success']) }}
 @elseif ($dfilter == 'mode4')
-    {{ Form::submit('Zrušit akci',['name' => 'add-huge-action','class' => 'btn btn-danger']) }}
+    {{ Form::submit('Zrušit akci',['name' => 'delete-huge-action','class' => 'btn btn-danger']) }}
 @endif
 </p>
-{{ Form::close() }}
 @endif
-
+{{ Form::close() }}
 @stop
