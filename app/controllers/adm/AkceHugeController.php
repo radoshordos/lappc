@@ -5,6 +5,7 @@ use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\RecordSyncImport;
 use Authority\Eloquent\SyncDb;
+
 use Authority\Tools\SB;
 
 class AkceHugeController extends \BaseController
@@ -12,6 +13,10 @@ class AkceHugeController extends \BaseController
     public function index()
     {
         $action_record = (Input::has('select_action_record') ? Input::get('select_action_record') : NULL);
+
+        $pp = new PriceProvider();
+
+        var_dump($pp);
 
         $item_action = SyncDb::select(
             [
