@@ -19,6 +19,9 @@ Přehled akcí
             $("#select_mixture_dev").select2({
                 allowClear: true
             });
+            $("#select_template").select2({
+                allowClear: true
+            });
         });
     </script>
 @stop
@@ -39,6 +42,11 @@ Přehled akcí
         </div>
         <div class="col-xs-1">
             {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1em">
+        <div class="col-xs-12">
+            {{ Form::select('select_template', $select_template, NULL, ['id'=> 'select_template', 'class'=> 'form-control','placeholder' => 'Šablona akce']) }}
         </div>
     </div>
 </blockquote>

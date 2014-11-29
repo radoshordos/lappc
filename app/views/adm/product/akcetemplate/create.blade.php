@@ -10,9 +10,9 @@ Nová akční šablona
 @section ('script')
 <script>
     $(document).ready(function () {
-        $("#select_mixture_dev").select2({});
-        $("#select_minitext").select2({});
-        $("#select_availability").select2({});
+        $("#mixture_dev_id").select2({});
+        $("#minitext_id").select2({});
+        $("#availibility_id").select2({});
     });
 </script>
 @stop
@@ -23,19 +23,19 @@ Nová akční šablona
 <div class="form-group">
     {{ Form::label('mixture_dev_id','Skupina výrobců',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('mixture_dev_id',$select_mixture_dev, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+        {{ Form::select('mixture_dev_id',$select_mixture_dev, NULL, array('id' => 'mixture_dev_id','required' => 'required', 'class'=> 'form-control')) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('minitext_id','Minitext',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('minitext_id',$select_minitext, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+        {{ Form::select('minitext_id',$select_minitext, NULL, array('id' => 'minitext_id','required' => 'required', 'class'=> 'form-control')) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('availibility_id','Platnost',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('availibility_id',$select_availability, NULL, array('required' => 'required', 'class'=> 'form-control')) }}
+        {{ Form::select('availibility_id',$select_availability, NULL, array('id' => 'availibility_id','required' => 'required', 'class'=> 'form-control')) }}
     </div>
 </div>
 <div class="form-group">

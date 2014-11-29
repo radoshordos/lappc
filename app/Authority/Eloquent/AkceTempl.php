@@ -9,7 +9,7 @@ class AkceTempl extends \Eloquent
         'mixture_dev_id'  => 'exists:mixture_dev,id',
         'availibility_id' => 'exists:ppc_keywords_match,id',
         'minitext_id'     => 'exists:akce_minitext,id',
-        'endtime'         => ['required', 'date_format:"m-d-Y"']
+        'endtime'         => ['required', 'date_format:"Y-m-d"']
     ];
 
     public function akceMinitext()

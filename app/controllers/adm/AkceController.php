@@ -1,7 +1,8 @@
 <?php
 
-use Authority\Eloquent\ViewProd;
+use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\MixtureDevM2nDev;
+use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
 
 class AkceController extends \BaseController
@@ -25,12 +26,29 @@ class AkceController extends \BaseController
             $akce->whereIn('dev_id',MixtureDevM2nDev::select('dev_id')->where('mixture_dev_id','=',Input::get('select_mixture_dev'))->lists('dev_id'));
         }
 
+        $template = SB::optionEloqent(AkceTempl::select(
+            [
+                DB::raw('(SELECT COUNT(akce.akce_id) FROM akce WHERE akce.akce_template_id = akce_template.id) AS akce_count'),
+                'akce_template.id AS akce_template_id',
+                'akce_template.bonus_title AS akce_template_bonus_title',
+                'akce_availability.name AS akce_availability_name',
+                'akce_minitext.name AS akce_minitext_name',
+                'mixture_dev.name AS mixture_dev_name'
+            ])
+            ->join('mixture_dev', 'akce_template.mixture_dev_id', '=', 'mixture_dev.id')
+            ->join('akce_availability', 'akce_template.availibility_id', '=', 'akce_availability.id')
+            ->join('akce_minitext', 'akce_template.minitext_id', '=', 'akce_minitext.id')
+            ->where('akce_template.id', '>', '1')
+            ->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - ->akce_template_bonus_title'], true);
+
         return View::make('adm.product.akce.index', [
             'akce'                => $akce->paginate(100),
             'search_name'         => Input::get('search_name'),
             'choice_minitext'     => Input::get('select_minitext'),
             'choice_availability' => Input::get('select_availability'),
             'choice_mixture_dev'  => Input::get('select_mixture_dev'),
+            'choice_template'     => Input::get('select_template'),
+            'select_template'     => $template,
             'select_minitext'     => SB::option('SELECT * FROM akce_minitext', ['id' => '->name'], true),
             'select_availability' => SB::option('SELECT * FROM akce_availability', ['id' => '->name'], true),
             'select_mixture_dev'  => SB::option("SELECT p.dev_id,md.id AS mdid,md.purpose,md.name
