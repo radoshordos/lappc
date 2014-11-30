@@ -68,7 +68,12 @@ Registrace & Přihlášení
                                 <p>včetně DPH a všech poplatků</p>
                             </div>
                             <div class="medium-5 columns">
-                                <input name="do-kosiku" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vp->prod_name }} do košíku" value="Do košíku" />
+                                @if (!empty($item_row))
+
+                                {{ Form::open(['action' => 'NakupniKosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
+                                <input name="do-kosiku[{{ $item_row->id }}]" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vp->prod_name }} do košíku" value="Do košíku" />
+                                {{ Form::close() }}
+                                @endif
                             </div>
                         </div>
                     </div>
