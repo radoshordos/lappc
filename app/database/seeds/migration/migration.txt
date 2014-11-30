@@ -39,8 +39,6 @@ GROUP BY prod_desc
 HAVING count > 1
 
 
-
-
 SELECT  pmd_id as id,
   		pmd_id_prod as prod_id,
     	pmd_id_media_var as variations_id,
@@ -50,4 +48,25 @@ INNER JOIN prod ON prod2multi2description.pmd_id_prod = prod.prod_id
 WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1133000
 AND prod.prod_id > 0
 ORDER BY prod_id_tree
+
+
+SELECT items_code_ean, count(items_id_prod) as count
+FROM  items
+GROUP BY items_code_ean
+HAVING count > 1
+
+
+SELECT items_code_ean, COUNT( items_id_prod ) AS count
+FROM items
+GROUP BY items_code_ean
+HAVING count >1
+LIMIT 0 , 30
+ Profilování [ Upravit zde ] [ Upravit ] [ Vysvětlit SQL ] [ Vytvořit PHP kód ] [ Obnovit ]
+Počáteční řádek:  Počet řádků:  Záhlaví opakovat každých  řádek
+
++ Nastavení
+items_code_ean
+count
+NULL
+12877
 
