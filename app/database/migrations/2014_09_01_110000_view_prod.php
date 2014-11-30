@@ -14,6 +14,7 @@ class ViewProd extends Migration
             SELECT  prod.id AS prod_id,
                     prod.mode_id AS prod_mode_id,
                     prod.difference_id AS prod_difference_id,
+                    prod.warranty_id AS prod_warranty_id,
                     prod.forex_id AS prod_forex_id,
                     prod.alias AS prod_alias,
                     prod.name AS prod_name,
@@ -27,7 +28,6 @@ class ViewProd extends Migration
                     prod.img_big AS prod_img_big,
                     prod.created_at AS prod_created_at,
                     prod.updated_at AS prod_updated_at,
-                    prod_warranty.name AS prod_warranty_name,
                     tree.id AS tree_id,
                     tree.name AS tree_name,
                     tree.absolute AS tree_absolute,
@@ -41,7 +41,6 @@ class ViewProd extends Migration
                     IF (akce.akce_sale_id IS NOT NULL, (SELECT multiple FROM prod_sale WHERE prod_sale.id = akce_sale_id), (SELECT multiple FROM prod_sale WHERE prod_sale.id = prod.sale_id)) AS query_sale_multiple,
                     IF (akce.akce_price IS NOT NULL, (SELECT akce.akce_price * query_sale_multiple), (SELECT prod.price * query_sale_multiple)) AS query_price
             FROM prod
-            INNER JOIN prod_warranty ON prod.warranty_id = prod_warranty.id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
             LEFT JOIN akce ON prod.id = akce.akce_prod_id AND prod.mode_id = 4 AND akce.akce_template_id > 1

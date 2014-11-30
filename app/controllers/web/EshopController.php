@@ -1,10 +1,11 @@
 <?php
 
+use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Dev;
+use Authority\Eloquent\Items;
+use Authority\Eloquent\MixtureItem;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\TreeDev;
-use Authority\Eloquent\AkceTempl;
-use Authority\Eloquent\MixtureItem;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 use Authority\Tools\Forex\PriceForex;
@@ -24,16 +25,23 @@ class EshopController extends Controller
         $vp = ViewProd::where('prod_alias', '=', $urlPart)->first();
         if (isset($vp) && $vp->count() > 0) {
 
-            $at_row = ((intval($vp->akce_template_id)>1) ? AkceTempl::find($vp->akce_template_id) : NULL);
+            $at_row = (intval($vp->akce_template_id) > 1 ? AkceTempl::find($vp->akce_template_id) : NULL);
+
+            $item_row = NULL;
+            if ($vp->prod_ic_visible == 1) {
+                $item_row = Items::where('prod_id', '=', $vp->prod_id)->first();
+            }
 
             return View::make('web.prod', [
-                'vp'      => $vp,
-                'term'    => Input::get('term'),
-                'vt_tree' => ViewTree::where('tree_id', '=', $vp->tree_id)->first(),
-                'vt_list' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-                'pd_list' => ProdDescription::where('prod_id', '=', $vp->prod_id)->whereNotNull('data')->get(),
-                'at_row'  => $at_row,
-                'mi_row'  => ((isset($at_row) && intval($at_row->mixture_item_id)>0) ? MixtureItem::find(intval($at_row->mixture_item_id)) : NULL)
+                'pf'       => new PriceForex,
+                'vp'       => $vp,
+                'term'     => Input::get('term'),
+                'vt_tree'  => ViewTree::where('tree_id', '=', $vp->tree_id)->first(),
+                'vt_list'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
+                'pd_list'  => ProdDescription::where('prod_id', '=', $vp->prod_id)->whereNotNull('data')->get(),
+                'at_row'   => $at_row,
+                'item_row' => $item_row,
+                'mi_row'   => ((isset($at_row) && intval($at_row->mixture_item_id)>0) ? MixtureItem::find(intval($at_row->mixture_item_id)) : NULL)
             ]);
         }
         return NULL;

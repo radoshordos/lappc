@@ -1,0 +1,29 @@
+#product h1 {
+    font-size: 1.4em;
+}
+
+#product p#desc {
+    font-size: .8em;
+}
+
+#product p.storeroom {
+    font-size: 1.4em;
+}
+
+#product p.date-exp {
+    font-size: 1.4em;
+}
+
+#product p.date-exp span {
+    font-weight: bold;
+}
+
+#product div#desc-panel p {
+    margin-bottom: 1px;
+    font-size: .9em;
+}
+
+#product div#label-list span {
+    font-size: .9em;
+    margin: 0 0 .8em 0em;
+}

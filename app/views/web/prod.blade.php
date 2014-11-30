@@ -37,31 +37,61 @@ Registrace & Přihlášení
         @include('web.layout.actionmenu')
         @include('web.layout.leftmenu')
         <div id="product" class="small-9 columns">
+
             <h1>{{ $vp->prod_name; }}</h1>
 
             <div class="row">
-                <div class="large-5 columns">
+                <div class="large-4 columns">
                      <a class="th" role="button" aria-label="Thumbnail" href="{{ '/web/naradi/' . $vp->tree_absolute .'/'. $vp->prod_img_big }}">
                          <img aria-hidden="true" src="{{ '/web/naradi/' . $vp->tree_absolute .'/'. $vp->prod_img_normal }}"/>
                      </a>
                 </div>
-                <div class="large-7 columns">
-                    <p>{{ $vp->prod_desc }}</p>
-
-
-
-
-                    <div class="row">
-                        <div class="large-4 columns">Vaše cena:</div>
-                        <div class="large-4 columns">
-                        {{ $vp->query_price }} Kč<br />včetně DPH a všech poplatků
+                <div class="large-8 columns">
+                    <p id="desc">{{ $vp->prod_desc }}</p>
+                    <div id="price-panel" class="panel callout radius">
+                        <div class="row">
+                            <div class="medium-12 columns">
+                                        @if ($vp->query_price >= 3000)
+                                        <div id="label-list">
+                                            <span class="label">Doprava ZDARMA</span>
+                                        </div>
+                                        @endif
+                            </div>
+                            <div class="medium-6 columns">
+                                <h5>Vaše cena: <strong>{{ $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) }}</strong></h5>
+                                <p>včetně DPH a všech poplatků</p>
+                            </div>
+                            <div class="medium-6 columns">
+                                <input name="do-kosiku" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vp->prod_name }} do košíku" value="Do košíku" />
+                            </div>
                         </div>
-                        <div class="large-4 columns"><input name="do-kosiku" style="max-width: 10em" class="alert button expand" type="submit" title="Vložit {{ $vp->prod_name }} do košíku" value="Do košíku"></div>
                     </div>
-                    <div class="row"></div>
 
+                    <div id="desc-panel" class="panel radius">
+                        <div class="row">
+                            <div class="medium-6 columns">
 
-
+                                <h5 class="storeroom">Skladem:<strong> > {{ $vp->prod_storeroom+4 }} ks</strong></h5>
+                                <p>Zboží připraveno k expedici</p>
+                                <?php                                     $date = new \DateTime();
+                                                                          $date->add(DateInterval::createFromDateString('tomorrow'));
+                                ?>
+                                <p class="date-exp">K Vám dorazí: <span>{{ $date->format('j.m.Y'); }}<span></p>
+                            </div>
+                            <div class="medium-6 columns">
+                                <p>Výrobce: {{ $vp->dev_name  }}</p>
+                                <p>Záruka: {{ $vp->prodWarranty->name }}</p>
+                                @if (!empty($item_row))
+                                @if (isset($item_row->code_prod ))
+                                <p>Kód: {{ $item_row->code_prod }}</p>
+                                @endif
+                                @if (isset($item_row->code_ean ))
+                                <p>EAN: {{ $item_row->code_ean }}</p>
+                                @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                     @if (isset($mi_row) && $mi_row->items != NULL)
                     <div class="row">ZDARMA</div>
                     @foreach($mi_row->items as $item)
@@ -75,13 +105,9 @@ Registrace & Přihlášení
                 </div>
             </div>
 
-
-
-
-
             @foreach($pd_list as $pd)
-                  <div class="row">
-                   <h3>{{ $pd->mediaVariations->name }}</h3>
+                  <div class="desc-list row">
+                  <h3>{{ $pd->mediaVariations->name }}</h3>
                   <ul class="prod-desc">
                         <li>{{ str_replace("\r\n", "</li><li>", $pd->data) }}</li>
                   </ul>

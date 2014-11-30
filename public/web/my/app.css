@@ -1,6 +1,32 @@
-.row {
-    margin: 0;
-    padding: 0;
+
+/*****************************************/
+div#price-panel {
+    padding: .8em;
+}
+
+div#price-panel p {
+    font-size: .9em;
+    margin-bottom: 1px;
+}
+
+div#price-panel strong {
+    font-size: 1.4em;
+}
+
+
+
+/*****************************************/
+div.desc-list {
+    margin: 4em;
+    padding: 1px 2em;
+}
+
+div.desc-list h3 {
+    font-size: 1.2em;
+}
+
+div.desc-list ul.prod-desc li {
+    font-size: .8em;
 }
 
 /* --------------------------------------------------

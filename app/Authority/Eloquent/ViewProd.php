@@ -35,4 +35,9 @@ class ViewProd extends \Eloquent
         return $this->hasOne('Authority\Eloquent\Prod', 'id', 'prod_id');
     }
 
+    public function prodWarranty()
+    {
+        return $this->hasOne('Authority\Eloquent\ProdWarranty', 'id', 'prod_warranty_id');
+    }
+
 }

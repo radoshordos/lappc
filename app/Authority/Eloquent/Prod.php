@@ -12,12 +12,7 @@ class Prod extends \Eloquent
         'mode_id'    => 'required|integer|min:1|max:4',
         'name'       => "required|unique:prod,name",
         'desc'       => "required|unique:prod,desc",
-        'alias'      => "required|unique:prod,alias",
-    ];
-
-    public static $rules_picture = [
-        'img_big'    => 'required',
-        'img_normal' => 'required',
+        'alias'      => "required|unique:prod,alias"
     ];
 
     public function scopeDev($query, $int)
@@ -62,5 +57,10 @@ class Prod extends \Eloquent
     public function prodSale()
     {
         return $this->hasOne('Authority\Eloquent\ProdSale', 'id', 'sale_id');
+    }
+
+    public function prodWarranty()
+    {
+        return $this->hasOne('Authority\Eloquent\ProdWarranty', 'id', 'warranty_id');
     }
 }

@@ -23,4 +23,5 @@
     <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/web/my/app.css">
     <link rel="stylesheet" href="/web/my/jtree.css">
+    <link rel="stylesheet" href="/web/my/product.css">
 </head>
