@@ -297,6 +297,7 @@
     </div>
     <div class="tab-pane" id="fotogalerie" style="padding-top: 2em">
         <div class="panel panel-primary">
+            {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod,"#fotogalerie"],'class'=>'form-horizontal','role'=>'form']) }}
             <div class="panel-heading">
                 <h3 class="panel-title">Upload obrázku</h3>
             </div>
@@ -315,15 +316,32 @@
                     </div>
                 </div>
             </div>
+            {{ Form::close() }}
+
         </div>
+
+        <div>
         @if ($prod->picture_count > 0)
-            <div class="well well-lg">
+            <div>
             @foreach($table_prod_picture as $row)
-                <img src="{{ '/web/naradi/'.$prod->tree->absolute."/".$row->img_normal }}" class="img-thumbnail" alt="{{ $row->img_normal }}" />
+                <div class="bg-success" style="float:left">
+                    <div class="text-center" style="margin: 30px">
+                    {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod,"#fotogalerie"],'class'=>'form-horizontal','role'=>'form']) }}
+                    {{ Form::submit('Nastavit jako primární',['class' => 'btn btn-success','name' => "img-to-primary[".$row->id."]"]) }}
+                    </div>
+                    <img src="{{ '/web/naradi/'.$prod->tree->absolute."/".$row->img_normal }}" class="img-thumbnail" alt="{{ $row->img_normal }}" />
+                    <div class="text-center" style="margin: 30px">
+
+                    {{ Form::submit('Odsranit obrázek',['class' => 'btn btn-danger','name' => "img-to-delete[".$row->id."]"]) }}
+                    {{ Form::close() }}
+                    </div>
+                </div>
             @endforeach
             </div>
         @endif
+        </div>
     </div>
+</div>
 
     @if ($prod->mode_id == 4 && isset($prod->akce->akce_prod_id))
     <div class="tab-pane" id="akce" style="padding-top: 2em">

@@ -37,9 +37,8 @@ Registrace & Přihlášení
         @include('web.layout.actionmenu')
         @include('web.layout.leftmenu')
             <div class="small-9 columns">
-                <h2>{{ $vt_tree->query_name }}</h2>
+                <h2>{{ $vt_tree->tree_desc }}</h2>
                 @include('web.layout.boxdev')
-
                 <div class="small-12 panel clearfix valign-middle">
                     <div id="prod-filter" class="small-4 columns">
                     @include('web.layout.blockprodfilter')

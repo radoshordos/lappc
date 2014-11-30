@@ -132,7 +132,7 @@ class ProdController extends \BaseController
                 'select_media_var'           => SB::option("SELECT id,name FROM media_variations WHERE type_id = 6", ['id' => '->name'], true),
                 'select_akce_template'       => $select_akce_template,
                 'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
-                'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->get(),
+                'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->orderBy('id')->get(),
                 'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get(),
                 'table_prod_description_set' => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
             ])->with(['id' => $prod]);
@@ -143,6 +143,33 @@ class ProdController extends \BaseController
     {
         $input = Input::all();
         $row = $this->prod->find($prod);
+
+        if (Input::has('img-to-primary')) {
+            foreach(array_keys(Input::get('img-to-primary')) as $key) {
+
+                DB::transaction(function() use ($prod, $key)
+                {
+                    $prod = Prod::find($prod);
+                    $img = ProdPicture::find($key);
+
+                    $img_big = $prod->img_big;
+                    $img_normal = $prod->img_normal;
+                    $prod->img_big = $img->img_big;
+                    $prod->img_normal = $img->img_normal;
+                    $img->img_big = $img_big;
+                    $img->img_normal = $img_normal;
+                    $prod->save();
+                    $img->save();
+                });
+            }
+        }
+
+        if (Input::has('img-to-delete')) {
+            foreach(array_keys(Input::get('img-to-delete')) as $key) {
+                ProdPicture::destroy($key);
+                Session::flash('warning', "Obrázek byl odstraněn");
+            }
+        }
 
         if (Input::has("save-action")) {
             $ainput = array_only($input, ['akce_id', 'akce_prod_id', "akce_template_id", "akce_price"]);
@@ -177,7 +204,7 @@ class ProdController extends \BaseController
                     Session::flash('error', $e->getMessage());
                 }
             }
-            return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod,"#fotogalerie"]);
         }
 
         if ((Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url')))) {
@@ -195,7 +222,7 @@ class ProdController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod,"#fotogalerie"]);
         }
 
         if (Input::has('button-submit-edit')) {
