@@ -48,20 +48,26 @@ Registrace & Přihlášení
                 </div>
                 <div class="large-8 columns">
                     <p id="desc">{{ $vp->prod_desc }}</p>
+
                     <div id="price-panel" class="panel callout radius">
                         <div class="row">
                             <div class="medium-12 columns">
-                                        @if ($vp->query_price >= 3000)
-                                        <div id="label-list">
-                                            <span class="label">Doprava ZDARMA</span>
+                                        <div class="label-list">
+                                            <span class="label" title="Jsme autorizovaný prodejce značky {{ $vp->dev_name }}">Jsme autorizovaný prodejce</span>
                                         </div>
+                                        <div class="label-list">
+                                        @if ($vp->query_price >= 3000)
+                                            <span class="label">Doprava ZDARMA</span>
                                         @endif
+                                        </div>
+
+
                             </div>
-                            <div class="medium-6 columns">
+                            <div class="medium-7 columns">
                                 <h5>Vaše cena: <strong>{{ $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) }}</strong></h5>
                                 <p>včetně DPH a všech poplatků</p>
                             </div>
-                            <div class="medium-6 columns">
+                            <div class="medium-5 columns">
                                 <input name="do-kosiku" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vp->prod_name }} do košíku" value="Do košíku" />
                             </div>
                         </div>
@@ -69,16 +75,16 @@ Registrace & Přihlášení
 
                     <div id="desc-panel" class="panel radius">
                         <div class="row">
-                            <div class="medium-6 columns">
+                            <div class="medium-7 columns">
 
                                 <h5 class="storeroom">Skladem:<strong> > {{ $vp->prod_storeroom+4 }} ks</strong></h5>
                                 <p>Zboží připraveno k expedici</p>
                                 <?php                                     $date = new \DateTime();
                                                                           $date->add(DateInterval::createFromDateString('tomorrow'));
                                 ?>
-                                <p class="date-exp">K Vám dorazí: <span>{{ $date->format('j.m.Y'); }}<span></p>
+                                <p class="date-exp">K Vám dorazí: <span>{{ $date->format('j.m.Y'); }}</span></p>
                             </div>
-                            <div class="medium-6 columns">
+                            <div class="medium-5 columns">
                                 <p>Výrobce: {{ $vp->dev_name  }}</p>
                                 <p>Záruka: {{ $vp->prodWarranty->name }}</p>
                                 @if (!empty($item_row))
