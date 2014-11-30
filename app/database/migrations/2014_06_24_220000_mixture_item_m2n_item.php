@@ -13,8 +13,10 @@ class MixtureItemM2nItem extends Migration
             $table->integer('item_id')->unsigned()->index();
 
             $table->engine = 'InnoDB';
-            $table->foreign('mixture_item_id')->references('id')->on('mixture_item')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->unique(['mixture_item_id','item_id']);
+
+            $table->foreign('mixture_item_id')->references('id')->on('mixture_item')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

@@ -40,7 +40,6 @@ $(function() {
         prodList('fresh');
     });
 
-
     function prodList(sort) {
 
         var store = $('#store').is(':checked');

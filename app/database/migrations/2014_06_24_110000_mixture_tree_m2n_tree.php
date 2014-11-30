@@ -14,9 +14,10 @@ class MixtureTreeM2nTree extends Migration
             $table->integer('tree_id')->unsigned()->index();
 
             $table->engine = 'InnoDB';
+            $table->unique(['mixture_tree_id','tree_id']);
 
             $table->foreign('mixture_tree_id')->references('id')->on('mixture_tree')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

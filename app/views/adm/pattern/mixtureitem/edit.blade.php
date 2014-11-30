@@ -14,6 +14,7 @@ Správa grupy položek
             placeholder: "Přidejte položky do grupy",
             allowClear: true
         });
+        $("#item_id").select2({});
     });
 </script>
 @stop
@@ -24,7 +25,8 @@ Správa grupy položek
 <div class="panel panel-info">
     <div class="panel-heading"><label for="name">Oprava názvu skupiny položek</label></div>
     <div class="panel-body">
-        {{ Form::text('name',$mixtureitem->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové grupy položek')) }}
+        <p>{{ Form::select('purpose',$select_purpose, $choice_purpose, ['required' => 'required','readonly' => 'readonly', 'id'=> 'purpose',  'class'=> 'form-control']) }}</p>
+        <p>{{ Form::text('name',$mixtureitem->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové grupy položek')) }}</p>
     </div>
     <div class="panel-footer text-center">
         {{ link_to_route('adm.pattern.mixtureitem.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}
@@ -40,9 +42,9 @@ Správa grupy položek
             <tbody>
             @foreach($mixtureitem->items as $row)
             <tr>
-                <td>{{$row->id}}</td>
+                <td>{{ $row->prod->name }}</td>
                 <td>
-                    {{ Form::open(array('method' => 'DELETE', 'route' => array('adm.pattern.mixtureitemm2nitem.destroy', $mixtureitem->id."x".$row->id ))) }}
+                    {{ Form::open(array('method' => 'DELETE', 'route' => ['adm.pattern.mixtureitemm2nitem.destroy', $mixtureitem->id."x".$row->id ])) }}
                     {{ Form::submit('Smazat',array('class' => 'btn btn-danger btn-xs')) }}
                     {{ Form::close() }}
                 </td>
@@ -52,7 +54,7 @@ Správa grupy položek
         </table>
     </div>
     <div class="panel-footer">
-        {{ Form::open(array('route' => 'adm.pattern.mixtureitemm2nitem.store','class' => 'form-horizontal', 'role' => 'form')) }}
+        {{ Form::open(['route' => 'adm.pattern.mixtureitemm2nitem.store','class' => 'form-horizontal', 'role' => 'form']) }}
         <div class="input-group">
             <span class="input-group-btn">
                 {{ Form::submit('Přidat položku',array('class' => 'btn btn-success')) }}

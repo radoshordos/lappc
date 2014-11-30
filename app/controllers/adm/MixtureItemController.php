@@ -6,10 +6,12 @@ use Authority\Tools\SB;
 class MixtureItemController extends \BaseController
 {
     protected $mi;
+    protected $pa;
 
     function __construct(MixtureItem $mi)
     {
         $this->mi = $mi;
+        $this->pa = ['akce_items_free' => 'akce_items_free - Skupina akčních položek zdarma k prouktu'];
     }
 
     public function index()
@@ -21,7 +23,10 @@ class MixtureItemController extends \BaseController
 
     public function create()
     {
-        return View::make('adm.pattern.mixtureitem.create');
+        return View::make('adm.pattern.mixtureitem.create', [
+            'select_purpose' => $this->pa,
+            'choice_purpose' => Input::get('select_purpose')
+        ]);
     }
 
     public function store()
@@ -48,8 +53,13 @@ class MixtureItemController extends \BaseController
         }
 
         return View::make('adm.pattern.mixtureitem.edit', [
-            'item_insertable' => [''] + SB::option("SELECT * FROM items WHERE id > 1 AND id NOT IN (SELECT item_id FROM mixture_item_m2n_item WHERE mixture_item_id = $id) ORDER BY id", ['id' => '->id']),
-            'mixtureitem'     => $mixitem
+            'item_insertable' => SB::option("SELECT items.id AS items_id,prod.name AS prod_name
+                                             FROM items
+                                             INNER JOIN prod ON prod.id = items.prod_id
+                                             WHERE items.id > 1 AND prod.ic_all = 1 AND items.id NOT IN (SELECT item_id FROM mixture_item_m2n_item WHERE mixture_item_id = $id)
+                                             ORDER BY items.id", ['items_id' => '->prod_name'], true), 'mixtureitem' => $mixitem,
+            'select_purpose'  => $this->pa,
+            'choice_purpose'  => Input::get('select_purpose')
         ]);
     }
 

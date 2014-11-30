@@ -15,9 +15,10 @@ class MixtureDevM2nDev extends Migration
             $table->integer('dev_id')->unsigned();
 
             $table->engine = 'InnoDB';
+            $table->unique(['mixture_dev_id','dev_id']);
 
             $table->foreign('mixture_dev_id')->references('id')->on('mixture_dev')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
         });
 
         DB::unprepared('DROP TRIGGER IF EXISTS mixture_dev_m2n_dev_ai');

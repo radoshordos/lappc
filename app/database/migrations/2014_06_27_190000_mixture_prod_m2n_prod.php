@@ -14,9 +14,10 @@ class MixtureProdM2nProd extends Migration {
             $table->integer('prod_id')->unsigned()->index();
 
             $table->engine = 'InnoDB';
+            $table->unique(['mixture_prod_id','prod_id']);
 
-            $table->foreign('mixture_prod_id')->references('id')->on('mixture_prod')->onDelete('cascade');
-			$table->foreign('prod_id')->references('id')->on('prod')->onDelete('cascade');
+            $table->foreign('mixture_prod_id')->references('id')->on('mixture_prod')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('no action');
 		});
 	}
 

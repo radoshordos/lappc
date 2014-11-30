@@ -11,4 +11,6 @@ class MixtureItemM2nItem extends \Eloquent
         'item_id'         => 'required|exists:items,id'
     ];
 
+
+
 }
