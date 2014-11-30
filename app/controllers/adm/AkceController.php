@@ -40,7 +40,7 @@ class AkceController extends \BaseController
             ->join('akce_availability', 'akce_template.availibility_id', '=', 'akce_availability.id')
             ->join('akce_minitext', 'akce_template.minitext_id', '=', 'akce_minitext.id')
             ->where('akce_template.id', '>', '1')
-            ->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - ->akce_template_bonus_title'], true);
+            ->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - [Titulek: \'->akce_template_bonus_title\']'], true);
 
         return View::make('adm.product.akce.index', [
             'pf'                  => new PriceForex,

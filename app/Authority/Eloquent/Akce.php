@@ -8,7 +8,8 @@ class Akce extends \Eloquent
     public $timestamps = false;
 
     public static $rules = [
-        'akce_prod_id' => 'required|exists:prod,id'
+        'akce_prod_id'     => 'required|exists:prod,id',
+        'akce_template_id' => 'required|exists:akce_template,id'
     ];
 
     public function akceTemplate()

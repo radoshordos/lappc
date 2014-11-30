@@ -14,7 +14,9 @@
         $("#list_prod").select2({});
         $("#tree_id").select2({});
         $("#dev_id").select2({});
-        $("#akce_template_id").select2({});
+        $("#akce_template_id").select2({
+            allowClear: true
+        });
         $('#myTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
@@ -340,7 +342,7 @@
                     <div class="row">
                         <div class="col-md-2">{{ Form::label('akce_template_id','Šablona') }}</div>
                         @if (isset($select_akce_template))
-                        <div class="col-md-10">{{ Form::select('akce_template_id', $select_akce_template, $prod->akce->akce_template_id, ['required' => 'required','class'=> 'form-control']); }}</div>
+                        <div class="col-md-10">{{ Form::select('akce_template_id', $select_akce_template, $prod->akce->akce_template_id, ['class'=> 'form-control']); }}</div>
                         @endif
                     </div>
                     <div class="row" style="margin-top: 2em">

@@ -1,4 +1,4 @@
-<div id="prod-sort" class="panel clearfix">
+
     <ul>
         @if (Session::has('tree.sort') && Session::get('tree.sort') == 'expensive')
             <li><a id="cheap">nejlevnější</a> |</li>
@@ -22,4 +22,3 @@
             <li><a id="fresh">nejnovější</a></li>
         @endif
     </ul>
-</div>

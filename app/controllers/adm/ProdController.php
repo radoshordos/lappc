@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\Akce;
+use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\Prod;
@@ -96,12 +97,20 @@ class ProdController extends \BaseController
             $dev_in_mixture = MixtureDevM2nDev::where('dev_id', '=', $row->dev_id)->lists('mixture_dev_id');
 
             if ($row->mode_id == 4 && count($dev_in_mixture) > 0) {
-                $select_akce_template = SB::option("SELECT at.id,at.bonus_title,am.name AS minitext_name,aa.name AS availability_name
-                                                    FROM akce_template AS at
-                                                    INNER JOIN akce_minitext AS am ON am.id = at.minitext_id
-                                                    INNER JOIN akce_availability AS aa ON aa.id = at.availibility_id
-                                                    WHERE at.id > 1 AND
-                                                          mixture_dev_id IN (" . implode(',', $dev_in_mixture) . ")", ['id' => '->minitext_name] [->availability_name] + ->bonus_title'], true);
+                $select_akce_template = SB::optionEloqent(AkceTempl::select(
+                    [
+                        DB::raw('(SELECT COUNT(akce.akce_id) FROM akce WHERE akce.akce_template_id = akce_template.id) AS akce_count'),
+                        'akce_template.id AS akce_template_id',
+                        'akce_template.bonus_title AS akce_template_bonus_title',
+                        'akce_availability.name AS akce_availability_name',
+                        'akce_minitext.name AS akce_minitext_name',
+                        'mixture_dev.name AS mixture_dev_name'
+                    ])
+                    ->join('mixture_dev', 'akce_template.mixture_dev_id', '=', 'mixture_dev.id')
+                    ->join('akce_availability', 'akce_template.availibility_id', '=', 'akce_availability.id')
+                    ->join('akce_minitext', 'akce_template.minitext_id', '=', 'akce_minitext.id')
+                    ->where('akce_template.id', '>', '1')
+                    ->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - [Titulek: \'->akce_template_bonus_title\']'], true);
             }
 
             return View::make('adm.product.prod.edit', [
@@ -137,17 +146,16 @@ class ProdController extends \BaseController
 
         if (Input::has("save-action")) {
             $ainput = array_only($input, ['akce_id', 'akce_prod_id', "akce_template_id", "akce_price"]);
-            try {
+            $ainput['akce_updated_at'] = DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now'));
+            if (intval($ainput['akce_template_id']) > 1) {
                 $akce = Akce::where('akce_id', '=', $ainput['akce_id'])->first();
-                $akce->akce_template_id = $ainput['akce_template_id'];
-                $akce->akce_price = $ainput['akce_price'];
-                $akce->akce_updated_at = DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now'));
                 $akce->setKeyName('akce_id');
+                $akce->update($ainput);
                 $akce->save();
-            } catch (Exception $e) {
-                Session::flash('error', $e->getMessage());
+                Session::flash('success', "Akce byla uložena");
+            } else {
+                Session::flash('error', "Nebyla zadána šablona akce");
             }
-            Session::flash('success', "Akce byla uložena");
             return Redirect::route('adm.product.prod.edit', [$tree, $prod, "#akce"]);
         }
 

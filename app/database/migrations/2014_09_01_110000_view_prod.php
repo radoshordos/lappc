@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class ViewProd extends Migration
 {
-
     public function up()
     {
         DB::unprepared('DROP TABLE IF EXISTS view_prod');
@@ -38,9 +37,9 @@ class ViewProd extends Migration
                     akce.akce_template_id AS akce_template_id,
                     akce_template.bonus_title AS akce_template_bonus_title,
                     akce_minitext.name AS akce_minitext_name,
-                    IF (akce.akce_sale_id > 0, (SELECT multiple FROM prod_sale WHERE prod_sale.id = akce_sale_id), (SELECT multiple FROM prod_sale WHERE prod_sale.id = prod.sale_id)) AS query_sale_multiple,
-                    IF (akce.akce_price > 0, (SELECT akce.akce_price * query_sale_multiple), (SELECT prod.price * query_sale_multiple)) AS query_price
-
+                    IF (akce_template.bonus_title IS NOT NULL, (SELECT CONCAT_WS(" + ",prod.name,akce_template.bonus_title)), prod.name) AS query_name,
+                    IF (akce.akce_sale_id IS NOT NULL, (SELECT multiple FROM prod_sale WHERE prod_sale.id = akce_sale_id), (SELECT multiple FROM prod_sale WHERE prod_sale.id = prod.sale_id)) AS query_sale_multiple,
+                    IF (akce.akce_price IS NOT NULL, (SELECT akce.akce_price * query_sale_multiple), (SELECT prod.price * query_sale_multiple)) AS query_price
             FROM prod
             INNER JOIN prod_warranty ON prod.warranty_id = prod_warranty.id
             INNER JOIN dev ON prod.dev_id = dev.id

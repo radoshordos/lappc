@@ -37,10 +37,17 @@ Registrace & Přihlášení
         @include('web.layout.actionmenu')
         @include('web.layout.leftmenu')
             <div class="small-9 columns">
-                <h2>{{ $vt_tree->tree_desc }}</h2>
+                <h2>{{ $vt_tree->query_name }}</h2>
                 @include('web.layout.boxdev')
-                @include('web.layout.blockprodfilter')
-                @include('web.layout.boxsorting')
+
+                <div class="small-12 panel clearfix valign-middle">
+                    <div id="prod-filter" class="small-4 columns">
+                    @include('web.layout.blockprodfilter')
+                    </div>
+                    <div id="prod-sort" class="small-8 columns">
+                        @include('web.layout.boxsorting')
+                    </div>
+                </div>
                 @include('web.layout.boxprodlist')
             </div>
     </div>

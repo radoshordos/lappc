@@ -18,12 +18,13 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Seskupení výrobců</th>
+                <th>Seskupení<br />výrobců</th>
                 <th>Minitext</th>
                 <th>Dostupnost</th>
-                <th>Automatické<br /> zrušení</th>
+                <th class="col-md-1">Automatické<br /> zrušení</th>
+                <th class="col-md-2">Skupina položek<br />zdarma</th>
                 <th>Titulek</th>
-                <th>Text</th>
+                <th class="col-md-2">Text</th>
             </tr>
             </thead>
             <tbody>
@@ -32,9 +33,10 @@
                 <td>{{ $row->mixture_dev->name }}</td>
                 <td>{{ $row->akce_minitext->name }}</td>
                 <td>{{ $row->akce_availability->name }}</td>
-                <td>{{ $row->endtime }}</td>
+                <td class="col-md-1">{{ $row->endtime }}</td>
+                <td class="col-md-2">{{ isset($row->mixture_item_id) ? $row->mixtureItem->name : NULL }}</td>
                 <td>{{ $row->bonus_title }}</td>
-                <td>{{ Form::textarea('bonus_text', $row->bonus_text, ['size' => '45x2', 'readonly' => 'readonly', 'class' => 'form-control' ]); }}</td>
+                <td class="col-md-2">{{ Form::textarea('bonus_text', $row->bonus_text, ['size' => '40x2', 'readonly' => 'readonly', 'class' => 'form-control' ]); }}</td>
             </tr>
             @endforeach
             </tbody>
