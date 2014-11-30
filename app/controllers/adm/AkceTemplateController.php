@@ -24,7 +24,8 @@ class AkceTemplateController extends \BaseController
         return View::make('adm.product.akcetemplate.create', [
             'select_mixture_dev'  => SB::option("SELECT * FROM mixture_dev ORDER BY name,id", ['id' => '->name - [Výrobců &#8721;:->trigger_column_count]'], true),
             'select_minitext'     => SB::option("SELECT * FROM akce_minitext ORDER BY name", ['id' => '->name'], true),
-            'select_availability' => SB::option("SELECT * FROM akce_availability ORDER BY name", ['id' => '->name'], true)
+            'select_availability' => SB::option("SELECT * FROM akce_availability ORDER BY name", ['id' => '->name'], true),
+            'select_mixture_item' => SB::option("SELECT * FROM mixture_item ORDER BY name", ['id' => '->name'], true)
         ]);
     }
 

@@ -13,6 +13,7 @@ class AkceTemplate extends Migration {
 			$table->integer('mixture_dev_id')->unsigned();
 			$table->integer('availibility_id')->unsigned();
 			$table->integer('minitext_id')->unsigned();
+            $table->integer('mixture_item_id')->unsigned()->nullable();
 			$table->date('endtime');
 			$table->text('bonus_title', 64)->nullable();
 			$table->text('bonus_text', 256)->nullable();
@@ -24,6 +25,7 @@ class AkceTemplate extends Migration {
 			$table->foreign('mixture_dev_id')->references('id')->on('mixture_dev')->onUpdate('cascade')->onDelete('cascade');
 			$table->foreign('availibility_id')->references('id')->on('akce_availability')->onUpdate('cascade')->onDelete('no action');
 			$table->foreign('minitext_id')->references('id')->on('akce_minitext')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('mixture_item_id')->references('id')->on('mixture_item')->onUpdate('cascade')->onDelete('cascade');
 		});
 	}
 

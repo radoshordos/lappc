@@ -25,8 +25,18 @@ Správa grupy položek
 <div class="panel panel-info">
     <div class="panel-heading"><label for="name">Oprava názvu skupiny položek</label></div>
     <div class="panel-body">
-        <p>{{ Form::select('purpose',$select_purpose, $choice_purpose, ['required' => 'required','readonly' => 'readonly', 'id'=> 'purpose',  'class'=> 'form-control']) }}</p>
-        <p>{{ Form::text('name',$mixtureitem->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové grupy položek')) }}</p>
+        <div class="form-group">
+            {{ Form::label('purpose','Účel',['class'=> 'col-sm-1 control-label']) }}
+            <div class="col-sm-11">
+                {{  Form::select('purpose',$select_purpose, $choice_purpose, ['required' => 'required','readonly' => 'readonly', 'id'=> 'purpose',  'class'=> 'form-control']) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ Form::label('name','Název',['class'=> 'col-sm-1 control-label']) }}
+            <div class="col-sm-11">
+                {{  Form::text('name',$mixtureitem->name, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno grupy položek')) }}
+            </div>
+        </div>
     </div>
     <div class="panel-footer text-center">
         {{ link_to_route('adm.pattern.mixtureitem.index','Zobrazit všechny položky',NULL, array('class'=>'btn btn-primary','role'=> 'button')) }}

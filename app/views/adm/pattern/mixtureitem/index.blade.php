@@ -25,7 +25,7 @@ Grupy položek
             <tr>
                 <td>{{ $row->id }}</td>
                 <td>{{ $row->name }}</td>
-                <td>@foreach ($row->items as $one) {{ '<p>'.$one->id.'</p>'; }} @endforeach</td>
+                <td>@foreach ($row->items as $one) {{ '<p>'.$one->prod->name.'</p>'; }} @endforeach</td>
                 <td>{{ link_to_route('adm.pattern.mixtureitem.edit','Edit', [$row->id],['class' => 'btn btn-info btn-xs']) }}</td>
             </tr>
             @endforeach
