@@ -37,7 +37,8 @@ Hromadné akce
          <nav>
            <ul class="pager">
              <li class="previous"><a href="{{ URL::route('adm.product.akceavailability.index') }}">Správa platnosti akce</a></li>
-             <li>        <div class="btn-group" data-toggle="buttons">
+                <li>
+                 <div class="btn-group" data-toggle="buttons">
                              <label class="btn btn-primary {{ ($dfilter == 'mode1' || $dfilter == "" ? 'active' : NULL) }}">
                                  {{ Form::radio('dfilter', 'mode1',($dfilter == 'mode1' ? 'true' : NULL), ['onchange' => 'this.form.submit()']); }}Zobrazit vše
                              </label>

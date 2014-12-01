@@ -317,9 +317,7 @@
                 </div>
             </div>
             {{ Form::close() }}
-
         </div>
-
         <div>
         @if ($prod->picture_count > 0)
             <div>

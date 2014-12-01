@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-    @parent Přehled produktů @stop
+@parent Přehled produktů @stop
 
 {{-- JavaScript on page --}}
 @section ('script')
@@ -37,7 +37,7 @@
         </div>
         <div class="row" style="margin-top: .5em">
             <div class="col-xs-10">
-                {{ Form::select('select_sort', ['1' => 'Seřadit dle data poslední změny', '2' => 'Seřadit dle názvu', '3' => 'Seřadit dle ceny'], $input_sort, array('id'=> 'select_sort', 'class'=> 'form-control', 'onchange' => 'this.form.submit()')) }}
+                {{ Form::select('select_sort', ['1' => 'Seřadit dle data poslední změny', '2' => 'Seřadit dle názvu', '3' => 'Seřadit dle ceny'], $input_sort, ['id'=> 'select_sort', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}
