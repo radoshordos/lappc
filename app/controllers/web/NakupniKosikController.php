@@ -1,7 +1,7 @@
 <?php
 
 use Authority\Eloquent\Items;
-use Authority\Eloquent\RecordInputSell;
+use Authority\Eloquent\RecordItemsPurchased;
 
 
 class NakupniKosikController extends Controller
@@ -23,13 +23,18 @@ class NakupniKosikController extends Controller
 				$items = Items::find($key);
 				if (!empty($items) && !empty($sid)) {
 
-					RecordInputSell::create([
+					RecordItemsPurchased::create([
 						'sid' => $sid,
-						'items_id' => $items->id,
-						'items_count' => 1,
+						'item_id' => $items->id,
+						'item_count' => 1,
+						'item_price' => 1,
+						'prod_forex_id' => $items->prod->forex_id,
 						'prod_mode_id' => $items->prod->mode_id,
-						'price_sell' => 6666
 					]);
+
+
+
+
 
 				}
 			}

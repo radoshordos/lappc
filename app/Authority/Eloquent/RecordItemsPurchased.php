@@ -1,6 +1,6 @@
 <?php namespace Authority\Eloquent;
 
-class RecordInputSell extends \Eloquent
+class RecordItemsPurchased extends \Eloquent
 {
     protected $table = 'record_input_sell';
     protected $guarded = [];
