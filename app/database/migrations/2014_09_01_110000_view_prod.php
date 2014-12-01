@@ -13,6 +13,7 @@ class ViewProd extends Migration
             view_prod AS
             SELECT  prod.id AS prod_id,
                     prod.mode_id AS prod_mode_id,
+                    prod.sale_id AS prod_sale_id,
                     prod.difference_id AS prod_difference_id,
                     prod.warranty_id AS prod_warranty_id,
                     prod.forex_id AS prod_forex_id,

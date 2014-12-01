@@ -70,8 +70,8 @@
                             <td>{{ $row->prod_mode_id }}</td>
                             <td>{{ $row->dev_name }}</td>
                             <td>{{ $row->tree_id }}</td>
-                            <td>{{ $row->prod_warranty_name }}</td>
-                            <td>{{ $row->prod->prodSale->name }}</td>
+                            <td>{{ $row->prodWarranty->name }}</td>
+                            <td>{{ $row->prodSale->name }}</td>
                             <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->prod->price,$row->prod->forex_id)  }}</td>
                             <td class="col-xs-3">
                                 <small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small>
