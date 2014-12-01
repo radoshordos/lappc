@@ -22,7 +22,7 @@ class RecordItemsPurchased extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique(['items_id', 'order_id']);
+            $table->unique(['item_id', 'sell_id']);
         });
     }
 

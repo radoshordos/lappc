@@ -7,9 +7,20 @@ use Authority\Eloquent\RecordItemsPurchased;
 class NakupniKosikController extends Controller
 {
 
+	private $sid;
+
+	public function __construct()
+	{
+		$this->sid = Session::getId();
+	}
+
 	public function index()
 	{
-		return "NAKUP index";
+
+		return View::make('web.kosik.home', [
+			'record_items_purchased' => RecordItemsPurchased::where('sid', '=', $this->sid)->get(),
+			'term'                   => Input::get('term')
+		]);
 	}
 
 
@@ -24,21 +35,17 @@ class NakupniKosikController extends Controller
 				if (!empty($items) && !empty($sid)) {
 
 					RecordItemsPurchased::create([
-						'sid' => $sid,
-						'item_id' => $items->id,
-						'item_count' => 1,
-						'item_price' => 1,
+						'sid'           => $this->sid,
+						'item_id'       => $items->id,
+						'item_count'    => 1,
+						'item_price'    => 1,
+						'prod_id'       => $items->prod->id,
 						'prod_forex_id' => $items->prod->forex_id,
-						'prod_mode_id' => $items->prod->mode_id,
+						'prod_mode_id'  => $items->prod->mode_id,
 					]);
-
-
-
-
-
 				}
 			}
-			return "NAKUP store";
 		}
+		return Redirect::action('NakupniKosikController@index');
 	}
 }

@@ -2,7 +2,7 @@
 
 class RecordItemsPurchased extends \Eloquent
 {
-    protected $table = 'record_input_sell';
+    protected $table = 'record_items_purchased';
     protected $guarded = [];
 
     public $timestamps = true;
