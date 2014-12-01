@@ -1,6 +1,6 @@
 <?php
 
-use \Authority\Tools\SB;
+use Authority\Tools\SB;
 use Authority\Eloquent\Prod;
 
 class ProdMultipleChangesController extends \BaseController

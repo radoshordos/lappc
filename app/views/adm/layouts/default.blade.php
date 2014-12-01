@@ -123,6 +123,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Objednávky<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.buy.toptrans.index') }}">Toptrans</a></li>
+                        <li><a href="{{ URL::route('adm.buy.maillist.index') }}">Správa e-mailů</a></li>
                     </ul>
                 </li>
                 @endif

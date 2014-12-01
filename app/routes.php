@@ -41,27 +41,27 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('prod', 'ProdController');
         Route::match(['GET', 'POST'], 'prod/{tree}/{prod}/edit', ['as' => 'adm.product.prod.edit', 'uses' => 'ProdController@edit'])->where(['tree' => '[0-9]+', 'prod' => '[0-9]+']);
         Route::any('prod/{tree}/{prod}', ['as' => 'adm.product.prod.update', 'uses' => 'ProdController@update'])->where(['tree' => '[0-9]+', 'prod' => '[0-9]+']);
-        Route::resource('akce', 'AkceController');
+        Route::resource('akce', 'AkceController', ['only' => ['index']]);
         Route::resource('akcehuge', 'AkceHugeController', ['only' => ['index', 'store']]);
-        Route::resource('akcetemplate', 'AkceTemplateController');
-        Route::resource('akceminitext', 'AkceMinitextController');
-        Route::resource('akceavailability', 'AkceAvailabilityController');
+        Route::resource('akcetemplate', 'AkceTemplateController', ['only' => ['index','create','store']]);
+        Route::resource('akceminitext', 'AkceMinitextController', ['only' => ['index','create','store']]);
+        Route::resource('akceavailability', 'AkceAvailabilityController', ['only' => ['index','create','store']]);
     });
 
     Route::group(['prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'], function () {
         Route::resource('dev', 'DevController');
         Route::resource('tree', 'TreeController');
         Route::resource('mixturedev', 'MixtureDevController');
-        Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController');
+        Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController', ['only' => ['store','destroy']]);
         Route::resource('mixturetree', 'MixtureTreeController');
-        Route::resource('mixturetreem2ntree', 'MixtureTreeM2nTreeController');
+        Route::resource('mixturetreem2ntree', 'MixtureTreeM2nTreeController', ['only' => ['store','destroy']]);
         Route::resource('mixtureprod', 'MixtureProdController');
-        Route::resource('mixtureprodm2nprod', 'MixtureProdM2nProdController');
+        Route::resource('mixtureprodm2nprod', 'MixtureProdM2nProdController', ['only' => ['store','destroy']]);
         Route::resource('mixtureitem', 'MixtureItemController');
-        Route::resource('mixtureitemm2nitem', 'MixtureItemM2nItemController');
-        Route::resource('prodwarranty', 'ProdWarrantyController');
-        Route::resource('proddifference', 'ProdDifferenceController');
-        Route::resource('prodvariation', 'ProdVariationController');
+        Route::resource('mixtureitemm2nitem', 'MixtureItemM2nItemController', ['only' => ['store','destroy']]);
+        Route::resource('prodwarranty', 'ProdWarrantyController', ['only' => ['index','create', 'store']]);
+        Route::resource('proddifference', 'ProdDifferenceController', ['only' => ['index','store']]);
+        Route::resource('prodvariation', 'ProdVariationController', ['only' => ['index','create', 'store']]);
         Route::get('multiplechanges', ['as' => 'adm.pattern.multiplechanges.index', 'uses' => 'ProdMultipleChangesController@index']);
     });
 
@@ -86,7 +86,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::any('calculator', ['as' => 'adm.tools.calculator.index', 'uses' => 'ToolCalculatorController@index']);
         Route::any('comparator', ['as' => 'adm.tools.comparator.index', 'uses' => 'ToolComparatorController@index']);
         Route::any('csvoptimal', ['as' => 'adm.tools.csvoptimal.index', 'uses' => 'ToolCsvOptimalController@index']);
-        Route::resource('grab', 'GrabController');
+        Route::resource('grab', 'GrabController', ['only' => ['index','store']]);
         Route::any('grabsimulator', ['as' => 'adm.tools.grabsimulator.index', 'uses' => 'GrabSimulatorController@index']);
     });
 
@@ -97,6 +97,7 @@ Route::group(['prefix' => 'adm'], function () {
     });
 
     Route::group(['prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'], function () {
+        Route::resource('maillist', 'MailListController', ['only' => ['index']]);
         Route::any('toptrans', ['as' => 'adm.buy.toptrans.index', 'uses' => 'BuyToptransController@index']);
     });
 
