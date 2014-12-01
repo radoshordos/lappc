@@ -2,7 +2,7 @@
 
 use Authority\Eloquent\Items;
 use Authority\Eloquent\RecordItemsPurchased;
-
+use Authority\Tools\Forex\PriceForex;
 
 class NakupniKosikController extends Controller
 {
@@ -16,13 +16,12 @@ class NakupniKosikController extends Controller
 
 	public function index()
 	{
-
 		return View::make('web.kosik.home', [
-			'record_items_purchased' => RecordItemsPurchased::where('sid', '=', $this->sid)->get(),
+            'pf'                     => new PriceForex,
+            'record_items_purchased' => RecordItemsPurchased::where('sid', '=', $this->sid)->get(),
 			'term'                   => Input::get('term')
 		]);
 	}
-
 
 	public function store()
 	{
@@ -34,7 +33,10 @@ class NakupniKosikController extends Controller
 				$items = Items::find($key);
 				if (!empty($items) && !empty($sid)) {
 
-					RecordItemsPurchased::create([
+                    $count = RecordItemsPurchased::where('sid', '=', $this->sid)->where('item_id', '=', $items->id)->count();
+                    if (intval($count) < 1) {
+
+                        RecordItemsPurchased::create([
 						'sid'           => $this->sid,
 						'item_id'       => $items->id,
 						'item_count'    => 1,
@@ -43,6 +45,7 @@ class NakupniKosikController extends Controller
 						'prod_forex_id' => $items->prod->forex_id,
 						'prod_mode_id'  => $items->prod->mode_id,
 					]);
+                    }
 				}
 			}
 		}

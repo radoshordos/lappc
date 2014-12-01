@@ -12,7 +12,7 @@ class Dev extends \Eloquent
         'alias'                   => 'required|min:2|max:32|unique:dev,alias',
         'default_warranty_id'     => 'required|exists:prod_warranty,id',
         'default_sale_prod_id'    => 'required|exists:prod_sale,id',
-        'default_sale_action_id'  => 'required|numeric|exists:items_sale,id',
+        'default_sale_action_id'  => 'required|numeric|exists:prod_sale,id',
         'default_availibility_id' => 'required|numeric|exists:items_availability,id'
     ];
 

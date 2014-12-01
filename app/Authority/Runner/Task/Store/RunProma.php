@@ -10,15 +10,11 @@ class RunProma extends AbstractRunDev implements iItem
         parent::__construct($shop_item, $record_id);
     }
 
-    private function analyseIdDev($dev_name, $guarante_months = 0)
+    private function analyseIdDev($dev_name)
     {
         switch ($dev_name) {
             case 'FERM' :
-                if ($guarante_months == 36) {
-                    return 176;
-                } else {
-                    return 175;
-                }
+                return 36;
             case 'WORX' :
             case 'WORX Garden' :
                 return 170;
@@ -31,7 +27,7 @@ class RunProma extends AbstractRunDev implements iItem
 
     public function setSyncIdDev()
     {
-        $this->syncIdDev = $this->analyseIdDev($this->shopItem['BRAND'], $this->shopItem['GUARANTEE_MONTHS']);
+        $this->syncIdDev = $this->analyseIdDev($this->shopItem['BRAND']);
     }
 
     function setSyncProdName()
@@ -53,7 +49,6 @@ class RunProma extends AbstractRunDev implements iItem
     {
         (!empty($this->shopItem['PRICE']) ? $this->syncItemsPriceStandard = doubleval($this->shopItem['PRICE']) : NULL);
     }
-
 
     public function setSyncItemsAvailabilityCount()
     {

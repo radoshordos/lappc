@@ -24,4 +24,5 @@
     <link rel="stylesheet" href="/web/my/app.css">
     <link rel="stylesheet" href="/web/my/jtree.css">
     <link rel="stylesheet" href="/web/my/product.css">
+    <link rel="stylesheet" href="/web/my/kosik.css">
 </head>

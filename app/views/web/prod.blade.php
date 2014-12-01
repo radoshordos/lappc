@@ -53,9 +53,6 @@ Registrace & Přihlášení
                         <div class="row">
                             <div class="medium-12 columns">
                                         <div class="label-list">
-                                            <span class="label" title="Jsme autorizovaný prodejce značky {{ $vp->dev_name }}">Jsme autorizovaný prodejce</span>
-                                        </div>
-                                        <div class="label-list">
                                         @if ($vp->query_price >= 3000)
                                             <span class="label">Doprava ZDARMA</span>
                                         @endif

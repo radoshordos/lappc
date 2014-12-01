@@ -1,0 +1,13 @@
+table#buy-table {
+    width: auto;
+    margin: 1em;
+}
+
+table#buy-table input {
+    margin-top: 1em;
+}
+
+table#buy-table a:hover, table#buy-table a:focus {
+    text-decoration: underline;
+}
+
