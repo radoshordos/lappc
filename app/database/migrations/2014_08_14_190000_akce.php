@@ -10,7 +10,7 @@ class Akce extends Migration {
 		Schema::create('akce', function (Blueprint $table) {
 
 			$table->increments('akce_id')->unsigned();
-            $table->integer('akce_prod_id')->unsigned();
+            $table->integer('akce_prod_id')->unique()->unsigned();
             $table->integer('akce_template_id')->unsigned()->default(1);
             $table->tinyInteger('akce_sale_id')->unsigned()->default(1);
             $table->tinyInteger('akce_availability_id')->unsigned()->default(1);
