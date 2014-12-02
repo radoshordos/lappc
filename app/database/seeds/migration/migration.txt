@@ -13,7 +13,7 @@ SELECT	prod_id AS id,
 		prod_img_normal AS img_normal,
 		(SELECT MAX(items_price_end) FROM items WHERE items.items_id_prod = prod.prod_id) AS price
 FROM prod
-WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1133000
+WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1138000
 AND prod.prod_id > 0
 ORDER BY id
 
@@ -28,7 +28,7 @@ SELECT  items_id,
         items_ti_create
 FROM items
 INNER JOIN prod ON items.items_id = prod.prod_id
-WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1133000
+WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1138000
 AND prod.prod_id > 0
 ORDER BY prod_id_tree
 
@@ -45,7 +45,7 @@ SELECT  pmd_id as id,
       	pmd_data as data
 FROM prod2multi2description
 INNER JOIN prod ON prod2multi2description.pmd_id_prod = prod.prod_id
-WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1133000
+WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1138000
 AND prod.prod_id > 0
 ORDER BY prod_id_tree
 
