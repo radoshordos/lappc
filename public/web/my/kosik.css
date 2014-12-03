@@ -11,3 +11,11 @@ table#buy-table a:hover, table#buy-table a:focus {
     text-decoration: underline;
 }
 
+table#buy-table tfoot td {
+    font-size: 1em;
+}
+
+table#buy-table tfoot td strong {
+    font-size: 1.2em;
+    color: green;
+}

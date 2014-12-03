@@ -57,8 +57,6 @@ Registrace & Přihlášení
                                             <span class="label">Doprava ZDARMA</span>
                                         @endif
                                         </div>
-
-
                             </div>
                             <div class="medium-7 columns">
                                 <h5>Vaše cena: <strong>{{ $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) }}</strong></h5>
@@ -66,7 +64,6 @@ Registrace & Přihlášení
                             </div>
                             <div class="medium-5 columns">
                                 @if (!empty($item_row))
-
                                 {{ Form::open(['action' => 'NakupniKosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
                                 <input name="do-kosiku[{{ $item_row->id }}]" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vp->prod_name }} do košíku" value="Do košíku" />
                                 {{ Form::close() }}
@@ -84,7 +81,7 @@ Registrace & Přihlášení
                                 <?php                                     $date = new \DateTime();
                                                                           $date->add(DateInterval::createFromDateString('tomorrow'));
                                 ?>
-                                <p class="date-exp">K Vám dorazí: <span>{{ $date->format('j.m.Y'); }}</span></p>
+                                <p class="date-exp"><span data-tooltip aria-haspopup="true" class="has-tip radius" title="Zboží expedujeme kolem 14h">K Vám dorazí: <span>{{ $date->format('j.m.Y'); }}</span></p>
                             </div>
                             <div class="medium-5 columns">
                                 <p>Výrobce: {{ $vp->dev_name  }}</p>
