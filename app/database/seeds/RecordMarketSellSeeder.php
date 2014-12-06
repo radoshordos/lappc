@@ -5,7 +5,6 @@ class RecordMarketSellSeeder extends Seeder
 
     public function run()
     {
-
         $log2market = [
             ['lm_id' => '9', 'lm_month' => '2011-06-01', 'lm_count_buy_all' => '70', 'lm_count_buy_success' => '64', 'lm_price_all' => '199513', 'lm_price_transport' => '4016'],
             ['lm_id' => '10', 'lm_month' => '2011-07-01', 'lm_count_buy_all' => '82', 'lm_count_buy_success' => '69', 'lm_price_all' => '209420', 'lm_price_transport' => '4551'],
@@ -39,12 +38,22 @@ class RecordMarketSellSeeder extends Seeder
             ['lm_id' => '41', 'lm_month' => '2013-08-01', 'lm_count_buy_all' => '39', 'lm_count_buy_success' => '35', 'lm_price_all' => '136690', 'lm_price_transport' => '2025'],
             ['lm_id' => '42', 'lm_month' => '2013-09-01', 'lm_count_buy_all' => '48', 'lm_count_buy_success' => '36', 'lm_price_all' => '149249', 'lm_price_transport' => '2442'],
             ['lm_id' => '43', 'lm_month' => '2013-10-01', 'lm_count_buy_all' => '55', 'lm_count_buy_success' => '51', 'lm_price_all' => '135992', 'lm_price_transport' => '3633'],
-            ['lm_id' => '44', 'lm_month' => '2013-11-01', 'lm_count_buy_all' => '80', 'lm_count_buy_success' => '70', 'lm_price_all' => '207847', 'lm_price_transport' => '4557']
+            ['lm_id' => '44', 'lm_month' => '2013-11-01', 'lm_count_buy_all' => '80', 'lm_count_buy_success' => '70', 'lm_price_all' => '207847', 'lm_price_transport' => '4557'],
+            ['lm_id' => '45', 'lm_month' => '2013-12-01', 'lm_count_buy_all' => '92', 'lm_count_buy_success' => '75', 'lm_price_all' => '206029', 'lm_price_transport' => '5549'],
+            ['lm_id' => '46', 'lm_month' => '2014-01-01', 'lm_count_buy_all' => '76', 'lm_count_buy_success' => '61', 'lm_price_all' => '159425', 'lm_price_transport' => '4655'],
+            ['lm_id' => '47', 'lm_month' => '2014-02-01', 'lm_count_buy_all' => '74', 'lm_count_buy_success' => '69', 'lm_price_all' => '234351', 'lm_price_transport' => '4824'],
+            ['lm_id' => '48', 'lm_month' => '2014-03-01', 'lm_count_buy_all' => '65', 'lm_count_buy_success' => '58', 'lm_price_all' => '226586', 'lm_price_transport' => '3494'],
+            ['lm_id' => '49', 'lm_month' => '2014-04-01', 'lm_count_buy_all' => '73', 'lm_count_buy_success' => '63', 'lm_price_all' => '204501', 'lm_price_transport' => '4527'],
+            ['lm_id' => '50', 'lm_month' => '2014-05-01', 'lm_count_buy_all' => '64', 'lm_count_buy_success' => '52', 'lm_price_all' => '164105', 'lm_price_transport' => '3186'],
+            ['lm_id' => '51', 'lm_month' => '2014-06-01', 'lm_count_buy_all' => '49', 'lm_count_buy_success' => '47', 'lm_price_all' => '135624', 'lm_price_transport' => '3832'],
+            ['lm_id' => '52', 'lm_month' => '2014-07-01', 'lm_count_buy_all' => '61', 'lm_count_buy_success' => '53', 'lm_price_all' => '197574', 'lm_price_transport' => '3742'],
+            ['lm_id' => '53', 'lm_month' => '2014-08-01', 'lm_count_buy_all' => '79', 'lm_count_buy_success' => '74', 'lm_price_all' => '222026', 'lm_price_transport' => '4565'],
+            ['lm_id' => '54', 'lm_month' => '2014-09-01', 'lm_count_buy_all' => '73', 'lm_count_buy_success' => '64', 'lm_price_all' => '175007', 'lm_price_transport' => '5241'],
+            ['lm_id' => '55', 'lm_month' => '2014-10-01', 'lm_count_buy_all' => '81', 'lm_count_buy_success' => '74', 'lm_price_all' => '251552', 'lm_price_transport' => '5996']
         ];
 
         DB::table('record_market_sell')->delete();
         foreach ($log2market as $row) {
-
             DB::table('record_market_sell')->insert([
                 'id'                => $row['lm_id'],
                 'month'             => $row['lm_month'],

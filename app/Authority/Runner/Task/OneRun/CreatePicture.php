@@ -14,7 +14,7 @@ class CreatePicture extends TaskMessage implements iRun
 
     public function run()
     {
-        $di = new \RecursiveDirectoryIterator('C:\work\FOTO\michadla');
+        $di = new \RecursiveDirectoryIterator('C:\work\FOTO');
         foreach (new \RecursiveIteratorIterator($di) as $pathName => $file) {
             if (strpos($pathName, "(") == true) {
                 $pir = new ProdImageRegenerator($pathName, $file->getPath(), $file->getFilename());
