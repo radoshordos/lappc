@@ -35,6 +35,7 @@ class ViewProd extends Migration
                     tree.group_id AS tree_group_id,
                     dev.id AS dev_id,
                     dev.name AS dev_name,
+                    dev.alias AS dev_alias,
                     akce.akce_template_id AS akce_template_id,
                     akce_template.bonus_title AS akce_template_bonus_title,
                     akce_minitext.name AS akce_minitext_name,

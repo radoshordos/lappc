@@ -84,7 +84,16 @@ class EshopController extends Controller
                 'vt_tree'   => $row,
                 'vt_list'   => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
                 'vp_list'   => $vp->where('prod_mode_id', '>', '1')->paginate(15),
-                'dev_list'  => TreeDev::where('tree_id', '=', $row->tree_id)->where('subdir_visible', '>', 0)->get(),
+                'dev_list' => TreeDev::select([
+                    "tree_dev.subdir_visible AS dev_prod_count",
+                    "dev.alias AS dev_alias",
+                    "dev.name AS dev_name",
+                    "tree.absolute AS tree_absolute",
+                ])->join('dev', 'tree_dev.dev_id', '=', 'dev.id')
+                    ->join('tree', 'tree_dev.tree_id', '=', 'tree.id')
+                    ->where('tree_id', '=', $row->tree_id)
+                    ->where('subdir_visible', '>', 0)
+                    ->get(),
                 'term'    => Input::get('term'),
                 'store'   => Input::has('store') ? true : false,
                 'action'  => Input::has('action') ? true : false,
