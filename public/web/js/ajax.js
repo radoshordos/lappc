@@ -40,8 +40,25 @@ $(function() {
         prodList('fresh');
     });
 
+
+
+    function getUrlParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++)
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam)
+            {
+                return sParameterName[1];
+            }
+        }
+    }
+
     function prodList(sort) {
 
+        var term = getUrlParameter('term');
         var store = $('#store').is(':checked');
         var action = $('#action').is(':checked');
         var tree = $('#tree').val();
@@ -59,7 +76,7 @@ $(function() {
         }
 
         location.hash = hash.join("-");
-        var data = {store: store, action: action, tree: tree, dev: dev, sort: sort};
+        var data = {store: store, action: action, tree: tree, dev: dev, sort: sort, term: term };
 
         $.ajax({
             method: "GET",

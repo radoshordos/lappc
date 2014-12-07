@@ -59,6 +59,7 @@ class EshopController extends Controller
     protected function isTree(array $treePart, $dev = NULL)
     {
         $row = ViewTree::where('tree_absolute', '=', implode('/', $treePart))->first();
+        $term = Input::get('term');
 
         if (isset($row) && $row->count() > 0) {
 
@@ -78,12 +79,20 @@ class EshopController extends Controller
             $ajaxTree = new AjaxTree();
             $vp = $ajaxTree->orderBySort($vp,$sort);
 
+            $pagination = $vp->where('prod_mode_id', '>', '1')->paginate(15);
+
+
+            if (!empty($term)) {
+
+                $pagination->appends(['term' => $term]);
+            }
+
             return View::make('web.tree', [
                 'pf'        => new PriceForex,
                 'db_dev'    => $dev,
                 'vt_tree'   => $row,
                 'vt_list'   => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-                'vp_list'   => $vp->where('prod_mode_id', '>', '1')->paginate(15),
+                'vp_list'   => $pagination,
                 'dev_list' => TreeDev::select([
                     "tree_dev.subdir_visible AS dev_prod_count",
                     "dev.alias AS dev_alias",
@@ -94,7 +103,7 @@ class EshopController extends Controller
                     ->where('tree_id', '=', $row->tree_id)
                     ->where('subdir_visible', '>', 0)
                     ->get(),
-                'term'    => Input::get('term'),
+                'term'    => $term,
                 'store'   => Input::has('store') ? true : false,
                 'action'  => Input::has('action') ? true : false,
             ]);

@@ -9,7 +9,7 @@ class SearchDataController extends Controller
     public function ajax()
     {
         $term = Input::get('term');
-        $data = ViewProd::where('prod_name', 'LIKE', "%$term%")->limit(10)->get();
+        $data = ViewProd::where('prod_name', 'LIKE', "%$term%")->where('prod_mode_id','>','1')->limit(10)->get();
         $result = [];
         foreach ($data as $key => $row) {
             $result[] = ['id' => $row->prod_id, 'value' => $row->prod_name];
@@ -23,6 +23,7 @@ class SearchDataController extends Controller
         $tree = Input::get('tree');
         $store = Input::get('store');
         $action = Input::get('action');
+        $term = Input::get('term');
 
         $sort = Input::get('sort');
 
@@ -53,13 +54,16 @@ class SearchDataController extends Controller
         $ajaxTree = new AjaxTree();
         $db = $ajaxTree->orderBySort($db,$sort);
 
-        $data = $db->limit(15)->paginate();
-        $data->setBaseUrl('');
+        $pagination = $db->limit(15)->paginate();
+        $pagination->setBaseUrl('');
 
+        if (!empty($term)) {
+            $pagination->appends(['term' => $term]);
+        }
 
         return View::make('web.layout.boxprodlist', [
             'pf'      => new PriceForex,
-            "vp_list" => $data
+            "vp_list" => $pagination
         ]);
     }
 }

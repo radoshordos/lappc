@@ -15,10 +15,12 @@ class VyhledatZboziController extends EshopController
 
     public function index()
     {
-        $term = explode(" ", Input::get('term'));
+        $term = Input::get('term');
+        $exp_term = explode(" ", $term);
         $count_term = count($term);
 
-        foreach ($term as $word) {
+
+        foreach ($exp_term as $word) {
 
         }
 
@@ -31,9 +33,13 @@ class VyhledatZboziController extends EshopController
             ->groupBy(["dev_id"])
             ->get();
 
-        $prod_list = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')
+        $pagination = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')
             ->where('prod_mode_id', '>', '1')
             ->paginate(18);
+
+        if (!empty($term)) {
+            $pagination->appends(['term' => $term]);
+        }
 
         return View::make('web.vyhledavani', [
             'vt_tree'  => ViewTree::first(),
@@ -41,7 +47,7 @@ class VyhledatZboziController extends EshopController
             'dev_list' => $dev_list,
             'vp'       => $vp = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')->first(),
             'pf'       => new PriceForex,
-            'vp_list'  => $prod_list,
+            'vp_list'  => $pagination,
             'term'     => Input::get('term'),
             'store'    => Input::has('store') ? true : false,
             'action'   => Input::has('action') ? true : false,
