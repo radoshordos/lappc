@@ -10,7 +10,7 @@
     </div>
     @endif
     @if ($row->tree_deep == 1)
-        <li><a href="{{ '/'.$row->tree_absolute }}">{{ $row->tree_name }}</a></li>
+        <a href="{{ '/'.$row->tree_absolute }}">{{ $row->tree_name }}</a>
     @endif
 @endforeach
 </div>
