@@ -59,7 +59,7 @@ Registrace & Přihlášení
                                         </div>
                             </div>
                             <div class="medium-7 columns">
-                                <h5>Vaše cena: <strong>{{ $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) }}</strong></h5>
+                                <h5>Vaše cena: <strong data-tooltip aria-haspopup="true" class="has-tip radius" title="Cena bez DPH: {{ $pf->calculateWithoutDph($vp->query_price,$vp->prod_dph_id,$vp->prod_forex_id) }}">{{ $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) }}</strong></h5>
                                 <p>včetně DPH a všech poplatků</p>
                             </div>
                             <div class="medium-5 columns">

@@ -29,8 +29,9 @@ class PriceForex
         return NULL;
     }
 
-    public function calculateWithoutDph($price_with_dph,$dph_percent) {
-        return $price_with_dph - ($price_with_dph * round(($dph_percent / 100 + $dph_percent), 4)); // § 37 Zákon č. 235/2004 Sb.
+    public function calculateWithoutDph($price_with_dph, $dph_percent, $forex)
+    {
+        return  number_format($price_with_dph - ($price_with_dph * round(($dph_percent / (100 + $dph_percent)), 4)), $this->table_forex[$forex - 1]['round_without'], ',', ' ') . " " . $this->table_forex[$forex - 1]['currency']; // § 37 Zákon č. 235/2004 Sb.
     }
 
 }
