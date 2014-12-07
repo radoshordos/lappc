@@ -22,18 +22,26 @@ class VyhledatZboziController extends EshopController
 
         }
 
+        $dev_list = ViewProd::select([
+            "dev_alias",
+            "dev_name",
+            "tree_absolute",
+            DB::raw("COUNT(prod_id) AS dev_prod_count")
+        ])->where('prod_name', 'LIKE', '%' . Input::get('term') . '%')
+            ->groupBy(["dev_id"])
+            ->get();
+
+        $prod_list = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')
+            ->where('prod_mode_id', '>', '1')
+            ->paginate(18);
+
         return View::make('web.vyhledavani', [
             'vt_tree'  => ViewTree::first(),
             'vt_list'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-            'dev_list' => ViewProd::select([
-                "dev_alias",
-                "dev_name",
-                "tree_absolute",
-                DB::raw("COUNT(prod_id) AS dev_prod_count")
-            ])->groupBy(["dev_id"])->get(),
+            'dev_list' => $dev_list,
             'vp'       => $vp = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')->first(),
             'pf'       => new PriceForex,
-            'vp_list'  => ViewProd::where('prod_mode_id', '>', '1')->paginate(15),
+            'vp_list'  => $prod_list,
             'term'     => Input::get('term'),
             'store'    => Input::has('store') ? true : false,
             'action'   => Input::has('action') ? true : false,

@@ -17,6 +17,7 @@ class ViewProd extends Migration
                     prod.difference_id AS prod_difference_id,
                     prod.warranty_id AS prod_warranty_id,
                     prod.forex_id AS prod_forex_id,
+                    prod.dph_id AS prod_dph_id,
                     prod.alias AS prod_alias,
                     prod.name AS prod_name,
                     prod.desc AS prod_desc,
