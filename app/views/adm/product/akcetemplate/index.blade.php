@@ -25,6 +25,7 @@
                 <th class="col-md-2">Skupina položek<br />zdarma</th>
                 <th>Titulek</th>
                 <th class="col-md-2">Text</th>
+                <th class="text-center"><button type="button" title="Akčních produktů propojených s šablonou" class="btn btn-primary btn-xs">&sum;</button></th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@
                 <td class="col-md-2">{{ isset($row->mixture_item_id) ? $row->mixtureItem->name : NULL }}</td>
                 <td>{{ $row->bonus_title }}</td>
                 <td class="col-md-2">{{ Form::textarea('bonus_text', $row->bonus_text, ['size' => '40x2', 'readonly' => 'readonly', 'class' => 'form-control' ]); }}</td>
+                <td>{{ $row->count_akce }}</td>
             </tr>
             @endforeach
             </tbody>

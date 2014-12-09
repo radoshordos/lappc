@@ -25,6 +25,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 108,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Events\OnVeryOldHiddenProd'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 202,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Clear\UnusedAkceAvailability'
@@ -125,6 +131,5 @@ class AdminRunnerTableSeeder extends Seeder
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Performance\OptimalizeTable'
         ]);
-
     }
 }

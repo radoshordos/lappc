@@ -16,7 +16,12 @@ class AkceTemplateController extends \BaseController
     public function index()
     {
         return View::make('adm.product.akcetemplate.index', [
-            'akcetemplate' => $this->akcetemplate->orderBy('id')->get()
+            'akcetemplate' => $this->akcetemplate
+                ->select(['akce_template.*',\DB::raw('COUNT(akce.akce_id) AS count_akce')])
+                ->leftJoin('akce', 'akce_template.id', '=', 'akce.akce_template_id')
+                ->groupBy('akce_template.id')
+                ->orderBy('id')
+                ->get()
         ]);
     }
 
