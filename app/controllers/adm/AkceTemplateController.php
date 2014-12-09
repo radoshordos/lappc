@@ -32,7 +32,7 @@ class AkceTemplateController extends \BaseController
 
     public function store()
     {
-        $input = Input::all();
+        $input = array_filter(Input::all());
         $v = Validator::make($input, AkceTempl::$rules);
 
         if ($v->passes()) {
