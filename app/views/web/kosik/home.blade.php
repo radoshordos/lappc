@@ -35,11 +35,15 @@ Registrace & Přihlášení
 
     <div id="menubox" class="row">
         <h1>Nákupní košík je tu</h1>
-        @include('web.kosik.part.showitems')
+        @include('web.kosik.part.items')
+        @include('web.kosik.part.order')
+        <div class="row">
+            <div class="large-6 columns">@include('web.kosik.part.delivery')</div>
+            <div class="large-6 columns">@include('web.kosik.part.payment')</div>
+        </div>
     </div>
 
     <p><a href="http://localhost:8000/adm/">ADM</a></p>
-
     <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
 </div>
 <script src="/web/guru.js"></script>

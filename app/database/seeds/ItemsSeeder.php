@@ -11,8 +11,8 @@ class ItemsSeeder extends Seeder
         $now = strtotime('now');
         foreach ($items as $row) {
 
-            $count = DB::table('prod')->where("id", '=', $row['items_id_prod'])->count();
-            if ($count > 0) {
+//            $count = DB::table('prod')->where("id", '=', $row['items_id_prod'])->count();
+ //           if ($count > 0) {
                 DB::table('items')->insert([
                     'id'              => $row['items_id'],
                     'prod_id'         => $row['items_id_prod'],
@@ -24,8 +24,7 @@ class ItemsSeeder extends Seeder
                     'created_at'      => date("Y-m-d H:i:s", $row['items_ti_create']),
                     'updated_at'      => date("Y-m-d H:i:s", $now),
                 ]);
-            }
-
+   //         }
         }
     }
 }
