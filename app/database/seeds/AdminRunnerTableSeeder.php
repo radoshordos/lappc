@@ -19,6 +19,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 106,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Events\OnOldAkceTemplate'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 202,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Clear\UnusedAkceAvailability'
