@@ -12,7 +12,7 @@ class MultimediaController extends \BaseController
             'media' => MediaDb::select(["media_db.*"])->join('media_variations', 'media_db.variations_id', '=', 'media_variations.id')
                 ->where('visible_media', '=', '1')
                 ->orderBy('media_db.id')
-                ->get(),
+                ->paginate(40),
         ]);
     }
 
@@ -80,5 +80,12 @@ class MultimediaController extends \BaseController
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.multimedia.edit', $id)->withInput()->withErrors($v);
         }
+    }
+
+    public function destroy($id)
+    {
+        MediaDb::destroy($id);
+        Session::flash('warning', 'Záznam byl odstraněn');
+        return Redirect::route('adm.pattern.multimedia.index');
     }
 }

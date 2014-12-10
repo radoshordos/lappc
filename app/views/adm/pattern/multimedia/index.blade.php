@@ -20,7 +20,7 @@
             </thead>
             <tfoot>
                 <tr>
-                    <td class="text-right" colspan="5">Zobrazeno <b>{{ count($media) }}</b> záznamů</td>
+                    <td class="text-center" colspan="7">{{ $media->links(); }}</td>
                 </tr>
             </tfoot>
             <tbody>

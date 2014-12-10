@@ -42,7 +42,7 @@ class MediaVariationsSeeder extends Seeder
 
             DB::table('media_variations')->insert([
                 'id'            => $row['mv_id'],
-                'type_id'       => $row['mv_id_type'],
+                'type_id'       => ($row['mv_id_type'] + 1),
                 'visible_rule'  => $row['mv_visible_rule'],
                 'visible_group' => $row['mv_visible_group'],
                 'visible_media' => $row['mv_visible_media'],

@@ -33,8 +33,8 @@ PPC - Klíčová slova
                 <td>{{ link_to_route('adm.ppc.keywords.show','Detail',array($keyword->id),array('class' => 'btn btn-primary btn-xs')) }}</td>
                 <td>{{ link_to_route('adm.ppc.keywords.edit','Edit',array($keyword->id),array('class' => 'btn btn-info btn-xs')) }}</td>
                 <td>
-                    {{ Form::open(array('method' => 'DELETE', 'route' => array('adm.ppc.keywords.destroy', $keyword->id))) }}
-                    {{ Form::submit('Smazat',array('class' => 'btn btn-danger btn-xs')) }}
+                    {{ Form::open(['method' => 'DELETE', 'route' => ['adm.ppc.keywords.destroy', $keyword->id]]) }}
+                    {{ Form::submit('Smazat',['class' => 'btn btn-danger btn-xs']) }}
                     {{ Form::close() }}
                 </td>
             </tr>
