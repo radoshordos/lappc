@@ -78,6 +78,8 @@
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.proddifference.index') }}">Produktové rozdílnosti</a></li>
                         <li><a href="{{ URL::route('adm.pattern.prodvariation.index') }}">Produktové variace</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.pattern.multimedia.index') }}">Multimédia</a></li>
                     </ul>
                 </li>
 

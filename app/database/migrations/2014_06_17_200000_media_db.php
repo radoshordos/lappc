@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class MediaDb extends Migration
 {
@@ -13,7 +13,7 @@ class MediaDb extends Migration
             $table->smallInteger('variations_id')->unsigned();
             $table->boolean('visible')->default(1);
             $table->string('name', 255);
-            $table->text('source')->nullable();
+            $table->string('source', 510)->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';

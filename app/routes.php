@@ -63,6 +63,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('proddifference', 'ProdDifferenceController', ['only' => ['index','store']]);
         Route::resource('prodvariation', 'ProdVariationController', ['only' => ['index','create', 'store']]);
         Route::get('multiplechanges', ['as' => 'adm.pattern.multiplechanges.index', 'uses' => 'ProdMultipleChangesController@index']);
+        Route::resource('multimedia', 'MultimediaController');
     });
 
     Route::group(['prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'], function () {
