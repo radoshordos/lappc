@@ -5,6 +5,7 @@ class ProdTableSeeder extends Seeder
 
 	public function run()
 	{
+        $prod = [];
 		include "migration/prod.php";
 
 		DB::table('prod')->delete();
@@ -32,7 +33,7 @@ class ProdTableSeeder extends Seeder
 					'storeroom'     => rand(0, 2),
 					'price'         => $row['price'],
 					'created_at'    => date("Y-m-d H:i:s", $row['ti_create']),
-					'updated_at'    => $now
+					'updated_at'    => date("Y-m-d H:i:s", $now),
 				]);
 			}
 		}
