@@ -13,7 +13,7 @@ class BuyPayment extends Migration {
 
 	public function down()
 	{
-
+		Schema::dropIfExists('buy_payment');
 	}
 
 }

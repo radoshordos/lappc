@@ -10,9 +10,9 @@ class MixtureItem extends Migration
     {
         Schema::create('mixture_item', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->boolean('active')->default(0);
             $table->enum('purpose', ['akce_items_free']);
-            $table->string('name', '160')->unique();
-
+            $table->char('email_sha1',40);
             $table->engine = 'InnoDB';
         });
     }

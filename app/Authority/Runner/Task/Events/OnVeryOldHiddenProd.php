@@ -3,6 +3,7 @@
 use Authority\Eloquent\Prod;
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
+use Carbon\Carbon;
 
 class OnVeryOldHiddenProd extends TaskMessage implements iRun
 {
@@ -15,7 +16,8 @@ class OnVeryOldHiddenProd extends TaskMessage implements iRun
 
     public function run()
     {
-
+        $prod = Prod::where('updated_at','<',new Carbon('last year'))->get(['id']);
+        var_dump(count($prod));
     }
 
 }

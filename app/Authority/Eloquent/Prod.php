@@ -4,6 +4,7 @@ class Prod extends \Eloquent
 {
     protected $table = 'prod';
     protected $guarded = [];
+    public $timestamps = TRUE;
 
     public static $rules = [
         'id'         => 'required|integer',

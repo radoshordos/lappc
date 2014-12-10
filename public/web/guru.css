@@ -379,7 +379,6 @@ div#price-panel strong {
 }
 
 
-
 /*****************************************/
 div.desc-list {
     margin: 4em;
@@ -549,7 +548,6 @@ li.th {
     border-bottom: 1px solid #eee;
     border-rigt: 1px solid #eee;
     border-left: 1px solid #eee;
-
     z-index: -3;
 }
 
