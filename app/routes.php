@@ -81,6 +81,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::any('csvimport', ['as' => 'adm.sync.csvimport.index', 'uses' => 'SyncCsvImportController@index']);
         Route::any('record', ['as' => 'adm.sync.record.index', 'uses' => 'RecordSyncImportController@index']);
         Route::any('db', ['as' => 'adm.sync.db.index', 'uses' => 'SyncDbController@index']);
+        Route::get('summary', ['as' => 'adm.sync.summary.index', 'uses' => 'SyncSummaryController@index']);
     });
 
     Route::group(['prefix' => 'tools', 'before' => 'Sentry|inGroup:Simple'], function () {
