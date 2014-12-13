@@ -18,6 +18,7 @@ class ViewProd extends Migration
                     prod.warranty_id AS prod_warranty_id,
                     prod.forex_id AS prod_forex_id,
                     prod.dph_id AS prod_dph_id,
+                    prod.price AS prod_price,
                     prod.alias AS prod_alias,
                     prod.name AS prod_name,
                     prod.desc AS prod_desc,
@@ -30,6 +31,7 @@ class ViewProd extends Migration
                     prod.img_big AS prod_img_big,
                     prod.created_at AS prod_created_at,
                     prod.updated_at AS prod_updated_at,
+                    prod_sale.multiple AS prod_sale_multiple,
                     tree.id AS tree_id,
                     tree.name AS tree_name,
                     tree.absolute AS tree_absolute,
@@ -37,15 +39,15 @@ class ViewProd extends Migration
                     dev.id AS dev_id,
                     dev.name AS dev_name,
                     dev.alias AS dev_alias,
+                    akce.akce_price AS price_akce,
+                    akce_sale.multiple AS akce_sale_multiple,
                     akce.akce_template_id AS akce_template_id,
                     akce_template.bonus_title AS akce_template_bonus_title,
-                    akce_minitext.name AS akce_minitext_name,
-                    IF (akce_template.bonus_title IS NOT NULL, (SELECT CONCAT_WS(" + ",prod.name,akce_template.bonus_title)), prod.name) AS query_name,
-                    IF (akce.akce_price IS NOT NULL, (SELECT akce.akce_price * akce_sale.multiple), (SELECT prod.price * prod_sale.multiple)) AS query_price
+                    akce_minitext.name AS akce_minitext_name
             FROM prod
+            INNER JOIN prod_sale ON prod_sale.id = prod.sale_id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
-            INNER JOIN prod_sale ON prod_sale.id = prod.sale_id
             LEFT JOIN akce ON prod.id = akce.akce_prod_id AND prod.mode_id = 4 AND akce.akce_template_id > 1
             LEFT JOIN akce_sale ON akce_sale.id = akce.akce_sale_id
             LEFT JOIN akce_template ON akce.akce_template_id = akce_template.id
