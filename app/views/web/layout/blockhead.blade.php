@@ -4,11 +4,11 @@
     @if (isset($vt_tree) && isset($db_dev))
         <title>{{ $vt_tree->tree_desc." ".$db_dev->name}}</title>
     @elseif (!empty($db_dev))
-    <title>Hello, {{ $db_dev->name }}</title>
+        <title>Hello, {{ $db_dev->name }}</title>
     @elseif (!empty($vp))
-    <title>{{ $vp->prod_name }}</title>
+        <title>{{ $vp->prod_name }}</title>
     @else
-    <title>Hello, world!</title>
+        <title>Hello, world!</title>
     @endif
     @if (isset($vt_tree) && isset($db_dev))
         <meta name="keywords" content="{{ $vt_tree->tree_desc.", ".$db_dev->name }}">

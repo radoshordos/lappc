@@ -1,11 +1,11 @@
 <?php
 
-class ProdSaleSeeder extends Seeder
+class AkceSaleSeeder extends Seeder
 {
 
     public function run()
     {
-        $prod2sale = [
+        $akce2sale = [
             ['is_id' => '1', 'is_visible' => '0', 'is_multiple' => '1', 'is_desc' => 'Bez slevy 0%', 'is_name' => '0%'],
             ['is_id' => '2', 'is_visible' => '0', 'is_multiple' => '0.998', 'is_desc' => 'Sleva - 0.2% sleva', 'is_name' => '0.2%'],
             ['is_id' => '5', 'is_visible' => '0', 'is_multiple' => '0.99', 'is_desc' => 'Sleva - 1% sleva', 'is_name' => '1%'],
@@ -46,11 +46,11 @@ class ProdSaleSeeder extends Seeder
             ['is_id' => '150', 'is_visible' => '1', 'is_multiple' => '0.70', 'is_desc' => 'Sleva - 30% sleva', 'is_name' => '30%']
         ];
 
-        DB::table('prod_sale')->delete();
+        DB::table('akce_sale')->delete();
 
-        foreach ($prod2sale as $row) {
+        foreach ($akce2sale as $row) {
 
-            DB::table('prod_sale')->insert([
+            DB::table('akce_sale')->insert([
                 'id'       => $row['is_id'],
                 'multiple' => $row['is_multiple'],
                 'name'     => $row['is_name'],

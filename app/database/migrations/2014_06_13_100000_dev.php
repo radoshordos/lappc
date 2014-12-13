@@ -22,7 +22,7 @@ class Dev extends Migration
 
             $table->foreign('default_warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('default_sale_prod_id')->references('id')->on('prod_sale')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('default_sale_action_id')->references('id')->on('prod_sale')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('default_sale_action_id')->references('id')->on('akce_sale')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('default_availibility_id')->references('id')->on('items_availability')->onUpdate('cascade')->onDelete('no action');
         });
     }

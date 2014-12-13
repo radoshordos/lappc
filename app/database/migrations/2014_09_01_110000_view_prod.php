@@ -41,12 +41,13 @@ class ViewProd extends Migration
                     akce_template.bonus_title AS akce_template_bonus_title,
                     akce_minitext.name AS akce_minitext_name,
                     IF (akce_template.bonus_title IS NOT NULL, (SELECT CONCAT_WS(" + ",prod.name,akce_template.bonus_title)), prod.name) AS query_name,
-                    IF (akce.akce_sale_id IS NOT NULL, (SELECT multiple FROM prod_sale WHERE prod_sale.id = akce_sale_id), (SELECT multiple FROM prod_sale WHERE prod_sale.id = prod.sale_id)) AS query_sale_multiple,
-                    IF (akce.akce_price IS NOT NULL, (SELECT akce.akce_price * query_sale_multiple), (SELECT prod.price * query_sale_multiple)) AS query_price
+                    IF (akce.akce_price IS NOT NULL, (SELECT akce.akce_price * akce_sale.multiple), (SELECT prod.price * prod_sale.multiple)) AS query_price
             FROM prod
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
+            INNER JOIN prod_sale ON prod_sale.id = prod.sale_id
             LEFT JOIN akce ON prod.id = akce.akce_prod_id AND prod.mode_id = 4 AND akce.akce_template_id > 1
+            LEFT JOIN akce_sale ON akce_sale.id = akce.akce_sale_id
             LEFT JOIN akce_template ON akce.akce_template_id = akce_template.id
             LEFT JOIN akce_minitext ON akce_template.minitext_id = akce_minitext.id
         ');

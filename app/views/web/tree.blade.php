@@ -36,21 +36,22 @@ Registrace & Přihlášení
     <div id="menubox" class="row">
         @include('web.layout.actionmenu')
         @include('web.layout.leftmenu')
-            <div class="small-9 columns">
-                <h2>{{ $vt_tree->tree_desc }}</h2>
-                @include('web.layout.boxdev')
-                <div class="small-12 panel clearfix valign-middle">
-                    <div id="prod-filter" class="small-4 columns">
+        <div class="small-9 columns">
+            <h2>{{ $vt_tree->tree_desc }}</h2>
+            @include('web.layout.boxdev')
+            <div class="small-12 panel clearfix valign-middle">
+                <div id="prod-filter" class="small-4 columns">
                     @include('web.layout.blockprodfilter')
-                    </div>
-                    <div id="prod-sort" class="small-8 columns">
-                        @include('web.layout.boxsorting')
-                    </div>
                 </div>
-                @include('web.layout.boxprodlist')
+                <div id="prod-sort" class="small-8 columns">
+                    @include('web.layout.boxsorting')
+                </div>
             </div>
+            @include('web.layout.boxprodlist')
+        </div>
     </div>
     <p><a href="http://localhost:8000/adm/">ADM</a></p>
+
     <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
 </div>
 <script src="/web/guru.js"></script>
