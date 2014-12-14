@@ -21,9 +21,6 @@ class Prod extends Migration
             $table->tinyInteger('ic_all')->unsigned()->default(0);
             $table->tinyInteger('ic_visible')->unsigned()->default(0);
 	        $table->tinyInteger('ic_availability_diff_visible')->unsigned()->default(0);
-	        $table->tinyInteger('ic_sale_diff_visible')->unsigned()->default(0);
-	        $table->tinyInteger('ic_price_diff_visible')->unsigned()->default(0);
-            $table->tinyInteger('ia_price_sale_visible')->unsigned()->default(0);
             $table->decimal('price', 9, 2)->unsigned()->default(999999);
             $table->string('alias', '64')->unique();
             $table->string('name', '64')->unique();
@@ -31,6 +28,8 @@ class Prod extends Migration
             $table->integer('storeroom')->default(0);
             $table->float('transport_weight')->unsigned()->default(0.1);
             $table->boolean('transport_atypical')->default(0);
+            $table->string('search_alias', '64')->unique()->nullable();
+            $table->string('search_codes', '255')->unique()->nullable();
             $table->string('img_big', '160');
             $table->string('img_normal', '160');
             $table->tinyInteger('picture_count')->unsigned()->default(0);

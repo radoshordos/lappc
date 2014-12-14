@@ -11,6 +11,7 @@ use Authority\Eloquent\ViewTree;
 use Authority\Tools\Forex\PriceForex;
 use Authority\Web\Query\AjaxTree;
 
+
 class EshopController extends Controller
 {
     protected function setupLayout()
