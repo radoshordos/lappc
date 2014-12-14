@@ -54,7 +54,6 @@ class Items extends Migration
 
                 UPDATE prod SET ic_all = count_all,
                                 ic_visible = count_visible,
-                                ic_sale_diff_visible = count_sale_diff_visible,
                                 ic_availability_diff_visible = count_availability_diff_visible
                 WHERE prod.id = NEW.prod_id;
             END
@@ -77,9 +76,7 @@ class Items extends Migration
 
                 UPDATE prod SET ic_all = count_all,
                                 ic_visible = count_visible,
-                                ic_sale_diff_visible = count_sale_diff_visible,
-                                ic_availability_diff_visible = count_availability_diff_visible,
-								ic_price_diff_visible = count_price_diff_visible
+                                ic_availability_diff_visible = count_availability_diff_visible
                 WHERE prod.id = OLD.prod_id;
             END
             ');
@@ -101,11 +98,8 @@ class Items extends Migration
 
                 UPDATE prod SET ic_all = count_all,
                                 ic_visible = count_visible,
-                                ic_sale_diff_visible = count_sale_diff_visible,
-                                ic_availability_diff_visible = count_availability_diff_visible,
-								ic_price_diff_visible = count_price_diff_visible
+                                ic_availability_diff_visible = count_availability_diff_visible
                 WHERE prod.id = OLD.prod_id;
-
             END
             ');
     }
