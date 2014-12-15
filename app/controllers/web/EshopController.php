@@ -10,6 +10,7 @@ use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 use Authority\Tools\Forex\PriceForex;
 use Authority\Web\Query\AjaxTree;
+use Authority\Mapper\ViewProdMapper;
 
 
 class EshopController extends Controller
@@ -32,6 +33,8 @@ class EshopController extends Controller
             if ($vp->prod_ic_visible == 1) {
                 $item_row = Items::where('prod_id', '=', $vp->prod_id)->first();
             }
+
+
 
             return View::make('web.prod', [
                 'pf'       => new PriceForex,
@@ -84,12 +87,12 @@ class EshopController extends Controller
 
 
             if (!empty($term)) {
-
                 $pagination->appends(['term' => $term]);
             }
 
             return View::make('web.tree', [
                 'pf'        => new PriceForex,
+                'vpm'       => new ViewProdMapper($pagination),
                 'db_dev'    => $dev,
                 'vt_tree'   => $row,
                 'vt_list'   => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),

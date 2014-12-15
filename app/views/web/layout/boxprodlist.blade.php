@@ -1,6 +1,6 @@
 <div id="area">
     <ul id="prodlist" class="small-block-grid-3">
-        @foreach($vp_list as $row)
+        @foreach($vpm as $vp)
             <li class="prod th radius">
                 <a href="{{ '/'.$row->tree_absolute .'/'. $row->prod_alias }}">
                     <h3>{{ $row->query_name }}</h3>
@@ -13,7 +13,7 @@
                     @else
                         <span class="secondary label">není skladem</span>
                     @endif
-                    <span class="price label">{{ $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id) }}</span>
+                    <span class="price label">{{ $vp->getProdPrice() }} {{-- $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id) --}}</span>
                 </a>
 
                 <p>{{ $row->prod_desc }}</p>

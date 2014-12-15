@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Tools\Filter\Csv;
+<?php namespace Authority\Tools\Filter\Csv;
 
 class CsvAbstract
 {

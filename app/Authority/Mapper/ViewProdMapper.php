@@ -10,7 +10,7 @@ class ViewProdMapper {
 	}
 
 	public function fetchRow($row) {
-
+/*
 		$entry = new ViewProd();
 		$entry->setProdId($row->prod_id);
 		$entry->setProdModeId($row->prod_mode_id);
@@ -23,7 +23,18 @@ class ViewProdMapper {
 		$entry->setProdAlias($row->prod_alias);
 		$entry->setProdName($row->prod_name);
 		$entry->setProdDesc($row->prod_desc);
-//		$entry->setProdStoreroom($entry->prod_storeroom);
+		$entry->setProdStoreroom($entry->prod_storeroom);
+		$entry->setProdIcAll($entry->prod_ic_all);
+		$entry->setProdIcVisible($entry->prod_ic_visible);
+		$entry->setProdIcAvailabilityDiffVisible($entry->prod_ic_availability_diff_visible);
+		$entry->setProdSearchAlias($entry->prod_search_alias);
+		$entry->setProdSearchCodes($entry->prod_search_codes);
+		$entry->setProdIcAvailabilityDiffVisible($entry->prod_ic_availability_diff_visible);
+		$entry->setProdImgNormal($entry->prod_img_normal);
+		$entry->setProdImgBig($entry->prod_img_big);
+		$entry->setProdCreatedAt($entry->prod_created_at);
+		$entry->setProdUpdatedAt($entry->prod_updated_at);
 		return $entry;
+*/
 	}
 }

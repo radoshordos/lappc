@@ -38,9 +38,9 @@ class ProdController extends \BaseController
             case 2:
                 $db->orderBy('prod_name', 'DESC');
                 break;
-            case 3:
-                $db->orderBy('query_price', 'ASC');
-                break;
+//            case 3:
+//                $db->orderBy('query_price', 'ASC');
+//                break;
             default:
                 $db->orderBy('prod_updated_at', 'DESC');
                 break;

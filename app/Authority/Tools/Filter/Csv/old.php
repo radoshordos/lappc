@@ -9,7 +9,7 @@ class Tools_Model_CsvBugDetector
     public function getPossibilityArray()
     {
 
-        return array(
+        return [
             "1" => "1] CLEAR BAD CHOOSE COUNT COLUMNS | Odstraní položky {comumn} se špatným počtem oddělovačů v řádce",
             "2" => "2] CLEAR START DELIMITER | Odstraní položky začínající oddělovačem",
             "3" => "3] CLEAR NO INT+ CHOOSE COLUMN | Odstraní položky neobsahující {comumn} INT+",
@@ -19,12 +19,12 @@ class Tools_Model_CsvBugDetector
             "7" => "7] REDUCE SPACE INTO STRING | Odstraní mezery z řetězce zvleného políčka",
             "8" => "8] CONVERSION & 2 &amp; | Konverze aka HtmlSpecialChatrs",
             "9" => "9] ADD CHARS {comumn} TO SIZE {size} AND VALUE {string} | Doplní sloupec pevnou delkou řetězem na zvoleného řetězce"
-        );
+        ];
     }
 
     private $inputData = NULL;
-    private $outputData = array();
-    private $bugData = array();
+    private $outputData = [];
+    private $bugData = [];
 
     public function setInputData($inputData)
     {
@@ -40,7 +40,7 @@ class Tools_Model_CsvBugDetector
     {
         $i = 0;
         foreach (explode(self::ENDOFLINE, $this->inputData) as $val) {
-            $arr = array();
+            $arr = [];
             $i++;
             $j = 0;
             foreach (explode(self::DELIMITER, $val) as $val2) {
@@ -91,7 +91,7 @@ class Tools_Model_CsvBugDetector
         $i = 0;
         foreach (explode(self::ENDOFLINE, $this->inputData) as $val) {
             $i++;
-            if (strpos($val, self::DELIMITER . self::DELIMITER) == TRUE) {
+            if (strpos($val, self::DELIMITER . self::DELIMITER) == true) {
                 $this->bugData[$i] = $val;
             } else {
                 $this->outputData[$i] = $val;
@@ -151,19 +151,19 @@ class Tools_Model_CsvBugDetector
     {
         $i = 0;
 
-        $reduce = array(
+        $reduce = [
             "  " => " ",
-            "'" => "",
-            "?" => "",
-            "×" => "x",
+            "'"  => "",
+            "?"  => "",
+            "×"  => "x",
             ",-" => "",
             "\"" => "",
-            "*" => "",
-            '“' => "",
-            "®" => "",
-            "™" => "",
-            "°" => "",
-            '´' => "");
+            "*"  => "",
+            '“'  => "",
+            "®"  => "",
+            "™"  => "",
+            "°"  => "",
+            '´'  => ""];
 
         foreach (explode(self::ENDOFLINE, $this->inputData) as $val) {
             $i++;
@@ -186,11 +186,11 @@ class Tools_Model_CsvBugDetector
         foreach (explode(self::ENDOFLINE, $this->inputData) as $val) {
             $i++;
             $j = 0;
-            $tmp = array();
+            $tmp = [];
             foreach (explode(self::DELIMITER, $val) as $val2) {
                 $j++;
                 if ($j == intval($_POST["count_column"])) {
-                    $tmp[$j] = strtr($val2, array(" " => ""));
+                    $tmp[$j] = strtr($val2, [" " => ""]);
                 } else {
                     $tmp[$j] = $val2;
                 }

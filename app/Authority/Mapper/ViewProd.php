@@ -17,7 +17,8 @@ class ViewProd
 	private $prod_ic_all;
 	private $prod_ic_visible;
 	private $prod_ic_availability_diff_visible;
-	private $prod_ic_price_diff_visible;
+	private $prod_search_alias;
+	private $prod_search_codes;
 	private $prod_img_normal;
 	private $prod_img_big;
 	private $prod_created_at;
@@ -30,7 +31,7 @@ class ViewProd
 	private $dev_id;
 	private $dev_name;
 	private $dev_alias;
-	private $price_akce;
+	private $akce_price;
 	private $akce_sale_multiple;
 	private $akce_template_id;
 	private $akce_template_bonus_title;
@@ -279,17 +280,33 @@ class ViewProd
 	/**
 	 * @return mixed
 	 */
-	public function getProdIcPriceDiffVisible()
+	public function getProdSearchAlias()
 	{
-		return $this->prod_ic_price_diff_visible;
+		return $this->prod_search_alias;
 	}
 
 	/**
-	 * @param mixed $prod_ic_price_diff_visible
+	 * @param mixed $prod_search_alias
 	 */
-	public function setProdIcPriceDiffVisible($prod_ic_price_diff_visible)
+	public function setProdSearchAlias($prod_search_alias)
 	{
-		$this->prod_ic_price_diff_visible = $prod_ic_price_diff_visible;
+		$this->prod_search_alias = $prod_search_alias;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getProdSearchCodes()
+	{
+		return $this->prod_search_codes;
+	}
+
+	/**
+	 * @param mixed $prod_search_codes
+	 */
+	public function setProdSearchCodes($prod_search_codes)
+	{
+		$this->prod_search_codes = $prod_search_codes;
 	}
 
 	/**
@@ -487,17 +504,17 @@ class ViewProd
 	/**
 	 * @return mixed
 	 */
-	public function getPriceAkce()
+	public function getAkcePrice()
 	{
-		return $this->price_akce;
+		return $this->akce_price;
 	}
 
 	/**
-	 * @param mixed $price_akce
+	 * @param mixed $akce_price
 	 */
-	public function setPriceAkce($price_akce)
+	public function setAkcePrice($akce_price)
 	{
-		$this->price_akce = $price_akce;
+		$this->akce_price = $akce_price;
 	}
 
 	/**
@@ -563,7 +580,5 @@ class ViewProd
 	{
 		$this->akce_minitext_name = $akce_minitext_name;
 	}
-
-
 
 }

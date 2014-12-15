@@ -11,7 +11,7 @@ class MixtureDev extends Migration
         Schema::create('mixture_dev', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
-            $table->enum('purpose', ['autosimple','devgroup','ppc'])->default('devgroup');
+            $table->enum('purpose', ['autosimple','autoall','devgroup','ppc'])->default('devgroup');
             $table->string('name', '160')->unique();
             $table->string('desc', '256')->nullable();
             $table->tinyInteger('trigger_column_count')->unsigned();

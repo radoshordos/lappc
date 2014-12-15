@@ -41,6 +41,7 @@ class ViewProd extends Migration
                     dev.name AS dev_name,
                     dev.alias AS dev_alias,
                     akce.akce_price AS akce_price,
+                    akce.akce_sale_id AS akce_sale_id,
                     akce_sale.multiple AS akce_sale_multiple,
                     akce.akce_template_id AS akce_template_id,
                     akce_template.bonus_title AS akce_template_bonus_title,

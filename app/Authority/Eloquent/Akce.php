@@ -9,6 +9,7 @@ class Akce extends \Eloquent
 
     public static $rules = [
         'akce_prod_id'     => 'required|exists:prod,id',
+        'akce_sale_id'     => 'required|exists:akce_sale,id',
         'akce_template_id' => 'required|exists:akce_template,id'
     ];
 
@@ -19,7 +20,7 @@ class Akce extends \Eloquent
 
     public function akceSale()
     {
-        return $this->hasOne('Authority\Eloquent\ProdSale', 'id', 'akce_sale_id');
+        return $this->hasOne('Authority\Eloquent\AkceSale', 'id', 'akce_sale_id');
     }
 
     public function akceAvailability()
