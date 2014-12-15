@@ -91,7 +91,7 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
-            'id'      => 406,
+            'id'      => 408,
             'autorun' => 0,
             'class'   => 'Authority\Runner\Task\Recalculate\ProdSearch'
         ]);
