@@ -1,5 +1,6 @@
 <?php namespace Authority\Runner\Task\Events;
 
+use Authority\Eloquent\Dev;
 use Authority\Eloquent\MixtureDev;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Runner\Task\iRun;
@@ -14,7 +15,8 @@ class MixtureOnlyOneDev extends TaskMessage implements iRun
 		$this->run();
 	}
 
-	public function run() {
+	public function run()
+	{
 		$this->autoAllRecord();
 		$this->autoSimpleRecord();
 	}
@@ -25,14 +27,17 @@ class MixtureOnlyOneDev extends TaskMessage implements iRun
 		if ($count_all == 0) {
 			MixtureDev::create(['purpose' => 'autoall', 'name' => 'Všichni výrobci']);
 		}
-/*
-		$res = MixtureDevM2nDev::select('mixture_dev.dev_id')
-			->rightJoin('mixture_dev','mixture_dev.id','=','mixture_dev_m2n_dev.mixture_dev_id')
-			->whereNotIn('mixture_dev.purpose','=','autoall')
-			->lists(['mixture_dev.dev_id']);
 
-		var_dump($res);
-*/
+		$row_all = MixtureDev::select('id')->where('mixture_dev.purpose', '=', 'autoall')->first();
+
+		$all = Dev::select('id')
+			->whereNotIn('id', MixtureDevM2nDev::select('dev_id')
+					->where('mixture_dev_id', '=', $row_all->id)->get()->toArray() + ['-1'])
+			->where('id', '>', '1')->get();
+
+		foreach ($all as $row) {
+			MixtureDevM2nDev::create(['mixture_dev_id' => $row_all->id,'dev_id' => $row->id]);
+		}
 	}
 
 	private function autoSimpleRecord()
