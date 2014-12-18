@@ -6,8 +6,8 @@ class MailDbSeeder extends Seeder
 	public function run()
 	{
 		DB::table('mail_db')->delete();
-
 		$mail2list = [];
+		include "migration/prod.php";
 
 		foreach ($mail2list as $row) {
 
