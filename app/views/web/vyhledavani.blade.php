@@ -3,7 +3,7 @@
 <html class="lt-ie10" lang="cs"> <![endif]-->
 <html class="no-js" lang="cs">
 
-@include('web.layout.blockhead')
+@include('web.global.blockhead')
 <body>
 <h1>Hello, world!</h1>
 Registrace & Přihlášení
@@ -25,31 +25,30 @@ Registrace & Přihlášení
                         <li><a href="#">Košík</a></li>
                     </ul>
                     <ul class="left">
-                        @include('web.layout.boxsearch')
+                        @include('web.global.boxsearch')
                     </ul>
                 </section>
             </nav>
-            @include('web.layout.blocknav')
+            @include('web.global.blocknav')
         </div>
     </div>
 
     <div id="menubox" class="row">
-        @include('web.layout.actionmenu')
-        @include('web.layout.leftmenu')
+        @include('web.global.leftmenu')
         <h1>Hledáme + {{ $term }}</h1>
 
         <div class="small-9 columns">
             <h2>{{ $vt_tree->tree_desc }}</h2>
-            @include('web.layout.boxdev')
+            @include('web.tree.boxdev')
             <div class="small-12 panel clearfix valign-middle">
                 <div id="prod-filter" class="small-4 columns">
-                    @include('web.layout.blockprodfilter')
+                    @include('web.tree.blockprodfilter')
                 </div>
                 <div id="prod-sort" class="small-8 columns">
-                    @include('web.layout.boxsorting')
+                    @include('web.tree.boxsorting')
                 </div>
             </div>
-            @include('web.layout.boxprodlist')
+            @include('web.tree.boxprodlist')
         </div>
     </div>
     <p>

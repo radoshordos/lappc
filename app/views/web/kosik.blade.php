@@ -3,7 +3,7 @@
 <html class="lt-ie10" lang="cs"> <![endif]-->
 <html class="no-js" lang="cs">
 
-@include('web.layout.blockhead')
+@include('web.global.blockhead')
 <body>
 <h1>Hello, world!</h1>
 Registrace & Přihlášení
@@ -25,21 +25,21 @@ Registrace & Přihlášení
                         <li><a href="#">Košík</a></li>
                     </ul>
                     <ul class="left">
-                        @include('web.layout.boxsearch')
+                        @include('web.global.boxsearch')
                     </ul>
                 </section>
             </nav>
-            @include('web.layout.blocknav')
+            @include('web.global.blocknav')
         </div>
     </div>
 
     <div id="menubox" class="row">
         <h1>Nákupní košík je tu</h1>
-        @include('web.kosik.part.items')
-        @include('web.kosik.part.order')
+        @include('web.kosik.items')
+        @include('web.kosik.order')
         <div class="row">
-            <div class="large-6 columns">@include('web.kosik.part.delivery')</div>
-            <div class="large-6 columns">@include('web.kosik.part.payment')</div>
+            <div class="large-6 columns">@include('web.kosik.delivery')</div>
+            <div class="large-6 columns">@include('web.kosik.payment')</div>
         </div>
     </div>
 

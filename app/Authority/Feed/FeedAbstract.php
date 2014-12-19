@@ -19,12 +19,12 @@ class FeedAbstract
     {
         return "  <PRODUCTNAME>" . $row["prod_name"] . "</PRODUCTNAME>\n";
     }
-
+/*
     public function tagPriceVat($row)
     {
         return "  <PRICE_VAT>" . round($row["query_price"]) . "</PRICE_VAT>\n";
     }
-
+*/
     public function tagManufacturer($row)
     {
         return "  <MANUFACTURER>" . $row["dev_name"] . "</MANUFACTURER>\n";

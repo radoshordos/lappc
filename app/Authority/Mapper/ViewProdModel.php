@@ -1,6 +1,6 @@
 <?php namespace Authority\Mapper;
 
-class ViewProd
+abstract class ViewProdModel
 {
 	private $prod_id;
 	private $prod_mode_id;

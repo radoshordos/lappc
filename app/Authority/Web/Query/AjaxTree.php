@@ -5,6 +5,7 @@ class AjaxTree
 
     public function orderBySort($db, $sort = NULL)
     {
+        /*
         if ($sort == 'expensive') {
             return $db->orderBy('query_price', 'DESC');
         } else if ($sort == 'sell') {
@@ -14,6 +15,7 @@ class AjaxTree
         } else {
             return $db->orderBy('query_price', 'ASC');
         }
+        */
     }
 
-} 
+}

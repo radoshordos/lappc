@@ -15,10 +15,10 @@
                     <li><a href="#">Košík</a></li>
                 </ul>
                 <ul class="left">
-                    @include('web.layout.boxsearch')
+                    @include('web.glabal.boxsearch')
                 </ul>
             </section>
         </nav>
-        @include('web.layout.blocknav')
+        @include('web.glabal.blocknav')
     </div>
 </div>

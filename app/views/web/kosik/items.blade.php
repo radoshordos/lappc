@@ -23,8 +23,8 @@
                 </td>
                 <td>Skladem: > 6 ks</td>
                 <td>{{ Form::number("item_count[".$rip->id."]",$rip->item_count,['min' => 1, 'max' => 99, 'required' => 'required']); }}</td>
-                <td class="text-right">{{ $pf->priceWithCurrencyWith($rip->viewProd->query_price,$rip->viewProd->prod_forex_id) }}</td>
-                <td class="text-right">{{ $pf->priceWithCurrencyWith($rip->viewProd->query_price * $rip->item_count,$rip->viewProd->prod_forex_id) }}</td>
+                <td class="text-right">{{-- $pf->priceWithCurrencyWith($rip->viewProd->query_price,$rip->viewProd->prod_forex_id) --}}</td>
+                <td class="text-right">{{-- $pf->priceWithCurrencyWith($rip->viewProd->query_price * $rip->item_count,$rip->viewProd->prod_forex_id) --}}</td>
                 <td>
                     {{ Form::open(['action' => ['NakupniKosikController@destroy', $rip->id]]); }}
                     {{ Form::submit('Smazat',['class' => 'btn btn-danger btn-xs']) }}

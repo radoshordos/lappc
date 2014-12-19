@@ -3,7 +3,7 @@
 <html class="lt-ie10" lang="cs"> <![endif]-->
 <html class="no-js" lang="cs">
 
-@include('web.layout.blockhead')
+@include('web.global.blockhead')
 <body>
 <h1>Hello, world!</h1>
 Registrace & Přihlášení
@@ -25,20 +25,21 @@ Registrace & Přihlášení
                         <li><a href="#">Košík</a></li>
                     </ul>
                     <ul class="left">
-                        @include('web.layout.boxsearch')
+                        @include('web.global.boxsearch')
                     </ul>
                 </section>
             </nav>
-            @include('web.layout.blocknav')
+            @include('web.global.blocknav')
         </div>
     </div>
 
     <div id="menubox" class="row">
-        @include('web.layout.actionmenu')
-        @include('web.layout.leftmenu')
+        @include('web.global.leftmenu')
         <div id="product" class="small-9 columns">
 
-            <h1>{{ $vp->prod_name; }}</h1>
+            <h1>{{
+             $vp->prod_name;
+             }}</h1>
 
             <div class="row">
                 <div class="large-4 columns">
@@ -53,14 +54,16 @@ Registrace & Přihlášení
                         <div class="row">
                             <div class="medium-12 columns">
                                 <div class="label-list">
+                                    {{--
                                     @if ($vp->query_price >= 3000)
                                         <span class="label">Doprava ZDARMA</span>
                                     @endif
+                                    --}}
                                 </div>
                             </div>
                             <div class="medium-7 columns">
                                 <h5>Vaše cena: <strong data-tooltip aria-haspopup="true" class="has-tip radius"
-                                                       title="Cena bez DPH: {{ $pf->calculateWithoutDph($vp->query_price,$vp->prod_dph_id,$vp->prod_forex_id) }}">{{ $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) }}</strong></h5>
+                                                       title="Cena bez DPH: {{-- $pf->calculateWithoutDph($vp->query_price,$vp->prod_dph_id,$vp->prod_forex_id) }}">{{ $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) --}}</strong></h5>
 
                                 <p>včetně DPH a všech poplatků</p>
                             </div>

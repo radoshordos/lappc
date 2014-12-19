@@ -76,8 +76,8 @@
                             <td class="col-xs-3">
                                 <small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small>
                             </td>
-                            <td class="col-xs-1">{{ (($row->prod->price - $row->query_price) / $row->prod->price) * 100 }} %</td>
-                            <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id)  }}</td>
+                            <td class="col-xs-1">{{-- (($row->prod->price - $row->query_price) / $row->prod->price) * 100 --}} %</td>
+                            <td class="col-xs-1 text-right">{{-- $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id)  --}}</td>
                         </tr>
                     @endforeach
                     </tbody>

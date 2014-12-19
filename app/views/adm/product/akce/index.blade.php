@@ -79,8 +79,8 @@ Přehled akcí
                     <td>{{ $row->akce_minitext_name }}</td>
                     <td>{{ isset($row->akce->akceAvailability->name) ? $row->akce->akceAvailability->name : NULL }}</td>
                     <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->prod->price,$row->prod_forex_id) }}</td>
-                    <td class="col-xs-1 text-center">{{ (($row->prod->price - $row->query_price) / $row->prod->price) * 100 }} %</td>
-                    <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id)  }}</td>
+                    <td class="col-xs-1 text-center">{{-- (($row->prod->price - $row->query_price) / $row->prod->price) * 100 --}} %</td>
+                    <td class="col-xs-1 text-right">{{-- $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id)  --}}</td>
                 </tr>
             @endforeach
             </tbody>
