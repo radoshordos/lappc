@@ -8,30 +8,7 @@
 <h1>Hello, world!</h1>
 Registrace & Přihlášení
 <div id="container" style="border: 1px solid #666">
-    <div class="row">
-        <div class="small-12 columns">
-            <nav class="top-bar" data-topbar>
-                <section class="top-bar-section">
-                    <ul class="right">
-                        <li class="has-dropdown">
-                            <a href="#">Obchod</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Test</a></li>
-                                <li><a href="#">Nářadí Doležalova s.r.o.</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Kontakt</a></li>
-                        <li><a href="#">Přihlásit se</a></li>
-                        <li><a href="#">Košík</a></li>
-                    </ul>
-                    <ul class="left">
-                        @include('web.global.boxsearch')
-                    </ul>
-                </section>
-            </nav>
-            @include('web.global.blocknav')
-        </div>
-    </div>
+    @include('web.global.top')
 
     <div id="menubox" class="row">
         <h1>Nákupní košík je tu</h1>
@@ -40,6 +17,13 @@ Registrace & Přihlášení
         <div class="row">
             <div class="large-6 columns">@include('web.kosik.delivery')</div>
             <div class="large-6 columns">@include('web.kosik.payment')</div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns text-center">
+            {{ Form::open(['action' => 'KosikController@create','class' => 'form-horizontal', 'role' => 'form']) }}
+            {{ Form::submit('Dokončit objednávku',['name'=> 'buy','class' => 'button success']); }}
+            {{ Form::close(); }}
+            </div>
         </div>
     </div>
 </div>

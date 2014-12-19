@@ -150,6 +150,14 @@ Route::match(['GET', 'POST'], '/{url01}/{url02}', ['as' => 'web.url02', 'uses' =
 Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}', ['as' => 'web.url03', 'uses' => 'Url03Controller@show']);
 Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}/{url04}', ['as' => 'web.url04', 'uses' => 'Url04Controller@show']);
 
+Route::group(['prefix' => 'api'], function () {
+    Route::group(['prefix' => 'heureka'], function () {
+        Route::group(['prefix' => '1'], function () {
+            Route::get('products/availability', 'ProductsAvailabilityController');
+        });
+    });
+});
+
 App::missing(function($exception)
 {
     return Response::view('errors.missing', array('url' => Request::url()), 404);
