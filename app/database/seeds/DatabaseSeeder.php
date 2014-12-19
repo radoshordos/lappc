@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('MediaVariationsSeeder');
 		$this->call('GrabFunctionSeeder');
 		$this->call('ColumnDbSeeder');
+		$this->call('BuyStateSeeder');
 
 		$this->call('DevTableSeeder');
 		$this->call('TreeTableSeeder');
