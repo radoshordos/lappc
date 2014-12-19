@@ -24,4 +24,6 @@
             <a href="{{ '/'.$vta->tree_absolute }}">{{ $vta->tree_name }}</a>
         @endif
     @endforeach
+    <p><a href="http://localhost:8000/adm/">ADM</a></p>
+    <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
 </div>

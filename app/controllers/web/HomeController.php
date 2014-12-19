@@ -25,8 +25,8 @@ class HomeController extends EshopController
         }
 
         return View::make('web.home', [
+            'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
             'tree_group' => TreeGroup::where('type', '=', 'prodlist')->get(),
-            'vt_list' => ViewTree::whereIn('tree_group_type', ['prodaction','prodlist'])->orderBy('tree_id')->get(),
             'term' => Input::get('term')
         ]);
     }

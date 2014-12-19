@@ -35,13 +35,9 @@ Registrace & Přihlášení
 
     <div id="menubox" class="row">
         @include('web.global.leftmenu')
-
         <div class="small-9 columns">
         </div>
     </div>
-    <p><a href="http://localhost:8000/adm/">ADM</a></p>
-
-    <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
 </div>
 <script src="/web/guru.js"></script>
 <script src="/web/js/ajax.js"></script>

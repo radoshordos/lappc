@@ -42,9 +42,6 @@ Registrace & Přihlášení
             <div class="large-6 columns">@include('web.kosik.payment')</div>
         </div>
     </div>
-
-    <p><a href="http://localhost:8000/adm/">ADM</a></p>
-    <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
 </div>
 <script src="/web/guru.js"></script>
 <script src="/web/js/ajax.js"></script>
