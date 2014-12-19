@@ -3,6 +3,7 @@
 <html class="lt-ie10" lang="cs"> <![endif]-->
 <html class="no-js" lang="cs">
 
+
 @include('web.global.blockhead')
 <body>
 <h1>Hello, world!</h1>
@@ -33,22 +34,22 @@ Registrace & Přihlášení
         </div>
     </div>
 
+    <?php $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($view_prod_actual); ?>
+
     <div id="menubox" class="row">
         @include('web.global.leftmenu')
         <div id="product" class="small-9 columns">
 
-            <h1>{{
-             $vp->prod_name;
-             }}</h1>
+            <h1>{{ $vpa->getProdNameWithBonus(); }}</h1>
 
             <div class="row">
                 <div class="large-4 columns">
-                    <a class="th" role="button" aria-label="Thumbnail" href="{{ '/web/naradi/' . $vp->tree_absolute .'/'. $vp->prod_img_big }}">
-                        <img aria-hidden="true" src="{{ '/web/naradi/' . $vp->tree_absolute .'/'. $vp->prod_img_normal }}"/>
+                    <a class="th" role="button" aria-label="Thumbnail" href="{{ $vpa->getProdImgBigWithDir() }}">
+                        <img aria-hidden="true" src="{{ $vpa->getProdImgNormalWithDir() }}"/>
                     </a>
                 </div>
                 <div class="large-8 columns">
-                    <p id="desc">{{ $vp->prod_desc }}</p>
+                    <p id="desc">{{ $vpa->getProdDesc() }}</p>
                     @include('web.prod.panel_price')
                     @include('web.prod.panel_information')
                     @if (isset($mi_row) && $mi_row->items != NULL)

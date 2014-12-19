@@ -34,10 +34,15 @@ class ViewProdMapper {
 		$entry->setProdImgBig($row->prod_img_big);
 		$entry->setProdCreatedAt($row->prod_created_at);
 		$entry->setProdUpdatedAt($row->prod_updated_at);
+		$entry->setProdWarrantyName($row->prod_warranty_name);
+		$entry->setProdSaleMultiple($row->prod_sale_multiple);
 		$entry->setTreeId($row->tree_id);
 		$entry->setTreeName($row->tree_name);
 		$entry->setTreeAbsolute($row->tree_absolute);
 		$entry->setTreeGroupId($row->tree_group_id);
+		$entry->setDevId($row->dev_id);
+		$entry->setDevName($row->dev_name);
+		$entry->setDevAlias($row->dev_alias);
 		return $entry;
 	}
 }

@@ -2,24 +2,19 @@
     <div class="row">
         <div class="medium-12 columns">
             <div class="label-list">
-                {{--
-                @if ($vp->query_price >= 3000)
+                @if ($vpa->getPrice() >= 3000)
                     <span class="label">Doprava ZDARMA</span>
                 @endif
-                --}}
             </div>
         </div>
         <div class="medium-7 columns">
-            <h5>Vaše cena: <strong data-tooltip aria-haspopup="true" class="has-tip radius"
-                                   title="Cena bez DPH: {{-- $pf->calculateWithoutDph($vp->query_price,$vp->prod_dph_id,$vp->prod_forex_id) --}}">{{-- $pf->priceWithCurrencyWith($vp->query_price,$vp->prod_forex_id) --}}</strong>
-            </h5>
-
+            <h5>Vaše cena: <strong data-tooltip aria-haspopup="true" class="has-tip radius" title="Cena bez DPH: {{ $vpa->priceFormatCurrencyWithout(); }}">{{ $vpa->priceFormatCurrencyWith(); }}</strong></h5>
             <p>včetně DPH a všech poplatků</p>
         </div>
         <div class="medium-5 columns">
             @if (!empty($item_row))
                 {{ Form::open(['action' => 'NakupniKosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
-                <input name="do-kosiku[{{ $item_row->id }}]" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vp->prod_name }} do košíku" value="Do košíku"/>
+                <input name="do-kosiku[{{ $item_row->id }}]" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
                 {{ Form::close() }}
             @endif
         </div>

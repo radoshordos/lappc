@@ -23,6 +23,7 @@ abstract class ViewProdModel
 	private $prod_img_big;
 	private $prod_created_at;
 	private $prod_updated_at;
+	private $prod_warranty_name;
 	private $prod_sale_multiple;
 	private $tree_id;
 	private $tree_name;
@@ -371,6 +372,22 @@ abstract class ViewProdModel
 	public function setProdUpdatedAt($prod_updated_at)
 	{
 		$this->prod_updated_at = $prod_updated_at;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getProdWarrantyName()
+	{
+		return $this->prod_warranty_name;
+	}
+
+	/**
+	 * @param mixed $prod_warranty_name
+	 */
+	public function setProdWarrantyName($prod_warranty_name)
+	{
+		$this->prod_warranty_name = $prod_warranty_name;
 	}
 
 	/**

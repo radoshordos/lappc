@@ -24,21 +24,21 @@ class EshopController extends Controller
 
 	protected function isProudct($urlPart)
 	{
-		$vp = ViewProd::where('prod_alias', '=', $urlPart)->first();
-		if (isset($vp) && $vp->count() > 0) {
+		$view_prod_actual = ViewProd::where('prod_alias', '=', $urlPart)->first();
+		if (isset($view_prod_actual) && $view_prod_actual->count() > 0) {
 
-			$at_row = (intval($vp->akce_template_id) > 1 ? AkceTempl::find($vp->akce_template_id) : NULL);
+			$at_row = (intval($view_prod_actual->akce_template_id) > 1 ? AkceTempl::find($view_prod_actual->akce_template_id) : NULL);
 
 			$item_row = NULL;
-			if ($vp->prod_ic_visible == 1) {
-				$item_row = Items::where('prod_id', '=', $vp->prod_id)->first();
+			if ($view_prod_actual->prod_ic_visible == 1) {
+				$item_row = Items::where('prod_id', '=', $view_prod_actual->prod_id)->first();
 			}
 
 			return View::make('web.prod', [
 				'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-				'view_tree_actual' => ViewTree::where('tree_id', '=', $vp->tree_id)->first(),
-				'prod_desc_array'  => ProdDescription::where('prod_id', '=', $vp->prod_id)->whereNotNull('data')->get(),
-				'vp'               => $vp,
+				'view_tree_actual' => ViewTree::where('tree_id', '=', $view_prod_actual->tree_id)->first(),
+				'view_prod_actual' => $view_prod_actual,
+				'prod_desc_array'  => ProdDescription::where('prod_id', '=', $view_prod_actual->prod_id)->whereNotNull('data')->get(),
 				'term'             => Input::get('term'),
 				'at_row'           => $at_row,
 				'item_row'         => $item_row,

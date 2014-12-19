@@ -32,6 +32,7 @@ class ViewProd extends Migration
                     prod.img_big AS prod_img_big,
                     prod.created_at AS prod_created_at,
                     prod.updated_at AS prod_updated_at,
+                    prod_warranty.name AS prod_warranty_name,
                     prod_sale.multiple AS prod_sale_multiple,
                     tree.id AS tree_id,
                     tree.name AS tree_name,
@@ -48,6 +49,7 @@ class ViewProd extends Migration
                     akce_minitext.name AS akce_minitext_name
             FROM prod
             INNER JOIN prod_sale ON prod_sale.id = prod.sale_id
+            INNER JOIN prod_warranty ON prod_warranty.id = prod.warranty_id
             INNER JOIN dev ON prod.dev_id = dev.id
             INNER JOIN tree ON prod.tree_id = tree.id
             LEFT JOIN akce ON prod.id = akce.akce_prod_id AND prod.mode_id = 4 AND akce.akce_template_id > 1
