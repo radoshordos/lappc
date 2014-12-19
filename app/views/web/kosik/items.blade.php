@@ -1,5 +1,5 @@
 @if (!empty($record_items_purchased))
-    {{-- Form::open(['action' => 'NakupniKosikController@update','class' => 'form-horizontal', 'role' => 'form']) --}}
+    {{-- Form::open(['action' => 'KosikController@update','class' => 'form-horizontal', 'role' => 'form']) --}}
     <table id="buy-table">
         <thead>
         <tr>
@@ -26,7 +26,7 @@
                 <td class="text-right">{{-- $pf->priceWithCurrencyWith($rip->viewProd->query_price,$rip->viewProd->prod_forex_id) --}}</td>
                 <td class="text-right">{{-- $pf->priceWithCurrencyWith($rip->viewProd->query_price * $rip->item_count,$rip->viewProd->prod_forex_id) --}}</td>
                 <td>
-                    {{ Form::open(['action' => ['NakupniKosikController@destroy', $rip->id]]); }}
+                    {{ Form::open(['action' => ['KosikController@destroy', $rip->id]]); }}
                     {{ Form::submit('Smazat',['class' => 'btn btn-danger btn-xs']) }}
                     {{ Form::close() }}
                 </td>

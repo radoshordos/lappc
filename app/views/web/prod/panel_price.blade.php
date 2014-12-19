@@ -9,11 +9,12 @@
         </div>
         <div class="medium-7 columns">
             <h5>Vaše cena: <strong data-tooltip aria-haspopup="true" class="has-tip radius" title="Cena bez DPH: {{ $vpa->priceFormatCurrencyWithout(); }}">{{ $vpa->priceFormatCurrencyWith(); }}</strong></h5>
+
             <p>včetně DPH a všech poplatků</p>
         </div>
         <div class="medium-5 columns">
             @if (!empty($item_row))
-                {{ Form::open(['action' => 'NakupniKosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
+                {{ Form::open(['action' => 'KosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
                 <input name="do-kosiku[{{ $item_row->id }}]" style="max-width: 12em" class="alert button expand" type="submit" title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
                 {{ Form::close() }}
             @endif

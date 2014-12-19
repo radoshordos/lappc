@@ -57,7 +57,7 @@ Registrace & Přihlášení
                         @foreach($mi_row->items as $item)
                             <div class="row">
                                 <a class="th" role="button" aria-label="Thumbnail" href="">
-                                    <img src="{{ "/web/naradi/". $item->prod->tree->absolute."/". $item->prod->img_normal}}" width="114" height="114">
+                                    <img src="{{ "/web/naradi/". $item->prod->tree->absolute."/". $vpa->getProdImgNormal() }}" width="114" height="114">
                                 </a>
                             </div>
                         @endforeach

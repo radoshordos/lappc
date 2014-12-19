@@ -141,7 +141,7 @@ Route::get('adm', ['as' => 'adm.home', function () {
 
 
 Route::resource('vyhledat-zbozi', 'VyhledatZboziController');
-Route::resource('nakupni-kosik', 'NakupniKosikController');
+Route::resource('nakupni-kosik', 'KosikController');
 
 Route::get('feeds/{file?}', ['uses' => 'FeedController@show']);
 Route::match(['GET', 'POST'], '/', ['as' => 'web.home', 'uses' => 'HomeController@show']);
