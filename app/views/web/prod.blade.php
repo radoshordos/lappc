@@ -21,7 +21,7 @@ Registrace & Přihlášení
 
             <div class="row">
                 <div class="large-4 columns">
-                    <a class="th" role="button" aria-label="Thumbnail" href="{{ $vpa->getProdImgBigWithDir() }}">
+                    <a class="gallery th" role="button" aria-label="Thumbnail" href="{{ $vpa->getProdImgBigWithDir() }}">
                         <img aria-hidden="true" src="{{ $vpa->getProdImgNormalWithDir() }}"/>
                     </a>
                 </div>
@@ -45,7 +45,6 @@ Registrace & Přihlášení
         </div>
     </div>
 </div>
-<script src="/web/guru.js"></script>
-<script src="/web/js/ajax.js"></script>
+@include('web.global.scripts')
 </body>
 </html>

@@ -1,5 +1,6 @@
 $(document).foundation();
 
+jQuery('a.gallery').colorbox();
 
 $(function() {
     $('#term').autocomplete({

@@ -47,7 +47,7 @@ class ViewProdWorker extends ViewProdModel
 
 	public function getProdImgBigWithDir()
 	{
-		return self::DIR_MEDIA . $this->getTreeAbsolute() . '/' . $this->getProdImgNormal();
+		return self::DIR_MEDIA . $this->getTreeAbsolute() . '/' . $this->getProdImgBig();
 	}
 
 	public function getProdUrl()

@@ -27,7 +27,6 @@ Registrace & Přihlášení
         </div>
     </div>
 </div>
-<script src="/web/guru.js"></script>
-<script src="/web/js/ajax.js"></script>
+@include('web.global.scripts')
 </body>
 </html>
