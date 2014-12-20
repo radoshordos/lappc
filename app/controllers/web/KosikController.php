@@ -5,57 +5,65 @@ use Authority\Eloquent\RecordItemsPurchased;
 
 class KosikController extends Controller
 {
-    private $sid;
+	private $sid;
 
-    public function __construct()
-    {
-        $this->sid = Session::getId();
-    }
+	public function __construct()
+	{
+		$this->sid = Session::getId();
+	}
 
-    public function index()
-    {
-        return View::make('web.kosik', [
-            'record_items_purchased' => RecordItemsPurchased::where('sid', '=', $this->sid)->get(),
-            'term'                   => Input::get('term')
-        ]);
-    }
+	public function index()
+	{
+		if (Input::has('delete-buy-item')) {
+			$rip = RecordItemsPurchased::find(Input::get('delete-buy-item'));
+			if ($rip->sid === $this->sid) {
+				RecordItemsPurchased::destroy(Input::get('delete-buy-item'));
+			}
+		}
 
-    public function store()
-    {
-        if (Input::has('do-kosiku') && is_array(Input::get('do-kosiku')) === true) {
+		return View::make('web.kosik', [
+			'record_items_purchased' => RecordItemsPurchased::where('sid', '=', $this->sid)->get(),
+			'term'                   => Input::get('term')
+		]);
+	}
 
-            $sid = Session::getId();
-            foreach (array_keys(Input::get('do-kosiku')) as $key) {
+	public function store()
+	{
 
-                $items = Items::find($key);
-                if (!empty($items) && !empty($sid)) {
+		if (Input::has('do-kosiku') && is_array(Input::get('do-kosiku')) === true) {
 
-                    $count = RecordItemsPurchased::where('sid', '=', $this->sid)->where('item_id', '=', $items->id)->count();
-                    if (intval($count) < 1) {
+			$sid = Session::getId();
+			foreach (array_keys(Input::get('do-kosiku')) as $key) {
 
-                        RecordItemsPurchased::create([
-                            'sid'           => $this->sid,
-                            'item_id'       => $items->id,
-                            'item_count'    => 1,
-                            'item_price'    => 1,
-                            'prod_id'       => $items->prod->id,
-                            'prod_forex_id' => $items->prod->forex_id,
-                            'prod_mode_id'  => $items->prod->mode_id,
-                        ]);
-                    }
-                }
-            }
-        }
-        return Redirect::action('KosikController@index');
-    }
+				$items = Items::find($key);
+				if (!empty($items) && !empty($sid)) {
 
-/*
-    public function delete($id) {
-        var_dump($id);
+					$count = RecordItemsPurchased::where('sid', '=', $this->sid)->where('item_id', '=', $items->id)->count();
+					if (intval($count) < 1) {
 
-        die;
+						RecordItemsPurchased::create([
+							'sid'           => $this->sid,
+							'item_id'       => $items->id,
+							'item_count'    => 1,
+							'item_price'    => 1,
+							'prod_id'       => $items->prod->id,
+							'prod_forex_id' => $items->prod->forex_id,
+							'prod_mode_id'  => $items->prod->mode_id,
+						]);
+					}
+				}
+			}
+		}
+		return Redirect::action('KosikController@index');
+	}
 
-        return Redirect::action('KosikController@index');
-    }
-*/
+	/*
+		public function delete($id) {
+			var_dump($id);
+
+			die;
+
+			return Redirect::action('KosikController@index');
+		}
+	*/
 }

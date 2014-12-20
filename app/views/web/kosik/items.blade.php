@@ -26,9 +26,7 @@
                 <td class="text-right">{{-- $pf->priceWithCurrencyWith($rip->viewProd->query_price,$rip->viewProd->prod_forex_id) --}}</td>
                 <td class="text-right">{{-- $pf->priceWithCurrencyWith($rip->viewProd->query_price * $rip->item_count,$rip->viewProd->prod_forex_id) --}}</td>
                 <td>
-                    {{ Form::open(['action' => ['KosikController@destroy', $rip->id]]); }}
-                    {{ Form::submit('Smazat',['class' => 'btn btn-danger btn-xs']) }}
-                    {{ Form::close() }}
+                    <a href="?delete-buy-item={{ $rip->id }}" class="alert"><i class="fa fa-times fa-lg"></i></a>
                 </td>
             </tr>
         @endforeach

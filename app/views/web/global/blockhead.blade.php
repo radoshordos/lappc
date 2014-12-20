@@ -20,6 +20,7 @@
     @endif
     <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
     <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="/web/components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/web/my/app.css">
     <link rel="stylesheet" href="/web/my/jtree.css">
