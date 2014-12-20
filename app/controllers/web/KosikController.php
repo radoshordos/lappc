@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\Items;
 use Authority\Eloquent\RecordItemsPurchased;
+use Authority\Eloquent\BuyOrderDbCustomer;
 
 class KosikController extends Controller
 {
@@ -16,12 +17,14 @@ class KosikController extends Controller
 	{
 		if (Input::has('delete-buy-item')) {
 			$rip = RecordItemsPurchased::find(Input::get('delete-buy-item'));
-			if ($rip->sid === $this->sid) {
+			if (!empty($rip) && $rip->sid === $this->sid) {
 				RecordItemsPurchased::destroy(Input::get('delete-buy-item'));
 			}
 		}
 
 		return View::make('web.kosik', [
+			'sid'                    => $this->sid,
+			'customer'               => BuyOrderDbCustomer::where('sid', '=', $this->sid)->first(),
 			'record_items_purchased' => RecordItemsPurchased::where('sid', '=', $this->sid)->get(),
 			'term'                   => Input::get('term')
 		]);
@@ -29,6 +32,23 @@ class KosikController extends Controller
 
 	public function store()
 	{
+
+		if (Input::has('kup-si-me')) {
+
+			$bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
+			if (empty($bodc)) {
+				BuyOrderDbCustomer::create([
+					'sid'                => $this->sid,
+					'customer_fullname'  => Input::get('fullname'),
+					'customer_phone'     => Input::get('phone'),
+					'customer_email'     => Input::get('email'),
+					'customer_street'    => Input::get('street'),
+					'customer_city'      => Input::get('city'),
+					'customer_post_code' => Input::get('postcode')
+				]);
+			}
+		}
+
 
 		if (Input::has('do-kosiku') && is_array(Input::get('do-kosiku')) === true) {
 
@@ -56,14 +76,4 @@ class KosikController extends Controller
 		}
 		return Redirect::action('KosikController@index');
 	}
-
-	/*
-		public function delete($id) {
-			var_dump($id);
-
-			die;
-
-			return Redirect::action('KosikController@index');
-		}
-	*/
 }

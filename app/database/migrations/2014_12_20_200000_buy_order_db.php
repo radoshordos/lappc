@@ -10,7 +10,7 @@ class BuyOrderDb extends Migration {
 		Schema::create('buy_order_db', function (Blueprint $table) {
 			$table->increments('id')->unsigned();
 			$table->tinyInteger('order_status_id')->unsigned()->default(2);
-			$table->char('sid',32);
+			$table->char('sid',40);
 			$table->string('remote_addr',512);
 			$table->string('netbios',512);
 			$table->string('browser',512);
