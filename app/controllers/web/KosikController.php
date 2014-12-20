@@ -6,6 +6,7 @@ use Authority\Eloquent\BuyOrderDbCustomer;
 
 class KosikController extends Controller
 {
+	CONST SIFRA = '123';
 	private $sid;
 
 	public function __construct()
@@ -39,16 +40,15 @@ class KosikController extends Controller
 			if (empty($bodc)) {
 				BuyOrderDbCustomer::create([
 					'sid'                => $this->sid,
-					'customer_fullname'  => Input::get('fullname'),
-					'customer_phone'     => Input::get('phone'),
-					'customer_email'     => Input::get('email'),
-					'customer_street'    => Input::get('street'),
-					'customer_city'      => Input::get('city'),
-					'customer_post_code' => Input::get('postcode')
+					'customer_fullname'  => Db::raw("AES_ENCRYPT('" . base64_encode(bzcompress(Input::get('fullname'))) . "','" . self::SIFRA . "')"),
+					'customer_phone'     => Db::raw("AES_ENCRYPT('" . base64_encode(bzcompress(Input::get('phone'))) . "','" . self::SIFRA . "')"),
+					'customer_email'     => Db::raw("AES_ENCRYPT('" . base64_encode(bzcompress(Input::get('email'))) . "','" . self::SIFRA . "')"),
+					'customer_street'    => Db::raw("AES_ENCRYPT('" . base64_encode(bzcompress(Input::get('street'))) . "','" . self::SIFRA . "')"),
+					'customer_city'      => Db::raw("AES_ENCRYPT('" . base64_encode(bzcompress(Input::get('city'))) . "','" . self::SIFRA . "')"),
+					'customer_post_code' => Db::raw("AES_ENCRYPT('" . base64_encode(bzcompress(Input::get('postcode'))) . "','" . self::SIFRA . "')")
 				]);
 			}
 		}
-
 
 		if (Input::has('do-kosiku') && is_array(Input::get('do-kosiku')) === true) {
 
