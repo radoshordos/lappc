@@ -2,7 +2,6 @@
 
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
-use Authority\Tools\Forex\PriceForex;
 
 class VyhledatZboziController extends EshopController
 {
@@ -46,7 +45,6 @@ class VyhledatZboziController extends EshopController
             'vt_list'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
             'dev_list' => $dev_list,
             'vp'       => $vp = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')->first(),
-            'pf'       => new PriceForex,
             'vp_list'  => $pagination,
             'term'     => Input::get('term'),
             'store'    => Input::has('store') ? true : false,

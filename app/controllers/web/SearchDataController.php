@@ -1,7 +1,6 @@
 <?php
 
 use Authority\Eloquent\ViewProd;
-use Authority\Tools\Forex\PriceForex;
 use Authority\Web\Query\AjaxTree;
 
 class SearchDataController extends Controller
@@ -61,9 +60,8 @@ class SearchDataController extends Controller
             $pagination->appends(['term' => $term]);
         }
 
-        return View::make('web.layout.boxprodlist', [
-            'pf'      => new PriceForex,
-            "vp_list" => $pagination
+        return View::make('web.tree.boxprodlist', [
+            "view_prod_array" => $pagination
         ]);
     }
 }

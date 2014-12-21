@@ -28,6 +28,7 @@ class ViewProd extends Migration
                     prod.ic_availability_diff_visible AS prod_ic_availability_diff_visible,
                     prod.search_alias AS prod_search_alias,
                     prod.search_codes AS prod_search_codes,
+                    prod.search_price AS prod_search_price,
                     prod.img_normal AS prod_img_normal,
                     prod.img_big AS prod_img_big,
                     prod.created_at AS prod_created_at,

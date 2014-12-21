@@ -79,7 +79,7 @@ class EshopController extends Controller
 			}
 
 			$ajaxTree = new AjaxTree();
-			//$vp = $ajaxTree->orderBySort($vp, $sort);
+			$vp = $ajaxTree->orderBySort($vp, $sort);
 
 			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(18);
 
