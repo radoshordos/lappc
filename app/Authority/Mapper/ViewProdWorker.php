@@ -30,9 +30,9 @@ class ViewProdWorker extends ViewProdModel
 		return $this->getProdPrice();
 	}
 
-	public function priceFormatCurrencyWith()
+	public function priceFormatCurrencyWith($multiplikator = 1)
 	{
-		return number_format($this->getPrice(), $this->forex_db[$this->getProdForexId() - 1]['round_with'], ',', ' ') . " " . $this->forex_db[$this->getProdForexId() - 1]['currency'];
+		return number_format($this->getPrice() * $multiplikator, $this->forex_db[$this->getProdForexId() - 1]['round_with'], ',', ' ') . " " . $this->forex_db[$this->getProdForexId() - 1]['currency'];
 	}
 
 	public function priceFormatCurrencyWithout()

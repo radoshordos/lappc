@@ -26,8 +26,8 @@ class KosikController extends Controller
 		if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
 
 			return View::make('web.kosik_krok2', [
-				'sid'  => $this->sid,
-				'term' => Input::get('term'),
+				'sid'                => $this->sid,
+				'term'               => Input::get('term'),
 				'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 				'customer'           => BuyOrderDbCustomer::selectRaw(
 					implode(',', [
@@ -44,6 +44,7 @@ class KosikController extends Controller
 		return View::make('web.kosik_krok1', [
 			'sid'                => $this->sid,
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
+			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
 			'term'               => Input::get('term')
 		]);
 	}
@@ -56,6 +57,7 @@ class KosikController extends Controller
 	public function store()
 	{
 		if (Input::has('kup-si-me')) {
+
 			$bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
 			if (empty($bodc)) {
 				BuyOrderDbCustomer::create([
@@ -69,7 +71,6 @@ class KosikController extends Controller
 				]);
 			}
 		}
-
 
 		if (Input::has('do-kosiku') && is_array(Input::get('do-kosiku')) === true) {
 
@@ -97,6 +98,15 @@ class KosikController extends Controller
 		}
 
 		if (Input::has('zadej-kontakt')) {
+
+			if (!empty(Input::get('item_count'))) {
+				foreach (Input::get('item_count') as $key => $val) {
+					$item = BuyOrderDbItems::where('id','=',$key)->where('sid', '=', $this->sid)->first();
+					$item->item_count = intval($val);
+					$item->save();
+				}
+			}
+
 			return Redirect::action('KosikController@index', ['krok' => 'zadani-kontaktnich-udaju']);
 		}
 		return Redirect::action('KosikController@index');

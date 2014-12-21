@@ -16,7 +16,7 @@
                     @else
                         <span class="secondary label">není skladem</span>
                     @endif
-                    <span class="price label">{{ $vpa->priceFormatCurrencyWith() }} {{-- $pf->priceWithCurrencyWith($view_tree_actual->query_price,$view_tree_actual->prod_forex_id) --}}</span>
+                    <span class="price label">{{ $vpa->priceFormatCurrencyWith() }}</span>
                 </a>
                 <p>{{ $vpa->getProdDesc() }}</p>
             </li>
