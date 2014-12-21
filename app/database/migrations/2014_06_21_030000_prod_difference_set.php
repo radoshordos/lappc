@@ -10,7 +10,7 @@ class ProdDifferenceSet extends Migration
     {
         Schema::create('prod_difference_set', function (Blueprint $table) {
 
-            $table->tinyInteger('id')->unsigned()->primary();
+            $table->smallInteger('id')->unsigned()->primary();
             $table->boolean('visible')->default(1);
             $table->string('name', '32')->unique();
             $table->string('sortby', '16')->default('id');

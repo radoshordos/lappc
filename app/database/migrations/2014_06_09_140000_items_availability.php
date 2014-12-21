@@ -10,14 +10,11 @@ class ItemsAvailability extends Migration
     {
         Schema::create('items_availability', function (Blueprint $table) {
 
-            $table->tinyInteger('id')->unsigned();
+            $table->tinyInteger('id')->unsigned()->primary();
             $table->boolean('visible')->default(1);
             $table->boolean('delivery_date')->nullable();
-            $table->string('name', '64');
-
+            $table->string('name', '64')->unique();
             $table->engine = 'InnoDB';
-            $table->primary('id');
-            $table->unique('name');
         });
     }
 

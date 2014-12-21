@@ -22,9 +22,9 @@ class BuyOrderDbItems extends Migration
 			$table->timestamps();
 
 			$table->engine = 'InnoDB';
-			$table->unique(['item_id', 'sell_id']);
-			$table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('set null');
-			$table->foreign('order_id')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('set null');
+			$table->unique(['item_id', 'order_id']);
+			$table->foreign('item_id', 'fk_podi_2_i')->references('id')->on('items')->onUpdate('cascade')->onDelete('set null');
+			$table->foreign('order_id', 'fk_podi_2_bod')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('set null');
 		});
 	}
 
