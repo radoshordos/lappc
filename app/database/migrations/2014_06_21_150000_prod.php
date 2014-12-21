@@ -39,9 +39,10 @@ class Prod extends Migration
 
             $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('sale_id')->references('id')->on('prod_sale')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('mode_id')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('sale_id')->references('id')->on('prod_sale')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('difference_id')->references('id')->on('prod_difference')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('dph_id')->references('id')->on('dph')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('forex_id')->references('id')->on('forex')->onUpdate('cascade')->onDelete('no action');
         });

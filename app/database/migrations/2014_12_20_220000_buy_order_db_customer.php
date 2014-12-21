@@ -13,7 +13,7 @@ class BuyOrderDbCustomer extends Migration {
 			$table->integer('order_db_id')->unsigned()->nullable();
 			$table->char('sid',40);
 
-			$table->binary('customer_fullname');
+			$table->binary('customer_fullname')->nullable();
 			$table->binary('customer_phone')->nullable();
 			$table->binary('customer_email')->nullable();
 			$table->binary('customer_street')->nullable();

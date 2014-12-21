@@ -16,7 +16,7 @@ class BuyOrderDbItems extends Migration
 			$table->boolean('order_group')->default(0);
 			$table->tinyInteger('prod_forex_id')->unsigned();
 			$table->tinyInteger('prod_mode_id')->unsigned();
-			$table->tinyInteger('prod_name')->unsigned();
+			$table->string('prod_fullname', 255)->unsigned();
 			$table->integer('item_count')->unsigned();
 			$table->decimal('item_price', 9, 2)->unsigned();
 			$table->timestamps();

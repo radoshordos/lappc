@@ -9,7 +9,6 @@ class ProdDifference extends Migration
     public function up()
     {
         Schema::create('prod_difference', function (Blueprint $table) {
-
             $table->smallInteger('id')->unsigned()->primary();
             $table->boolean('visible')->default(1);
             $table->tinyInteger('count')->unsigned();
