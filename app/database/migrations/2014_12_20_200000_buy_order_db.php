@@ -21,6 +21,7 @@ class BuyOrderDb extends Migration {
 			$table->double('delivery_price')->default(0);
 			$table->double('payment_price')->default(0);
 			$table->text('note')->nullable();
+			$table->timestamps();
 
 			$table->engine = 'InnoDB';
 			$table->foreign('order_status_id')->references('id')->on('buy_order_status')->onUpdate('cascade')->onDelete('no action');

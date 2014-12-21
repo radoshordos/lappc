@@ -15,7 +15,7 @@ Registrace & Přihlášení
         <h1>Hledáme + {{ $term }}</h1>
 
         <div class="small-9 columns">
-            <h2>{{ $vt_tree->tree_desc }}</h2>
+            <h2>{{ $view_tree_actual->tree_desc }}</h2>
             @include('web.tree.boxdev')
             <div class="small-12 panel clearfix valign-middle">
                 <div id="prod-filter" class="small-4 columns">

@@ -30,6 +30,7 @@ class BuyOrderDbCustomer extends Migration {
 			$table->binary('delivery_post_code')->nullable();
 			$table->binary('delivery_state')->nullable();
 			$table->binary('delivery_company')->nullable();
+			$table->timestamps();
 
 			$table->engine = 'InnoDB';
 			$table->foreign('order_db_id')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('no action');
