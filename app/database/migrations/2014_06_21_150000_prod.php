@@ -14,7 +14,7 @@ class Prod extends Migration
             $table->integer('dev_id')->unsigned();
             $table->tinyInteger('mode_id')->unsigned()->default(3);
             $table->tinyInteger('sale_id')->unsigned()->default(1);
-            $table->tinyInteger('difference_id')->unsigned()->default(1);
+            $table->smallInteger('difference_id')->unsigned()->default(1);
             $table->tinyInteger('warranty_id')->unsigned()->default(1);
             $table->tinyInteger('forex_id')->unsigned()->default(1);
             $table->tinyInteger('dph_id')->unsigned()->default(21);
@@ -153,12 +153,7 @@ class Prod extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('prod', function (Blueprint $table) {
-            $table->dropForeign('tree_id');
-            $table->dropForeign('dev_id');
-            $table->dropForeign('warranty_id');
-        });
-
+        Schema::dropIfExists('prod');
 
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
         DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');

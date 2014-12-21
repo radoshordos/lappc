@@ -16,15 +16,15 @@ class BuyOrderDbItems extends Migration
 			$table->boolean('order_group')->default(0);
 			$table->tinyInteger('prod_forex_id')->unsigned();
 			$table->tinyInteger('prod_mode_id')->unsigned();
-			$table->string('prod_fullname', 255)->unsigned();
+			$table->string('prod_fullname', 255);
 			$table->integer('item_count')->unsigned();
 			$table->decimal('item_price', 9, 2)->unsigned();
 			$table->timestamps();
 
 			$table->engine = 'InnoDB';
 			$table->unique(['item_id', 'order_id']);
-			$table->foreign('item_id', 'fk_podi_2_i')->references('id')->on('items')->onUpdate('cascade')->onDelete('set null');
-			$table->foreign('order_id', 'fk_podi_2_bod')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('set null');
+			$table->foreign('item_id', 'fk_bodi_2_i')->references('id')->on('items')->onUpdate('cascade')->onDelete('set null');
+			$table->foreign('order_id', 'fk_bodi_2_bod')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('set null');
 		});
 	}
 

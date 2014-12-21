@@ -1,8 +1,8 @@
 <?php namespace Authority\Eloquent;
 
-class RecordItemsPurchased extends \Eloquent
+class BuyOrderDbItems extends \Eloquent
 {
-    protected $table = 'record_items_purchased';
+    protected $table = 'buy_order_db_items';
     protected $guarded = [];
 
     public $timestamps = true;
@@ -12,11 +12,6 @@ class RecordItemsPurchased extends \Eloquent
     public function items()
     {
         return $this->hasOne('Authority\Eloquent\Items', 'id', 'item_id');
-    }
-
-    public function prod()
-    {
-        return $this->hasOne('Authority\Eloquent\Prod', 'id', 'prod_id');
     }
 
     public function viewProd()

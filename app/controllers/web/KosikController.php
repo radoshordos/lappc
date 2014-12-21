@@ -1,12 +1,12 @@
 <?php
 
 use Authority\Eloquent\Items;
-use Authority\Eloquent\RecordItemsPurchased;
+use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyOrderDbCustomer;
 
 class KosikController extends Controller
 {
-	CONST SIFRA = 'VeRY_STRoN1G_SeECRET_PAS3WORD:-]';
+	CONST SIFRA = 'VeRY_STRoN1G_SeECREET_PAS3WoRD:-]';
 	private $sid;
 
 	public function __construct()
@@ -17,8 +17,8 @@ class KosikController extends Controller
 	public function index()
 	{
 		if (Input::has('delete-buy-item')) {
-			$rip = RecordItemsPurchased::find(Input::get('delete-buy-item'));
-			if (!empty($rip) && $rip->sid === $this->sid) {
+			$bodi = BuyOrderDbItems::find(Input::get('delete-buy-item'));
+			if (!empty($bodi) && $bodi->sid === $this->sid) {
 				RecordItemsPurchased::destroy(Input::get('delete-buy-item'));
 			}
 		}
@@ -34,7 +34,7 @@ class KosikController extends Controller
 					"AES_DECRYPT(customer_city,'" . self::SIFRA . "') AS city",
 					"AES_DECRYPT(customer_post_code,'" . self::SIFRA . "') AS postcode"
 				]))->where('sid', '=', $this->sid)->first(),
-			'record_items_purchased' => RecordItemsPurchased::where('sid', '=', $this->sid)->get(),
+			'record_items_purchased' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 			'term'                   => Input::get('term')
 		]);
 	}
@@ -67,17 +67,17 @@ class KosikController extends Controller
 				$items = Items::find($key);
 				if (!empty($items) && !empty($sid)) {
 
-					$count = RecordItemsPurchased::where('sid', '=', $this->sid)->where('item_id', '=', $items->id)->count();
+					$count = BuyOrderDbItems::where('sid', '=', $this->sid)->where('item_id', '=', $items->id)->count();
 					if (intval($count) < 1) {
 
-						RecordItemsPurchased::create([
+						BuyOrderDbItems::create([
 							'sid'           => $this->sid,
 							'item_id'       => $items->id,
 							'item_count'    => 1,
 							'item_price'    => 1,
-							'prod_id'       => $items->prod->id,
 							'prod_forex_id' => $items->prod->forex_id,
 							'prod_mode_id'  => $items->prod->mode_id,
+							'prod_fullname' => $items->prod->prod_name,
 						]);
 					}
 				}

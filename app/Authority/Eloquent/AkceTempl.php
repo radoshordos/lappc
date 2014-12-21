@@ -7,7 +7,7 @@ class AkceTempl extends \Eloquent
 
     public static $rules = [
         'mixture_dev_id'  => 'required|exists:mixture_dev,id',
-        'availibility_id' => 'required|exists:akce_availability,id',
+        'availability_id' => 'required|exists:akce_availability,id',
         'minitext_id'     => 'required|exists:akce_minitext,id',
         'mixture_item_id' => 'exists:mixture_item,id',
         'endtime'         => ['required', 'date_format:"Y-m-d"']
@@ -20,7 +20,7 @@ class AkceTempl extends \Eloquent
 
     public function akceAvailability()
     {
-        return $this->hasOne('Authority\Eloquent\AkceAvailability', 'id', 'availibility_id');
+        return $this->hasOne('Authority\Eloquent\AkceAvailability', 'id', 'availability_id');
     }
 
     public function mixtureDev()
