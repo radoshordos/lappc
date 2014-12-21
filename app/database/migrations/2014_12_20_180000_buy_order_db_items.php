@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RecordItemsPurchased extends Migration
+class BuyOrderDbItems extends Migration
 {
 
 	public function up()
