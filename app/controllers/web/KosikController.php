@@ -19,31 +19,43 @@ class KosikController extends Controller
 		if (Input::has('delete-buy-item')) {
 			$bodi = BuyOrderDbItems::find(Input::get('delete-buy-item'));
 			if (!empty($bodi) && $bodi->sid === $this->sid) {
-				RecordItemsPurchased::destroy(Input::get('delete-buy-item'));
+				BuyOrderDbItems::destroy(Input::get('delete-buy-item'));
 			}
 		}
 
-		return View::make('web.kosik', [
-			'sid'                    => $this->sid,
-			'customer'               => BuyOrderDbCustomer::selectRaw(
-				implode(',', [
-					"AES_DECRYPT(customer_fullname,'" . self::SIFRA . "') AS fullname",
-					"AES_DECRYPT(customer_phone,'" . self::SIFRA . "') AS phone",
-					"AES_DECRYPT(customer_email,'" . self::SIFRA . "') AS email",
-					"AES_DECRYPT(customer_street,'" . self::SIFRA . "') AS street",
-					"AES_DECRYPT(customer_city,'" . self::SIFRA . "') AS city",
-					"AES_DECRYPT(customer_post_code,'" . self::SIFRA . "') AS postcode"
-				]))->where('sid', '=', $this->sid)->first(),
-			'record_items_purchased' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
-			'term'                   => Input::get('term')
+		if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
+
+			return View::make('web.kosik_krok2', [
+				'sid'  => $this->sid,
+				'term' => Input::get('term'),
+				'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
+				'customer'           => BuyOrderDbCustomer::selectRaw(
+					implode(',', [
+						"AES_DECRYPT(customer_fullname,'" . self::SIFRA . "') AS fullname",
+						"AES_DECRYPT(customer_phone,'" . self::SIFRA . "') AS phone",
+						"AES_DECRYPT(customer_email,'" . self::SIFRA . "') AS email",
+						"AES_DECRYPT(customer_street,'" . self::SIFRA . "') AS street",
+						"AES_DECRYPT(customer_city,'" . self::SIFRA . "') AS city",
+						"AES_DECRYPT(customer_post_code,'" . self::SIFRA . "') AS postcode"
+					]))->where('sid', '=', $this->sid)->first(),
+			]);
+		}
+
+		return View::make('web.kosik_krok1', [
+			'sid'                => $this->sid,
+			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
+			'term'               => Input::get('term')
 		]);
+	}
+
+	public function kontakt()
+	{
+		var_dump(Input::all());
 	}
 
 	public function store()
 	{
-
 		if (Input::has('kup-si-me')) {
-
 			$bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
 			if (empty($bodc)) {
 				BuyOrderDbCustomer::create([
@@ -77,11 +89,15 @@ class KosikController extends Controller
 							'item_price'    => 1,
 							'prod_forex_id' => $items->prod->forex_id,
 							'prod_mode_id'  => $items->prod->mode_id,
-							'prod_fullname' => $items->prod->prod_name,
+							'prod_fullname' => $items->prod->name,
 						]);
 					}
 				}
 			}
+		}
+
+		if (Input::has('zadej-kontakt')) {
+			return Redirect::action('KosikController@index', ['krok' => 'zadani-kontaktnich-udaju']);
 		}
 		return Redirect::action('KosikController@index');
 	}

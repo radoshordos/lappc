@@ -3,7 +3,7 @@
     <div class="row">
         <div class="large-11 columns small-centered">
             <div class="row">
-                <div class="small-1 columns"><input id="karta" type="radio" autocomplete="off" name="paymentId" value="karta"></div>
+                <div class="small-1 columns"><input id="karta" type="radio" autocomplete="off" name="paymentId" value="karta" required="required"></div>
                 <div class="small-7 columns"><label for="karta">Platba kartou předem</label></div>
                 <div class="small-4 columns">ZDARMA</div>
             </div>

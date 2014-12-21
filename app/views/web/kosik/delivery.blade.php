@@ -2,7 +2,7 @@
     <legend>TRANSPORT</legend>
     <div class="row">
         <div class="large-11 columns small-centered">
-            <input id="zasilkovna" type="radio" autocomplete="off" name="deliveryId" value="zasilkovna">
+            <input id="zasilkovna" type="radio" autocomplete="off" name="deliveryId" value="zasilkovna" required="required">
             <label for="zasilkovna">Osobní odběr - Zásilkovna</label>
         </div>
     </div>

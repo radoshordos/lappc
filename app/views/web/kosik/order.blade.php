@@ -1,6 +1,5 @@
 <div class="small-11 large-centered columns">
     <fieldset>
-        {{ var_dump($customer); }}
         <legend>Kontaktní­ informace - fakturační­ adresa</legend>
         <div class="row">
             <div class="small-6 large-centered columns">
@@ -16,7 +15,7 @@
             <div class="small-6 large-centered columns">
                 <div class="row collapse prefix-radius">
                     <div class="small-3 columns">
-                        {{ Form::label('street','Ulice',['class' => 'prefix']) }}
+                        {{ Form::label('street','Ulice a čp.',['class' => 'prefix']) }}
                     </div>
                     <div class="small-9 columns">
                         {{ Form::text('street',$customer['street'],['id' => 'street','required' => 'required','maxlength' => 128]) }}

@@ -5,7 +5,7 @@
             {{ Form::input('search','term', $term,['size' => '42', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"]) }}
         </div>
         <div class="large-4 small-3 columns">
-            {{ Form::submit('Hledat', ['class' => 'alert button expand']) }}
+            {{ Form::submit('Hledat', ['class' => 'success button expand']) }}
         </div>
     </div>
     {{ Form::close() }}
