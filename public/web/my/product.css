@@ -27,3 +27,18 @@
     font-size: .9em;
     margin-bottom: .8em;
 }
+
+/* DESC */
+
+div.desc-list {
+    margin: 4em;
+    padding: 1px 2em;
+}
+
+div.desc-list h3 {
+    font-size: 1.2em;
+}
+
+div.desc-list ul.prod-desc li {
+    font-size: .8em;
+}

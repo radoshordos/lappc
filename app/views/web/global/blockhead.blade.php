@@ -23,8 +23,10 @@
     <link rel="stylesheet" href="/web/components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/web/components/colorbox/colorbox.css">
-    <link rel="stylesheet" href="/web/my/app.css">
-    <link rel="stylesheet" href="/web/my/jtree.css">
+    
+    <link rel="stylesheet" href="/web/my/layout.css">
+    <link rel="stylesheet" href="/web/my/tree.css">
     <link rel="stylesheet" href="/web/my/product.css">
     <link rel="stylesheet" href="/web/my/kosik.css">
+
 </head>

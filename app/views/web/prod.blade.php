@@ -3,29 +3,28 @@
 <html class="lt-ie10" lang="cs"> <![endif]-->
 <html class="no-js" lang="cs">
 
-
 @include('web.global.blockhead')
 <body>
-<h1>Hello, world!</h1>
-Registrace & Přihlášení
 <div id="container" style="border: 1px solid #666">
     @include('web.global.top')
 
     <?php $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($view_prod_actual); ?>
 
-    <div id="menubox" class="row">
-        @include('web.global.leftmenu')
-        <div id="product" class="small-9 columns">
+    <div class="row">
+        <div id="part-left" class="medium-4 columns">
+            @include('web.global.leftmenu')
+        </div>
+        <div id="part-right" class="medium-14 columns">
 
             <h1>{{ $vpa->getProdNameWithBonus(); }}</h1>
 
-            <div class="row">
-                <div class="large-4 columns">
+            <div id="product" class="row">
+                <div class="medium-6 columns">
                     <a class="gallery th" role="button" aria-label="Thumbnail" href="{{ $vpa->getProdImgBigWithDir() }}">
                         <img aria-hidden="true" src="{{ $vpa->getProdImgNormalWithDir() }}"/>
                     </a>
                 </div>
-                <div class="large-8 columns">
+                <div class="medium-12 columns">
                     <p id="desc">{{ $vpa->getProdDesc() }}</p>
                     @include('web.prod.panel_price')
                     @include('web.prod.panel_information')
@@ -40,8 +39,8 @@ Registrace & Přihlášení
                         @endforeach
                     @endif
                 </div>
+                @include('web.prod.description')
             </div>
-            @include('web.prod.description')
         </div>
     </div>
 </div>

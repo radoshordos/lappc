@@ -5,13 +5,15 @@
 
 @include('web.global.blockhead')
 <body>
-<h1>Hello, world!</h1>
-Registrace & Přihlášení
 <div id="container" style="border: 1px solid #666">
     @include('web.global.top')
-    <div id="menubox" class="row">
-        @include('web.global.leftmenu')
-        <div class="small-9 columns">
+
+    <div class="row">
+        <div id="part-left" class="medium-4 columns">
+            @include('web.global.leftmenu')
+        </div>
+        <div id="part-right" class="medium-14 columns">
+
         </div>
     </div>
 </div>

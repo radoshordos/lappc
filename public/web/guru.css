@@ -433,23 +433,6 @@ div.icon-bar.vertical a.item label {
     text-align: left;
 }
 
-div#prod-sort li {
-    float:left;
-    margin:0 .1em;
-    list-style-type: none;
-}
-
-div#prod-sort li a {
-    margin:0 .2em;
-}
-
-div#prod-sort li a:hover,div#prod-filter a:hover label  {
-    text-decoration: underline;
-}
-
-div#prod-sort a.active {
-    font-weight:bold;
-}
 
 
 /* --------------------------------------------------
@@ -493,79 +476,6 @@ Dev Container
     background: #004276;
 }
 
-/* --------------------------------------------------
-ProdList
--------------------------------------------------- */
-#prodlist {
-    padding-left: 8px;
-}
-
-
-#prodlist h3 {
-    font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
-    text-align: center;
-    font-size:1em;
-    margin: 2px 5px 10px 5px;
-}
-li.prod {
-    margin: 0px;
-    padding: 0px;
-}
-
-li.th {
-    border: 3px solid white;
-}
-
-.prod .akce {
-    position: relative;
-    color: #ffffff;
-    background: red;
-    top: 10px;
-    z-index: 3;
-    padding: 3px;
-    opacity: .75;
-}
-
-#prodlist p {
-    margin: 7px 2px 2px 2px;
-    font-size: .9em;
-}
-
-#prodlist a:hover h3 {
-    text-decoration: underline;
-}
-
-#prodlist p::first-letter {
-    text-transform: capitalize
-}
-
-#prodlist img {
-    margin: 0px;
-    padding: 0px;
-    width: 228px;
-    height: 228px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    border-rigt: 1px solid #eee;
-    border-left: 1px solid #eee;
-    z-index: -3;
-}
-
-#prodlist .prod {
-    padding: 0px;
-    margin: 6px 3px;
-    width: 234px;
-    height: 356px;
-}
-
-#prodlist span {
-    font-size: 1em;
-    width: 112px;
-}
-
-#prodlist span.price {
-    font-weight: bolder;
-}
 
 /* --------------------------------------------------
 Global

@@ -15,76 +15,12 @@ div#price-panel strong {
 
 
 /*****************************************/
-div.desc-list {
-    margin: 4em;
-    padding: 1px 2em;
-}
 
-div.desc-list h3 {
-    font-size: 1.2em;
-}
 
-div.desc-list ul.prod-desc li {
-    font-size: .8em;
-}
 
-/* --------------------------------------------------
-Valign-middle
--------------------------------------------------- */
 
-.valign-middle {
-    display: table;
-}
 
-.valign-middle .columns {
-    display: table-cell;
-    vertical-align: middle;
-}
 
-.valign-middle .columns,
-.valign-middle [class*="column"] + [class*="column"]:last-child {
-    float: none;
-}
-
-/* --------------------------------------------------
-Menu
--------------------------------------------------- */
-div#menubox h2 {
-    font-size: 1.7em;
-}
-
-div.icon-bar.vertical {
-    padding: .4em;
-}
-
-div.icon-bar.vertical a.item {
-    width: 14.5em;
-    padding: .8em;
-}
-
-div.icon-bar.vertical a.item label {
-    padding-left: 1.2em;
-    margin: 0;
-    text-align: left;
-}
-
-div#prod-sort li {
-    float:left;
-    margin:0 .1em;
-    list-style-type: none;
-}
-
-div#prod-sort li a {
-    margin:0 .2em;
-}
-
-div#prod-sort li a:hover,div#prod-filter a:hover label  {
-    text-decoration: underline;
-}
-
-div#prod-sort a.active {
-    font-weight:bold;
-}
 
 
 /* --------------------------------------------------
@@ -95,112 +31,7 @@ Menu Action
     margin-bottom: 10px;
 }
 
-/* --------------------------------------------------
-Dev Container
--------------------------------------------------- */
 
-#dev-container {
-    background-color: #f0f0f0;
-    border-radius: .5em;
-}
-
-
-#dev-container dt {
-    padding: 0 1px;
-}
-
-#dev-container dd a {
-    display: block;
-    min-width: 7.2em;
-    max-width: 10em;
-    text-align: center;
-    padding: 2px 5px;
-    border: 1px solid #666;
-    background: cornflowerblue;
-    color: #ffffff;
-}
-
-#dev-container a.active {
-    background: indianred;
-}
-
-#dev-container dd a:hover {
-    background: #004276;
-}
-
-/* --------------------------------------------------
-ProdList
--------------------------------------------------- */
-#prodlist {
-    padding-left: 8px;
-}
-
-
-#prodlist h3 {
-    font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
-    text-align: center;
-    font-size:1em;
-    margin: 2px 5px 10px 5px;
-}
-li.prod {
-    margin: 0px;
-    padding: 0px;
-}
-
-li.th {
-    border: 3px solid white;
-}
-
-.prod .akce {
-    position: relative;
-    color: #ffffff;
-    background: red;
-    top: 10px;
-    z-index: 3;
-    padding: 3px;
-    opacity: .75;
-}
-
-#prodlist p {
-    margin: 7px 2px 2px 2px;
-    font-size: .9em;
-}
-
-#prodlist a:hover h3 {
-    text-decoration: underline;
-}
-
-#prodlist p::first-letter {
-    text-transform: capitalize
-}
-
-#prodlist img {
-    margin: 0px;
-    padding: 0px;
-    width: 228px;
-    height: 228px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    border-rigt: 1px solid #eee;
-    border-left: 1px solid #eee;
-    z-index: -3;
-}
-
-#prodlist .prod {
-    padding: 0px;
-    margin: 6px 3px;
-    width: 234px;
-    height: 356px;
-}
-
-#prodlist span {
-    font-size: 1em;
-    width: 112px;
-}
-
-#prodlist span.price {
-    font-weight: bolder;
-}
 
 /* --------------------------------------------------
 Global

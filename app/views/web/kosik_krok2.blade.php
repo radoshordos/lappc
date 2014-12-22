@@ -11,7 +11,7 @@
         <h1>Nákupní košík 2 je tu</h1>
 
         {{ Form::open(['action' => 'KosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
-        <div class="large-11 large-centered columns">
+        <div class="large-18 large-centered columns">
             <div class="row">
                 <div class="columns">@include('web.kosik.flow')</div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="columns">@include('web.kosik.items_view')</div>
             </div>
             <div class="row text-center">
-                <div class="large-11 columns">{{ Form::submit('Dokončit objednávku',['name'=> 'kup-si-me','class' => 'button success']); }}</div>
+                <div class="large-18 columns">{{ Form::submit('Dokončit objednávku',['name'=> 'kup-si-me','class' => 'button success']); }}</div>
             </div>
         </div>
         {{ Form::close() }}

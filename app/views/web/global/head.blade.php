@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-18 columns">
         <nav class="top-bar" data-topbar>
             <section class="top-bar-section">
                 <ul class="right">

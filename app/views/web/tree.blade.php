@@ -5,27 +5,37 @@
 
 @include('web.global.blockhead')
 <body>
-<h1>Hello, world!</h1>
-Registrace & Přihlášení
 <div id="container" style="border: 1px solid #666">
     @include('web.global.top')
 
-    <div id="menubox" class="row">
-        @include('web.global.leftmenu')
-        <div class="small-9 columns">
+    <div class="row">
+        <div id="part-left" class="medium-4 columns">
+            @include('web.global.leftmenu')
+        </div>
+        <div id="part-right" class="medium-14 columns">
             <h2>{{ $view_tree_actual->tree_desc }}</h2>
-            @include('web.tree.boxdev')
-            <div class="small-12 panel clearfix valign-middle">
-                <div id="prod-filter" class="small-4 columns">
-                    @include('web.tree.blockprodfilter')
+
+            <div class="small-18 panel clearfix valign-middle">
+                <div class="row">
+                    <dl id="dev-container" class="small-6 columns sub-nav">
+                        @include('web.tree.boxdev')
+                    </dl>
                 </div>
-                <div id="prod-sort" class="small-8 columns">
-                    @include('web.tree.boxsorting')
+                <div class="row" style="border-top: 5px solid #ffffff">
+                    <div id="prod-filter" class="small-3 columns">
+                        @include('web.tree.blockprodfilter')
+                    </div>
+                    <div id="prod-sort" class="small-6 columns">
+                        @include('web.tree.boxsorting')
+                    </div>
                 </div>
             </div>
             @include('web.tree.boxprodlist')
+
         </div>
     </div>
+
+
 </div>
 @include('web.global.scripts')
 </body>

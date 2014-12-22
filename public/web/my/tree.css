@@ -1,0 +1,130 @@
+/*////////////////////////////////////////////*/
+/*     #dev-container                         */
+/*////////////////////////////////////////////*/
+
+#dev-container {
+    font-size: 1em;
+    padding:0  0 9px 0;
+}
+
+#dev-container dt {
+    padding: 0 1px;
+}
+
+#dev-container dd a, #dev-container dt {
+    display: block;
+    width: 9em;
+    text-align: left;
+    padding: 1px 0;
+    color: #222;
+}
+
+#dev-container a.active {
+    color: indianred;
+}
+
+#dev-container dd a:hover {
+    color: #004276;
+}
+
+/*////////////////////////////////////////////*/
+/*     div#prod-filter                        */
+/*////////////////////////////////////////////*/
+
+div#prod-filter {
+    padding: .7em 0 0 1.2em;
+}
+
+/*////////////////////////////////////////////*/
+/*     div#prod-sort                          */
+/*////////////////////////////////////////////*/
+
+div#prod-sort li {
+    float:left;
+    margin:0 .1em;
+    list-style-type: none;
+}
+
+div#prod-sort li a {
+    margin:0 .2em;
+}
+
+div#prod-sort li a:hover,div#prod-filter a:hover label  {
+    text-decoration: underline;
+}
+
+div#prod-sort a.active {
+    font-weight:bold;
+}
+
+/*////////////////////////////////////////////*/
+/*     #prodlist                              */
+/*////////////////////////////////////////////*/
+
+#prodlist {
+    font-size: 1em;
+    padding-left: 8px;
+}
+
+#prodlist h3 {
+    font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
+    text-align: center;
+    font-size:1em;
+    margin: 2px 5px 10px 5px;
+}
+li.prod {
+    margin: 0px;
+    padding: 0px;
+}
+
+li.th {
+    border: 3px solid white;
+}
+
+.prod .akce {
+    position: relative;
+    color: #ffffff;
+    background: red;
+    top: 10px;
+    z-index: 3;
+    padding: 3px;
+    opacity: .75;
+}
+
+#prodlist p {
+    margin: 7px 2px 2px 2px;
+    font-size: .9em;
+}
+
+#prodlist a:hover h3 {
+    text-decoration: underline;
+}
+
+#prodlist p::first-letter {
+    text-transform: capitalize
+}
+
+#prodlist img {
+    margin: 0px;
+    padding: 0px;
+    width: 228px;
+    height: 228px;
+    border: 1px solid #eee;
+    z-index: -3;
+}
+
+#prodlist .prod {
+    padding: 0px;
+    margin: 6px 3px;
+    width: 234px;
+    height: 356px;
+}
+
+#prodlist span {
+    font-size: 1em;
+    width: 112px;
+}
+
+#prodlist span.price {
+    font-weight: bolder;
+}

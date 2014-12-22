@@ -1,3 +1,35 @@
-#left-layout .icon-bar{
-    width: 100%;
+#part-left {
+    border: 1px solid #ddd4b0;
+}
+
+#part-left p {
+    padding: 1px;
+    margin: 1px;
+    font-size: .9em;
+}
+
+#part-left a.item label {
+    width: 12em;
+    text-align: left;
+}
+
+#part-right {
+    font-size: .9em;
+    border: 1px solid #ebcccc;
+}
+
+/*****************************/
+
+.valign-middle {
+    display: table;
+}
+
+.valign-middle .columns {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.valign-middle .columns,
+.valign-middle [class*="column"] + [class*="column"]:last-child {
+    float: none;
 }
