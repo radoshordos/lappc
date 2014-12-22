@@ -7,7 +7,6 @@
 }
 
 #dev-container {
-    font-size: 1em;
     padding:0  0 9px 0;
 }
 
@@ -17,13 +16,15 @@
 
 #dev-container dd a, #dev-container dt {
     display: block;
-    width: 9em;
+    color:#666;
+    width: 10em;
     text-align: left;
-    padding: 1px 0;
+    padding: 2px 0;
+    font-size: .9em;
 }
 
 #dev-container a.active {
-    color: indianred;
+    color: #258FBD;
     font-weight:bold;
 }
 
@@ -118,7 +119,7 @@ li.th {
     padding: 0px;
     margin: 6px 4px;
     width: 246px;
-    height: 364px;
+    height: 366px;
 }
 
 #prodlist span {
