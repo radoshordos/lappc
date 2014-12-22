@@ -14,7 +14,7 @@
         <div id="part-right" class="medium-14 columns">
             <h1>{{ $view_tree_actual->tree_desc }}</h1>
 
-            <div class="small-18 panel clearfix valign-middle">
+            <div id="tree-panel" class="small-18 panel clearfix valign-middle">
                 <div class="row">
                     <dl id="dev-container" class="small-6 columns sub-nav">
                         @include('web.tree.boxdev')
