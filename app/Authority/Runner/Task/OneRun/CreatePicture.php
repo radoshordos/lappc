@@ -18,7 +18,7 @@ class CreatePicture extends TaskMessage implements iRun
         foreach (new \RecursiveIteratorIterator($di) as $pathName => $file) {
             if (strpos($pathName, "(") == true) {
                 $pir = new ProdImageRegenerator($pathName, $file->getPath(), $file->getFilename());
-                $pir->createProdPictures(228, 228);
+                $pir->createProdPictures(240, 240);
             }
         }
         $this->addMessage("Dokončeno");

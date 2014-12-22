@@ -3,6 +3,7 @@
 use Authority\Eloquent\Items;
 use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyOrderDbCustomer;
+use Authority\Eloquent\ViewTree;
 
 class KosikController extends Controller
 {
@@ -23,12 +24,15 @@ class KosikController extends Controller
 			}
 		}
 
+		$view_tree_actual = ViewTree::where('tree_group_type', '=', 'buybox')->first();
+
 		if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
 
 			return View::make('web.kosik_krok2', [
 				'sid'                => $this->sid,
 				'term'               => Input::get('term'),
 				'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
+				'view_tree_actual'   => $view_tree_actual,
 				'customer'           => BuyOrderDbCustomer::selectRaw(
 					implode(',', [
 						"AES_DECRYPT(customer_fullname,'" . self::SIFRA . "') AS fullname",
@@ -45,6 +49,7 @@ class KosikController extends Controller
 			'sid'                => $this->sid,
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
+			'view_tree_actual'   => $view_tree_actual,
 			'term'               => Input::get('term')
 		]);
 	}
@@ -101,7 +106,7 @@ class KosikController extends Controller
 
 			if (!empty(Input::get('item_count'))) {
 				foreach (Input::get('item_count') as $key => $val) {
-					$item = BuyOrderDbItems::where('id','=',$key)->where('sid', '=', $this->sid)->first();
+					$item = BuyOrderDbItems::where('id', '=', $key)->where('sid', '=', $this->sid)->first();
 					$item->item_count = intval($val);
 					$item->save();
 				}

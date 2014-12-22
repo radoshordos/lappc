@@ -13,7 +13,7 @@ class Dev extends \Eloquent
         'default_warranty_id'     => 'required|exists:prod_warranty,id',
         'default_sale_prod_id'    => 'required|exists:prod_sale,id',
         'default_sale_action_id'  => 'required|numeric|exists:prod_sale,id',
-        'default_availibility_id' => 'required|numeric|exists:items_availability,id'
+        'default_availability_id' => 'required|numeric|exists:items_availability,id'
     ];
 
     public function prodWarranty()
@@ -33,6 +33,6 @@ class Dev extends \Eloquent
 
     public function itemsAvailability()
     {
-        return $this->hasOne('Authority\Eloquent\ItemsAvailability', 'id', 'default_availibility_id');
+        return $this->hasOne('Authority\Eloquent\ItemsAvailability', 'id', 'default_availability_id');
     }
 }

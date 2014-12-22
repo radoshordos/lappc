@@ -51,9 +51,9 @@ class EshopController extends Controller
 
 	protected function isTreeWithDev(array $treePart, $dev)
 	{
-		$row = Dev::where('alias', '=', $dev)->cacheTags('alias')->first();
-		if (isset($row) && $row->count() > 0) {
-			return $this->isTree($treePart, $row);
+		$dev_actual = Dev::where('alias', '=', $dev)->cacheTags('alias')->first();
+		if (isset($dev_actual) && $dev_actual->count() > 0) {
+			return $this->isTree($treePart, $dev_actual);
 		}
 		return $this->isTree(array_merge($treePart, [$dev]));
 	}
@@ -83,7 +83,6 @@ class EshopController extends Controller
 
 			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(18);
 
-
 			if (!empty($term)) {
 				$pagination->appends(['term' => $term]);
 			}
@@ -93,7 +92,7 @@ class EshopController extends Controller
 				'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
 				'view_tree_actual' => $tree_actual,
 				'db_dev'           => $dev,
-				'dev_list'         => TreeDev::select(["tree_dev.subdir_visible AS dev_prod_count", "dev.alias AS dev_alias", "dev.name AS dev_name", "tree.absolute AS tree_absolute"])->join('dev', 'tree_dev.dev_id', '=', 'dev.id')->join('tree', 'tree_dev.tree_id', '=', 'tree.id')->where('tree_id', '=', $tree_actual->tree_id)->where('subdir_visible', '>', 0)->get(),
+				'dev_list'         => TreeDev::select(["tree_dev.subdir_visible AS dev_prod_count", "tree.absolute AS tree_absolute", "dev.alias AS dev_alias", "dev.name AS dev_name", "dev.id AS dev_id"])->join('dev', 'tree_dev.dev_id', '=', 'dev.id')->join('tree', 'tree_dev.tree_id', '=', 'tree.id')->where('tree_id', '=', $tree_actual->tree_id)->where('subdir_visible', '>', 0)->get()->toArray(),
 				'term'             => $term,
 				'store'            => Input::has('store') ? true : false,
 				'action'           => Input::has('action') ? true : false,

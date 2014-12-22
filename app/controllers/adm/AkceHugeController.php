@@ -64,7 +64,7 @@ class AkceHugeController extends \BaseController
                     'mixture_dev.name AS mixture_dev_name'
                 ])
                 ->join('mixture_dev', 'akce_template.mixture_dev_id', '=', 'mixture_dev.id')
-                ->join('akce_availability', 'akce_template.availibility_id', '=', 'akce_availability.id')
+                ->join('akce_availability', 'akce_template.availability_id', '=', 'akce_availability.id')
                 ->join('akce_minitext', 'akce_template.minitext_id', '=', 'akce_minitext.id')
                 ->where('akce_template.id', '>', '1')
                 ->where('akce_template.mixture_dev_id', '=', $mixture_dev)

@@ -1,26 +1,5 @@
 
 /*****************************************/
-div#price-panel {
-    padding: .8em;
-}
-
-div#price-panel p {
-    font-size: .9em;
-    margin-bottom: 1px;
-}
-
-div#price-panel strong {
-    font-size: 1.4em;
-}
-
-
-/*****************************************/
-
-
-
-
-
-
 
 
 /* --------------------------------------------------
@@ -30,8 +9,6 @@ Menu Action
 #menu-action {
     margin-bottom: 10px;
 }
-
-
 
 /* --------------------------------------------------
 Global

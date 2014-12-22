@@ -29,7 +29,7 @@
                     <a href="{{ '/' . $item_new->items->viewProd->tree_absolute .'/'. $item_new->items->viewProd->prod_alias }}" class="button info">Zpět k produktu</a>
                     @endif
                 </div>
-                <div class="large-18 columns text-right">{{ Form::submit('Zadej kontakt',['name'=> 'zadej-kontakt','class' => 'button success']); }}</div>
+                <div class="large-12 columns text-right">{{ Form::submit('Zadej kontakt',['name'=> 'zadej-kontakt','class' => 'button success']); }}</div>
             </div>
         </div>
         {{ Form::close() }}

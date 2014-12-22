@@ -16,15 +16,11 @@
     width: 9em;
     text-align: left;
     padding: 1px 0;
-    color: #222;
 }
 
 #dev-container a.active {
     color: indianred;
-}
-
-#dev-container dd a:hover {
-    color: #004276;
+    font-weight:bold;
 }
 
 /*////////////////////////////////////////////*/
@@ -32,7 +28,7 @@
 /*////////////////////////////////////////////*/
 
 div#prod-filter {
-    padding: .7em 0 0 1.2em;
+    padding: 1em 0 0 1.2em;
 }
 
 /*////////////////////////////////////////////*/
@@ -43,13 +39,14 @@ div#prod-sort li {
     float:left;
     margin:0 .1em;
     list-style-type: none;
+    font-size: .9em;
 }
 
 div#prod-sort li a {
     margin:0 .2em;
 }
 
-div#prod-sort li a:hover,div#prod-filter a:hover label  {
+#dev-container a:hover, div#prod-sort li a:hover, div#prod-filter a:hover label  {
     text-decoration: underline;
 }
 
@@ -107,22 +104,22 @@ li.th {
 #prodlist img {
     margin: 0px;
     padding: 0px;
-    width: 228px;
-    height: 228px;
+    width: 240px;
+    height: 240px;
     border: 1px solid #eee;
     z-index: -3;
 }
 
 #prodlist .prod {
     padding: 0px;
-    margin: 6px 3px;
-    width: 234px;
-    height: 356px;
+    margin: 6px 4px;
+    width: 246px;
+    height: 364px;
 }
 
 #prodlist span {
     font-size: 1em;
-    width: 112px;
+    width: 118px;
 }
 
 #prodlist span.price {

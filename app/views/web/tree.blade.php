@@ -5,15 +5,14 @@
 
 @include('web.global.blockhead')
 <body>
-<div id="container" style="border: 1px solid #666">
+<div id="container">
     @include('web.global.top')
-
     <div class="row">
         <div id="part-left" class="medium-4 columns">
             @include('web.global.leftmenu')
         </div>
         <div id="part-right" class="medium-14 columns">
-            <h2>{{ $view_tree_actual->tree_desc }}</h2>
+            <h1>{{ $view_tree_actual->tree_desc }}</h1>
 
             <div class="small-18 panel clearfix valign-middle">
                 <div class="row">
@@ -31,11 +30,8 @@
                 </div>
             </div>
             @include('web.tree.boxprodlist')
-
         </div>
     </div>
-
-
 </div>
 @include('web.global.scripts')
 </body>

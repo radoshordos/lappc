@@ -47,9 +47,9 @@ Editace výrobce zboží
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('default_availibility_id','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
+    {{ Form::label('default_availability_id','Výchozí dostupnost',array('class'=> 'col-sm-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::select('default_availibility_id',$select_availability, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
+        {{ Form::select('default_availability_id',$select_availability, NULL, array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce')) }}
     </div>
 </div>
 <div class="form-group">

@@ -18,19 +18,19 @@ class VyhledatZboziController extends EshopController
 		$exp_term = explode(" ", $term);
 		$count_term = count($term);
 
-
 		foreach ($exp_term as $word) {
 
 		}
 
 		$dev_list = ViewProd::select([
+			"dev_id",
 			"dev_alias",
 			"dev_name",
 			"tree_absolute",
 			DB::raw("COUNT(prod_id) AS dev_prod_count")
 		])->where('prod_name', 'LIKE', '%' . Input::get('term') . '%')
 			->groupBy(["dev_id"])
-			->get();
+			->get()->toArray();
 
 		$pagination = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')
 			->where('prod_mode_id', '>', '1')
@@ -43,9 +43,9 @@ class VyhledatZboziController extends EshopController
 		return View::make('web.vyhledavani', [
 			'view_prod_array'  => $pagination,
 			'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
-			'view_tree_actual' => ViewTree::first(),
-			'dev_list'         => $dev_list,
-			'vp'               => $vp = ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')->first(),
+			'view_tree_actual' => ViewTree::where('tree_group_type','=','prodfind')->first(),
+			'dev_list'         => ["a" => ['dev_id' => 1, 'tree_absolute' => '', 'dev_prod_count' => $this->getCountAllDev($dev_list)]] + $dev_list,
+			'vp'               => ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')->first(),
 			'term'             => Input::get('term'),
 			'store'            => Input::has('store') ? true : false,
 			'action'           => Input::has('action') ? true : false,
@@ -159,4 +159,16 @@ class VyhledatZboziController extends EshopController
 		}
 
 	  */
+
+
+	public function getCountAllDev($dev_list)
+	{
+		$count = 0;
+		if (!empty($dev_list)) {
+			foreach ($dev_list as $val) {
+				$count += $val['dev_prod_count'];
+			}
+		}
+		return $count;
+	}
 }

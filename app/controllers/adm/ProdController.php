@@ -107,7 +107,7 @@ class ProdController extends \BaseController
                         'mixture_dev.name AS mixture_dev_name'
                     ])
                     ->join('mixture_dev', 'akce_template.mixture_dev_id', '=', 'mixture_dev.id')
-                    ->join('akce_availability', 'akce_template.availibility_id', '=', 'akce_availability.id')
+                    ->join('akce_availability', 'akce_template.availability_id', '=', 'akce_availability.id')
                     ->join('akce_minitext', 'akce_template.minitext_id', '=', 'akce_minitext.id')
                     ->where('akce_template.id', '>', '1')
                     ->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - [Titulek: \'->akce_template_bonus_title\']'], true);
@@ -191,7 +191,7 @@ class ProdController extends \BaseController
             if ($file == 'image/jpeg' || $file == 'image/png') {
                 try {
                     $img = new ProdImage(Input::file('input-1a')->getPathname(), $row->tree->absolute, $row->name);
-                    $img->createProdPictures(228, 228);
+                    $img->createProdPictures(240, 240);
                     $aff = ProdPicture::create([
                         'prod_id'    => $row->id,
                         'img_big'    => $img->getImgBig(),
@@ -210,7 +210,7 @@ class ProdController extends \BaseController
         if ((Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url')))) {
             try {
                 $img = new ProdImage(Input::get('upload_url'), $row->tree->absolute, $row->name);
-                $img->createProdPictures(228, 228);
+                $img->createProdPictures(240, 240);
                 $aff = ProdPicture::create([
                     'prod_id'    => $row->id,
                     'img_big'    => $img->getImgBig(),
@@ -338,7 +338,7 @@ class ProdController extends \BaseController
                             Items::create([
                                 'prod_id'         => $row->id,
                                 'sale_id'         => $row->dev->default_sale_prod_id,
-                                'availability_id' => $row->dev->default_availibility_id,
+                                'availability_id' => $row->dev->default_availability_id,
                                 'diff_val1_id'    => $v1,
                                 'diff_val2_id'    => 1,
                                 'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
@@ -355,7 +355,7 @@ class ProdController extends \BaseController
                                 Items::create([
                                     'prod_id'         => $row->id,
                                     'sale_id'         => $row->dev->default_sale_prod_id,
-                                    'availability_id' => $row->dev->default_availibility_id,
+                                    'availability_id' => $row->dev->default_availability_id,
                                     'diff_val1_id'    => $v1,
                                     'diff_val2_id'    => $v2,
                                     'created_at'      => date("Y-m-d H:i:s", strtotime('now')),

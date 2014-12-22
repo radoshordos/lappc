@@ -10,19 +10,23 @@
                     @if ($vpa->getProdModeId() == 4 && !empty($vpa->getAkceMinitextName()))
                         <span class="akce">{{ $vpa->getAkceMinitextName() }}</span>
                     @endif
-                    <img src="{{ $vpa->getProdImgNormalWithDir() }}" width="228" height="228">
-                    @if ($vpa->getProdStoreroom() > 0)
-                        <span class="success label">{{ $vpa->getProdStoreroom() }} ks skladem</span>
+                    <img src="{{ $vpa->getProdImgNormalWithDir() }}" width="240" height="240">
+                    @if ($vpa->getProdModeId() > 1)
+                        @if ($vpa->getProdStoreroom() > 0)
+                            <span class="success label">{{ $vpa->getProdStoreroom() }} ks skladem</span>
+                        @else
+                            <span class="secondary label">není skladem</span>
+                        @endif
+                        <span class="price label">{{ $vpa->priceFormatCurrencyWith() }}</span>
                     @else
-                        <span class="secondary label">není skladem</span>
                     @endif
-                    <span class="price label">{{ $vpa->priceFormatCurrencyWith() }}</span>
                 </a>
+
                 <p>{{ $vpa->getProdDesc() }}</p>
             </li>
         @endforeach
     </ul>
-    @if (count($view_prod_array)>0)
+    @if ($view_tree_actual->tree_subdir_visible > 18)
         <div class="panel clearfix">
             <ul class="pagination">{{ with(new ZurbPresenter($view_prod_array))->render(); }}</ul>
         </div>

@@ -1,5 +1,5 @@
 #part-left {
-    border: 1px solid #ddd4b0;
+    border: 0px solid #ddd4b0;
 }
 
 #part-left p {
@@ -10,12 +10,13 @@
 
 #part-left a.item label {
     width: 12em;
+    height: 1em;
     text-align: left;
 }
 
 #part-right {
+    border: 0px solid #ebcccc;
     font-size: .9em;
-    border: 1px solid #ebcccc;
 }
 
 /*****************************/

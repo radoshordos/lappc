@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\ViewProd;
+use Authority\Eloquent\ViewTree;
 use Authority\Web\Query\AjaxTree;
 
 class SearchDataController extends Controller
@@ -61,7 +62,8 @@ class SearchDataController extends Controller
         }
 
         return View::make('web.tree.boxprodlist', [
-            "view_prod_array" => $pagination
+            "view_prod_array" => $pagination,
+            'view_tree_actual' => ViewTree::where('tree_id', '=', intval($tree))->first(),
         ]);
     }
 }

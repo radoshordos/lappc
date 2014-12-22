@@ -20,7 +20,7 @@ class AkceController extends \BaseController
         }
 
         if (Input::has('select_availability')) {
-            $akce->where('akce_template.availibility_id','=', Input::get('select_availability'));
+            $akce->where('akce_template.availability_id','=', Input::get('select_availability'));
         }
 
         if (Input::has('select_mixture_dev')) {
@@ -37,7 +37,7 @@ class AkceController extends \BaseController
                 'mixture_dev.name AS mixture_dev_name'
             ])
             ->join('mixture_dev', 'akce_template.mixture_dev_id', '=', 'mixture_dev.id')
-            ->join('akce_availability', 'akce_template.availibility_id', '=', 'akce_availability.id')
+            ->join('akce_availability', 'akce_template.availability_id', '=', 'akce_availability.id')
             ->join('akce_minitext', 'akce_template.minitext_id', '=', 'akce_minitext.id')
             ->where('akce_template.id', '>', '1')
             ->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - [Titulek: \'->akce_template_bonus_title\']'], true);

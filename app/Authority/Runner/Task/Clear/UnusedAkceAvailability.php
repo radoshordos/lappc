@@ -18,9 +18,9 @@ class UnusedAkceAvailability extends TaskMessage implements iRun
 
         $row = \DB::table('akce_availability AS aa')
             ->select(array('aa.id',
-                \DB::raw('COUNT(at.availibility_id) AS availability_count')
+                \DB::raw('COUNT(at.availability_id) AS availability_count')
             ))
-            ->leftJoin('akce_template AS at', 'at.availibility_id', '=', 'aa.id')
+            ->leftJoin('akce_template AS at', 'at.availability_id', '=', 'aa.id')
             ->where('aa.origin', '=', '0')
             ->groupBy('aa.id')
             ->having('availability_count', '=', '0')

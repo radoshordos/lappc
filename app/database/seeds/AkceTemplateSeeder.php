@@ -9,7 +9,7 @@ class AkceTemplateSeeder extends Seeder
         DB::table('akce_template')->insert([
             'id'              => 1,
             'mixture_dev_id'  => 10,
-            'availibility_id' => 1,
+            'availability_id' => 1,
             'minitext_id'     => 1,
             'endtime'         => date_create("2028-01-01"),
             'bonus_title'     => '[NULL]',
@@ -20,7 +20,7 @@ class AkceTemplateSeeder extends Seeder
 
         DB::table('akce_template')->insert([
             'mixture_dev_id'  => 10,
-            'availibility_id' => 1,
+            'availability_id' => 1,
             'minitext_id'     => 1,
             'endtime'         => date_create("2014-09-30"),
             'bonus_title'     => 'title',
