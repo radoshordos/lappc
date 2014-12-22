@@ -24,6 +24,7 @@ abstract class ViewProdModel
 	private $prod_created_at;
 	private $prod_updated_at;
 	private $prod_warranty_name;
+	private $prod_sale_name;
 	private $prod_sale_multiple;
 	private $tree_id;
 	private $tree_name;
@@ -388,6 +389,22 @@ abstract class ViewProdModel
 	public function setProdWarrantyName($prod_warranty_name)
 	{
 		$this->prod_warranty_name = $prod_warranty_name;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getProdSaleName()
+	{
+		return $this->prod_sale_name;
+	}
+
+	/**
+	 * @param mixed $prod_sale_name
+	 */
+	public function setProdSaleName($prod_sale_name)
+	{
+		$this->prod_sale_name = $prod_sale_name;
 	}
 
 	/**

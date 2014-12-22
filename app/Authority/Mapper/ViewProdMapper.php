@@ -35,6 +35,7 @@ class ViewProdMapper {
 		$entry->setProdCreatedAt($row->prod_created_at);
 		$entry->setProdUpdatedAt($row->prod_updated_at);
 		$entry->setProdWarrantyName($row->prod_warranty_name);
+		$entry->setProdSaleName($row->prod_sale_name);
 		$entry->setProdSaleMultiple($row->prod_sale_multiple);
 		$entry->setTreeId($row->tree_id);
 		$entry->setTreeName($row->tree_name);

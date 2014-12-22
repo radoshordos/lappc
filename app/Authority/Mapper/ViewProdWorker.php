@@ -27,7 +27,7 @@ class ViewProdWorker extends ViewProdModel
 		if ($this->getProdModeId() == 4) {
 			return $this->getAkcePrice();
 		}
-		return $this->getProdPrice();
+		return $this->getProdPrice() * $this->getProdSaleMultiple();
 	}
 
 	public function priceFormatCurrencyWith($multiplikator = 1)

@@ -9,7 +9,6 @@ use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
 use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
-use Authority\Tools\Forex\PriceForex;
 use Authority\Tools\Image\ProdImage;
 use Authority\Tools\SB;
 
@@ -47,7 +46,6 @@ class ProdController extends \BaseController
         }
 
         return View::make('adm.product.prod.index', [
-            'pf'          => new PriceForex,
             'view'        => $db->paginate($input_limit),
             'input_dev'   => Input::has('select_dev') ? intval(Input::get('select_dev')) : NULL,
             'input_tree'  => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,

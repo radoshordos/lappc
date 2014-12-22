@@ -34,6 +34,7 @@ class ViewProd extends Migration
                     prod.created_at AS prod_created_at,
                     prod.updated_at AS prod_updated_at,
                     prod_warranty.name AS prod_warranty_name,
+                    prod_sale.name AS prod_sale_name,
                     prod_sale.multiple AS prod_sale_multiple,
                     tree.id AS tree_id,
                     tree.name AS tree_name,

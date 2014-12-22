@@ -65,19 +65,20 @@
                     </thead>
                     <tbody>
                     @foreach ($view as $row)
+                        <?php $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($row); ?>
                         <tr>
-                            <td>{{ $row->prod_id }}</td>
-                            <td>{{ $row->prod_mode_id }}</td>
-                            <td>{{ $row->dev_name }}</td>
-                            <td>{{ $row->tree_id }}</td>
-                            <td>{{ $row->prodWarranty->name }}</td>
-                            <td>{{ $row->prodSale->name }}</td>
-                            <td class="col-xs-1 text-right">{{ $pf->priceWithCurrencyWith($row->prod->price,$row->prod->forex_id)  }}</td>
+                            <td>{{ $vpa->getProdId() }}</td>
+                            <td>{{ $vpa->getProdModeId() }}</td>
+                            <td>{{ $vpa->getDevName() }}</td>
+                            <td>{{ $vpa->getTreeId() }}</td>
+                            <td>{{ $vpa->getProdWarrantyName() }}</td>
+                            <td>{{ $vpa->getProdSaleName(); }}</td>
+                            <td class="col-xs-1 text-right">{{ $vpa->getProdPrice() }}</td>
                             <td class="col-xs-3">
-                                <small>{{ link_to_route('adm.product.prod.edit', $row->prod_name." [".$row->prod_ic_all."]",[$row->tree_id,$row->prod_id]) }}</small>
+                                <small>{{ link_to_route('adm.product.prod.edit', $vpa->getProdName()." [".$vpa->getProdIcAll()."]",[$vpa->getTreeId(),$vpa->getProdId()]) }}</small>
                             </td>
-                            <td class="col-xs-1">{{-- (($row->prod->price - $row->query_price) / $row->prod->price) * 100 --}} %</td>
-                            <td class="col-xs-1 text-right">{{-- $pf->priceWithCurrencyWith($row->query_price,$row->prod_forex_id)  --}}</td>
+                            <td class="col-xs-1">{{ (($vpa->getProdPrice() - $vpa->getPrice()) / $vpa->getProdPrice()) * 100 }} %</td>
+                            <td class="col-xs-1 text-right">{{ $vpa->priceFormatCurrencyWith() }}</td>
                         </tr>
                     @endforeach
                     </tbody>
