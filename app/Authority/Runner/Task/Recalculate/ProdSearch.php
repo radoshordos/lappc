@@ -3,6 +3,7 @@
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\Items;
 
 class ProdSearch extends TaskMessage implements iRun
 {
@@ -14,6 +15,12 @@ class ProdSearch extends TaskMessage implements iRun
 
 	public function run()
 	{
+		$this->searchInAlias();
+		$this->searchInItemsCode();
+	}
+
+	public function searchInAlias()
+	{
 		$prod_all = Prod::select(['id', 'alias'])->get();
 		foreach ($prod_all as $row) {
 			$prod = Prod::find($row->id);
@@ -21,6 +28,21 @@ class ProdSearch extends TaskMessage implements iRun
 			$prod->save();
 		}
 		$this->addMessage("Provedena aktualizace vyhledávacích textů");
+	}
+
+
+	public function searchInItemsCode()
+	{
+		$prod_all = Prod::select(['id'])->limit(50)->get();
+		foreach ($prod_all as $pid) {
+			$ic = Items::select('code_prod')->where('prod_id', '=', $pid->id)->whereRaw('LENGTH(code_prod)>0')->lists('code_prod');
+			if (!empty($ic)) {
+				$prod = Prod::find($pid->id);
+				$prod->search_codes = implode('|', $ic);
+				$prod->save();
+			}
+		}
+		$this->addMessage("Provedena aktualizace vyhledávacích kódů položek");
 	}
 
 	public function friendlyString($source)
@@ -31,7 +53,6 @@ class ProdSearch extends TaskMessage implements iRun
 		$url = trim($url, "-");
 		$url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
 		$url = strtolower($url);
-		$url = preg_replace('~[^-a-z0-9_]+~', '', $url);
-		return $url;
+		return preg_replace('~[^-a-z0-9_]+~', '', $url);
 	}
 }
