@@ -17,7 +17,6 @@ class TreeCategoryText extends TaskMessage implements iRun
     {
         return Tree::select('tree.id AS tree_id')
             ->join('tree_group', 'tree.group_id', '=', 'tree_group.id')
-            ->where('for_prod', '=', '1')
             ->orderBy('tree_id')
             ->lists('tree_id');
     }

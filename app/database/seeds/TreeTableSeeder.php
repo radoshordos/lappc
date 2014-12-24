@@ -7,7 +7,7 @@ class TreeTableSeeder extends Seeder
     {
 
         $top = [
-            ['mid' => '16000000','pz' => '0','pid' => '32000000','tree_id' => '0000000', 'tree_id_division' => '16', 'tree_title' => 'Vyhledávání zboží', 'tree_name' => 'Příslušenství', 'tree_desc' => 'Vyhledávání zboží', 'tree_abs_path' => 'vyhledat-zbozi/', 'tree_rel_path' => 'vyhledat-zbozi'],
+            ['mid' => '16000000','pz' => '0','pid' => '16000000','tree_id' => '0000000', 'tree_id_division' => '16', 'tree_title' => 'Vyhledávání zboží', 'tree_name' => 'Vyhledávání zboží', 'tree_desc' => 'Vyhledávání zboží', 'tree_abs_path' => 'vyhledat-zbozi/', 'tree_rel_path' => 'vyhledat-zbozi'],
             ['mid' => '17000000','pz' => '0','pid' => '17000000','tree_id' => '1102000', 'tree_id_division' => '17', 'tree_title' => 'Akční ceny nářadí, akce nářadí', 'tree_name' => 'AKČNÍ CENY, AKCE', 'tree_desc' => 'Akční ceny nářadí, akce nářadí', 'tree_abs_path' => 'akcni-ceny-naradi/', 'tree_rel_path' => 'akcni-ceny-naradi', 'tree_body' => 'NULL'],
             ['mid' => '19000000','pz' => '0','pid' => '19000000','tree_id' => '1102000', 'tree_id_division' => '19', 'tree_title' => 'Novinky', 'tree_name' => 'NOVINKY', 'tree_desc' => 'Novinky', 'tree_abs_path' => 'novinky/', 'tree_rel_path' => 'novinky', 'tree_body' => NULL],
             ['mid' => '21000000','pz' => '0','pid' => '21000000','tree_id' => '1110000', 'tree_id_division' => '21', 'tree_title' => 'Akumulátorové nářadí', 'tree_name' => 'Akumulátorové nářadí', 'tree_desc' => 'Akumulátorové nářadí', 'tree_abs_path' => 'akumulatorove-naradi/', 'tree_rel_path' => 'akumulatorove-naradi', 'tree_body' => NULL],
@@ -21,7 +21,7 @@ class TreeTableSeeder extends Seeder
             ['mid' => '29000000','pz' => '0','pid' => '29000000','tree_id' => '1110000', 'tree_id_division' => '29', 'tree_title' => 'Dílenské vybavení', 'tree_name' => 'Dílenské vybavení', 'tree_desc' => 'Dílenské vybavení', 'tree_abs_path' => 'dilenske-vybaveni/', 'tree_rel_path' => 'dilenske-vybaveni', 'tree_body' => NULL],
             ['mid' => '30000000','pz' => '0','pid' => '30000000','tree_id' => '1110000', 'tree_id_division' => '30', 'tree_title' => 'Stavební mechanizace', 'tree_name' => 'Stavební mechanizace', 'tree_desc' => 'Stavební mechanizace', 'tree_abs_path' => 'stavebni-mechanizace/', 'tree_rel_path' => 'stavebni-mechanizace', 'tree_body' => NULL],
             ['mid' => '32000000','pz' => '0','pid' => '32000000','tree_id' => '1110000', 'tree_id_division' => '32', 'tree_title' => 'Příslušenství', 'tree_name' => 'Příslušenství', 'tree_desc' => 'Příslušenství', 'tree_abs_path' => 'príslusenstvi/', 'tree_rel_path' => 'príslusenstvi', 'tree_body' => NULL],
-            ['mid' => '91000000','pz' => '0','pid' => '90000000','tree_id' => '0000000', 'tree_id_division' => '91', 'tree_title' => 'Nákupní košík', 'tree_name' => 'Nákupní košík', 'tree_desc' => 'Vyhledávání zboží', 'tree_abs_path' => 'nakupni-kosik/', 'tree_rel_path' => 'nakupni-kosik']
+            ['mid' => '91000000','pz' => '0','pid' => '91000000','tree_id' => '9000000', 'tree_id_division' => '91', 'tree_title' => 'Nákupní košík', 'tree_name' => 'Nákupní košík', 'tree_desc' => 'Nákupní košík', 'tree_abs_path' => 'nakupni-kosik/', 'tree_rel_path' => 'nakupni-kosik']
         ];
 
         $tree = [

@@ -75,7 +75,7 @@ class AdminRunnerTableSeeder extends Seeder
         DB::table('runner')->insert([
             'id'      => 402,
             'autorun' => 0,
-            'class'   => 'Authority\Runner\Task\Recalculate\Tree'
+            'class'   => 'Authority\Runner\Task\Recalculate\TreeRecalculate'
         ]);
 
         DB::table('runner')->insert([
