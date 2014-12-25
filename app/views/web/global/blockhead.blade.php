@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +22,8 @@
     <link rel="stylesheet" href="/web/components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/web/components/colorbox/colorbox.css">
-    
     <link rel="stylesheet" href="/web/my/layout.css">
     <link rel="stylesheet" href="/web/my/tree.css">
     <link rel="stylesheet" href="/web/my/product.css">
     <link rel="stylesheet" href="/web/my/kosik.css">
-
 </head>

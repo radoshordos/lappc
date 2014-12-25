@@ -21,7 +21,6 @@
                     @else
                     @endif
                 </a>
-
                 <p>{{ $vpa->getProdDesc() }}</p>
             </li>
         @endforeach

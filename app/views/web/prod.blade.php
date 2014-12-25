@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<!--[if IE 9]>
-<html class="lt-ie10" lang="cs"> <![endif]-->
-<html class="no-js" lang="cs">
-
 @include('web.global.blockhead')
 <body>
-<div id="container" style="border: 1px solid #666">
+<div id="container">
     @include('web.global.top')
 
     <?php $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($view_prod_actual); ?>

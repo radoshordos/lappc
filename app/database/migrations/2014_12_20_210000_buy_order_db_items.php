@@ -10,13 +10,13 @@ class BuyOrderDbItems extends Migration
 	{
 		Schema::create('buy_order_db_items', function (Blueprint $table) {
 			$table->increments('id')->unsigned();
-			$table->char('sid', 40);
+			$table->char('sid', 40)->nullable();
 			$table->integer('item_id')->unsigned()->nullable();
 			$table->integer('order_id')->unsigned()->nullable();
 			$table->boolean('order_group')->default(0);
 			$table->tinyInteger('prod_forex_id')->unsigned();
 			$table->tinyInteger('prod_mode_id')->unsigned();
-			$table->string('prod_fullname', 255);
+			$table->string('prod_fullname', 255)->nullable();
 			$table->integer('item_count')->unsigned();
 			$table->decimal('item_price', 9, 2)->unsigned();
 			$table->timestamps();

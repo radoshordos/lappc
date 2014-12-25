@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('GrabFunctionSeeder');
 		$this->call('ColumnDbSeeder');
 		$this->call('BuyStateSeeder');
+		$this->call('BuyOrderDbItemsSeeder');
 
 		$this->call('DevTableSeeder');
 		$this->call('TreeTableSeeder');

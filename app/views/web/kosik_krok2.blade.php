@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<!--[if IE 9]>
-<html class="lt-ie10" lang="cs"> <![endif]-->
-<html class="no-js" lang="cs">
-
 @include('web.global.blockhead')
 <body>
-<div id="container" style="border: 1px solid #666">
+<div id="container">
     @include('web.global.top')
     <div id="menubox" class="row">
         <h1>Nákupní košík 2 je tu</h1>
@@ -27,8 +22,6 @@
         </div>
         {{ Form::close() }}
     </div>
-
-</div>
 </div>
 @include('web.global.scripts')
 </body>

@@ -115,7 +115,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.stats.recordvisitors.index') }}">Hledané produkty</a></li>
                         <li><a href="{{ URL::route('adm.stats.prodgraph.index') }}">Produky v e-shopu</a></li>
+                        <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.stats.marketsell.index') }}">Prodeje v obchodu</a></li>
+                        <li><a href="{{ URL::route('adm.stats.orderitems.index') }}">Zakoupené zboží</a></li>
                     </ul>
                 </li>
                 @endif

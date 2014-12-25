@@ -67,16 +67,16 @@ $(function() {
 
         var hash = [];
         if (store == true) {
-            hash.push('store-true');
+            hash.push('store=true');
         }
         if (action == true) {
-            hash.push('action-true');
+            hash.push('action=true');
         }
         if (sort) {
-            hash.push("sort-" + sort);
+            hash.push("sort=" + sort);
         }
 
-        location.hash = hash.join("-");
+        location.hash = hash.join("&");
         var data = {store: store, action: action, tree: tree, dev: dev, sort: sort, term: term };
 
         $.ajax({
