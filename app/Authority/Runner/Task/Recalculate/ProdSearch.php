@@ -4,6 +4,8 @@ use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\Items;
+use Authority\Eloquent\ViewProd;
+use Authority\Mapper\ViewProdMapper;
 
 class ProdSearch extends TaskMessage implements iRun
 {
@@ -17,6 +19,7 @@ class ProdSearch extends TaskMessage implements iRun
 	{
 		$this->searchInAlias();
 		$this->searchInItemsCode();
+		$this->searchInPrice();
 	}
 
 	public function searchInAlias()
@@ -30,22 +33,37 @@ class ProdSearch extends TaskMessage implements iRun
 		$this->addMessage("Provedena aktualizace vyhledávacích textů");
 	}
 
-
 	public function searchInItemsCode()
 	{
-		$prod_all = Prod::select(['id'])->limit(50)->get();
-		foreach ($prod_all as $pid) {
-			$ic = Items::select('code_prod')->where('prod_id', '=', $pid->id)->whereRaw('LENGTH(code_prod)>0')->lists('code_prod');
-			if (!empty($ic)) {
-				$prod = Prod::find($pid->id);
-				$prod->search_codes = implode('|', $ic);
-				$prod->save();
+		$prod_all = Prod::select(['id'])->get();
+		if (!empty($prod_all)) {
+			foreach ($prod_all as $pid) {
+				$ic = Items::select('code_prod')->where('prod_id', '=', $pid->id)->whereRaw('LENGTH(code_prod)>0')->lists('code_prod');
+				if (!empty($ic)) {
+					$prod = Prod::find($pid->id);
+					$prod->search_codes = implode('|', $ic);
+					$prod->save();
+				}
 			}
 		}
 		$this->addMessage("Provedena aktualizace vyhledávacích kódů položek");
 	}
 
-	public function friendlyString($source)
+	public function searchInPrice()
+	{
+		$prod_all = ViewProd::all();
+		if (!empty($prod_all)) {
+			foreach ($prod_all as $pid) {
+				$vpm = (new ViewProdMapper)->fetchRow($pid);
+				$prod = Prod::find($vpm->getProdId());
+				$prod->search_price = $vpm->getPrice();
+				$prod->save();
+			}
+		}
+		$this->addMessage("Provedena aktualizace cen pro setřídění");
+	}
+
+	private function friendlyString($source)
 	{
 		$chars = ['"' => '', '+' => '', ' ' => '', '(' => '', ')' => '', '#' => '', ':' => '', ',' => '', '\'' => '', '.' => '', '\'' => '', '-' => ''];
 		$url = str_replace(array_keys($chars), array_values($chars), trim(strtolower($source)));

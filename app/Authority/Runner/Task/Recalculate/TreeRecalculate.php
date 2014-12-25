@@ -16,7 +16,7 @@ class TreeRecalculate extends TaskMessage implements iRun
 
 	public function run()
 	{
-//        $this->recalculateTreeWithProd();
+		$this->recalculateTreeWithProd();
 		$this->recalculateTreeWithoutProd();
 	}
 
@@ -29,15 +29,15 @@ class TreeRecalculate extends TaskMessage implements iRun
 
 		if (!empty($tree)) {
 			foreach ($tree as $row) {
-				$count = TreeDev::where('dev_id','=',1)->where('tree_id','=',$row->tree_id)->count();
+				$count = TreeDev::where('dev_id', '=', 1)->where('tree_id', '=', $row->tree_id)->count();
 				if ($count === 0) {
 					TreeDev::create([
-						'tree_id' => $row->tree_id,
-						'dev_id' => 1,
+						'tree_id'     => $row->tree_id,
+						'dev_id'      => 1,
 						'dir_visible' => 1
 					]);
 				}
-            }
+			}
 		}
 	}
 
