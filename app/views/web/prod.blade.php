@@ -16,7 +16,7 @@
             <div id="product" class="row">
                 <div class="medium-6 columns">
                     <a class="gallery th" role="button" aria-label="Thumbnail" href="{{ $vpa->getProdImgBigWithDir() }}">
-                        <img aria-hidden="true" src="{{ $vpa->getProdImgNormalWithDir() }}"/>
+                        <img aria-hidden="true" src="{{ $vpa->getProdImgNormalWithDir() }}" alt="{{ $vpa->getProdName() }}"/>
                     </a>
                 </div>
                 <div class="medium-12 columns">

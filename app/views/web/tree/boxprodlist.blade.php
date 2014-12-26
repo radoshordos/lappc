@@ -10,7 +10,7 @@
                     @if ($vpa->getProdModeId() == 4 && !empty($vpa->getAkceMinitextName()))
                         <span class="akce">{{ $vpa->getAkceMinitextName() }}</span>
                     @endif
-                    <img src="{{ $vpa->getProdImgNormalWithDir() }}" width="240" height="240">
+                    <img src="{{ $vpa->getProdImgNormalWithDir() }}" alt="{{ $vpa->getProdName() }}" width="240" height="240">
                     @if ($vpa->getProdModeId() > 1)
                         @if ($vpa->getProdStoreroom() > 0)
                             <span class="success label">{{ $vpa->getProdStoreroom() }} ks skladem</span>
