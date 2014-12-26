@@ -14,6 +14,7 @@ class StatsOrderItems extends \BaseController
 				->leftJoin('items', 'buy_order_db_items.item_id', '=', 'items.id')
 				->leftJoin('prod', 'items.prod_id', '=', 'prod.id')
 				->whereNotNull('prod.id')
+				->whereNotNull('buy_order_db_items.order_id')
 				->groupBy('buy_order_db_items.item_id')
 				->orderByRaw("count_item DESC, prod.name ASC");
 

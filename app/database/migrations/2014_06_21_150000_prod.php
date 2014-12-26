@@ -31,6 +31,7 @@ class Prod extends Migration
             $table->string('search_alias', '64')->unique()->nullable();
             $table->string('search_codes', '255')->unique()->nullable();
             $table->decimal('search_price', 9, 2)->default(9999999);
+            $table->integer('search_sell')->unsigned()->default(0);
             $table->string('img_big', '160');
             $table->string('img_normal', '160');
             $table->tinyInteger('picture_count')->unsigned()->default(0);
