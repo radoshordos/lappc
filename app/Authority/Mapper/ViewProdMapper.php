@@ -29,6 +29,7 @@ class ViewProdMapper {
 		$entry->setProdIcAvailabilityDiffVisible($row->prod_ic_availability_diff_visible);
 		$entry->setProdSearchAlias($row->prod_search_alias);
 		$entry->setProdSearchCodes($row->prod_search_codes);
+		$entry->setProdSearchSell($row->prod_search_sell);
 		$entry->setProdIcAvailabilityDiffVisible($row->prod_ic_availability_diff_visible);
 		$entry->setProdImgNormal($row->prod_img_normal);
 		$entry->setProdImgBig($row->prod_img_big);

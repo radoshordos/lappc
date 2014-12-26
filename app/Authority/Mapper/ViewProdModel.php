@@ -19,6 +19,7 @@ abstract class ViewProdModel
 	private $prod_ic_availability_diff_visible;
 	private $prod_search_alias;
 	private $prod_search_codes;
+	private $prod_search_sell;
 	private $prod_img_normal;
 	private $prod_img_big;
 	private $prod_created_at;
@@ -309,6 +310,22 @@ abstract class ViewProdModel
 	public function setProdSearchCodes($prod_search_codes)
 	{
 		$this->prod_search_codes = $prod_search_codes;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getProdSearchSell()
+	{
+		return $this->prod_search_sell;
+	}
+
+	/**
+	 * @param mixed $prod_search_sell
+	 */
+	public function setProdSearchSell($prod_search_sell)
+	{
+		$this->prod_search_sell = $prod_search_sell;
 	}
 
 	/**
@@ -614,5 +631,6 @@ abstract class ViewProdModel
 	{
 		$this->akce_minitext_name = $akce_minitext_name;
 	}
+
 
 }
