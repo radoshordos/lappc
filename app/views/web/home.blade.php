@@ -1,6 +1,6 @@
 @include('web.global.blockhead')
 <body>
-<div id="container" style="border: 1px solid #666">
+<div id="container">
     @include('web.global.top')
 
     <div class="row">
@@ -12,6 +12,7 @@
         </div>
     </div>
 </div>
+@include('web.global.footer')
 @include('web.global.scripts')
 </body>
 </html>

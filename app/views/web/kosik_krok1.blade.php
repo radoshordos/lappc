@@ -32,6 +32,7 @@
         {{ Form::close() }}
     </div>
 </div>
+@include('web.global.footer')
 @include('web.global.scripts')
 </body>
 </html>
