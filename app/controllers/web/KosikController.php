@@ -32,8 +32,14 @@ class KosikController extends Controller
 			return View::make('web.kosik_krok2', [
 				'sid'                => $this->sid,
 				'term'               => Input::get('term'),
+				'cena_celkem'        => 0, // Zero OK
 				'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 				'view_tree_actual'   => $view_tree_actual,
+				'weight_sum'         => BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
+					->join('items', 'buy_order_db_items.item_id', '=', 'items.id')
+					->join('prod', 'items.prod_id', '=', 'prod.id')
+					->where('sid', '=', $this->sid)
+					->pluck('weight_sum'),
 				'customer'           => BuyOrderDbCustomer::selectRaw(
 					implode(',', [
 						"AES_DECRYPT(customer_fullname,'" . self::SIFRA . "') AS fullname",
@@ -61,6 +67,7 @@ class KosikController extends Controller
 			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
 			'view_tree_actual'   => $view_tree_actual,
 			'term'               => Input::get('term'),
+			'cena_celkem'        => 0, // Zero OK
 			'weight_sum'         => BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
 				->join('items', 'buy_order_db_items.item_id', '=', 'items.id')
 				->join('prod', 'items.prod_id', '=', 'prod.id')

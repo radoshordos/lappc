@@ -20,14 +20,11 @@
                 <div class="row">
                     <div class="large-6 columns">
                         @if (!empty($item_new))
-                            <a href="{{ '/' . $item_new->items->viewProd->tree_absolute .'/'. $item_new->items->viewProd->prod_alias }}" class="button info">Zpět k produktu</a>
+                            <a href="{{ '/' . $item_new->items->viewProd->tree_absolute .'/'. $item_new->items->viewProd->prod_alias }}" class="button info">&lArr; Zpět k produktu</a>
                         @endif
                     </div>
-                    <div class="large-12 columns text-right">{{ Form::submit('Zadej kontakt',['name'=> 'zadej-kontakt','class' => 'button success']); }}</div>
+                    <div class="large-12 columns text-right">{{ Form::submit('&rArr; Zadání kontaktních údajů',['name'=> 'zadej-kontakt','class' => 'button success']); }}</div>
                 </div>
-
-
-
             @else
                 <h2>Je tu prázdno</h2>
             @endif
