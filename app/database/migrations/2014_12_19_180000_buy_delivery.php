@@ -10,7 +10,7 @@ class BuyDelivery extends Migration
 	{
 		Schema::create('buy_delivery', function (Blueprint $table) {
 			$table->tinyInteger('id')->unsigned()->primary();
-			$table->boolean('visible', 0);
+			$table->boolean('active', 0);
 			$table->string('name', '32');
 			$table->string('alias', '32')->unique();
 			$table->decimal('price', 4, 2);

@@ -10,9 +10,9 @@ class BuyTransport extends Migration
 	{
 		Schema::create('buy_transport', function (Blueprint $table) {
 			$table->tinyInteger('id')->unsigned()->primary();
+			$table->tinyInteger('transport_type_id')->unsigned();
 			$table->boolean('active')->default(1);
 			$table->string('alias',32)->uniqie();
-			$table->tinyInteger('transport_type_id')->unsigned();
 			$table->string('name', '64')->unique();
 
 			$table->engine = 'InnoDB';

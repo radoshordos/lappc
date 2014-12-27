@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('ColumnDbSeeder');
 		$this->call('BuyStateSeeder');
 		$this->call('BuyTransportSeeder');
+		$this->call('BuyPaymentSeeder');
 		$this->call('BuyOrderDbItemsSeeder');
 
 		$this->call('DevTableSeeder');
