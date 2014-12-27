@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('BuyPaymentTypeSeeder');
 		$this->call('BuyTransportTypeSeeder');
 
+
 		// OSTATNI
 		$this->call('FeedServiceTableSeeder');
 		$this->call('PpcConfigSeeder');
@@ -49,6 +50,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('GrabFunctionSeeder');
 		$this->call('ColumnDbSeeder');
 		$this->call('BuyStateSeeder');
+		$this->call('BuyTransportSeeder');
 		$this->call('BuyOrderDbItemsSeeder');
 
 		$this->call('DevTableSeeder');

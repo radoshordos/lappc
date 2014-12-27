@@ -4,6 +4,7 @@ use Authority\Eloquent\Items;
 use Authority\Eloquent\BuyOrderDb;
 use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyOrderDbCustomer;
+use Authority\Eloquent\BuyTransport;
 use Authority\Eloquent\ViewTree;
 
 class KosikController extends Controller
@@ -65,6 +66,7 @@ class KosikController extends Controller
 			'sid'                => $this->sid,
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
+			'buy_transport'      => BuyTransport::where('active', '=', 1)->get(),
 			'view_tree_actual'   => $view_tree_actual,
 			'term'               => Input::get('term'),
 			'cena_celkem'        => 0, // Zero OK
