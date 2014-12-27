@@ -1,3 +1,4 @@
+{{ var_dump($customer); }}
 <fieldset>
     <legend>Kontaktní­ informace - fakturační­ adresa</legend>
     <div class="row">

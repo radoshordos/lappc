@@ -25,6 +25,9 @@
                     </div>
                     <div class="large-12 columns text-right">{{ Form::submit('Zadej kontakt',['name'=> 'zadej-kontakt','class' => 'button success']); }}</div>
                 </div>
+
+
+
             @else
                 <h2>Je tu prázdno</h2>
             @endif

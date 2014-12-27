@@ -45,3 +45,4 @@
     </tr>
     </tfoot>
 </table>
+<p>Orientační váha: {{ number_format(round($weight_sum,1), 2, ',', ' ') }} Kg</p>

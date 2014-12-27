@@ -1,6 +1,6 @@
 @include('web.global.blockhead')
 <body>
-<div id="container">
+<div id="container" >
     @include('web.global.top')
 
     <?php $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($view_prod_actual); ?>

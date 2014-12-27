@@ -1,6 +1,7 @@
 <?php
 
 use Authority\Eloquent\Items;
+use Authority\Eloquent\BuyOrderDb;
 use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyOrderDbCustomer;
 use Authority\Eloquent\ViewTree;
@@ -45,12 +46,26 @@ class KosikController extends Controller
 			]);
 		}
 
+		if (Input::get('krok') == 'dokonceni-objednavky') {
+
+			Session::regenerateToken();
+
+			return View::make('web.kosik_complete', [
+				'term' => Input::get('term')
+			]);
+		}
+
 		return View::make('web.kosik_krok1', [
 			'sid'                => $this->sid,
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
 			'view_tree_actual'   => $view_tree_actual,
-			'term'               => Input::get('term')
+			'term'               => Input::get('term'),
+			'weight_sum'         => BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
+				->join('items', 'buy_order_db_items.item_id', '=', 'items.id')
+				->join('prod', 'items.prod_id', '=', 'prod.id')
+				->where('sid', '=', $this->sid)
+				->pluck('weight_sum')
 		]);
 	}
 
@@ -72,18 +87,39 @@ class KosikController extends Controller
 					'customer_email'     => \DB::raw("AES_ENCRYPT('" . Input::get('email') . "','" . self::SIFRA . "')"),
 					'customer_street'    => \DB::raw("AES_ENCRYPT('" . Input::get('street') . "','" . self::SIFRA . "')"),
 					'customer_city'      => \DB::raw("AES_ENCRYPT('" . Input::get('city') . "','" . self::SIFRA . "')"),
-					'customer_post_code' => \DB::raw("AES_ENCRYPT('" . Input::get('postcode') . "','" . self::SIFRA . "')")
+					'customer_post_code' => \DB::raw("AES_ENCRYPT('" . Input::get('postcode') . "','" . self::SIFRA . "')"),
+					'customer_state'     => \DB::raw("AES_ENCRYPT('" . Input::get('state') . "','" . self::SIFRA . "')"),
+					'customer_company'   => \DB::raw("AES_ENCRYPT('" . Input::get('company') . "','" . self::SIFRA . "')"),
+					'customer_ic'        => \DB::raw("AES_ENCRYPT('" . Input::get('ic') . "','" . self::SIFRA . "')"),
+					'customer_dic'       => \DB::raw("AES_ENCRYPT('" . Input::get('dic') . "','" . self::SIFRA . "')"),
+					'delivery_fullname'  => \DB::raw("AES_ENCRYPT('" . Input::get('delivery_fullname') . "','" . self::SIFRA . "')"),
+					'delivery_street'    => \DB::raw("AES_ENCRYPT('" . Input::get('delivery_street') . "','" . self::SIFRA . "')"),
+					'delivery_city'      => \DB::raw("AES_ENCRYPT('" . Input::get('delivery_city') . "','" . self::SIFRA . "')"),
+					'delivery_post_code' => \DB::raw("AES_ENCRYPT('" . Input::get('delivery_post_code') . "','" . self::SIFRA . "')"),
+					'delivery_state'     => \DB::raw("AES_ENCRYPT('" . Input::get('delivery_state') . "','" . self::SIFRA . "')"),
+					'delivery_company'   => \DB::raw("AES_ENCRYPT('" . Input::get('delivery_company') . "','" . self::SIFRA . "')"),
+					'note'               => \DB::raw("AES_ENCRYPT('" . Input::get('note') . "','" . self::SIFRA . "')")
 				]);
 			}
+
+			$arh = apache_request_headers();
+
+			BuyOrderDb::create([
+				'sid'         => $this->sid,
+				"remote_addr" => Request::getClientIp(),
+				"netbios"     => gethostbyaddr(Request::getClientIp()),
+				"browser"     => substr(strip_tags($arh["User-Agent"]), 0, 510),
+			]);
+
+			return Redirect::action('KosikController@index', ['krok' => 'dokonceni-objednavky']);
 		}
 
 		if (Input::has('do-kosiku') && is_array(Input::get('do-kosiku')) === true) {
 
-			$sid = Session::getId();
 			foreach (array_keys(Input::get('do-kosiku')) as $key) {
 
 				$items = Items::find($key);
-				if (!empty($items) && !empty($sid)) {
+				if (!empty($items) && !empty($this->sid)) {
 
 					$count = BuyOrderDbItems::where('sid', '=', $this->sid)->where('item_id', '=', $items->id)->count();
 					if (intval($count) < 1) {
@@ -103,7 +139,6 @@ class KosikController extends Controller
 		}
 
 		if (Input::has('zadej-kontakt')) {
-
 			if (!empty(Input::get('item_count'))) {
 				foreach (Input::get('item_count') as $key => $val) {
 					$item = BuyOrderDbItems::where('id', '=', $key)->where('sid', '=', $this->sid)->first();
@@ -111,9 +146,9 @@ class KosikController extends Controller
 					$item->save();
 				}
 			}
-
 			return Redirect::action('KosikController@index', ['krok' => 'zadani-kontaktnich-udaju']);
 		}
+
 		return Redirect::action('KosikController@index');
 	}
 }

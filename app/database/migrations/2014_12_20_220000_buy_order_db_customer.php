@@ -3,15 +3,19 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BuyOrderDbCustomer extends Migration {
+class BuyOrderDbCustomer extends Migration
+{
 
 	public function up()
 	{
 		Schema::create('buy_order_db_customer', function (Blueprint $table) {
 
 			$table->increments('id')->unsigned();
+			$table->char('sid', 40);
+
 			$table->integer('order_db_id')->unsigned()->nullable();
-			$table->char('sid',40);
+			$table->tinyInteger('delivery_id')->unsigned();
+			$table->tinyInteger('payment_id')->unsigned();
 
 			$table->binary('customer_fullname')->nullable();
 			$table->binary('customer_phone')->nullable();
@@ -30,10 +34,15 @@ class BuyOrderDbCustomer extends Migration {
 			$table->binary('delivery_post_code')->nullable();
 			$table->binary('delivery_state')->nullable();
 			$table->binary('delivery_company')->nullable();
+
+			$table->binary('note')->nullable();
+
 			$table->timestamps();
 
 			$table->engine = 'InnoDB';
 			$table->foreign('order_db_id')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('delivery_id')->references('id')->on('buy_delivery')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('payment_id')->references('id')->on('buy_payment')->onUpdate('cascade')->onDelete('no action');
 		});
 	}
 
