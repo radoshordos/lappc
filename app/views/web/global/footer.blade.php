@@ -11,7 +11,8 @@
                         <a href="#">Link 1</a>
                     </li>
                     <li>
-                        <a href="#">Link 2</a>
+                        <i class="fa fa-cc-visa fa-3x"></i><BR />
+                        <i class="fa fa-cc-mastercard fa-3x"></i>
                     </li>
                 </ul>
             </div>
