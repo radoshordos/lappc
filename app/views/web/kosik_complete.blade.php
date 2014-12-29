@@ -3,7 +3,7 @@
 <div id="container">
     @include('web.global.top')
 
-    <div id="menubox" class="row">
+    <div id="buy" class="row">
 
         <h1>Koupeno</h1>
 

@@ -10,10 +10,6 @@
         <div id="part-right" class="medium-14 columns">
 
 
-
-
-
-
         </div>
     </div>
 </div>

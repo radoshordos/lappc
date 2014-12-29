@@ -15,7 +15,7 @@ class ProdTableSeeder extends Seeder
 
 			$tree = $this->getTree($row['tree_id']);
 
-			if ($tree > 0) {
+			if ($row['id'] % 3 == 0 && $tree > 0) {
 
 				DB::table('prod')->insert([
 					'id'            => $row['id'],

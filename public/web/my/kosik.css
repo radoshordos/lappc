@@ -34,3 +34,8 @@ table#buy-table a.delete-alert {
 ul#buy-flow {
     float: left;
 }
+
+
+#buy .button {
+    font-weight: bold;
+}

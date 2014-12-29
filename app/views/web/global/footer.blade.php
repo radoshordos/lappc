@@ -5,18 +5,22 @@
             <div class="large-6 columns">
                 <p>© Guru nářadí</p>
             </div>
-            <div class="large-6 columns">
+            <div class="large-4 columns">
                 <ul class="inline-list right">
                     <li>
                         <a href="#">Link 1</a>
                     </li>
+                </ul>
+            </div>
+            <div class="large-4 columns">
+                <ul class="inline-list right">
                     <li>
-                        <i class="fa fa-cc-visa fa-3x"></i><BR />
-                        <i class="fa fa-cc-mastercard fa-3x"></i>
+                        <i class="fa fa-cc-visa fa-4x"></i>
+                        <i class="fa fa-cc-mastercard fa-4x"></i>
                     </li>
                 </ul>
             </div>
-            <div class="large-6 columns text-right">
+            <div class="large-4 columns text-right">
                 <ul class="vcard text-left">
                     <li class="fn">Nářadí Doležalová s.r.o</li>
                     <li class="street-address">Jiráskova 2222</li>

@@ -1,31 +1,20 @@
-
 <fieldset>
     <legend>PLATBA</legend>
-    <div class="row">
-        <div class="large-17 columns small-centered">
+    @if (!empty($buy_payment))
+        @foreach($buy_payment as $bp)
             <div class="row">
-                <div class="small-1 columns"><input id="karta" type="radio" autocomplete="off" name="paymentId" value="karta" required="required"></div>
-                <div class="small-8 columns"><label for="karta">Platba kartou předem</label></div>
-                <div class="small-4 columns">ZDARMA</div>
+                <div class="large-17 columns small-centered">
+                    <div class="row">
+                        @if ($bp->id == $customer->payment_id)
+                            <div class="small-1 columns"><input id="{{ $bp->alias }}" type="radio" required="required" autocomplete="off" name="payment_id" value="{{ $bp->id }}" checked="checked"></div>
+                        @else
+                            <div class="small-1 columns"><input id="{{ $bp->alias }}" type="radio" required="required" autocomplete="off" name="payment_id" value="{{ $bp->id }}"></div>
+                        @endif
+                        <div class="small-8 columns"><label for="{{ $bp->alias }}">{{ $bp->name }}</label></div>
+                        <div class="small-4 columns">ZDARMA</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-17 columns small-centered">
-            <div class="row">
-                <div class="small-1 columns"><input id="online" type="radio" autocomplete="off" name="paymentId" value="online"></div>
-                <div class="small-8 columns"><label for="online">Online platba</label></div>
-                <div class="small-4 columns">ZDARMA</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-17 columns small-centered">
-            <div class="row">
-                <div class="small-1 columns"><input id="bank-transfer" type="radio" autocomplete="off" name="paymentId" value="bank-transfer"></div>
-                <div class="small-8 columns"><label for="bank-transfer">Bankovní převod</label></div>
-                <div class="small-4 columns">ZDARMA</div>
-            </div>
-        </div>
-    </div>
+        @endforeach
+    @endif
 </fieldset>
