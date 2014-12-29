@@ -31,7 +31,7 @@ class SyncDb extends Migration
             $table->unique(['purpose', 'code_ean']);
 
             $table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('record_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('record_id')->references('id')->on('record_sync_import')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
         });
     }

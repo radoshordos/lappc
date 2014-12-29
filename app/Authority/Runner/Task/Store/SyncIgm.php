@@ -41,6 +41,13 @@ class SyncIgm extends TaskMessage implements iSync
         $xml = (array)simplexml_load_string($file);
         $record_id = strtotime('now');
 
+        RecordSyncImport::create([
+            'id'           => $record_id,
+            'purpose'      => 'autosync',
+            'name'         => __CLASS__,
+            'created_at'   => date("Y-m-d H:i:s", $record_id)
+        ]);
+
         foreach ((array)$xml as $item) {
             foreach ((array)$item as $row) {
 
@@ -55,13 +62,9 @@ class SyncIgm extends TaskMessage implements iSync
             }
         }
 
-        RecordSyncImport::create([
-            'id'           => $record_id,
-            'purpose'      => 'autosync',
-            'item_counter' => $suc,
-            'name'         => __CLASS__,
-            'created_at'   => date("Y-m-d H:i:s", $record_id)
-        ]);
+        $rsi = RecordSyncImport::find($record_id);
+        $rsi->item_counter = $suc;
+        $rsi->save();
 
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");

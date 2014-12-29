@@ -36,6 +36,13 @@ class SyncGarland extends TaskMessage implements iSync
         $xml = (array)simplexml_load_file($this->getSyncUploadDirectory() . $this->getFile());
         $record_id = strtotime('now');
 
+        RecordSyncImport::create([
+            'id'           => $record_id,
+            'purpose'      => 'autosync',
+            'name'         => __CLASS__,
+            'created_at'   => date("Y-m-d H:i:s", $record_id)
+        ]);
+
         foreach ($xml['ARTIKL'] as $row) {
             $all++;
             $garland = new RunGarland((array)$row, $record_id);
@@ -46,13 +53,9 @@ class SyncGarland extends TaskMessage implements iSync
             }
         }
 
-        RecordSyncImport::create([
-            'id'           => $record_id,
-            'purpose'      => 'autosync',
-            'item_counter' => $suc,
-            'name'         => __CLASS__,
-            'created_at'   => date("Y-m-d H:i:s", $record_id)
-        ]);
+        $rsi = RecordSyncImport::find($record_id);
+        $rsi->item_counter = $suc;
+        $rsi->save();
 
         $this->addComment("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addComment("Zpracováno záznamů : <b>" . $suc . "</b>");

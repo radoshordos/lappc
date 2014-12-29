@@ -37,6 +37,13 @@ class SyncBow extends TaskMessage implements iSync
         $xml = simplexml_load_file($this->getSyncUploadDirectory() . "/export.xml");
         $record_id = strtotime('now');
 
+        RecordSyncImport::create([
+            'id'           => $record_id,
+            'purpose'      => 'autosync',
+            'name'         => __CLASS__,
+            'created_at'   => date("Y-m-d H:i:s", $record_id)
+        ]);
+
         foreach ($xml->SHOP as $item) {
             foreach ($item as $row) {
                 $all++;
@@ -48,13 +55,9 @@ class SyncBow extends TaskMessage implements iSync
             }
         }
 
-        RecordSyncImport::create([
-            'id'           => $record_id,
-            'purpose'      => 'autosync',
-            'item_counter' => $suc,
-            'name'         => __CLASS__,
-            'created_at'   => date("Y-m-d H:i:s", $record_id)
-        ]);
+        $rsi = RecordSyncImport::find($record_id);
+        $rsi->item_counter = $suc;
+        $rsi->save();
 
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
