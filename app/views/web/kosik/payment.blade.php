@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="large-17 columns small-centered">
                     <div class="row">
-                        @if ($bp->id == $customer->payment_id)
+                        @if (!empty($customer) && $bp->id == $customer->payment_id)
                             <div class="small-1 columns"><input id="{{ $bp->alias }}" type="radio" required="required" autocomplete="off" name="payment_id" value="{{ $bp->id }}" checked="checked"></div>
                         @else
                             <div class="small-1 columns"><input id="{{ $bp->alias }}" type="radio" required="required" autocomplete="off" name="payment_id" value="{{ $bp->id }}"></div>

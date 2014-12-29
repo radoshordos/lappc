@@ -11,7 +11,7 @@ class BuyOrderDbCustomer extends Migration
 		Schema::create('buy_order_db_customer', function (Blueprint $table) {
 
 			$table->increments('id')->unsigned();
-			$table->char('sid', 40);
+			$table->char('sid', 40)->unique();
 
 			$table->integer('order_db_id')->unsigned()->nullable();
 			$table->tinyInteger('delivery_id')->unsigned();

@@ -5,7 +5,6 @@
     <div id="buy" class="row">
         <h1>Nákupní košík 3 je tu</h1>
 
-
         {{ Form::open(['action' => 'KosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
         <div class="large-18 large-centered columns">
             <div class="row">

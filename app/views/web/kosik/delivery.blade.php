@@ -4,7 +4,7 @@
         @foreach($buy_transport as $bt)
             <div class="row">
                 <div class="large-17 columns small-centered">
-                    @if ($bt->id == $customer->delivery_id)
+                    @if (!empty($customer) && $bt->id == $customer->delivery_id)
                         <input id="{{ $bt->alias }}" type="radio" required="required" autocomplete="off" name="delivery_id" value="{{ $bt->id }}" checked="checked">
                     @else
                         <input id="{{ $bt->alias }}" type="radio" required="required" autocomplete="off" name="delivery_id" value="{{ $bt->id }}">

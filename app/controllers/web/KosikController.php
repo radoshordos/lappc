@@ -84,6 +84,8 @@ class KosikController extends Controller
 		if (Input::get('krok') == 'dokonceni-objednavky') {
 
 			Session::regenerateToken();
+			Session::regenerate(true);
+
 			return View::make('web.kosik_complete', [
 				'term' => Input::get('term')
 			]);
@@ -105,11 +107,6 @@ class KosikController extends Controller
 				->where('sid', '=', $this->sid)
 				->pluck('weight_sum')
 		]);
-	}
-
-	public function kontakt()
-	{
-		var_dump(Input::all());
 	}
 
 	public function store()
