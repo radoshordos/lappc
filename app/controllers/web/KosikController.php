@@ -32,6 +32,7 @@ class KosikController extends Controller
 		if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
 
 			return View::make('web.kosik_krok2', [
+				'krok'               => 2,
 				'sid'                => $this->sid,
 				'term'               => Input::get('term'),
 				'cena_celkem'        => 0, // Zero OK
@@ -58,6 +59,7 @@ class KosikController extends Controller
 
 		if (Input::get('krok') == 'souhrn-objednavky') {
 			return View::make('web.kosik_krok3', [
+				'krok'               => 3,
 				'sid'                => $this->sid,
 				'term'               => Input::get('term'),
 				'cena_celkem'        => 0, // Zero OK,
@@ -92,6 +94,7 @@ class KosikController extends Controller
 		}
 
 		return View::make('web.kosik_krok1', [
+			'krok'               => 1,
 			'sid'                => $this->sid,
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
