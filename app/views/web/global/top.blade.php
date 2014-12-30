@@ -10,7 +10,7 @@
                             <li><a href="#">Nářadí Doležalova s.r.o.</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="/kontakt">Kontakt</a></li>
                     <li><a href="#">Přihlásit se</a></li>
                     <li><a href="#">Košík</a></li>
                 </ul>

@@ -9,17 +9,36 @@ use Authority\Eloquent\TreeDev;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 use Authority\Web\Query\AjaxTree;
-use Authority\Mapper\ViewProdMapper;
-use Authority\Mapper\ViewProdWorker;
 
 
 class EshopController extends Controller
 {
+	private $view_tree_array;
+	private $term;
+
+	public function __construct()
+	{
+		$this->view_tree_array = ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get();
+		$this->term = Input::get('term');
+	}
+
 	protected function setupLayout()
 	{
 		if (!is_null($this->layout)) {
 			$this->layout = View::make($this->layout);
 		}
+	}
+
+	protected function isText($urlPart)
+	{
+		if (in_array($urlPart, ['kontakt'])) {
+
+			return View::make('web.text', [
+				'view_tree_array' => $this->view_tree_array,
+				'term'            => $this->term
+			]);
+		}
+		return NULL;
 	}
 
 	protected function isProudct($urlPart)
@@ -35,11 +54,11 @@ class EshopController extends Controller
 			}
 
 			return View::make('web.prod', [
-				'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
+				'view_tree_array'  => $this->view_tree_array,
 				'view_tree_actual' => ViewTree::where('tree_id', '=', $view_prod_actual->tree_id)->first(),
 				'view_prod_actual' => $view_prod_actual,
 				'prod_desc_array'  => ProdDescription::where('prod_id', '=', $view_prod_actual->prod_id)->whereNotNull('data')->get(),
-				'term'             => Input::get('term'),
+				'term'             => $this->term,
 				'at_row'           => $at_row,
 				'item_row'         => $item_row,
 				'mi_row'           => ((isset($at_row) && intval($at_row->mixture_item_id) > 0) ? MixtureItem::find(intval($at_row->mixture_item_id)) : NULL)
@@ -83,17 +102,17 @@ class EshopController extends Controller
 
 			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(18);
 
-			if (!empty($term)) {
-				$pagination->appends(['term' => $term]);
+			if (!empty($this->term)) {
+				$pagination->appends(['term' => $this->term]);
 			}
 
 			return View::make('web.tree', [
 				'view_prod_array'  => $pagination,
-				'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
+				'view_tree_array'  => $this->view_tree_array,
 				'view_tree_actual' => $tree_actual,
 				'db_dev'           => $dev,
 				'dev_list'         => TreeDev::select(["tree_dev.subdir_visible AS dev_prod_count", "tree.absolute AS tree_absolute", "dev.alias AS dev_alias", "dev.name AS dev_name", "dev.id AS dev_id"])->join('dev', 'tree_dev.dev_id', '=', 'dev.id')->join('tree', 'tree_dev.tree_id', '=', 'tree.id')->where('tree_id', '=', $tree_actual->tree_id)->where('subdir_visible', '>', 0)->get()->toArray(),
-				'term'             => $term,
+				'term'             => $this->term,
 				'store'            => Input::has('store') ? true : false,
 				'action'           => Input::has('action') ? true : false,
 			]);

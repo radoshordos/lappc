@@ -1,16 +1,12 @@
 <?php
 
-use Authority\Eloquent\TreeGroup;
-use Authority\Eloquent\ViewProd;
-use Authority\Eloquent\ViewTree;
-
-
 class Url01Controller extends EshopController
 {
 
-    public function show($url01)
-    {
-        return $this->isTree([$url01]);
-    }
+	public function show($url01)
+	{
+		$text = $this->isText($url01);
+		return (!is_null($text)) ? $text : $this->isTree([$url01]);
+	}
 
 }
