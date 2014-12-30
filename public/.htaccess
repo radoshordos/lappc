@@ -7,4 +7,27 @@
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    <IfModule mod_headers.c>
+        Header set Connection keep-alive
+        <FilesMatch ".(js|css|xml|gz|html)$">
+            Header append Vary: Accept-Encoding
+        </FilesMatch>
+    </IfModule>
+
+    <IfModule mod_deflate.c>
+        AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+        <FilesMatch "\.(js|css|gif|jpg|png)$">
+            SetOutputFilter DEFLATE
+        </FilesMatch>
+    </IfModule>
+
+    <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+
+    <FilesMatch "\.(xml|txt|css|js)$">
+        Header set Cache-Control "max-age=691200, proxy-revalidate"
+    </FilesMatch>
+
 </IfModule>

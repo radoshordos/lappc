@@ -5,7 +5,7 @@
         @include('web.global.top')
     </header>
 
-    <div class="row"> 
+    <div class="row">
         <div id="part-left" class="medium-4 columns">
             @include('web.global.leftmenu')
         </div>

@@ -2,6 +2,7 @@ h1 {
     font-size: 1.2em;
     text-align: center;
 }
+
 table#buy-table {
     width: 100%;
 }
@@ -28,14 +29,13 @@ table#buy-table a:hover, table#buy-table a:focus {
 }
 
 table#buy-table a.delete-alert {
-    color:#ff0000;
+    color: #ff0000;
 }
 
 ul#buy-flow {
     float: left;
 }
 
-
-#buy .button {
+#buy .button, #product .button {
     font-weight: bold;
 }

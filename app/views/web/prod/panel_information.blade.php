@@ -11,7 +11,7 @@
         </div>
         <div class="medium-8 columns">
             <p>Výrobce: {{ $vpa->getDevName()  }}</p>
-            <p>Záruka: {{ $vpa->getProdWarrantyName() }}</p>
+            <p>Záruka: {{ $vpa->getProdWarrantyName() }} <span data-tooltip aria-haspopup="true" class="has-tip" title="Ale musíte se zaregistrovat na webu"><i class="fa fa-question-circle fa-lg"></i></span></p>
             @if (!empty($item_row))
                 @if (isset($item_row->code_prod ))
                     <p>Kód: {{ $item_row->code_prod }}</p>
