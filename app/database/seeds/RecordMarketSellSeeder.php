@@ -49,7 +49,8 @@ class RecordMarketSellSeeder extends Seeder
             ['lm_id' => '52', 'lm_month' => '2014-07-01', 'lm_count_buy_all' => '61', 'lm_count_buy_success' => '53', 'lm_price_all' => '197574', 'lm_price_transport' => '3742'],
             ['lm_id' => '53', 'lm_month' => '2014-08-01', 'lm_count_buy_all' => '79', 'lm_count_buy_success' => '74', 'lm_price_all' => '222026', 'lm_price_transport' => '4565'],
             ['lm_id' => '54', 'lm_month' => '2014-09-01', 'lm_count_buy_all' => '73', 'lm_count_buy_success' => '64', 'lm_price_all' => '175007', 'lm_price_transport' => '5241'],
-            ['lm_id' => '55', 'lm_month' => '2014-10-01', 'lm_count_buy_all' => '81', 'lm_count_buy_success' => '74', 'lm_price_all' => '251552', 'lm_price_transport' => '5996']
+            ['lm_id' => '55', 'lm_month' => '2014-10-01', 'lm_count_buy_all' => '81', 'lm_count_buy_success' => '74', 'lm_price_all' => '251552', 'lm_price_transport' => '5996'],
+            ['lm_id' => '56', 'lm_month' => '2014-11-01', 'lm_count_buy_all' => '152', 'lm_count_buy_success' => '139', 'lm_price_all' => '501385', 'lm_price_transport' => '8566']
         ];
 
         DB::table('record_market_sell')->delete();
