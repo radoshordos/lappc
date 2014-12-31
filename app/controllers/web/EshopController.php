@@ -34,6 +34,7 @@ class EshopController extends Controller
 		if (in_array($urlPart, ['kontakt'])) {
 
 			return View::make('web.text', [
+				'namespace'       => 'text',
 				'view_tree_array' => $this->view_tree_array,
 				'term'            => $this->term
 			]);
@@ -54,6 +55,7 @@ class EshopController extends Controller
 			}
 
 			return View::make('web.prod', [
+				'namespace'        => 'prod',
 				'view_tree_array'  => $this->view_tree_array,
 				'view_tree_actual' => ViewTree::where('tree_id', '=', $view_prod_actual->tree_id)->first(),
 				'view_prod_actual' => $view_prod_actual,
@@ -107,6 +109,7 @@ class EshopController extends Controller
 			}
 
 			return View::make('web.tree', [
+				'namespace'        => 'tree',
 				'view_prod_array'  => $pagination,
 				'view_tree_array'  => $this->view_tree_array,
 				'view_tree_actual' => $tree_actual,

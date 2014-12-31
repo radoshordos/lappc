@@ -15,7 +15,7 @@
                         @include('web.tree.boxdev')
                     </dl>
                 </div>
-                <div class="row" style="border-top: 5px solid #ffffff">
+                <div class="row">
                     <div id="prod-filter" class="small-3 columns">
                         @include('web.tree.blockprodfilter')
                     </div>
