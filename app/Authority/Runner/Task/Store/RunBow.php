@@ -107,4 +107,9 @@ class RunBow extends AbstractRunDev implements iItem
     {
         return NULL;
     }
+
+    function setSyncProdAccessorySourceArray()
+    {
+        return NULL;
+    }
 }

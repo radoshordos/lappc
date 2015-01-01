@@ -2,47 +2,55 @@
 
 interface iItem
 {
-    function getSyncProdDesc();
+	function getSyncProdDesc();
 
-    function getSyncProdName();
+	function getSyncProdName();
 
-    function getSyncIdDev();
+	function getSyncIdDev();
 
-    function getSyncItemsCodeProduct();
+	function getSyncItemsCodeProduct();
 
-    function getSyncItemsCodeEan();
+	function getSyncItemsCodeEan();
 
-    function getSyncItemsPriceStandard();
+	function getSyncItemsPriceStandard();
 
-    function getSyncItemsPriceAction();
+	function getSyncItemsPriceAction();
 
-    function getSyncItemsAvailabilityCount();
+	function getSyncItemsAvailabilityCount();
 
-    function getSyncCommonGroup();
+	function getSyncCategoryText();
 
-    function getSyncProdImgSourceArray();
+	function getSyncUrl();
 
-    function getSyncProdWeight();
+	function getSyncProdImgSourceArray();
 
-    function setSyncProdDesc();
+	function getSyncProdAccessorySourceArray();
 
-    function setSyncProdName();
+	function getSyncProdWeight();
 
-    function setSyncIdDev();
+	function setSyncProdDesc();
 
-    function setSyncCommonGroup();
+	function setSyncProdName();
 
-    function setSyncProdImgSourceArray();
+	function setSyncIdDev();
 
-    function setSyncItemsCodeProduct();
+	function setSyncCategoryText();
 
-    function setSyncItemsCodeEan();
+	function setSyncUrl();
 
-    function setSyncItemsPriceStandard();
+	function setSyncProdImgSourceArray();
 
-    function setSyncItemsPriceAction();
+	function setSyncProdAccessorySourceArray();
 
-    function setSyncItemsAvailabilityCount();
+	function setSyncItemsCodeProduct();
 
-    function setSyncProdWeight();
+	function setSyncItemsCodeEan();
+
+	function setSyncItemsPriceStandard();
+
+	function setSyncItemsPriceAction();
+
+	function setSyncItemsAvailabilityCount();
+
+	function setSyncProdWeight();
 }
