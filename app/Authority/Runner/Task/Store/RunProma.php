@@ -27,7 +27,7 @@ class RunProma extends AbstractRunDev implements iItem
 
     public function setSyncIdDev()
     {
-        $this->syncIdDev = $this->analyseIdDev($this->shopItem['BRAND']);
+        $this->syncIdDev = $this->analyseIdDev(isset($this->shopItem['BRAND']) ? $this->shopItem['BRAND'] : "no_dev");
     }
 
     function setSyncProdName()
@@ -55,14 +55,14 @@ class RunProma extends AbstractRunDev implements iItem
         (!empty($this->shopItem['AVAILABLE']) ? $this->syncItemsAvailabilityCount = intval($this->shopItem['AVAILABLE']) : $this->syncItemsAvailabilityCount = 0);
     }
 
+    public function setSyncCategoryText()
+    {
+        (!empty($this->shopItem['CATEGORY']) ? $this->syncCategoryText = (string)$this->shopItem['CATEGORY'] : NULL);
+    }
+
     function setSyncProdWeight()
     {
         return $this->syncProdWeight = 0;
-    }
-
-    public function setSyncCommonGroup()
-    {
-        return NULL;
     }
 
     public function setSyncProdDesc()
@@ -76,6 +76,16 @@ class RunProma extends AbstractRunDev implements iItem
     }
 
     function setSyncProdImgSourceArray()
+    {
+        return NULL;
+    }
+
+    function setSyncUrl()
+    {
+        return NULL;
+    }
+
+    function setSyncProdAccessorySourceArray()
     {
         return NULL;
     }

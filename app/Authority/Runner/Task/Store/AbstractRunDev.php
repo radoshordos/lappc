@@ -45,7 +45,7 @@ abstract class AbstractRunDev implements iItem
 		$this->setSyncItemsPriceStandard();
 		$this->setSyncItemsPriceAction();
 		$this->setSyncProdWeight();
-		$this->setSyncCommonGroup();
+		$this->setSyncCategoryText();
 		$this->setSyncUrl();
 	}
 

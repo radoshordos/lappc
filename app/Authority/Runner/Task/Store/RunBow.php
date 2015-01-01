@@ -24,7 +24,7 @@ class RunBow extends AbstractRunDev implements iItem
         (!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = (string)$this->shopItem['EAN'] : NULL);
     }
 
-    public function setSyncCommonGroup()
+    public function setSyncCategoryText()
     {
         $chars = ['<![CDATA[' => "", ']]>' => ''];
         (!empty($this->shopItem['CATEGORY']) ? $this->syncCommonGroup = (string)str_replace(array_keys($chars), array_values($chars), $this->shopItem['CATEGORY']) : NULL);
@@ -109,6 +109,11 @@ class RunBow extends AbstractRunDev implements iItem
     }
 
     function setSyncProdAccessorySourceArray()
+    {
+        return NULL;
+    }
+
+    function setSyncUrl()
     {
         return NULL;
     }

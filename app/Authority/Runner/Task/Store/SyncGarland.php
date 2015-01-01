@@ -43,12 +43,14 @@ class SyncGarland extends TaskMessage implements iSync
             'created_at'   => date("Y-m-d H:i:s", $record_id)
         ]);
 
-        foreach ($xml['ARTIKL'] as $row) {
+        foreach ($xml['ARTIKL'] as $item) {
+
             $all++;
-            $garland = new RunGarland((array)$row, $record_id);
-            $garland->setSyncIdDev();
-            if ($garland->isUseRequired() === true) {
-                $garland->insertData2Db($this->db);
+            $arr_item = array_filter((array)$item);
+            $run = new RunGarland($arr_item, $record_id);
+
+            if ($run->isUseRequired() === true) {
+                $run->insertData2Db($this->db);
                 $suc++;
             }
         }
