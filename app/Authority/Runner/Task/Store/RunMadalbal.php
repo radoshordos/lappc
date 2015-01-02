@@ -6,7 +6,13 @@ class RunMadalbal extends AbstractRunDev implements iItem
 
 	function __construct($shop_item, $record_id)
 	{
-		parent::__construct($shop_item, $record_id);
+	//	var_dump($shop_item['Brand']);
+	//	die;
+		if (isset($shop_item['Brand'])) {
+
+		echo $shop_item['Brand'] . "<br />";
+	}
+		//parent::__construct($shop_item, $record_id);
 	}
 
 	private function analyseIdDev($dev_name)
@@ -39,7 +45,10 @@ class RunMadalbal extends AbstractRunDev implements iItem
 
 	function setSyncIdDev()
 	{
-		// TODO: Implement setSyncIdDev() method.
+		//var_dump($this->shopItem());
+
+		//echo $this->shopItem['Brand'] . "<br />";
+
 	}
 
 	function setSyncCategoryText()

@@ -34,7 +34,7 @@ class SyncMadalbal extends TaskMessage implements iSync
 	public function runSynchronizeData()
 	{
 		$all = $suc = 0;
-		$xml = simplexml_load_file($this->getSyncUploadDirectory() . "/makita-2015-01.xml");
+		$xml = (array)simplexml_load_file($this->getSyncUploadDirectory() . "/madalbal-2015-01.xml");
 		$record_id = strtotime('now');
 
 		RecordSyncImport::create([
@@ -44,21 +44,29 @@ class SyncMadalbal extends TaskMessage implements iSync
 			'created_at' => date("Y-m-d H:i:s", $record_id)
 		]);
 
-		foreach ($xml->ITEM as $item) {
+
+		foreach ($xml as $x) {
+			foreach ($x as $item) {
 
 			$all++;
 			$arr_item = array_filter((array)$item);
-			$run = new RunMakita($arr_item, $record_id);
+			$run = new RunMadalbal($arr_item, $record_id);
 
+
+
+
+/*
 			if ($run->isUseRequired() === true) {
 				$suc++;
-				$run->insertData2Db();
+				//$run->insertData2Db();
 			}
+*/
+		}
 		}
 
-		$rsi = RecordSyncImport::find($record_id);
-		$rsi->item_counter = $suc;
-		$rsi->save();
+//		$rsi = RecordSyncImport::find($record_id);
+//		$rsi->item_counter = $suc;
+//		$rsi->save();
 
 		$this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
 		$this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
