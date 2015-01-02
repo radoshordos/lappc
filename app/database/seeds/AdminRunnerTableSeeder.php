@@ -127,6 +127,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 512,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Store\SyncMadalbal'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 602,
             'autorun' => 0,
             'class'   => 'Authority\Runner\Task\OneRun\CreatePicture'
