@@ -104,32 +104,41 @@ class RunMakita extends AbstractRunDev implements iItem
 		}
 	}
 
-	function setSyncItemsCodeEan()
-	{
-		$this->syncItemsCodeEan = NULL;
-	}
-
 	function setSyncItemsPriceStandard()
 	{
-		(!empty($this->shopItem['RECOMMENDED_PRICE_VAT']) ? $this->syncItemsPriceStandard = floatval($this->shopItem['RECOMMENDED_PRICE_VAT']) : NULL);
+		if (isset($this->shopItem['RECOMMENDED_PRICE_VAT'])) {
+			$this->syncItemsPriceStandard = round(doubleval($this->shopItem['RECOMMENDED_PRICE_VAT']));
+		}
+	}
+
+	public function setSyncItemsAvailabilityCount()
+	{
+		if (isset($this->shopItem['ONSTOCK'])) {
+			if ($this->shopItem['ONSTOCK'] == 'ANO') {
+				$this->syncItemsAvailabilityCount = 1;
+			} elseif ($this->shopItem['ONSTOCK'] == 'NE') {
+				$this->syncItemsAvailabilityCount = 0;
+			}
+		}
+	}
+
+	function setSyncWarranty()
+	{
+		// TODO: Implement setSyncWarranty() method.
+	}
+
+	function setSyncItemsCodeEan()
+	{
+		// TODO: Implement setSyncItemsCodeEan() method.
 	}
 
 	function setSyncItemsPriceAction()
 	{
-		$this->syncItemsPriceAction = NULL;
-	}
-
-	function setSyncItemsAvailabilityCount()
-	{
-		if (!empty($this->shopItem['ONSTOCK']) && $this->shopItem['ONSTOCK'] == 'ANO') {
-			$this->syncItemsAvailabilityCount = 1;
-		} else {
-			$this->syncItemsAvailabilityCount = 0;
-		}
+		// TODO: Implement setSyncItemsPriceAction() method.
 	}
 
 	function setSyncProdWeight()
 	{
-		$this->syncProdWeight = 0;
+		// TODO: Implement setSyncProdWeight() method.
 	}
 }

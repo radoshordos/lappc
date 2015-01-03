@@ -2,91 +2,105 @@
 
 class RunProma extends AbstractRunDev implements iItem
 {
+	const ROOT = 'SHOP';
 
-    const ROOT = 'SHOP';
+	function __construct($shop_item, $record_id)
+	{
+		parent::__construct($shop_item, $record_id);
+	}
 
-    function __construct($shop_item, $record_id)
-    {
-        parent::__construct($shop_item, $record_id);
-    }
+	private function analyseIdDev($dev_name)
+	{
+		switch ($dev_name) {
+			case 'FERM' :
+				return 36;
+			case 'WORX' :
+			case 'WORX Garden' :
+				return 170;
+			case 'PROMA' :
+				return 35;
+			default :
+				return 0;
+		}
+	}
 
-    private function analyseIdDev($dev_name)
-    {
-        switch ($dev_name) {
-            case 'FERM' :
-                return 36;
-            case 'WORX' :
-            case 'WORX Garden' :
-                return 170;
-            case 'PROMA' :
-                return 35;
-            default :
-                return 0;
-        }
-    }
+	public function setSyncIdDev()
+	{
+		$this->syncIdDev = $this->analyseIdDev(isset($this->shopItem['BRAND']) ? $this->shopItem['BRAND'] : "no_dev");
+	}
 
-    public function setSyncIdDev()
-    {
-        $this->syncIdDev = $this->analyseIdDev(isset($this->shopItem['BRAND']) ? $this->shopItem['BRAND'] : "no_dev");
-    }
+	function setSyncProdName()
+	{
+		if (isset($this->shopItem['PRODUCT'])) {
+			$this->syncProdName = (string)trim($this->shopItem['PRODUCT']);
+		}
+	}
 
-    function setSyncProdName()
-    {
-        (!empty($this->shopItem['PRODUCT']) ? $this->syncProdName = (string)$this->shopItem['PRODUCT'] : NULL);
-    }
+	function setSyncItemsCodeProduct()
+	{
+		(!empty($this->shopItem['ORDER_NR']) ? $this->syncItemsCodeProduct = (string)trim($this->shopItem['ORDER_NR']) : NULL);
+	}
 
-    function setSyncItemsCodeProduct()
-    {
-        (!empty($this->shopItem['ORDER_NR']) ? $this->syncItemsCodeProduct = (string)trim($this->shopItem['ORDER_NR']) : NULL);
-    }
+	public function setSyncItemsCodeEan()
+	{
+		if (isset($this->shopItem['EAN'])) {
+			$this->syncItemsCodeEan = (string)trim($this->shopItem['EAN']);
+		}
+	}
 
-    public function setSyncItemsCodeEan()
-    {
-        (!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = (string)trim($this->shopItem['EAN']) : NULL);
-    }
+	public function setSyncItemsPriceStandard()
+	{
+		(!empty($this->shopItem['PRICE']) ? $this->syncItemsPriceStandard = round(doubleval($this->shopItem['PRICE'])) : NULL);
+	}
 
-    public function setSyncItemsPriceStandard()
-    {
-        (!empty($this->shopItem['PRICE']) ? $this->syncItemsPriceStandard = doubleval($this->shopItem['PRICE']) : NULL);
-    }
+	public function setSyncItemsAvailabilityCount()
+	{
+		if (isset($this->shopItem['AVAILABLE'])) {
+			$this->syncItemsAvailabilityCount = intval($this->shopItem['AVAILABLE']);
+		}
+	}
 
-    public function setSyncItemsAvailabilityCount()
-    {
-        (!empty($this->shopItem['AVAILABLE']) ? $this->syncItemsAvailabilityCount = intval($this->shopItem['AVAILABLE']) : $this->syncItemsAvailabilityCount = 0);
-    }
+	public function setSyncCategoryText()
+	{
+		if (isset($this->shopItem['CATEGORY'])) {
+			$this->syncCategoryText = (string)$this->shopItem['CATEGORY'];
+		}
+	}
 
-    public function setSyncCategoryText()
-    {
-        (!empty($this->shopItem['CATEGORY']) ? $this->syncCategoryText = (string)$this->shopItem['CATEGORY'] : NULL);
-    }
+	function setSyncWarranty()
+	{
+		if (isset($this->shopItem['GUARANTEE_MONTHS'])) {
+			$this->syncWarranty = intval($this->shopItem['GUARANTEE_MONTHS']);
+		}
+	}
 
-    function setSyncProdWeight()
-    {
-        return $this->syncProdWeight = 0;
-    }
+	function setSyncProdDesc()
+	{
+		// TODO: Implement setSyncProdDesc() method.
+	}
 
-    public function setSyncProdDesc()
-    {
-        return NULL;
-    }
+	function setSyncUrl()
+	{
+		// TODO: Implement setSyncUrl() method.
+	}
 
-    function setSyncItemsPriceAction()
-    {
-        return NULL;
-    }
+	function setSyncProdImgSourceArray()
+	{
+		// TODO: Implement setSyncProdImgSourceArray() method.
+	}
 
-    function setSyncProdImgSourceArray()
-    {
-        return NULL;
-    }
+	function setSyncProdAccessorySourceArray()
+	{
+		// TODO: Implement setSyncProdAccessorySourceArray() method.
+	}
 
-    function setSyncUrl()
-    {
-        return NULL;
-    }
+	function setSyncItemsPriceAction()
+	{
+		// TODO: Implement setSyncItemsPriceAction() method.
+	}
 
-    function setSyncProdAccessorySourceArray()
-    {
-        return NULL;
-    }
+	function setSyncProdWeight()
+	{
+		// TODO: Implement setSyncProdWeight() method.
+	}
 }

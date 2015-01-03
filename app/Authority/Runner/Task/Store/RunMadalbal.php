@@ -102,15 +102,17 @@ class RunMadalbal extends AbstractRunDev implements iItem
 		if (isset($this->shopItem['ProductType']) || isset($this->shopItem['Category']) || isset($this->shopItem['CategoryCode'])) {
 
 			$ai = new \ArrayIterator();
+
+			if (isset($this->shopItem['CategoryCode'])) {
+				$ai->append($this->shopItem['CategoryCode']);
+			}
 			if (isset($this->shopItem['ProductType'])) {
 				$ai->append($this->shopItem['ProductType']);
 			}
 			if (isset($this->shopItem['Category'])) {
 				$ai->append($this->shopItem['Category']);
 			}
-			if (isset($this->shopItem['CategoryCode'])) {
-				$ai->append($this->shopItem['CategoryCode']);
-			}
+
 			$this->syncCategoryText = implode(' | ', $ai->getArrayCopy());
 		}
 	}
@@ -140,6 +142,13 @@ class RunMadalbal extends AbstractRunDev implements iItem
 				}
 				$this->syncProdAccessorySourceArray = $ai->getArrayCopy();
 			}
+		}
+	}
+
+	function setSyncWarranty()
+	{
+		if (isset($this->shopItem['Guarantee'])) {
+			$this->syncWarranty = intval($this->shopItem['Guarantee']);
 		}
 	}
 

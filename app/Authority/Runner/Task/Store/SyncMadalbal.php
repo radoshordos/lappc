@@ -10,14 +10,19 @@ class SyncMadalbal extends TaskMessage implements iSync
 	public function __construct($table_cron)
 	{
 		parent::__construct($table_cron);
+		$this->curl = new MyCurl('http://shop.madalbal.cz/katalog/feeds/products.xml');
+		$this->curl->setName("27634493/0");
+		$this->curl->setPass("NAD276ph");
+		$this->curl->useAuth(true);
+		$this->curl->createCurl();
 		$this->remotelyPrepareSynchronize();
 		$this->runSynchronizeData();
 	}
 
 	public function remotelyPrepareSynchronize()
 	{
-		$down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), 'http://www.bow.cz/sellersXML/xmlfeed.zip');
-		$down->runDownload();
+		$down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), $this->curl->__tostring());
+		$down->runDownload(false);
 		$down->unzipDownload();
 	}
 
@@ -28,7 +33,7 @@ class SyncMadalbal extends TaskMessage implements iSync
 
 	public function getFile()
 	{
-		return self::DEV_NAME . "-" . date('Y-m') . ".zip";
+		return self::DEV_NAME . "-" . date('Y-m') . ".xml";
 	}
 
 	public function runSynchronizeData()

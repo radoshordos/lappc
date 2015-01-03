@@ -32,6 +32,7 @@ class KosikController extends Controller
 		if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
 
 			return View::make('web.kosik_krok2', [
+				'namespace'          => 'kosik',
 				'krok'               => 2,
 				'sid'                => $this->sid,
 				'term'               => Input::get('term'),
@@ -59,6 +60,7 @@ class KosikController extends Controller
 
 		if (Input::get('krok') == 'souhrn-objednavky') {
 			return View::make('web.kosik_krok3', [
+				'namespace'          => 'kosik',
 				'krok'               => 3,
 				'sid'                => $this->sid,
 				'term'               => Input::get('term'),
@@ -94,6 +96,7 @@ class KosikController extends Controller
 		}
 
 		return View::make('web.kosik_krok1', [
+			'namespace'          => 'kosik',
 			'krok'               => 1,
 			'sid'                => $this->sid,
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
@@ -103,7 +106,7 @@ class KosikController extends Controller
 			'view_tree_actual'   => $view_tree_actual,
 			'term'               => Input::get('term'),
 			'cena_celkem'        => 0, // Zero OK
-			'customer'           => BuyOrderDbCustomer::select(["delivery_id","payment_id"])->where('sid', '=', $this->sid)->first(),
+			'customer'           => BuyOrderDbCustomer::select(["delivery_id", "payment_id"])->where('sid', '=', $this->sid)->first(),
 			'weight_sum'         => BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
 				->join('items', 'buy_order_db_items.item_id', '=', 'items.id')
 				->join('prod', 'items.prod_id', '=', 'prod.id')

@@ -125,7 +125,7 @@ class RunBow extends AbstractRunDev implements iItem
 		if (isset($this->shopItem['PRICE'])) {
 			$price = array_filter((array)$this->shopItem['PRICE']);
 			if (isset($price['ACTION']) && intval($price['ACTION']) > 0) {
-				$this->syncItemsPriceAction = (doubleval($price['ACTION'] * self::DPH));
+				$this->syncItemsPriceAction = round(doubleval($price['ACTION'] * self::DPH));
 			}
 		}
 	}

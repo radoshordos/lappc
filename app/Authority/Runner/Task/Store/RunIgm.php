@@ -96,12 +96,6 @@ class RunIgm extends AbstractRunDev implements iItem
 		}
 	}
 
-	public function setSyncItemsAvailabilityCount()
-	{
-		return $this->syncItemsAvailabilityCount = 0;
-	}
-
-
 	function setSyncUrl()
 	{
 		// TODO: Implement setSyncUrl() method.
@@ -110,5 +104,15 @@ class RunIgm extends AbstractRunDev implements iItem
 	function setSyncProdAccessorySourceArray()
 	{
 		// TODO: Implement setSyncProdAccessorySourceArray() method.
+	}
+
+	function setSyncWarranty()
+	{
+		// TODO: Implement setSyncWarranty() method.
+	}
+
+	function setSyncItemsAvailabilityCount()
+	{
+		// TODO: Implement setSyncItemsAvailabilityCount() method.
 	}
 }
