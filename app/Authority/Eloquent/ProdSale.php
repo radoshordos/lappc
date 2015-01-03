@@ -6,5 +6,4 @@ class ProdSale extends \Eloquent
     protected $guarded = [];
 
     public $timestamps = false;
-
 }

@@ -1,6 +1,9 @@
 <?php namespace Authority\Eloquent;
 
-class ProdSale extends \Eloquent
+class AkceSale extends \Eloquent
 {
-    protected $table = 'akce_sale';
+	protected $table = 'akce_sale';
+	protected $guarded = [];
+
+	public $timestamps = false;
 }

@@ -81,14 +81,7 @@ class DevController extends \BaseController
 		}
 
 		return View::make('adm.pattern.dev.edit', [
-			'dev'                 => Dev::selectRaw([
-				'dev.*',
-				'prod_sale.name AS prod_sale_name',
-				'akce_sale.name AS akce_sale_name'
-			])
-				->join('prod_sale', 'dev.default_sale_prod_id', '=', 'prod_sale.id')
-				->join('akce_sale', 'dev.default_sale_action_id', '=', 'akce_sale.id')
-				->get(),
+			'dev'                 => $dev,
 			'select_warranty'     => SB::option("SELECT * FROM prod_warranty", ['id' => '->name']),
 			'select_sale'         => SB::option("SELECT * FROM prod_sale", ['id' => '->desc']),
 			'select_availability' => SB::option("SELECT * FROM items_availability WHERE id > 1", ['id' => '->name'])
