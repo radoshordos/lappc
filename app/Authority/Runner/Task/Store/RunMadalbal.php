@@ -6,32 +6,47 @@ class RunMadalbal extends AbstractRunDev implements iItem
 
 	function __construct($shop_item, $record_id)
 	{
-	//	var_dump($shop_item['Brand']);
-	//	die;
+		//	var_dump($shop_item['Brand']);
+		//	die;
 		if (isset($shop_item['Brand'])) {
 
-		echo $shop_item['Brand'] . "<br />";
-	}
+			echo $shop_item['Brand'] . "<br />";
+		}
 		//parent::__construct($shop_item, $record_id);
 	}
 
 	private function analyseIdDev($dev_name)
 	{
-		return 5;
-		/*
 		switch ($dev_name) {
-			case 'Silky' :
-				return 808;
-			case 'Titebond' :
-				return 810;
-			case 'Uvex' :
-				return 812;
+			case 'EXTOL CRAFT' :
+			case 'EXTOL INDUSTRIAL' :
+			case 'EXTOL LIGHT' :
+			case 'EXTOL PREMIUM' :
+				return 850;
+			case 'HERON' :
+				return 852;
+			case 'BALLETTO' :
+				return 854;
+			case 'FORTUM' :
+				return 856;
+			case 'FRESHHH' :
+				return 858;
+			case 'IMPERIA' :
+				return 860;
+			case 'KITO' :
+				return 862;
+			case 'OPERA' :
+				return 864;
+			case 'SONATA' :
+				return 866;
+			case 'VIKING' :
+				return 868;
+			case 'VITTORIA' :
+				return 870;
 			default :
 				return 0;
 		}
-		*/
 	}
-
 
 	function setSyncProdDesc()
 	{
