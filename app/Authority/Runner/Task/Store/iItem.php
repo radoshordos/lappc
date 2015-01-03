@@ -20,6 +20,8 @@ interface iItem
 
 	function getSyncCategoryText();
 
+	function getSyncWarranty();
+
 	function getSyncUrl();
 
 	function getSyncProdImgSourceArray();
@@ -35,6 +37,8 @@ interface iItem
 	function setSyncIdDev();
 
 	function setSyncCategoryText();
+
+	function setSyncWarranty();
 
 	function setSyncUrl();
 

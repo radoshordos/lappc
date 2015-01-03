@@ -12,12 +12,14 @@ abstract class AbstractRunDev implements iItem
 	protected $syncProdName;
 	protected $syncProdDesc;
 	protected $syncProdWeight;
+
 	protected $syncItemsCodeProduct;
 	protected $syncItemsCodeEan;
 	protected $syncItemsPriceStandard;
 	protected $syncItemsPriceAction;
 	protected $syncItemsAvailabilityCount;
 	protected $syncCategoryText;
+	protected $syncWarranty;
 	protected $syncUrl;
 	protected $syncProdImgSourceArray;
 	protected $syncProdAccessorySourceArray;
@@ -27,7 +29,6 @@ abstract class AbstractRunDev implements iItem
 
 	public function __construct($shop_item, $record_id)
 	{
-
 		$this->shopItem = $shop_item;
 		$this->recordId = $record_id;
 		$this->initSetters();
@@ -46,6 +47,7 @@ abstract class AbstractRunDev implements iItem
 		$this->setSyncItemsPriceStandard();
 		$this->setSyncItemsPriceAction();
 		$this->setSyncProdWeight();
+		$this->setSyncWarranty();
 		$this->setSyncCategoryText();
 		$this->setSyncUrl();
 	}
@@ -125,10 +127,10 @@ abstract class AbstractRunDev implements iItem
 			'code_ean'           => $this->getSyncItemsCodeEan(),
 			'code_prod'          => $this->getSyncItemsCodeProduct(),
 			'weight'             => $this->getSyncProdWeight(),
+			'warranty'           => $this->getSyncWarranty(),
 			'categorytext'       => $this->getSyncCategoryText(),
 			'url'                => $this->getSyncUrl()
 		];
-
 	}
 
 	public function getRecordId()
@@ -169,6 +171,11 @@ abstract class AbstractRunDev implements iItem
 	public function getSyncCategoryText()
 	{
 		return $this->syncCategoryText;
+	}
+
+	public function getSyncWarranty()
+	{
+		return $this->syncWarranty;
 	}
 
 	public function getSyncUrl()

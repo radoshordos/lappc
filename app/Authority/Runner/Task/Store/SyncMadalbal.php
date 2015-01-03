@@ -56,7 +56,6 @@ class SyncMadalbal extends TaskMessage implements iSync
 						$suc++;
 						$run->insertData2Db();
 					}
-
 				}
 			}
 		}

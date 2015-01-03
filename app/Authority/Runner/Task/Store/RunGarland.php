@@ -2,7 +2,6 @@
 
 class RunGarland extends AbstractRunDev implements iItem
 {
-
 	function __construct($shop_item, $record_id)
 	{
 		parent::__construct($shop_item, $record_id);
@@ -20,7 +19,6 @@ class RunGarland extends AbstractRunDev implements iItem
 
 	private function analyseIdDev($dev_name)
 	{
-
 		switch ($dev_name) {
 			case 'AgriFab' :
 				return 702;
@@ -67,7 +65,7 @@ class RunGarland extends AbstractRunDev implements iItem
 			case 'Scheppach special edition' :
 				return 738;
 //			case 'Silky' : BEREME OD IGM
-//				return 740;
+//				return 0;
 			case 'TurfMaster' :
 				return 742;
 			case 'Woodster' :
@@ -82,8 +80,6 @@ class RunGarland extends AbstractRunDev implements iItem
 	{
 		if (isset($this->shopItem['STAVVOLNY']) && intval($this->shopItem['STAVVOLNY']) > 0) {
 			$this->syncItemsAvailabilityCount = intval($this->shopItem['STAVVOLNY']);
-		} else {
-			$this->syncItemsAvailabilityCount = 0;
 		}
 	}
 
@@ -99,9 +95,7 @@ class RunGarland extends AbstractRunDev implements iItem
 
 	public function setSyncItemsPriceStandard()
 	{
-
 		$prodej6 = doubleval($this->shopItem['PRODEJ6']) * self::DPH;
-
 		if ($prodej6 > 0) {
 			$this->syncItemsPriceStandard = $prodej6;
 		} else {
@@ -119,16 +113,6 @@ class RunGarland extends AbstractRunDev implements iItem
 		(!empty($this->shopItem['POPIS']) ? $this->syncProdDesc = (string)$this->shopItem['POPIS'] : NULL);
 	}
 
-	function setSyncItemsPriceAction()
-	{
-		return NULL;
-	}
-
-	function setSyncProdWeight()
-	{
-		return $this->syncProdWeight = 0;
-	}
-
 	function setSyncProdImgSourceArray()
 	{
 		(!empty($this->shopItem['NAHLED_BIG']) ? $this->syncProdImgSourceArray = (array)$this->shopItem['NAHLED_BIG'] : NULL);
@@ -136,11 +120,21 @@ class RunGarland extends AbstractRunDev implements iItem
 
 	function setSyncUrl()
 	{
-		return NULL;
+		// TODO: Implement setSyncUrl() method.
 	}
 
 	function setSyncProdAccessorySourceArray()
 	{
-		return NULL;
+		// TODO: Implement setSyncProdAccessorySourceArray() method.
+	}
+
+	function setSyncItemsPriceAction()
+	{
+		// TODO: Implement setSyncItemsPriceAction() method.
+	}
+
+	function setSyncProdWeight()
+	{
+		// TODO: Implement setSyncProdWeight() method.
 	}
 }

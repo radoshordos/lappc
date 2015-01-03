@@ -23,6 +23,7 @@ class SyncDb extends Migration
 			$table->decimal('price_internet', 9, 2)->unsigned()->nullable();
 			$table->integer('availability_count')->nullable();
 			$table->float('weight')->unsigned()->nullable();
+			$table->smallInteger('warranty')->unsigned()->nullable();
 			$table->string('categorytext', 255)->nullable();
 			$table->string('url', 255)->nullable();
 

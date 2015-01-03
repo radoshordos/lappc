@@ -94,7 +94,6 @@ class RunIgm extends AbstractRunDev implements iItem
 			}
 			return $this->syncProdImgSourceArray = $ai->getArrayCopy();
 		}
-		return NULL;
 	}
 
 	public function setSyncItemsAvailabilityCount()
@@ -102,13 +101,14 @@ class RunIgm extends AbstractRunDev implements iItem
 		return $this->syncItemsAvailabilityCount = 0;
 	}
 
+
 	function setSyncUrl()
 	{
-		return NULL;
+		// TODO: Implement setSyncUrl() method.
 	}
 
 	function setSyncProdAccessorySourceArray()
 	{
-		return NULL;
+		// TODO: Implement setSyncProdAccessorySourceArray() method.
 	}
 }

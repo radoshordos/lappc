@@ -11,7 +11,6 @@ class RunBow extends AbstractRunDev implements iItem
 
 	private function analyseIdDev($dev_name)
 	{
-
 		switch ($dev_name) {
 			case 'BOW' :
 				return 200;
@@ -54,12 +53,26 @@ class RunBow extends AbstractRunDev implements iItem
 
 	function setSyncProdName()
 	{
-		(!empty($this->shopItem['PRODUCTNAME']) ? $this->syncProdName = (string)$this->shopItem['PRODUCTNAME'] : NULL);
+		if (isset($this->shopItem['MANUFACTURER']) && isset($this->shopItem['PRODUCTNO'])) {
+			$ai = new \ArrayIterator();
+			$ai->append((string)trim(ucwords(strtolower(str_replace('®', '', $this->shopItem['MANUFACTURER'])))));
+			$ai->append((string)trim($this->shopItem['PRODUCTNO']));
+			$this->syncProdName = implode(' ', $ai->getArrayCopy());
+		}
+	}
+
+	function setSyncProdDesc()
+	{
+		if (isset($this->shopItem['PRODUCTNAME'])) {
+			$this->syncProdDesc = (string)$this->shopItem['PRODUCTNAME'];
+		}
 	}
 
 	function setSyncItemsCodeProduct()
 	{
-		(!empty($this->shopItem['PRODUCTNO']) ? $this->syncItemsCodeProduct = (string)$this->shopItem['PRODUCTNO'] : NULL);
+		if (isset($this->shopItem['PRODUCTNO'])) {
+			$this->syncItemsCodeProduct = (string)$this->shopItem['PRODUCTNO'];
+		}
 	}
 
 	public function setSyncItemsCodeEan()
@@ -71,33 +84,109 @@ class RunBow extends AbstractRunDev implements iItem
 
 	public function setSyncCategoryText()
 	{
-		$chars = ['<![CDATA[' => "", ']]>' => ''];
-		(!empty($this->shopItem['CATEGORY']) ? $this->syncCommonGroup = (string)str_replace(array_keys($chars), array_values($chars), $this->shopItem['CATEGORY']) : NULL);
+		if (isset($this->shopItem['CATEGORYID']) || isset($this->shopItem['CATEGORY'])) {
+			$ai = new \ArrayIterator();
+
+			if (isset($this->shopItem['CATEGORYID'])) {
+				$ai->append($this->shopItem['CATEGORYID']);
+			}
+
+			if (isset($this->shopItem['CATEGORY'])) {
+				$ai->append((string)$this->shopItem['CATEGORY']);
+			}
+
+			$this->syncCategoryText = implode(' | ', $ai->getArrayCopy());
+		}
 	}
 
 	public function setSyncItemsAvailabilityCount()
 	{
-		(($this->shopItem['INSTOCK'] == 'ano') ? $this->syncItemsAvailabilityCount = 1 : $this->syncItemsAvailabilityCount = 0);
+		if (isset($this->shopItem['INSTOCK'])) {
+			if ($this->shopItem['INSTOCK'] == 'ano') {
+				$this->syncItemsAvailabilityCount = 1;
+			} elseif ($this->shopItem['INSTOCK'] == 'ne') {
+				$this->syncItemsAvailabilityCount = 0;
+			}
+		}
 	}
 
 	function setSyncItemsPriceStandard()
 	{
-		(intval($this->shopItem['PRICE']->COMMON) > 0 ? $this->syncItemsPriceStandard = doubleval($this->shopItem['PRICE']->COMMON * self::DPH) : NULL);
+		if (isset($this->shopItem['PRICE'])) {
+			$price = array_filter((array)$this->shopItem['PRICE']);
+			if (isset($price['COMMON']) && intval($price['COMMON']) > 0) {
+				$this->syncItemsPriceStandard = round(doubleval($price['COMMON'] * self::DPH));
+			}
+		}
 	}
 
 	function setSyncItemsPriceAction()
 	{
-		(intval($this->shopItem['PRICE']->ACTION) > 0 ? $this->syncItemsPriceAction = doubleval($this->shopItem['PRICE']->ACTION * self::DPH) : NULL);
+		if (isset($this->shopItem['PRICE'])) {
+			$price = array_filter((array)$this->shopItem['PRICE']);
+			if (isset($price['ACTION']) && intval($price['ACTION']) > 0) {
+				$this->syncItemsPriceAction = (doubleval($price['ACTION'] * self::DPH));
+			}
+		}
 	}
 
 	public function setSyncIdDev()
 	{
-		(isset($this->shopItem['MANUFACTURER'])) ? $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']) : $this->syncIdDev = NULL;
+		if (isset($this->shopItem['MANUFACTURER'])) {
+			$this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']);
+		}
 	}
 
-	function setSyncProdDesc()
+	function setSyncProdImgSourceArray()
 	{
-		// TODO: Implement setSyncProdDesc() method.
+		if (isset($this->shopItem['PHOTOS'])) {
+
+			$ai = new \ArrayIterator();
+			$images = array_filter((array)$this->shopItem['PHOTOS']);
+			$dir = $images["@attributes"]["PATH"];
+			unset($images["@attributes"]);
+
+			foreach ($images as $img) {
+				if (is_array($img)) {
+					foreach ($img as $i) {
+						$ai->append($dir . $i);
+					}
+				} else {
+					$ai->append($dir . $img);
+				}
+			}
+			$this->syncProdImgSourceArray = $ai->getArrayCopy();
+		}
+	}
+
+	function setSyncProdAccessorySourceArray()
+	{
+		if (isset($this->shopItem['RECOMMENDEDACCESSORIES'])) {
+
+			$ai = new \ArrayIterator();
+			$recom = array_filter((array)$this->shopItem['RECOMMENDEDACCESSORIES']);
+
+			foreach ($recom as $rec) {
+				if (is_array($rec)) {
+					foreach ($rec as $r) {
+						$ai->append($r);
+					}
+				} else {
+					$ai->append($rec);
+				}
+			}
+			$this->syncProdAccessorySourceArray = $ai->getArrayCopy();
+		}
+	}
+
+	function setSyncProdWeight()
+	{
+		// TODO: Implement setSyncProdWeight() method.
+	}
+
+	function setSyncWarranty()
+	{
+		// TODO: Implement setSyncWarranty() method.
 	}
 
 	function setSyncUrl()
@@ -105,18 +194,4 @@ class RunBow extends AbstractRunDev implements iItem
 		// TODO: Implement setSyncUrl() method.
 	}
 
-	function setSyncProdImgSourceArray()
-	{
-		// TODO: Implement setSyncProdImgSourceArray() method.
-	}
-
-	function setSyncProdAccessorySourceArray()
-	{
-		// TODO: Implement setSyncProdAccessorySourceArray() method.
-	}
-
-	function setSyncProdWeight()
-	{
-		// TODO: Implement setSyncProdWeight() method.
-	}
 }
