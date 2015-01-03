@@ -10,12 +10,12 @@ class Dev extends Migration
         Schema::create('dev', function (Blueprint $table) {
 
             $table->increments('id')->unsigned();
-            $table->boolean('active')->default(1);
             $table->boolean('authorized')->default(0);
             $table->tinyInteger('default_warranty_id')->unsigned()->default(1);
             $table->tinyInteger('default_sale_prod_id')->unsigned()->default(1);
             $table->tinyInteger('default_sale_action_id')->unsigned()->default(1);
             $table->tinyInteger('default_availability_id')->unsigned()->default(2);
+            $table->tinyInteger('transport_time_supplier')->unsigned()->default(3);
             $table->string('alias', '32')->unique();
             $table->string('name', '32')->unique();
             $table->engine = 'InnoDB';

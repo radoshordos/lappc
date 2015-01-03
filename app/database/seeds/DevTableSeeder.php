@@ -142,7 +142,6 @@ class DevTableSeeder extends Seeder
 
         DB::table('dev')->insert([
             'id'     => 1,
-            'active' => 0,
             'alias'  => 'all',
             'name'   => 'Vše'
         ]);
@@ -151,8 +150,6 @@ class DevTableSeeder extends Seeder
 
             DB::table('dev')->insert([
                 'id'         => $row['dev_id'],
-                'active'     => 1,
-                'authorized' => 0,
                 'alias'      => $row['dev_unique_string'],
                 'name'       => $row['dev_name']
             ]);

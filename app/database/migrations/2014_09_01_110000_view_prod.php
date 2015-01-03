@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class ViewProd extends Migration
 {
-    public function up()
-    {
-        DB::unprepared('DROP TABLE IF EXISTS view_prod');
+	public function up()
+	{
+		DB::unprepared('DROP TABLE IF EXISTS view_prod');
 
-        DB::unprepared('
+		DB::unprepared('
             CREATE OR REPLACE VIEW
             view_prod AS
             SELECT  prod.id AS prod_id,
@@ -60,10 +60,10 @@ class ViewProd extends Migration
             LEFT JOIN akce_template ON akce.akce_template_id = akce_template.id
             LEFT JOIN akce_minitext ON akce_template.minitext_id = akce_minitext.id
         ');
-    }
+	}
 
-    public function down()
-    {
-        DB::unprepared('DROP TABLE IF EXISTS view_prod');
-    }
+	public function down()
+	{
+		DB::unprepared('DROP TABLE IF EXISTS view_prod');
+	}
 }
