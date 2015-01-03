@@ -10,7 +10,7 @@ class SyncDbAccessory extends Migration {
 		Schema::create('sync_db_accessory', function (Blueprint $table) {
 			$table->increments('id')->unsigned();
 			$table->integer('sync_id')->unsigned();
-			$table->string('connection', '32');
+			$table->string('connection', '255');
 			$table->engine = 'InnoDB';
 
 			$table->foreign('sync_id')->references('id')->on('sync_db')->onUpdate('cascade')->onDelete('cascade');

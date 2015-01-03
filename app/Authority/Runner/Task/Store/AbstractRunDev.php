@@ -104,7 +104,7 @@ abstract class AbstractRunDev implements iItem
 
 	public function insertData2Db()
 	{
-		$tsi = new TotalSyncImport($this->getAllValues(), $this->getSyncProdImgSourceArray());
+		$tsi = new TotalSyncImport($this->getAllValues(), $this->getSyncProdImgSourceArray(), $this->getSyncProdAccessorySourceArray());
 		return $tsi->insertData2SyncDb();
 	}
 

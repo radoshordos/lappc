@@ -10,7 +10,7 @@ class SyncMadalbal extends TaskMessage implements iSync
 	public function __construct($table_cron)
 	{
 		parent::__construct($table_cron);
-		$this->curl = new MyCurl('http://shop.madalbal.cz/katalog/feeds/products.xml');
+		$this->curl = new MyuCurl('http://shop.madalbal.cz/katalog/feeds/products.xml');
 		$this->curl->setName("27634493/0");
 		$this->curl->setPass("NAD276ph");
 		$this->curl->useAuth(true);
