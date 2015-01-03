@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('PpcKeywordsMatchTableSeeder');
 		$this->call('PpcAdQualitySeeder');
 		$this->call('ProdWarrantyTableSeeder');
+		$this->call('AkceSaleSeeder');
 		$this->call('ProdSaleSeeder');
 		$this->call('ItemsAvailabilityTableSeeder');
 		$this->call('TreeGroupTopTableSeeder');
@@ -27,7 +28,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('ForexSeeder');
 		$this->call('BuyDeliverySeeder');
 		$this->call('AkceMinitextSeeder');
-		$this->call('AkceAvailibilitySeeder');
+		$this->call('AkceAvailabilitySeeder');
 		$this->call('MediaTypeSeeder');
 		$this->call('GrabModeSeeder');
 		$this->call('GrabProfileSeeder');

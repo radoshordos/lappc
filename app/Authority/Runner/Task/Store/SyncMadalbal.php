@@ -44,24 +44,21 @@ class SyncMadalbal extends TaskMessage implements iSync
 			'created_at' => date("Y-m-d H:i:s", $record_id)
 		]);
 
-
 		foreach ($xml as $x) {
-			foreach ($x as $item) {
+			if (!empty($x)) {
+				foreach ($x as $item) {
 
-			$all++;
-			$arr_item = array_filter((array)$item);
-			$run = new RunMadalbal($arr_item, $record_id);
+					$all++;
+					$arr_item = array_filter((array)$item);
+					$run = new RunMadalbal($arr_item, $record_id);
 
-
-
-
-/*
-			if ($run->isUseRequired() === true) {
-				$suc++;
-				//$run->insertData2Db();
+					/*          if ($run->isUseRequired() === true) {
+									$suc++;
+									//$run->insertData2Db();
+								}
+					*/
+				}
 			}
-*/
-		}
 		}
 
 //		$rsi = RecordSyncImport::find($record_id);
@@ -71,5 +68,4 @@ class SyncMadalbal extends TaskMessage implements iSync
 		$this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
 		$this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
 	}
-
 }
