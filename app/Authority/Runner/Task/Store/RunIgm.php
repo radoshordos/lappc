@@ -72,9 +72,7 @@ class RunIgm extends AbstractRunDev implements iItem
 	function setSyncProdWeight()
 	{
 		if (isset($this->shopItem['MAINUNITWEIGHT'])) {
-			$this->syncProdWeight = floatval(str_replace(",", ".", $this->shopItem['MAINUNITWEIGHT']));
-		} else {
-			$this->syncProdWeight = 0;
+			$this->syncProdWeight = round(floatval(str_replace(",", ".", $this->shopItem['MAINUNITWEIGHT'])), 2);
 		}
 	}
 

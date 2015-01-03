@@ -52,18 +52,18 @@ class SyncMadalbal extends TaskMessage implements iSync
 					$arr_item = array_filter((array)$item);
 					$run = new RunMadalbal($arr_item, $record_id);
 
-					/*          if ($run->isUseRequired() === true) {
-									$suc++;
-									//$run->insertData2Db();
-								}
-					*/
+					if ($run->isUseRequired() === true) {
+						$suc++;
+						$run->insertData2Db();
+					}
+
 				}
 			}
 		}
 
-//		$rsi = RecordSyncImport::find($record_id);
-//		$rsi->item_counter = $suc;
-//		$rsi->save();
+		$rsi = RecordSyncImport::find($record_id);
+		$rsi->item_counter = $suc;
+		$rsi->save();
 
 		$this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
 		$this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");

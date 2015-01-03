@@ -21,6 +21,7 @@ abstract class AbstractRunDev implements iItem
 	protected $syncUrl;
 	protected $syncProdImgSourceArray;
 	protected $syncProdAccessorySourceArray;
+
 	private $counterAll = 0;
 	private $counterSync = 0;
 

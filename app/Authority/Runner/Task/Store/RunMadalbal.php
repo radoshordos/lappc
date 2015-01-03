@@ -6,13 +6,14 @@ class RunMadalbal extends AbstractRunDev implements iItem
 
 	function __construct($shop_item, $record_id)
 	{
-		//	var_dump($shop_item['Brand']);
-		//	die;
-		if (isset($shop_item['Brand'])) {
+		parent::__construct($shop_item, $record_id);
+	}
 
-			echo $shop_item['Brand'] . "<br />";
+	function setSyncIdDev()
+	{
+		if (isset($this->shopItem['Brand'])) {
+			$this->syncIdDev = $this->analyseIdDev($this->shopItem['Brand']);
 		}
-		//parent::__construct($shop_item, $record_id);
 	}
 
 	private function analyseIdDev($dev_name)
@@ -48,57 +49,98 @@ class RunMadalbal extends AbstractRunDev implements iItem
 		}
 	}
 
-	function setSyncProdDesc()
-	{
-		// TODO: Implement setSyncProdDesc() method.
-	}
-
 	function setSyncProdName()
 	{
-		// TODO: Implement setSyncProdName() method.
+		if (isset($this->shopItem['Brand']) && (isset($this->shopItem['ProductCode']))) {
+			$this->syncProdName = (string)ucwords(strtolower($this->shopItem['Brand'])) . " " . $this->shopItem['ProductCode'];
+		}
 	}
 
-	function setSyncIdDev()
+	function setSyncProdDesc()
 	{
-		//var_dump($this->shopItem());
-
-		//echo $this->shopItem['Brand'] . "<br />";
-
-	}
-
-	function setSyncCategoryText()
-	{
-		// TODO: Implement setSyncCategoryText() method.
-	}
-
-	function setSyncUrl()
-	{
-		// TODO: Implement setSyncUrl() method.
-	}
-
-	function setSyncProdImgSourceArray()
-	{
-		// TODO: Implement setSyncProdImgSourceArray() method.
-	}
-
-	function setSyncProdAccessorySourceArray()
-	{
-		// TODO: Implement setSyncProdAccessorySourceArray() method.
+		if (isset($this->shopItem['Name'])) {
+			$this->syncProdDesc = (string)$this->shopItem['Name'];
+		}
 	}
 
 	function setSyncItemsCodeProduct()
 	{
-		// TODO: Implement setSyncItemsCodeProduct() method.
+		if (isset($this->shopItem['ProductCode'])) {
+			$this->syncItemsCodeProduct = (string)$this->shopItem['ProductCode'];
+		}
+	}
+
+	function setSyncProdWeight()
+	{
+		if (isset($this->shopItem['Logistics'])) {
+			$logistics = array_filter((array)$this->shopItem['Logistics']);
+			if (isset($logistics['Weight'])) {
+				$this->syncProdWeight = round(floatval($logistics['Weight']), 2);
+			}
+		}
 	}
 
 	function setSyncItemsCodeEan()
 	{
-		// TODO: Implement setSyncItemsCodeEan() method.
+		if (isset($this->shopItem['Logistics'])) {
+			$logistics = array_filter((array)$this->shopItem['Logistics']);
+			if (isset($logistics['EAN'])) {
+				$this->syncItemsCodeEan = (string)$logistics['EAN'];
+			}
+		}
 	}
 
 	function setSyncItemsPriceStandard()
 	{
-		// TODO: Implement setSyncItemsPriceStandard() method.
+		if (isset($this->shopItem['EndUserVAT'])) {
+			$this->syncItemsPriceStandard = doubleval($this->shopItem['EndUserVAT']);
+		}
+	}
+
+	function setSyncCategoryText()
+	{
+		if (isset($this->shopItem['ProductType']) || isset($this->shopItem['Category']) || isset($this->shopItem['CategoryCode'])) {
+
+			$ai = new \ArrayIterator();
+			if (isset($this->shopItem['ProductType'])) {
+				$ai->append($this->shopItem['ProductType']);
+			}
+			if (isset($this->shopItem['Category'])) {
+				$ai->append($this->shopItem['Category']);
+			}
+			if (isset($this->shopItem['CategoryCode'])) {
+				$ai->append($this->shopItem['CategoryCode']);
+			}
+			$this->syncCategoryText = implode(' | ', $ai->getArrayCopy());
+		}
+	}
+
+	function setSyncProdImgSourceArray()
+	{
+		if (isset($this->shopItem['Images'])) {
+			$images = array_filter((array)$this->shopItem['Images']);
+			if (count($images) > 0) {
+				$ai = new \ArrayIterator();
+				foreach ($images as $img) {
+					$ai->append($img);
+				}
+				$this->syncProdAccessorySourceArray = $ai->getArrayCopy();
+			}
+		}
+	}
+
+	function setSyncProdAccessorySourceArray()
+	{
+		if (isset($this->shopItem['Accessories'])) {
+			$accessories = array_filter((array)$this->shopItem['Accessories']);
+			if (count($accessories) > 0) {
+				$ai = new \ArrayIterator();
+				foreach ($accessories as $acc) {
+					$ai->append($acc);
+				}
+				$this->syncProdAccessorySourceArray = $ai->getArrayCopy();
+			}
+		}
 	}
 
 	function setSyncItemsPriceAction()
@@ -111,8 +153,9 @@ class RunMadalbal extends AbstractRunDev implements iItem
 		// TODO: Implement setSyncItemsAvailabilityCount() method.
 	}
 
-	function setSyncProdWeight()
+	function setSyncUrl()
 	{
-		// TODO: Implement setSyncProdWeight() method.
+		// TODO: Implement setSyncUrl() method.
 	}
+
 }

@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class SyncDb extends Migration
 {
-
 	public function up()
 	{
 		Schema::create('sync_db', function (Blueprint $table) {
@@ -22,8 +21,8 @@ class SyncDb extends Migration
 			$table->decimal('price_standard', 9, 2)->unsigned()->nullable();
 			$table->decimal('price_action', 9, 2)->unsigned()->nullable();
 			$table->decimal('price_internet', 9, 2)->unsigned()->nullable();
-			$table->integer('availability_count')->default(0);
-			$table->float('weight')->unsigned()->default(0);
+			$table->integer('availability_count')->nullable();
+			$table->float('weight')->unsigned()->nullable();
 			$table->string('categorytext', 255)->nullable();
 			$table->string('url', 255)->nullable();
 
