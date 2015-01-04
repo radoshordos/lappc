@@ -19,6 +19,7 @@
                         @endif
                         <span class="price label">{{ $vpa->priceFormatCurrencyWith() }}</span>
                     @else
+                        <span class="alert label">Prodej ukončen</span>
                     @endif
                 </a>
                 <p>{{ $vpa->getProdDesc() }}</p>

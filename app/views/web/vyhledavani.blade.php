@@ -7,24 +7,27 @@
             @include('web.global.leftmenu')
         </div>
         <div id="part-right" class="medium-14 columns">
-            <h1>Hledáme + {{ $term }}</h1>
-
-            <div class="small-18 panel clearfix valign-middle">
-                <div class="row">
-                    <dl id="dev-container" class="small-6 columns sub-nav">
-                        @include('web.tree.boxdev')
-                    </dl>
-                </div>
-                <div class="row" style="border-top: 5px solid #ffffff">
-                    <div id="prod-filter" class="small-3 columns">
-                        @include('web.tree.blockprodfilter')
+            @if (strlen($term)>0)
+                <h1>Hledáme výraz + {{ $term }}</h1>
+                <div class="small-18 panel clearfix valign-middle">
+                    <div class="row">
+                        <dl id="dev-container" class="small-6 columns sub-nav">
+                            @include('web.tree.boxdev')
+                        </dl>
                     </div>
-                    <div id="prod-sort" class="small-6 columns">
-                        @include('web.tree.boxsorting')
+                    <div class="row" style="border-top: 5px solid #ffffff">
+                        <div id="prod-filter" class="small-3 columns">
+                            @include('web.tree.blockprodfilter')
+                        </div>
+                        <div id="prod-sort" class="small-6 columns">
+                            @include('web.tree.boxsorting')
+                        </div>
                     </div>
                 </div>
-            </div>
-            @include('web.tree.boxprodlist')
+                @include('web.tree.boxprodlist')
+            @else
+                <h1>Zadejte výraz pro vyhledání zboží</h1>
+            @endif
         </div>
     </div>
 </div>
