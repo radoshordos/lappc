@@ -35,6 +35,23 @@ FROM prod
 WHERE prod.prod_id > 0
 ORDER BY id
 
+---------------------
+
+SELECT  items_id,
+        items_id_prod,
+        items_is_visible,
+        items_id_availibility,
+        items_id_diff1,
+        items_id_diff2,
+        items_code_product,
+        items_ti_create
+FROM items
+INNER JOIN prod ON items.items_id = prod.prod_id
+AND prod.prod_id > 0
+ORDER BY prod_id_tree
+
+
+CREATE VIEW import_items AS
 SELECT  items_id,
         items_id_prod,
         items_is_visible,
@@ -54,6 +71,7 @@ FROM  prod
 GROUP BY prod_desc
 HAVING count > 1
 
+--------------------------------
 
 SELECT  pmd_id as id,
   		pmd_id_prod as prod_id,
@@ -61,7 +79,17 @@ SELECT  pmd_id as id,
       	pmd_data as data
 FROM prod2multi2description
 INNER JOIN prod ON prod2multi2description.pmd_id_prod = prod.prod_id
-WHERE prod_id_tree >= 1109000 AND prod_id_tree < 1138000
+AND prod.prod_id > 0
+ORDER BY prod_id_tree
+
+
+CREATE VIEW import_pmd AS
+SELECT  pmd_id as id,
+  		pmd_id_prod as prod_id,
+    	pmd_id_media_var as variations_id,
+      	pmd_data as data
+FROM prod2multi2description
+INNER JOIN prod ON prod2multi2description.pmd_id_prod = prod.prod_id
 AND prod.prod_id > 0
 ORDER BY prod_id_tree
 

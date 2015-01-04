@@ -14,6 +14,7 @@ class ProdTableSeeder extends Seeder
 		foreach ($prod as $row) {
 
 			$tree = $this->getTree($row['tree_id']);
+
 			if ($tree > 0) {
 
 				DB::table('prod')->insert([
@@ -589,10 +590,11 @@ class ProdTableSeeder extends Seeder
 			'1890500' => 32162000,
 			'1890600' => 32161200,
 			'1890700' => 32161400,
-			'1890800' => 32161600
+			'1890800' => 32161600,
+			'1104000' => 0,
 		];
 
-		return isset($arr[$tree]) ? $arr[$tree] : NULL;
+		return isset($arr[$tree]) ? $arr[$tree] : "ERR:" . $tree;
 	}
 
 }

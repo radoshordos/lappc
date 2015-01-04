@@ -24,11 +24,11 @@ class Prod extends Migration
             $table->decimal('price', 9, 2)->unsigned()->default(999999);
             $table->string('alias', '64')->unique();
             $table->string('name', '64')->unique();
-            $table->string('desc', '128'); // ->unique()
+            $table->string('desc', '128');
             $table->integer('storeroom')->default(0);
             $table->float('transport_weight')->unsigned()->default(0.1);
             $table->boolean('transport_atypical')->default(0);
-            $table->string('search_alias', '64')->unique()->nullable();
+            $table->string('search_alias', '64')->nullable();
             $table->string('search_codes', '255')->unique()->nullable();
             $table->decimal('search_price', 9, 2)->default(9999999);
             $table->integer('search_sell')->unsigned()->default(0);

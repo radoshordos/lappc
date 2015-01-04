@@ -14,7 +14,7 @@
         <div class="medium-8 columns">
             @if (!empty($item_row))
                 {{ Form::open(['action' => 'KosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
-                <input name="do-kosiku[{{ $item_row->id }}]" style="max-width: 12em" class="success button expand"" type="submit" title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
+                <input name="do-kosiku[{{ $item_row->id }}]" style="max-width: 12em" class="success button expand" type="submit" title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
                 {{ Form::close() }}
             @endif
         </div>
