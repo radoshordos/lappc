@@ -11,7 +11,7 @@ use Authority\Eloquent\ViewTree;
 use Authority\Web\Query\AjaxTree;
 
 
-class EshopController extends Controller
+class EshopController extends BaseController
 {
 	private $view_tree_array;
 	private $term;
@@ -79,7 +79,6 @@ class EshopController extends Controller
 		return $this->isTree(array_merge($treePart, [$dev]));
 	}
 
-
 	protected function isTree(array $treePart, $dev = NULL)
 	{
 		$tree_actual = ViewTree::where('tree_absolute', '=', implode('/', $treePart))->first();
@@ -102,7 +101,7 @@ class EshopController extends Controller
 			$ajaxTree = new AjaxTree();
 			$vp = $ajaxTree->orderBySort($vp, $sort);
 
-			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(18);
+			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(self::PAGINATE_PAGE);
 
 			if (!empty($this->term)) {
 				$pagination->appends(['term' => $this->term]);

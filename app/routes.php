@@ -140,7 +140,11 @@ Route::get('adm', ['as' => 'adm.home', function () {
     return View::make('adm.home');
 }]);
 
-Route::resource('vyhledat-zbozi', 'VyhledatZboziController');
+
+Route::resource('vyhledat-zbozi','VyhledatZboziController', ['only' => ['index', 'store']]);
+Route::resource('vyhledat-zbozi/{dev}','VyhledatZboziController', ['only' => ['index', 'store']]);
+
+
 Route::resource('nakupni-kosik', 'KosikController', ['only' => ['index', 'store']]);
 
 

@@ -2,7 +2,6 @@
 
 use Authority\Eloquent\RecordVisitorsLooking;
 use Authority\Eloquent\TreeGroup;
-use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 use Carbon\Carbon;
 

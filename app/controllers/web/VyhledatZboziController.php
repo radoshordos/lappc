@@ -23,9 +23,9 @@ class VyhledatZboziController extends EshopController
 		}
 	}
 
-	public function index()
+	public function index($dev = NULL)
 	{
-		$term = trim(Input::get('term'));
+		$term = strip_tags(trim(Input::get('term')));
 		$et = explode(" ", $term);
 		$clt = $this->cutLongerTerm($term);
 
@@ -44,7 +44,7 @@ class VyhledatZboziController extends EshopController
 			}
 		});
 
-		$vp->orWhere(function ($query) use ($et) {
+		$vp->orWhere(function ($query) use ($et,$dev) {
 			foreach ($et as $word) {
 				if (strlen($word) > 7) {
 					$query->where('prod_name', 'LIKE', $word . '%');
@@ -53,16 +53,22 @@ class VyhledatZboziController extends EshopController
 				} else {
 					$query->where('prod_name', 'LIKE', $word);
 				}
+				if (!empty($dev)) {
+					$query->where('dev_alias', '=', $dev);
+				}
 			}
 		});
 
 
 		if (strlen($clt) > 4) {
-			$dl->orWhere(function ($query) use ($clt) {
+			$dl->orWhere(function ($query) use ($clt,$dev) {
 				$query->where('prod_desc', 'LIKE', "%" . $clt . "%");
 			});
-			$vp->orWhere(function ($query) use ($clt) {
+			$vp->orWhere(function ($query) use ($clt,$dev) {
 				$query->where('prod_desc', 'LIKE', "%" . $clt . "%");
+				if (!empty($dev)) {
+					$query->where('dev_alias', '=', $dev);
+				}
 			});
 		}
 
@@ -70,14 +76,20 @@ class VyhledatZboziController extends EshopController
 			if (strlen($term) <= 4) {
 				$dl->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
 				$vp->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
+				if (!empty($dev)) {
+					$vp->where('dev_alias', '=', $dev);
+				}
 			} else if (strlen($term) > 4) {
 				$dl->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
 				$vp->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
+				if (!empty($dev)) {
+					$vp->where('dev_alias', '=', $dev);
+				}
 			}
 		}
 
 		$dev_list = $dl->groupBy(["dev_id"])->get()->toArray();
-		$pagination = $vp->paginate(18);
+		$pagination = $vp->paginate(self::PAGINATE_PAGE);
 
 		if (!empty($term)) {
 			$pagination->appends(['term' => $term]);
@@ -85,10 +97,11 @@ class VyhledatZboziController extends EshopController
 
 		return View::make('web.vyhledavani', [
 			'namespace'        => 'vyhledavani',
+			'dev'              => $dev,
 			'view_prod_array'  => $pagination,
 			'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
 			'view_tree_actual' => ViewTree::where('tree_group_type', '=', 'prodfind')->first(),
-			'dev_list'         => ["a" => ['dev_id' => 1, 'tree_absolute' => '', 'dev_prod_count' => $this->getCountAllDev($dev_list)]] + $dev_list,
+			'dev_list'         => ["a" => ['dev_id' => 1, 'dev_alias' => '', 'tree_absolute' => '', 'dev_prod_count' => $this->getCountAllDev($dev_list)]] + $dev_list,
 			'vp'               => ViewProd::where('prod_name', 'LIKE', '%' . Input::get('term') . '%')->first(),
 			'term'             => Input::get('term'),
 			'store'            => Input::has('store') ? true : false,

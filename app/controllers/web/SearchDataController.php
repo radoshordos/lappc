@@ -4,7 +4,7 @@ use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 use Authority\Web\Query\AjaxTree;
 
-class SearchDataController extends Controller
+class SearchDataController extends BaseController
 {
     public function ajax()
     {
@@ -54,7 +54,7 @@ class SearchDataController extends Controller
         $ajaxTree = new AjaxTree();
         $db = $ajaxTree->orderBySort($db,$sort);
 
-        $pagination = $db->limit(15)->paginate();
+        $pagination = $db->limit(self::PAGINATE_PAGE)->paginate();
         $pagination->setBaseUrl('');
 
         if (!empty($term)) {

@@ -1,4 +1,4 @@
-<div class="row">
+<header class="row">
     <div class="small-18 columns">
         <nav class="top-bar" data-topbar>
             <section class="top-bar-section">
@@ -21,4 +21,4 @@
         </nav>
         @include('web.global.blocknav')
     </div>
-</div>
+</header>
