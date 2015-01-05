@@ -122,6 +122,24 @@ class RunMakita extends AbstractRunDev implements iItem
 		}
 	}
 
+	function setSyncProdFileSourceArray()
+	{
+		if (!empty($this->shopItem['ATTACHMENT'])) {
+			$ai = new \ArrayIterator();
+
+			if (!empty($this->shopItem['ATTACHMENT'])) {
+				if (is_array($this->shopItem['ATTACHMENT'])) {
+					foreach ($this->shopItem['ATTACHMENT'] as $val) {
+						$ai->append($val);
+					}
+				} else {
+					$ai->append($this->shopItem['ATTACHMENT']);
+				}
+			}
+			$this->syncProdFileSourceArray = $ai->getArrayCopy();
+		}
+	}
+
 	function setSyncWarranty()
 	{
 		// TODO: Implement setSyncWarranty() method.

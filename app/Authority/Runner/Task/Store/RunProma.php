@@ -103,4 +103,9 @@ class RunProma extends AbstractRunDev implements iItem
 	{
 		// TODO: Implement setSyncProdWeight() method.
 	}
+
+	function setSyncProdFileSourceArray()
+	{
+		// TODO: Implement setSyncProdFileSourceArray() method.
+	}
 }

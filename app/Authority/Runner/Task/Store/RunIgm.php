@@ -115,4 +115,9 @@ class RunIgm extends AbstractRunDev implements iItem
 	{
 		// TODO: Implement setSyncItemsAvailabilityCount() method.
 	}
+
+	function setSyncProdFileSourceArray()
+	{
+		// TODO: Implement setSyncProdFileSourceArray() method.
+	}
 }

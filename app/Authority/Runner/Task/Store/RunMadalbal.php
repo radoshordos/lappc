@@ -167,4 +167,8 @@ class RunMadalbal extends AbstractRunDev implements iItem
 		// TODO: Implement setSyncUrl() method.
 	}
 
+	function setSyncProdFileSourceArray()
+	{
+		// TODO: Implement setSyncProdFileSourceArray() method.
+	}
 }

@@ -3,6 +3,7 @@
 use Authority\Eloquent\Items;
 use Authority\Eloquent\SyncDb;
 use Authority\Eloquent\SyncDbImg;
+use Authority\Eloquent\SyncDbFile;
 use Authority\Eloquent\SyncDbAccessory;
 
 class TotalSyncImport
@@ -10,11 +11,12 @@ class TotalSyncImport
 	private $columns;
 	private $images;
 	private $accessory;
+	private $file;
 	private $dev_id;
 	private $code_prod;
 	private $purpose;
 
-	public function  __construct(array $data, array $images = NULL, array $accessory = NULL)
+	public function  __construct(array $data, array $images = NULL, array $accessory = NULL, array $file = NULL)
 	{
 		if (!isset($data['dev_id'])) {
 			throw new \RuntimeException("NOT column dev_id");
@@ -29,6 +31,7 @@ class TotalSyncImport
 		$this->columns = $data;
 		$this->images = $images;
 		$this->accessory = $accessory;
+		$this->file = $file;
 		$this->dev_id = $data['dev_id'];
 		$this->code_prod = $data['code_prod'];
 		$this->purpose = $data['purpose'];
@@ -76,6 +79,7 @@ class TotalSyncImport
 			$newSyncDb = SyncDb::create(array_merge($this->columns, $additional));
 			$this->images2Db($newSyncDb);
 			$this->accessory2Db($newSyncDb);
+			$this->file2Db($newSyncDb);
 			return $newSyncDb;
 		} else {
 			return SyncDb::where('id', '=', $sync_id)->update(array_merge($this->columns, $additional));
@@ -111,4 +115,20 @@ class TotalSyncImport
 			}
 		}
 	}
+
+	public function file2Db(SyncDb $db)
+	{
+		if (count($this->file) > 0) {
+			foreach ($this->file as $val) {
+				if (is_array($val)) {
+					foreach ($val as $v) {
+						SyncDbFile::create(['sync_id' => $db->id, 'url' => $v]);
+					}
+				} else {
+					SyncDbFile::create(['sync_id' => $db->id, 'url' => $val]);
+				}
+			}
+		}
+	}
+
 }

@@ -28,6 +28,8 @@ interface iItem
 
 	function getSyncProdAccessorySourceArray();
 
+	function getSyncProdFileSourceArray();
+
 	function getSyncProdWeight();
 
 	function setSyncProdDesc();
@@ -45,6 +47,8 @@ interface iItem
 	function setSyncProdImgSourceArray();
 
 	function setSyncProdAccessorySourceArray();
+
+	function setSyncProdFileSourceArray();
 
 	function setSyncItemsCodeProduct();
 

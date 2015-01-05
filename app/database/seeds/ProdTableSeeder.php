@@ -5,17 +5,19 @@ class ProdTableSeeder extends Seeder
 
 	public function run()
 	{
-        $prod = [];
+		$prod = [];
 		include "migration/prod.php";
 
 		DB::table('prod')->delete();
 		$now = strtotime('now');
 
+		$i = 0;
 		foreach ($prod as $row) {
 
 			$tree = $this->getTree($row['tree_id']);
+			$i++;
 
-			if ($tree > 0) {
+			if (($tree > 0) && ($i % 2 == 0)) {
 
 				DB::table('prod')->insert([
 					'id'            => $row['id'],

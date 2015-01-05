@@ -23,6 +23,7 @@ abstract class AbstractRunDev implements iItem
 	protected $syncUrl;
 	protected $syncProdImgSourceArray;
 	protected $syncProdAccessorySourceArray;
+	protected $syncProdFileSourceArray;
 
 	private $counterAll = 0;
 	private $counterSync = 0;
@@ -41,6 +42,7 @@ abstract class AbstractRunDev implements iItem
 		$this->setSyncProdDesc();
 		$this->setSyncProdImgSourceArray();
 		$this->setSyncProdAccessorySourceArray();
+		$this->setSyncProdFileSourceArray();
 		$this->setSyncItemsAvailabilityCount();
 		$this->setSyncItemsCodeProduct();
 		$this->setSyncItemsCodeEan();
@@ -104,7 +106,7 @@ abstract class AbstractRunDev implements iItem
 
 	public function insertData2Db()
 	{
-		$tsi = new TotalSyncImport($this->getAllValues(), $this->getSyncProdImgSourceArray(), $this->getSyncProdAccessorySourceArray());
+		$tsi = new TotalSyncImport($this->getAllValues(), $this->getSyncProdImgSourceArray(), $this->getSyncProdAccessorySourceArray(), $this->getSyncProdFileSourceArray());
 		return $tsi->insertData2SyncDb();
 	}
 
@@ -156,6 +158,11 @@ abstract class AbstractRunDev implements iItem
 	public function getSyncProdAccessorySourceArray()
 	{
 		return $this->syncProdAccessorySourceArray;
+	}
+
+	public function getSyncProdFileSourceArray()
+	{
+		return $this->syncProdFileSourceArray;
 	}
 
 	public function getSyncProdWeight()

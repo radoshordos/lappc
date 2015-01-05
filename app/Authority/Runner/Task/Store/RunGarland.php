@@ -137,4 +137,14 @@ class RunGarland extends AbstractRunDev implements iItem
 	{
 		// TODO: Implement setSyncProdWeight() method.
 	}
+
+	function setSyncWarranty()
+	{
+		// TODO: Implement setSyncWarranty() method.
+	}
+
+	function setSyncProdFileSourceArray()
+	{
+		// TODO: Implement setSyncProdFileSourceArray() method.
+	}
 }
