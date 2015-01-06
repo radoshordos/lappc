@@ -34,7 +34,7 @@ Výrobci zboží
             </thead>
             <tfoot>
             <tr>
-                <td class="text-right" colspan="11">Zobrazeno <b>{{ count($devs) }}</b> záznamů</td>
+                <td class="text-right" colspan="12">Zobrazeno <b>{{ count($devs) }}</b> záznamů</td>
             </tr>
             </tfoot>
             <tbody>

@@ -73,6 +73,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 308,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Fix\AddEanFromSync'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 402,
             'autorun' => 0,
             'class'   => 'Authority\Runner\Task\Recalculate\TreeRecalculate'

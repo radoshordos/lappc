@@ -3,6 +3,7 @@
 use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Dev;
 use Authority\Eloquent\Items;
+use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\MixtureItem;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\TreeDev;
@@ -47,6 +48,13 @@ class EshopController extends BaseController
 		$view_prod_actual = ViewProd::where('prod_alias', '=', $urlPart)->first();
 		if (isset($view_prod_actual) && $view_prod_actual->count() > 0) {
 
+			$items_accessory = ItemsAccessory::join('items', 'items.id', '=', 'items_accessory.item_to_id')
+				->join('view_prod', 'items.prod_id', '=', 'view_prod.prod_id')
+				->whereIn('items_accessory.item_from_id', Items::select(["id"])->where('prod_id', '=', $view_prod_actual->prod_id)->lists('id'))
+				->where('view_prod.prod_id', '!=', $view_prod_actual->prod_id)
+				->get();
+
+
 			$at_row = (intval($view_prod_actual->akce_template_id) > 1 ? AkceTempl::find($view_prod_actual->akce_template_id) : NULL);
 
 			$item_row = NULL;
@@ -61,6 +69,7 @@ class EshopController extends BaseController
 				'view_prod_actual' => $view_prod_actual,
 				'prod_desc_array'  => ProdDescription::where('prod_id', '=', $view_prod_actual->prod_id)->whereNotNull('data')->get(),
 				'term'             => $this->term,
+				'items_accessory'  => $items_accessory,
 				'at_row'           => $at_row,
 				'item_row'         => $item_row,
 				'mi_row'           => ((isset($at_row) && intval($at_row->mixture_item_id) > 0) ? MixtureItem::find(intval($at_row->mixture_item_id)) : NULL)

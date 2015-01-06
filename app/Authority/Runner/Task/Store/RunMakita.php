@@ -11,19 +11,26 @@ class RunMakita extends AbstractRunDev implements iItem
 
 	private function analyseIdDev($dev_name)
 	{
-		return 5;
-		/*
-		switch ($dev_name) {
-			case 'Silky' :
-				return 808;
-			case 'Titebond' :
-				return 810;
-			case 'Uvex' :
-				return 812;
+		switch ((string)$dev_name) {
+			case '00' :
+				return 5;
+			case '01' :
+				return 5;
+			case '02' :
+				return 5;
+			case '03' :
+				return 5;
+			case '31' :
+				return 5;
+			case '39' :
+				return 30;
+			case '40' :
+				return 30;
+			case '41' :
+				return 6;
 			default :
 				return 0;
 		}
-		*/
 	}
 
 	function setSyncProdName()
@@ -47,7 +54,9 @@ class RunMakita extends AbstractRunDev implements iItem
 
 	function setSyncUrl()
 	{
-		(!empty($this->shopItem['URL']) ? $this->syncUrl = (string)$this->shopItem['URL'] : NULL);
+		if (isset($this->shopItem['URL'])) {
+			$this->syncUrl = (string)$this->shopItem['URL'];
+		}
 	}
 
 	function setSyncProdImgSourceArray()
@@ -74,17 +83,23 @@ class RunMakita extends AbstractRunDev implements iItem
 
 	function setSyncProdDesc()
 	{
-		(!empty($this->shopItem['PRODUCT']) ? $this->syncProdDesc = (string)$this->shopItem['PRODUCT'] : NULL);
+		if (isset($this->shopItem['PRODUCT'])) {
+			$this->syncProdDesc = (string)$this->shopItem['PRODUCT'];
+		}
 	}
 
 	function setSyncIdDev()
 	{
-		$this->syncIdDev = $this->analyseIdDev('unknown');
+		if (isset($this->shopItem['SORTIMENT1ID'])) {
+			$this->syncIdDev = $this->analyseIdDev($this->shopItem['SORTIMENT1ID']);
+		}
 	}
 
 	function setSyncCategoryText()
 	{
-		(!empty($this->shopItem['CATEGORYTEXT']) ? $this->syncCategoryText = (string)$this->shopItem['CATEGORYTEXT'] : NULL);
+		if (isset($this->shopItem['CATEGORYTEXT'])) {
+			$this->syncCategoryText = (string)$this->shopItem['CATEGORYTEXT'];
+		}
 	}
 
 	function setSyncProdAccessorySourceArray()

@@ -16,10 +16,16 @@ class RunIgm extends AbstractRunDev implements iItem
 			case 'IGM Expert Line' :
 			case 'IGM Professional Tools' :
 			case 'IGM Profi Line' :
+			case 'BASIC Line' :
+			case 'EXPERT Line' :
+			case 'IGM Professional' :
+			case 'PROFI Line' :
 				return 800;
 			case 'CMT Orange Tools' :
 				return 802;
 			case 'IGM Fachmann Tools' :
+				return 804;
+			case 'IGM Fachmann' :
 				return 804;
 			case 'JET' :
 				return 806;
@@ -96,15 +102,27 @@ class RunIgm extends AbstractRunDev implements iItem
 		}
 	}
 
+	function setSyncProdAccessorySourceArray()
+	{
+		if (!empty($this->shopItem['PRODUCTACCESSORIES'])) {
+
+			$ai = new \ArrayIterator();
+			$pa = (array)$this->shopItem['PRODUCTACCESSORIES'];
+
+			if (count($pa) > 0) {
+				foreach ($pa as $val) {
+					$ai->append($val);
+				}
+			}
+			return $this->syncProdAccessorySourceArray = $ai->getArrayCopy();
+		}
+	}
+
 	function setSyncUrl()
 	{
 		// TODO: Implement setSyncUrl() method.
 	}
 
-	function setSyncProdAccessorySourceArray()
-	{
-		// TODO: Implement setSyncProdAccessorySourceArray() method.
-	}
 
 	function setSyncWarranty()
 	{
