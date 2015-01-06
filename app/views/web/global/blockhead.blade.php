@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="cs" prefix="og: http://ogp.me/ns#><![endif]-->
+<!--[if IE 9]><html class="lt-ie10" lang="cs" prefix="og: http://ogp.me/ns#"><![endif]-->
 <html class="no-js" lang="cs" prefix="og: http://ogp.me/ns#">
 
 <head>
@@ -21,7 +21,7 @@
         <meta property="og:description" content="{{ $view_prod_actual->prod_desc }}">
         <meta property="og:type" content="product">
         <meta property="og:url" content="http://localhost:8000/{{$view_prod_actual->tree_absolute}}/{{$view_prod_actual->prod_alias}}">
-        <meta property="og:image" content="http://localhost:8000/web/foto/{{$view_prod_actual->tree_absolute}}/{{$view_prod_actual->prod_img_normal}}"/>
+        <meta property="og:image" content="http://localhost:8000/web/naradi/{{$view_prod_actual->tree_absolute}}/{{$view_prod_actual->prod_img_normal}}"/>
         <meta property="og:site_name" content="Nářadí Doležalová s.r.o e-shop: www.guru-naradi.cz">
     @else
         <title>Guru nářadí</title>
