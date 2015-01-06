@@ -51,7 +51,7 @@ AND prod.prod_id > 0
 ORDER BY prod_id_tree
 
 
-CREATE VIEW import_items AS
+CREATE OR REPLACE VIEW import_items AS
 SELECT  items_id,
         items_id_prod,
         items_is_visible,
@@ -61,7 +61,7 @@ SELECT  items_id,
         items_code_product,
         items_ti_create
 FROM items
-INNER JOIN prod ON items.items_id = prod.prod_id
+INNER JOIN prod ON items.items_id_prod = prod.prod_id
 AND prod.prod_id > 0
 ORDER BY prod_id_tree
 

@@ -1,0 +1,4 @@
+SELECT items.id
+FROM items
+LEFT JOIN prod ON items.prod_id = prod.id
+WHERE prod.id IS NULL
