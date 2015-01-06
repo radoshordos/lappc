@@ -97,6 +97,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 410,
+            'autorun' => 0,
+            'class'   => 'Authority\Runner\Task\Recalculate\ItemsAccessoryNew'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 502,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncBow'
