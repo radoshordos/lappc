@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\Dev;
 use Authority\Eloquent\SyncDb;
+use Authority\Eloquent\ViewProd;
 use Authority\Tools\SB;
 
 class DevController extends \BaseController
@@ -23,8 +24,11 @@ class DevController extends \BaseController
 	public function index()
 	{
 		return View::make('adm.pattern.dev.index', [
-			'devs'     => $this->dev->where('id', '>', '1')->orderBy('id')->get(),
-			'dev_sync' => SyncDb::distinct()->select('dev_id')->where('purpose', '=', 'autosync')->lists('dev_id')
+			'devs'      => $this->dev->where('id', '>', '1')->orderBy('id')->get(),
+			'count_dev' => ViewProd::select(\DB::raw('count(prod_id) as count, dev_id'))
+				->groupBy('dev_id')
+				->lists('count','dev_id'),
+			'dev_sync'  => SyncDb::distinct()->select('dev_id')->where('purpose', '=', 'autosync')->lists('dev_id')
 		]);
 	}
 

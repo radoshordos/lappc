@@ -8,6 +8,7 @@ Výrobci zboží
 
 {{-- Content --}}
 @section('content')
+
 @if ($devs->count())
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -15,6 +16,7 @@ Výrobci zboží
             <thead>
             <tr>
                 <th rowspan="2">#</th>
+                <th rowspan="2">&sum;</th>
                 <th rowspan="2">Název výrobce</th>
                 <th rowspan="2">Alias</th>
                 <th rowspan="2" class="text-center"><button type="button" title="Rychlost dodání zboží do eshopu od dodavatele [pracovní dny]" class="btn btn-primary btn-xs"><i class="fa fa-car"></i></button></th>
@@ -39,6 +41,7 @@ Výrobci zboží
             @foreach ($devs as $dev)
             <tr>
                 <td>{{ $dev->id }}</td>
+                <td>{{ (isset($count_dev[$dev->id]) ? $count_dev[$dev->id] : 0) }}</td>
                 <td>{{ $dev->name }}</td>
                 <td>{{ $dev->alias }}</td>
                 <td class="text-center"><button type="button">{{ $dev->transport_time_supplier }}</button></td>
