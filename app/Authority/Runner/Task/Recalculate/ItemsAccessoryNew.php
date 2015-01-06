@@ -1,6 +1,6 @@
 <?php namespace Authority\Runner\Task\Recalculate;
 
-use Authority\Eloquent\ProdAccessory;
+use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\SyncDbAccessory;
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
@@ -24,7 +24,7 @@ class ProdAccessoryNew extends TaskMessage implements iRun
 
 		if (!empty($sda)) {
 			foreach ($sda as $val) {
-				ProdAccessory::create(['purpose' => 'cronacc', 'prod_from_id' => $val->item_id, 'prod_to_id' => $val->id]);
+				ItemsAccessory::create(['purpose' => 'cronacc', 'prod_from_id' => $val->item_id, 'prod_to_id' => $val->id]);
 			}
 		}
 	}
