@@ -8,7 +8,7 @@ class ProdAccessory extends Migration {
 	public function up()
 	{
 		Schema::create('prod_accessory', function (Blueprint $table) {
-			$table->increments('id')->unsigned()->primary();
+			$table->increments('id')->unsigned();
 			$table->enum('purpose', ['cronacc','useracc'])->default('cronacc');
 			$table->integer('prod_from_id')->unsigned();
 			$table->integer('prod_to_id')->unsigned();
@@ -24,5 +24,4 @@ class ProdAccessory extends Migration {
 	{
 		Schema::dropIfExists('prod_accessory');
 	}
-
 }
