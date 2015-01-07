@@ -1,6 +1,10 @@
 <?php namespace Authority\Web\Group;
 
-class ProdNew
+class ProdNew implements iProdList
 {
 
+	public function getDevList()
+	{
+		// TODO: Implement getDevList() method.
+	}
 }
