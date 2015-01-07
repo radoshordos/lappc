@@ -3,7 +3,7 @@
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
-class VyhledatZboziController extends EshopController
+class TreeFindController extends EshopController
 {
 	private $sid;
 
