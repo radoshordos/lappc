@@ -12,15 +12,15 @@ class TreeMaster
 	{
 		$this->url = $url;
 		$this->sid = \Session::getId();
-		$this->data = $this->detectTreeAndDev($url, $dev);
+		$this->data = $this->detectTree($url, $dev);
 	}
 
-	public function getData()
+	public function getTreeData()
 	{
 		return $this->data;
 	}
 
-	private function detectTreeAndDev(array $url, $dev = NULL)
+	private function detectTree(array $url, $dev = NULL)
 	{
 		if ($dev != NULL) {
 			$row = Dev::where('alias', '=', $dev)->first();
@@ -33,12 +33,12 @@ class TreeMaster
 		}
 
 		switch ($url) {
-			case 'new' :
-				//			return new ProdNew($url, $dev);
-			case 'action' :
-				//			return new ProdAction($url, $dev);
-			case 'find' :
-				//			return new ProdFind($url, $dev);
+			case 'vyhledat-zbozi' :
+				return new ProdNew($url, $dev);
+			case 'akcni-ceny-naradi' :
+				return new ProdAction($url, $dev);
+			case 'novinky-naradi' :
+				return new ProdFind($url, $dev);
 			default:
 				return new ProdList($url, $dev);
 		}

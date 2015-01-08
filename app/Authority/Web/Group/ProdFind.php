@@ -10,7 +10,7 @@ class ProdFind implements iProdList
 	private $et;
 	private $clt;
 
-	public function __construct()
+	public function __construct($url, $dev_actual = NULL)
 	{
 		$this->term = strip_tags(trim(Input::get('term')));
 		$this->et = explode(" ", $this->term);
@@ -132,5 +132,11 @@ class ProdFind implements iProdList
 			}
 		}
 		return $count;
+	}
+
+
+	public function getViewTreeActual()
+	{
+		// TODO: Implement getViewTreeActual() method.
 	}
 }

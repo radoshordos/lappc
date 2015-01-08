@@ -5,7 +5,7 @@ class ProdAction implements iProdList {
 	CONST TREE_GROUP_TYPE = 'prodaction';
 
 
-	public function __construct($url, array $dev_actual = [])
+	public function __construct($url, $dev_actual = NULL)
 	{
 		// TODO: Implement __construct() method.
 	}
