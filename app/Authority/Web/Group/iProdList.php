@@ -2,5 +2,13 @@
 
 interface iProdList
 {
-	public function getDevList();
+	CONST PAGINATE_PAGE = 24;
+
+	public function __construct($url, $dev_actual = NULL);
+
+	public function getViewTreeActual();
+
+	public function getDevList($dev = NULL);
+
+	public function getViewProdPagination($dev = NULL);
 }

@@ -1,46 +1,87 @@
 <?php namespace Authority\Web\Group;
 
+use Authority\Eloquent\TreeDev;
 use Authority\Eloquent\ViewProd;
+use Authority\Eloquent\ViewTree;
 
 class ProdList implements iProdList
 {
+	CONST TREE_GROUP_TYPE = 'prodlist';
 
-	public function __construct() {
+	private $url;
+	private $da;
+	private $vta;
 
+	public function __construct($url, $dev_actual = NULL)
+	{
+		$this->url = $url;
+		$this->da = $dev_actual;
+		$this->vta = $this->getViewTreeActual();
 	}
 
-	public function getDevList()
+	public function getViewTreeActual()
 	{
+		return ViewTree::where('tree_absolute', '=', $this->url)->first();
+	}
 
-		$dl = ViewProd::select(["dev_id", "dev_alias", "dev_name", "tree_absolute", DB::raw("COUNT(prod_id) AS dev_prod_count")])->whereRaw('0=1');
+	public function getDevList($dev = NULL)
+	{
+		// TODO: Implement getDevList() method.
+	}
 
-		$dl->orWhere(function ($query) use ($et) {
-			foreach ($et as $word) {
-				if (strlen($word) > 7) {
-					$query->where('prod_name', 'LIKE', $word . '%');
-				} else if (strlen($word) >= 1) {
-					$query->where('prod_name', 'LIKE', '%' . $word . '%');
-				} else {
-					$query->where('prod_name', 'LIKE', $word);
-				}
-			}
-		});
-
-		if (strlen($clt) > 4) {
-			$dl->orWhere(function ($query) use ($clt, $dev) {
-				$query->where('prod_desc', 'LIKE', "%" . $clt . "%");
-			});
-		}
-
-		if (count($et) == 1 && strlen($term) > 3) {
-			if (strlen($term) <= 4) {
-				$dl->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
-
-			} else if (strlen($term) > 4) {
-				$dl->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
-			}
-		}
-
-		return $dl->groupBy(["dev_id"])->get()->toArray();
+	public function getViewProdPagination($dev = NULL)
+	{
+		// TODO: Implement getViewProdPagination() method.
 	}
 }
+/*
+	public function getDevList($dev = NULL)
+	{
+		return TreeDev::select([
+			"tree_dev.subdir_visible AS dev_prod_count",
+			"tree.absolute AS tree_absolute",
+			"dev.alias AS dev_alias",
+			"dev.name AS dev_name",
+			"dev.id AS dev_id"
+		])->join('dev', 'tree_dev.dev_id', '=', 'dev.id')
+			->join('tree', 'tree_dev.tree_id', '=', 'tree.id')
+			->where('tree_id', '=', $this->vta->tree_id)
+			->where('subdir_visible', '>', 0)
+			->get()->toArray();
+	}
+*/
+/*	public function getViewProdPagination($dev = NULL)
+	{
+		$pagination = NULL;
+		if (isset($this->vta) && $this->vta->count() > 0) {
+			if (isset($dev) && $dev->count() > 0) {
+				$vp = ViewProd::whereBetween('tree_id', [$this->vta->tree_id, ($this->vta->tree_id + 9999)])->where('dev_id', '=', $dev->id);
+			} else {
+				$vp = ViewProd::whereBetween('tree_id', [$this->vta->tree_id, ($this->vta->tree_id + 9999)]);
+			}
+
+			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(iProdList::PAGINATE_PAGE);
+
+			if (!empty($this->term)) {
+				$pagination->appends(['term' => $this->term]);
+			}
+		}
+		return $pagination;
+	}
+*/
+
+
+
+
+/* AJAX
+			$sort = NULL;
+			if (Session::has('tree.sort')) {
+				$sort = Session::get('tree.sort');
+			}
+
+			$ajaxTree = new AjaxTree();
+			$vp = $ajaxTree->orderBySort($vp, $sort);
+
+
+
+*/
