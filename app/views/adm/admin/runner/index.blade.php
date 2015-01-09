@@ -11,7 +11,7 @@ Runner
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         {{ Form::open(['action' => 'CommandRunnerController@task', 'method' => 'POST']) }}
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover table-condensed">
             <thead>
             <tr>
                 <th rowspan="2"><span class="glyphicon glyphicon-check"></span></th>

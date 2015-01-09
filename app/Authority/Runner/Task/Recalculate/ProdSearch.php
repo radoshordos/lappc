@@ -21,18 +21,6 @@ class ProdSearch extends TaskMessage implements iRun
 		$this->searchInSell();
 		$this->searchInPrice();
 		$this->searchInItemsCode();
-		$this->searchInAlias();
-	}
-
-	public function searchInAlias()
-	{
-		$prod_all = Prod::select(['id', 'alias'])->get();
-		foreach ($prod_all as $row) {
-			$prod = Prod::find($row->id);
-			$prod->search_alias = $this->friendlyString($row->alias);
-			$prod->save();
-		}
-		$this->addMessage("Provedena aktualizace vyhledávacích textů");
 	}
 
 	public function searchInItemsCode()
@@ -82,16 +70,5 @@ class ProdSearch extends TaskMessage implements iRun
 			}
 		}
 		$this->addMessage("Provedena aktualizace prodaných produktů");
-	}
-
-	private function friendlyString($source)
-	{
-		$chars = ['"' => '', '+' => '', ' ' => '', '(' => '', ')' => '', '#' => '', ':' => '', ',' => '', '\'' => '', '.' => '', '\'' => '', '-' => ''];
-		$url = str_replace(array_keys($chars), array_values($chars), trim(strtolower($source)));
-		$url = preg_replace('~[^\\pL0-9_]+~u', '-', $url);
-		$url = trim($url, "-");
-		$url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
-		$url = strtolower($url);
-		return preg_replace('~[^-a-z0-9_]+~', '', $url);
 	}
 }

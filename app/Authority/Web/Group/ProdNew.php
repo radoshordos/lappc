@@ -15,20 +15,30 @@ class ProdNew extends AbstractTree implements iProdList
 
 	public function getViewTreeActual()
 	{
-		return ViewTree::where('tree_group_type', '=', 'prodnew')->first();
+		return ViewTree::where('tree_id', '=', 19000000)->first();
 	}
 
 	public function getDevList($dev = NULL)
 	{
-		$vp = ViewProd::where('prod_new', '=', '1');
+		$vp = ViewProd::select(["dev_id", "dev_alias", "dev_name", \DB::raw("COUNT(prod_id) AS dev_prod_count")])
+			->where('prod_new', '=', '1')
+			->where('prod_mode_id', '>', '1');
+
 		if (!empty($dev)) {
 			$vp->where('dev_alias', '=', $dev);
 		}
-		return $vp->get()->toArray();
+		return $vp->groupBy('dev_id')->get()->toArray();
 	}
 
 	public function getViewProdPagination($dev = NULL)
 	{
-		// TODO: Implement getViewProdPagination() method.
+		$pagination = NULL;
+		$vp = ViewProd::where('prod_new', '=', '1')->where('prod_mode_id', '>', '1');
+		$pagination = $vp->paginate(iProdList::PAGINATE_PAGE);
+
+		if (!empty($this->term)) {
+			$pagination->appends(['term' => $this->term]);
+		}
+		return $pagination;
 	}
 }

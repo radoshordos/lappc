@@ -96,16 +96,23 @@ class AdminRunnerTableSeeder extends Seeder
             'class'   => 'Authority\Runner\Task\Recalculate\TreeCategoryText'
         ]);
 
+
         DB::table('runner')->insert([
             'id'      => 408,
             'autorun' => 0,
-            'class'   => 'Authority\Runner\Task\Recalculate\ProdSearch'
+            'class'   => 'Authority\Runner\Task\Recalculate\ItemsAccessoryNew'
         ]);
 
         DB::table('runner')->insert([
             'id'      => 410,
             'autorun' => 0,
-            'class'   => 'Authority\Runner\Task\Recalculate\ItemsAccessoryNew'
+            'class'   => 'Authority\Runner\Task\Recalculate\ProdSearch'
+        ]);
+
+        DB::table('runner')->insert([
+            'id'      => 412,
+            'autorun' => 0,
+            'class'   => 'Authority\Runner\Task\Recalculate\ProdSearchAlias'
         ]);
 
         DB::table('runner')->insert([

@@ -140,6 +140,4 @@ class ProdFind extends AbstractTree implements iProdList
 		}
 		return $count;
 	}
-
-
 }

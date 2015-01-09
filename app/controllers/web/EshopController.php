@@ -84,10 +84,10 @@ class EshopController extends BaseController
 	{
 		$tm = new TreeMaster($url, $dev);
 		$res = $tm->getTreeData();
-
-
-
-
+/*
+		var_dump($res->getDevList());
+		die;
+*/
 		return (($res === NULL) ? NULL :
 
 			View::make($res::TREE_BLADE_TEMPLATE, [

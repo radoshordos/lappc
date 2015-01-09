@@ -1,9 +1,9 @@
 <?php $group_id = 0; ?>
 <div id="menu-action" class="icon-bar vertical">
-    <a class="item" href="akcni-ceny-naradi">
+    <a class="item" href="/akcni-ceny-naradi">
         <label>Akční nářadí</label>
     </a>
-    <a class="item" href="novinky-naradi">
+    <a class="item" href="/novinky-naradi">
         <label>Novinky v e-shopu</label>
     </a>
 </div>
