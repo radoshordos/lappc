@@ -3,6 +3,7 @@
 class ProdNew implements iProdList
 {
 	CONST TREE_GROUP_TYPE = 'prodnew';
+	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
 
 	public function __construct($url, array $dev_actual = [])

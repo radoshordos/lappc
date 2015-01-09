@@ -7,6 +7,7 @@ use Authority\Eloquent\ViewTree;
 class ProdList implements iProdList
 {
 	CONST TREE_GROUP_TYPE = 'prodlist';
+	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
 	private $url;
 	private $da;

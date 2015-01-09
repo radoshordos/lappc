@@ -5,6 +5,7 @@ use Authority\Eloquent\ViewProd;
 class ProdFind implements iProdList
 {
 	CONST TREE_GROUP_TYPE = 'prodfind';
+	CONST TREE_BLADE_TEMPLATE = 'web.vyhledavani';
 
 	private $term;
 	private $et;

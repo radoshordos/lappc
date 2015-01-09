@@ -3,6 +3,7 @@
 class ProdAction implements iProdList {
 
 	CONST TREE_GROUP_TYPE = 'prodaction';
+	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
 
 	public function __construct($url, $dev_actual = NULL)

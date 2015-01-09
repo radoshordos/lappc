@@ -82,7 +82,7 @@ class EshopController extends BaseController
 	protected function isTree(array $url, $dev = NULL)
 	{
 		$tm = new TreeMaster($url, $dev);
-		$res = $tm->getData();
+		$res = $tm->getTreeData();
 
 		return (($res === NULL) ? NULL :
 
