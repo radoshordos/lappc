@@ -1,8 +1,9 @@
 <?php namespace Authority\Web\Group;
 
 use Authority\Eloquent\ViewProd;
+use Authority\Eloquent\ViewTree;
 
-class ProdFind implements iProdList
+class ProdFind extends AbstractTree implements iProdList
 {
 	CONST TREE_GROUP_TYPE = 'prodfind';
 	CONST TREE_BLADE_TEMPLATE = 'web.vyhledavani';
@@ -13,9 +14,14 @@ class ProdFind implements iProdList
 
 	public function __construct($url, $dev_actual = NULL)
 	{
-		$this->term = strip_tags(trim(Input::get('term')));
+		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->et = explode(" ", $this->term);
 		$this->clt = $this->cutLongerTerm($this->term);
+	}
+
+	public function getViewTreeActual()
+	{
+		return ViewTree::where('id', '=', 15000000)->first();
 	}
 
 	public function getViewProdPagination($dev = NULL)
@@ -79,7 +85,7 @@ class ProdFind implements iProdList
 		$et = $this->et;
 		$clt = $this->clt;
 
-		$dl = ViewProd::select(["dev_id", "dev_alias", "dev_name", "tree_absolute", DB::raw("COUNT(prod_id) AS dev_prod_count")])->whereRaw('0=1');
+		$dl = ViewProd::select(["dev_id", "dev_alias", "dev_name", "tree_absolute", \DB::raw("COUNT(prod_id) AS dev_prod_count")])->whereRaw('0=1');
 
 		$dl->orWhere(function ($query) use ($et) {
 			foreach ($et as $word) {
@@ -136,8 +142,4 @@ class ProdFind implements iProdList
 	}
 
 
-	public function getViewTreeActual()
-	{
-		// TODO: Implement getViewTreeActual() method.
-	}
 }

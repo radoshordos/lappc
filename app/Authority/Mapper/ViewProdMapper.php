@@ -23,6 +23,7 @@ class ViewProdMapper {
 		$entry->setProdAlias($row->prod_alias);
 		$entry->setProdName($row->prod_name);
 		$entry->setProdDesc($row->prod_desc);
+		$entry->setProdNew($row->prod_new);
 		$entry->setProdStoreroom($row->prod_storeroom);
 		$entry->setProdIcAll($row->prod_ic_all);
 		$entry->setProdIcVisible($row->prod_ic_visible);

@@ -13,6 +13,7 @@ abstract class ViewProdModel
 	private $prod_alias;
 	private $prod_name;
 	private $prod_desc;
+	private $prod_new;
 	private $prod_storeroom;
 	private $prod_ic_all;
 	private $prod_ic_visible;
@@ -214,6 +215,22 @@ abstract class ViewProdModel
 	public function setProdDesc($prod_desc)
 	{
 		$this->prod_desc = $prod_desc;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getProdNew()
+	{
+		return $this->prod_new;
+	}
+
+	/**
+	 * @param mixed $prod_new
+	 */
+	public function setProdNew($prod_new)
+	{
+		$this->prod_new = $prod_new;
 	}
 
 	/**
@@ -631,6 +648,4 @@ abstract class ViewProdModel
 	{
 		$this->akce_minitext_name = $akce_minitext_name;
 	}
-
-
 }

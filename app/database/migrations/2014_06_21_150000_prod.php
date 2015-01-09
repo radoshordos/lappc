@@ -26,6 +26,7 @@ class Prod extends Migration
             $table->string('name', '64')->unique();
             $table->string('desc', '128');
             $table->integer('storeroom')->default(0);
+            $table->boolean('new')->default(1);
             $table->float('transport_weight')->unsigned()->default(0.1);
             $table->boolean('transport_atypical')->default(0);
             $table->string('search_alias', '64')->nullable();

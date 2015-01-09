@@ -7,6 +7,7 @@ use Authority\Web\Group\ProdNew;
 
 class TreeListController extends EshopController
 {
+	/*
 	private $cd;
 	private $sid;
 
@@ -45,4 +46,5 @@ class TreeListController extends EshopController
 				return new ProdList();
 		}
 	}
+	*/
 }

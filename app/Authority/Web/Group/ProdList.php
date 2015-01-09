@@ -4,7 +4,7 @@ use Authority\Eloquent\TreeDev;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
-class ProdList implements iProdList
+class ProdList extends AbstractTree implements iProdList
 {
 	CONST TREE_GROUP_TYPE = 'prodlist';
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
@@ -27,17 +27,6 @@ class ProdList implements iProdList
 
 	public function getDevList($dev = NULL)
 	{
-		// TODO: Implement getDevList() method.
-	}
-
-	public function getViewProdPagination($dev = NULL)
-	{
-		// TODO: Implement getViewProdPagination() method.
-	}
-}
-/*
-	public function getDevList($dev = NULL)
-	{
 		return TreeDev::select([
 			"tree_dev.subdir_visible AS dev_prod_count",
 			"tree.absolute AS tree_absolute",
@@ -50,8 +39,8 @@ class ProdList implements iProdList
 			->where('subdir_visible', '>', 0)
 			->get()->toArray();
 	}
-*/
-/*	public function getViewProdPagination($dev = NULL)
+
+	public function getViewProdPagination($dev = NULL)
 	{
 		$pagination = NULL;
 		if (isset($this->vta) && $this->vta->count() > 0) {
@@ -69,20 +58,13 @@ class ProdList implements iProdList
 		}
 		return $pagination;
 	}
-*/
-
-
-
+}
 
 /* AJAX
 			$sort = NULL;
 			if (Session::has('tree.sort')) {
 				$sort = Session::get('tree.sort');
 			}
-
 			$ajaxTree = new AjaxTree();
 			$vp = $ajaxTree->orderBySort($vp, $sort);
-
-
-
 */

@@ -7,7 +7,7 @@ class TreeTableSeeder extends Seeder
     {
 
         $top = [
-            ['mid' => '15000000','pz' => '0','pid' => '15000000','tree_id' => '0000000', 'tree_id_division' => '16', 'tree_title' => 'Vyhledávání zboží', 'tree_name' => 'Vyhledávání zboží', 'tree_desc' => 'Vyhledávání zboží', 'tree_abs_path' => 'vyhledat-zbozi/', 'tree_rel_path' => 'vyhledat-zbozi'],
+            ['mid' => '15000000','pz' => '0','pid' => '15000000','tree_id' => '0000000', 'tree_id_division' => '16', 'tree_title' => 'Vyhledávání nářadí', 'tree_name' => 'Vyhledávání nářadí', 'tree_desc' => 'Vyhledávání zboží', 'tree_abs_path' => 'vyhledat-naradi/', 'tree_rel_path' => 'vyhledat-zbozi'],
             ['mid' => '16000000','pz' => '0','pid' => '16000000','tree_id' => '0000000', 'tree_id_division' => '17', 'tree_title' => 'Akční ceny nářadí, akce nářadí', 'tree_name' => 'AKČNÍ CENY, AKCE', 'tree_desc' => 'Akční ceny nářadí, akce nářadí', 'tree_abs_path' => 'akcni-ceny-naradi/', 'tree_rel_path' => 'akcni-ceny-naradi', 'tree_body' => 'NULL'],
             ['mid' => '18000000','pz' => '0','pid' => '18000000','tree_id' => '0000000', 'tree_id_division' => '18', 'tree_title' => 'Nové nářadí v obchodě', 'tree_name' => 'Novinky', 'tree_desc' => 'Novinky, akce nářadí', 'tree_abs_path' => 'novinky-naradi/', 'tree_rel_path' => 'novinky-naradi', 'tree_body' => 'NULL'],
             ['mid' => '19000000','pz' => '0','pid' => '19000000','tree_id' => '0000000', 'tree_id_division' => '19', 'tree_title' => 'Novinky', 'tree_name' => 'NOVINKY', 'tree_desc' => 'Novinky', 'tree_abs_path' => 'novinky/', 'tree_rel_path' => 'novinky', 'tree_body' => NULL],

@@ -1,4 +1,4 @@
-@if ($namespace === 'vyhledavani')
+@if ($group === 'prodfind')
     @foreach ($dev_list as $row)
         @if (empty($dev) && $row['dev_id'] == 1)
             <dd><a class="active" href="{{ '/vyhledat-zbozi'}}?term={{ $term }}">Vše <span>({{ $row['dev_prod_count'] }})</span></a></dd>

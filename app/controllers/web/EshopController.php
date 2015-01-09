@@ -66,6 +66,7 @@ class EshopController extends BaseController
 
 			return View::make('web.prod', [
 				'namespace'        => 'prod',
+				'group'            => 'prod',
 				'view_tree_array'  => $this->view_tree_array,
 				'view_tree_actual' => ViewTree::where('tree_id', '=', $view_prod_actual->tree_id)->first(),
 				'view_prod_actual' => $view_prod_actual,
@@ -84,10 +85,14 @@ class EshopController extends BaseController
 		$tm = new TreeMaster($url, $dev);
 		$res = $tm->getTreeData();
 
+
+
+
 		return (($res === NULL) ? NULL :
 
-			View::make('web.vyhledavani', [
-				'namespace'        => 'vyhledavani',
+			View::make($res::TREE_BLADE_TEMPLATE, [
+				'namespace'        => 'tree',
+				'group'            => $res::TREE_GROUP_TYPE,
 				'dev'              => $dev,
 				'view_tree_actual' => $res->getViewTreeActual(),
 				'dev_list'         => $res->getDevList(),

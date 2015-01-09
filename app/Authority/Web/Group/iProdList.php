@@ -11,4 +11,5 @@ interface iProdList
 	public function getDevList($dev = NULL);
 
 	public function getViewProdPagination($dev = NULL);
+
 }

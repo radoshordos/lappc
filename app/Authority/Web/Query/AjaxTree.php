@@ -2,7 +2,6 @@
 
 class AjaxTree
 {
-
 	public function orderBySort($db, $sort = NULL)
 	{
 		if ($sort == 'expensive') {
