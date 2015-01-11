@@ -39,7 +39,7 @@ class ProdList extends AbstractTree implements iProdList
 			->where('subdir_visible', '>', 0)
 			->get()->toArray();
 	}
-
+/*
 	public function getViewProdPagination($dev = NULL)
 	{
 		$pagination = NULL;
@@ -52,12 +52,10 @@ class ProdList extends AbstractTree implements iProdList
 
 			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(iProdList::PAGINATE_PAGE);
 
-			if (!empty($this->term)) {
-				$pagination->appends(['term' => $this->term]);
-			}
 		}
 		return $pagination;
 	}
+*/
 }
 
 /* AJAX
