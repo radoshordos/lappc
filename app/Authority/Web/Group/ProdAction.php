@@ -8,8 +8,14 @@ class ProdAction extends AbstractTree implements iProdList
 	CONST TREE_GROUP_TYPE = 'prodaction';
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
-	public function __construct($url, $dev_actual = NULL)
+	public function __construct()
 	{
+		// TODO: Implement __construct() method.
+	}
+
+	public function setDevId($dev)
+	{
+		// TODO: Implement setDevId() method.
 	}
 
 	public function getViewTreeActual()
@@ -37,4 +43,6 @@ class ProdAction extends AbstractTree implements iProdList
 		}
 		return $pagination;
 	}
+
+
 }

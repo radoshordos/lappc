@@ -1,7 +1,11 @@
 <?php namespace Authority\Web\Group;
 
+use Authority\Eloquent\ViewProd;
+
 abstract class AbstractTree
 {
+	CONST PAGINATE_PAGEX = 24;
+
 	private $dev;
 	private $tree;
 	private $store;
@@ -34,7 +38,7 @@ abstract class AbstractTree
 		$this->ajajDev($db, $this->dev);
 		$this->ajajTreeCutting($db, $this->tree);
 
-		$pagination = $db->limit(self::PAGINATE_PAGE)->paginate();
+		$pagination = $db->limit(self::PAGINATE_PAGEX)->paginate();
 		$pagination->setBaseUrl('');
 
 		if (!empty($term)) {
@@ -74,9 +78,9 @@ abstract class AbstractTree
 	public function ajajSort($db, $sort)
 	{
 		if (strlen($sort) > 0 && strlen($sort) < 16) {
-			Session::put('tree.sort', $sort);
+			\Session::put('tree.sort', $sort);
 		} else {
-			$sort = Session::get('tree.sort');
+			$sort = \Session::get('tree.sort');
 		}
 
 		if ($sort == 'expensive') {

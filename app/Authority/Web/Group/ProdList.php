@@ -13,7 +13,7 @@ class ProdList extends AbstractTree implements iProdList
 	private $da;
 	private $vta;
 
-	public function __construct($url, $dev_actual = NULL)
+	public function __construct()
 	{
 		$this->url = $url;
 		$this->da = $dev_actual;
@@ -56,6 +56,10 @@ class ProdList extends AbstractTree implements iProdList
 		return $pagination;
 	}
 */
+	public function setDevId($dev)
+	{
+		// TODO: Implement setDevId() method.
+	}
 }
 
 /* AJAX

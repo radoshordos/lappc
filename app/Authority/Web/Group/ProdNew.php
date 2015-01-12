@@ -8,7 +8,7 @@ class ProdNew extends AbstractTree implements iProdList
 	CONST TREE_GROUP_TYPE = 'prodnew';
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
-	public function __construct($url, $dev_actual = NULL)
+	public function __construct()
 	{
 		// TODO: Implement __construct() method.
 	}
@@ -40,5 +40,10 @@ class ProdNew extends AbstractTree implements iProdList
 			$pagination->appends(['term' => $this->term]);
 		}
 		return $pagination;
+	}
+
+	public function setDevId($dev)
+	{
+		// TODO: Implement setDevId() method.
 	}
 }

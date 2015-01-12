@@ -12,7 +12,7 @@ class ProdFind extends AbstractTree implements iProdList
 	private $et;
 	private $clt;
 
-	public function __construct($url, $dev_actual = NULL)
+	public function __construct()
 	{
 		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->et = explode(" ", $this->term);
@@ -139,5 +139,10 @@ class ProdFind extends AbstractTree implements iProdList
 			}
 		}
 		return $count;
+	}
+
+	public function setDevId($dev)
+	{
+		// TODO: Implement setDevId() method.
 	}
 }
