@@ -3,19 +3,23 @@
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
-class ProdNew extends AbstractTree implements iProdList
+class ProdNew extends AbstractTree implements iProdListable, iProdExpandable
 {
 	CONST TREE_GROUP_TYPE = 'prodnew';
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
-	public function __construct()
+	private $url;
+	private $vta;
+
+	public function initViewTreeActual($url)
 	{
-		// TODO: Implement __construct() method.
+		$this->url = $url;
+		$this->vta = ViewTree::where('tree_id', '=', 19000000)->first();
 	}
 
 	public function getViewTreeActual()
 	{
-		return ViewTree::where('tree_id', '=', 19000000)->first();
+		return $this->vta;
 	}
 
 	public function getDevList($dev = NULL)
@@ -34,16 +38,8 @@ class ProdNew extends AbstractTree implements iProdList
 	{
 		$pagination = NULL;
 		$vp = ViewProd::where('prod_new', '=', '1')->where('prod_mode_id', '>', '1');
+
 		$pagination = $vp->paginate(iProdList::PAGINATE_PAGE);
-
-		if (!empty($this->term)) {
-			$pagination->appends(['term' => $this->term]);
-		}
 		return $pagination;
-	}
-
-	public function setDevId($dev)
-	{
-		// TODO: Implement setDevId() method.
 	}
 }

@@ -4,43 +4,61 @@ use Authority\Eloquent\Dev;
 
 class TreeMaster
 {
+	private $dev_alias;
 	private $url;
 	private $data;
 	private $sid;
+	private $dev_array;
 
-	public function __construct(array $url, $dev)
+	public function __construct()
+	{
+		$this->sid = \Session::getId();
+	}
+
+	public function setUrl(array $url)
 	{
 		$this->url = $url;
-		$this->sid = \Session::getId();
-		$this->data = $this->detectTree($url, $dev);
 	}
 
-	public function getTreeData()
+	public function setDevArray($dev_array)
 	{
-		return $this->data;
+		$this->dev_array = $dev_array;
 	}
 
-	private function detectTree(array $url, $dev = NULL)
+	public function getDevAlias()
 	{
-		if ($dev != NULL) {
-			$row = Dev::where('alias', '=', $dev)->first();
-			$url = implode('/', array_merge($url, [$dev]));
+		return $this->dev_alias;
+	}
+
+	public function detectTree()
+	{
+		if ($this->tree != NULL) {
+			$row = Dev::where('alias', '=', $this->tree)->first();
+
+			$url = implode('/', array_merge($this->url, [$this->dev]));
 			if (isset($row) && $row->count() > 0) {
-				$dev = $row->toArray();
+				$this->setDevArray($row->toArray());
 			}
 		} else {
-			$url = implode('/', array_merge($url));
+			$url = implode('/', array_merge($this->url));
 		}
 
 		switch ($url) {
 			case 'vyhledat-naradi' :
-				return new ProdFind($url, $dev);
+				$dt = new ProdFind();
+				break;
 			case 'akcni-ceny-naradi' :
-				return new ProdAction($url, $dev);
+				$dt = new ProdAction();
+				break;
 			case 'novinky-naradi' :
-				return new ProdNew($url, $dev);
+				$dt = new ProdNew();
+				break;
 			default:
-				return new ProdList($url, $dev);
+				$dt = new ProdList();
+				break;
 		}
+
+		$dt->initViewTreeActual($url);
+		return $dt;
 	}
 }

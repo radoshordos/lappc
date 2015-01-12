@@ -3,7 +3,7 @@
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
-class ProdFind extends AbstractTree implements iProdList
+class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 {
 	CONST TREE_GROUP_TYPE = 'prodfind';
 	CONST TREE_BLADE_TEMPLATE = 'web.vyhledavani';
@@ -12,6 +12,9 @@ class ProdFind extends AbstractTree implements iProdList
 	private $et;
 	private $clt;
 
+	private $url;
+	private $vta;
+
 	public function __construct()
 	{
 		$this->term = strip_tags(trim(\Input::get('term')));
@@ -19,9 +22,15 @@ class ProdFind extends AbstractTree implements iProdList
 		$this->clt = $this->cutLongerTerm($this->term);
 	}
 
+	public function initViewTreeActual($url)
+	{
+		$this->url = $url;
+		$this->vta = ViewTree::where('id', '=', 15000000)->first();
+	}
+
 	public function getViewTreeActual()
 	{
-		return ViewTree::where('id', '=', 15000000)->first();
+		return $this->vta();
 	}
 
 	public function getViewProdPagination($dev = NULL)
@@ -141,8 +150,5 @@ class ProdFind extends AbstractTree implements iProdList
 		return $count;
 	}
 
-	public function setDevId($dev)
-	{
-		// TODO: Implement setDevId() method.
-	}
+
 }

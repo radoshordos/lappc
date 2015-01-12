@@ -2,10 +2,11 @@
 
 use Authority\Eloquent\ViewProd;
 
-abstract class AbstractTree
+abstract class AbstractTree implements iProdListable, iProdExpandable
 {
 	CONST PAGINATE_PAGEX = 24;
 
+	private $url;
 	private $dev;
 	private $tree;
 	private $store;
@@ -45,6 +46,16 @@ abstract class AbstractTree
 			$pagination->appends(['term' => $term]);
 		}
 		return $pagination;
+	}
+
+	public function setDevId($dev)
+	{
+		$this->dev = $dev;
+	}
+
+	public function setUrl($url)
+	{
+		$this->url = $url;
 	}
 
 	public function ajajTreeCutting($db, $tree, $deep = 1)

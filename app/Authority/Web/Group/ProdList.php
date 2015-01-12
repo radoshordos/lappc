@@ -4,25 +4,25 @@ use Authority\Eloquent\TreeDev;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
-class ProdList extends AbstractTree implements iProdList
+class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 {
 	CONST TREE_GROUP_TYPE = 'prodlist';
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
 	private $url;
-	private $da;
 	private $vta;
 
-	public function __construct()
+	public function initViewTreeActual($url)
 	{
 		$this->url = $url;
-		$this->da = $dev_actual;
-		$this->vta = $this->getViewTreeActual();
+		if (!empty($this->url)) {
+			$this->vta = ViewTree::where('tree_absolute', '=', $this->url)->first();
+		}
 	}
 
 	public function getViewTreeActual()
 	{
-		return ViewTree::where('tree_absolute', '=', $this->url)->first();
+		return $this->vta;
 	}
 
 	public function getDevList($dev = NULL)
@@ -39,7 +39,7 @@ class ProdList extends AbstractTree implements iProdList
 			->where('subdir_visible', '>', 0)
 			->get()->toArray();
 	}
-/*
+
 	public function getViewProdPagination($dev = NULL)
 	{
 		$pagination = NULL;
@@ -50,16 +50,12 @@ class ProdList extends AbstractTree implements iProdList
 				$vp = ViewProd::whereBetween('tree_id', [$this->vta->tree_id, ($this->vta->tree_id + 9999)]);
 			}
 
-			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(iProdList::PAGINATE_PAGE);
+			$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(iProdListable::PAGINATE_PAGE);
 
 		}
 		return $pagination;
 	}
-*/
-	public function setDevId($dev)
-	{
-		// TODO: Implement setDevId() method.
-	}
+
 }
 
 /* AJAX

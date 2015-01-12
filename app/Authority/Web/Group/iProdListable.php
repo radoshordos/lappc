@@ -1,17 +1,16 @@
 <?php namespace Authority\Web\Group;
 
-interface iProdList
+interface iProdListable
 {
 	CONST PAGINATE_PAGE = 24;
 
-	public function __construct();
-
-	public function setDevId($dev);
+	public function initViewTreeActual($url);
 
 	public function getViewTreeActual();
+
+	public function getDevArray();
 
 	public function getDevList($dev = NULL);
 
 	public function getViewProdPagination($dev = NULL);
-
 }

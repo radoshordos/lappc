@@ -12,7 +12,6 @@ use Authority\Eloquent\ViewTree;
 use Authority\Web\Group\TreeMaster;
 use Authority\Web\Query\AjaxTree;
 
-
 class EshopController extends BaseController
 {
 	private $view_tree_array;
@@ -46,7 +45,6 @@ class EshopController extends BaseController
 
 	protected function isProudct($urlPart)
 	{
-
 		$view_prod_actual = ViewProd::where('prod_alias', '=', $urlPart)->first();
 		if (isset($view_prod_actual) && $view_prod_actual->count() > 0) {
 
@@ -82,12 +80,11 @@ class EshopController extends BaseController
 
 	protected function isTree(array $url, $dev = NULL)
 	{
-		$tm = new TreeMaster($url, $dev);
-		$res = $tm->getTreeData();
-/*
-		var_dump($res->getDevList());
-		die;
-*/
+		$tm = new TreeMaster();
+		$tm->setUrl($url);
+		$tm->setDevAlias($dev);
+		$res = $tm->detectTree();
+
 		return (($res === NULL) ? NULL :
 
 			View::make($res::TREE_BLADE_TEMPLATE, [
@@ -104,6 +101,8 @@ class EshopController extends BaseController
 			])
 		);
 	}
+
+
 	/*
 		protected function isTree(array $treePart, $dev = NULL)
 		{
@@ -151,7 +150,6 @@ class EshopController extends BaseController
 				]);
 			}
 			return NULL;
-
 		}
 	*/
 }
