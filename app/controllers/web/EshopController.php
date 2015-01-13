@@ -85,6 +85,9 @@ class EshopController extends BaseController
 		$tm->setDevAlias($dev);
 		$res = $tm->detectTree();
 
+		var_dump($res);
+		die;
+
 		return (($res === NULL) ? NULL :
 
 			View::make($res::TREE_BLADE_TEMPLATE, [

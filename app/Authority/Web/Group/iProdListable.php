@@ -4,7 +4,7 @@ interface iProdListable
 {
 	CONST PAGINATE_PAGE = 24;
 
-	public function initViewTreeActual($url);
+	public function __construct($url = NULL, $dev = NULL);
 
 	public function getViewTreeActual();
 

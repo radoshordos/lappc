@@ -10,13 +10,15 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
 	private $url;
+	private $dev;
 	private $vta;
 
-	public function initViewTreeActual($url)
+	public function __construct($url = NULL, $dev = NULL)
 	{
 		$this->url = $url;
+		$this->dev = $dev;
 		if (!empty($this->url)) {
-			$this->vta = ViewTree::where('tree_absolute', '=', $this->url)->first();
+			$this->vta = ViewTree::where('tree_absolute', '=', $this->url)->first()->toArray();
 		}
 	}
 
@@ -27,6 +29,11 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 
 	public function getDevList($dev = NULL)
 	{
+		/*
+		var_dump(ViewTree::where('tree_absolute', '=', $this->url)->first());
+		die;
+		*/
+
 		return TreeDev::select([
 			"tree_dev.subdir_visible AS dev_prod_count",
 			"tree.absolute AS tree_absolute",
@@ -55,6 +62,12 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 		}
 		return $pagination;
 	}
+
+	public function getDevArray()
+	{
+		// TODO: Implement getDevArray() method.
+	}
+
 
 }
 
