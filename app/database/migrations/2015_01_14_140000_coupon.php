@@ -7,7 +7,7 @@ class Coupon extends Migration {
 
 	public function up()
 	{
-		Schema::create('items_accessory', function (Blueprint $table) {
+		Schema::create('coupon', function (Blueprint $table) {
 			$table->increments('id')->unsigned();
 			$table->integer('quantity_start')->unsigned();
 			$table->integer('quantity_unused')->unsigned();
