@@ -6,13 +6,15 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 {
 	CONST PAGINATE_PAGEX = 24;
 
-	private $url;
-	private $dev;
-	private $tree;
-	private $store;
-	private $term;
-	private $action;
-	private $sort;
+	protected $url;
+	protected $tree;
+	protected $store;
+	protected $term;
+	protected $action;
+	protected $sort;
+	protected $vta;
+	protected $dev;
+	protected $dev_actual;
 
 	public function AjajTree()
 	{
@@ -103,5 +105,15 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 		} else {
 			return $db->orderBy('prod_search_price', 'ASC');
 		}
+	}
+
+	public function getViewTreeActual()
+	{
+		return $this->vta;
+	}
+
+	public function getDevArray()
+	{
+		return $this->dev_actual;
 	}
 }

@@ -8,21 +8,16 @@ class ProdNew extends AbstractTree implements iProdListable, iProdExpandable
 	CONST TREE_GROUP_TYPE = 'prodnew';
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
 
-	private $url;
-	private $vta;
-
-	public function initViewTreeActual($url)
+	public function __construct($url = NULL, $dev_actual = NULL)
 	{
 		$this->url = $url;
-		$this->vta = ViewTree::where('tree_id', '=', 19000000)->first();
+		$this->dev_actual = $dev_actual;
+		if (!empty($this->url)) {
+			$this->vta = ViewTree::where('tree_absolute', '=', $this->url)->first()->toArray();
+		}
 	}
 
-	public function getViewTreeActual()
-	{
-		return $this->vta;
-	}
-
-	public function getDevList($dev = NULL)
+	public function getDevList()
 	{
 		$vp = ViewProd::select(["dev_id", "dev_alias", "dev_name", \DB::raw("COUNT(prod_id) AS dev_prod_count")])
 			->where('prod_new', '=', '1')
@@ -34,12 +29,16 @@ class ProdNew extends AbstractTree implements iProdListable, iProdExpandable
 		return $vp->groupBy('dev_id')->get()->toArray();
 	}
 
-	public function getViewProdPagination($dev = NULL)
+	public function getViewProdPagination()
 	{
 		$pagination = NULL;
-		$vp = ViewProd::where('prod_new', '=', '1')->where('prod_mode_id', '>', '1');
+		if (isset($this->dev_actual) && count($this->dev_actual) > 0) {
+			$vp = ViewProd::where('prod_new', '=', '1')->where('prod_mode_id', '>', '1')->where('dev_id', '=', $this->dev_actual['id']);
+		} else {
+			$vp = ViewProd::where('prod_new', '=', '1')->where('prod_mode_id', '>', '1');
+		}
 
-		$pagination = $vp->paginate(iProdList::PAGINATE_PAGE);
+		$pagination = $vp->paginate(iProdListable::PAGINATE_PAGE);
 		return $pagination;
 	}
 }

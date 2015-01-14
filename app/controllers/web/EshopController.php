@@ -84,18 +84,17 @@ class EshopController extends BaseController
 		$tm->setUrl($url);
 		$tm->setDevAlias($dev);
 		$res = $tm->detectTree();
-
-		var_dump($res);
+/*
+		var_dump($res->getDevArray());
 		die;
-
+*/
 		return (($res === NULL) ? NULL :
-
 			View::make($res::TREE_BLADE_TEMPLATE, [
 				'namespace'        => 'tree',
 				'group'            => $res::TREE_GROUP_TYPE,
-				'dev'              => $dev,
-				'view_tree_actual' => $res->getViewTreeActual(),
 				'dev_list'         => $res->getDevList(),
+				'dev_actual'       => $res->getDevArray(),
+				'view_tree_actual' => $res->getViewTreeActual(),
 				'view_prod_array'  => $res->getViewProdPagination(),
 				'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
 				'term'             => Input::get('term'),

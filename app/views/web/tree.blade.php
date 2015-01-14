@@ -6,7 +6,7 @@
         @include('web.global.leftmenu')
     </div>
     <div id="part-right" class="medium-14 columns">
-        <h1>{{ $view_tree_actual->tree_desc }}</h1>
+        <h1>{{ $view_tree_actual['tree_desc'] }}</h1>
 
         <div id="tree-panel" class="small-18 panel clearfix valign-middle">
             <div class="row">

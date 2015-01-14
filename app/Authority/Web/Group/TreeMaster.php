@@ -6,12 +6,6 @@ class TreeMaster
 {
 	private $dev_alias;
 	private $url;
-//	private $sid;
-
-	public function __construct()
-	{
-	//	$this->sid = \Session::getId();
-	}
 
 	public function setUrl(array $url)
 	{
@@ -30,14 +24,14 @@ class TreeMaster
 
 	public function detectTree()
 	{
-		$dev = NULL;
+		$dev_actual = NULL;
 		if ($this->dev_alias != NULL) {
-			$row = Dev::where('alias', '=', $this->dev_alias)->first();
-			if ($row->count() == 0) {
+			$dev_actual = Dev::where('alias', '=', $this->dev_alias)->first();
+			if (empty($dev_actual)) {
 				$url = implode('/', array_merge($this->url, [$this->dev_alias]));
 			} else {
+				$dev_actual = $dev_actual->toArray();
 				$url = implode('/', array_merge($this->url));
-				$dev = $row->toArray();
 			}
 		} else {
 			$url = implode('/', array_merge($this->url));
@@ -45,13 +39,13 @@ class TreeMaster
 
 		switch ($url) {
 			case 'vyhledat-naradi' :
-				return new ProdFind($url,$dev);
+				return new ProdFind($url, $dev_actual);
 			case 'akcni-ceny-naradi' :
-				return new ProdAction($url,$dev);
+				return new ProdAction($url, $dev_actual);
 			case 'novinky-naradi' :
-				return new ProdNew($url,$dev);
+				return new ProdNew($url, $dev_actual);
 			default:
-				return new ProdList($url,$dev);
+				return new ProdList($url, $dev_actual);
 		}
 	}
 }

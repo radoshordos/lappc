@@ -6,13 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @if ($namespace == 'tree' && !empty($db_dev))
-        <title>{{ $view_tree_actual->tree_desc." ".$db_dev->name}} | Guru nářadí</title>
-        <meta name="keywords" content="{{ $view_tree_actual->tree_desc.", ".$db_dev->name }}">
-        <meta name="description" content="{{ $view_tree_actual->tree_desc }} v eshopu guru-naradi.cz">
+        <title>{{ $view_tree_actual['tree_desc']." ".$db_dev->name}} | Guru nářadí</title>
+        <meta name="keywords" content="{{ $view_tree_actual['tree_desc'].", ".$db_dev->name }}">
+        <meta name="description" content="{{ $view_tree_actual['tree_desc'] }} v eshopu guru-naradi.cz">
     @elseif ($namespace == 'tree')
-        <title>{{ $view_tree_actual->tree_desc }} | Guru nářadí</title>
-        <meta name="keywords" content="{{ $view_tree_actual->tree_desc }}">
-        <meta name="description" content="{{ $view_tree_actual->tree_desc }} skladem s rychlým doručením v eshopu guru-naradi.cz">
+        <title>{{ $view_tree_actual['tree_desc'] }} | Guru nářadí</title>
+        <meta name="keywords" content="{{ $view_tree_actual['tree_desc'] }}">
+        <meta name="description" content="{{ $view_tree_actual['tree_desc'] }} skladem s rychlým doručením v eshopu guru-naradi.cz">
     @elseif ($namespace == 'prod')
         <title>{{ $view_prod_actual->prod_name }} | Guru nářadí</title>
         <meta name="keywords" content="{{ $view_prod_actual->prod_name.", ".$view_prod_actual->tree_name.", ".$view_prod_actual->dev_name }}">

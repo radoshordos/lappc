@@ -11,6 +11,11 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 	private $url;
 	private $vta;
 
+	public function __construct($url = NULL, $dev = NULL)
+	{
+		// TODO: Implement __construct() method.
+	}
+
 	public function initViewTreeActual($url)
 	{
 		$this->url = $url;
@@ -22,7 +27,7 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 		return $this->vta;
 	}
 
-	public function getDevList($dev = NULL)
+	public function getDevList()
 	{
 		$vp = ViewProd::select(["dev_id", "dev_alias", "dev_name", \DB::raw("COUNT(prod_id) AS dev_prod_count")])->where('prod_mode_id', '=', '4');
 		if (!empty($dev)) {
@@ -31,11 +36,16 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 		return $vp->groupBy('dev_id')->get()->toArray();
 	}
 
-	public function getViewProdPagination($dev = NULL)
+	public function getViewProdPagination()
 	{
 		$pagination = NULL;
 		$vp = ViewProd::where('prod_mode_id', '=', '4');
 		$pagination = $vp->paginate(iProdList::PAGINATE_PAGE);
 		return $pagination;
+	}
+
+	public function getDevArray()
+	{
+		// TODO: Implement getDevArray() method.
 	}
 }

@@ -4,13 +4,13 @@ interface iProdListable
 {
 	CONST PAGINATE_PAGE = 24;
 
-	public function __construct($url = NULL, $dev = NULL);
+	public function __construct($url = NULL, $dev_actual = NULL);
 
 	public function getViewTreeActual();
 
 	public function getDevArray();
 
-	public function getDevList($dev = NULL);
+	public function getDevList();
 
-	public function getViewProdPagination($dev = NULL);
+	public function getViewProdPagination();
 }
