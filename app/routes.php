@@ -101,6 +101,7 @@ Route::group(['prefix' => 'adm'], function () {
 
     Route::group(['prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'], function () {
         Route::resource('maillist', 'MailListController', ['only' => ['index']]);
+        Route::resource('coupon', 'CouponController', ['only' => ['index','create']]);
         Route::any('toptrans', ['as' => 'adm.buy.toptrans.index', 'uses' => 'BuyToptransController@index']);
     });
 
