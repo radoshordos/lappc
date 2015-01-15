@@ -11,7 +11,7 @@ class Coupon extends Migration
 		Schema::create('coupon', function (Blueprint $table) {
 			$table->increments('id')->unsigned();
 			$table->integer('quantity_start')->unsigned();
-			$table->integer('quantity_unused')->unsigned();
+			$table->integer('quantity_used')->unsigned()->default(0);
 			$table->date('date_expiration');
 			$table->integer('sale_price')->unsigned()->nullable();
 			$table->integer('sale_percent')->unsigned()->nullable();

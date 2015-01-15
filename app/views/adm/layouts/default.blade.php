@@ -157,7 +157,6 @@
                 @endif
             </ul>
             @endif
-
             <ul class="nav navbar-nav navbar-right">
                 @if (Sentry::check())
                 <li class="dropdown">
