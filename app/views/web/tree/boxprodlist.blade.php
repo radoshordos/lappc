@@ -26,7 +26,7 @@
             </li>
         @endforeach
     </ul>
-    @if ($view_tree_actual['tree_subdir_visible'] > 18)
+    @if (intval($view_prod_array->getTotal()) > 24)
         <div class="panel clearfix">
             <ul class="pagination">{{ with(new ZurbPresenter($view_prod_array))->render(); }}</ul>
         </div>

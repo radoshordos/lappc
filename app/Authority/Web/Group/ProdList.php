@@ -16,8 +16,6 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 		$this->url = $url;
 		$this->dev_actual = $dev_actual;
 		if (!empty($this->url)) {
-			var_dump($this->url);
-			die;
 			$this->vta = ViewTree::where('tree_absolute', '=', $this->url)->first()->toArray();
 		}
 	}

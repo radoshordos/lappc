@@ -10,7 +10,6 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 
 	public function __construct($url = NULL, $dev_actual = NULL)
 	{
-
 		$this->url = $url;
 		$this->dev_actual = $dev_actual;
 		$this->vta = ViewTree::where('tree_id', '=', 16000000)->first();
@@ -33,7 +32,6 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 		} else {
 			$vp = ViewProd::where('prod_mode_id', '=', '4');
 		}
-		$pagination = $vp->paginate(iProdListable::PAGINATE_PAGE);
-		return $pagination;
+		return $vp->paginate(iProdListable::PAGINATE_PAGE);
 	}
 }

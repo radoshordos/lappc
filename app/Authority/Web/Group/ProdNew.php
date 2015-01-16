@@ -37,8 +37,6 @@ class ProdNew extends AbstractTree implements iProdListable, iProdExpandable
 		} else {
 			$vp = ViewProd::where('prod_new', '=', '1')->where('prod_mode_id', '>', '1');
 		}
-
-		$pagination = $vp->paginate(iProdListable::PAGINATE_PAGE);
-		return $pagination;
+		return $vp->paginate(iProdListable::PAGINATE_PAGE);
 	}
 }

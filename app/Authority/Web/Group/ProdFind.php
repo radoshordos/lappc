@@ -21,12 +21,18 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		$this->vta = ViewTree::where('tree_id', '=', 15000000)->first();
 	}
 
-	public function getViewProdPagination($dev = NULL)
+	public function getViewProdPagination()
 	{
+
+				var_dump($this->dev_actual);
+				die;
+
+
 		$term = $this->term;
 		$et = $this->et;
 		$clt = $this->clt;
 		$vp = ViewProd::whereRaw('0=1');
+		$dev = $this->dev_actual;
 
 		$vp->orWhere(function ($query) use ($et, $dev) {
 			foreach ($et as $word) {
@@ -73,7 +79,7 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		return $pagination;
 	}
 
-	public function getDevList($dev = NULL)
+	public function getDevList()
 	{
 		$term = $this->term;
 		$et = $this->et;
