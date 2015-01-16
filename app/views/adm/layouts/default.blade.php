@@ -128,6 +128,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.buy.toptrans.index') }}">Toptrans</a></li>
                         <li><a href="{{ URL::route('adm.buy.maillist.index') }}">Správa e-mailů</a></li>
+                        <li><a href="{{ URL::route('adm.buy.coupon.index') }}">Kupóny</a></li>
                     </ul>
                 </li>
                 @endif
@@ -156,7 +157,6 @@
                 @endif
             </ul>
             @endif
-
             <ul class="nav navbar-nav navbar-right">
                 @if (Sentry::check())
                 <li class="dropdown">
