@@ -12,9 +12,12 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 
 	public function __construct($url = NULL, $dev_actual = NULL)
 	{
+		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->url = $url;
 		$this->dev_actual = $dev_actual;
 		if (!empty($this->url)) {
+			var_dump($this->url);
+			die;
 			$this->vta = ViewTree::where('tree_absolute', '=', $this->url)->first()->toArray();
 		}
 	}
@@ -47,14 +50,6 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 		}
 		return $pagination;
 	}
-
-	public function getViewTreeActual()
-	{
-		return $this->vta;
-	}
-
-
-
 }
 
 /* AJAX

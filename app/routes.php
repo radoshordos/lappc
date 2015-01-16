@@ -141,8 +141,8 @@ Route::get('adm', ['as' => 'adm.home', function () {
 }]);
 
 /*
-Route::resource('vyhledat-zbozi','VyhledatZboziController', ['only' => ['index', 'store']]);
-Route::resource('vyhledat-zbozi/{dev}','VyhledatZboziController', ['only' => ['index', 'store']]);
+Route::resource('vyhledat-naradi','VyhledatZboziController', ['only' => ['index', 'store']]);
+Route::resource('vyhledat-naradi/{dev}','VyhledatZboziController', ['only' => ['index', 'store']]);
 */
 
 Route::resource('nakupni-kosik', 'KosikController', ['only' => ['index', 'store']]);

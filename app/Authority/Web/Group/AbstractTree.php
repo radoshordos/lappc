@@ -22,7 +22,7 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 		$this->tree = Input::get('tree');
 		$this->store = Input::get('store');
 		$this->action = Input::get('action');
-		$this->term = Input::get('term');
+		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->sort = Input::get('sort');
 
 		return View::make('web.tree.boxprodlist', [

@@ -8,29 +8,17 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 	CONST TREE_GROUP_TYPE = 'prodfind';
 	CONST TREE_BLADE_TEMPLATE = 'web.vyhledavani';
 
-	private $term;
 	private $et;
 	private $clt;
 
-	private $url;
-	private $vta;
-
-	public function __construct()
+	public function __construct($url = NULL, $dev_actual = NULL)
 	{
 		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->et = explode(" ", $this->term);
 		$this->clt = $this->cutLongerTerm($this->term);
-	}
-
-	public function initViewTreeActual($url)
-	{
 		$this->url = $url;
-		$this->vta = ViewTree::where('id', '=', 15000000)->first();
-	}
-
-	public function getViewTreeActual()
-	{
-		return $this->vta();
+		$this->dev_actual = $dev_actual;
+		$this->vta = ViewTree::where('tree_id', '=', 15000000)->first();
 	}
 
 	public function getViewProdPagination($dev = NULL)
@@ -38,7 +26,6 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		$term = $this->term;
 		$et = $this->et;
 		$clt = $this->clt;
-
 		$vp = ViewProd::whereRaw('0=1');
 
 		$vp->orWhere(function ($query) use ($et, $dev) {
@@ -79,12 +66,10 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 			}
 		}
 
-		$pagination = $vp->paginate(self::PAGINATE_PAGE);
-
+		$pagination = $vp->paginate(iProdListable::PAGINATE_PAGE);
 		if (!empty($term)) {
 			$pagination->appends(['term' => $term]);
 		}
-
 		return $pagination;
 	}
 
@@ -117,15 +102,13 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		if (count($et) == 1 && strlen($term) > 3) {
 			if (strlen($term) <= 4) {
 				$dl->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
-
 			} else if (strlen($term) > 4) {
 				$dl->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
 			}
 		}
 
 		$dev_list = $dl->groupBy(["dev_id"])->get()->toArray();
-		$dev = ["a" => ['dev_id' => 1, 'dev_alias' => '', 'tree_absolute' => '', 'dev_prod_count' => $this->getCountAllDev($dev_list)]] + $dev_list;
-		return $dev;
+		return ["a" => ['dev_id' => 1, 'dev_alias' => '', 'tree_absolute' => '', 'dev_prod_count' => $this->getCountAllDev($dev_list)]] + $dev_list;
 	}
 
 	private function cutLongerTerm($term)
@@ -149,6 +132,4 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		}
 		return $count;
 	}
-
-
 }
