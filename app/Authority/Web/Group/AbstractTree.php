@@ -10,46 +10,37 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 	protected $tree;
 	protected $term;
 	protected $sort;
-	protected $vta;
 	protected $dev;
+	protected $tree_id;
+
+
 	protected $dev_actual;
+	protected $view_tree_actual;
 
 	protected $only_store;
 	protected $only_action;
 
-	public function AjajTree()
-	{
-		$this->dev = Input::get('dev');
-		$this->tree = Input::get('tree');
-		$this->only_store = Input::get('store');
-		$this->only_action = Input::get('action');
-		$this->term = strip_tags(trim(\Input::get('term')));
-		$this->sort = Input::get('sort');
+	/*
+		public function getViewProdPagination($dev = NULL)
+		{
+			$db = ViewProd::where('prod_mode_id', '>', '1');
 
-		return View::make('web.tree.boxprodlist', [
-			"view_prod_array"  => $this->getViewProdPagination(),
-			'view_tree_actual' => ViewTree::where('tree_id', '=', intval($this->tree))->first(),
-		]);
-	}
+			$this->ajajStoreroom($db, $this->only_store);
+			$this->ajajAction($db, $this->only_action);
+			$this->ajajSort($db, $this->sort);
+			$this->ajajDev($db, $this->dev);
+			$this->ajajTreeCutting($db, $this->tree);
 
-	public function getViewProdPagination($dev = NULL)
-	{
-		$db = ViewProd::where('prod_mode_id', '>', '1');
+			$pagination = $db->limit(self::PAGINATE_PAGEX)->paginate();
+			$pagination->setBaseUrl('');
 
-		$this->ajajStoreroom($db, $this->only_store);
-		$this->ajajAction($db, $this->only_action);
-		$this->ajajSort($db, $this->sort);
-		$this->ajajDev($db, $this->dev);
-		$this->ajajTreeCutting($db, $this->tree);
-
-		$pagination = $db->limit(self::PAGINATE_PAGEX)->paginate();
-		$pagination->setBaseUrl('');
-
-		if (!empty($term)) {
-			$pagination->appends(['term' => $term]);
+			if (!empty($term)) {
+				$pagination->appends(['term' => $term]);
+			}
+			return $pagination;
 		}
-		return $pagination;
-	}
+	*/
+
 
 	public function setDevId($dev)
 	{
@@ -110,10 +101,10 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 
 	public function getViewTreeActual()
 	{
-		return $this->vta;
+		return $this->view_tree_actual;
 	}
 
-	public function getDevArray()
+	public function getDevActual()
 	{
 		return $this->dev_actual;
 	}

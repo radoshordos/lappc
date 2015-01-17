@@ -1,7 +1,6 @@
 <?php namespace Authority\Web\Group;
 
 use Authority\Eloquent\ViewProd;
-use Authority\Eloquent\ViewTree;
 
 class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 {
@@ -11,14 +10,13 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 	private $et;
 	private $clt;
 
-	public function __construct($url = NULL, $dev_actual = NULL)
+	public function __construct($view_tree_actual = NULL, $dev_actual = NULL)
 	{
 		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->et = explode(" ", $this->term);
 		$this->clt = $this->cutLongerTerm($this->term);
-		$this->url = $url;
+		$this->view_tree_actual = $view_tree_actual;
 		$this->dev_actual = $dev_actual;
-		$this->vta = ViewTree::where('tree_id', '=', 15000000)->first();
 	}
 
 	public function getViewProdPagination()

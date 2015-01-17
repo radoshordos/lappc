@@ -1,16 +1,13 @@
 <?php
 
 use Authority\Eloquent\AkceTempl;
-use Authority\Eloquent\Dev;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\MixtureItem;
 use Authority\Eloquent\ProdDescription;
-use Authority\Eloquent\TreeDev;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 use Authority\Web\Group\TreeMaster;
-use Authority\Web\Query\AjaxTree;
 
 class EshopController extends BaseController
 {
@@ -81,8 +78,8 @@ class EshopController extends BaseController
 	protected function isTree(array $url, $dev = NULL)
 	{
 		$tm = new TreeMaster();
-		$tm->setUrl($url);
-		$tm->setDevAlias($dev);
+		$tm->setDevActual($dev);
+		$tm->setViewTreeActual($url);
 		$res = $tm->detectTree();
 
 		return (($res === NULL) ? NULL :
@@ -90,7 +87,7 @@ class EshopController extends BaseController
 				'namespace'        => 'tree',
 				'group'            => $res::TREE_GROUP_TYPE,
 				'dev_list'         => $res->getDevList(),
-				'dev_actual'       => $res->getDevArray(),
+				'dev_actual'       => $res->getDevActual(),
 				'view_tree_actual' => $res->getViewTreeActual(),
 				'view_prod_array'  => $res->getViewProdPagination(),
 				'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
@@ -100,55 +97,4 @@ class EshopController extends BaseController
 			])
 		);
 	}
-
-
-	/*
-		protected function isTree(array $treePart, $dev = NULL)
-		{
-			$tm = new TreeMaster($url, $dev);
-			return (($tm == NULL) ? NULL : $tm);
-
-			/*
-
-			$tree_actual = ViewTree::where('tree_absolute', '=', implode('/', $treePart))->first();
-			$term = Input::get('term');
-
-			if (isset($tree_actual) && $tree_actual->count() > 0) {
-
-				$sort = NULL;
-
-				if (isset($dev) && $dev->count() > 0) {
-					$vp = ViewProd::whereBetween('tree_id', [$tree_actual->tree_id, ($tree_actual->tree_id + 9999)])->where('dev_id', '=', $dev->id);
-				} else {
-					$vp = ViewProd::whereBetween('tree_id', [$tree_actual->tree_id, ($tree_actual->tree_id + 9999)]);
-				}
-
-				if (Session::has('tree.sort')) {
-					$sort = Session::get('tree.sort');
-				}
-
-				$ajaxTree = new AjaxTree();
-				$vp = $ajaxTree->orderBySort($vp, $sort);
-
-				$pagination = $vp->where('prod_mode_id', '>', '1')->paginate(self::PAGINATE_PAGE);
-
-				if (!empty($this->term)) {
-					$pagination->appends(['term' => $this->term]);
-				}
-
-				return View::make('web.tree', [
-					'namespace'        => 'tree',
-					'view_prod_array'  => $pagination,
-					'view_tree_array'  => $this->view_tree_array,
-					'view_tree_actual' => $tree_actual,
-					'db_dev'           => $dev,
-					'dev_list'         => TreeDev::select(["tree_dev.subdir_visible AS dev_prod_count", "tree.absolute AS tree_absolute", "dev.alias AS dev_alias", "dev.name AS dev_name", "dev.id AS dev_id"])->join('dev', 'tree_dev.dev_id', '=', 'dev.id')->join('tree', 'tree_dev.tree_id', '=', 'tree.id')->where('tree_id', '=', $tree_actual->tree_id)->where('subdir_visible', '>', 0)->get()->toArray(),
-					'term'             => $this->term,
-					'store'            => Input::has('store') ? true : false,
-					'action'           => Input::has('action') ? true : false,
-				]);
-			}
-			return NULL;
-		}
-	*/
 }
