@@ -23,18 +23,17 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 
 	public function getViewProdPagination()
 	{
-
-				var_dump($this->dev_actual);
-				die;
-
-
+		$dev_id = 0;
 		$term = $this->term;
 		$et = $this->et;
 		$clt = $this->clt;
 		$vp = ViewProd::whereRaw('0=1');
-		$dev = $this->dev_actual;
 
-		$vp->orWhere(function ($query) use ($et, $dev) {
+		if (isset($this->dev_actual['id'])) {
+			$dev_id = $this->dev_actual['id'];
+		}
+
+		$vp->orWhere(function ($query) use ($et, $dev_id) {
 			foreach ($et as $word) {
 				if (strlen($word) > 7) {
 					$query->where('prod_name', 'LIKE', $word . '%');
@@ -43,36 +42,42 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 				} else {
 					$query->where('prod_name', 'LIKE', $word);
 				}
-				if (!empty($dev)) {
-					$query->where('dev_alias', '=', $dev);
-				}
+			}
+			if (!empty($dev_id)) {
+				$query->where('dev_id', '=', $dev_id);
 			}
 		});
 
+
 		if (strlen($clt) > 4) {
-			$vp->orWhere(function ($query) use ($clt, $dev) {
+			$vp->orWhere(function ($query) use ($clt, $dev_id) {
 				$query->where('prod_desc', 'LIKE', "%" . $clt . "%");
-				if (!empty($dev)) {
-					$query->where('dev_alias', '=', $dev);
+				if (!empty($dev_id)) {
+					$query->where('dev_id', '=', $dev_id);
 				}
 			});
 		}
 
 		if (count($et) == 1 && strlen($term) > 3) {
-			if (strlen($term) <= 4) {
-				$vp->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
-				if (!empty($dev)) {
-					$vp->where('dev_alias', '=', $dev);
+			$vp->orWhere(function ($query) use ($term, $dev_id) {
+				if (strlen($term) <= 4) {
+					$query->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
+					if (!empty($dev_id)) {
+						$query->where('dev_id', '=', $dev_id);
+					}
+				} else {
+					$query->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
+					if (!empty($dev_id)) {
+						$query->where('dev_id', '=', $dev_id);
+					}
 				}
-			} else if (strlen($term) > 4) {
-				$vp->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
-				if (!empty($dev)) {
-					$vp->where('dev_alias', '=', $dev);
-				}
-			}
+			});
 		}
 
+		var_dump($dev_id);
+		var_dump($vp->toSql());
 		$pagination = $vp->paginate(iProdListable::PAGINATE_PAGE);
+
 		if (!empty($term)) {
 			$pagination->appends(['term' => $term]);
 		}
@@ -100,17 +105,19 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		});
 
 		if (strlen($clt) > 4) {
-			$dl->orWhere(function ($query) use ($clt, $dev) {
+			$dl->orWhere(function ($query) use ($clt) {
 				$query->where('prod_desc', 'LIKE', "%" . $clt . "%");
 			});
 		}
 
 		if (count($et) == 1 && strlen($term) > 3) {
-			if (strlen($term) <= 4) {
-				$dl->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
-			} else if (strlen($term) > 4) {
-				$dl->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
-			}
+			$dl->orWhere(function ($query) use ($term) {
+				if (strlen($term) <= 4) {
+					$query->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
+				} else {
+					$query->orWhere('prod_search_codes', 'LIKE', "%" . $term . "%")->orWhere('prod_search_alias', 'LIKE', "%" . $term . "%");
+				}
+			});
 		}
 
 		$dev_list = $dl->groupBy(["dev_id"])->get()->toArray();

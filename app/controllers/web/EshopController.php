@@ -80,14 +80,17 @@ class EshopController extends BaseController
 
 	protected function isTree(array $url, $dev = NULL)
 	{
+/*
+		var_dump($dev);
+			die;
+*/
 		$tm = new TreeMaster();
 		$tm->setUrl($url);
 		$tm->setDevAlias($dev);
 		$res = $tm->detectTree();
-/*
-		var_dump($res->getDevArray());
-		die;
-*/
+
+
+
 		return (($res === NULL) ? NULL :
 			View::make($res::TREE_BLADE_TEMPLATE, [
 				'namespace'        => 'tree',

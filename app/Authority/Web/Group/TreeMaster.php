@@ -4,6 +4,10 @@ use Authority\Eloquent\Dev;
 
 class TreeMaster
 {
+	CONST URL_FIND = 'vyhledat-naradi';
+	CONST URL_NEW = 'novinky-naradi';
+	CONST URL_ACTION = 'akcni-ceny-naradi';
+
 	private $dev_alias;
 	private $url;
 
@@ -38,11 +42,11 @@ class TreeMaster
 		}
 
 		switch ($url) {
-			case 'vyhledat-naradi' :
+			case self::URL_FIND :
 				return new ProdFind($url, $dev_actual);
-			case 'akcni-ceny-naradi' :
+			case self::URL_ACTION :
 				return new ProdAction($url, $dev_actual);
-			case 'novinky-naradi' :
+			case self::URL_NEW :
 				return new ProdNew($url, $dev_actual);
 			default:
 				return new ProdList($url, $dev_actual);
