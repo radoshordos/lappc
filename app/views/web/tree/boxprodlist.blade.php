@@ -1,11 +1,6 @@
 <div id="area">
-    <ul id="prodlist" class="small-block-grid-3">
-
-
-
+    <ul id="prodlist" class="large-block-grid-3 medium-block-grid-2">
         @foreach($view_prod_array as $row)
-
-
             <?php
             $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($row);
             ?>
@@ -24,7 +19,7 @@
                         @endif
                         <span class="price label">{{ $vpa->priceFormatCurrencyWith() }}</span>
                     @else
-                        <span class="alert label">Prodej ukončen</span>
+                        <span class="alert label">Prodej byl ukončen</span>
                     @endif
                 </a>
                 <p>{{ $vpa->getProdDesc() }}</p>

@@ -11,6 +11,7 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 	{
 		$this->dev_actual = $dev_actual;
 		$this->view_tree_actual = $view_tree_actual;
+		$this->vp = ViewProd::getQuery();
 	}
 
 	public function getDevList()
@@ -21,10 +22,10 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 
 	public function getViewProdPagination()
 	{
-		$vp = ViewProd::where('prod_mode_id', '=', '4');
+		$this->vp->where('prod_mode_id', '=', '4');
 		if (isset($this->dev_actual['id']) && is_int($this->dev_actual['id'])) {
-			$vp->where('dev_id', '=', $this->dev_actual['id']);
+			$this->vp->where('dev_id', '=', $this->dev_actual['id']);
 		}
-		return $vp->paginate(iProdListable::PAGINATE_PAGE);
+		return $this->vp->paginate(iProdListable::PAGINATE_PAGE);
 	}
 }

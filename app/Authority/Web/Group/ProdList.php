@@ -13,6 +13,7 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->view_tree_actual = $view_tree_actual;
 		$this->dev_actual = $dev_actual;
+		$this->vp = ViewProd::getQuery();
 	}
 
 	public function getDevList()
@@ -32,14 +33,12 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 
 	public function getViewProdPagination()
 	{
-		$vp = ViewProd::where('prod_mode_id', '>', '1');
+		$this->vp->where('prod_mode_id', '>', '1')->whereBetween('tree_id', [$this->view_tree_actual['tree_id'], ($this->view_tree_actual['tree_id'] + 9999)]);
 		if (isset($this->view_tree_actual) && is_array($this->view_tree_actual) && count($this->view_tree_actual) > 0) {
 			if (isset($this->dev_actual['id']) && is_int($this->dev_actual['id'])) {
-				$vp = ViewProd::whereBetween('tree_id', [$this->view_tree_actual['tree_id'], ($this->view_tree_actual['tree_id'] + 9999)])->where('dev_id', '=', $this->dev_actual['id']);
-			} else {
-				$vp = ViewProd::whereBetween('tree_id', [$this->view_tree_actual['tree_id'], ($this->view_tree_actual['tree_id'] + 9999)]);
+				$this->vp->where('dev_id', '=', $this->dev_actual['id']);
 			}
 		}
-		return $vp->paginate(iProdListable::PAGINATE_PAGE);
+		return $this->vp->paginate(iProdListable::PAGINATE_PAGE);
 	}
 }

@@ -17,6 +17,7 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		$this->clt = $this->cutLongerTerm($this->term);
 		$this->view_tree_actual = $view_tree_actual;
 		$this->dev_actual = $dev_actual;
+		$this->vp = ViewProd::getQuery();		
 	}
 
 	public function getViewProdPagination()
@@ -25,13 +26,12 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		$term = $this->term;
 		$et = $this->et;
 		$clt = $this->clt;
-		$vp = ViewProd::whereRaw('0=1');
 
 		if (isset($this->dev_actual['id'])) {
 			$dev_id = $this->dev_actual['id'];
 		}
 
-		$vp->orWhere(function ($query) use ($et, $dev_id) {
+		$this->vp->orWhere(function ($query) use ($et, $dev_id) {
 			foreach ($et as $word) {
 				if (strlen($word) > 7) {
 					$query->where('prod_name', 'LIKE', $word . '%');
@@ -48,7 +48,7 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 
 
 		if (strlen($clt) > 4) {
-			$vp->orWhere(function ($query) use ($clt, $dev_id) {
+			$this->vp->orWhere(function ($query) use ($clt, $dev_id) {
 				$query->where('prod_desc', 'LIKE', "%" . $clt . "%");
 				if (!empty($dev_id)) {
 					$query->where('dev_id', '=', $dev_id);
@@ -57,7 +57,7 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 		}
 
 		if (count($et) == 1 && strlen($term) > 3) {
-			$vp->orWhere(function ($query) use ($term, $dev_id) {
+			$this->vp->orWhere(function ($query) use ($term, $dev_id) {
 				if (strlen($term) <= 4) {
 					$query->orWhere('prod_search_codes', 'LIKE', $term . "%")->orWhere('prod_search_alias', 'LIKE', $term . "%");
 					if (!empty($dev_id)) {
@@ -72,7 +72,7 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 			});
 		}
 
-		$pagination = $vp->paginate(iProdListable::PAGINATE_PAGE);
+		$pagination = $this->vp->paginate(iProdListable::PAGINATE_PAGE);
 
 		if (!empty($term)) {
 			$pagination->appends(['term' => $term]);

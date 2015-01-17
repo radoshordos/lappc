@@ -19,7 +19,6 @@ class ProdSearch extends TaskMessage implements iRun
 	public function run()
 	{
 		$this->searchInSell();
-		$this->searchInPrice();
 		$this->searchInItemsCode();
 	}
 

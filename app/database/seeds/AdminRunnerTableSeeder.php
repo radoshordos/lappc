@@ -116,6 +116,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 414,
+            'autorun' => 0,
+            'class'   => 'Authority\Runner\Task\Recalculate\ProdSearchPrice'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 502,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncBow'

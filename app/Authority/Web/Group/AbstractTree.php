@@ -13,6 +13,9 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 	protected $dev;
 	protected $tree_id;
 
+	/* ZDE JE TO OK */
+
+	protected $vp;
 
 	protected $dev_actual;
 	protected $view_tree_actual;
@@ -59,10 +62,10 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 		}
 	}
 
-	public function ajajDev($db, $dev)
+	public function ajajDev($dev)
 	{
 		if (intval($dev) > 0) {
-			$db->where('dev_id', intval($dev));
+			$this->vp->where('dev_id', intval($dev));
 		}
 	}
 
@@ -73,14 +76,14 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 		}
 	}
 
-	public function ajajAction($db, $action)
+	public function ajajAction($action)
 	{
 		if ($action == 'true') {
-			$db->where('prod_mode_id', '=', 4);
+			$this->vp->where('prod_mode_id', '=', 4);
 		}
 	}
 
-	public function ajajSort($db, $sort)
+	public function ajajSort($sort)
 	{
 		if (strlen($sort) > 0 && strlen($sort) < 16) {
 			\Session::put('tree.sort', $sort);
@@ -89,13 +92,13 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 		}
 
 		if ($sort == 'expensive') {
-			return $db->orderBy('prod_search_price', 'DESC');
+			return $this->vp->orderBy('prod_search_price', 'DESC');
 		} else if ($sort == 'sell') {
-			return $db->orderBy('prod_search_sell', 'DESC');
+			return $this->vp->orderBy('prod_search_sell', 'DESC');
 		} else if ($sort == 'fresh') {
-			return $db->orderBy('prod_created_at', 'DESC');
+			return $this->vp->orderBy('prod_created_at', 'DESC');
 		} else {
-			return $db->orderBy('prod_search_price', 'ASC');
+			return $this->vp->orderBy('prod_search_price', 'ASC');
 		}
 	}
 
@@ -107,5 +110,10 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 	public function getDevActual()
 	{
 		return $this->dev_actual;
+	}
+
+
+	public function toDebugSql() {
+		return $this->vp->toSql();
 	}
 }
