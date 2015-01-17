@@ -8,20 +8,21 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 
 	protected $url;
 	protected $tree;
-	protected $store;
 	protected $term;
-	protected $action;
 	protected $sort;
 	protected $vta;
 	protected $dev;
 	protected $dev_actual;
 
+	protected $only_store;
+	protected $only_action;
+
 	public function AjajTree()
 	{
 		$this->dev = Input::get('dev');
 		$this->tree = Input::get('tree');
-		$this->store = Input::get('store');
-		$this->action = Input::get('action');
+		$this->only_store = Input::get('store');
+		$this->only_action = Input::get('action');
 		$this->term = strip_tags(trim(\Input::get('term')));
 		$this->sort = Input::get('sort');
 
@@ -35,8 +36,8 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 	{
 		$db = ViewProd::where('prod_mode_id', '>', '1');
 
-		$this->ajajStoreroom($db, $this->store);
-		$this->ajajAction($db, $this->action);
+		$this->ajajStoreroom($db, $this->only_store);
+		$this->ajajAction($db, $this->only_action);
 		$this->ajajSort($db, $this->sort);
 		$this->ajajDev($db, $this->dev);
 		$this->ajajTreeCutting($db, $this->tree);

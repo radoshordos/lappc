@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @if ($namespace == 'tree' && !empty($db_dev))
-        <title>{{ $view_tree_actual['tree_desc']." ".$db_dev->name}} | Guru nářadí</title>
-        <meta name="keywords" content="{{ $view_tree_actual['tree_desc'].", ".$db_dev->name }}">
+    @if ($namespace == 'tree' && !empty($dev_actual))
+        <title>{{ $view_tree_actual['tree_desc']." ".$dev_actual['name']}} | Guru nářadí</title>
+        <meta name="keywords" content="{{ $view_tree_actual['tree_desc'].", ".$dev_actual['name'] }}">
         <meta name="description" content="{{ $view_tree_actual['tree_desc'] }} v eshopu guru-naradi.cz">
     @elseif ($namespace == 'tree')
         <title>{{ $view_tree_actual['tree_desc'] }} | Guru nářadí</title>

@@ -74,8 +74,6 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 			});
 		}
 
-		var_dump($dev_id);
-		var_dump($vp->toSql());
 		$pagination = $vp->paginate(iProdListable::PAGINATE_PAGE);
 
 		if (!empty($term)) {

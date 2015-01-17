@@ -23,21 +23,21 @@ class TreeGroupTableSeeder extends Seeder
 		]);
 
 		DB::table('tree_group')->insert([
-			'id'          => 16,
+			'id'          => 15,
 			'grouptop_id' => 20,
 			'type'        => 'prodfind',
 			'name'        => 'Vyhledánání'
 		]);
 
 		DB::table('tree_group')->insert([
-			'id'          => 17,
+			'id'          => 16,
 			'grouptop_id' => 20,
 			'type'        => 'prodaction',
 			'name'        => 'Akce'
 		]);
 
 		DB::table('tree_group')->insert([
-			'id'          => 18,
+			'id'          => 17,
 			'grouptop_id' => 20,
 			'type'        => 'prodaction',
 			'name'        => 'Výprodej'

@@ -12,11 +12,7 @@ class TreeListController extends EshopController
 	public function ajajtree()
 	{
 
-	}
-
-	public function gettree(iProdList $tree)
-	{
-
+		var_dump(Input::all());
 	}
 
 	public function getTreeGroup()

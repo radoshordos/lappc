@@ -41,8 +41,6 @@ $(function() {
         prodList('fresh');
     });
 
-
-
     function getUrlParameter(sParam)
     {
         var sPageURL = window.location.search.substring(1);
@@ -64,6 +62,7 @@ $(function() {
         var action = $('#action').is(':checked');
         var tree = $('#tree').val();
         var dev = $('#dev').val();
+        var group = $('#group').val();
 
         var hash = [];
         if (store == true) {
@@ -77,16 +76,15 @@ $(function() {
         }
 
         location.hash = hash.join("&");
-        var data = {store: store, action: action, tree: tree, dev: dev, sort: sort, term: term };
+        var data = {group: group ,store: store, action: action, tree: tree, dev: dev, sort: sort, term: term};
 
         $.ajax({
             method: "GET",
-            url: '/getstoreroom',
+            url: '/ajajtree',
             data: data,
             success: function (data) {
                 $("#area").html(data);
             }
         });
     }
-
 });
