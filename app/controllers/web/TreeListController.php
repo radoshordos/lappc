@@ -17,9 +17,13 @@ class TreeListController extends EshopController
 		$res->ajajAction(Input::get('action'));
 		var_dump($res->toDebugSql());
 
+		$actual = $res->getViewTreeActual();
+		$pag = $res->getViewProdPagination();
+		$pag->setBaseUrl("/" . $actual['tree_absolute']);
+
 		return View::make('web.tree.boxprodlist', [
-			'view_prod_array'  => $res->getViewProdPagination(),
-			'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
+			'view_prod_array' => $res->getViewProdPagination(),
+			'view_tree_array' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
 		]);
 	}
 }
