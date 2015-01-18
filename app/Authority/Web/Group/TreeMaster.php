@@ -18,7 +18,15 @@ class TreeMaster
 	{
 		$this->url_part_one = $tree_absolute;
 		if ($tree_absolute != NULL) {
-			$tree = ViewTree::where('tree_absolute', '=', $tree_absolute)->first();
+
+			if (is_string($this->url_part_second)) {
+				$url = implode('/', array_merge($this->url_part_one, [$this->url_part_second]));
+			} else {
+				$url = implode('/', $this->url_part_one);
+			}
+
+			$tree = ViewTree::where('tree_absolute', '=', $url)->first();
+
 			if (!empty($tree)) {
 				$this->view_tree_actual = $view_tree_actual = $tree->toArray();
 			} else {
@@ -28,7 +36,7 @@ class TreeMaster
 			$tree = ViewTree::where('tree_id', '=', $tree_id)->first();
 			if (!empty($tree)) {
 				$this->view_tree_actual = $tree->toArray();
-				$this->url_part_one = explode('/',$this->view_tree_actual['tree_absolute']);
+				$this->url_part_one = explode('/', $this->view_tree_actual['tree_absolute']);
 			} else {
 				throw new \Exception("NO TREE EXCEPTION");
 			}
@@ -60,15 +68,25 @@ class TreeMaster
 			$url = implode('/', $this->url_part_one);
 		}
 
-		switch ($url) {
-			case self::URL_FIND . "/" :
+		switch ($this->lastSlashCut($url)) {
+			case self::URL_FIND :
 				return new ProdFind($this->view_tree_actual, $this->dev_actual);
-			case self::URL_ACTION . "/" :
+			case self::URL_ACTION :
 				return new ProdAction($this->view_tree_actual, $this->dev_actual);
-			case self::URL_NEW . "/" :
+			case self::URL_NEW:
 				return new ProdNew($this->view_tree_actual, $this->dev_actual);
 			default:
 				return new ProdList($this->view_tree_actual, $this->dev_actual);
+		}
+	}
+
+	private function lastSlashCut($string)
+	{
+		$poz = strlen($string) - 1;
+		if ($string[$poz] == "/") {
+			return $string = substr($string, 0, $poz);
+		} else {
+			return $string;
 		}
 	}
 }

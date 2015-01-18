@@ -69,10 +69,10 @@ abstract class AbstractTree implements iProdListable, iProdExpandable
 		}
 	}
 
-	public function ajajStoreroom($db, $store)
+	public function ajajStoreroom($store)
 	{
 		if ($store == 'true') {
-			$db->where('prod_storeroom', '>', 0);
+			$this->vp->where('prod_storeroom', '>', 0);
 		}
 	}
 
