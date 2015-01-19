@@ -40,9 +40,7 @@
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
             "php artisan optimize",
-            "php artisan asset:warm",
-            "php artisan migrate:refresh",
-            "php artisan db:seed"
+            "php artisan asset:warm"
         ]
     },
     "minimum-stability": "stable"

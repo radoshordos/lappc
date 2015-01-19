@@ -1,7 +1,6 @@
-<footer class="row">
-    <div class="large-18 columns">
-        <hr>
-        <div class="row">
+<footer>
+    <div class="row">
+        <div class="large-18 columns">
             <div class="large-6 columns">
                 <p>© Guru nářadí</p>
             </div>
