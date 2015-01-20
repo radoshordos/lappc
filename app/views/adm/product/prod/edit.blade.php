@@ -213,14 +213,7 @@
             </table>
         </div>
         @endif
-        <p class="text-center">
-            @if ($prod->mode_id == 1)
-                {{ Form::submit('Smazat produkt', ['name' => 'button-submit-delete-prod','class' => 'btn btn-danger','style' => 'margin-right:5em']) }}
-            @elseif ($prod->mode_id > 1 && $prod->ic_all > 0)
-                {{ Form::submit('Smazat položku', ['name' => 'button-submit-delete-item','class' => 'btn btn-danger','style' => 'margin-right:5em']) }}
-            @endif
-            {{ Form::submit('Editovat produkt', ['name' => 'button-submit-edit','class' => 'btn btn-info','style' => 'margin-left:5em']) }}
-        </p>
+        @include('adm.product.prod.button_submit')
     </div>
     <div class="tab-pane" style="padding-top: 2em" id="source">
         {{ Form::hidden('data_id1', (isset($table_prod_description[0]) ? $table_prod_description[0]->id : NULL)); }}
@@ -232,6 +225,7 @@
         {{ Form::hidden('data_id3', (isset($table_prod_description[2]) ? $table_prod_description[2]->id : NULL)); }}
         {{ Form::select("data_title3", $select_media_var, (isset($table_prod_description[2]) ? $table_prod_description[2]->variations_id : NULL), ['id' => 'data_title3','class' => 'form-control']) }}
         {{ Form::textarea('data_input3', (isset($table_prod_description[2]) ? $table_prod_description[2]->data : NULL), ['size' => '180x5', 'class' => 'form-control' ]) }}
+        @include('adm.product.prod.button_submit')
     </div>
     @if ($prod->difference_id > 1)
     <div class="tab-pane" id="difference" style="padding-top: 2em">
