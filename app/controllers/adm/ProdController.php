@@ -37,9 +37,9 @@ class ProdController extends \BaseController
             case 2:
                 $db->orderBy('prod_name', 'DESC');
                 break;
-//            case 3:
-//                $db->orderBy('query_price', 'ASC');
-//                break;
+            case 3:
+                $db->orderBy('prod_search_price', 'ASC');
+                break;
             default:
                 $db->orderBy('prod_updated_at', 'DESC');
                 break;
@@ -282,6 +282,7 @@ class ProdController extends \BaseController
                 $pd1->data = $ida1['data_input1'];
                 $pd1->save();
             } elseif (intval($ida1['data_title1']) > 0) {
+                var_dump(Input::all());
                 $pd1 = ProdDescription::find(intval($ida1['data_id1']));
                 $pd1->variations_id = intval($ida1['data_title1']);
                 $pd1->data = $ida1['data_input1'];
