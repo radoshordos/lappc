@@ -40,17 +40,24 @@ class MediaVariationsSeeder extends Seeder
 
         foreach ($media2variace as $row) {
 
+            if ($row['mv_id'] > 1) {
+                $mv_id = $row['mv_id'] + 100;
+            } else {
+                $mv_id = $row['mv_id'];
+            }
+
             DB::table('media_variations')->insert([
-                'id'            => $row['mv_id'],
-                'type_id'       => ($row['mv_id_type'] + 1),
-                'visible_rule'  => $row['mv_visible_rule'],
+
+                'id' => $mv_id,
+                'type_id' => ($row['mv_id_type'] + 1),
+                'visible_rule' => $row['mv_visible_rule'],
                 'visible_group' => $row['mv_visible_group'],
                 'visible_media' => $row['mv_visible_media'],
-                'visible_prod'  => $row['mv_visible_prod'],
-                'tag'           => $row['mv_tag'],
-                'class'         => $row['mv_class'],
-                'icon'          => $row['mv_icon'],
-                'name'          => $row['mv_name'],
+                'visible_prod' => $row['mv_visible_prod'],
+                'tag' => $row['mv_tag'],
+                'class' => $row['mv_class'],
+                'icon' => $row['mv_icon'],
+                'name' => $row['mv_name'],
             ]);
         }
     }

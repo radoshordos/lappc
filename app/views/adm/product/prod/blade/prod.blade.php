@@ -15,7 +15,7 @@
                     {{  Form::select('difference_id', $select_difference, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek']) }}
                     <span class="input-group-addon alert-danger">
                             {{ Form::checkbox('difference_check')  }}
-                        </span>
+                    </span>
                 </div>
             </div>
         </div>

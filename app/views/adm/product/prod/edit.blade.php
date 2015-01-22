@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ asset('admin/components/bootstrap-fileinput/css/fileinput.min.css') }}">
     <script src="{{ asset('admin/components/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
     <script>
-
         $(document).ready(function (e) {
             $("#list_tree").select2({});
             $("#list_prod").select2({});
@@ -25,8 +24,7 @@
             $('#myTab a[href="#profile"]').tab('show');
             if (location.hash) {
                 $('a[href=' + location.hash + ']').tab('show');
-            }
-            ;
+            };
             $(document.body).on("click", "a[data-toggle]", function (event) {
                 location.hash = this.getAttribute("href");
             });
@@ -80,12 +78,10 @@
             </ul>
 
             <div class="tab-content">
-
                 <div role="tabpanel" class="tab-pane active" id="prod">
                     {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form','files'=> true]) }}
                     @include('adm.product.prod.blade.prod')
                 </div>
-
                 <div role="tabpanel" class="tab-pane" id="source">
                     @include('adm.product.prod.blade.source')
                     {{ Form::close() }}
@@ -95,7 +91,6 @@
                         @include('adm.product.prod.blade.difference')
                     </div>
                 @endif
-
                 <div role="tabpanel" class="tab-pane" id="fotogalerie">
                     @include('adm.product.prod.blade.fotogalerie')
                 </div>

@@ -46,14 +46,14 @@ class ProdController extends \BaseController
         }
 
         return View::make('adm.product.prod.index', [
-            'view'        => $db->paginate($input_limit),
-            'input_dev'   => Input::has('select_dev') ? intval(Input::get('select_dev')) : NULL,
-            'input_tree'  => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
-            'input_sort'  => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
+            'view' => $db->paginate($input_limit),
+            'input_dev' => Input::has('select_dev') ? intval(Input::get('select_dev')) : NULL,
+            'input_tree' => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
+            'input_sort' => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
             'input_limit' => $input_limit,
             'search_name' => Input::get('search_name'),
             'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-            'select_dev'  => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
+            'select_dev' => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
         ]);
     }
 
@@ -83,8 +83,8 @@ class ProdController extends \BaseController
         if (!isset($row->tree_id)) {
 
             return View::make('adm.product.prod.edit', [
-                'list_tree'   => $select_tree,
-                'list_prod'   => [''] + $list_prod,
+                'list_tree' => $select_tree,
+                'list_prod' => [''] + $list_prod,
                 'choice_tree' => $tree,
                 'choice_prod' => $prod
             ])->with(['id' => $prod]);
@@ -112,26 +112,26 @@ class ProdController extends \BaseController
             }
 
             return View::make('adm.product.prod.edit', [
-                'list_tree'                  => $select_tree,
-                'list_prod'                  => $list_prod,
-                'choice_tree'                => $tree,
-                'choice_prod'                => $prod,
-                'prod'                       => $row,
-                'select_dev'                 => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-                'select_tree'                => SB::option("SELECT id,name,absolute FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-                'select_warranty'            => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
-                'select_dph'                 => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
-                'select_mode'                => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-                'select_forex'               => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale'                => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
-                'select_difference'          => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
-                'select_availability'        => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+                'list_tree' => $select_tree,
+                'list_prod' => $list_prod,
+                'choice_tree' => $tree,
+                'choice_prod' => $prod,
+                'prod' => $row,
+                'select_dev' => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+                'select_tree' => SB::option("SELECT id,name,absolute FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+                'select_warranty' => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
+                'select_dph' => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
+                'select_mode' => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+                'select_forex' => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
+                'select_sale' => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
+                'select_difference' => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+                'select_availability' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
                 'select_availability_action' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1", ['id' => '->name']),
-                'select_media_var'           => SB::option("SELECT id,name FROM media_variations WHERE type_id = 6", ['id' => '->name'], true),
-                'select_akce_template'       => $select_akce_template,
-                'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
-                'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->orderBy('id')->get(),
-                'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get(),
+                'select_media_var' => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], true),
+                'select_akce_template' => $select_akce_template,
+                'table_items' => $this->items->where('prod_id', '=', $prod)->get(),
+                'table_prod_picture' => ProdPicture::where('prod_id', '=', $prod)->orderBy('id')->get(),
+                'table_prod_description' => ProdDescription::where('prod_id', '=', $prod)->get()->toArray(),
                 'table_prod_description_set' => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
             ])->with(['id' => $prod]);
         }
@@ -143,10 +143,9 @@ class ProdController extends \BaseController
         $row = $this->prod->find($prod);
 
         if (Input::has('img-to-primary')) {
-            foreach(array_keys(Input::get('img-to-primary')) as $key) {
+            foreach (array_keys(Input::get('img-to-primary')) as $key) {
 
-                DB::transaction(function() use ($prod, $key)
-                {
+                DB::transaction(function () use ($prod, $key) {
                     $prod = Prod::find($prod);
                     $img = ProdPicture::find($key);
 
@@ -163,7 +162,7 @@ class ProdController extends \BaseController
         }
 
         if (Input::has('img-to-delete')) {
-            foreach(array_keys(Input::get('img-to-delete')) as $key) {
+            foreach (array_keys(Input::get('img-to-delete')) as $key) {
                 ProdPicture::destroy($key);
                 Session::flash('warning', "Obrázek byl odstraněn");
             }
@@ -191,8 +190,8 @@ class ProdController extends \BaseController
                     $img = new ProdImage(Input::file('input-1a')->getPathname(), $row->tree->absolute, $row->name);
                     $img->createProdPictures(240, 240);
                     $aff = ProdPicture::create([
-                        'prod_id'    => $row->id,
-                        'img_big'    => $img->getImgBig(),
+                        'prod_id' => $row->id,
+                        'img_big' => $img->getImgBig(),
                         'img_normal' => $img->getImgNormal()
                     ]);
                     if ($aff) {
@@ -202,7 +201,7 @@ class ProdController extends \BaseController
                     Session::flash('error', $e->getMessage());
                 }
             }
-            return Redirect::route('adm.product.prod.edit', [$tree, $prod,"#fotogalerie"]);
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod, "#fotogalerie"]);
         }
 
         if ((Input::has('picture-work') && \URL::isValidUrl(Input::get('upload_url')))) {
@@ -210,8 +209,8 @@ class ProdController extends \BaseController
                 $img = new ProdImage(Input::get('upload_url'), $row->tree->absolute, $row->name);
                 $img->createProdPictures(240, 240);
                 $aff = ProdPicture::create([
-                    'prod_id'    => $row->id,
-                    'img_big'    => $img->getImgBig(),
+                    'prod_id' => $row->id,
+                    'img_big' => $img->getImgBig(),
                     'img_normal' => $img->getImgNormal()
                 ]);
                 if ($aff) {
@@ -220,7 +219,7 @@ class ProdController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.product.prod.edit', [$tree, $prod,"#fotogalerie"]);
+            return Redirect::route('adm.product.prod.edit', [$tree, $prod, "#fotogalerie"]);
         }
 
         if (Input::has('button-submit-edit')) {
@@ -335,13 +334,13 @@ class ProdController extends \BaseController
                         $count = Items::where('prod_id', '=', $row->id)->where('diff_val1_id', '=', $v1)->where('diff_val2_id', '=', 1)->count();
                         if ($count == 0) {
                             Items::create([
-                                'prod_id'         => $row->id,
-                                'sale_id'         => $row->dev->default_sale_prod_id,
+                                'prod_id' => $row->id,
+                                'sale_id' => $row->dev->default_sale_prod_id,
                                 'availability_id' => $row->dev->default_availability_id,
-                                'diff_val1_id'    => $v1,
-                                'diff_val2_id'    => 1,
-                                'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
-                                'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
+                                'diff_val1_id' => $v1,
+                                'diff_val2_id' => 1,
+                                'created_at' => date("Y-m-d H:i:s", strtotime('now')),
+                                'updated_at' => date("Y-m-d H:i:s", strtotime('now'))
                             ]);
                         }
                     }
@@ -352,13 +351,13 @@ class ProdController extends \BaseController
                             $count = Items::where('prod_id', '=', $row->id)->where('diff_val1_id', '=', $v1)->where('diff_val2_id', '=', 1)->count();
                             if ($count == 0) {
                                 Items::create([
-                                    'prod_id'         => $row->id,
-                                    'sale_id'         => $row->dev->default_sale_prod_id,
+                                    'prod_id' => $row->id,
+                                    'sale_id' => $row->dev->default_sale_prod_id,
                                     'availability_id' => $row->dev->default_availability_id,
-                                    'diff_val1_id'    => $v1,
-                                    'diff_val2_id'    => $v2,
-                                    'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
-                                    'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
+                                    'diff_val1_id' => $v1,
+                                    'diff_val2_id' => $v2,
+                                    'created_at' => date("Y-m-d H:i:s", strtotime('now')),
+                                    'updated_at' => date("Y-m-d H:i:s", strtotime('now'))
                                 ]);
                             }
                         }
