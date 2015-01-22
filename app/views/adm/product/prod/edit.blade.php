@@ -58,7 +58,6 @@
             <span class="input-group-addon">Produkt</span>
             {{ Form::select('list_prod',$list_prod, $choice_prod, ['id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
         </div>
-        <br/>
     @endif
     {{ Form::close() }}
 

@@ -1,4 +1,3 @@
-{{ var_dump($table_prod_description[0]['variations_id']); }}
 {{ Form::hidden('data_id1', (isset($table_prod_description[0]) ? $table_prod_description[0]['id'] : NULL)); }}
 {{ Form::select("data_title1", $select_media_var, (isset($table_prod_description[0]) ? $table_prod_description[0]['variations_id'] : NULL), ['id' => 'data_title1','class' => 'form-control']) }}
 {{ Form::textarea('data_input1', (isset($table_prod_description[0]) ? $table_prod_description[0]['data'] : NULL), ['size' => '180x13', 'class' => 'form-control' ]) }}
