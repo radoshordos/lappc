@@ -63,5 +63,4 @@ class SyncMakita extends TaskMessage implements iSync
 		$this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
 		$this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
 	}
-
 }
