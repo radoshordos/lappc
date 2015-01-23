@@ -39,6 +39,7 @@ Route::group(['prefix' => 'adm'], function () {
 
     Route::group(['prefix' => 'product', 'before' => 'Sentry|inGroup:Simple'], function () {
         Route::resource('prod', 'ProdController');
+        Route::get('feed', ['as' => 'adm.product.prod.ajaxdev', 'uses' => 'ProdController@ajaxdev']);
         Route::match(['GET', 'POST'], 'prod/{tree}/{prod}/edit', ['as' => 'adm.product.prod.edit', 'uses' => 'ProdController@edit'])->where(['tree' => '[0-9]+', 'prod' => '[0-9]+']);
         Route::any('prod/{tree}/{prod}', ['as' => 'adm.product.prod.update', 'uses' => 'ProdController@update'])->where(['tree' => '[0-9]+', 'prod' => '[0-9]+']);
         Route::resource('akce', 'AkceController', ['only' => ['index']]);

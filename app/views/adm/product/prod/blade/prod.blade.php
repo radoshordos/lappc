@@ -77,7 +77,7 @@
         <div class="form-group">
             {{ Form::label('desc','Popis',['class'=> 'col-sm-2 control-label']) }}
             <div class="col-sm-10">
-                {{ Form::text('desc',NULL,['required' => 'required', 'maxlength' => '80', 'class'=> 'form-control', 'placeholder'=> 'Popis produktu']) }}
+                {{ Form::text('desc',NULL,['required' => 'required', 'maxlength' => '128', 'class' => 'form-control', 'placeholder' => 'Popis produktu']) }}
             </div>
         </div>
     </div>

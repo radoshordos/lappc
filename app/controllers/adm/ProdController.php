@@ -24,6 +24,15 @@ class ProdController extends \BaseController
         $this->items = $items;
     }
 
+    public function create()
+    {
+        return View::make('adm.product.prod.create', [
+            'select_tree'     => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name']),
+            'select_dev'      => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+            'select_warranty' => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
+        ]);
+    }
+
     public function index()
     {
         Input::has('select_limit') ? $input_limit = intval(Input::get('select_limit')) : $input_limit = 30;
@@ -57,10 +66,6 @@ class ProdController extends \BaseController
         ]);
     }
 
-    public function create()
-    {
-        return View::make('adm.product.prod.create', []);
-    }
 
     public function edit($tree = 0, $prod = 0)
     {
@@ -364,4 +369,9 @@ class ProdController extends \BaseController
         }
         return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
     }
+
+    public function ajaxdev() {
+        return 666;
+    }
+
 }
