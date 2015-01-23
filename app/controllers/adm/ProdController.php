@@ -27,9 +27,17 @@ class ProdController extends \BaseController
     public function create()
     {
         return View::make('adm.product.prod.create', [
-            'select_tree'     => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name']),
-            'select_dev'      => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-            'select_warranty' => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
+            'select_tree'         => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], TRUE),
+            'select_dev'          => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], TRUE),
+            'select_warranty'     => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
+            'select_dph'          => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
+            'select_forex'        => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
+            'select_mode'         => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1 AND id < 4", ['id' => '->name']),
+            'select_sale'         => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
+            'select_difference'   => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+            'select_availability' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+            'select_media_var'    => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
+            'select_grab'         => SB::option("SELECT id,name FROM grab_profile WHERE active = 1", ['id' => '->name'], TRUE),
         ]);
     }
 
@@ -65,7 +73,6 @@ class ProdController extends \BaseController
             'select_dev'  => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
         ]);
     }
-
 
     public function edit($tree = 0, $prod = 0)
     {
@@ -370,7 +377,8 @@ class ProdController extends \BaseController
         return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
     }
 
-    public function ajaxdev() {
+    public function ajaxdev()
+    {
         return 666;
     }
 

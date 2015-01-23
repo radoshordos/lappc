@@ -88,7 +88,6 @@
                     <div class="input-group-addon"><i class="fa fa-car fa-lg" title="Typ nákladu"></i></div>
                     <span class="btn-group">{{ Form::select('transport_atypical',['0' => 'Běžný rozměr', 1 => 'Atypický rozměr'], NULL, ['required' => 'required', 'class'=> 'form-control']) }}</span>
                     <span class="btn-group">{{ Form::input('number','transport_weight', round($prod['transport_weight'],2), ['required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control']) }}</span>
-
                     <div class="input-group-addon" title="Hmotnost produktu">kg</div>
                 </div>
             </div>
