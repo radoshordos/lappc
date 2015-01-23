@@ -88,7 +88,7 @@ class ProdController extends \BaseController
             ->where('id', '=', $true_prod)
             ->first();
 
-        $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name FROM tree INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1 WHERE dir_all > 0", ['id' => '[->id] - [->absolute] - ->name']);
+        $select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name FROM tree INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1 WHERE dir_all > 0", ['id' => '[->id] - [->absolute] - ->name'],TRUE);
         $list_prod = SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']);
 
 

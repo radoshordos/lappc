@@ -9,6 +9,13 @@ Nový produkt
 {{-- JavaScript on page --}}
 @section ('script')
     <script>
+        var rowNum = 1;
+        function addRow(frm) {
+            rowNum++;
+            var row = '<div id="rowNum'+rowNum+'" class="row"><div class="col-lg-7"><input type="url" name="urlimg[]" class="form-control" placeholder="URL obrázku nebo zdroj filtru" /></div><div class="col-lg-5"></div></div>';
+            jQuery('#img_rows').append(row);
+        }
+
         $(document).ready(function () {
             $("#tree_id").select2({
                 placeholder: "Skupina",
@@ -112,13 +119,19 @@ Nový produkt
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-7">
-            {{ Form::url('upload_url1', NULL, ['class'=> 'form-control', 'placeholder'=> 'URL obrázku nebo zdroj filtru']) }}
-        </div>
-        <div class="col-lg-2"><a href="">Více obrázků</a></div>
-        <div class="col-lg-3">
-            {{ Form::select("grab_profile", $select_grab, NULL, ['id' => 'grab_profile','class' => 'form-control']) }}
+    <div id="img_rows">
+        <div class="row">
+            <div class="col-lg-7">
+                {{ Form::url('urlimg[]', NULL, ['class'=> 'form-control', 'placeholder'=> 'URL obrázku nebo zdroj filtru']) }}
+            </div>
+            <div class="col-lg-1">
+                <button type="button" onclick="addRow(this.form);" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="col-lg-4">
+                {{ Form::select("grab_profile", $select_grab, NULL, ['id' => 'grab_profile','class' => 'form-control']) }}
+            </div>
         </div>
     </div>
 

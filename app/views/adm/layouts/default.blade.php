@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="{{ asset('admin/components/bootstrap/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/components/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/components/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/css/mystyle/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/mystyle/style.css') }}">
     <script src="{{ asset('admin/components/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/components/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('admin/components/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin/js/restfulizer.js') }}"></script>
+    <script src="{{ asset('admin/components/restfulizer/restfulizer.js') }}"></script>
+    <script src="{{ asset('admin/mystyle/style.js') }}"></script>
     @section('script')
     @show
 </head>
@@ -41,7 +42,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.product.prod.index') }}">Přehled produktů</a></li>
                         <li><a href="{{ URL::route('adm.product.prod.create') }}">Nový produkt</a></li>
-                        <li><a href="{{ URL::route('adm.product.prod.edit') }}">Opravit produkt</a></li>
+                        <li><a href="{{ URL::route('adm.product.prod.edit',[0,0]) }}">Opravit produkt</a></li>
                     </ul>
                 </li>
                 @endif
