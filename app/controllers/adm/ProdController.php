@@ -41,6 +41,14 @@ class ProdController extends \BaseController
         ]);
     }
 
+    public function store() {
+
+        if (Input::has('button-submit-create')) {
+            var_dump(Input::all());
+            die;
+        }
+    }
+
     public function index()
     {
         Input::has('select_limit') ? $input_limit = intval(Input::get('select_limit')) : $input_limit = 30;
