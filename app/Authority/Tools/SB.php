@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Tools;
+<?php namespace Authority\Tools;
 
 class SB
 {
@@ -26,8 +24,6 @@ class SB
         }
         return array_combine($key, $val);
     }
-
-
 
     static function optionBind($query, $query_bind, array $assoc_bind, $first_empty = FALSE)
     {

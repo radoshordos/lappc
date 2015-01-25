@@ -8,7 +8,6 @@ class Dph extends Migration {
     public function up()
     {
         Schema::create('dph', function (Blueprint $table) {
-
             $table->tinyInteger('id')->unsigned()->primary();
             $table->boolean('visible')->default(1);
             $table->double('multiplier')->unique();

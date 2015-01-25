@@ -2,18 +2,19 @@
 
 class Prod extends \Eloquent
 {
-    protected $table = 'prod';
-    protected $guarded = [];
-    public $timestamps = TRUE;
+	protected $table = 'prod';
+	protected $guarded = [];
+	public $timestamps = true;
 
-    public static $rules = [
-        'tree_id'    => 'required|exists:tree,id',
-        'dev_id'     => 'required|exists:dev,id',
-        'mode_id'    => 'required|integer|min:1|max:4',
-        'name'       => "required|unique:prod,name",
-        'desc'       => "required|unique:prod,desc",
-        'alias'      => "required|unique:prod,alias",
-        'price'      => 'required|integer|min:1'
+	public static $rules = [
+		'tree_id'          => 'required|exists:tree,id',
+		'dev_id'           => 'required|exists:dev,id',
+		'mode_id'          => 'required|integer|min:1|max:4',
+		'name'             => "required|unique:prod,name",
+		'desc'             => "required|unique:prod,desc",
+		'alias'            => "required|unique:prod,alias",
+		'price'            => 'required|integer|min:1',
+		'transport_weight' => 'required'
     ];
 
     public function scopeDev($query, $int)

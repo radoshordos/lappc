@@ -35,6 +35,8 @@ Nový produkt
 
 {{-- Content --}}
 @section('content')
+    {{ var_dump($input) }}
+
     {{ Form::open(['route' => 'adm.product.prod.store','class' => 'form-horizontal', 'role' => 'form']) }}
         <div class="row" style="margin-bottom: 5px">
             <div class="col-lg-8">{{ Form::select('tree_id', $select_tree, NULL, ['id'=> 'tree_id', 'required' => 'required', 'class'=> 'form-control']) }}</div>
@@ -84,7 +86,7 @@ Nový produkt
                 {{ Form::text("item_code_ean", NULL, ['class'=> 'form-control', 'placeholder' => 'EAN produktu']) }}
             </div>
             <div class="col-lg-4">
-                {{ Form::select("item_availability_id", $select_availability, NULL, ['class' => 'form-control']) }}
+                {{ Form::select("availability_id", $select_availability, NULL, ['class' => 'form-control']) }}
             </div>
         </div>
 
@@ -100,22 +102,22 @@ Nový produkt
     </div>
     <div class="row">
         <div class="col-lg-12">
-            {{ Form::select("data_title1", $select_media_var, NULL, ['id' => 'data_title1','class' => 'form-control']) }}
+            {{ Form::select("data_title2", $select_media_var, NULL, ['id' => 'data_title2','class' => 'form-control']) }}
         </div>
     </div>
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-12">
-            {{ Form::textarea('data_input1', NULL, ['size' => '180x9', 'class' => 'form-control' ]) }}
+            {{ Form::textarea('data_input2', NULL, ['size' => '180x9', 'class' => 'form-control' ]) }}
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            {{ Form::select("data_title1", $select_media_var, NULL, ['id' => 'data_title1','class' => 'form-control']) }}
+            {{ Form::select("data_title3", $select_media_var, NULL, ['id' => 'data_title3','class' => 'form-control']) }}
         </div>
     </div>
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-12">
-            {{ Form::textarea('data_input1', NULL, ['size' => '180x5', 'class' => 'form-control' ]) }}
+            {{ Form::textarea('data_input3', NULL, ['size' => '180x5', 'class' => 'form-control' ]) }}
         </div>
     </div>
 

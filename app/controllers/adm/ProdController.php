@@ -11,7 +11,7 @@ use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
 use Authority\Tools\Image\ProdImage;
 use Authority\Tools\SB;
-use Authority\Tools\SimpleString;
+use Authority\Tools\SF;
 
 
 class ProdController extends \BaseController
@@ -37,6 +37,7 @@ class ProdController extends \BaseController
 	public function create()
 	{
 		return View::make('adm.product.prod.create', [
+			'input'               => Input::all(),
 			'select_tree'         => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], true),
 			'select_dev'          => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], true),
 			'select_warranty'     => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
@@ -57,43 +58,43 @@ class ProdController extends \BaseController
 
 			$input = Input::all();
 			$pinput = array_only($input, $this->prod_input_fields);
-			$pinput['alias'] = SimpleString::friendlyAlias($input['name']);
-			$pinput['search_alias'] = SimpleString::friendlySearch($input['name']);
-			$v = Validator::make($pinput, Prod::$rules);
+			$iinput = array_only($input, $this->items_input_fields);
 
-			if ($v->passes()) {
-				$prod_result = Prod::create($pinput);
-				Session::flash('success', 'Nový produkt byl přidán');
-			} else {
-				Session::flash('error', implode('<br />', $v->errors()->all(':message')));
-				return Redirect::route('adm.product.prod.create')->withInput()->withErrors($v);
-			}
+			$pinput['alias'] = SF::friendlyAlias($input['name']);
+			$pinput['search_alias'] = SF::friendlySearch($input['name']);
+			$iinput['diff_val1_id'] = 1;
+			$iinput['diff_val2_id'] = 1;
 
-/*
-			$items_input = array_only($input, $this->items);
-			ProdDescription::create([$prod_result['id']] + array_only($input, ['data_title1', 'data_input1']));
-			ProdDescription::create([$prod_result['id']] + array_only($input, ['data_title2', 'data_input2']));
-			ProdDescription::create([$prod_result['id']] + array_only($input, ['data_title3', 'data_input3']));
-*/
-//			var_dump($prod_result['id'] + array_only($input, ['data_title1', 'data_input1']));
-//			die;
+			$vp = Validator::make($pinput, Prod::$rules);
+			$vi = Validator::make($iinput, Items::$rules);
 
-
-	/*
-				$input = Input::all();
-				$v = Validator::make($input, MediaDb::$rules);
-
-				if ($v->passes()) {
-					MediaDb::create(Input::all());
-
+			\DB::transaction(function () use ($vp, $vi, $pinput, $iinput, $input) {
+				if ($vp->passes()) {
+					$prod_result = Prod::create($pinput);
+					if ($vi->passes()) {
+						Items::create(['prod_id' => $prod_result['id']] + $iinput);
+					} else {
+						Session::flash('error', implode('<br />', $vi->errors()->all(':message')));
+						return Redirect::route('adm.product.prod.create')->withInput()->withErrors($vi);
+					}
+					Session::flash('success', "<a href=" . URL::route('adm.product.prod.edit', [$prod_result['tree_id'], $prod_result['id']]) . ">Nový produkt byl přidán</a>");
 				} else {
-					Session::flash('error', implode('<br />', $v->errors()->all(':message')));
-					return Redirect::route('adm.pattern.multimedia.create')->withInput()->withErrors($v);
+					Session::flash('error', implode('<br />', $vp->errors()->all(':message')));
+					return Redirect::route('adm.product.prod.create')->withInput()->withErrors($vp);
 				}
-	*/
 
-
+				if (intval($prod_result['id']) > 0 && intval($input['data_title1']) > 0 && strlen($input['data_input1']) > 0) {
+					ProdDescription::create(['prod_id' => $prod_result['id']] + array_only($input, ['data_title1', 'data_input1']));
+				}
+				if (intval($prod_result['id']) > 0 && intval($input['data_title2']) > 0 && strlen($input['data_input2']) > 0) {
+					ProdDescription::create(['prod_id' => $prod_result['id']] + array_only($input, ['data_title2', 'data_input2']));
+				}
+				if (intval($prod_result['id']) > 0 && intval($input['data_title3']) > 0 && strlen($input['data_input3']) > 0) {
+					ProdDescription::create(['prod_id' => $prod_result['id']] + array_only($input, ['data_title3', 'data_input3']));
+				}
+			});
 		}
+		return Redirect::route('adm.product.prod.create')->withInput();
 	}
 
 	public function index()

@@ -1,6 +1,6 @@
 <?php namespace Authority\Tools;
 
-class SimpleString
+class SF
 {
 	static function friendlyAlias($string)
 	{
