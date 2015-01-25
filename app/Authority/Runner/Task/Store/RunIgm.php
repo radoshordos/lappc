@@ -40,6 +40,37 @@ class RunIgm extends AbstractRunDev implements iItem
 		}
 	}
 
+	private function analyseName($dev_name)
+	{
+		switch ($dev_name) {
+			case 'IGM Basic Line' :
+			case 'IGM Expert Line' :
+			case 'IGM Professional Tools' :
+			case 'IGM Profi Line' :
+			case 'BASIC Line' :
+			case 'EXPERT Line' :
+			case 'IGM Professional' :
+			case 'PROFI Line' :
+				return "IGM";
+			case 'CMT Orange Tools' :
+				return "CMT";
+			case 'IGM Fachmann Tools' :
+				return "CMT";
+			case 'IGM Fachmann' :
+				return 'Fachmann';
+			case 'JET' :
+				return 'JET';
+			case 'Silky' :
+				return 'Silky';
+			case 'Titebond' :
+				return 'Titebond';
+			case 'Uvex' :
+				return 'Uvex';
+			default :
+				return 'ERR_IGM';
+		}
+	}
+
 	public function setSyncIdDev()
 	{
 		$this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']);
@@ -47,22 +78,30 @@ class RunIgm extends AbstractRunDev implements iItem
 
 	function setSyncProdName()
 	{
-		(!empty($this->shopItem['PRODUCTNAME']) ? $this->syncProdName = (string)trim($this->shopItem['PRODUCTNAME']) : NULL);
+		if (isset($this->shopItem['PRODUCTNO']) && isset($this->shopItem['MANUFACTURER'])) {
+			$this->syncProdName = $this->analyseName($this->shopItem['MANUFACTURER']) . " " . trim($this->shopItem['PRODUCTNO']);
+		}
 	}
 
 	public function setSyncProdDesc()
 	{
-		(!empty($this->shopItem['DESCRIPTION']) ? $this->syncProdDesc = (string)trim($this->shopItem['DESCRIPTION']) : NULL);
+		if (isset($this->shopItem['PRODUCTNAME'])) {
+			$this->syncProdDesc = (string)trim($this->shopItem['PRODUCTNAME']);
+		}
 	}
 
 	function setSyncItemsCodeProduct()
 	{
-		(!empty($this->shopItem['PRODUCTNO']) ? $this->syncItemsCodeProduct = (string)trim($this->shopItem['PRODUCTNO']) : NULL);
+		if (isset($this->shopItem['PRODUCTNO'])) {
+			$this->syncItemsCodeProduct = (string)trim($this->shopItem['PRODUCTNO']);
+		}
 	}
 
 	public function setSyncItemsCodeEan()
 	{
-		(!empty($this->shopItem['EAN']) ? $this->syncItemsCodeEan = (string)trim($this->shopItem['EAN']) : NULL);
+		if (isset($this->shopItem['EAN'])) {
+			$this->syncItemsCodeEan = (string)trim($this->shopItem['EAN']);
+		}
 	}
 
 	public function setSyncItemsPriceStandard()
@@ -122,7 +161,6 @@ class RunIgm extends AbstractRunDev implements iItem
 	{
 		// TODO: Implement setSyncUrl() method.
 	}
-
 
 	function setSyncWarranty()
 	{

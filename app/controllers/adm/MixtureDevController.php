@@ -48,7 +48,7 @@ class MixtureDevController extends \BaseController
         }
 
         return View::make('adm.pattern.mixturedev.edit', [
-            'dev_insertable' => [''] + SB::option("SELECT * FROM dev WHERE id > 1 AND id NOT IN (SELECT dev_id FROM mixture_dev_m2n_dev WHERE mixture_dev_id = $id) ORDER BY id", ['id' => '->name']),
+            'dev_insertable' => [''] + SB::option("SELECT * FROM dev WHERE id > 1 AND id NOT IN (SELECT dev_id FROM mixture_dev_m2n_dev WHERE mixture_dev_id = $id) ORDER BY id", ['id' => '[->id] - ->name']),
             'mixturedev'     => $mixture_dev
         ]);
     }

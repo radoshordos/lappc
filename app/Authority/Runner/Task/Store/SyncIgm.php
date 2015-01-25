@@ -32,13 +32,8 @@ class SyncIgm extends TaskMessage implements iSync
 
 	public function runSynchronizeData()
 	{
-
 		$all = $suc = 0;
-		$file = file_get_contents($this->getSyncUploadDirectory() . $this->getFile());
-		$chars = ['<![CDATA[' => "", ']]>' => ''];
-		$file = (string)str_replace(array_keys($chars), array_values($chars), $file);
-
-		$xml = (array)simplexml_load_string($file);
+		$xml = (array)simplexml_load_file($this->getSyncUploadDirectory() . $this->getFile(), 'SimpleXMLElement', LIBXML_NOCDATA);
 		$record_id = strtotime('now');
 
 		RecordSyncImport::create([
