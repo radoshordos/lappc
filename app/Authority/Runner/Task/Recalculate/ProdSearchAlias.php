@@ -3,6 +3,7 @@
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 use Authority\Eloquent\Prod;
+use Authority\Tools\SimpleString;
 
 class ProdSearchAlias extends TaskMessage implements iRun
 {
@@ -17,20 +18,9 @@ class ProdSearchAlias extends TaskMessage implements iRun
 		$prod_all = Prod::select(['id', 'alias'])->get();
 		foreach ($prod_all as $row) {
 			$prod = Prod::find($row->id);
-			$prod->search_alias = $this->friendlyString($row->alias);
+			$prod->search_alias = SimpleString::friendlyString($row->alias);
 			$prod->save();
 		}
 		$this->addMessage("Provedena aktualizace vyhledávacích textů");
-	}
-
-	private function friendlyString($source)
-	{
-		$chars = ['"' => '', '+' => '', ' ' => '', '(' => '', ')' => '', '#' => '', ':' => '', ',' => '', '\'' => '', '.' => '', '\'' => '', '-' => ''];
-		$url = str_replace(array_keys($chars), array_values($chars), trim(strtolower($source)));
-		$url = preg_replace('~[^\\pL0-9_]+~u', '-', $url);
-		$url = trim($url, "-");
-		$url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
-		$url = strtolower($url);
-		return preg_replace('~[^-a-z0-9_]+~', '', $url);
 	}
 }

@@ -106,7 +106,7 @@ class AdminRunnerTableSeeder extends Seeder
         DB::table('runner')->insert([
             'id'      => 410,
             'autorun' => 0,
-            'class'   => 'Authority\Runner\Task\Recalculate\ProdSearch'
+            'class'   => 'Authority\Runner\Task\Recalculate\ProdSearchCode'
         ]);
 
         DB::table('runner')->insert([
@@ -120,6 +120,13 @@ class AdminRunnerTableSeeder extends Seeder
             'autorun' => 0,
             'class'   => 'Authority\Runner\Task\Recalculate\ProdSearchPrice'
         ]);
+
+        DB::table('runner')->insert([
+            'id'      => 416,
+            'autorun' => 0,
+            'class'   => 'Authority\Runner\Task\Recalculate\ProdSearchSell'
+        ]);
+
 
         DB::table('runner')->insert([
             'id'      => 502,

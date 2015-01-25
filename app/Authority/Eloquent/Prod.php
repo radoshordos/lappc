@@ -7,13 +7,13 @@ class Prod extends \Eloquent
     public $timestamps = TRUE;
 
     public static $rules = [
-        'id'         => 'required|integer',
         'tree_id'    => 'required|exists:tree,id',
         'dev_id'     => 'required|exists:dev,id',
         'mode_id'    => 'required|integer|min:1|max:4',
         'name'       => "required|unique:prod,name",
         'desc'       => "required|unique:prod,desc",
-        'alias'      => "required|unique:prod,alias"
+        'alias'      => "required|unique:prod,alias",
+        'price'      => 'required|integer|min:1'
     ];
 
     public function scopeDev($query, $int)

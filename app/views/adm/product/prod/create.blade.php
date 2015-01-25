@@ -35,7 +35,7 @@ Nový produkt
 
 {{-- Content --}}
 @section('content')
-    {{ Form::open(['route' => 'adm.product.akceminitext.store','class' => 'form-horizontal', 'role' => 'form']) }}
+    {{ Form::open(['route' => 'adm.product.prod.store','class' => 'form-horizontal', 'role' => 'form']) }}
         <div class="row" style="margin-bottom: 5px">
             <div class="col-lg-8">{{ Form::select('tree_id', $select_tree, NULL, ['id'=> 'tree_id', 'required' => 'required', 'class'=> 'form-control']) }}</div>
             <div class="col-lg-4">{{  Form::select('difference_id', $select_difference, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek']) }}</div>
@@ -122,7 +122,7 @@ Nový produkt
     <div id="img_rows">
         <div class="row">
             <div class="col-lg-7">
-                {{ Form::url('urlimg[]', NULL, ['class'=> 'form-control', 'placeholder'=> 'URL obrázku nebo zdroj filtru']) }}
+                {{ Form::url('urlimg', NULL, ['class'=> 'form-control', 'placeholder'=> 'URL obrázku nebo zdroj filtru']) }}
             </div>
             <div class="col-lg-1">
                 <button type="button" onclick="addRow(this.form);" class="btn btn-default btn-sm">
