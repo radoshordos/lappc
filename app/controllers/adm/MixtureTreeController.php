@@ -48,7 +48,7 @@ class MixtureTreeController extends \BaseController
         }
 
         return View::make('adm.pattern.mixturetree.edit', [
-            'tree_insertable' => [''] + SB::option("SELECT * FROM tree WHERE id > 1 AND id NOT IN (SELECT tree_id FROM mixture_tree_m2n_tree WHERE mixture_tree_id = $id) ORDER BY id", ['id' => '->name']),
+            'tree_insertable' => [''] + SB::option("SELECT * FROM tree WHERE id > 1 AND group_id BETWEEN 20 AND 40 AND id NOT IN (SELECT tree_id FROM mixture_tree_m2n_tree WHERE mixture_tree_id = $id) ORDER BY id", ['id' => '[->id] - [->absolute] - ->name']),
             'mixturetree'     => $mixture_tree
         ]);
     }
