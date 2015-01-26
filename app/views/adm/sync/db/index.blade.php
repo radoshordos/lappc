@@ -75,7 +75,7 @@ Synchronizační databáze
                 {{ Form::select('categorytext', $select_categorytext, (isset($input['categorytext']) ? $input['categorytext'] : NULL), ['id'=> 'categorytext', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('money', ['' => '','1' => 'Rozdílná','2' => 'Stejná'], (isset($input['money']) ? $input['money'] : NULL), ['id'=> 'money', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('money', ['' => '','diverse' => 'Rozdílná','same' => 'Stejná'], (isset($input['money']) ? $input['money'] : NULL), ['id'=> 'money', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
         </div>
         <div class="row" style="margin-top: .4em">
@@ -113,7 +113,7 @@ Synchronizační databáze
         <td>{{ $row->sync_code_ean }}</td>
         <td>{{ $row->sync_name }}</td>
         <td>{{ $row->sync_desc }}</td>
-        <td class="{{ ($row->sync_price_standard > $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ round($row->sync_price_standard) }}</td>
+        <td class="{{ ($row->sync_price_standard > $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->sync_price_standard }}</td>
     </tr>
     @if ($row->prod_name)
     <tr class="bg-info">
@@ -122,7 +122,7 @@ Synchronizační databáze
         <td>{{ $row->items_code_ean }}</td>
         <td><a href="{{ URL::route('adm.product.prod.edit',[$row->prod_tree_id, $row->prod_id]); }}">{{ $row->prod_name }}</a></td>
         <td></td>
-        <td class="{{ ($row->sync_price_standard < $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ round($row->prod_price) }}</td>
+        <td class="{{ ($row->sync_price_standard < $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->prod_price }}</td>
     </tr>
     @endif
     @endforeach

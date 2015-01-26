@@ -60,11 +60,11 @@ class SyncDbController extends \BaseController
             }
 
             switch (Input::get('money')) {
-                case '1':
-                    $db->where('price_standard', '=', 'price')->whereNotNull('prod.price');
+                case 'same':
+                    $db->whereRaw('sync_db.price_standard = prod.price')->whereNotNull('prod.price');
                     break;
-                case '2':
-                    $db->where('price_standard', '!=', 'price')->whereNotNull('prod.price');
+                case 'diverse':
+                    $db->whereRaw('sync_db.price_standard != prod.price')->whereNotNull('prod.price');
                     break;
                 default:
                     break;
