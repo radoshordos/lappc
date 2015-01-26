@@ -122,7 +122,9 @@ class RunGarland extends AbstractRunDev implements iItem
 
     function setSyncProdImgSourceArray()
     {
-        (!empty($this->shopItem['NAHLED_BIG']) ? $this->syncProdImgSourceArray = (array)$this->shopItem['NAHLED_BIG'] : NULL);
+        if (isset($this->shopItem['NAHLED_BIG']) && $this->shopItem['NAHLED_BIG'] != 'http://data.garland.cz/images/not_image.png') {
+            $this->syncProdImgSourceArray = (array)$this->shopItem['NAHLED_BIG'];
+        }
     }
 
     function setSyncProdWeight()
@@ -131,7 +133,7 @@ class RunGarland extends AbstractRunDev implements iItem
             $this->syncProdWeight = round(floatval($this->shopItem['HMOTNOST']), 2);
         }
     }
-    
+
     function setSyncUrl()
     {
         // TODO: Implement setSyncUrl() method.

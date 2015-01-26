@@ -61,7 +61,7 @@ class RunMakita extends AbstractRunDev implements iItem
 
 	function setSyncProdImgSourceArray()
 	{
-		if (!empty($this->shopItem['IMGURL'] || !empty($this->shopItem['IMGURL_ALTERNATIVE']))) {
+		if (!empty($this->shopItem['IMGURL']) || !empty($this->shopItem['IMGURL_ALTERNATIVE'])) {
 			$ai = new \ArrayIterator();
 
 			if (!empty($this->shopItem['IMGURL']) && $this->shopItem['IMGURL'] != 'http://templates/makita/grafika/telo/bez-nahledu.png') {
