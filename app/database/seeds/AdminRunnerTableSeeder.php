@@ -165,6 +165,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 514,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Store\SyncVgarden'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 602,
             'autorun' => 0,
             'class'   => 'Authority\Runner\Task\OneRun\CreatePicture'
