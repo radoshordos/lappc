@@ -63,5 +63,4 @@ class SyncProma extends TaskMessage implements iSync
 	{
 		return __DIR__ . "/data/";
 	}
-
 }

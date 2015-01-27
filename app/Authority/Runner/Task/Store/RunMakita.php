@@ -35,7 +35,9 @@ class RunMakita extends AbstractRunDev implements iItem
 
 	function setSyncProdName()
 	{
-		(!empty($this->shopItem['PRODUCT']) ? $this->syncProdName = (string)$this->shopItem['PRODUCT'] : NULL);
+		if (isset($this->shopItem['PRODUCT'])) {
+			$this->syncProdName = (string)$this->shopItem['PRODUCT'];
+		}
 	}
 
 	function setSyncCommonGroup()
@@ -49,7 +51,9 @@ class RunMakita extends AbstractRunDev implements iItem
 
 	function setSyncItemsCodeProduct()
 	{
-		(!empty($this->shopItem['ITEM_ID']) ? $this->syncItemsCodeProduct = (string)$this->shopItem['ITEM_ID'] : NULL);
+		if (isset($this->shopItem['ITEM_ID'])) {
+			$this->syncItemsCodeProduct = (string)$this->shopItem['ITEM_ID'];
+		}
 	}
 
 	function setSyncUrl()

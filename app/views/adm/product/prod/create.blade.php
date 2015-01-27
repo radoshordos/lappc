@@ -80,10 +80,10 @@ Nový produkt
         </div>
         <div class="row" style="margin-bottom: 5px">
             <div class="col-lg-4">
-                {{ Form::text("item_code_prod", NULL, ['class'=> 'form-control', 'placeholder' => 'Kód produktu']) }}
+                {{ Form::text("code_prod", NULL, ['class'=> 'form-control', 'placeholder' => 'Kód produktu']) }}
             </div>
             <div class="col-lg-4">
-                {{ Form::text("item_code_ean", NULL, ['class'=> 'form-control', 'placeholder' => 'EAN produktu']) }}
+                {{ Form::text("code_ean", NULL, ['class'=> 'form-control', 'placeholder' => 'EAN produktu']) }}
             </div>
             <div class="col-lg-4">
                 {{ Form::select("availability_id", $select_availability, NULL, ['class' => 'form-control']) }}

@@ -84,13 +84,13 @@ class ProdController extends \BaseController
 				}
 
 				if (intval($prod_result['id']) > 0 && intval($input['data_title1']) > 0 && strlen($input['data_input1']) > 0) {
-					ProdDescription::create(['prod_id' => $prod_result['id']] + array_only($input, ['data_title1', 'data_input1']));
+					ProdDescription::create(['prod_id' => $prod_result['id'], 'variations_id' => intval($input['data_title1']), 'data' => $input['data_input1']]);
 				}
 				if (intval($prod_result['id']) > 0 && intval($input['data_title2']) > 0 && strlen($input['data_input2']) > 0) {
-					ProdDescription::create(['prod_id' => $prod_result['id']] + array_only($input, ['data_title2', 'data_input2']));
+					ProdDescription::create(['prod_id' => $prod_result['id'], 'variations_id' => intval($input['data_title2']), 'data' => $input['data_input2']]);
 				}
 				if (intval($prod_result['id']) > 0 && intval($input['data_title3']) > 0 && strlen($input['data_input3']) > 0) {
-					ProdDescription::create(['prod_id' => $prod_result['id']] + array_only($input, ['data_title3', 'data_input3']));
+					ProdDescription::create(['prod_id' => $prod_result['id'], 'variations_id' => intval($input['data_title3']), 'data' => $input['data_input3']]);
 				}
 			});
 		}
