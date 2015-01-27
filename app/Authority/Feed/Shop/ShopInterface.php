@@ -1,10 +1,7 @@
-<?php
-
-namespace Authority\Feed\Shop;
+<?php namespace Authority\Feed\Shop;
 
 interface ShopInterface
 {
-
     public function tagProduct($row);
 
     public function tagDescription($row);

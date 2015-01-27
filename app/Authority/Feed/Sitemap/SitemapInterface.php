@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Xml\Sitemap;
+<?php namespace Authority\Feed\Sitemap;
 
 interface SitemapInterface
 {

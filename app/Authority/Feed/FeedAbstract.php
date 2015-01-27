@@ -1,10 +1,7 @@
-<?php
-
-namespace Authority\Feed;
+<?php namespace Authority\Feed;
 
 class FeedAbstract
 {
-
     public function tagItemId($row)
     {
         return "  <ITEM_ID>" . $row["prod_id"] . "</ITEM_ID>\n";
@@ -12,19 +9,19 @@ class FeedAbstract
 
     public function tagProduct($row)
     {
-        return "  <PRODUCT>" . $row["prod_name"] . "</PRODUCT>\n";
+        return "  <PRODUCT>" . htmlspecialchars($row["prod_name"]) . "</PRODUCT>\n";
     }
 
     public function tagProductName($row)
     {
-        return "  <PRODUCTNAME>" . $row["prod_name"] . "</PRODUCTNAME>\n";
+        return "  <PRODUCTNAME>" . htmlspecialchars($row["prod_name"]) . "</PRODUCTNAME>\n";
     }
-/*
+
     public function tagPriceVat($row)
     {
-        return "  <PRICE_VAT>" . round($row["query_price"]) . "</PRICE_VAT>\n";
+        return "  <PRICE_VAT>" . round($row["prod_search_price"]) . "</PRICE_VAT>\n";
     }
-*/
+
     public function tagManufacturer($row)
     {
         return "  <MANUFACTURER>" . $row["dev_name"] . "</MANUFACTURER>\n";
@@ -45,4 +42,8 @@ class FeedAbstract
         return "  <CATEGORYTEXT>" . $row["category_text"] . "</CATEGORYTEXT>\n";
     }
 
-} 
+    public function tagDescription($row)
+    {
+        return "  <DESCRIPTION>" . htmlspecialchars($row["prod_desc"]) . "</DESCRIPTION>\n";
+    }
+}

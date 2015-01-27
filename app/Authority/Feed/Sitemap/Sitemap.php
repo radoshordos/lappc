@@ -1,7 +1,4 @@
-<?php
-
-namespace Authority\Xml\Sitemap;
-
+<?php namespace Authority\Xml\Sitemap;
 
 class Sitemap {
 

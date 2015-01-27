@@ -1,6 +1,5 @@
 <?php
 
-
 class FeedServiceTableSeeder extends Seeder
 {
 
@@ -37,6 +36,11 @@ class FeedServiceTableSeeder extends Seeder
             'class'    => 'Authority\Feed\Ppc\Ppc',
             'filename' => 'ppc.xml',
         ]);
-    }
 
+        DB::table('feed_service')->insert([
+            'id'       => 41,
+            'class'    => 'Authority\Feed\Affiliate\Mobilstav',
+            'filename' => 'mobilstav.xml',
+        ]);
+    }
 }
