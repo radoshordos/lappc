@@ -231,13 +231,11 @@ class KosikController extends Controller
 
 		if (Input::has('kup-si-me')) {
 
-			$arh = apache_request_headers();
-
 			BuyOrderDb::create([
 				'sid'         => $this->sid,
 				"remote_addr" => Request::getClientIp(),
 				"netbios"     => gethostbyaddr(Request::getClientIp()),
-				"browser"     => substr(strip_tags($arh["User-Agent"]), 0, 510),
+				"browser"     => (isset($_SERVER['HTTP_USER_AGENT']) ? substr(strip_tags($_SERVER['HTTP_USER_AGENT']), 0, 510) : NULL),
 			]);
 
 			return Redirect::action('KosikController@index', ['krok' => 'dokonceni-objednavky']);
