@@ -9,10 +9,11 @@ use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
 use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
+use Authority\Eloquent\SyncDb;
+use Authority\Mapper\CreateProdModel;
 use Authority\Tools\Image\ProdImage;
 use Authority\Tools\SB;
 use Authority\Tools\SF;
-
 
 class ProdController extends \BaseController
 {
@@ -38,25 +39,92 @@ class ProdController extends \BaseController
     {
 
         $input = Input::all();
+        $cpm = new CreateProdModel();
+
+        if (intval(Input::get('sync_id')) > 0) {
+
+            $sdb = SyncDb::find(Input::get('sync_id'));
+            if (!empty($sdb)) {
+                $sync = $sdb->toArray();
+                $cpm->setProdDevId($sync["dev_id"]);
+                $cpm->setProdName($sync["name"]);
+                $cpm->setProdDesc($sync["desc"]);
+                $cpm->setItemsCodeProd($sync["code_prod"]);
+                $cpm->setItemsCodeEan($sync["code_ean"]);
+            }
+
+
+                /*
+                            array(22) {
+                                ["id"]=>
+                  int(2253)
+                  ["purpose"]=>
+                  string(8) "autosync"
+                  ["item_id"]=>
+                  NULL
+                  ["record_id"]=>
+                  int(1422539545)
+                  ["dev_id"]=>
+                  int(850)
+                  ["code_prod"]=>
+                  string(5) "10213"
+                  ["code_ean"]=>
+                  string(13) "8595126939560"
+                  ["name"]=>
+                  string(17) "Extol Craft 10213"
+                  ["desc"]=>
+                  string(110) "hlavice nástrčné do vrtačky, sada 8ks, 5-5,5-6-7-8-10-11-13mm, uchycení 1/4" šestihran, CrV, EXTOL CRAFT"
+                  ["price_standard"]=>
+                  string(5) "83.00"
+                  ["price_action"]=>
+                  NULL
+                  ["price_internet"]=>
+                  NULL
+                  ["availability_count"]=>
+                  NULL
+                  ["weight"]=>
+                  float(0.14000000059605)
+                  ["warranty"]=>
+                  int(24)
+                  ["categorytext"]=>
+                  string(53) "01040108 | šroubováky a hroty | nástrčné klíče"
+                  ["url"]=>
+                  NULL
+                  ["count_accessory"]=>
+                  int(2)
+                  ["count_file"]=>
+                  int(0)
+                  ["count_img"]=>
+                  int(0)
+                  ["created_at"]=>
+                  string(19) "2015-01-29 13:52:25"
+                  ["updated_at"]=>
+                  string(19) "2015-01-29 13:52:25"
+                }
+                */
 
 
 
+        } elseif (URL::isValidUrl(Input::get('urlimg')) && intval(Input::get('grab_profile')) > 0) {
 
-        /* GRAB
+            $grab = new Manipulation(Input::get('urlimg'), intval(Input::get('grab_profile')));
 
-        return View::make('adm.tools.grabsimulator.index', [
-            'choise_grab' => intval(Input::get('profile_id')),
-            'grab_input'        => isset($grab) ? $grab->getSource() : NULL,
-            'grab_output'       => isset($grab) ? $grab->getNamespace() : NULL
-        ]);
+            var_dump($grab);
+            echo "<br />";
+            var_dump($grab->getSource());
+            echo "<br />";
+            var_dump($grab->getNamespace());
+            echo "<br />";
 
+            var_dump($input);
+            echo "<br />";
+            die;
 
-
-         */
-
+        }
 
         return View::make('adm.product.prod.create', [
-            'input'               => Input::all(),
+            'input'               => $input,
+            'cpm'                 => $cpm,
             'select_tree'         => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], TRUE),
             'select_dev'          => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], TRUE),
             'select_warranty'     => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
@@ -67,27 +135,13 @@ class ProdController extends \BaseController
             'select_difference'   => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
             'select_availability' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
             'select_media_var'    => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
-            'select_grab'         => SB::option("SELECT id,name FROM grab_profile WHERE active = 1", ['id' => '->name'], TRUE),
+            'select_grab'         => SB::option("SELECT id,name FROM grab_profile WHERE active = 1", ['id' => '->name'], TRUE)
         ]);
     }
 
     public function store()
     {
-        $input = Input::all();
-
-        if (URL::isValidUrl(Input::get('urlimg')) && intval(Input::get('grab_profile')) > 0) {
-            $grab = new Manipulation(Input::get('urlimg'), intval(Input::get('grab_profile')));
-
-            var_dump($grab);
-            echo "<br />";
-            var_dump($input);
-            echo "<br />";
-            die;
-        }
-
-
         if (Input::has('button-submit-create')) {
-
 
             $pinput = array_only($input, $this->prod_input_fields);
             $iinput = array_only($input, $this->items_input_fields);

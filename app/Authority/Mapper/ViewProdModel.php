@@ -41,6 +41,8 @@ abstract class ViewProdModel
 	private $akce_template_bonus_title;
 	private $akce_minitext_name;
 
+
+
 	/**
 	 * @return mixed
 	 */

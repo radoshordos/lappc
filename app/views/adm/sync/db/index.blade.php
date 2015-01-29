@@ -106,26 +106,32 @@ Synchronizační databáze
         </tr>
     </thead>
     <tbody>
-    @foreach ($db as $row)
-    <tr class="bg-success">
-        <td>{{ Form::checkbox("select[".$row->sync_id."]",NULL) }}</td>
-        <td>{{ $row->sync_code_prod }}</td>
-        <td>{{ $row->sync_code_ean }}</td>
-        <td>{{ $row->sync_name }}</td>
-        <td>{{ $row->sync_desc }}</td>
-        <td class="{{ ($row->sync_price_standard > $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->sync_price_standard }}</td>
-    </tr>
-    @if ($row->prod_name)
-    <tr class="bg-info">
-        <td></td>
-        <td>{{ $row->items_code_prod }}</td>
-        <td>{{ $row->items_code_ean }}</td>
-        <td><a href="{{ URL::route('adm.product.prod.edit',[$row->prod_tree_id, $row->prod_id]); }}">{{ $row->prod_name }}</a></td>
-        <td></td>
-        <td class="{{ ($row->sync_price_standard < $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->prod_price }}</td>
-    </tr>
-    @endif
-    @endforeach
+        @foreach ($db as $row)
+        <tr class="bg-success">
+            <td>{{ Form::checkbox("select[".$row->sync_id."]",NULL) }}</td>
+            <td>{{ $row->sync_code_prod }}</td>
+            <td>{{ $row->sync_code_ean }}</td>
+            <td>
+                @if ($row->prod_name)
+                    {{ $row->sync_name }}
+                @else
+                    <a href="{{ URL::route('adm.product.prod.create',['sync_id' => $row->sync_id]); }}">{{ $row->sync_name }}</a>
+                @endif
+            </td>
+            <td>{{ substr($row->sync_desc, 0, 100); }}</td>
+            <td class="{{ ($row->sync_price_standard > $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->sync_price_standard }}</td>
+        </tr>
+        @if ($row->prod_name)
+        <tr class="bg-info">
+            <td></td>
+            <td>{{ $row->items_code_prod }}</td>
+            <td>{{ $row->items_code_ean }}</td>
+            <td><a href="{{ URL::route('adm.product.prod.edit',[$row->prod_tree_id, $row->prod_id]); }}">{{ $row->prod_name }}</a></td>
+            <td></td>
+            <td class="{{ ($row->sync_price_standard < $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->prod_price }}</td>
+        </tr>
+        @endif
+        @endforeach
     </tbody>
     <tfoot>
         <tr>
@@ -135,13 +141,13 @@ Synchronizační databáze
 </table>
 </form>
 <div class="text-center">
-    <?php echo $db->appends(
-        array('select_connect' => (isset($input['select_connect']) ? $input['select_connect'] : NULL),
+    {{ $db->appends([
+              'select_connect' => (isset($input['select_connect']) ? $input['select_connect'] : NULL),
               'select_mixture_dev' => (isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL),
               'join' => (isset($input['join']) ? $input['join'] : NULL),
               'limit' => (isset($input['limit']) ? $input['limit'] : NULL),
-        ))->links();
-    ?>
+        ])->links();
+    }}
 </div>
 @endif
 @stop
