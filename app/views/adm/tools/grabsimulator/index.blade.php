@@ -36,14 +36,16 @@ Simulace filtru
 {{ Form::close() }}
 
 @if (!empty($grab_input))
-<table>
-    <tbody>
-        <tr>
-            <td>{{ Form::textarea('reading', htmlspecialchars($grab_input), ['size' => '80x35','readonly' => 'readonly' ,'class'=> 'form-control']); }}</td>
-            <td>{{ Form::textarea('results', print_r($grab_output,1), ['size' => '80x35','readonly' => 'readonly','class'=> 'form-control']); }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-6">
+            {{ Form::textarea('reading', htmlspecialchars($grab_input), ['size' => '80x35','readonly' => 'readonly' ,'class'=> 'form-control']); }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::textarea('results', print_r($grab_output,1), ['size' => '80x35','readonly' => 'readonly','class'=> 'form-control']);  }}
+        </div>
+    </div>
+</div>
 @endif
 
 @stop

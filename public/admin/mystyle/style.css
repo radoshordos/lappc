@@ -19,6 +19,11 @@ div.tab-content  {
     margin-top: .8em;
 }
 
+textarea.form-control {
+    font-size: .8em;
+    font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
+}
+
 div#source select,div#source textarea {
     font-size: .85em;
     font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;

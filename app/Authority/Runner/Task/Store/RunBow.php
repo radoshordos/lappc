@@ -77,9 +77,11 @@ class RunBow extends AbstractRunDev implements iItem
 
 	public function setSyncItemsCodeEan()
 	{
+		/*
 		if (isset($this->shopItem['EAN'])) {
 			$this->syncItemsCodeEan = (string)$this->shopItem['EAN'];
 		}
+		*/
 	}
 
 	public function setSyncCategoryText()

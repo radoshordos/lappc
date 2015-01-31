@@ -14,9 +14,9 @@ class Manipulation
 
     public function __construct($source, $profile_id)
     {
-        $this->script = new Script();
+        $this->script = new ActionMethods();
         $this->profile_id = intval($profile_id);
-        $this->charset = GrabProfile::where('id', '=', $profile_id)->pluck('charset');
+        $this->charset = GrabProfile::select('charset')->where('id', '=', $profile_id)->pluck('charset');
         $this->source = $this->executeSource($source);
         $this->namespace_output = $this->initNamespaceOutput();
 
@@ -55,7 +55,7 @@ class Manipulation
                 ->where('column_id', '=', ColumnDb::where('name', '=', $key)->pluck('id'))
                 ->orderBy('position')->get();
 
-            $script = new Script();
+            $script = new ActionMethods();
 
             foreach ($line as $row) {
                 $i = 0;
@@ -66,9 +66,7 @@ class Manipulation
                     $source = $this->getNamespace($row->ColumnDb->name);
                 }
 
-                $script->setParameters($source, $row->grabFunction->function, $row->val1, $row->val2);
-
-
+                $script->setParameters($source, $row->grabFunction->function, $row->val1, $row->val2,$this->namespace_output);
 
                 if (is_array($source)) {
                     if ($row->GrabFunction->grabMode->alias == "array" || $row->GrabFunction->grabMode->alias == "arrays2string") {

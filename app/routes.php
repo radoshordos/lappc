@@ -142,14 +142,7 @@ Route::get('adm', ['as' => 'adm.home', function () {
     return View::make('adm.home');
 }]);
 
-/*
-Route::resource('vyhledat-naradi','VyhledatZboziController', ['only' => ['index', 'store']]);
-Route::resource('vyhledat-naradi/{dev}','VyhledatZboziController', ['only' => ['index', 'store']]);
-*/
-
 Route::resource('nakupni-kosik', 'KosikController', ['only' => ['index', 'store']]);
-
-
 Route::get('feeds/{file?}', ['uses' => 'FeedController@show']);
 Route::match(['GET', 'POST'], '/', ['as' => 'web.home', 'uses' => 'HomeController@show']);
 Route::match(['GET', 'POST'], '/{url01}', ['as' => 'web.url01', 'uses' => 'Url01Controller@show']);

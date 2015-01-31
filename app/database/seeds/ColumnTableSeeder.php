@@ -5,7 +5,6 @@ class ColumnTableSeeder extends Seeder
 
     public function run()
     {
-
         $column_table = [
             ['ct_id' => '1', 'ct_name' => '[N/A]'],
             ['ct_id' => '2', 'ct_name' => 'items'],
