@@ -86,9 +86,11 @@ class RunGarland extends AbstractRunDev implements iItem
 
 	public function setSyncItemsCodeEan()
 	{
+		/*
 		if (isset($this->shopItem['EAN'])) {
 			$this->syncItemsCodeEan = (string)trim($this->shopItem['EAN']);
 		}
+		*/
 	}
 
 	public function setSyncItemsCodeProduct()
@@ -132,7 +134,7 @@ class RunGarland extends AbstractRunDev implements iItem
 	function setSyncProdWeight()
 	{
 		if (isset($this->shopItem['HMOTNOST'])) {
-			$this->syncProdWeight = round(floatval($this->shopItem['HMOTNOST']), 2);
+			$this->syncProdWeight = round(doubleval($this->shopItem['HMOTNOST']), 2);
 		}
 	}
 

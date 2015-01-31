@@ -59,7 +59,7 @@ class SyncGarland extends TaskMessage implements iSync
         $rsi->item_counter = $suc;
         $rsi->save();
 
-        $this->addComment("Přečteno záznamů : <b>" . $all . "</b>");
-        $this->addComment("Zpracováno záznamů : <b>" . $suc . "</b>");
+        $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
+        $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }
 }
