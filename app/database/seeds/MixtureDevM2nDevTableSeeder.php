@@ -5,6 +5,7 @@ class MixtureDevM2nDevTableSeeder extends Seeder
 	public function run()
 	{
 		DB::table('mixture_dev_m2n_dev')->delete();
+		$i = 0;
 		$mixture_dev_m2n_dev = [
 			['id' => '1', 'mixture_dev_id' => '10', 'dev_id' => '5'],
 			['id' => '2', 'mixture_dev_id' => '10', 'dev_id' => '6'],
@@ -54,12 +55,24 @@ class MixtureDevM2nDevTableSeeder extends Seeder
 			['id' => '47', 'mixture_dev_id' => '14', 'dev_id' => '736'],
 			['id' => '48', 'mixture_dev_id' => '14', 'dev_id' => '738'],
 			['id' => '49', 'mixture_dev_id' => '14', 'dev_id' => '742'],
-			['id' => '50', 'mixture_dev_id' => '14', 'dev_id' => '744']
+			['id' => '50', 'mixture_dev_id' => '14', 'dev_id' => '744'],
+			['id' => '329', 'mixture_dev_id' => '15', 'dev_id' => '35'],
+			['id' => '330', 'mixture_dev_id' => '15', 'dev_id' => '36'],
+			['id' => '331', 'mixture_dev_id' => '15', 'dev_id' => '170'],
+			['id' => '332', 'mixture_dev_id' => '17', 'dev_id' => '800'],
+			['id' => '333', 'mixture_dev_id' => '17', 'dev_id' => '802'],
+			['id' => '334', 'mixture_dev_id' => '17', 'dev_id' => '804'],
+			['id' => '335', 'mixture_dev_id' => '17', 'dev_id' => '806'],
+			['id' => '336', 'mixture_dev_id' => '17', 'dev_id' => '808'],
+			['id' => '337', 'mixture_dev_id' => '17', 'dev_id' => '810'],
+			['id' => '338', 'mixture_dev_id' => '17', 'dev_id' => '812']
 		];
+		
 
 		foreach ($mixture_dev_m2n_dev as $row) {
+
 			DB::table('mixture_dev_m2n_dev')->insert([
-				'id'             => $row['id'],
+				'id'             => ++$i,
 				'mixture_dev_id' => $row['mixture_dev_id'],
 				'dev_id'         => $row['dev_id']
 			]);

@@ -6,11 +6,14 @@ class MixtureDevTableSeeder extends Seeder
 	{
 		DB::table('mixture_dev')->delete();
 		$mixture_dev = [
-			['id' => '1', 'purpose' => 'autoall', 'name' => 'MEGAGROUP ALL', 'desc' => 'AutoGenerate ALL dev', 'trigger_column_count' => '0'],
+			['id' => '1', 'purpose' => 'autoall', 'name' => 'MEGAGROUP ALL', 'desc' => 'AutoGenerate ALL dev', 'trigger_column_count' => '139'],
 			['id' => '10', 'purpose' => 'devgroup', 'name' => 'GROUP Makita', 'desc' => NULL, 'trigger_column_count' => '3'],
 			['id' => '12', 'purpose' => 'devgroup', 'name' => 'GROUP Bow', 'desc' => NULL, 'trigger_column_count' => '14'],
 			['id' => '13', 'purpose' => 'devgroup', 'name' => 'GROUP Madalbal', 'desc' => NULL, 'trigger_column_count' => '11'],
-			['id' => '14', 'purpose' => 'devgroup', 'name' => 'GROUP Garland', 'desc' => NULL, 'trigger_column_count' => '21']
+			['id' => '14', 'purpose' => 'devgroup', 'name' => 'GROUP Garland', 'desc' => NULL, 'trigger_column_count' => '21'],
+			['id' => '15', 'purpose' => 'devgroup', 'name' => 'GROUP Proma', 'desc' => NULL, 'trigger_column_count' => '3'],
+			['id' => '16', 'purpose' => 'devgroup', 'name' => 'GROUP V-Garden', 'desc' => NULL, 'trigger_column_count' => '0'],
+			['id' => '17', 'purpose' => 'devgroup', 'name' => 'GROUP Igm', 'desc' => NULL, 'trigger_column_count' => '7']
 		];
 
 		foreach ($mixture_dev as $row) {
