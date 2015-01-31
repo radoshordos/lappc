@@ -58,7 +58,7 @@ class MixtureDevM2nDevTableSeeder extends Seeder
 		];
 
 		foreach ($mixture_dev_m2n_dev as $row) {
-			DB::table('mail_db')->insert([
+			DB::table('mixture_dev_m2n_dev')->insert([
 				'id'             => $row['id'],
 				'mixture_dev_id' => $row['mixture_dev_id'],
 				'dev_id'         => $row['dev_id']

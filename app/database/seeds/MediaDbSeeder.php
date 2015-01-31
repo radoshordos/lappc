@@ -2,7 +2,6 @@
 
 class MediaDbSeeder extends Seeder
 {
-
     public function run()
     {
         $media = [];

@@ -2,7 +2,6 @@
 
 class MailDbSeeder extends Seeder
 {
-
 	public function run()
 	{
 		DB::table('mail_db')->delete();
@@ -20,6 +19,5 @@ class MailDbSeeder extends Seeder
 				'created_at'   => $row['ml_ts_current'],
 			]);
 		}
-
 	}
 }

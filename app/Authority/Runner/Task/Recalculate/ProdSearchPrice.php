@@ -3,6 +3,8 @@
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\ViewProd;
+use Authority\Mapper\ViewProdMapper;
 
 class ProdSearchPrice extends TaskMessage implements iRun
 {

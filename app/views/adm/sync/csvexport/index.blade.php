@@ -49,9 +49,7 @@ Export synchronizačních dat
         </div>
     </div>
     {{ Form::close() }}
-
-
     @if (!empty($choice_export))
-        aaa
+        {{ Form::textarea('result', implode("\n",$result), ['size' => '180x30', 'class' => 'form-control' ]) }}
     @endif
 @stop
