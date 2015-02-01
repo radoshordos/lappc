@@ -38,18 +38,18 @@ Nový produkt
     {{ Form::open(['route' => 'adm.product.prod.store','class' => 'form-horizontal', 'role' => 'form']) }}
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-8">{{ Form::select('tree_id', $select_tree, NULL, ['id'=> 'tree_id', 'required' => 'required', 'class'=> 'form-control']) }}</div>
-        <div class="col-lg-4">{{ Form::select('difference_id', $select_difference, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost požložek']) }}</div>
+        <div class="col-lg-4">{{ Form::select('difference_id', $select_difference, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost položek']) }}</div>
     </div>
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-4">
             {{ Form::select('dev_id', $select_dev, $cpm->getProdDevId(), ['id'=> 'dev_id', 'required' => 'required', 'class'=> 'form-control']) }}
         </div>
         <div class="col-lg-4">
-            {{ Form::select('warranty_id', $select_warranty, NULL, ['required' => 'required', 'class'=> 'form-control']) }}
+            {{ Form::select('warranty_id', $select_warranty, $cpm->getProdWarrantyId(), ['required' => 'required', 'class'=> 'form-control']) }}
         </div>
         <div class="col-lg-4">
             <div class="input-group btn-group-justified">
-                <span class="btn-group">{{ Form::select('sale_id', $select_sale, NULL, ['required' => 'required', 'class'=> 'form-control']) }}</span>
+                <span class="btn-group">{{ Form::select('sale_id', $select_sale, $cpm->getProdSaleId(), ['required' => 'required', 'class'=> 'form-control']) }}</span>
                 <span class="btn-group">{{ Form::select('mode_id', $select_mode, $cpm->getProdModeId(), ['required' => 'required', 'class'=> 'form-control']) }}</span>
             </div>
         </div>
@@ -84,7 +84,7 @@ Nový produkt
             {{ Form::text("code_ean", $cpm->getItemsCodeEan(), ['class'=> 'form-control', 'placeholder' => 'EAN produktu']) }}
         </div>
         <div class="col-lg-4">
-            {{ Form::select("availability_id", $select_availability, NULL, ['class' => 'form-control']) }}
+            {{ Form::select("availability_id", $select_availability, $cpm->getItemsAvailabilityId(), ['class' => 'form-control']) }}
         </div>
     </div>
 

@@ -6,6 +6,7 @@ class CreateProdModel
 	private $prod_dev_id;
 	private $prod_mode_id = 3;
 	private $prod_sale_id;
+	private $prod_action_sale_id;
 	private $prod_difference_id;
 	private $prod_warranty_id;
 	private $prod_forex_id;
@@ -48,9 +49,39 @@ class CreateProdModel
 		return $this->prod_mode_id;
 	}
 
+	public function getProdSaleId()
+	{
+		return $this->prod_sale_id;
+	}
+
+	public function setProdSaleId($prod_sale_id)
+	{
+		$this->prod_sale_id = $prod_sale_id;
+	}
+
+	public function getProdActionSaleId()
+	{
+		return $this->prod_action_sale_id;
+	}
+
+	public function setProdActionSaleId($prod_action_sale_id)
+	{
+		$this->prod_action_sale_id = $prod_action_sale_id;
+	}
+
 	public function getProdDphId()
 	{
 		return $this->prod_dph_id;
+	}
+
+	public function getProdWarrantyId()
+	{
+		return $this->prod_warranty_id;
+	}
+
+	public function setProdWarrantyId($prod_warranty_id)
+	{
+		$this->prod_warranty_id = $prod_warranty_id;
 	}
 
 	public function getProdPrice()
@@ -81,6 +112,16 @@ class CreateProdModel
 	public function setProdDesc($prod_desc)
 	{
 		$this->prod_desc = $prod_desc;
+	}
+
+	public function getItemsAvailabilityId()
+	{
+		return $this->items_availability_id;
+	}
+
+	public function setItemsAvailabilityId($items_availability_id)
+	{
+		$this->items_availability_id = $items_availability_id;
 	}
 
 	public function getItemsCodeProd()

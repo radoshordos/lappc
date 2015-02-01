@@ -5,6 +5,7 @@ use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\Dev;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
 use Authority\Eloquent\ProdPicture;
@@ -52,6 +53,14 @@ class ProdController extends \BaseController
 				$cpm->setItemsCodeEan($sync["code_ean"]);
 				$cpm->setProdPrice($sync["price_standard"]);
 				$cpm->setProdTransportWeight("weight");
+
+				if ($sync["dev_id"] > 0) {
+					$dev = Dev::where('id', '=', $sync["dev_id"])->first();
+					$cpm->setProdWarrantyId($dev->default_warranty_id);
+					$cpm->setProdSaleId($dev->default_sale_prod_id);
+					$cpm->setProdActionSaleId($dev->default_sale_action_id);
+					$cpm->setItemsAvailabilityId($dev->default_availability_id);
+				}
 			}
 		}
 		if (URL::isValidUrl(Input::get('urlimg')) && intval(Input::get('grab_profile')) > 0) {
