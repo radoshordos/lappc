@@ -1,10 +1,12 @@
 body {
-    padding-top: 50px;
+    padding-top: 44px;
 }
 
 h1 {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 table.table thead tr {

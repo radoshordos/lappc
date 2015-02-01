@@ -23,7 +23,7 @@ class CreateProdModel
 	private $prod_description_data_input1;
 	private $prod_description_data_input2;
 	private $prod_description_data_input3;
-	private $prod_picture_img_big;
+	private $prod_picture00;
 	private $prod_picture01;
 	private $prod_picture02;
 	private $prod_picture03;
@@ -244,14 +244,14 @@ class CreateProdModel
 		$this->prod_description_data_input3 = $prod_description_data_input3;
 	}
 
-	public function getProdPictureImgBig()
+	public function getProdPicture00()
 	{
-		return $this->prod_picture_img_big;
+		return $this->prod_picture00;
 	}
 
-	public function setProdPictureImgBig($prod_picture_img_big)
+	public function setProdPicture00($prod_picture00)
 	{
-		$this->prod_picture_img_big = $prod_picture_img_big;
+		$this->prod_picture00 = $prod_picture00;
 	}
 
 	public function getProdPicture01()

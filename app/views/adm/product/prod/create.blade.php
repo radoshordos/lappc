@@ -26,6 +26,13 @@ Nový produkt
                 placeholder: "Filtrační šablona",
                 allowClear: true
             });
+            $("#warranty_id").select2({});
+            $("#difference_id").select2({});
+            $("#sale_id").select2({});
+            $("#mode_id").select2({});
+            $("#data_title1").select2({});
+            $("#data_title2").select2({});
+            $("#data_title3").select2({});
         });
     </script>
 @stop
@@ -35,19 +42,19 @@ Nový produkt
     {{ Form::open(['route' => 'adm.product.prod.store','class' => 'form-horizontal', 'role' => 'form']) }}
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-8">{{ Form::select('tree_id', $select_tree, NULL, ['id'=> 'tree_id', 'required' => 'required', 'class'=> 'form-control']) }}</div>
-        <div class="col-lg-4">{{ Form::select('difference_id', $select_difference, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost položek']) }}</div>
+        <div class="col-lg-4">{{ Form::select('difference_id', $select_difference, NULL, ['id'=> 'difference_id','required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Rozdílnost položek']) }}</div>
     </div>
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-4">
             {{ Form::select('dev_id', $select_dev, $cpm->getProdDevId(), ['id'=> 'dev_id', 'required' => 'required', 'class'=> 'form-control']) }}
         </div>
         <div class="col-lg-4">
-            {{ Form::select('warranty_id', $select_warranty, $cpm->getProdWarrantyId(), ['required' => 'required', 'class'=> 'form-control']) }}
+            {{ Form::select('warranty_id', $select_warranty, $cpm->getProdWarrantyId(),['id' => 'warranty_id', 'required' => 'required', 'class'=> 'form-control']) }}
         </div>
         <div class="col-lg-4">
             <div class="input-group btn-group-justified">
-                <span class="btn-group">{{ Form::select('sale_id', $select_sale, $cpm->getProdSaleId(), ['required' => 'required', 'class'=> 'form-control']) }}</span>
-                <span class="btn-group">{{ Form::select('mode_id', $select_mode, $cpm->getProdModeId(), ['required' => 'required', 'class'=> 'form-control']) }}</span>
+                <span class="btn-group">{{ Form::select('sale_id', $select_sale, $cpm->getProdSaleId(), ['id' => 'sale_id','required' => 'required', 'class'=> 'form-control']) }}</span>
+                <span class="btn-group">{{ Form::select('mode_id', $select_mode, $cpm->getProdModeId(), ['id' => 'mode_id','required' => 'required', 'class'=> 'form-control']) }}</span>
             </div>
         </div>
     </div>
@@ -92,7 +99,7 @@ Nový produkt
     </div>
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-12">
-            {{ Form::textarea('data_input1', $cpm->getProdDescriptionDataInput1(), ['size' => '180x13', 'class' => 'form-control' ]) }}
+            {{ Form::textarea('data_input1', $cpm->getProdDescriptionDataInput1(), ['size' => '180x14', 'class' => 'form-control' ]) }}
         </div>
     </div>
     <div class="row">
@@ -102,7 +109,7 @@ Nový produkt
     </div>
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-12">
-            {{ Form::textarea('data_input2', $cpm->getProdDescriptionDataInput2(), ['size' => '180x9', 'class' => 'form-control' ]) }}
+            {{ Form::textarea('data_input2', $cpm->getProdDescriptionDataInput2(), ['size' => '180x10', 'class' => 'form-control' ]) }}
         </div>
     </div>
     <div class="row">
@@ -119,7 +126,7 @@ Nový produkt
     <div id="img_rows">
         <div class="row">
             <div class="col-lg-11">
-                {{ Form::url('urlimg', $cpm->getProdPictureImgBig(), ['class'=> 'form-control', 'placeholder'=> 'URL obrázku nebo zdroj filtru']) }}
+                {{ Form::url('prod_picture00', $cpm->getProdPicture00(), ['class'=> 'form-control','required' => 'required', 'placeholder'=> 'URL hlavního obrázku']) }}
             </div>
             <div class="col-lg-1">
                 <button type="button" id="shower" class="btn btn-default btn-sm">
@@ -131,11 +138,12 @@ Nový produkt
 
     <div id="prod_picture">
         @for ($i = 1; $i < 13; $i++)
+            <?php $gpp = "getProdPicture".str_pad($i, 2 , "0", STR_PAD_LEFT); ?>
             <div class="row">
                 <div class="col-lg-11">
                     <div class="input-group">
                         <span class="input-group-addon">{{ Form::label('prod_picture1',"IMG ".str_pad($i, 2 , "0", STR_PAD_LEFT)); }}</span>
-                        {{ Form::url("prod_picture$i", NULL, ['class'=> 'form-control']); }}
+                        {{ Form::url("prod_picture$i", $cpm->$gpp(), ['class'=> 'form-control']); }}
                     </div>
                 </div>
             </div>

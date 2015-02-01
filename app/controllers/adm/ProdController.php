@@ -10,6 +10,7 @@ use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdDifferenceM2nSet;
 use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
+use Authority\Eloquent\Tree;
 use Authority\Eloquent\SyncDb;
 use Authority\Mapper\CreateProdModel;
 use Authority\Tools\Grab\Manipulation;
@@ -69,7 +70,14 @@ class ProdController extends \BaseController
 
 			if (isset($grab['db']['imgs'])) {
 				if (isset($grab['db']['imgs'][0])) {
-					$cpm->setProdPictureImgBig($grab['db']['imgs'][0]);
+					$cpm->setProdPicture00($grab['db']['imgs'][0]);
+				}
+
+				for ($i = 1; $i < 13; $i++) {
+					if (isset($grab['db']['imgs'][$i])) {
+						$spp = "setProdPicture" . str_pad($i, 2, "0", STR_PAD_LEFT);
+						$cpm->$spp($grab['db']['imgs'][$i]);
+					}
 				}
 			}
 
@@ -147,19 +155,22 @@ class ProdController extends \BaseController
 
 			$vp = Validator::make($pinput, Prod::$rules);
 			$vi = Validator::make($iinput, Items::$rules);
+			$tree = Tree::find($input['tree_id']);
 
-			\DB::transaction(function () use ($vp, $vi, $pinput, $iinput, $input) {
+			\DB::transaction(function () use ($vp, $vi, $pinput, $iinput, $input, $tree) {
 				if ($vp->passes()) {
 					$prod_result = Prod::create($pinput);
 					if ($vi->passes()) {
-						Items::create(['prod_id' => $prod_result['id']] + $iinput);
+						Items::create(['prod_id' => $prod_result['id']] + array_filter($iinput));
 					} else {
 						Session::flash('error', implode('<br />', $vi->errors()->all(':message')));
+						\DB::rollback();
 						return Redirect::route('adm.product.prod.create')->withInput()->withErrors($vi);
 					}
 					Session::flash('success', "<a href=" . URL::route('adm.product.prod.edit', [$prod_result['tree_id'], $prod_result['id']]) . ">Nový produkt byl přidán</a>");
 				} else {
 					Session::flash('error', implode('<br />', $vp->errors()->all(':message')));
+					\DB::rollback();
 					return Redirect::route('adm.product.prod.create')->withInput()->withErrors($vp);
 				}
 
@@ -171,6 +182,25 @@ class ProdController extends \BaseController
 				}
 				if (intval($prod_result['id']) > 0 && intval($input['data_title3']) > 0 && strlen($input['data_input3']) > 0) {
 					ProdDescription::create(['prod_id' => $prod_result['id'], 'variations_id' => intval($input['data_title3']), 'data' => $input['data_input3']]);
+				}
+
+				try {
+					for ($i = 0; $i < 13; $i++) {
+						$picture = "prod_picture" . str_pad($i, 2, "0", STR_PAD_LEFT);
+						$pic = Input::get($picture);
+						if (!empty($pic)) {
+							$img = new ProdImage($pic, $tree->absolute, $input['name']);
+							$img->createProdPictures(240, 240);
+							$aff = ProdPicture::create([
+								'prod_id'    => $prod_result['id'],
+								'img_big'    => $img->getImgBig(),
+								'img_normal' => $img->getImgNormal()
+							]);
+							var_dump($aff);
+						}
+					}
+				} catch (Exception $e) {
+					Session::flash('error', $e->getMessage());
 				}
 			});
 		}
