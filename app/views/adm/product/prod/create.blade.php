@@ -35,8 +35,6 @@ Nový produkt
 
 {{-- Content --}}
 @section('content')
-    {{ var_dump($cpm); }}
-
     {{ Form::open(['route' => 'adm.product.prod.store','class' => 'form-horizontal', 'role' => 'form']) }}
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-8">{{ Form::select('tree_id', $select_tree, NULL, ['id'=> 'tree_id', 'required' => 'required', 'class'=> 'form-control']) }}</div>
@@ -144,12 +142,12 @@ Nový produkt
         <div class="col-lg-7">
             <div class="input-group">
                 <span class="input-group-addon" id="sizing-addon2">{{ Form::label('grab_profile','Grab URL'); }}</span>
-                {{ Form::url('urlimg', NULL, ['class'=> 'form-control', 'placeholder'=> 'URL zdroje filtru']) }}
+                {{ Form::url('urlimg', NULL, ['class'=> 'form-control', 'required' => 'required', 'placeholder'=> 'URL zdroje filtru']) }}
             </div>
         </div>
         <div class="col-lg-5">
             <div class="input-group">
-                {{ Form::select("grab_profile", $select_grab, NULL, ['id' => 'grab_profile','class' => 'form-control']) }}
+                {{ Form::select("grab_profile", $select_grab, NULL, ['id' => 'grab_profile','required' => 'required', 'class' => 'form-control']) }}
                 <span class="input-group-btn">
                     {{ Form::submit('Grab',['name' => 'grab_submit','class' => 'btn btn-sm btn-success']); }}
                 </span>

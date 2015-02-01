@@ -53,16 +53,12 @@ class ProdController extends \BaseController
 				$cpm->setProdPrice($sync["price_standard"]);
 				$cpm->setProdTransportWeight("weight");
 			}
-		} elseif (URL::isValidUrl(Input::get('urlimg')) && intval(Input::get('grab_profile')) > 0) {
+		}
+		if (URL::isValidUrl(Input::get('urlimg')) && intval(Input::get('grab_profile')) > 0) {
 			$man = new Manipulation(Input::get('urlimg'), intval(Input::get('grab_profile')));
 			$grab = $man->getNamespace();
 
-
-
 			foreach ($grab as $key => $val) {
-
-				var_dump($grab);
-
 				switch ($key) {
 					case 'prod_id_dev' :
 						$cpm->setProdDevId($val);
@@ -76,11 +72,11 @@ class ProdController extends \BaseController
 					case 'prod_desc' :
 						$cpm->setProdDesc($val);
 						break;
-					case 'items_code_product' :
+					case 'items_code_prod' :
 						$cpm->setItemsCodeProd($val);
 						break;
 					case 'items_code_ean' :
-						$cpm->setItemsCodeProd($val);
+						$cpm->setItemsCodeEan($val);
 						break;
 					case 'prod_nad1' :
 						$cpm->setProdDescriptionDataTitle1($val);
@@ -103,7 +99,6 @@ class ProdController extends \BaseController
 				}
 			}
 		}
-
 
 		return View::make('adm.product.prod.create', [
 			'input'               => $input,
