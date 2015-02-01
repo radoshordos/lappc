@@ -173,8 +173,6 @@ class ActionMethods
 				return trim(substr($this->source, $start));
 			} elseif ($start > 0 && $end > 0 && $start < $end) {
 				return trim(substr($this->source, $start, $end - $start));
-			} else {
-				return "CHYBA loadSimpleCutString";
 			}
 		}
 	}
@@ -283,6 +281,8 @@ class ActionMethods
 	{
 		if (isset($this->namespace_output[$this->val1][$this->val2])) {
 			return $this->namespace_output[$this->val1][$this->val2];
+		} else if (isset($this->namespace_output[$this->val1]) && empty($this->val2)) {
+			return $this->namespace_output[$this->val1];
 		}
 	}
 

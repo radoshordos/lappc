@@ -22,8 +22,21 @@ class GrabDbSeeder extends Seeder
             ['id' => '457', 'profile_id' => '62', 'column_id' => '2', 'function_id' => '1', 'active' => '1', 'position' => '1', 'val1' => '<input type="hidden" name="objcis" value="', 'val2' => '">'],
             ['id' => '458', 'profile_id' => '62', 'column_id' => '2', 'function_id' => '64', 'active' => '1', 'position' => '2', 'val1' => 'db', 'val2' => ''],
             ['id' => '459', 'profile_id' => '62', 'column_id' => '52', 'function_id' => '61', 'active' => '1', 'position' => '3', 'val1' => 'db', 'val2' => 'code_prod'],
-            ['id' => '460', 'profile_id' => '62', 'column_id' => '10', 'function_id' => '61', 'active' => '1', 'position' => '4', 'val1' => 'db', 'val2' => 'name'],
-            ['id' => '461', 'profile_id' => '62', 'column_id' => '23', 'function_id' => '61', 'active' => '1', 'position' => '1', 'val1' => 'db', 'val2' => 'desc']
+            ['id' => '460', 'profile_id' => '62', 'column_id' => '10', 'function_id' => '61', 'active' => '1', 'position' => '3', 'val1' => 'db', 'val2' => 'name'],
+            ['id' => '461', 'profile_id' => '62', 'column_id' => '23', 'function_id' => '61', 'active' => '1', 'position' => '1', 'val1' => 'db', 'val2' => 'desc'],
+            ['id' => '462', 'profile_id' => '62', 'column_id' => '16', 'function_id' => '1', 'active' => '1', 'position' => '2', 'val1' => 'Položky</th></tr>', 'val2' => '</table>'],
+            ['id' => '463', 'profile_id' => '62', 'column_id' => '16', 'function_id' => '21', 'active' => '1', 'position' => '4', 'val1' => '', 'val2' => ''],
+            ['id' => '464', 'profile_id' => '62', 'column_id' => '16', 'function_id' => '10', 'active' => '1', 'position' => '7', 'val1' => '', 'val2' => ''],
+            ['id' => '465', 'profile_id' => '62', 'column_id' => '16', 'function_id' => '16', 'active' => '1', 'position' => '8', 'val1' => '', 'val2' => ''],
+            ['id' => '466', 'profile_id' => '62', 'column_id' => '16', 'function_id' => '13', 'active' => '1', 'position' => '9', 'val1' => '', 'val2' => ''],
+            ['id' => '467', 'profile_id' => '62', 'column_id' => '16', 'function_id' => '22', 'active' => '1', 'position' => '10', 'val1' => 'LINE', 'val2' => ''],
+            ['id' => '471', 'profile_id' => '62', 'column_id' => '5', 'function_id' => '61', 'active' => '1', 'position' => '1', 'val1' => 'db', 'val2' => 'dev_id'],
+            ['id' => '472', 'profile_id' => '62', 'column_id' => '53', 'function_id' => '61', 'active' => '1', 'position' => '2', 'val1' => 'db', 'val2' => 'code_ean'],
+            ['id' => '473', 'profile_id' => '62', 'column_id' => '10', 'function_id' => '61', 'active' => '1', 'position' => '1', 'val1' => 'db', 'val2' => 'name'],
+            ['id' => '474', 'profile_id' => '62', 'column_id' => '21', 'function_id' => '61', 'active' => '1', 'position' => '1', 'val1' => 'db', 'val2' => 'price_standard'],
+            ['id' => '475', 'profile_id' => '62', 'column_id' => '16', 'function_id' => '1', 'active' => '1', 'position' => '1', 'val1' => 'Rozsah dodávky</h2>', 'val2' => '<form'],
+            ['id' => '478', 'profile_id' => '62', 'column_id' => '15', 'function_id' => '61', 'active' => '1', 'position' => '1', 'val1' => 'prod_txt3', 'val2' => ''],
+            ['id' => '479', 'profile_id' => '62', 'column_id' => '15', 'function_id' => '20', 'active' => '1', 'position' => '4', 'val1' => '1', 'val2' => '704']
         ];
 
         DB::table('grab_db')->delete();

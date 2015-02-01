@@ -29,7 +29,7 @@ class ColumnDbSeeder extends Seeder
 			['columna_id' => '35', 'columna_id_tables' => '1', 'columna_visible_filter' => '1', 'columna_name' => 'prod_picture5'],
 			['columna_id' => '36', 'columna_id_tables' => '1', 'columna_visible_filter' => '1', 'columna_name' => 'prod_picture6'],
 			['columna_id' => '51', 'columna_id_tables' => '2', 'columna_visible_filter' => '1', 'columna_name' => 'items_id_sale'],
-			['columna_id' => '52', 'columna_id_tables' => '2', 'columna_visible_filter' => '1', 'columna_name' => 'items_code_product'],
+			['columna_id' => '52', 'columna_id_tables' => '2', 'columna_visible_filter' => '1', 'columna_name' => 'items_code_prod'],
 			['columna_id' => '53', 'columna_id_tables' => '2', 'columna_visible_filter' => '1', 'columna_name' => 'items_code_ean'],
 			['columna_id' => '54', 'columna_id_tables' => '2', 'columna_visible_filter' => '1', 'columna_name' => 'items_id_availability'],
 			['columna_id' => '101', 'columna_id_tables' => '10', 'columna_visible_filter' => '0', 'columna_name' => 'si_prod_id_dev'],

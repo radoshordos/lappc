@@ -57,10 +57,30 @@ class ProdController extends \BaseController
 			$man = new Manipulation(Input::get('urlimg'), intval(Input::get('grab_profile')));
 			$grab = $man->getNamespace();
 
+
+
 			foreach ($grab as $key => $val) {
+
+				var_dump($grab);
+
 				switch ($key) {
+					case 'prod_id_dev' :
+						$cpm->setProdDevId($val);
+						break;
+					case 'prod_name' :
+						$cpm->setProdName($val);
+						break;
+					case 'prod_price' :
+						$cpm->setProdPrice($val);
+						break;
 					case 'prod_desc' :
 						$cpm->setProdDesc($val);
+						break;
+					case 'items_code_product' :
+						$cpm->setItemsCodeProd($val);
+						break;
+					case 'items_code_ean' :
+						$cpm->setItemsCodeProd($val);
 						break;
 					case 'prod_nad1' :
 						$cpm->setProdDescriptionDataTitle1($val);
@@ -83,6 +103,7 @@ class ProdController extends \BaseController
 				}
 			}
 		}
+
 
 		return View::make('adm.product.prod.create', [
 			'input'               => $input,

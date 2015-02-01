@@ -28,6 +28,11 @@ class CreateProdModel
 	private $prod_picture_img_big;
 	private $prod_picture_img_normal;
 
+	public function getAll()
+	{
+		return $this;
+	}
+
 	public function getProdDevId()
 	{
 		return $this->prod_dev_id;

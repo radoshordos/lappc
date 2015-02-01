@@ -35,6 +35,8 @@ Nový produkt
 
 {{-- Content --}}
 @section('content')
+    {{ var_dump($cpm); }}
+
     {{ Form::open(['route' => 'adm.product.prod.store','class' => 'form-horizontal', 'role' => 'form']) }}
     <div class="row" style="margin-bottom: 5px">
         <div class="col-lg-8">{{ Form::select('tree_id', $select_tree, NULL, ['id'=> 'tree_id', 'required' => 'required', 'class'=> 'form-control']) }}</div>

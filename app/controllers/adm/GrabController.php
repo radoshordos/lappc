@@ -25,7 +25,7 @@ class GrabController extends \BaseController
             'select_group'     => [''] + SB::option("SELECT * FROM grab_profile WHERE active = 1 ORDER BY name", ['id' => '->name']),
             'select_column'    => [''] + SB::option("SELECT * FROM column_db WHERE visible_grab = 1 ORDER BY table_id,id", ['id' => '->name']),
             'select_function'  => [''] + SB::option("SELECT gf.*,gm.alias FROM grab_function AS gf INNER JOIN grab_mode AS gm ON gf.mode_id = gm.id WHERE gf.visible ORDER BY gf.mode_id,gf.function", ['id' => '->function [->alias] - [->name]']),
-            'grab_db'          => $this->gd->where('profile_id', '=', Input::get('select_group'))->orderBy('column_id', 'ASC')->get(),
+            'grab_db'          => $this->gd->where('profile_id', '=', Input::get('select_group'))->orderBy('column_id', 'ASC')->orderBy('position')->get(),
             'grab_profile'     => $this->gp->orderBy('id')->get(),
         ]);
     }
