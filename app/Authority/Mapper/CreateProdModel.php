@@ -7,7 +7,6 @@ class CreateProdModel
 	private $prod_mode_id = 3;
 	private $prod_sale_id;
 	private $prod_action_sale_id;
-	private $prod_difference_id;
 	private $prod_warranty_id;
 	private $prod_forex_id;
 	private $prod_dph_id = 21;
@@ -15,8 +14,6 @@ class CreateProdModel
 	private $prod_name;
 	private $prod_desc;
 	private $prod_transport_weight = 0.1;
-	private $prod_img_big;
-	private $prod_img_normal;
 	private $items_availability_id;
 	private $items_code_prod;
 	private $items_code_ean;
@@ -27,11 +24,32 @@ class CreateProdModel
 	private $prod_description_data_input2;
 	private $prod_description_data_input3;
 	private $prod_picture_img_big;
-	private $prod_picture_img_normal;
+	private $prod_picture01;
+	private $prod_picture02;
+	private $prod_picture03;
+	private $prod_picture04;
+	private $prod_picture05;
+	private $prod_picture06;
+	private $prod_picture07;
+	private $prod_picture08;
+	private $prod_picture09;
+	private $prod_picture10;
+	private $prod_picture11;
+	private $prod_picture12;
 
 	public function getAll()
 	{
 		return $this;
+	}
+
+	public function getProdTreeId()
+	{
+		return $this->prod_tree_id;
+	}
+
+	public function setProdTreeId($prod_tree_id)
+	{
+		$this->prod_tree_id = $prod_tree_id;
 	}
 
 	public function getProdDevId()
@@ -77,6 +95,16 @@ class CreateProdModel
 	public function getProdWarrantyId()
 	{
 		return $this->prod_warranty_id;
+	}
+
+	public function getProdForexId()
+	{
+		return $this->prod_forex_id;
+	}
+
+	public function setProdForexId($prod_forex_id)
+	{
+		$this->prod_forex_id = $prod_forex_id;
 	}
 
 	public function setProdWarrantyId($prod_warranty_id)
@@ -214,5 +242,135 @@ class CreateProdModel
 	public function setProdDescriptionDataInput3($prod_description_data_input3)
 	{
 		$this->prod_description_data_input3 = $prod_description_data_input3;
+	}
+
+	public function getProdPictureImgBig()
+	{
+		return $this->prod_picture_img_big;
+	}
+
+	public function setProdPictureImgBig($prod_picture_img_big)
+	{
+		$this->prod_picture_img_big = $prod_picture_img_big;
+	}
+
+	public function getProdPicture01()
+	{
+		return $this->prod_picture01;
+	}
+
+	public function setProdPicture01($prod_picture01)
+	{
+		$this->prod_picture01 = $prod_picture01;
+	}
+
+	public function getProdPicture02()
+	{
+		return $this->prod_picture02;
+	}
+
+	public function setProdPicture02($prod_picture02)
+	{
+		$this->prod_picture02 = $prod_picture02;
+	}
+
+	public function getProdPicture03()
+	{
+		return $this->prod_picture03;
+	}
+
+	public function setProdPicture03($prod_picture03)
+	{
+		$this->prod_picture03 = $prod_picture03;
+	}
+
+	public function getProdPicture04()
+	{
+		return $this->prod_picture04;
+	}
+
+	public function setProdPicture04($prod_picture04)
+	{
+		$this->prod_picture04 = $prod_picture04;
+	}
+
+	public function getProdPicture05()
+	{
+		return $this->prod_picture05;
+	}
+
+	public function setProdPicture05($prod_picture05)
+	{
+		$this->prod_picture05 = $prod_picture05;
+	}
+
+	public function getProdPicture06()
+	{
+		return $this->prod_picture06;
+	}
+
+	public function setProdPicture06($prod_picture06)
+	{
+		$this->prod_picture06 = $prod_picture06;
+	}
+
+	public function getProdPicture07()
+	{
+		return $this->prod_picture07;
+	}
+
+	public function setProdPicture07($prod_picture07)
+	{
+		$this->prod_picture07 = $prod_picture07;
+	}
+
+	public function getProdPicture08()
+	{
+		return $this->prod_picture08;
+	}
+
+	public function setProdPicture08($prod_picture08)
+	{
+		$this->prod_picture08 = $prod_picture08;
+	}
+
+	public function getProdPicture09()
+	{
+		return $this->prod_picture09;
+	}
+
+	public function setProdPicture09($prod_picture09)
+	{
+		$this->prod_picture09 = $prod_picture09;
+	}
+
+	public function getProdPicture10()
+	{
+		return $this->prod_picture10;
+	}
+
+	public function setProdPicture10($prod_picture10)
+	{
+		$this->prod_picture10 = $prod_picture10;
+	}
+
+	public function getProdPicture11()
+	{
+		return $this->prod_picture11;
+	}
+
+	public function setProdPicture11($prod_picture11)
+	{
+		$this->prod_picture11 = $prod_picture11;
+	}
+
+	public function getProdPicture12()
+	{
+		return $this->prod_picture12;
+	}
+
+	public function setProdPicture12($prod_picture12)
+	{
+		$this->prod_picture12 = $prod_picture12;
 	}
 }

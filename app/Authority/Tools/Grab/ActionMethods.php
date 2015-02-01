@@ -1,6 +1,7 @@
 <?php namespace Authority\Tools\Grab;
 
 use Authority\Eloquent\SyncDb;
+use Authority\Eloquent\SyncDbImg;
 
 class ActionMethods
 {
@@ -11,13 +12,13 @@ class ActionMethods
 	private $val2;
 
 	public function setParameters($source, $name, $val1, $val2, $namespace_output)
-    {
-	    $this->source = $source;
-	    $this->name = $name;
-	    $this->val1 = $val1;
-	    $this->val2 = $val2;
-	    $this->namespace_output = $namespace_output;
-    }
+	{
+		$this->source = $source;
+		$this->name = $name;
+		$this->val1 = $val1;
+		$this->val2 = $val2;
+		$this->namespace_output = $namespace_output;
+	}
 
 	public function setSource($source)
 	{
@@ -85,13 +86,11 @@ class ActionMethods
 
 	public function friendlyUrl()
 	{
-		$url = $this->source;
-		$url = preg_replace('~[^\\pL0-9_]+~u', '-', $url);
+		$url = preg_replace('~[^\\pL0-9_]+~u', '-', $this->source);
 		$url = trim($url, "-");
 		$url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
 		$url = strtolower($url);
-		$url = preg_replace('~[^-a-z0-9_]+~', '', $url);
-		return $url;
+		return preg_replace('~[^-a-z0-9_]+~', '', $url);
 	}
 
 	public function explode2ColumnArrays()
@@ -181,6 +180,11 @@ class ActionMethods
 	{
 		$sdb = SyncDb::where('code_prod', '=', $this->source)->first();
 		if (!empty($sdb)) {
+			$sdb = $sdb->toArray();
+			if ($sdb['count_img'] > 0) {
+				$sdi = SyncDbImg::select('url')->where('sync_id', '=', $sdb['id'])->lists('url');
+				return array_merge($sdb, ['imgs' => $sdi]);
+			}
 			return $sdb->toArray();
 		}
 	}

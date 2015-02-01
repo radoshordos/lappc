@@ -9,14 +9,11 @@ Nový produkt
 {{-- JavaScript on page --}}
 @section ('script')
     <script>
-        var rowNum = 1;
-        function addRow(frm) {
-            rowNum++;
-            var row = '<div id="rowNum'+rowNum+'" class="row"><div class="col-lg-7"><input type="url" name="urlimg[]" class="form-control" placeholder="URL obrázku nebo zdroj filtru" /></div><div class="col-lg-5"></div></div>';
-            jQuery('#img_rows').append(row);
-        }
-
         $(document).ready(function () {
+            $( "div#prod_picture" ).hide();
+            $( "#shower" ).click(function() {
+                $( "div#prod_picture" ).show();
+            });
             $("#tree_id").select2({
                 placeholder: "Skupina",
                 allowClear: true
@@ -122,17 +119,30 @@ Nový produkt
     <div id="img_rows">
         <div class="row">
             <div class="col-lg-11">
-                {{ Form::url('urlimg', NULL, ['class'=> 'form-control', 'placeholder'=> 'URL obrázku nebo zdroj filtru']) }}
+                {{ Form::url('urlimg', $cpm->getProdPictureImgBig(), ['class'=> 'form-control', 'placeholder'=> 'URL obrázku nebo zdroj filtru']) }}
             </div>
             <div class="col-lg-1">
-                <button type="button" onclick="addRow(this.form);" class="btn btn-default btn-sm">
+                <button type="button" id="shower" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
             </div>
         </div>
     </div>
 
-    <p class="text-center">
+    <div id="prod_picture">
+        @for ($i = 1; $i < 13; $i++)
+            <div class="row">
+                <div class="col-lg-11">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ Form::label('prod_picture1',"IMG ".str_pad($i, 2 , "0", STR_PAD_LEFT)); }}</span>
+                        {{ Form::url("prod_picture$i", NULL, ['class'=> 'form-control']); }}
+                    </div>
+                </div>
+            </div>
+        @endfor
+    </div>
+
+    <p class="text-center" style="margin: 1em">
         {{ Form::submit('Přidat produkt', ['name' => 'button-submit-create', 'class' => 'btn btn-info']) }}
     </p>
     {{ Form::close() }}

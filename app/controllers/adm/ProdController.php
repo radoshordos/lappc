@@ -67,6 +67,12 @@ class ProdController extends \BaseController
 			$man = new Manipulation(Input::get('urlimg'), intval(Input::get('grab_profile')));
 			$grab = $man->getNamespace();
 
+			if (isset($grab['db']['imgs'])) {
+				if (isset($grab['db']['imgs'][0])) {
+					$cpm->setProdPictureImgBig($grab['db']['imgs'][0]);
+				}
+			}
+
 			foreach ($grab as $key => $val) {
 				switch ($key) {
 					case 'prod_id_dev' :
