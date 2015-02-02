@@ -33,6 +33,7 @@ class ViewProd extends Migration
                     prod.search_sell AS prod_search_sell,
                     prod.img_normal AS prod_img_normal,
                     prod.img_big AS prod_img_big,
+                    prod.picture_count AS prod_picture_count,
                     prod.created_at AS prod_created_at,
                     prod.updated_at AS prod_updated_at,
                     prod_warranty.name AS prod_warranty_name,

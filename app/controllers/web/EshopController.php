@@ -5,6 +5,7 @@ use Authority\Eloquent\Items;
 use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\MixtureItem;
 use Authority\Eloquent\ProdDescription;
+use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 use Authority\Web\Group\TreeMaster;
@@ -51,7 +52,6 @@ class EshopController extends BaseController
 				->where('view_prod.prod_id', '!=', $view_prod_actual->prod_id)
 				->get();
 
-
 			$at_row = (intval($view_prod_actual->akce_template_id) > 1 ? AkceTempl::find($view_prod_actual->akce_template_id) : NULL);
 
 			$item_row = NULL;
@@ -67,6 +67,7 @@ class EshopController extends BaseController
 				'view_prod_actual' => $view_prod_actual,
 				'prod_desc_array'  => ProdDescription::where('prod_id', '=', $view_prod_actual->prod_id)->whereNotNull('data')->get(),
 				'term'             => $this->term,
+				'prod_picture'     => (($view_prod_actual->prod_picture_count > 0) ? ProdPicture::where('prod_id', '=', $view_prod_actual->prod_id)->get() : NULL),
 				'items_accessory'  => $items_accessory,
 				'at_row'           => $at_row,
 				'item_row'         => $item_row,

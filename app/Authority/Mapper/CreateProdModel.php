@@ -36,6 +36,9 @@ class CreateProdModel
 	private $prod_picture10;
 	private $prod_picture11;
 	private $prod_picture12;
+	private $prod_picture13;
+	private $prod_picture14;
+	private $prod_picture15;
 
 	public function getAll()
 	{
@@ -372,5 +375,35 @@ class CreateProdModel
 	public function setProdPicture12($prod_picture12)
 	{
 		$this->prod_picture12 = $prod_picture12;
+	}
+
+	public function getProdPicture13()
+	{
+		return $this->prod_picture13;
+	}
+
+	public function setProdPicture13($prod_picture13)
+	{
+		$this->prod_picture13 = $prod_picture13;
+	}
+
+	public function getProdPicture14()
+	{
+		return $this->prod_picture14;
+	}
+
+	public function setProdPicture14($prod_picture14)
+	{
+		$this->prod_picture14 = $prod_picture14;
+	}
+
+	public function getProdPicture15()
+	{
+		return $this->prod_picture15;
+	}
+
+	public function setProdPicture15($prod_picture15)
+	{
+		$this->prod_picture15 = $prod_picture15;
 	}
 }

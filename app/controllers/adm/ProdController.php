@@ -77,6 +77,7 @@ class ProdController extends \BaseController
 					if (isset($grab['db']['imgs'][$i])) {
 						$spp = "setProdPicture" . str_pad($i, 2, "0", STR_PAD_LEFT);
 						$cpm->$spp($grab['db']['imgs'][$i]);
+
 					}
 				}
 			}
@@ -185,21 +186,27 @@ class ProdController extends \BaseController
 				}
 
 				try {
-					for ($i = 0; $i < 13; $i++) {
+					for ($i = 0; $i < 16; $i++) {
 						$picture = "prod_picture" . str_pad($i, 2, "0", STR_PAD_LEFT);
 						$pic = Input::get($picture);
 						if (!empty($pic)) {
 							$img = new ProdImage($pic, $tree->absolute, $input['name']);
 							$img->createProdPictures(240, 240);
-							$aff = ProdPicture::create([
-								'prod_id'    => $prod_result['id'],
-								'img_big'    => $img->getImgBig(),
-								'img_normal' => $img->getImgNormal()
-							]);
-							var_dump($aff);
+							if ($i == 0) {
+								$prod_result->img_big = $img->getImgBig();
+								$prod_result->img_normal = $img->getImgNormal();
+								$prod_result->save();
+							} else {
+								ProdPicture::create([
+									'prod_id'    => $prod_result->id,
+									'img_big'    => $img->getImgBig(),
+									'img_normal' => $img->getImgNormal()
+								]);
+							}
 						}
 					}
 				} catch (Exception $e) {
+					\DB::rollback();
 					Session::flash('error', $e->getMessage());
 				}
 			});

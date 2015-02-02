@@ -137,13 +137,13 @@ Nový produkt
     </div>
 
     <div id="prod_picture">
-        @for ($i = 1; $i < 13; $i++)
+        @for ($i = 1; $i < 16; $i++)
             <?php $gpp = "getProdPicture".str_pad($i, 2 , "0", STR_PAD_LEFT); ?>
             <div class="row">
                 <div class="col-lg-11">
                     <div class="input-group">
                         <span class="input-group-addon">{{ Form::label('prod_picture1',"IMG ".str_pad($i, 2 , "0", STR_PAD_LEFT)); }}</span>
-                        {{ Form::url("prod_picture$i", $cpm->$gpp(), ['class'=> 'form-control']); }}
+                        {{ Form::url("prod_picture".str_pad($i, 2 , "0", STR_PAD_LEFT), $cpm->$gpp(), ['class'=> 'form-control']); }}
                     </div>
                 </div>
             </div>

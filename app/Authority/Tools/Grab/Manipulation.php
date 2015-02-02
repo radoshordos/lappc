@@ -44,7 +44,6 @@ class Manipulation
 		return $arr;
 	}
 
-
 	protected function callManipulation()
 	{
 		foreach (array_keys($this->namespace_output) as $key) {

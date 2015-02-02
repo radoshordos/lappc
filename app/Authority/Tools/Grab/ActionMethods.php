@@ -182,7 +182,7 @@ class ActionMethods
 		if (!empty($sdb)) {
 			$sdb = $sdb->toArray();
 			if ($sdb['count_img'] > 0) {
-				$sdi = SyncDbImg::select('url')->where('sync_id', '=', $sdb['id'])->orderBy('url')->lists('url');
+				$sdi = SyncDbImg::select('url')->where('sync_id', '=', $sdb['id'])->orderBy('id')->lists('url');
 				return array_merge($sdb, ['imgs' => $sdi]);
 			}
 			return $sdb->toArray();
