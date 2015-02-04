@@ -7,7 +7,7 @@
         "ivaynberg/select2": "3.*",
         "kartik-v/bootstrap-fileinput": "2.*",
         "intervention/image": "2.*",
-        "slushie/laravel-assetic": "dev-master",
+        "slushie/laravel-assetic": "1.*",
         "nervo/yuicompressor": "dev-master",
         "mrclay/minify": "dev-master",
         "components/bootstrap": "3.*",

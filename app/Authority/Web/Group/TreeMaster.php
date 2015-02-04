@@ -30,7 +30,7 @@ class TreeMaster
 			if (!empty($tree)) {
 				$this->view_tree_actual = $view_tree_actual = $tree->toArray();
 			} else {
-				throw new \Exception("NO TREE EXCEPTION");
+				\App::abort(404);
 			}
 		} else if ($tree_id != NULL) {
 			$tree = ViewTree::where('tree_id', '=', $tree_id)->first();
@@ -38,7 +38,7 @@ class TreeMaster
 				$this->view_tree_actual = $tree->toArray();
 				$this->url_part_one = explode('/', $this->view_tree_actual['tree_absolute']);
 			} else {
-				throw new \Exception("NO TREE EXCEPTION");
+				\App::abort(404);
 			}
 		}
 	}
