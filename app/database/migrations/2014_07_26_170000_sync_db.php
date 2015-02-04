@@ -26,7 +26,7 @@ class SyncDb extends Migration
             $table->smallInteger('warranty')->unsigned()->nullable();
             $table->string('categorytext', 255)->nullable();
             $table->string('url', 255)->nullable();
-            $table->tinyInteger('count_accessory')->unsigned()->default(0);
+            $table->smallInteger('count_accessory')->unsigned()->default(0);
             $table->tinyInteger('count_file')->unsigned()->default(0);
             $table->tinyInteger('count_img')->unsigned()->default(0);
             $table->timestamps();

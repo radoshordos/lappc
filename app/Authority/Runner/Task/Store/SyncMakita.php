@@ -1,11 +1,11 @@
 <?php namespace Authority\Runner\Task\Store;
 
 use Authority\Eloquent\RecordSyncImport;
-use Authority\Runner\Task\TaskMessage;
 
-class SyncMakita extends TaskMessage implements iSync
+class SyncMakita extends AbstractSync implements iSync
 {
 	const DEV_NAME = 'makita';
+	const URL_FEED = 'https://NaradiDolezalova:YH129vg395@www.makita.cz/prilohaurl.php?file=makita.zip';
 
 	public function __construct($table_cron)
 	{
@@ -16,14 +16,9 @@ class SyncMakita extends TaskMessage implements iSync
 
 	public function remotelyPrepareSynchronize()
 	{
-		$down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), 'http://www.bow.cz/sellersXML/xmlfeed.zip');
+		$down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
 		$down->runDownload();
 		$down->unzipDownload();
-	}
-
-	public function getSyncUploadDirectory()
-	{
-		return __DIR__ . "/data/";
 	}
 
 	public function getFile()
@@ -34,7 +29,7 @@ class SyncMakita extends TaskMessage implements iSync
 	public function runSynchronizeData()
 	{
 		$all = $suc = 0;
-		$xml = simplexml_load_file($this->getSyncUploadDirectory() . "/makita-2015-01.xml");
+		$xml = simplexml_load_file($this->getSyncUploadDirectory() . "/makita.xml");
 		$record_id = strtotime('now');
 
 		RecordSyncImport::create([
@@ -56,10 +51,7 @@ class SyncMakita extends TaskMessage implements iSync
 			}
 		}
 
-		$rsi = RecordSyncImport::find($record_id);
-		$rsi->item_counter = $suc;
-		$rsi->save();
-
+		$this->addRecordCounter($record_id,$suc);
 		$this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
 		$this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
 	}
