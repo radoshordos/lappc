@@ -1,11 +1,11 @@
 <?php namespace Authority\Runner\Task\Store;
 
 use Authority\Eloquent\RecordSyncImport;
-use Authority\Runner\Task\TaskMessage;
 
-class SyncGarland extends TaskMessage implements iSync
+class SyncGarland extends AbstractSync implements iSync
 {
     const DEV_NAME = 'garland';
+    const URL_FEED = 'http://data.garland.cz/exportzbozi.xml';
 
     public function __construct($table_cron)
     {
@@ -16,13 +16,8 @@ class SyncGarland extends TaskMessage implements iSync
 
     public function remotelyPrepareSynchronize()
     {
-        $down1 = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), 'http://data.garland.cz/exportzbozi.xml');
-        $down1->runDownload(true);
-    }
-
-    public function getSyncUploadDirectory()
-    {
-        return __DIR__ . "/data/";
+        $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
+        $down->runDownload(true);
     }
 
     public function getFile()
@@ -33,7 +28,7 @@ class SyncGarland extends TaskMessage implements iSync
     function runSynchronizeData()
     {
         $all = $suc = 0;
-        $xml = (array)simplexml_load_file($this->getSyncUploadDirectory() . $this->getFile());
+        $xml = (array)simplexml_load_file($this->getFeedDirName());
         $record_id = strtotime('now');
 
         RecordSyncImport::create([
@@ -50,7 +45,7 @@ class SyncGarland extends TaskMessage implements iSync
             $run = new RunGarland($arr_item, $record_id);
 
             if ($run->isUseRequired() === true) {
-                $run->insertData2Db($this->db);
+                $run->insertData2Db();
                 $suc++;
             }
         }

@@ -2,7 +2,6 @@
 
 interface iSync
 {
-
     public function getFile();
 
     public function remotelyPrepareSynchronize();

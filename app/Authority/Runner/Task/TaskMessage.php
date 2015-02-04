@@ -1,6 +1,4 @@
-<?php
-
-namespace Authority\Runner\Task;
+<?php namespace Authority\Runner\Task;
 
 class TaskMessage extends TaskTimer
 {
@@ -8,13 +6,12 @@ class TaskMessage extends TaskTimer
     protected $message;
     protected $db;
 
-
     public function __construct($db)
     {
-        parent::__construct($db);
+        parent::__construct();
         $this->db = $db;
         $this->start = microtime(true);
-        $this->comment = array();
+        $this->comment = [];
     }
 
     public function addMessage($comment)
