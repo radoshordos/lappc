@@ -10,4 +10,6 @@ interface iSync
     public function runSynchronizeData();
 
     public function getSyncUploadDirectory();
+
+    public function getFeedDirName();
 }

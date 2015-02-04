@@ -39,7 +39,7 @@ class SyncMadalbal extends TaskMessage implements iSync
 	public function runSynchronizeData()
 	{
 		$all = $suc = 0;
-		$xml = (array)simplexml_load_file($this->getSyncUploadDirectory() . "/madalbal-2015-01.xml");
+		$xml = (array)simplexml_load_file($this->getSyncUploadDirectory() .  $this->getFile());
 		$record_id = strtotime('now');
 
 		RecordSyncImport::create([
