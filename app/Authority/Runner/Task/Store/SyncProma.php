@@ -46,7 +46,7 @@ class SyncProma extends AbstractSync implements iSync
 
             if ($run->isUseRequired() === TRUE) {
                 $suc++;
-                $run->insertData2Db($this->db);
+                $run->insertData2Db();
             }
         }
 

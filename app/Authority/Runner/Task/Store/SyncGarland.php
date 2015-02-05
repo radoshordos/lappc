@@ -45,8 +45,8 @@ class SyncGarland extends AbstractSync implements iSync
             $run = new RunGarland($arr_item, $record_id);
 
             if ($run->isUseRequired() === TRUE) {
-                $run->insertData2Db();
                 $suc++;
+                $run->insertData2Db();
             }
         }
 
