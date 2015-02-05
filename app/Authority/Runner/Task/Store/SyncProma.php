@@ -5,7 +5,7 @@ use Authority\Eloquent\RecordSyncImport;
 class SyncProma extends AbstractSync implements iSync
 {
     const DEV_NAME = 'proma';
-    protected $curl;
+    const URL_FEED = 'http://b2b.satrade.cz/pl.php?u=83887-64-63';
 
     public function __construct($table_cron)
     {
@@ -16,8 +16,8 @@ class SyncProma extends AbstractSync implements iSync
 
     public function remotelyPrepareSynchronize()
     {
-        $down1 = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), 'http://b2b.satrade.cz/pl.php?u=83887-64-63');
-        $down1->runDownload();
+        $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
+        $down->runDownload();
     }
 
     public function getFile()
