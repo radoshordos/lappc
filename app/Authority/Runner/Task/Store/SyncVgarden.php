@@ -1,6 +1,7 @@
 <?php namespace Authority\Runner\Task\Store;
 
-class SyncVgarden extends TaskMessage implements iSync {
+class SyncVgarden extends AbstractSync implements iSync {
+
 
     public function getFile()
     {
@@ -15,10 +16,5 @@ class SyncVgarden extends TaskMessage implements iSync {
     public function runSynchronizeData()
     {
         // TODO: Implement runSynchronizeData() method.
-    }
-
-    public function getSyncUploadDirectory()
-    {
-        // TODO: Implement getSyncUploadDirectory() method.
     }
 }

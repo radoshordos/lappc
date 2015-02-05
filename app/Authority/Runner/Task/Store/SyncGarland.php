@@ -17,7 +17,7 @@ class SyncGarland extends AbstractSync implements iSync
     public function remotelyPrepareSynchronize()
     {
         $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
-        $down->runDownload(true);
+        $down->runDownload(TRUE);
     }
 
     public function getFile()
@@ -32,10 +32,10 @@ class SyncGarland extends AbstractSync implements iSync
         $record_id = strtotime('now');
 
         RecordSyncImport::create([
-            'id'           => $record_id,
-            'purpose'      => 'autosync',
-            'name'         => __CLASS__,
-            'created_at'   => date("Y-m-d H:i:s", $record_id)
+            'id'         => $record_id,
+            'purpose'    => 'autosync',
+            'name'       => __CLASS__,
+            'created_at' => date("Y-m-d H:i:s", $record_id)
         ]);
 
         foreach ($xml['ARTIKL'] as $item) {
@@ -44,16 +44,13 @@ class SyncGarland extends AbstractSync implements iSync
             $arr_item = array_filter((array)$item);
             $run = new RunGarland($arr_item, $record_id);
 
-            if ($run->isUseRequired() === true) {
+            if ($run->isUseRequired() === TRUE) {
                 $run->insertData2Db();
                 $suc++;
             }
         }
 
-        $rsi = RecordSyncImport::find($record_id);
-        $rsi->item_counter = $suc;
-        $rsi->save();
-
+        $this->addRecordCounter($record_id, $suc);
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }
