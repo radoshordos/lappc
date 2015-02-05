@@ -60,7 +60,7 @@ class SyncMadalbal extends AbstractSync implements iSync
             }
         }
 
-        $this->addRecordCounter($record_id, $suc);
+        $this->addRecordCounter($record_id, $all, $suc);
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }

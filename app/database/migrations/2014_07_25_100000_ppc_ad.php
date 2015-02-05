@@ -19,7 +19,7 @@ class PpcAd extends Migration
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique(array('campaign_id', 'target_id', 'quality_id'));
+            $table->unique(['campaign_id', 'target_id', 'quality_id']);
         });
     }
 

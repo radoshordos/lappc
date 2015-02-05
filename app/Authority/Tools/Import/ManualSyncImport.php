@@ -70,7 +70,7 @@ class ManualSyncImport
     public function InsertToDb()
     {
         $i = 0;
-        $item_counter = 0;
+        $item_counter_insert = 0;
         $arr = [];
 
         foreach ($this->item as $val) {
@@ -92,7 +92,7 @@ class ManualSyncImport
             $tsi = new TotalSyncImport(array_filter($val));
             $res = $tsi->insertData2SyncDb();
             if (!empty($res)) {
-                $item_counter++;
+                $item_counter_insert++;
             }
         }
 
@@ -100,7 +100,7 @@ class ManualSyncImport
             'id'           => $record_id,
             'template_id'  => ($this->template_id ? $this->template_id : NULL),
             'purpose'      => $this->import_type,
-            'item_counter' => $item_counter,
+            'item_counter_insert' => $item_counter_insert,
             'name'         => __CLASS__,
             'created_at'   => $date
         ]);

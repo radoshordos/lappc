@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class RecordSyncImport extends Migration
 {
-
     public function up()
     {
         Schema::create('record_sync_import', function (Blueprint $table) {
@@ -13,7 +12,8 @@ class RecordSyncImport extends Migration
             $table->integer('template_id')->unsigned()->nullable();
             $table->enum('purpose', ['manualsync', 'action', 'autosync', 'isystem']);
             $table->string('name', '48')->nullable();
-            $table->integer('item_counter')->unsigned()->default(0);
+            $table->integer('item_counter_all')->unsigned()->nullable();
+            $table->integer('item_counter_insert')->unsigned()->default(0);
             $table->dateTime('created_at');
 
             $table->engine = 'InnoDB';
@@ -25,5 +25,4 @@ class RecordSyncImport extends Migration
     {
         Schema::dropIfExists('record_sync_import');
     }
-
 }

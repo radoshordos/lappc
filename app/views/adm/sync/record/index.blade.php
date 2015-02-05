@@ -25,7 +25,7 @@ Záznamy importů
         <td>{{ $row->name }}</td>
         <td>{{ isset($row->syncCsvTemplate->mixtureDev->name) ? $row->syncCsvTemplate->mixtureDev->name : NULL }}</td>
         <td>{{ $row->purpose }}</td>
-        <td>{{ $row->item_counter }} / {{ $row->rsi_actual_count }}</td>
+        <td>{{ $row->item_counter_insert }} / {{ $row->rsi_actual_count }}</td>
     </tr>
     @endforeach
     </tbody>
