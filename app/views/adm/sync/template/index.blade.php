@@ -21,6 +21,7 @@ Přehled .csv šablon
             </tr>
             </thead>
             <tbody>
+            @if (!empty($template))
             @foreach ($template as $row)
             <tr>
                 <td>{{ $row->mixtureDev->name }}</td>
@@ -28,6 +29,7 @@ Přehled .csv šablon
                 <td>{{ link_to_route('adm.sync.template.edit','Nastavit',[$row->id], ['class' => 'btn btn-info btn-xs']) }}</td>
             </tr>
             @endforeach
+            @endif
             </tbody>
         </table>
     </div>
@@ -35,7 +37,7 @@ Přehled .csv šablon
 @endif
 
 <p class="text-center">
-    {{ link_to_route('adm.sync.template.create','Založit novou .csv šablonu',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+    {{ link_to_route('adm.sync.template.create','Založit novou .csv šablonu',NULL, ['class'=>'btn btn-success','role'=> 'button']) }}
     <nav>
         <ul class="pager">
             <li class="next"><a href="{{ URL::route('adm.sync.csvimport.index') }}">Import CSV dat <span aria-hidden="true">&rarr;</span></a></li>

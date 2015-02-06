@@ -61,7 +61,7 @@ Import CSV dat
     @if ($check== false)
     {{ Form::submit('Validovat', ['name' => 'validate','class' => 'btn btn-success']) }}
     @else
-    {{ Form::submit('Pokračovat', ['name' => 'next', 'class' => 'btn btn-success']) }}
+    {{ Form::submit('Importovat data', ['name' => 'next', 'class' => 'btn btn-success']) }}
     @endif
     <nav>
          <ul class="pager">

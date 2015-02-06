@@ -70,7 +70,7 @@ class ManualSyncImport
     public function InsertToDb()
     {
         $i = 0;
-        $item_counter_insert = 0;
+        $item_counter_insert = $item_counter_all = 0;
         $arr = [];
 
         foreach ($this->item as $val) {
@@ -80,30 +80,35 @@ class ManualSyncImport
 
         $record_id = strtotime('now');
         $date = new \DateTime;
+
         \DB::beginTransaction();
+
+        $rsi = RecordSyncImport::create([
+            'id'           => $record_id,
+            'template_id'  => ($this->template_id ? $this->template_id : NULL),
+            'purpose'      => $this->import_type,
+            'name'         => __CLASS__,
+            'created_at'   => $date
+        ]);
 
         foreach ($arr as $val) {
 
             $val = array_map('trim', $val);
-            $val['record_id'] = $record_id;
             $val['purpose'] = $this->import_type;
             $val['created_at'] = $date;
 
             $tsi = new TotalSyncImport(array_filter($val));
             $res = $tsi->insertData2SyncDb();
+            $item_counter_all++;
             if (!empty($res)) {
                 $item_counter_insert++;
             }
         }
 
-        RecordSyncImport::create([
-            'id'           => $record_id,
-            'template_id'  => ($this->template_id ? $this->template_id : NULL),
-            'purpose'      => $this->import_type,
-            'item_counter_insert' => $item_counter_insert,
-            'name'         => __CLASS__,
-            'created_at'   => $date
-        ]);
+        $db = RecordSyncImport::find($record_id);
+        $db->item_counter_all = $item_counter_all;
+        $db->item_counter_insert = $item_counter_insert;
+        $db->save();
 
         \Session::flash('success', 'Import proběhl úspěšně');
         \DB::commit();
