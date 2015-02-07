@@ -4,7 +4,7 @@ return array(
     'created' => "Your account has been created. Check your email for the confirmation link.",
     'loginreq' => "Login field required.",
     'exists' => "User already exists.",
-    'notfound' => "User not found",
+    'notfound' => "Uživitel nenalezen",
     'noaccess' => "You are not allowed to do that.",
     'updated' => "Profil aktualizován",
     'notupdated' => "Unable to update profile",
