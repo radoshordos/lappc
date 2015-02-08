@@ -14,7 +14,7 @@ class SyncTemplateM2nColmunTableSeeder extends Seeder
 		];
 
 		foreach ($sync_template_m2n_colmun as $row) {
-			DB::table('sync_csv_template')->insert([
+			DB::table('sync_template_m2n_colmun')->insert([
 				'id'          => $row['id'],
 				'template_id' => $row['template_id'],
 				'column_id'   => $row['column_id']
