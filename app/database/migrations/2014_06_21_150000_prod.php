@@ -47,6 +47,7 @@ class Prod extends Migration
 			$table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
 			$table->foreign('dph_id')->references('id')->on('dph')->onUpdate('cascade')->onDelete('no action');
 			$table->foreign('forex_id')->references('id')->on('forex')->onUpdate('cascade')->onDelete('no action');
+            $table->index('search_sell');
             $table->index('search_price');
 			$table->index('created_at');
 		});

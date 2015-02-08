@@ -5,7 +5,6 @@ use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Prod;
 use Authority\Eloquent\RecordSyncImport;
 use Authority\Eloquent\SyncDb;
-use Authority\Tools\Forex\PriceForex;
 use Authority\Tools\SB;
 
 class AkceHugeController extends \BaseController
@@ -72,7 +71,6 @@ class AkceHugeController extends \BaseController
         }
 
         return View::make('adm.product.akcehuge.index', [
-            'pf'                   => new PriceForex(),
             'action_record'        => $action_record,
             'dfilter'              => Input::get('dfilter'),
             'choice_action_record' => Input::get('select_action_record'),
@@ -95,7 +93,6 @@ class AkceHugeController extends \BaseController
                      ORDER BY id", ['id' => '->name - [Datum importu: ->created_at] - (Záznamů &#8721; = ->rsi_actual_count)'], true)
         ]);
     }
-
 
     public function store()
     {
