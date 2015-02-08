@@ -6,51 +6,52 @@ use Illuminate\Database\Schema\Blueprint;
 class Prod extends Migration
 {
 
-    public function up()
-    {
-        Schema::create('prod', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('tree_id')->unsigned();
-            $table->integer('dev_id')->unsigned();
-            $table->tinyInteger('mode_id')->unsigned()->default(3);
-            $table->tinyInteger('sale_id')->unsigned()->default(1);
-            $table->smallInteger('difference_id')->unsigned()->default(1);
-            $table->tinyInteger('warranty_id')->unsigned()->default(1);
-            $table->tinyInteger('forex_id')->unsigned()->default(1);
-            $table->tinyInteger('dph_id')->unsigned()->default(21);
-            $table->tinyInteger('ic_all')->unsigned()->default(0);
-            $table->tinyInteger('ic_visible')->unsigned()->default(0);
-	        $table->tinyInteger('ic_availability_diff_visible')->unsigned()->default(0);
-            $table->decimal('price', 9, 2)->unsigned()->default(999999);
-            $table->string('alias', '64')->unique();
-            $table->string('name', '64')->unique();
-            $table->string('desc', '128');
-            $table->integer('storeroom')->default(0);
-            $table->boolean('new')->default(1);
-            $table->float('transport_weight')->unsigned()->default(0.1);
-            $table->boolean('transport_atypical')->default(0);
-            $table->string('search_alias', '64')->nullable();
-            $table->string('search_codes', '255')->unique()->nullable();
-            $table->decimal('search_price', 9, 2)->default(9999999);
-            $table->integer('search_sell')->unsigned()->default(0);
-            $table->string('img_big', '160');
-            $table->string('img_normal', '160');
-            $table->tinyInteger('picture_count')->unsigned()->default(0);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
+	public function up()
+	{
+		Schema::create('prod', function (Blueprint $table) {
+			$table->increments('id')->unsigned();
+			$table->integer('tree_id')->unsigned();
+			$table->integer('dev_id')->unsigned();
+			$table->tinyInteger('mode_id')->unsigned()->default(3);
+			$table->tinyInteger('sale_id')->unsigned()->default(1);
+			$table->smallInteger('difference_id')->unsigned()->default(1);
+			$table->tinyInteger('warranty_id')->unsigned()->default(1);
+			$table->tinyInteger('forex_id')->unsigned()->default(1);
+			$table->tinyInteger('dph_id')->unsigned()->default(21);
+			$table->tinyInteger('ic_all')->unsigned()->default(0);
+			$table->tinyInteger('ic_visible')->unsigned()->default(0);
+			$table->tinyInteger('ic_availability_diff_visible')->unsigned()->default(0);
+			$table->decimal('price', 9, 2)->unsigned()->default(999999);
+			$table->string('alias', '64')->unique();
+			$table->string('name', '64')->unique();
+			$table->string('desc', '128');
+			$table->integer('storeroom')->default(0);
+			$table->boolean('new')->default(1);
+			$table->float('transport_weight')->unsigned()->default(0.1);
+			$table->boolean('transport_atypical')->default(0);
+			$table->string('search_alias', '64')->nullable();
+			$table->string('search_codes', '255')->unique()->nullable();
+			$table->decimal('search_price', 9, 2)->default(9999999);
+			$table->integer('search_sell')->unsigned()->default(0);
+			$table->string('img_big', '160');
+			$table->string('img_normal', '160');
+			$table->tinyInteger('picture_count')->unsigned()->default(0);
+			$table->timestamps();
+			$table->engine = 'InnoDB';
 
-            $table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('mode_id')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('sale_id')->references('id')->on('prod_sale')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('difference_id')->references('id')->on('prod_difference')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('dph_id')->references('id')->on('dph')->onUpdate('cascade')->onDelete('no action');
-            $table->foreign('forex_id')->references('id')->on('forex')->onUpdate('cascade')->onDelete('no action');
-        });
+			$table->foreign('tree_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('dev_id')->references('id')->on('dev')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('mode_id')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('sale_id')->references('id')->on('prod_sale')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('difference_id')->references('id')->on('prod_difference')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('warranty_id')->references('id')->on('prod_warranty')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('dph_id')->references('id')->on('dph')->onUpdate('cascade')->onDelete('no action');
+			$table->foreign('forex_id')->references('id')->on('forex')->onUpdate('cascade')->onDelete('no action');
+			$table->index('created_at');
+		});
 
-        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
-        DB::unprepared('
+		DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
+		DB::unprepared('
             CREATE TRIGGER tree_dev_ai AFTER INSERT ON prod
             FOR EACH ROW BEGIN
 
@@ -74,8 +75,8 @@ class Prod extends Migration
             END
         ');
 
-        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
-        DB::unprepared('
+		DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
+		DB::unprepared('
             CREATE TRIGGER tree_dev_au AFTER UPDATE ON prod
             FOR EACH ROW BEGIN
             
@@ -126,8 +127,8 @@ class Prod extends Migration
             END
         ');
 
-        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
-        DB::unprepared('
+		DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
+		DB::unprepared('
             CREATE TRIGGER tree_dev_ad AFTER DELETE ON prod
             FOR EACH ROW BEGIN
             
@@ -151,14 +152,14 @@ class Prod extends Migration
                 DELETE FROM tree_dev WHERE subdir_all = 0;
             END
         ');
-    }
+	}
 
-    public function down()
-    {
-        Schema::dropIfExists('prod');
+	public function down()
+	{
+		Schema::dropIfExists('prod');
 
-        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
-        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
-        DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
-    }
+		DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ai');
+		DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_au');
+		DB::unprepared('DROP TRIGGER IF EXISTS tree_dev_ad');
+	}
 }
