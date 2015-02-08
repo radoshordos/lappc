@@ -2,8 +2,6 @@
 
 class RunMakita extends AbstractRunDev implements iItem
 {
-    const ROOT = 'SHOP';
-
     function __construct($shop_item, $record_id)
     {
         parent::__construct($shop_item, $record_id);

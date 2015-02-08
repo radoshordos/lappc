@@ -96,7 +96,6 @@ class AdminRunnerTableSeeder extends Seeder
             'class'   => 'Authority\Runner\Task\Recalculate\TreeCategoryText'
         ]);
 
-
         DB::table('runner')->insert([
             'id'      => 408,
             'autorun' => 0,
@@ -127,7 +126,6 @@ class AdminRunnerTableSeeder extends Seeder
             'class'   => 'Authority\Runner\Task\Recalculate\ProdSearchSell'
         ]);
 
-
         DB::table('runner')->insert([
             'id'      => 502,
             'autorun' => 1,
@@ -137,19 +135,19 @@ class AdminRunnerTableSeeder extends Seeder
         DB::table('runner')->insert([
             'id'      => 504,
             'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncProma'
+            'class'   => 'Authority\Runner\Task\Store\SyncGarland'
         ]);
 
         DB::table('runner')->insert([
             'id'      => 506,
             'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncGarland'
+            'class'   => 'Authority\Runner\Task\Store\SyncIgm'
         ]);
 
         DB::table('runner')->insert([
             'id'      => 508,
             'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncIgm'
+            'class'   => 'Authority\Runner\Task\Store\SyncMadalbal'
         ]);
 
         DB::table('runner')->insert([
@@ -161,11 +159,17 @@ class AdminRunnerTableSeeder extends Seeder
         DB::table('runner')->insert([
             'id'      => 512,
             'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Store\SyncMadalbal'
+            'class'   => 'Authority\Runner\Task\Store\SyncPapaspol'
         ]);
 
         DB::table('runner')->insert([
             'id'      => 514,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Store\SyncProma'
+        ]);
+
+        DB::table('runner')->insert([
+            'id'      => 516,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncVgarden'
         ]);

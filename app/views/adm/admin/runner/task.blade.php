@@ -29,7 +29,7 @@ Runner => Spuštěné skripty
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3">Celkem: <b> {{ $object->getTimeRunAll() }} </b></td>
+                <td colspan="3">Celkem: <b> {{ $timer->getTime() }} </b></td>
             </tr>
             </tfoot>
         </table>
