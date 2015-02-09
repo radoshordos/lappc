@@ -1,6 +1,6 @@
 <?php
 use Authority\Eloquent\SyncCsvTemplate;
-use Authority\Eloquent\SyncTemplateM2nColmun;
+use Authority\Eloquent\SyncTemplateM2nColumn;
 use Authority\Tools\SB;
 
 class SyncCsvTemplateController extends \BaseController
@@ -17,10 +17,10 @@ class SyncCsvTemplateController extends \BaseController
         $col = [];
         $tag = DB::table('sync_csv_template')
             ->select('id', DB::raw('(SELECT GROUP_CONCAT("<",sync_csv_column.element,">")
-                                    FROM sync_template_m2n_colmun
-                                        INNER JOIN sync_csv_column ON sync_csv_column.id = sync_template_m2n_colmun.column_id
-                                        WHERE sync_template_m2n_colmun.template_id = sync_csv_template.id
-                                        ORDER BY sync_template_m2n_colmun.id ) AS list
+                                    FROM sync_template_m2n_column AS stmc
+                                        INNER JOIN sync_csv_column ON sync_csv_column.id = stmc.column_id
+                                        WHERE stmc.template_id = sync_csv_template.id
+                                        ORDER BY stmc.id ) AS list
                                     '))
              ->get();
 
@@ -39,7 +39,7 @@ class SyncCsvTemplateController extends \BaseController
     public function create()
     {
         return View::make('adm.sync.template.create', [
-            'select_mixture_dev' => SB::option("SELECT * FROM mixture_dev ORDER BY id DESC", ['id' => '->name'], true)
+            'select_mixture_dev' => SB::option("SELECT * FROM mixture_dev WHERE NOT purpose='autoall' ORDER BY purpose,name", ['id' => '->name'], true)
         ]);
     }
 
@@ -72,13 +72,13 @@ class SyncCsvTemplateController extends \BaseController
 
         return View::make('adm.sync.template.edit', [
             'template' => $template,
-            'm2n' => SyncTemplateM2nColmun::where('template_id', '=', $id)->orderBy('id')->get(),
+            'm2n' => SyncTemplateM2nColumn::where('template_id', '=', $id)->orderBy('id')->get(),
             'select_column' => SB::option("SELECT *
                                                   FROM sync_csv_column
                                                   WHERE id NOT IN (
                                                       SELECT column_id
-                                                      FROM sync_template_m2n_colmun
-                                                      WHERE template_id = $id)"
+                                                      FROM sync_template_m2n_column AS stmc
+                                                      WHERE stmc.template_id = $id)"
                 , ['id' => '<->element> - ->desc'], true)
         ]);
     }

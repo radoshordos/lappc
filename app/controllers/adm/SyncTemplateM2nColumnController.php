@@ -1,12 +1,12 @@
 <?php
 
-use Authority\Eloquent\SyncTemplateM2nColmun;
+use Authority\Eloquent\SyncTemplateM2nColumn;
 
 class SyncTemplateM2nColumnController extends \BaseController
 {
     protected $m2n;
 
-    function __construct(SyncTemplateM2nColmun $m2n)
+    function __construct(SyncTemplateM2nColumn $m2n)
     {
         $this->m2n = $m2n;
     }
@@ -14,7 +14,7 @@ class SyncTemplateM2nColumnController extends \BaseController
     public function store()
     {
         $input = Input::all();
-        $v = Validator::make($input, SyncTemplateM2nColmun::$rules);
+        $v = Validator::make($input, SyncTemplateM2nColumn::$rules);
 
         if ($v->passes()) {
             $this->m2n->create($input);
@@ -27,7 +27,7 @@ class SyncTemplateM2nColumnController extends \BaseController
 
     public function destroy($id)
     {
-        $row = SyncTemplateM2nColmun::where('id', '=', intval($id))->firstOrFail();
+        $row = SyncTemplateM2nColumn::where('id', '=', intval($id))->firstOrFail();
 
         if ($row) {
             $this->m2n->find($row->id)->delete();

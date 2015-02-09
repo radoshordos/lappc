@@ -28,10 +28,10 @@ class ManualSyncImport
 
     public function getColumnsName($template_id)
     {
-        return \DB::table('sync_template_m2n_colmun')
-            ->leftJoin('sync_csv_column', 'sync_template_m2n_colmun.column_id', '=', 'sync_csv_column.id')
-            ->where('sync_template_m2n_colmun.template_id', '=', $template_id)
-            ->orderBy('sync_template_m2n_colmun.id')
+        return \DB::table('sync_template_m2n_column')
+            ->leftJoin('sync_csv_column', 'sync_template_m2n_column.column_id', '=', 'sync_csv_column.id')
+            ->where('sync_template_m2n_column.template_id', '=', $template_id)
+            ->orderBy('sync_template_m2n_column.id')
             ->get(['sync_csv_column.element']);
     }
 

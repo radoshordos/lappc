@@ -60,6 +60,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('MixtureDevTableSeeder');
 		$this->call('MixtureDevM2nDevTableSeeder');
 		$this->call('ProdDifferenceValuesSeeder');
+		$this->call('RecordSyncImportSeeder');
 
 		$this->call('ProdTableSeeder');
 		$this->call('ItemsSeeder');

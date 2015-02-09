@@ -55,9 +55,6 @@ class MixtureOnlyOneDev extends TaskMessage implements iRun
                                 ) AND id > 1
         ');
 
-		var_dump($results);
-		die;
-
 		if ($results) {
 			foreach ($results as $val) {
 				\DB::transaction(function () use ($val) {

@@ -46,6 +46,11 @@ class ViewProdMapper {
 		$entry->setDevId($row->dev_id);
 		$entry->setDevName($row->dev_name);
 		$entry->setDevAlias($row->dev_alias);
+		$entry->setAkcePrice($row->akce_price);
+		$entry->setAkceSaleMultiple($row->akce_sale_multiple);
+		$entry->setAkceTemplateId($row->akce_template_id);
+		$entry->setAkceTemplateBonusTitle($row->akce_template_bonus_title);
+		$entry->setAkceMinitextName($row->akce_minitext_name);
 		return $entry;
 	}
 }

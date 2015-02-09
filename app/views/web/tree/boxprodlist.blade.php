@@ -6,7 +6,7 @@
             ?>
             <li class="prod th radius">
                 <a href="{{ $vpa->getProdUrl(); }}">
-                    <h3>{{ $vpa->getProdNameWithBonus() }} [{{$vpa->getProdSearchSell() }}]</h3>
+                    <h3>{{ $vpa->getProdNameWithBonus() }}</h3>
                     @if ($vpa->getProdModeId() == 4 && !empty($vpa->getAkceMinitextName()))
                         <span class="akce">{{ $vpa->getAkceMinitextName() }}</span>
                     @endif

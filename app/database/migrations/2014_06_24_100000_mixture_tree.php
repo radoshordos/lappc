@@ -5,21 +5,19 @@ use Illuminate\Database\Schema\Blueprint;
 
 class MixtureTree extends Migration
 {
+	public function up()
+	{
+		Schema::create('mixture_tree', function (Blueprint $table) {
+			$table->increments('id')->unsigned();
+			$table->enum('purpose', ['ppc'])->default('ppc');
+			$table->string('name', '160')->unique();
 
-    public function up()
-    {
-        Schema::create('mixture_tree', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->enum('purpose', ['ppc'])->default('ppc');
-            $table->string('name', '160')->unique();
+			$table->engine = 'InnoDB';
+		});
+	}
 
-            $table->engine = 'InnoDB';
-        });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('mixture_tree');
-    }
-
+	public function down()
+	{
+		Schema::dropIfExists('mixture_tree');
+	}
 }

@@ -89,7 +89,8 @@ Hromadné akce
             <th>{{ Form::checkbox('select_all', NULL ,NULL, ['id'=>'select_all']) }}</th>
             <th>Kód</th>
             <th>Název</th>
-            <th>Cena</th>
+            <th>Bežná / akční cena</th>
+            <th>Rozdíl</th>
         </tr>
     </thead>
     <tbody>
@@ -108,7 +109,12 @@ Hromadné akce
             @else
                 <td class="col-xs-4"></td>
             @endif
-            <td>{{ $pf->priceWithCurrencyWith($row->prod_price,$row->prod_forex_id) }} / {{ $pf->priceWithCurrencyWith((($row->sync_db_price_internet != NULL) ? $row->sync_db_price_internet : $row->sync_db_price_action),$row->prod_forex_id) }}</td>
+            <td>{{ ($row->prod_price ? round($row->prod_price) : "A/N") }} / {{ $row->sync_db_price_internet != NULL ? round($row->sync_db_price_internet) : round($row->sync_db_price_action) }}</td>
+            @if (isset($row->prod_price))
+            <td>{{ round($row->prod_price) - ($row->sync_db_price_internet != NULL ? round($row->sync_db_price_internet) : round($row->sync_db_price_action)) }}</td>
+            @else
+            <td></td>
+            @endif
         </tr>
         @endforeach
     </tbody>

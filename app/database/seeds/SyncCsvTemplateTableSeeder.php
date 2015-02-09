@@ -7,7 +7,7 @@ class SyncCsvTemplateTableSeeder extends Seeder
 		DB::table('sync_csv_template')->delete();
 
 		$sync_csv_template = [
-			['id' => '4', 'mixture_dev_id' => '23', 'trigger_column_count' => '4', 'created_at' => '0000-00-00 00:00:00', 'updated_at' => '0000-00-00 00:00:00']
+			['id' => '5', 'mixture_dev_id' => '9', 'trigger_column_count' => '4', 'created_at' => '2015-02-09 20:50:51', 'updated_at' => '2015-02-09 20:50:51']
 		];
 
 		foreach ($sync_csv_template as $row) {
