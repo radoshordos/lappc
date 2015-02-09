@@ -32,11 +32,11 @@ class MixtureOnlyOneDev extends TaskMessage implements iRun
 
 		$all = Dev::select('id')
 			->whereNotIn('id', MixtureDevM2nDev::select('dev_id')
-					->where('mixture_dev_id', '=', $row_all->id)->get()->toArray() + ['-1'])
+			->where('mixture_dev_id', '=', $row_all->id)->get()->toArray() + ['-1'])
 			->where('id', '>', '1')->get();
 
 		foreach ($all as $row) {
-			MixtureDevM2nDev::create(['mixture_dev_id' => $row_all->id,'dev_id' => $row->id]);
+			MixtureDevM2nDev::create(['mixture_dev_id' => $row_all->id, 'dev_id' => $row->id]);
 		}
 	}
 
@@ -53,8 +53,10 @@ class MixtureOnlyOneDev extends TaskMessage implements iRun
                                         WHERE mixture_dev.purpose = "autosimple"
                                     )
                                 ) AND id > 1
-
         ');
+
+		var_dump($results);
+		die;
 
 		if ($results) {
 			foreach ($results as $val) {
