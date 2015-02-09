@@ -94,6 +94,7 @@ class ManualSyncImport
         foreach ($arr as $val) {
 
             $val = array_map('trim', $val);
+            $val['record_id'] = $record_id;
             $val['purpose'] = $this->import_type;
             $val['created_at'] = $date;
 
