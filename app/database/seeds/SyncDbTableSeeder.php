@@ -107,7 +107,7 @@ class SyncDbTableSeeder extends Seeder
 		];
 
 		foreach ($sync_db as $row) {
-			DB::table('sync_csv_template')->insert([
+			DB::table('sync_db')->insert([
 				'id'        => $row['id'],
 				'purpose'   => $row['purpose'],
 				'item_id'   => $row['item_id'],
