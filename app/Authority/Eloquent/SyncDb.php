@@ -5,6 +5,7 @@ class SyncDb extends \Eloquent
     protected $table = 'sync_db';
     protected $guarded = [];
 
+    public $timestamps = FALSE;
     public $incrementing = TRUE;
 
     public static $rules = [
