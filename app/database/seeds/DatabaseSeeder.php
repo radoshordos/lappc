@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('ProdDescriptionSeeder');
 
 		$this->call('SyncCsvTemplateTableSeeder');
-		$this->call('SyncTemplateM2nColmunTableSeeder');
+		$this->call('SyncTemplateM2nColumnTableSeeder');
 		$this->call('SyncDbTableSeeder');
 		$this->call('AkceTemplateSeeder');
 		$this->call('ProdDifferenceSetSeeder');
