@@ -106,7 +106,6 @@ class SyncDbTableSeeder extends Seeder
 			['id' => '194', 'purpose' => 'action', 'item_id' => '3607', 'record_id' => '1423516450', 'dev_id' => '30', 'code_prod' => 'WK80', 'code_ean' => NULL, 'name' => 'Dolmar WK80', 'desc' => 'Ruční zametač 80cm', 'price_standard' => NULL, 'price_action' => '8990.00', 'price_internet' => NULL, 'availability_count' => NULL, 'weight' => NULL, 'warranty' => NULL, 'categorytext' => NULL, 'url' => NULL, 'count_accessory' => '0', 'count_file' => '0', 'count_img' => '0', 'created_at' => '2015-02-09 21:14:10', 'updated_at' => '2015-02-09 21:14:10']
 		];
 
-
 		foreach ($sync_db as $row) {
 			DB::table('sync_db')->insert([
 				'id'         => $row['id'],

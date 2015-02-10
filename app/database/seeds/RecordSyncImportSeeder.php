@@ -14,6 +14,7 @@ class RecordSyncImportSeeder extends Seeder
 			DB::table('record_sync_import')->insert([
 				'id'                  => $row['id'],
 				'template_id'         => $row['template_id'],
+				'purpose'             => $row['purpose'],
 				'name'                => $row['name'],
 				'item_counter_all'    => $row['item_counter_all'],
 				'item_counter_insert' => $row['item_counter_insert'],
