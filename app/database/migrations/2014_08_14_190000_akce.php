@@ -15,8 +15,7 @@ class Akce extends Migration {
             $table->tinyInteger('akce_sale_id')->unsigned()->default(1);
             $table->tinyInteger('akce_availability_id')->unsigned()->default(1);
             $table->decimal('akce_price', 9, 2)->unsigned()->default(0);
-            $table->timestamp('akce_created_at')->default('0000-00-00 00:00:00');
-            $table->timestamp('akce_updated_at')->default('0000-00-00 00:00:00');
+            $table->timestamps();
 			$table->engine = 'InnoDB';
 
             $table->foreign('akce_prod_id')->references('id')->on('prod')->onUpdate('cascade')->onDelete('cascade');

@@ -25,7 +25,9 @@ class ViewProdWorker extends ViewProdModel
 	private function calculatePrice()
 	{
 		if ($this->getProdModeId() == 4) {
-			return $this->getAkcePrice();
+			if ($this->getAkcePrice() > 0) {
+				return $this->getAkcePrice();
+			}
 		}
 		return $this->getProdPrice() * $this->getProdSaleMultiple();
 	}

@@ -14,9 +14,6 @@
             $("#list_prod").select2({});
             $("#tree_id").select2({});
             $("#dev_id").select2({});
-            $("#akce_template_id").select2({
-                allowClear: true
-            });
             $('#myTab a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');

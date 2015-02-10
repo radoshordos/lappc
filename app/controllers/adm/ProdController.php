@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\Akce;
 use Authority\Eloquent\AkceTempl;
+use Authority\Eloquent\AkceSale;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\Prod;
@@ -127,8 +128,8 @@ class ProdController extends \BaseController
 		return View::make('adm.product.prod.create', [
 			'input'               => $input,
 			'cpm'                 => $cpm,
-			'select_tree'         => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all AND tree_group_id BETWEEN 20 AND 39", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], true),
-			'select_dev'          => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], true),
+			'select_tree'         => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all AND tree_group_id BETWEEN 20 AND 39", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], TRUE),
+			'select_dev'          => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], TRUE),
 			'select_warranty'     => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
 			'select_dph'          => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
 			'select_forex'        => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
@@ -136,8 +137,8 @@ class ProdController extends \BaseController
 			'select_sale'         => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
 			'select_difference'   => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
 			'select_availability' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-			'select_media_var'    => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], true),
-			'select_grab'         => SB::option("SELECT id,name FROM grab_profile WHERE active = 1", ['id' => '->name'], true)
+			'select_media_var'    => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
+			'select_grab'         => SB::option("SELECT id,name FROM grab_profile WHERE active = 1", ['id' => '->name'], TRUE)
 		]);
 	}
 
@@ -261,7 +262,7 @@ class ProdController extends \BaseController
 			->where('id', '=', $true_prod)
 			->first();
 
-		$select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name FROM tree INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1 WHERE dir_all > 0", ['id' => '[->id] - [->absolute] - ->name'], true);
+		$select_tree = SB::option("SELECT tree.id,tree.absolute,tree.name FROM tree INNER JOIN tree_dev ON tree.id = tree_dev.tree_id AND tree_dev.dev_id = 1 WHERE dir_all > 0", ['id' => '[->id] - [->absolute] - ->name'], TRUE);
 		$list_prod = SB::optionBind("SELECT id,mode_id,name,ic_all FROM prod WHERE tree_id = ?", [$tree], ['id' => '->name | [m:->mode_id] | [i:->ic_all]']);
 
 
@@ -293,7 +294,7 @@ class ProdController extends \BaseController
 					->join('akce_availability', 'akce_template.availability_id', '=', 'akce_availability.id')
 					->join('akce_minitext', 'akce_template.minitext_id', '=', 'akce_minitext.id')
 					->where('akce_template.id', '>', '1')
-					->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - [Titulek: \'->akce_template_bonus_title\']'], true);
+					->get(), ['akce_template_id' => '[->mixture_dev_name] - [&#8721;=->akce_count] - [->akce_minitext_name] - [->akce_availability_name] - [Titulek: \'->akce_template_bonus_title\']'], TRUE);
 			}
 
 			return View::make('adm.product.prod.edit', [
@@ -312,8 +313,9 @@ class ProdController extends \BaseController
 				'select_difference'          => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
 				'select_availability'        => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
 				'select_availability_action' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1", ['id' => '->name']),
-				'select_media_var'           => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], true),
+				'select_media_var'           => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
 				'select_akce_template'       => $select_akce_template,
+				'select_akce_sale'           => SB::optionEloqent(AkceSale::select(['id', 'desc'])->where('visible', '=', '1')->orderBy('id')->get(), ['id' => '->desc'], FALSE),
 				'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
 				'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->orderBy('id')->get(),
 				'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get()->toArray(),
@@ -355,8 +357,7 @@ class ProdController extends \BaseController
 		}
 
 		if (Input::has("save-action")) {
-			$ainput = array_only($input, ['akce_id', 'akce_prod_id', "akce_template_id", "akce_price"]);
-			$ainput['akce_updated_at'] = DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now'));
+			$ainput = array_only($input, ['akce_id', 'akce_prod_id', 'akce_sale_id', "akce_template_id", "akce_price"]);
 			if (intval($ainput['akce_template_id']) > 1) {
 				$akce = Akce::where('akce_id', '=', $ainput['akce_id'])->first();
 				$akce->setKeyName('akce_id');
