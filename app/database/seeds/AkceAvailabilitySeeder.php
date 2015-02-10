@@ -13,7 +13,7 @@ class AkceAvailabilitySeeder extends Seeder
 		];
 
 		foreach ($akce_availability as $row) {
-			DB::table('akce_template')->insert([
+			DB::table('akce_availability')->insert([
 				'id'     => $row['id'],
 				'origin' => $row['origin'],
 				'name'   => $row['name']
