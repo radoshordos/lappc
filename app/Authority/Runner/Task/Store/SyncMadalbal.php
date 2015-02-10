@@ -31,6 +31,7 @@ class SyncMadalbal extends AbstractSync implements iSync
         return self::DEV_NAME . "-" . date('Y-m') . ".xml";
     }
 
+
     public function runSynchronizeData()
     {
         $all = $suc = 0;
