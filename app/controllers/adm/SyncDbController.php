@@ -15,7 +15,7 @@ class SyncDbController extends \BaseController
             $select_categorytext = SB::optionEloqent(SyncDb::select('categorytext')->whereIn('purpose', ['manualsync', 'autosync'])->whereIn('sync_db.dev_id', $dev)->distinct()->get(), ['categorytext' => '->categorytext'], TRUE);
         }
 
-        if (strlen(Input::get('select_connect')) == 0 || count($dev) == 0) {
+        if (strlen(Input::get('select_connect')) == 0 || (count($dev) == 0 && !empty(Input::get('select_mixture_dev'))))   {
 
             return View::make('adm.sync.db.index', [
                 'input'               => Input::all(),
@@ -26,7 +26,9 @@ class SyncDbController extends \BaseController
         } else {
 
             $db = \DB::table('sync_db');
-            $db->whereIn('sync_db.dev_id', $dev);
+            if (Input::has('record') === FALSE || !empty(Input::get('select_mixture_dev'))) {
+                $db->whereIn('sync_db.dev_id', $dev);
+            }
 
             switch (Input::get('select_connect')) {
 
@@ -57,6 +59,10 @@ class SyncDbController extends \BaseController
 
             if (Input::has('categorytext')) {
                 $db->where('categorytext', '=', Input::get('categorytext'));
+            }
+
+            if (Input::has('record')) {
+                $db->where('record_id', '=', Input::get('record'));
             }
 
             switch (Input::get('money')) {
@@ -115,6 +121,7 @@ class SyncDbController extends \BaseController
                 'prod.id AS prod_id',
                 'prod.price AS prod_price',
                 'prod.name AS prod_name',
+                'prod.desc AS prod_desc',
                 'prod.tree_id AS prod_tree_id'
             ]);
 

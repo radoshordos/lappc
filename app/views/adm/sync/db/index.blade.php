@@ -45,7 +45,7 @@ Synchronizační databáze
             allowClear: true
         });
         $("#money").select2({
-            placeholder: "Cena Sync => DB",
+            placeholder: "Cena Sync",
             allowClear: true
         });
     });
@@ -85,8 +85,11 @@ Synchronizační databáze
             <div class="col-xs-4">
                 {{ Form::select('file', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['file']) ? $input['file'] : NULL), ['id'=> 'file', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-2">
                 {{ Form::select('img', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['img']) ? $input['img'] : NULL), ['id'=> 'img', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            </div>
+            <div class="col-xs-2">
+                {{ Form::text('record', (isset($input['record']) ? $input['record'] : NULL), ['required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Record #ID']) }}
             </div>
         </div>
     </form>
@@ -127,7 +130,7 @@ Synchronizační databáze
             <td>{{ $row->items_code_prod }}</td>
             <td>{{ $row->items_code_ean }}</td>
             <td><a href="{{ URL::route('adm.product.prod.edit',[$row->prod_tree_id, $row->prod_id]); }}">{{ $row->prod_name }}</a></td>
-            <td></td>
+            <td>{{ substr($row->prod_desc, 0, 100); }}</td>
             <td class="{{ ($row->sync_price_standard < $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->prod_price }}</td>
         </tr>
         @endif
@@ -146,6 +149,7 @@ Synchronizační databáze
               'select_mixture_dev' => (isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL),
               'join' => (isset($input['join']) ? $input['join'] : NULL),
               'limit' => (isset($input['limit']) ? $input['limit'] : NULL),
+              'record' => (isset($input['record']) ? $input['record'] : NULL),
         ])->links();
     }}
 </div>
