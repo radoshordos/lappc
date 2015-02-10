@@ -89,7 +89,7 @@ Synchronizační databáze
                 {{ Form::select('img', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['img']) ? $input['img'] : NULL), ['id'=> 'img', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::text('record', (isset($input['record']) ? $input['record'] : NULL), ['required' => 'required', 'maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Record #ID']) }}
+                {{ Form::text('record', (isset($input['record']) ? $input['record'] : NULL), ['maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Record #ID']) }}
             </div>
         </div>
     </form>
