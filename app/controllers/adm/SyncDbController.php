@@ -7,7 +7,6 @@ class SyncDbController extends \BaseController
 {
     public function index()
     {
-
         $dev = \DB::table('mixture_dev_m2n_dev')->where('mixture_dev_id', Input::get('select_mixture_dev'))->lists('dev_id');
         $select_mixture_dev = SB::option("SELECT * FROM mixture_dev WHERE purpose = 'autosimple' OR purpose = 'devgroup' ORDER BY name", ['id' => '->name'], TRUE);
 
@@ -15,7 +14,7 @@ class SyncDbController extends \BaseController
             $select_categorytext = SB::optionEloqent(SyncDb::select('categorytext')->whereIn('purpose', ['manualsync', 'autosync'])->whereIn('sync_db.dev_id', $dev)->distinct()->get(), ['categorytext' => '->categorytext'], TRUE);
         }
 
-        if (strlen(Input::get('select_connect')) == 0 || (count($dev) == 0 && !empty(Input::get('select_mixture_dev'))))   {
+        if (strlen(Input::get('select_connect')) == 0 || (count($dev) == 0 && Input::has('record') === FALSE))   {
 
             return View::make('adm.sync.db.index', [
                 'input'               => Input::all(),
@@ -26,7 +25,7 @@ class SyncDbController extends \BaseController
         } else {
 
             $db = \DB::table('sync_db');
-            if (Input::has('record') === FALSE || !empty(Input::get('select_mixture_dev'))) {
+            if (Input::has('record') === FALSE && intval(Input::get('select_mixture_dev')) > 0) {
                 $db->whereIn('sync_db.dev_id', $dev);
             }
 

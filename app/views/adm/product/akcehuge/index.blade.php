@@ -109,9 +109,9 @@ Hromadné akce
             @else
                 <td class="col-xs-4"></td>
             @endif
-            <td>{{ ($row->prod_price ? round($row->prod_price) : "A/N") }} / {{ $row->sync_db_price_internet != NULL ? round($row->sync_db_price_internet) : round($row->sync_db_price_action) }}</td>
+            <td>{{ ($row->prod_price ? round($row->prod_price) : "A/N") }} / {{ round($row->sync_db_price_action) }}</td>
             @if (isset($row->prod_price))
-            <td>{{ round($row->prod_price) - ($row->sync_db_price_internet != NULL ? round($row->sync_db_price_internet) : round($row->sync_db_price_action)) }}</td>
+            <td>{{ round($row->prod_price) - round($row->sync_db_price_action) }}</td>
             @else
             <td></td>
             @endif

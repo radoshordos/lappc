@@ -19,7 +19,6 @@ class AkceHugeController extends \BaseController
 				'sync_db.item_id AS sync_db_item_id',
 				'sync_db.code_prod AS sync_db_code_prod',
 				'sync_db.price_action AS sync_db_price_action',
-				'sync_db.price_internet AS sync_db_price_internet',
 				'prod.id AS prod_id',
 				'prod.mode_id AS prod_mode_id',
 				'prod.tree_id AS prod_tree_id',
@@ -51,8 +50,6 @@ class AkceHugeController extends \BaseController
 			->join('mixture_dev', 'sync_csv_template.mixture_dev_id', '=', 'mixture_dev.id')
 			->where('record_sync_import.id', '=', Input::get('select_action_record'))
 			->pluck('mixture_dev_id');
-
-		var_dump($mixture_dev);
 
 		$template = NULL;
 		if (!empty($mixture_dev)) {

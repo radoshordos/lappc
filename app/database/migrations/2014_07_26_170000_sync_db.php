@@ -20,7 +20,6 @@ class SyncDb extends Migration
             $table->string('desc', 160)->nullable();
             $table->decimal('price_standard', 9, 2)->unsigned()->nullable();
             $table->decimal('price_action', 9, 2)->unsigned()->nullable();
-            $table->decimal('price_internet', 9, 2)->unsigned()->nullable();
             $table->integer('availability_count')->nullable();
             $table->float('weight')->unsigned()->nullable();
             $table->smallInteger('warranty')->unsigned()->nullable();

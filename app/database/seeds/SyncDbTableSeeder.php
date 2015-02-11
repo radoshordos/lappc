@@ -108,16 +108,17 @@ class SyncDbTableSeeder extends Seeder
 
 		foreach ($sync_db as $row) {
 			DB::table('sync_db')->insert([
-				'id'         => $row['id'],
-				'purpose'    => $row['purpose'],
-				'record_id'  => $row['record_id'],
-				'item_id'    => $row['item_id'],
-				'dev_id'     => $row['dev_id'],
-				'code_prod'  => $row['code_prod'],
-				'name'       => $row['name'],
-				'desc'       => $row['desc'],
-				'created_at' => $row['created_at'],
-				'updated_at' => $row['updated_at']
+				'id'           => $row['id'],
+				'purpose'      => $row['purpose'],
+				'record_id'    => $row['record_id'],
+				'item_id'      => $row['item_id'],
+				'dev_id'       => $row['dev_id'],
+				'code_prod'    => $row['code_prod'],
+				'price_action' => $row['price_action'],
+				'name'         => $row['name'],
+				'desc'         => $row['desc'],
+				'created_at'   => $row['created_at'],
+				'updated_at'   => $row['updated_at']
 			]);
 		}
 	}

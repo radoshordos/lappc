@@ -120,7 +120,7 @@ class Prod extends Migration
 
 				IF NEW.mode_id = 4 AND OLD.mode_id != 4
 					THEN
-						INSERT INTO akce (akce_prod_id,akce_created_at) VALUES (NEW.id,NOW());
+						INSERT INTO akce (akce_prod_id,created_at) VALUES (NEW.id,NOW());
 				END IF;
 				IF OLD.mode_id = 4 AND NEW.mode_id != 4
 					THEN
