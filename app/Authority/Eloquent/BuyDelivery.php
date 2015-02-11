@@ -1,8 +1,8 @@
 <?php namespace Authority\Eloquent;
 
-class BuyTransport extends \Eloquent
+class BuyDelivery extends \Eloquent
 {
-	protected $table = 'buy_transport';
+	protected $table = 'buy_delivery';
 	protected $guarded = [];
 
 	public $timestamps = FALSE;

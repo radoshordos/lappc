@@ -4,60 +4,60 @@
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">
-                    {{ Form::label('fullname','Celé jméno',['class' => 'prefix']) }}
+                    {{ Form::label('c_fullname','Celé jméno',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 columns">
-                    {{ Form::text('fullname',$customer['fullname'],['id' => 'fullname','required' => 'required','maxlength' => 128]) }}
+                    {{ Form::text('c_fullname',$customer['c_fullname'],['id' => 'c_fullname','required' => 'required','maxlength' => 128]) }}
                 </div>
             </div>
         </div>
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">
-                    {{ Form::label('street','Ulice a čp.',['class' => 'prefix']) }}
+                    {{ Form::label('c_street','Ulice a čp.',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 columns">
-                    {{ Form::text('street',$customer['street'],['id' => 'street','required' => 'required','maxlength' => 128]) }}
+                    {{ Form::text('c_street',$customer['c_street'],['id' => 'c_street','required' => 'required','maxlength' => 128]) }}
                 </div>
             </div>
         </div>
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">
-                    {{ Form::label('city','Město',['class' => 'prefix']) }}
+                    {{ Form::label('c_city','Město',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 columns">
-                    {{ Form::text('city',$customer['city'],['id' => 'city','required' => 'required','maxlength' => 128]) }}
+                    {{ Form::text('c_city',$customer['c_city'],['id' => 'c_city','required' => 'required','maxlength' => 128]) }}
                 </div>
             </div>
         </div>
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">
-                    {{ Form::label('postcode','PSČ',['class' => 'prefix']) }}
+                    {{ Form::label('c_post_code','PSČ',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 columns">
-                    {{ Form::text('postcode',$customer['postcode'],['id' => 'postcode','required' => 'required','maxlength' => 6]) }}
+                    {{ Form::text('c_post_code',$customer['c_post_code'],['id' => 'c_post_code','required' => 'required','maxlength' => 6]) }}
                 </div>
             </div>
         </div>
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">
-                    {{ Form::label('phone','Telefon',['class' => 'prefix']) }}
+                    {{ Form::label('c_phone','Telefon',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 columns">
-                    {{ Form::text('phone',$customer['phone'],['id' => 'phone','required' => 'required','maxlength' => 15]) }}
+                    {{ Form::text('c_phone',$customer['c_phone'],['id' => 'c_phone','required' => 'required','maxlength' => 15]) }}
                 </div>
             </div>
         </div>
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">
-                    {{ Form::label('email','E-mail',['class' => 'prefix']) }}
+                    {{ Form::label('c_email','E-mail',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 columns">
-                    {{ Form::email('email',$customer['email'],['id' => 'email','required' => 'required','maxlength' => 128]) }}
+                    {{ Form::email('c_email',$customer['c_email'],['id' => 'c_email','required' => 'required','maxlength' => 128]) }}
                 </div>
             </div>
         </div>

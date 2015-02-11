@@ -5,7 +5,7 @@ class BuyPayment extends \Eloquent
 	protected $table = 'buy_payment';
 	protected $guarded = [];
 
-	public $timestamps = false;
+	public $timestamps = FALSE;
 
 	public static $rules = [];
 }

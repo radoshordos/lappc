@@ -7,14 +7,14 @@
 {{-- Content --}}
 @section('content')
 
-{{ Form::open(array('route' => 'adm.buy.toptrans.index','class' => 'form-horizontal', 'role' => 'form')) }}
+{{ Form::open(['route' => 'adm.buy.toptrans.index','class' => 'form-horizontal', 'role' => 'form']) }}
 
 <div class="row" style="margin-bottom: 5px">
     <div class="col-lg-6">
         <div class="input-group">
-            {{ Form::text('zasilka',"9000036/001",array('required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Číslo zásilky')) }}
+            {{ Form::text('zasilka',"9000036/001",['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Číslo zásilky']) }}
             <span class="input-group-btn">
-            {{ Form::submit('Go!', array('class' => 'btn btn-success')) }}
+            {{ Form::submit('Go!', ['class' => 'btn btn-success']) }}
             </span>
         </div>
     </div>

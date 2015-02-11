@@ -2,10 +2,10 @@
 
 class BuyOrderDb extends \Eloquent
 {
-    protected $table = 'buy_order_db';
-    protected $guarded = [];
+	protected $table = 'buy_order_db';
+	protected $guarded = [];
 
-    public $timestamps = true;
+	public $timestamps = TRUE;
 
-    public static $rules = [];
+	public static $rules = [];
 }
