@@ -253,12 +253,15 @@ class KosikController extends Controller
 
 		if (Input::has('kup-si-me')) {
 
+			$products_total_price = BuyOrderDbItems::select([\DB::raw("SUM(item_price * item_count) AS total_price")])->where('sid', '=', $this->sid)->pluck('total_price');
+
 			\DB::beginTransaction();
 			$bod = BuyOrderDb::create([
-				'sid'         => $this->sid,
-				"remote_addr" => Request::getClientIp(),
-				"netbios"     => gethostbyaddr(Request::getClientIp()),
-				"browser"     => (isset($_SERVER['HTTP_USER_AGENT']) ? substr(strip_tags($_SERVER['HTTP_USER_AGENT']), 0, 510) : NULL),
+				'sid'                  => $this->sid,
+				"remote_addr"          => Request::getClientIp(),
+				"netbios"              => gethostbyaddr(Request::getClientIp()),
+				"browser"              => (isset($_SERVER['HTTP_USER_AGENT']) ? substr(strip_tags($_SERVER['HTTP_USER_AGENT']), 0, 510) : NULL),
+				'products_total_price' => $products_total_price
 			]);
 
 			$bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
