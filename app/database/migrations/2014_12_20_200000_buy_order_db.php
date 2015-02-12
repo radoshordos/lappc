@@ -17,7 +17,7 @@ class BuyOrderDb extends Migration
 			$table->string('browser', 512);
 			$table->decimal('products_total_price', 11, 2)->unsigned()->default(0);
 			$table->decimal('delivery_price', 11, 2)->unsigned()->default(0);
-			$table->decimal('delivery_price', 11, 2)->unsigned()->default(0);
+			$table->decimal('payment_price', 11, 2)->unsigned()->default(0);
 			$table->timestamps();
 
 			$table->engine = 'InnoDB';

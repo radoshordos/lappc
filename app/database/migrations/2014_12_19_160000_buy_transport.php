@@ -18,7 +18,7 @@ class BuyTransport extends Migration
 			$table->decimal('price_start', 11, 2)->unsigned();
 			$table->decimal('price_end', 11, 2)->unsigned();
 			$table->decimal('weight_start', 8, 3)->unsigned();
-			$table->decimal('weight_start', 8, 3)->unsigned();
+			$table->decimal('weight_end', 8, 3)->unsigned();
 
 			$table->engine = 'InnoDB';
 			$table->foreign('transport_type_id')->references('id')->on('buy_transport_type')->onUpdate('cascade')->onDelete('no action');

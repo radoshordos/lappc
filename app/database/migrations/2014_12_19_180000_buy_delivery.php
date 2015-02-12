@@ -23,5 +23,4 @@ class BuyDelivery extends Migration
 	{
 		Schema::dropIfExists('buy_delivery');
 	}
-
 }
