@@ -15,10 +15,9 @@ class BuyOrderDb extends Migration
 			$table->string('remote_addr', 512);
 			$table->string('netbios', 512);
 			$table->string('browser', 512);
-
-			$table->double('products_total_price')->default(0);
-			$table->double('delivery_price')->default(0);
-			$table->double('payment_price')->default(0);
+			$table->decimal('products_total_price', 11, 2)->unsigned()->default(0);
+			$table->decimal('delivery_price', 11, 2)->unsigned()->default(0);
+			$table->decimal('delivery_price', 11, 2)->unsigned()->default(0);
 			$table->timestamps();
 
 			$table->engine = 'InnoDB';

@@ -13,7 +13,12 @@ class BuyTransport extends Migration
 			$table->tinyInteger('transport_type_id')->unsigned();
 			$table->boolean('active')->default(1);
 			$table->string('alias',32)->uniqie();
-			$table->string('name', '64')->unique();
+			$table->string('name', '64');
+			$table->string('desc', '96')->unique();
+			$table->decimal('price_start', 11, 2)->unsigned();
+			$table->decimal('price_end', 11, 2)->unsigned();
+			$table->decimal('weight_start', 8, 3)->unsigned();
+			$table->decimal('weight_start', 8, 3)->unsigned();
 
 			$table->engine = 'InnoDB';
 			$table->foreign('transport_type_id')->references('id')->on('buy_transport_type')->onUpdate('cascade')->onDelete('no action');
