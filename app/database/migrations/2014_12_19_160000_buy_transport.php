@@ -15,8 +15,8 @@ class BuyTransport extends Migration
 			$table->string('alias',32)->uniqie();
 			$table->string('name', '64');
 			$table->string('desc', '96')->unique();
-			$table->decimal('price_start', 11, 2)->unsigned();
-			$table->decimal('price_end', 11, 2)->unsigned();
+			$table->double('price_start')->unsigned();
+			$table->double('price_end')->unsigned();
 			$table->decimal('weight_start', 8, 3)->unsigned();
 			$table->decimal('weight_end', 8, 3)->unsigned();
 

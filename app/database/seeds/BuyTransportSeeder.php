@@ -51,7 +51,7 @@ class BuyTransportSeeder extends Seeder
 			'desc'              => 'Balík | 0-10000 | 30-100',
 			'price_start'       => 0,
 			'price_end'         => 10000,
-			'weight_start'      => 30.0001,
+			'weight_start'      => 30.001,
 			'weight_end'        => 100
 		]);
 
