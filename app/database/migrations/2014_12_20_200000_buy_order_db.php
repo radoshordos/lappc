@@ -23,11 +23,12 @@ class BuyOrderDb extends Migration
 			$table->engine = 'InnoDB';
 			$table->foreign('order_status_id')->references('id')->on('buy_order_status')->onUpdate('cascade')->onDelete('no action');
 		});
+
+        \DB::unprepared("ALTER TABLE buy_order_db AUTO_INCREMENT = 10001;");
 	}
 
 	public function down()
 	{
 		Schema::dropIfExists('buy_order_db');
 	}
-
 }
