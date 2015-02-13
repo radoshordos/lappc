@@ -11,6 +11,8 @@ use Authority\Eloquent\ViewTree;
 class KosikController extends Controller
 {
 	CONST SIFRA = 'VeRY_STRoN1G_SeECREET_PAS3WoRD:-]';
+	CONST KOSIKSPACE = 'kosik';
+
 	private $sid;
 	private $term;
 
@@ -34,7 +36,7 @@ class KosikController extends Controller
 		if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
 
 			return View::make('web.kosik_krok2', [
-				'namespace'          => 'kosik',
+				'namespace'          => self::KOSIKSPACE,
 				'krok'               => 2,
 				'sid'                => $this->sid,
 				'term'               => $this->term,
@@ -73,7 +75,7 @@ class KosikController extends Controller
 
 		if (Input::get('krok') == 'souhrn-objednavky') {
 			return View::make('web.kosik_krok3', [
-				'namespace'          => 'kosik',
+				'namespace'          => self::KOSIKSPACE,
 				'krok'               => 3,
 				'sid'                => $this->sid,
 				'term'               => $this->term,
@@ -114,28 +116,30 @@ class KosikController extends Controller
 			Session::regenerate(TRUE);
 
 			return View::make('web.kosik_complete', [
-				'namespace' => 'kosik',
+				'namespace' => self::KOSIKSPACE,
 				'term'      => $this->term
 			]);
 		}
 
+		$weight_sum = BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
+			->join('items', 'buy_order_db_items.item_id', '=', 'items.id')
+			->join('prod', 'items.prod_id', '=', 'prod.id')
+			->where('sid', '=', $this->sid)
+			->pluck('weight_sum');
+
 		return View::make('web.kosik_krok1', [
-			'namespace'          => 'kosik',
+			'namespace'          => self::KOSIKSPACE,
 			'krok'               => 1,
 			'sid'                => $this->sid,
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
-			'buy_transport'      => BuyTransport::where('active', '=', 1)->get(),
+			'buy_transport'      => BuyTransport::where('active', '=', 1)->where('weight_start', '<', $weight_sum)->where('weight_end', '>=', $weight_sum)->get(),
 			'buy_payment'        => BuyPayment::where('active', '=', 1)->get(),
 			'view_tree_actual'   => $view_tree_actual,
 			'term'               => $this->term,
 			'cena_celkem'        => 0, // Zero OK
 			'customer'           => BuyOrderDbCustomer::select(["delivery_id", "payment_id"])->where('sid', '=', $this->sid)->first(),
-			'weight_sum'         => BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
-				->join('items', 'buy_order_db_items.item_id', '=', 'items.id')
-				->join('prod', 'items.prod_id', '=', 'prod.id')
-				->where('sid', '=', $this->sid)
-				->pluck('weight_sum')
+			'weight_sum'         => $weight_sum
 		]);
 	}
 

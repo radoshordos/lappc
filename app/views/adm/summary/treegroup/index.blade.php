@@ -12,21 +12,25 @@ Rozdělení nadskupin
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-bordered table-hover table-striped table-condensed">
             <thead>
-                <th>#ID</th>
-                <th>Název</th>
-                <th>Specifický<br />alias</th>
-                <th>Vkládatelné<br /> produkty</th>
-                <th>Nadskupina</th>
+                <tr>
+                    <th>#ID</th>
+                    <th>Název</th>
+                    <th>Specifický<br />alias</th>
+                    <th>Vkládatelné<br /> produkty</th>
+                    <th>Nadskupina</th>
+                </tr>
             </thead>
-            @foreach ($treegroup as $tgt)
-            <tr>
-                <td>{{ $tgt->id }}</td>
-                <td>{{ $tgt->name }}</td>
-                <td>{{ $tgt->type }}</td>
-                <td>{{ ($tgt->for_prod == 1 ? 'ANO' : 'NE') }}</td>
-                <td>{{ $tgt->treeGroupTop->name }}</td>
-            </tr>
-            @endforeach
+            <tbody>
+                @foreach ($treegroup as $tgt)
+                <tr>
+                    <td>{{ $tgt->id }}</td>
+                    <td>{{ $tgt->name }}</td>
+                    <td>{{ $tgt->type }}</td>
+                    <td>{{ ($tgt->for_prod == 1 ? 'ANO' : 'NE') }}</td>
+                    <td>{{ $tgt->treeGroupTop->name }}</td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </div>

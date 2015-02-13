@@ -93,6 +93,9 @@
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.summary.sale.index') }}">Přehled slev</a></li>
                         <li><a href="{{ URL::route('adm.summary.availability.index') }}">Přehled dostupnosti</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.summary.payment.index') }}">Způsoby platby</a></li>
+                        <li><a href="{{ URL::route('adm.summary.transport.index') }}">Způsoby doručení</a></li>
                     </ul>
                 </li>
 

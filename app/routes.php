@@ -73,6 +73,8 @@ Route::group(['prefix' => 'adm'], function () {
         Route::match(['GET', 'POST'], 'sale', ['as' => 'adm.summary.sale.index', 'uses' => 'SummarySaleController@index']);
         Route::match(['GET', 'POST'], 'availability', ['as' => 'adm.summary.availability.index', 'uses' => 'SummaryAvailabilityController@index']);
         Route::get('treevisualization', ['as' => 'adm.summary.treevisualization.index', 'uses' => 'TreeVisualizationController@index']);
+	    Route::get('payment', ['as' => 'adm.summary.payment.index', 'uses' => 'MethodsPaymentController@index']);
+	    Route::get('transport', ['as' => 'adm.summary.transport.index', 'uses' => 'MethodsTransportController@index']);
     });
 
     Route::group(['prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'], function () {

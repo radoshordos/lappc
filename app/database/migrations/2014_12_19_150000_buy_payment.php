@@ -13,6 +13,7 @@ class BuyPayment extends Migration
 			$table->boolean('active')->default(1);
 			$table->string('alias', '32')->unique();
 			$table->string('name', '64')->unique();
+			$table->double('price_payment')->unsigned();
 
 			$table->engine = 'InnoDB';
 			$table->foreign('payment_type_id')->references('id')->on('buy_payment_type')->onUpdate('cascade')->onDelete('no action');
