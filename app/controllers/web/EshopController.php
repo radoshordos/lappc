@@ -8,15 +8,18 @@ use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
+use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Web\Group\TreeMaster;
 
 class EshopController extends BaseController
 {
 	private $view_tree_array;
 	private $term;
+	private $sid;
 
 	public function __construct()
 	{
+		$this->sid = Session::getId();
 		$this->view_tree_array = ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get();
 		$this->term = Input::get('term');
 	}
@@ -28,12 +31,20 @@ class EshopController extends BaseController
 		}
 	}
 
+	protected function buyBoxPrice()
+	{
+		return BuyOrderDbItems::selectRaw('(SELECT ROUND(SUM(buy_order_db_items.item_count * buy_order_db_items.item_price))) AS buy_box_price')
+			->where('sid', '=', $this->sid)
+			->pluck('buy_box_price');
+	}
+
 	protected function isText($urlPart)
 	{
 		if (in_array($urlPart, ['kontakt'])) {
 
 			return View::make('web.text', [
 				'namespace'       => 'text',
+				'buy_box_price'   => $this->buyBoxPrice(),
 				'view_tree_array' => $this->view_tree_array,
 				'term'            => $this->term
 			]);
@@ -62,6 +73,7 @@ class EshopController extends BaseController
 			return View::make('web.prod', [
 				'namespace'        => 'prod',
 				'group'            => 'prod',
+				'buy_box_price'    => $this->buyBoxPrice(),
 				'view_tree_array'  => $this->view_tree_array,
 				'view_tree_actual' => ViewTree::where('tree_id', '=', $view_prod_actual->tree_id)->first(),
 				'view_prod_actual' => $view_prod_actual,
@@ -87,14 +99,15 @@ class EshopController extends BaseController
 			View::make($res::TREE_BLADE_TEMPLATE, [
 				'namespace'        => 'tree',
 				'group'            => $res::TREE_GROUP_TYPE,
+				'buy_box_price'    => $this->buyBoxPrice(),
 				'dev_list'         => $res->getDevList(),
 				'dev_actual'       => $res->getDevActual(),
 				'view_tree_actual' => $res->getViewTreeActual(),
 				'view_prod_array'  => $res->getViewProdPagination(),
 				'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
 				'term'             => Input::get('term'),
-				'store'            => Input::has('store') ? true : false,
-				'action'           => Input::has('action') ? true : false,
+				'store'            => Input::has('store') ? TRUE : FALSE,
+				'action'           => Input::has('action') ? TRUE : FALSE,
 			])
 		);
 	}

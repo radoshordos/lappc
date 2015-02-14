@@ -22,6 +22,13 @@ class KosikController extends Controller
 		$this->term = Input::get('term');
 	}
 
+	protected function buyBoxPrice()
+	{
+		return BuyOrderDbItems::selectRaw('(SELECT ROUND(SUM(buy_order_db_items.item_count * buy_order_db_items.item_price))) AS buy_box_price')
+			->where('sid', '=', $this->sid)
+			->pluck('buy_box_price');
+	}
+
 	public function index()
 	{
 		if (Input::has('delete-buy-item')) {
@@ -39,6 +46,7 @@ class KosikController extends Controller
 				'namespace'          => self::KOSIKSPACE,
 				'krok'               => 2,
 				'sid'                => $this->sid,
+				'buy_box_price'      => $this->buyBoxPrice(),
 				'term'               => $this->term,
 				'cena_celkem'        => 0, // Zero OK
 				'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
@@ -78,6 +86,7 @@ class KosikController extends Controller
 				'namespace'          => self::KOSIKSPACE,
 				'krok'               => 3,
 				'sid'                => $this->sid,
+				'buy_box_price'      => $this->buyBoxPrice(),
 				'term'               => $this->term,
 				'cena_celkem'        => 0, // Zero OK,
 				'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
@@ -116,8 +125,9 @@ class KosikController extends Controller
 			Session::regenerate(TRUE);
 
 			return View::make('web.kosik_complete', [
-				'namespace' => self::KOSIKSPACE,
-				'term'      => $this->term
+				'namespace'     => self::KOSIKSPACE,
+				'buy_box_price' => $this->buyBoxPrice(),
+				'term'          => $this->term
 			]);
 		}
 
@@ -131,6 +141,7 @@ class KosikController extends Controller
 			'namespace'          => self::KOSIKSPACE,
 			'krok'               => 1,
 			'sid'                => $this->sid,
+			'buy_box_price'      => $this->buyBoxPrice(),
 			'buy_order_db_items' => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
 			'item_new'           => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
 			'buy_transport'      => BuyTransport::where('active', '=', 1)->where('weight_start', '<', $weight_sum)->where('weight_end', '>=', $weight_sum)->get(),

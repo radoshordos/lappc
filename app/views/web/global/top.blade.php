@@ -12,7 +12,7 @@
                     </li>
                     <li><a href="/kontakt">Kontakt</a></li>
                     <li><a href="#">Přihlásit se</a></li>
-                    <li><a href="/nakupni-kosik"><i class="fa fa-shopping-cart fa-lg"></i> Košík</a></li>
+                    <li><a href="/nakupni-kosik"><i class="fa fa-shopping-cart fa-lg"></i> Košík {{ $buy_box_price }}</a></li>
                 </ul>
                 <ul class="left">
                     @include('web.global.boxsearch')

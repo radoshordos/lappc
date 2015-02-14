@@ -2,7 +2,6 @@
 
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
-use Authority\Web\Query\AjaxTree;
 
 class SearchDataController extends BaseController
 {
