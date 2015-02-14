@@ -23,7 +23,7 @@ class SummaryAvailabilityController extends \BaseController
             'ia' => DB::table('items_availability')
                 ->select(['items_availability.*',
                     DB::raw('(SELECT COUNT(*) FROM items WHERE items.availability_id = items_availability.id) AS availability_items'),
-                    DB::raw('(SELECT COUNT(*) FROM akce WHERE akce.availability_id = items_availability.id) AS availability_akce')
+                    DB::raw('(SELECT COUNT(*) FROM akce WHERE akce.akce_availability_id = items_availability.id) AS availability_akce')
                 ])
                 ->groupBy('items_availability.id')
                 ->get()
