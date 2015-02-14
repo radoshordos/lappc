@@ -25,6 +25,7 @@ class HomeController extends EshopController
 
 		return View::make('web.home', [
 			'namespace'       => 'home',
+			'buy_box_price'   => $this->buyBoxPrice(),
 			'view_tree_array' => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
 			'tree_group'      => TreeGroup::where('type', '=', 'prodlist')->get(),
 			'term'            => Input::get('term')
