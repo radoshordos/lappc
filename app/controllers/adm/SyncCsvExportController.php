@@ -21,7 +21,7 @@ class SyncCsvExportController extends \BaseController
 
 			if (!empty($sdb)) {
 				foreach ($sdb->toArray() as $val) {
-					$line[] = implode(";", $val);
+					$line[] = htmlspecialchars(htmlspecialchars(implode(";", $val)));
 				}
 			}
 		}

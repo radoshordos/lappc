@@ -131,11 +131,11 @@ class KosikController extends Controller
 			]);
 		}
 
-		$weight_sum = BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
+		$weight_sum = doubleval(BuyOrderDbItems::selectRaw('(SELECT SUM(buy_order_db_items.item_count * prod.transport_weight)) AS weight_sum')
 			->join('items', 'buy_order_db_items.item_id', '=', 'items.id')
 			->join('prod', 'items.prod_id', '=', 'prod.id')
 			->where('sid', '=', $this->sid)
-			->pluck('weight_sum');
+			->pluck('weight_sum'));
 
 		return View::make('web.kosik_krok1', [
 			'namespace'          => self::KOSIKSPACE,
