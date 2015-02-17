@@ -1,20 +1,10 @@
 <?php namespace Authority\Feed\Shop;
 
 use Carbon\Carbon;
-use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
 class ZboziCz extends ShopAbstract
 {
-    public function getProd($tree_id)
-    {
-        return ViewProd::leftJoin('tree', 'tree.id', '=', 'view_prod.tree_id')
-            ->where('tree_id', '!=', $tree_id)
-            ->where('prod_mode_id', '>', 2)
-            ->where('prod_search_price', '!=', '9999999')
-            ->get();
-    }
-
     public function feedRender()
     {
         $expiresAt = Carbon::now()->addMinutes(300);
@@ -42,22 +32,3 @@ class ZboziCz extends ShopAbstract
         }
     }
 }
-
-/*
-PRODUCT
-PRODUCTNAME
-URL
-IMGURL
-PRICE_VAT
-MAX_CPC
-DUES
-DELIVERY_DATE
-SHOP_DEPOTS
-ITEM_TYPE
-EXTRA_MESSAGE
-CATEGORYTEXT
-EAN
-PRODUCTNO
-VARIANT
-PRODUCTNAMEEXT
-*/
