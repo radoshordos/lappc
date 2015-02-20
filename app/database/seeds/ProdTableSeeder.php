@@ -26,7 +26,7 @@ class ProdTableSeeder extends Seeder
 					'warranty_id'   => $row['warranty_id'],
 					'dph_id'        => $row['dph_id'],
 					'mode_id'       => ($row['mode_id'] > 3 ? 3 : $row['mode_id']),
-					'difference_id' => $row['difference_id'],
+					'difference_id' => ($row['difference_id'] == 10 ? 10 : $row['difference_id']),
 					'alias'         => $row['alias'],
 					'name'          => $row['name'],
 					'desc'          => $row['des'],

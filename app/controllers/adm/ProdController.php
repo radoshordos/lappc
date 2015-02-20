@@ -236,15 +236,21 @@ class ProdController extends \BaseController
 				break;
 		}
 
+		if (Input::has('select_diff')) {
+			$db->where('prod_difference_id', '=', Input::get('select_diff'));
+		}
+
 		return View::make('adm.product.prod.index', [
 			'view'        => $db->paginate($input_limit),
 			'input_dev'   => Input::has('select_dev') ? intval(Input::get('select_dev')) : NULL,
 			'input_tree'  => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
 			'input_sort'  => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
+			'input_diff'  => Input::has('select_diff') ? intval(Input::get('select_diff')) : NULL,
 			'input_limit' => $input_limit,
 			'search_name' => Input::get('search_name'),
-			'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-			'select_dev'  => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'])
+			'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name'], TRUE),
+			'select_dev'  => SB::option("SELECT * FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], TRUE),
+			'select_diff' => SB::option("SELECT * FROM prod_difference ORDER BY id", ['id' => '[->id] - ->name'], TRUE)
 		]);
 	}
 

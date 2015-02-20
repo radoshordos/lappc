@@ -9,13 +9,21 @@
     <script>
         $(document).ready(function () {
             $("#select_tree").select2({
+                placeholder: "Skupina",
                 minimumResultsForSearch: 3,
                 allowClear: true
             });
             $("#select_dev").select2({
+                placeholder: "Výrobce",
                 minimumResultsForSearch: 3,
                 allowClear: true
             });
+            $("#select_diff").select2({
+                placeholder: "Rozdílnost",
+                minimumResultsForSearch: 3,
+                allowClear: true
+            });
+            $("#select_limit").select2({});
         });
     </script>
 @stop
@@ -26,18 +34,21 @@
     <blockquote>
         <div class="row">
             <div class="col-xs-7">
-                {{ Form::select('select_tree', ['' => 'Skupina'] + $select_tree, $input_tree, ['id'=> 'select_tree', 'class'=> 'form-control']) }}
+                {{ Form::select('select_tree', $select_tree, $input_tree, ['id'=> 'select_tree', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-3">
-                {{ Form::select('select_dev', ['' => 'Výrobce'] + $select_dev, $input_dev, ['id'=> 'select_dev', 'class'=> 'form-control']) }}
+                {{ Form::select('select_dev', $select_dev, $input_dev, ['id'=> 'select_dev', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::select('select_limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], $input_limit, ['id'=> 'select_limit', 'class'=> 'form-control']) }}
             </div>
         </div>
         <div class="row" style="margin-top: .5em">
-            <div class="col-xs-10">
+            <div class="col-xs-7">
                 {{ Form::select('select_sort', ['1' => 'Seřadit dle data poslední změny', '2' => 'Seřadit dle názvu', '3' => 'Seřadit dle ceny'], $input_sort, ['id'=> 'select_sort', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            </div>
+            <div class="col-xs-3">
+                {{ Form::select('select_diff', ['' => 'Rozdílnost'] + $select_diff, $input_diff, ['id'=> 'select_diff', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}

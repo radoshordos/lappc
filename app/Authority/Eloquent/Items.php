@@ -5,6 +5,8 @@ class Items extends \Eloquent
 	protected $table = 'items';
 	protected $guarded = [];
 
+	public $timestamps = TRUE;
+
 	public static $rules = [
 		'availability_id' => 'required|exists:items_availability,id',
 		'diff_val1_id'    => 'required|exists:prod_difference_values,id',
