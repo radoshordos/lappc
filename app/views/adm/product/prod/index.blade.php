@@ -48,7 +48,7 @@
                 {{ Form::select('select_sort', ['1' => 'Seřadit dle data poslední změny', '2' => 'Seřadit dle názvu', '3' => 'Seřadit dle ceny'], $input_sort, ['id'=> 'select_sort', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-3">
-                {{ Form::select('select_diff', ['' => 'Rozdílnost'] + $select_diff, $input_diff, ['id'=> 'select_diff', 'class'=> 'form-control']) }}
+                {{ Form::select('select_diff', $select_diff, $input_diff, ['id'=> 'select_diff', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}
@@ -98,7 +98,7 @@
         </div>
         {{ Form::close() }}
         <div class="text-center">
-            {{ $view->appends(['select_tree' => $input_tree,'select_dev' => $input_dev,'select_limit' => $input_limit])->links(); }}
+            {{ $view->appends(['select_tree' => $input_tree,'select_dev' => $input_dev,'select_limit' => $input_limit,'select_diff' => $input_diff])->links(); }}
         </div>
     @endif
 @stop
