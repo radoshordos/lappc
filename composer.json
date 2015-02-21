@@ -4,7 +4,7 @@
         "cartalyst/sentry": "2.*",
         "barryvdh/laravel-ide-helper": "1.*",
         "dg/adminer-custom": "1.*",
-        "ivaynberg/select2": "3.*",
+        "ivaynberg/select2": "4.*",
         "kartik-v/bootstrap-fileinput": "2.*",
         "intervention/image": "2.*",
         "slushie/laravel-assetic": "1.*",
@@ -43,5 +43,5 @@
             "php artisan asset:warm"
         ]
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "beta"
 }
