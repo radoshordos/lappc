@@ -14,7 +14,8 @@ class ProdDifferenceSeeder extends Seeder
 
 		$prod_difference = [
 			['id' => '1', 'visible' => '1', 'count' => '0', 'name' => 'Základní'],
-			['id' => '11', 'visible' => '1', 'count' => '1', 'name' => 'Velikost']
+			['id' => '11', 'visible' => '1', 'count' => '1', 'name' => 'Velikost'],
+			['id' => '15', 'visible' => '1', 'count' => '1', 'name' => 'Text']
 		];
 
 		DB::table('prod_difference')->delete();

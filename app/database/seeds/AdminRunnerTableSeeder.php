@@ -31,30 +31,6 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
-            'id'      => 202,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Clear\UnusedAkceAvailability'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 204,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Clear\UnusedAkceMinitext'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 206,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Clear\UnusedProdWarranty'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 208,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Clear\UnusedCsvImport'
-        ]);
-
-        DB::table('runner')->insert([
             'id'      => 302,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Fix\ProdWithoutItem'
@@ -189,7 +165,13 @@ class AdminRunnerTableSeeder extends Seeder
         DB::table('runner')->insert([
             'id'      => 702,
             'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Performance\OptimalizeTable'
+            'class'   => 'Authority\Runner\Task\Performance\ClearUnusedTableData'
         ]);
+
+	    DB::table('runner')->insert([
+		    'id'      => 704,
+		    'autorun' => 1,
+		    'class'   => 'Authority\Runner\Task\Performance\OptimalizeTable'
+	    ]);
     }
 }
