@@ -43,5 +43,5 @@
             "php artisan asset:warm"
         ]
     },
-    "minimum-stability": "beta"
+    "minimum-stability": "RC"
 }
