@@ -132,20 +132,32 @@ class AdminRunnerTableSeeder extends Seeder
             'class'   => 'Authority\Runner\Task\Store\SyncMakita'
         ]);
 
+	    DB::table('runner')->insert([
+		    'id'      => 512,
+		    'autorun' => 1,
+		    'class'   => 'Authority\Runner\Task\Store\SyncNarex'
+	    ]);
+
         DB::table('runner')->insert([
-            'id'      => 512,
+            'id'      => 514,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncPapaspol'
         ]);
 
         DB::table('runner')->insert([
-            'id'      => 514,
+            'id'      => 516,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncProma'
         ]);
 
+	    DB::table('runner')->insert([
+		    'id'      => 518,
+		    'autorun' => 1,
+		    'class'   => 'Authority\Runner\Task\Store\SyncProteco'
+	    ]);
+
         DB::table('runner')->insert([
-            'id'      => 516,
+            'id'      => 520,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Store\SyncVgarden'
         ]);
