@@ -39,6 +39,10 @@ class SyncDbController extends \BaseController
                     $db->leftJoin('prod', 'prod.name', '=', 'sync_db.name');
                     $db->leftJoin('items', 'prod.id', '=', 'items.prod_id');
                     break;
+	            case 'connect':
+		            $db->leftJoin('items', "items.id", '=', "sync_db.item_id");
+		            $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+		            break;
                 default:
                     $db->leftJoin('items', "items.code_prod", '=', "sync_db.code_prod");
                     $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');

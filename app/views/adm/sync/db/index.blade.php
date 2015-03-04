@@ -58,7 +58,7 @@ Synchronizační databáze
     <form>
         <div class="row">
             <div class="col-xs-3">
-                {{ Form::select('select_connect', ['' => '', 'code_prod' => 'Kódu produktu', 'code_ean' => 'EAN produktu', 'name' => 'Názvu produktu'], (isset($input['select_connect']) ? $input['select_connect'] : NULL), ['id'=> 'select_connect', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_connect', ['' => '', 'code_prod' => 'Kódu produktu', 'code_ean' => 'EAN produktu', 'name' => 'Názvu produktu','connect' => 'Existujícího spojení'], (isset($input['select_connect']) ? $input['select_connect'] : NULL), ['id'=> 'select_connect', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-4">
                 {{ Form::select('select_mixture_dev', $select_mixture_dev, (isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL), ['id'=> 'select_mixture_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}

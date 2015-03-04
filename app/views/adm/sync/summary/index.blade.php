@@ -33,6 +33,7 @@ Přehled synchronizace výrobců
                 <th>Výrobce</th>
                 <th>&sum; SyncDB</th>
                 <th>&sum; DB</th>
+                <th>!= Price</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@ Přehled synchronizace výrobců
                     <td>{{ $row["name"] }}</td>
                     <td>{{ $row['count_items_dev']}}</td>
                     <td>{{ $row['count_insert_prod'] }}</td>
+                    <td>{{ $row['count_price_diff'] }}</td>
                 </tr>
             @endforeach
         @endif
