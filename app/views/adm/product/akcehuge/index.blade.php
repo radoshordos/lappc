@@ -34,11 +34,11 @@ Hromadné akce
 {{ Form::open(['route' => ['adm.product.akcehuge.index', 'dfilter' => $dfilter],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
 <p class="row">
     <div class="col-xs-12 text-center"  style="margin-bottom: 1.2em">
-         <nav>
-           <ul class="pager">
-             <li class="previous"><a href="{{ URL::route('adm.product.akceavailability.index') }}">Správa platnosti akce</a></li>
-                <li>
-                 <div class="btn-group" data-toggle="buttons">
+        <nav>
+            <ul class="pager">
+                <li class="previous"><a href="{{ URL::route('adm.product.akceavailability.index') }}">Správa platnosti akce</a></li>
+                    <li>
+                        <div class="btn-group" data-toggle="buttons">
                              <label class="btn btn-primary {{ ($dfilter == 'mode1' || $dfilter == "" ? 'active' : NULL) }}">
                                  {{ Form::radio('dfilter', 'mode1',($dfilter == 'mode1' ? 'true' : NULL), ['onchange' => 'this.form.submit()']); }}Zobrazit vše
                              </label>
@@ -51,10 +51,11 @@ Hromadné akce
                              <label class="btn btn-success {{ ($dfilter == 'mode4' ? 'active' : NULL) }}">
                                   {{ Form::radio('dfilter', 'mode4',($dfilter == 'mode4' ? 'true' : NULL), ['onchange' => 'this.form.submit()']); }}Již v akci
                              </label>
-                         </div></li>
-             <li class="next"><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
-           </ul>
-         </nav>
+                         </div>
+                    </li>
+                <li class="next"><a href="{{ URL::route('adm.product.akcetemplate.index') }}">Šablony akcí</a></li>
+            </ul>
+        </nav>
     </div>
     <div class="col-lg-12">
         <div class="input-group form-group">

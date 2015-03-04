@@ -8,22 +8,44 @@ Přehled synchronizace výrobců
 
 {{-- Content --}}
 @section('content')
+    {{ Form::open(['route' => ['adm.sync.summary.index', 'dfilter' => $dfilter], 'method' => 'GET', 'class' => 'form-horizontal', 'role' => 'form']) }}
+    <p class="row">
+        <div class="col-xs-12 text-center" style="margin-bottom: 1.5em">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-success {{ ($dfilter == 'manualsync' ? 'active' : NULL) }}">
+                     {{ Form::radio('dfilter', 'manualsync',($dfilter == 'manualsync' ? 'true' : NULL), ['onchange' => 'this.form.submit()']); }}Manual sync
+                </label>
+                <label class="btn btn-success {{ ($dfilter == 'autosync' ? 'active' : NULL) }}">
+                    {{ Form::radio('dfilter', 'autosync',($dfilter == 'autosync' ? 'true' : NULL), ['onchange' => 'this.form.submit()']); }}Auto sync
+                </label>
+                <label class="btn btn-success {{ ($dfilter == 'isystem' ? 'active' : NULL) }}">
+                    {{ Form::radio('dfilter', 'isystem',($dfilter == 'isystem' ? 'true' : NULL), ['onchange' => 'this.form.submit()']); }}Pohoda
+                </label>
+            </div>
+        </div>
+    </p>
+    {{ Form::close() }}
+
     <table class="table">
         <thead>
-            <th>#ID</th>
-            <th>Výrobce</th>
-            <th>Zbývá vložit</th>
-            <th>ALL SyncDB</th>
+            <tr>
+                <th>#ID</th>
+                <th>Výrobce</th>
+                <th>&sum; SyncDB</th>
+                <th>&sum; DB</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach($summary as $row)
-            <tr>
-                <td>{{ $row->dev_id }}</td>
-                <td>{{ $row->dev_name }}</td>
-                <td>{{ $row->count_items_dev - $row->count_insert_prod }}</td>
-                <td>{{ $row->count_items_dev }}</td>
-            </tr>
-        @endforeach
+        @if ($summary)
+            @foreach($summary as $row)
+                <tr>
+                    <td>{{ $row['dev_id'] }}</td>
+                    <td>{{ $row["name"] }}</td>
+                    <td>{{ $row['count_items_dev']}}</td>
+                    <td>{{ $row['count_insert_prod'] }}</td>
+                </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
 @stop
