@@ -10,6 +10,7 @@ class RecordSyncImport extends Migration
         Schema::create('record_sync_import', function (Blueprint $table) {
             $table->integer('id')->primary()->unsigned();
             $table->integer('template_id')->unsigned()->nullable();
+            $table->integer('mixture_dev_id')->unsigned()->nullable();
             $table->enum('purpose', ['manualsync', 'action', 'autosync', 'isystem']);
             $table->string('name', '48')->nullable();
             $table->integer('item_counter_all')->unsigned()->nullable();
