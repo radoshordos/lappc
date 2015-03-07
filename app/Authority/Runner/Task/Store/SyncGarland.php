@@ -4,6 +4,7 @@ use Authority\Eloquent\RecordSyncImport;
 
 class SyncGarland extends AbstractSync implements iSync
 {
+    const MIXTURE_DEV_ID = 1014;
     const DEV_NAME = 'garland';
     const URL_FEED = 'http://data.garland.cz/exportzbozi.xml';
 
@@ -50,7 +51,7 @@ class SyncGarland extends AbstractSync implements iSync
             }
         }
 
-        $this->addRecordCounter($record_id, $all, $suc);
+        $this->addRecordCounter($record_id, $all, $suc, self::MIXTURE_DEV_ID);
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }

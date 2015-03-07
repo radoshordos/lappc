@@ -4,6 +4,7 @@ use Authority\Eloquent\RecordSyncImport;
 
 class SyncBow extends AbstractSync implements iSync
 {
+    const MIXTURE_DEV_ID = 1012;
     const DEV_NAME = 'bow';
     const URL_FEED = 'http://www.bow.cz/sellersXML/xmlfeed.zip';
 
@@ -53,7 +54,7 @@ class SyncBow extends AbstractSync implements iSync
             }
         }
 
-        $this->addRecordCounter($record_id, $all, $suc);
+        $this->addRecordCounter($record_id, $all, $suc, self::MIXTURE_DEV_ID);
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }

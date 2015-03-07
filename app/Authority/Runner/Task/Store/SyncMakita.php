@@ -4,6 +4,7 @@ use Authority\Eloquent\RecordSyncImport;
 
 class SyncMakita extends AbstractSync implements iSync
 {
+    const MIXTURE_DEV_ID = 1010;
     const DEV_NAME = 'makita';
     const URL_FEED = 'https://NaradiDolezalova:YH129vg395@www.makita.cz/prilohaurl.php?file=makita.zip';
 
@@ -51,7 +52,7 @@ class SyncMakita extends AbstractSync implements iSync
             }
         }
 
-        $this->addRecordCounter($record_id, $all, $suc);
+        $this->addRecordCounter($record_id, $all, $suc, self::MIXTURE_DEV_ID);
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }

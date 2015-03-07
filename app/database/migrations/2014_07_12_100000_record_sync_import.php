@@ -19,6 +19,7 @@ class RecordSyncImport extends Migration
 
             $table->engine = 'InnoDB';
             $table->foreign('template_id')->references('id')->on('sync_csv_template')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('mixture_dev_id')->references('id')->on('mixture_dev')->onUpdate('no action')->onDelete('set null');
         });
     }
 

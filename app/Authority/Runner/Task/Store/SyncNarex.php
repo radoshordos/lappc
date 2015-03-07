@@ -14,17 +14,17 @@ class SyncNarex extends AbstractSync implements iSync
 
     function runSynchronizeData()
     {
-	    $suc = 0;
+        $suc = 0;
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }
 
-	public function getFile()
-	{
-		// TODO: Implement getFile() method.
-	}
+    public function getFile()
+    {
+        // TODO: Implement getFile() method.
+    }
 
-	public function remotelyPrepareSynchronize()
-	{
-		// TODO: Implement remotelyPrepareSynchronize() method.
-	}
+    public function remotelyPrepareSynchronize()
+    {
+        // TODO: Implement remotelyPrepareSynchronize() method.
+    }
 }

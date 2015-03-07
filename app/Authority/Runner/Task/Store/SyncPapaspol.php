@@ -49,7 +49,7 @@ class SyncPapaspol extends AbstractSync implements iSync
 
             if ($run->isUseRequired() === TRUE) {
                 $suc++;
-        //        $run->insertData2Db();
+                //        $run->insertData2Db();
             }
         }
 

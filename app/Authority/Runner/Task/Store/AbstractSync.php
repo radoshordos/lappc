@@ -34,11 +34,12 @@ class AbstractSync
         return $this->tm->addMessage($message);
     }
 
-    public function addRecordCounter($record_id, $all, $suc)
+    public function addRecordCounter($record_id, $all, $suc, $mixture_dev_id = NULL)
     {
         $rsi = RecordSyncImport::find($record_id);
         $rsi->item_counter_all = $all;
         $rsi->item_counter_insert = $suc;
+        $rsi->mixture_dev_id = $mixture_dev_id;
         $rsi->save();
     }
 

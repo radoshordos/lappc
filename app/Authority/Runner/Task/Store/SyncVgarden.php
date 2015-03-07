@@ -1,7 +1,8 @@
 <?php namespace Authority\Runner\Task\Store;
 
-class SyncVgarden extends AbstractSync implements iSync {
-
+class SyncVgarden extends AbstractSync implements iSync
+{
+    const MIXTURE_DEV_ID = 1016;
 
     public function getFile()
     {

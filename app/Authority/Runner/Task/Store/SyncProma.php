@@ -4,6 +4,7 @@ use Authority\Eloquent\RecordSyncImport;
 
 class SyncProma extends AbstractSync implements iSync
 {
+    const MIXTURE_DEV_ID = 1015;
     const DEV_NAME = 'proma';
     const URL_FEED = 'http://b2b.satrade.cz/pl.php?u=83887-64-63';
 
@@ -50,7 +51,7 @@ class SyncProma extends AbstractSync implements iSync
             }
         }
 
-        $this->addRecordCounter($record_id, $all, $suc);
+        $this->addRecordCounter($record_id, $all, $suc, self::MIXTURE_DEV_ID);
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }

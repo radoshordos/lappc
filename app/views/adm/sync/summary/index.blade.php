@@ -44,7 +44,7 @@ Přehled synchronizace výrobců
                     <td>{{ $row["name"] }}</td>
                     <td>{{ $row['count_items_dev']}}</td>
                     <td>{{ $row['count_insert_prod'] }}</td>
-                    <td>{{ $row['count_price_diff'] }}</td>
+                    <td>{{ link_to_route('adm.sync.db.index', $row['count_price_diff'], ["select_connect" => "connect", "select_mixture_dev" => $row['dev_id'], "join" => "left", "money" => "diverse"]) }}</td>
                 </tr>
             @endforeach
         @endif

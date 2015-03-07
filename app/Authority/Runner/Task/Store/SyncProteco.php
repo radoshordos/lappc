@@ -8,23 +8,23 @@ class SyncProteco extends AbstractSync implements iSync
     public function __construct($table_cron)
     {
         parent::__construct($table_cron);
- //       $this->remotelyPrepareSynchronize();
+        //       $this->remotelyPrepareSynchronize();
         $this->runSynchronizeData();
     }
 
     function runSynchronizeData()
     {
-	    $suc = 0;
+        $suc = 0;
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }
 
-	public function getFile()
-	{
-		// TODO: Implement getFile() method.
-	}
+    public function getFile()
+    {
+        // TODO: Implement getFile() method.
+    }
 
-	public function remotelyPrepareSynchronize()
-	{
-		// TODO: Implement remotelyPrepareSynchronize() method.
-	}
+    public function remotelyPrepareSynchronize()
+    {
+        // TODO: Implement remotelyPrepareSynchronize() method.
+    }
 }
