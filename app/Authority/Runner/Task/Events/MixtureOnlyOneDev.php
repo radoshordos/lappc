@@ -60,6 +60,7 @@ class MixtureOnlyOneDev extends TaskMessage implements iRun
 				\DB::transaction(function () use ($val) {
 
 					$mdev = new MixtureDev;
+                    $mdev->id =  $val->id;
 					$mdev->purpose = 'autosimple';
 					$mdev->name = 'ONLY ' . $val->name;
 					$mdev->desc = 'AutoGenerate only dev: ' . $val->name;

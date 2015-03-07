@@ -17,6 +17,9 @@ class MixtureDev extends Migration
 
 			$table->engine = 'InnoDB';
 		});
+
+        // Reserved for DEV_ID
+        \DB::unprepared("ALTER TABLE mixture_dev AUTO_INCREMENT = 1001;");
 	}
 
 	public function down()
