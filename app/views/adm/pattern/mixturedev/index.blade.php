@@ -26,7 +26,7 @@ Skupiny výrobců
             <tr>
                 <td>{{ $dev->id }}</td>
                 <td>{{ $dev->name }}</td>
-                <td>@foreach ($dev->dev as $one) {{ '<p>'.$one->name.'</p>'; }} @endforeach</td>
+                <td>@foreach ($dev->dev as $one) {{ '<p>'.$one->id." - ".$one->name.'</p>'; }} @endforeach</td>
                 <td>{{ $dev->trigger_column_count }}</td>
                 <td>@if ($dev->purpose != 'autosimple') {{ link_to_route('adm.pattern.mixturedev.edit','Edit',[$dev->id],['class' => 'btn btn-info btn-xs']) }} @endif</td>
             </tr>

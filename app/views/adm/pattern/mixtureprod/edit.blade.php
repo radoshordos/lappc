@@ -55,7 +55,7 @@ Správa grupy produktů
         {{ Form::open(array('route' => 'adm.pattern.mixtureprodm2nprod.store','class' => 'form-horizontal', 'role' => 'form')) }}
         <div class="input-group">
             <span class="input-group-btn">
-                {{ Form::submit('Přidat výrobce',array('class' => 'btn btn-success')) }}
+                {{ Form::submit('Přidat produkt',array('class' => 'btn btn-success')) }}
             </span>
             {{ Form::select('prod_id',$prod_insertable, NULL, array('required' => 'required', 'id'=> 'prod_id',  'class'=> 'form-control')) }}
             {{ Form::hidden('mixture_prod_id',$mixtureprod->id) }}
