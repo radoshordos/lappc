@@ -33,23 +33,11 @@ class AdminRunnerTableSeeder extends Seeder
         DB::table('runner')->insert([
             'id'      => 302,
             'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Fix\ProdWithoutItem'
+            'class'   => 'Authority\Runner\Task\Fix\ProdAkceInteraction'
         ]);
 
         DB::table('runner')->insert([
             'id'      => 304,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Fix\ProdWithoutAkce'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 306,
-            'autorun' => 1,
-            'class'   => 'Authority\Runner\Task\Fix\AkceWithoutTemplate'
-        ]);
-
-        DB::table('runner')->insert([
-            'id'      => 308,
             'autorun' => 1,
             'class'   => 'Authority\Runner\Task\Fix\AddEanFromSync'
         ]);
