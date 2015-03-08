@@ -4,14 +4,14 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-3">Vyrvořeno</div>
+            <div class="col-xs-3">Vytvořeno</div>
             <div class="col-xs-9">{{ $prod->created_at }}</div>
         </div>
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-3">Upraveno</div>
-            <div class="col-xs-9"></div>
+            <div class="col-xs-3">Poslední úprava</div>
+            <div class="col-xs-9">{{ $prod->updated_at }}</div>
         </div>
     </div>
 </div>
@@ -28,8 +28,8 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-3">Upraveno</div>
-                <div class="col-md-9"></div>
+                <div class="col-xs-3">Poslední úprava</div>
+                <div class="col-md-9">{{ $prod->akce->updated_at }}</div>
             </div>
         </div>
     </div>

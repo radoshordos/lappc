@@ -36,11 +36,10 @@ class ProdMultipleChangesController extends \BaseController
 
                 Session::flash('success', "Změna dostupnosti u " . intval($affected) . " položek.");
             }
-
         }
 
         return View::make('adm.pattern.multiplechanges.index', [
-            'select_dev'                     => SB::option('SELECT * FROM dev WHERE active = 1 ORDER BY id', ['id' => '[->id] - ->name']),
+            'select_dev'                     => SB::option('SELECT * FROM dev ORDER BY id', ['id' => '[->id] - ->name']),
             'select_tree'                    => SB::option('SELECT * FROM view_tree WHERE tree_dir_all > 0', ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], true),
             'choice_select_dev'              => Input::get('select_dev'),
             'choice_select_tree'             => Input::get('select_tree'),

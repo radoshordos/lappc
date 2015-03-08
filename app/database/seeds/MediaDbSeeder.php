@@ -11,7 +11,7 @@ class MediaDbSeeder extends Seeder
         foreach ($media as $row) {
             DB::table('media_db')->insert([
                 'id'            => $row['media_id'],
-                'variations_id' => $row['media_id_variace'],
+                'variations_id' => $row['media_id_variace'] + 100,
                 'visible'       => $row['media_visible'],
                 'name'          => $row['media_name'],
                 'source'        => $row['media_source'],
@@ -21,4 +21,3 @@ class MediaDbSeeder extends Seeder
         }
     }
 }
-
