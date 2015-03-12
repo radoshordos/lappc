@@ -3,9 +3,9 @@
         <h3 class="panel-title">Upload obrázku</h3>
     </div>
     <div class="panel-body">
-        {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod,"#fotogalerie"],'class'=>'form-horizontal','role'=>'form']) }}
+        {{ Form::model($prod, ['method' => 'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod,"#fotogalerie"],'class'=>'form-horizontal','role'=>'form']) }}
         <div class="row col-sm-offset-1 col-md-9">
-            {{ Form::label('input-1a','Vyber obrázek') }}
+            {{ Form::label('input-1a','Výběr obrázek') }}
             {{ Form::file('input-1a',['id' => 'input-1a', 'data-show-preview' => 'false', 'class'=> 'file']) }}
         </div>
         <div class="row col-sm-offset-1 col-md-9">

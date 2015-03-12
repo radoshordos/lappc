@@ -19,7 +19,7 @@ PPC - Klíčová slova
                 <th>Shoda</th>
                 <th>Jméno</th>
                 <th>CPC</th>
-                <th colspan="3">{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success btn-xs','role'=> 'button')) }}</th>
+                <th colspan="3">{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo', NULL, ['class'=>'btn btn-success btn-xs','role'=> 'button']) }}</th>
             </tr>
             </thead>
             <tbody>
@@ -30,8 +30,8 @@ PPC - Klíčová slova
                 <td>{{ $keyword->ppc_keywords_match->string_before.$keyword->ppc_keywords_match->code.$keyword->ppc_keywords_match->string_after }}</td>
                 <td>{{ $keyword->name }}</td>
                 <td>{{ $keyword->cpc }}</td>
-                <td>{{ link_to_route('adm.ppc.keywords.show','Detail',array($keyword->id),array('class' => 'btn btn-primary btn-xs')) }}</td>
-                <td>{{ link_to_route('adm.ppc.keywords.edit','Edit',array($keyword->id),array('class' => 'btn btn-info btn-xs')) }}</td>
+                <td>{{ link_to_route('adm.ppc.keywords.show','Detail',[$keyword->id],['class' => 'btn btn-primary btn-xs']) }}</td>
+                <td>{{ link_to_route('adm.ppc.keywords.edit','Edit',[$keyword->id],['class' => 'btn btn-info btn-xs']) }}</td>
                 <td>
                     {{ Form::open(['method' => 'DELETE', 'route' => ['adm.ppc.keywords.destroy', $keyword->id]]) }}
                     {{ Form::submit('Smazat',['class' => 'btn btn-danger btn-xs']) }}
@@ -45,7 +45,7 @@ PPC - Klíčová slova
 </div>
 @else
 <p class="text-center">
-{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+{{ link_to_route('adm.ppc.keywords.create','Přidat nové klíčové slovo',NULL, ['class'=>'btn btn-success','role'=> 'button']) }}
 </p>
 @endif
 @stop
