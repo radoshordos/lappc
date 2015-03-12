@@ -20,6 +20,30 @@
         {{ Form::close() }}
     </div>
 </div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Hlavní obrázek</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td rowspan="2" class="text-center">
+                    <a href="{{ '/web/naradi/'.$prod->tree->absolute."/".$prod->img_big }}">
+                        <img src="{{ '/web/naradi/'.$prod->tree->absolute."/".$prod->img_normal }}">
+                    </a>
+                </td>
+                <td>{{ Form::text('prod_img_big', $prod->img_big, ['class'=> 'form-control','readonly' => 'readonly']) }}</td>
+            </tr>
+            <tr>
+                <td>{{ Form::text('prod_img_normal', $prod->img_normal, ['class'=> 'form-control','readonly' => 'readonly']) }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div>
     @if ($prod->picture_count > 0)
         <div>
@@ -30,6 +54,7 @@
                         {{ Form::submit('Nastavit jako primární',['class' => 'btn btn-success','name' => "img-to-primary[".$row->id."]"]) }}
                     </div>
                     <img src="{{ '/web/naradi/'.$prod->tree->absolute."/".$row->img_normal }}" class="img-thumbnail" alt="{{ $row->img_normal }}"/>
+
                     <div class="text-center" style="margin: 30px">
                         {{ Form::submit('Odstranit obrázek',['class' => 'btn btn-danger','name' => "img-to-delete[".$row->id."]"]) }}
                         {{ Form::close() }}
