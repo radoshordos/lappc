@@ -32,10 +32,6 @@ table#buy-table a.delete-alert {
     color: #ff0000;
 }
 
-ul#buy-flow {
-    float: left;
-}
-
 #buy .button, #product .button {
     font-weight: bold;
 }
@@ -43,4 +39,13 @@ ul#buy-flow {
 #buy input[type='radio'][disabled] + label {
     color: #d3d3d3;
     font-style: italic;
+}
+
+#buy #buy-flow a {
+    margin-top: .6em;
+    border: 3px double blue;
+}
+
+#buy #buy-flow a i {
+    color: #666;
 }
