@@ -3,10 +3,10 @@
 @include('web.global.top')
 <?php $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($view_prod_actual); ?>
 <div class="row">
-    <div id="part-left" class="medium-4 columns">
+    <div id="part-left" class="large-4 columns">
         @include('web.global.leftmenu')
     </div>
-    <div id="part-right" class="medium-14 columns">
+    <div id="part-right" class="large-14 columns">
         <h1>{{ $vpa->getProdNameWithBonus(); }}</h1>
 
         <div id="product" class="row">

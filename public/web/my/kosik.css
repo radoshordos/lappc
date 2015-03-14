@@ -39,3 +39,8 @@ ul#buy-flow {
 #buy .button, #product .button {
     font-weight: bold;
 }
+
+#buy input[type='radio'][disabled] + label {
+    color: #d3d3d3;
+    font-style: italic;
+}

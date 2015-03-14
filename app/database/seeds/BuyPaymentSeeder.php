@@ -10,7 +10,7 @@ class BuyPaymentSeeder extends Seeder
 		DB::table('buy_payment')->insert([
 			'id'              => $i++,
 			'payment_type_id' => 3,
-			'alias'           => 'platebni_karta',
+			'alias'           => 'platebni-karta',
 			'name'            => 'Platba kartou předem',
             'name_short'      => 'Kartou',
 			'price_payment'   => 0
@@ -19,7 +19,7 @@ class BuyPaymentSeeder extends Seeder
 		DB::table('buy_payment')->insert([
 			'id'              => $i++,
 			'payment_type_id' => 4,
-			'alias'           => 'online_platba',
+			'alias'           => 'online-platba',
 			'name'            => 'Online platba',
             'name_short'      => 'Online',
 			'price_payment'   => 0
@@ -28,7 +28,7 @@ class BuyPaymentSeeder extends Seeder
 		DB::table('buy_payment')->insert([
 			'id'              => $i++,
 			'payment_type_id' => 4,
-			'alias'           => 'bankovni_prevod',
+			'alias'           => 'bankovni-prevod',
 			'name'            => 'Bankovní převod',
             'name_short'      => 'Převod',
 			'price_payment'   => 0
