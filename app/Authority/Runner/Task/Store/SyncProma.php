@@ -6,7 +6,7 @@ class SyncProma extends AbstractSync implements iSync
 {
     const MIXTURE_DEV_ID = 1015;
     const DEV_NAME = 'proma';
-    const URL_FEED = 'http://b2b.satrade.cz/pl.php?u=83887-64-63';
+    const URL_FEED = 'http://b2b.satrade.cz/pl.php?u=3db8bf2f-6f09-45af-b8ea-0b1fc5e78d66';
 
     public function __construct($table_cron)
     {
@@ -39,7 +39,8 @@ class SyncProma extends AbstractSync implements iSync
             'created_at' => date("Y-m-d H:i:s", $record_id)
         ]);
 
-        foreach ($xml->SHOP->SHOPITEM as $item) {
+
+        foreach ($xml->SHOPITEM as $item) {
 
             $all++;
             $arr_item = array_filter((array)$item);

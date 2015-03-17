@@ -2079,7 +2079,7 @@ if (typeof exports !== "undefined" && typeof module !== "undefined") {
 }
 define('bootstrap', function (require, exports, module) {
 /*!
- * Bootstrap v3.3.2 (http://getbootstrap.com)
+ * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
@@ -2097,7 +2097,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.2
+ * Bootstrap: transition.js v3.3.4
  * http://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -2157,7 +2157,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.2
+ * Bootstrap: alert.js v3.3.4
  * http://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -2176,7 +2176,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.2'
+  Alert.VERSION = '3.3.4'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -2252,7 +2252,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.2
+ * Bootstrap: button.js v3.3.4
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -2272,7 +2272,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.2'
+  Button.VERSION  = '3.3.4'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -2369,7 +2369,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.2
+ * Bootstrap: carousel.js v3.3.4
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -2387,10 +2387,10 @@ if (typeof jQuery === 'undefined') {
     this.$element    = $(element)
     this.$indicators = this.$element.find('.carousel-indicators')
     this.options     = options
-    this.paused      =
-    this.sliding     =
-    this.interval    =
-    this.$active     =
+    this.paused      = null
+    this.sliding     = null
+    this.interval    = null
+    this.$active     = null
     this.$items      = null
 
     this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
@@ -2400,7 +2400,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.2'
+  Carousel.VERSION  = '3.3.4'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -2607,7 +2607,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.2
+ * Bootstrap: collapse.js v3.3.4
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -2624,7 +2624,8 @@ if (typeof jQuery === 'undefined') {
   var Collapse = function (element, options) {
     this.$element      = $(element)
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
-    this.$trigger      = $(this.options.trigger).filter('[href="#' + element.id + '"], [data-target="#' + element.id + '"]')
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
     this.transitioning = null
 
     if (this.options.parent) {
@@ -2636,13 +2637,12 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.2'
+  Collapse.VERSION  = '3.3.4'
 
   Collapse.TRANSITION_DURATION = 350
 
   Collapse.DEFAULTS = {
-    toggle: true,
-    trigger: '[data-toggle="collapse"]'
+    toggle: true
   }
 
   Collapse.prototype.dimension = function () {
@@ -2780,7 +2780,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.collapse')
       var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
-      if (!data && options.toggle && option == 'show') options.toggle = false
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
       if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -2811,7 +2811,7 @@ if (typeof jQuery === 'undefined') {
 
     var $target = getTargetFromTrigger($this)
     var data    = $target.data('bs.collapse')
-    var option  = data ? 'toggle' : $.extend({}, $this.data(), { trigger: this })
+    var option  = data ? 'toggle' : $this.data()
 
     Plugin.call($target, option)
   })
@@ -2819,7 +2819,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.2
+ * Bootstrap: dropdown.js v3.3.4
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -2839,7 +2839,7 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.2'
+  Dropdown.VERSION = '3.3.4'
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
@@ -2892,7 +2892,7 @@ if (typeof jQuery === 'undefined') {
       return $this.trigger('click')
     }
 
-    var desc = ' li:not(.divider):visible a'
+    var desc = ' li:not(.disabled):visible a'
     var $items = $parent.find('[role="menu"]' + desc + ', [role="listbox"]' + desc)
 
     if (!$items.length) return
@@ -2981,7 +2981,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.2
+ * Bootstrap: modal.js v3.3.4
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -2996,12 +2996,15 @@ if (typeof jQuery === 'undefined') {
   // ======================
 
   var Modal = function (element, options) {
-    this.options        = options
-    this.$body          = $(document.body)
-    this.$element       = $(element)
-    this.$backdrop      =
-    this.isShown        = null
-    this.scrollbarWidth = 0
+    this.options             = options
+    this.$body               = $(document.body)
+    this.$element            = $(element)
+    this.$dialog             = this.$element.find('.modal-dialog')
+    this.$backdrop           = null
+    this.isShown             = null
+    this.originalBodyPad     = null
+    this.scrollbarWidth      = 0
+    this.ignoreBackdropClick = false
 
     if (this.options.remote) {
       this.$element
@@ -3012,7 +3015,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.2'
+  Modal.VERSION  = '3.3.4'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -3046,6 +3049,12 @@ if (typeof jQuery === 'undefined') {
 
     this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
 
+    this.$dialog.on('mousedown.dismiss.bs.modal', function () {
+      that.$element.one('mouseup.dismiss.bs.modal', function (e) {
+        if ($(e.target).is(that.$element)) that.ignoreBackdropClick = true
+      })
+    })
+
     this.backdrop(function () {
       var transition = $.support.transition && that.$element.hasClass('fade')
 
@@ -3057,7 +3066,6 @@ if (typeof jQuery === 'undefined') {
         .show()
         .scrollTop(0)
 
-      if (that.options.backdrop) that.adjustBackdrop()
       that.adjustDialog()
 
       if (transition) {
@@ -3073,7 +3081,7 @@ if (typeof jQuery === 'undefined') {
       var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
 
       transition ?
-        that.$element.find('.modal-dialog') // wait for modal to slide in
+        that.$dialog // wait for modal to slide in
           .one('bsTransitionEnd', function () {
             that.$element.trigger('focus').trigger(e)
           })
@@ -3102,6 +3110,9 @@ if (typeof jQuery === 'undefined') {
       .removeClass('in')
       .attr('aria-hidden', true)
       .off('click.dismiss.bs.modal')
+      .off('mouseup.dismiss.bs.modal')
+
+    this.$dialog.off('mousedown.dismiss.bs.modal')
 
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element
@@ -3162,13 +3173,18 @@ if (typeof jQuery === 'undefined') {
       var doAnimate = $.support.transition && animate
 
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
-        .prependTo(this.$element)
-        .on('click.dismiss.bs.modal', $.proxy(function (e) {
-          if (e.target !== e.currentTarget) return
-          this.options.backdrop == 'static'
-            ? this.$element[0].focus.call(this.$element[0])
-            : this.hide.call(this)
-        }, this))
+        .appendTo(this.$body)
+
+      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
+        if (this.ignoreBackdropClick) {
+          this.ignoreBackdropClick = false
+          return
+        }
+        if (e.target !== e.currentTarget) return
+        this.options.backdrop == 'static'
+          ? this.$element[0].focus()
+          : this.hide()
+      }, this))
 
       if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
 
@@ -3203,14 +3219,7 @@ if (typeof jQuery === 'undefined') {
   // these following methods are used to handle overflowing modals
 
   Modal.prototype.handleUpdate = function () {
-    if (this.options.backdrop) this.adjustBackdrop()
     this.adjustDialog()
-  }
-
-  Modal.prototype.adjustBackdrop = function () {
-    this.$backdrop
-      .css('height', 0)
-      .css('height', this.$element[0].scrollHeight)
   }
 
   Modal.prototype.adjustDialog = function () {
@@ -3230,17 +3239,23 @@ if (typeof jQuery === 'undefined') {
   }
 
   Modal.prototype.checkScrollbar = function () {
-    this.bodyIsOverflowing = document.body.scrollHeight > document.documentElement.clientHeight
+    var fullWindowWidth = window.innerWidth
+    if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
+      var documentElementRect = document.documentElement.getBoundingClientRect()
+      fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)
+    }
+    this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth
     this.scrollbarWidth = this.measureScrollbar()
   }
 
   Modal.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
+    this.originalBodyPad = document.body.style.paddingRight || ''
     if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
   }
 
   Modal.prototype.resetScrollbar = function () {
-    this.$body.css('padding-right', '')
+    this.$body.css('padding-right', this.originalBodyPad)
   }
 
   Modal.prototype.measureScrollbar = function () { // thx walsh
@@ -3306,7 +3321,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.2
+ * Bootstrap: tooltip.js v3.3.4
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
@@ -3322,17 +3337,17 @@ if (typeof jQuery === 'undefined') {
   // ===============================
 
   var Tooltip = function (element, options) {
-    this.type       =
-    this.options    =
-    this.enabled    =
-    this.timeout    =
-    this.hoverState =
+    this.type       = null
+    this.options    = null
+    this.enabled    = null
+    this.timeout    = null
+    this.hoverState = null
     this.$element   = null
 
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.2'
+  Tooltip.VERSION  = '3.3.4'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -3358,6 +3373,10 @@ if (typeof jQuery === 'undefined') {
     this.$element  = $(element)
     this.options   = this.getOptions(options)
     this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+
+    if (this.$element[0] instanceof document.constructor && !this.options.selector) {
+      throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+    }
 
     var triggers = this.options.trigger.split(' ')
 
@@ -3579,10 +3598,10 @@ if (typeof jQuery === 'undefined') {
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
   }
 
-  Tooltip.prototype.replaceArrow = function (delta, dimension, isHorizontal) {
+  Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
     this.arrow()
-      .css(isHorizontal ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
-      .css(isHorizontal ? 'top' : 'left', '')
+      .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
+      .css(isVertical ? 'top' : 'left', '')
   }
 
   Tooltip.prototype.setContent = function () {
@@ -3595,7 +3614,7 @@ if (typeof jQuery === 'undefined') {
 
   Tooltip.prototype.hide = function (callback) {
     var that = this
-    var $tip = this.tip()
+    var $tip = $(this.$tip)
     var e    = $.Event('hide.bs.' + this.type)
 
     function complete() {
@@ -3612,7 +3631,7 @@ if (typeof jQuery === 'undefined') {
 
     $tip.removeClass('in')
 
-    $.support.transition && this.$tip.hasClass('fade') ?
+    $.support.transition && $tip.hasClass('fade') ?
       $tip
         .one('bsTransitionEnd', complete)
         .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
@@ -3756,7 +3775,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.tooltip')
       var options = typeof option == 'object' && option
 
-      if (!data && option == 'destroy') return
+      if (!data && /destroy|hide/.test(option)) return
       if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -3779,7 +3798,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.2
+ * Bootstrap: popover.js v3.3.4
  * http://getbootstrap.com/javascript/#popovers
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -3799,7 +3818,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.2'
+  Popover.VERSION  = '3.3.4'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -3855,11 +3874,6 @@ if (typeof jQuery === 'undefined') {
     return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
   }
 
-  Popover.prototype.tip = function () {
-    if (!this.$tip) this.$tip = $(this.options.template)
-    return this.$tip
-  }
-
 
   // POPOVER PLUGIN DEFINITION
   // =========================
@@ -3870,7 +3884,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.popover')
       var options = typeof option == 'object' && option
 
-      if (!data && option == 'destroy') return
+      if (!data && /destroy|hide/.test(option)) return
       if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -3893,7 +3907,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.2
+ * Bootstrap: scrollspy.js v3.3.4
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -3908,10 +3922,8 @@ if (typeof jQuery === 'undefined') {
   // ==========================
 
   function ScrollSpy(element, options) {
-    var process  = $.proxy(this.process, this)
-
-    this.$body          = $('body')
-    this.$scrollElement = $(element).is('body') ? $(window) : $(element)
+    this.$body          = $(document.body)
+    this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
     this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
     this.selector       = (this.options.target || '') + ' .nav li > a'
     this.offsets        = []
@@ -3919,12 +3931,12 @@ if (typeof jQuery === 'undefined') {
     this.activeTarget   = null
     this.scrollHeight   = 0
 
-    this.$scrollElement.on('scroll.bs.scrollspy', process)
+    this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
     this.refresh()
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.2'
+  ScrollSpy.VERSION  = '3.3.4'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -3935,19 +3947,18 @@ if (typeof jQuery === 'undefined') {
   }
 
   ScrollSpy.prototype.refresh = function () {
-    var offsetMethod = 'offset'
-    var offsetBase   = 0
+    var that          = this
+    var offsetMethod  = 'offset'
+    var offsetBase    = 0
+
+    this.offsets      = []
+    this.targets      = []
+    this.scrollHeight = this.getScrollHeight()
 
     if (!$.isWindow(this.$scrollElement[0])) {
       offsetMethod = 'position'
       offsetBase   = this.$scrollElement.scrollTop()
     }
-
-    this.offsets = []
-    this.targets = []
-    this.scrollHeight = this.getScrollHeight()
-
-    var self     = this
 
     this.$body
       .find(this.selector)
@@ -3963,8 +3974,8 @@ if (typeof jQuery === 'undefined') {
       })
       .sort(function (a, b) { return a[0] - b[0] })
       .each(function () {
-        self.offsets.push(this[0])
-        self.targets.push(this[1])
+        that.offsets.push(this[0])
+        that.targets.push(this[1])
       })
   }
 
@@ -3993,7 +4004,7 @@ if (typeof jQuery === 'undefined') {
     for (i = offsets.length; i--;) {
       activeTarget != targets[i]
         && scrollTop >= offsets[i]
-        && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+        && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
         && this.activate(targets[i])
     }
   }
@@ -4004,8 +4015,8 @@ if (typeof jQuery === 'undefined') {
     this.clear()
 
     var selector = this.selector +
-        '[data-target="' + target + '"],' +
-        this.selector + '[href="' + target + '"]'
+      '[data-target="' + target + '"],' +
+      this.selector + '[href="' + target + '"]'
 
     var active = $(selector)
       .parents('li')
@@ -4069,7 +4080,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.2
+ * Bootstrap: tab.js v3.3.4
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -4087,7 +4098,7 @@ if (typeof jQuery === 'undefined') {
     this.element = $(element)
   }
 
-  Tab.VERSION = '3.3.2'
+  Tab.VERSION = '3.3.4'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -4158,7 +4169,7 @@ if (typeof jQuery === 'undefined') {
         element.removeClass('fade')
       }
 
-      if (element.parent('.dropdown-menu')) {
+      if (element.parent('.dropdown-menu').length) {
         element
           .closest('li.dropdown')
             .addClass('active')
@@ -4223,7 +4234,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.2
+ * Bootstrap: affix.js v3.3.4
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -4245,14 +4256,14 @@ if (typeof jQuery === 'undefined') {
       .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
 
     this.$element     = $(element)
-    this.affixed      =
-    this.unpin        =
+    this.affixed      = null
+    this.unpin        = null
     this.pinnedOffset = null
 
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.2'
+  Affix.VERSION  = '3.3.4'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -4302,7 +4313,7 @@ if (typeof jQuery === 'undefined') {
     var offset       = this.options.offset
     var offsetTop    = offset.top
     var offsetBottom = offset.bottom
-    var scrollHeight = $('body').height()
+    var scrollHeight = $(document.body).height()
 
     if (typeof offset != 'object')         offsetBottom = offsetTop = offset
     if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
@@ -32775,7 +32786,38 @@ window.Modernizr = (function( window, document, undefined ) {
 });
 
 define('select2', function (require, exports, module) {
-(function() { if (window.define) { var define = window.define; } if (window.require) { var require = window.require; } if (window.jQuery && jQuery.fn && jQuery.fn.select2 && jQuery.fn.select2.amd) { var define = jQuery.fn.select2.amd.define; var require = jQuery.fn.select2.amd.require; }/**
+/*!
+ * Select2 4.0.0-rc.2
+ * https://select2.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/select2/select2/blob/master/LICENSE.md
+ */
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function (jQuery) {
+  // This is needed so we can catch the AMD loader configuration and use it
+  // The inner file should be wrapped (by `banner.start.js`) in a function that
+  // returns the AMD loader references.
+  var S2 =
+(function () {
+  // Restore the Select2 AMD loader so it can be used
+  // Needed mostly in the language files, where the loader is not inserted
+  if (jQuery && jQuery.fn && jQuery.fn.select2 && jQuery.fn.select2.amd) {
+    var S2 = jQuery.fn.select2.amd;
+  }
+var S2;(function () { if (!S2 || !S2.requirejs) {
+if (!S2) { S2 = {}; } else { require = S2; }
+/**
  * @license almond 0.2.9 Copyright (c) 2011-2014, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/almond for details
@@ -33197,10 +33239,13 @@ var requirejs, require, define;
     };
 }());
 
-define("almond", function(){});
+S2.requirejs = requirejs;S2.require = require;S2.define = define;
+}
+}());
+S2.define("almond", function(){});
 
 /* global jQuery:false, $:false */
-define('jquery',[],function () {
+S2.define('jquery',[],function () {
   var _$ = jQuery || $;
 
   if (_$ == null && console && console.error) {
@@ -33214,7 +33259,7 @@ define('jquery',[],function () {
   return _$;
 });
 
-define('select2/utils',[
+S2.define('select2/utils',[
   'jquery'
 ], function ($) {
   var Utils = {};
@@ -33460,7 +33505,7 @@ define('select2/utils',[
   return Utils;
 });
 
-define('select2/results',[
+S2.define('select2/results',[
   'jquery',
   './utils'
 ], function ($, Utils) {
@@ -33568,7 +33613,10 @@ define('select2/results',[
 
         var item = $.data(this, 'data');
 
-        if ($.inArray(item.id, selectedIds) > -1) {
+        // id needs to be converted to a string when comparing
+        var id = '' + item.id;
+
+        if ($.inArray(id, selectedIds) > -1) {
           $option.attr('aria-selected', 'true');
         } else {
           $option.attr('aria-selected', 'false');
@@ -33965,7 +34013,7 @@ define('select2/results',[
   return Results;
 });
 
-define('select2/keys',[
+S2.define('select2/keys',[
 
 ], function () {
   var KEYS = {
@@ -33991,7 +34039,7 @@ define('select2/keys',[
   return KEYS;
 });
 
-define('select2/selection/base',[
+S2.define('select2/selection/base',[
   'jquery',
   '../utils',
   '../keys'
@@ -34036,8 +34084,6 @@ define('select2/selection/base',[
 
     this.container = container;
 
-    this.$selection.attr('aria-owns', resultsId);
-
     this.$selection.on('focus', function (evt) {
       self.trigger('focus', evt);
     });
@@ -34065,6 +34111,7 @@ define('select2/selection/base',[
     container.on('open', function () {
       // When the dropdown is open, aria-expanded="true"
       self.$selection.attr('aria-expanded', 'true');
+      self.$selection.attr('aria-owns', resultsId);
 
       self._attachCloseHandler(container);
     });
@@ -34073,6 +34120,7 @@ define('select2/selection/base',[
       // When the dropdown is closed, aria-expanded="false"
       self.$selection.attr('aria-expanded', 'false');
       self.$selection.removeAttr('aria-activedescendant');
+      self.$selection.removeAttr('aria-owns');
 
       self.$selection.focus();
 
@@ -34132,7 +34180,7 @@ define('select2/selection/base',[
   return BaseSelection;
 });
 
-define('select2/selection/single',[
+S2.define('select2/selection/single',[
   'jquery',
   './base',
   '../utils',
@@ -34226,7 +34274,7 @@ define('select2/selection/single',[
   return SingleSelection;
 });
 
-define('select2/selection/multiple',[
+S2.define('select2/selection/multiple',[
   'jquery',
   './base',
   '../utils'
@@ -34304,7 +34352,7 @@ define('select2/selection/multiple',[
       return;
     }
 
-    var $selections = [];
+    var $selections = $();
 
     for (var d = 0; d < data.length; d++) {
       var selection = data[d];
@@ -34317,7 +34365,7 @@ define('select2/selection/multiple',[
 
       $selection.data('data', selection);
 
-      $selections.push($selection);
+      $selections = $selections.add($selection);
     }
 
     this.$selection.find('.select2-selection__rendered').append($selections);
@@ -34326,7 +34374,7 @@ define('select2/selection/multiple',[
   return MultipleSelection;
 });
 
-define('select2/selection/placeholder',[
+S2.define('select2/selection/placeholder',[
   '../utils'
 ], function (Utils) {
   function Placeholder (decorated, $element, options) {
@@ -34376,7 +34424,7 @@ define('select2/selection/placeholder',[
   return Placeholder;
 });
 
-define('select2/selection/allowClear',[
+S2.define('select2/selection/allowClear',[
   'jquery'
 ], function ($) {
   function AllowClear () { }
@@ -34387,7 +34435,7 @@ define('select2/selection/allowClear',[
     decorated.call(this, container, $container);
 
     if (self.placeholder == null) {
-      if (window.console && console.error) {
+      if (self.options.get('debug') && window.console && console.error) {
         console.error(
           'Select2: The `allowClear` option should be used in combination ' +
           'with the `placeholder` option.'
@@ -34442,13 +34490,13 @@ define('select2/selection/allowClear',[
     );
     $remove.data('data', data);
 
-    this.$selection.find('.select2-selection__rendered').append($remove);
+    this.$selection.find('.select2-selection__rendered').prepend($remove);
   };
 
   return AllowClear;
 });
 
-define('select2/selection/search',[
+S2.define('select2/selection/search',[
   'jquery',
   '../utils',
   '../keys'
@@ -34601,7 +34649,7 @@ define('select2/selection/search',[
   return Search;
 });
 
-define('select2/selection/eventRelay',[
+S2.define('select2/selection/eventRelay',[
   'jquery'
 ], function ($) {
   function EventRelay () { }
@@ -34647,9 +34695,10 @@ define('select2/selection/eventRelay',[
   return EventRelay;
 });
 
-define('select2/translation',[
-  'jquery'
-], function ($) {
+S2.define('select2/translation',[
+  'jquery',
+  'require'
+], function ($, require) {
   function Translation (dict) {
     this.dict = dict || {};
   }
@@ -34683,7 +34732,7 @@ define('select2/translation',[
   return Translation;
 });
 
-define('select2/diacritics',[
+S2.define('select2/diacritics',[
 
 ], function () {
   var diacritics = {
@@ -35531,7 +35580,7 @@ define('select2/diacritics',[
   return diacritics;
 });
 
-define('select2/data/base',[
+S2.define('select2/data/base',[
   '../utils'
 ], function (Utils) {
   function BaseAdapter ($element, options) {
@@ -35572,7 +35621,7 @@ define('select2/data/base',[
   return BaseAdapter;
 });
 
-define('select2/data/select',[
+S2.define('select2/data/select',[
   './base',
   '../utils',
   'jquery'
@@ -35779,7 +35828,7 @@ define('select2/data/select',[
     if ($option.is('option')) {
       data = {
         id: $option.val(),
-        text: $option.html(),
+        text: $option.text(),
         disabled: $option.prop('disabled'),
         selected: $option.prop('selected'),
         title: $option.prop('title')
@@ -35854,7 +35903,7 @@ define('select2/data/select',[
   return SelectAdapter;
 });
 
-define('select2/data/array',[
+S2.define('select2/data/array',[
   './select',
   '../utils',
   'jquery'
@@ -35875,7 +35924,7 @@ define('select2/data/array',[
     if ($option.length === 0) {
       $option = this.option(data);
 
-      this.addOptions([$option]);
+      this.addOptions($option);
     }
 
     ArrayAdapter.__super__.select.call(this, data);
@@ -35889,7 +35938,7 @@ define('select2/data/array',[
       return self.item($(this)).id;
     }).get();
 
-    var $options = [];
+    var $options = $();
 
     // Filter out all items except for the one passed in the argument
     function onlyItem (item) {
@@ -35923,7 +35972,7 @@ define('select2/data/array',[
         $option.append($children);
       }
 
-      $options.push($option);
+      $options = $options.add($option);
     }
 
     return $options;
@@ -35932,7 +35981,7 @@ define('select2/data/array',[
   return ArrayAdapter;
 });
 
-define('select2/data/ajax',[
+S2.define('select2/data/ajax',[
   './array',
   '../utils',
   'jquery'
@@ -35998,7 +36047,7 @@ define('select2/data/ajax',[
       var $request = options.transport(options, function (data) {
         var results = self.processResults(data, params);
 
-        if (window.console && console.error) {
+        if (self.options.get('debug') && window.console && console.error) {
           // Check to make sure that the response included a `results` key.
           if (!results || !results.results || !$.isArray(results.results)) {
             console.error(
@@ -36030,7 +36079,7 @@ define('select2/data/ajax',[
   return AjaxAdapter;
 });
 
-define('select2/data/tags',[
+S2.define('select2/data/tags',[
   'jquery'
 ], function ($) {
   function Tags (decorated, $element, options) {
@@ -36061,7 +36110,7 @@ define('select2/data/tags',[
 
     this._removeOldTags();
 
-    if (params.term == null || params.term === '' || params.page != null) {
+    if (params.term == null || params.page != null) {
       decorated.call(this, params, callback);
       return;
     }
@@ -36103,7 +36152,7 @@ define('select2/data/tags',[
         var $option = self.option(tag);
         $option.attr('data-select2-tag', true);
 
-        self.addOptions([$option]);
+        self.addOptions($option);
 
         self.insertTag(data, tag);
       }
@@ -36117,9 +36166,15 @@ define('select2/data/tags',[
   };
 
   Tags.prototype.createTag = function (decorated, params) {
+    var term = $.trim(params.term);
+
+    if (term === '') {
+      return null;
+    }
+
     return {
-      id: params.term,
-      text: params.term
+      id: term,
+      text: term
     };
   };
 
@@ -36144,7 +36199,7 @@ define('select2/data/tags',[
   return Tags;
 });
 
-define('select2/data/tokenizer',[
+S2.define('select2/data/tokenizer',[
   'jquery'
 ], function ($) {
   function Tokenizer (decorated, $element, options) {
@@ -36231,7 +36286,7 @@ define('select2/data/tokenizer',[
   return Tokenizer;
 });
 
-define('select2/data/minimumInputLength',[
+S2.define('select2/data/minimumInputLength',[
 
 ], function () {
   function MinimumInputLength (decorated, $e, options) {
@@ -36262,7 +36317,7 @@ define('select2/data/minimumInputLength',[
   return MinimumInputLength;
 });
 
-define('select2/data/maximumInputLength',[
+S2.define('select2/data/maximumInputLength',[
 
 ], function () {
   function MaximumInputLength (decorated, $e, options) {
@@ -36294,7 +36349,7 @@ define('select2/data/maximumInputLength',[
   return MaximumInputLength;
 });
 
-define('select2/data/maximumSelectionLength',[
+S2.define('select2/data/maximumSelectionLength',[
 
 ], function (){
   function MaximumSelectionLength (decorated, $e, options) {
@@ -36326,7 +36381,7 @@ define('select2/data/maximumSelectionLength',[
   return MaximumSelectionLength;
 });
 
-define('select2/dropdown',[
+S2.define('select2/dropdown',[
   'jquery',
   './utils'
 ], function ($, Utils) {
@@ -36365,7 +36420,7 @@ define('select2/dropdown',[
   return Dropdown;
 });
 
-define('select2/dropdown/search',[
+S2.define('select2/dropdown/search',[
   'jquery',
   '../utils'
 ], function ($, Utils) {
@@ -36461,7 +36516,7 @@ define('select2/dropdown/search',[
   return Search;
 });
 
-define('select2/dropdown/hidePlaceholder',[
+S2.define('select2/dropdown/hidePlaceholder',[
 
 ], function () {
   function HidePlaceholder (decorated, $element, options, dataAdapter) {
@@ -36504,7 +36559,7 @@ define('select2/dropdown/hidePlaceholder',[
   return HidePlaceholder;
 });
 
-define('select2/dropdown/infiniteScroll',[
+S2.define('select2/dropdown/infiniteScroll',[
   'jquery'
 ], function ($) {
   function InfiniteScroll (decorated, $element, options, dataAdapter) {
@@ -36592,7 +36647,7 @@ define('select2/dropdown/infiniteScroll',[
   return InfiniteScroll;
 });
 
-define('select2/dropdown/attachBody',[
+S2.define('select2/dropdown/attachBody',[
   'jquery',
   '../utils'
 ], function ($, Utils) {
@@ -36788,7 +36843,7 @@ define('select2/dropdown/attachBody',[
   return AttachBody;
 });
 
-define('select2/dropdown/minimumResultsForSearch',[
+S2.define('select2/dropdown/minimumResultsForSearch',[
 
 ], function () {
   function countResults (data) {
@@ -36828,7 +36883,7 @@ define('select2/dropdown/minimumResultsForSearch',[
   return MinimumResultsForSearch;
 });
 
-define('select2/dropdown/selectOnClose',[
+S2.define('select2/dropdown/selectOnClose',[
 
 ], function () {
   function SelectOnClose () { }
@@ -36856,7 +36911,7 @@ define('select2/dropdown/selectOnClose',[
   return SelectOnClose;
 });
 
-define('select2/dropdown/closeOnSelect',[
+S2.define('select2/dropdown/closeOnSelect',[
 
 ], function () {
   function CloseOnSelect () { }
@@ -36889,7 +36944,7 @@ define('select2/dropdown/closeOnSelect',[
   return CloseOnSelect;
 });
 
-define('select2/i18n/en',[],function () {
+S2.define('select2/i18n/en',[],function () {
   // English
   return {
     errorLoading: function () {
@@ -36934,8 +36989,10 @@ define('select2/i18n/en',[],function () {
   };
 });
 
-define('select2/defaults',[
+S2.define('select2/defaults',[
   'jquery',
+  'require',
+
   './results',
 
   './selection/single',
@@ -36968,7 +37025,9 @@ define('select2/defaults',[
   './dropdown/closeOnSelect',
 
   './i18n/en'
-], function ($, ResultsList,
+], function ($, require,
+
+             ResultsList,
 
              SingleSelection, MultipleSelection, Placeholder, AllowClear,
              SelectionSearch, EventRelay,
@@ -37019,7 +37078,7 @@ define('select2/defaults',[
         );
       }
 
-      if (options.tags != null) {
+      if (options.tags) {
         options.dataAdapter = Utils.Decorate(options.dataAdapter, Tags);
       }
 
@@ -37139,7 +37198,7 @@ define('select2/defaults',[
     }
 
     if (typeof options.language === 'string') {
-      // Check if the lanugage is specified with a region
+      // Check if the language is specified with a region
       if (options.language.indexOf('-') > 0) {
         // Extract the region information if it is included
         var languageParts = options.language.split('-');
@@ -37173,9 +37232,9 @@ define('select2/defaults',[
             // The translation could not be loaded at all. Sometimes this is
             // because of a configuration problem, other times this can be
             // because of how Select2 helps load all possible translation files.
-            if (window.console && console.warn) {
+            if (options.debug && window.console && console.warn) {
               console.warn(
-                'Select2: The lanugage file for "' + name + '" could not be ' +
+                'Select2: The language file for "' + name + '" could not be ' +
                 'automatically loaded. A fallback will be used instead.'
               );
             }
@@ -37251,9 +37310,10 @@ define('select2/defaults',[
     }
 
     this.defaults = {
-      amdBase: 'select2/',
-      amdLanguageBase: 'select2/i18n/',
+      amdBase: './',
+      amdLanguageBase: './i18n/',
       closeOnSelect: true,
+      debug: false,
       escapeMarkup: Utils.escapeMarkup,
       language: EnglishTranslation,
       matcher: matcher,
@@ -37292,7 +37352,7 @@ define('select2/defaults',[
   return defaults;
 });
 
-define('select2/options',[
+S2.define('select2/options',[
   'jquery',
   './defaults',
   './utils'
@@ -37349,7 +37409,7 @@ define('select2/options',[
     $e.prop('multiple', this.options.multiple);
 
     if ($e.data('select2Tags')) {
-      if (window.console && console.warn) {
+      if (this.options.debug && window.console && console.warn) {
         console.warn(
           'Select2: The `data-select2-tags` attribute has been changed to ' +
           'use the `data-data` and `data-tags="true"` attributes and will be ' +
@@ -37362,7 +37422,7 @@ define('select2/options',[
     }
 
     if ($e.data('ajaxUrl')) {
-      if (window.console && console.warn) {
+      if (this.options.debug && window.console && console.warn) {
         console.warn(
           'Select2: The `data-ajax-url` attribute has been changed to ' +
           '`data-ajax--url` and support for the old attribute will be removed' +
@@ -37370,7 +37430,8 @@ define('select2/options',[
         );
       }
 
-      $e.data('ajax-Url', $e.data('ajaxUrl'));
+      $e.attr('ajax--url', $e.data('ajaxUrl'));
+      $e.data('ajax--url', $e.data('ajaxUrl'));
     }
 
     var dataset = {};
@@ -37413,7 +37474,7 @@ define('select2/options',[
   return Options;
 });
 
-define('select2/core',[
+S2.define('select2/core',[
   'jquery',
   './options',
   './utils',
@@ -37443,7 +37504,7 @@ define('select2/core',[
     // Set up containers and adapters
 
     var DataAdapter = this.options.get('dataAdapter');
-    this.data = new DataAdapter($element, this.options);
+    this.dataAdapter = new DataAdapter($element, this.options);
 
     var $container = this.render();
 
@@ -37462,7 +37523,7 @@ define('select2/core',[
     this.dropdown.position(this.$dropdown, $container);
 
     var ResultsAdapter = this.options.get('resultsAdapter');
-    this.results = new ResultsAdapter($element, this.options, this.data);
+    this.results = new ResultsAdapter($element, this.options, this.dataAdapter);
     this.$results = this.results.render();
 
     this.results.position(this.$results, this.$dropdown);
@@ -37485,7 +37546,7 @@ define('select2/core',[
     this._registerEvents();
 
     // Set the initial state
-    this.data.current(function (initialData) {
+    this.dataAdapter.current(function (initialData) {
       self.trigger('selection:update', {
         data: initialData
       });
@@ -37576,7 +37637,7 @@ define('select2/core',[
   };
 
   Select2.prototype._bindAdapters = function () {
-    this.data.bind(this, this.$container);
+    this.dataAdapter.bind(this, this.$container);
     this.selection.bind(this, this.$container);
 
     this.dropdown.bind(this, this.$container);
@@ -37587,7 +37648,7 @@ define('select2/core',[
     var self = this;
 
     this.$element.on('change.select2', function () {
-      self.data.current(function (data) {
+      self.dataAdapter.current(function (data) {
         self.trigger('selection:update', {
           data: data
         });
@@ -37621,7 +37682,7 @@ define('select2/core',[
   Select2.prototype._registerDataEvents = function () {
     var self = this;
 
-    this.data.on('*', function (name, params) {
+    this.dataAdapter.on('*', function (name, params) {
       self.trigger(name, params);
     });
   };
@@ -37691,7 +37752,7 @@ define('select2/core',[
         self.trigger('open');
       }
 
-      this.data.query(params, function (data) {
+      this.dataAdapter.query(params, function (data) {
         self.trigger('results:all', {
           data: data,
           query: params
@@ -37700,7 +37761,7 @@ define('select2/core',[
     });
 
     this.on('query:append', function (params) {
-      this.data.query(params, function (data) {
+      this.dataAdapter.query(params, function (data) {
         self.trigger('results:append', {
           data: data,
           query: params
@@ -37826,7 +37887,7 @@ define('select2/core',[
   };
 
   Select2.prototype.enable = function (args) {
-    if (window.console && console.warn) {
+    if (this.options.get('debug') && window.console && console.warn) {
       console.warn(
         'Select2: The `select2("enable")` method has been deprecated and will' +
         ' be removed in later Select2 versions. Use $element.prop("disabled")' +
@@ -37834,7 +37895,7 @@ define('select2/core',[
       );
     }
 
-    if (args.length === 0) {
+    if (args == null || args.length === 0) {
       args = [true];
     }
 
@@ -37844,7 +37905,8 @@ define('select2/core',[
   };
 
   Select2.prototype.data = function () {
-    if (arguments.length > 0 && window.console && console.warn) {
+    if (this.options.get('debug') &&
+        arguments.length > 0 && window.console && console.warn) {
       console.warn(
         'Select2: Data can no longer be set using `select2("data")`. You ' +
         'should consider setting the value instead using `$element.val()`.'
@@ -37853,7 +37915,7 @@ define('select2/core',[
 
     var data = [];
 
-    this.dataAdpater.current(function (currentData) {
+    this.dataAdapter.current(function (currentData) {
       data = currentData;
     });
 
@@ -37861,14 +37923,14 @@ define('select2/core',[
   };
 
   Select2.prototype.val = function (args) {
-    if (window.console && console.warn) {
+    if (this.options.get('debug') && window.console && console.warn) {
       console.warn(
         'Select2: The `select2("val")` method has been deprecated and will be' +
         ' removed in later Select2 versions. Use $element.val() instead.'
       );
     }
 
-    if (args.length === 0) {
+    if (args == null || args.length === 0) {
       return this.$element.val();
     }
 
@@ -37906,12 +37968,12 @@ define('select2/core',[
     this.$element.show();
     this.$element.removeData('select2');
 
-    this.data.destroy();
+    this.dataAdapter.destroy();
     this.selection.destroy();
     this.dropdown.destroy();
     this.results.destroy();
 
-    this.data = null;
+    this.dataAdapter = null;
     this.selection = null;
     this.dropdown = null;
     this.results = null;
@@ -37939,7 +38001,7 @@ define('select2/core',[
   return Select2;
 });
 
-define('jquery.select2',[
+S2.define('jquery.select2',[
   'jquery',
   './select2/core',
   './select2/defaults'
@@ -37979,5 +38041,24 @@ define('jquery.select2',[
   return Select2;
 });
 
-require('jquery.select2'); jQuery.fn.select2.amd = { define: define, require: require }; }());
+  // Return the AMD loader configuration so it can be used outside of this file
+  return {
+    define: S2.define,
+    require: S2.require
+  };
+}());
+
+  // Autoload the jQuery bindings
+  // We know that all of the modules exist above this, so we're safe
+  var select2 = S2.require('jquery.select2');
+
+  // Hold the AMD module references on the jQuery function that was just loaded
+  // This allows Select2 to use the internal loader outside of this file, such
+  // as in the language files.
+  $.fn.select2.amd = S2;
+
+  // Return the Select2 instance for anyone who is importing it.
+  return select2;
+}));
+
 });
