@@ -3,23 +3,23 @@ $(document).foundation({});
 $('#transport').click(function () {
 
     $("#platebni_karta").prop("disabled", false);
-    $("#online_platba").prop("disabled", false);
-    $("#bankovni_prevod").prop("disabled", false);
+    $("#online-platba").prop("disabled", false);
+    $("#bankovni-prevod").prop("disabled", false);
     $("#platba-dobirkou").prop("disabled", false);
     $("#osobni-prevzeti").prop("disabled", false);
 
     if ($("#zasilkovna").is(':checked')) {
-        $("#platebni_karta").prop("disabled", false);
-        $("#online_platba").prop("disabled", true).prop("checked", false);
-        $("#bankovni_prevod").prop("disabled", true).prop("checked", false);
+        $("#platebni-karta").prop("disabled", false);
+        $("#online-platba").prop("disabled", true).prop("checked", false);
+        $("#bankovni-prevod").prop("disabled", true).prop("checked", false);
         $("#platba-dobirkou").prop("disabled", true).prop("checked", false);
         $("#osobni-prevzeti").prop("disabled", true).prop("checked", false);
     }
 
     if ($("#dobirka").is(':checked')) {
-        $("#platebni_karta").prop("disabled", false);
-        $("#online_platba").prop("disabled", true).prop("checked", false);
-        $("#bankovni_prevod").prop("disabled", false);
+        $("#platebni-karta").prop("disabled", false);
+        $("#online-platba").prop("disabled", true).prop("checked", false);
+        $("#bankovni-prevod").prop("disabled", false);
         $("#platba-dobirkou").prop("disabled", false);
         $("#osobni-prevzeti").prop("disabled", true).prop("checked", false);
     }
