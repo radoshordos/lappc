@@ -33,6 +33,7 @@ Přehled synchronizace výrobců
                 <th>Výrobce</th>
                 <th>&sum; SyncDB</th>
                 <th>&sum; DB</th>
+                <th>NoSync *</th>
                 <th>!= Price</th>
             </tr>
         </thead>
@@ -44,10 +45,12 @@ Přehled synchronizace výrobců
                     <td>{{ $row["name"] }}</td>
                     <td>{{ $row['count_items_dev']}}</td>
                     <td>{{ $row['count_insert_prod'] }}</td>
-                    <td>{{ link_to_route('adm.sync.db.index', $row['count_price_diff'], ["select_connect" => "connect", "select_mixture_dev" => $row['dev_id'], "join" => "left", "money" => "diverse"]) }}</td>
+                    <td>{{ link_to_route('adm.sync.db.index', $row['count_sync_no'], ["basic" => "items","connect" => "connect", "mixture_dev" => $row['dev_id'], "join" => "left", "prodmode" => "1"]) }}</td>
+                    <td>{{ link_to_route('adm.sync.db.index', $row['count_price_diff'], ["connect" => "connect", "mixture_dev" => $row['dev_id'], "join" => "left", "money" => "diverse"]) }}</td>
                 </tr>
             @endforeach
         @endif
         </tbody>
     </table>
+    <p class="text-center">* Nerozlišuje účel synchronizace</p>
 @stop

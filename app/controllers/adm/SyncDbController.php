@@ -155,8 +155,6 @@ class SyncDbController extends \BaseController
                     break;
             }
 
-            var_dump($db->toSql());
-
             $db->select([
                 'sync_db.id AS sync_id',
                 'sync_db.code_ean AS sync_code_ean',

@@ -30,7 +30,8 @@ Synchronizační databáze
         $("#limit").select2({});
         $("#basic").select2({});
         $("#prodmode").select2({
-            placeholder: "Zboží"
+            placeholder: "Zboží",
+            allowClear: true
         });
         $("#accessory").select2({
             placeholder: "Má příslušenství",
