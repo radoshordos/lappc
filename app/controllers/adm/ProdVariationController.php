@@ -41,7 +41,7 @@ class ProdVariationController extends \BaseController
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return  Redirect::action('ProdVariationController@index', array('select_difference_set' => $input['set_id']));
+            return Redirect::action('ProdVariationController@index', ['select_difference_set' => $input['set_id']]);
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.prodvariation.create')->withInput()->withErrors($v);

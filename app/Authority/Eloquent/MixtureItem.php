@@ -7,7 +7,7 @@ class MixtureItem extends \Eloquent
     public $timestamps = false;
 
     public static $rules = [
-        'name' => 'required|min:24|max:160|unique:mixture_item,name'
+        'name' => 'required|min:16|max:160|unique:mixture_item,name'
     ];
 
     public function items()

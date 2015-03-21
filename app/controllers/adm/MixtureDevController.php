@@ -15,7 +15,7 @@ class MixtureDevController extends \BaseController
     public function index()
     {
         return View::make('adm.pattern.mixturedev.index', [
-            'mixturedev' => $this->mixture_dev->orderBy('id')->get()
+            'mixturedev' => $this->mixture_dev->whereIn('purpose', ['autosimple', 'devgroup'])->orderBy('id')->get()
         ]);
     }
 

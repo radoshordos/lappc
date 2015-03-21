@@ -10,6 +10,12 @@ Nová grupa produktů
 @section('content')
 {{ Form::open(['route' => 'adm.pattern.mixtureprod.store','class' => 'form-horizontal', 'role' => 'form']) }}
 <div class="form-group">
+    {{ Form::label('purpose','Účel seskupení',['class'=> 'col-sm-2 control-label']) }}
+    <div class="col-sm-10">
+        {{ Form::select('purpose',$select_purpose, $choice_purpose, ['required' => 'required', 'id'=> 'purpose',  'class'=> 'form-control']) }}
+    </div>
+</div>
+<div class="form-group">
     {{ Form::label('name','Nová grupa produktu',['class'=> 'col-sm-2 control-label']) }}
     <div class="col-sm-10">
         {{ Form::text('name',NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zadej jméno nové grupy produktů']) }}

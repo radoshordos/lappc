@@ -9,7 +9,7 @@ class MixtureProd extends Migration
     {
         Schema::create('mixture_prod', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->enum('purpose', ['rules_simple']);
+            $table->enum('purpose', ['multimedia', 'rules_simple']);
             $table->string('name', '160')->unique();
 
             $table->engine = 'InnoDB';

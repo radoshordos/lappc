@@ -11,16 +11,20 @@ Přehled akcí
     <script>
         $(document).ready(function () {
             $("#select_minitext").select2({
-                allowClear: true
+                allowClear: true,
+                placeholder: "Minitext"
             });
             $("#select_availability").select2({
-                allowClear: true
+                allowClear: true,
+                placeholder: "Platnost"
             });
             $("#select_mixture_dev").select2({
-                allowClear: true
+                allowClear: true,
+                placeholder: "Seskupení výrobců"
             });
             $("#select_template").select2({
-                allowClear: true
+                allowClear: true,
+                placeholder: "Šablona akce"
             });
         });
     </script>
@@ -32,13 +36,13 @@ Přehled akcí
 <blockquote>
     <div class="row">
         <div class="col-xs-4">
-            {{ Form::select('select_minitext', $select_minitext, $choice_minitext, ['id'=> 'select_minitext', 'class'=> 'form-control','placeholder' => 'Minitext']) }}
+            {{ Form::select('select_minitext', $select_minitext, $choice_minitext, ['id'=> 'select_minitext', 'class'=> 'form-control']) }}
         </div>
         <div class="col-xs-4">
-            {{ Form::select('select_availability', $select_availability, $choice_availability, ['id'=> 'select_availability', 'class'=> 'form-control','placeholder' => 'Platnost']) }}
+            {{ Form::select('select_availability', $select_availability, $choice_availability, ['id'=> 'select_availability', 'class'=> 'form-control']) }}
         </div>
         <div class="col-xs-3">
-            {{ Form::select('select_mixture_dev', $select_mixture_dev, $choice_mixture_dev, ['id'=> 'select_mixture_dev', 'class'=> 'form-control','placeholder' => 'Výrobci']) }}
+            {{ Form::select('select_mixture_dev', $select_mixture_dev, $choice_mixture_dev, ['id'=> 'select_mixture_dev', 'class'=> 'form-control']) }}
         </div>
         <div class="col-xs-1">
             {{ Form::submit('Hledat',['name' => 'hledat','class'=> 'form-control btn-primary'])  }}
@@ -46,7 +50,7 @@ Přehled akcí
     </div>
     <div class="row" style="margin-top: 1em">
         <div class="col-xs-12">
-            {{ Form::select('select_template', $select_template, NULL, ['id'=> 'select_template', 'class'=> 'form-control','placeholder' => 'Šablona akce']) }}
+            {{ Form::select('select_template', $select_template, NULL, ['id'=> 'select_template', 'class'=> 'form-control']) }}
         </div>
     </div>
 </blockquote>

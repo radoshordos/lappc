@@ -14,18 +14,21 @@ class MixtureProdM2nProdController extends \BaseController
     public function store()
     {
         $input = Input::all();
-        $v = Validator::make($input, MixtureProdM2nProd::$rules);
+        $input_filter = array_only($input, ['mixture_prod_id', 'prod_id']);
+        $v = Validator::make($input_filter, MixtureProdM2nProd::$rules);
 
-        if ($v->passes()) {
+        if (empty($input['prod_id'])) {
+            return Redirect::route('adm.pattern.mixtureprod.edit', [$input['mixture_prod_id'], 'select_dev' => $input['select_dev']]);
+        } else if ($v->passes()) {
             try {
-                $this->mpmp->create($input);
+                $this->mpmp->create($input_filter);
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.pattern.mixtureprod.edit', $input['mixture_prod_id']);
+            return Redirect::route('adm.pattern.mixtureprod.edit', [$input['mixture_prod_id'], 'select_dev' => $input['select_dev']]);
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
-            return Redirect::route('adm.pattern.mixtureprod.edit', $input['mixture_prod_id'])->withInput()->withErrors($v);
+            return Redirect::route('adm.pattern.mixtureprod.edit', [$input['mixture_prod_id']])->withInput()->withErrors($v);
         }
     }
 
