@@ -18,16 +18,20 @@ Synchronizační databáze
               checkboxes.prop('checked', false);
             }
         });
-        $("#select_mixture_dev").select2({
+        $("#mixture_dev").select2({
             placeholder: "Seskupení výrobců",
             allowClear: true
         });
-        $("#select_connect").select2({
+        $("#connect").select2({
             placeholder: "Propojit podle",
             allowClear: true
         });
         $("#join").select2({});
         $("#limit").select2({});
+        $("#basic").select2({});
+        $("#prodmode").select2({
+            placeholder: "Zboží"
+        });
         $("#accessory").select2({
             placeholder: "Má příslušenství",
             allowClear: true
@@ -54,16 +58,20 @@ Synchronizační databáze
 
 {{-- Content --}}
 @section('content')
+
 <blockquote>
     <form>
         <div class="row">
-            <div class="col-xs-3">
-                {{ Form::select('select_connect', ['' => '', 'code_prod' => 'Kódu produktu', 'code_ean' => 'EAN produktu', 'name' => 'Názvu produktu','connect' => 'Existujícího spojení'], (isset($input['select_connect']) ? $input['select_connect'] : NULL), ['id'=> 'select_connect', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            <div class="col-xs-2">
+                {{ Form::select('basic', ['syncdb' => 'SyncDb', 'items' => 'ItemDb'], (isset($input['basic']) ? $input['basic'] : NULL), ['id'=> 'basic', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            </div>
+            <div class="col-xs-2">
+                {{ Form::select('connect', ['' => '', 'code_prod' => 'Kódu produktu', 'code_ean' => 'EAN produktu', 'name' => 'Názvu produktu','connect' => 'Existujícího spojení'], (isset($input['connect']) ? $input['connect'] : NULL), ['id'=> 'connect', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-4">
-                {{ Form::select('select_mixture_dev', $select_mixture_dev, (isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL), ['id'=> 'select_mixture_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('mixture_dev', $mixture_dev, (isset($input['mixture_dev']) ? $input['mixture_dev'] : NULL), ['id'=> 'mixture_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 {{ Form::select('join', ['left' => 'Spárované','noleft' => 'Nespárované','inner' => 'Všechny'], (isset($input['join']) ? $input['join'] : NULL), ['id'=> 'join', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
@@ -71,8 +79,11 @@ Synchronizační databáze
             </div>
         </div>
         <div class="row" style="margin-top: .4em">
-            <div class="col-xs-10">
-                {{ Form::select('categorytext', $select_categorytext, (isset($input['categorytext']) ? $input['categorytext'] : NULL), ['id'=> 'categorytext', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            <div class="col-xs-8">
+                {{ Form::select('categorytext', $categorytext, (isset($input['categorytext']) ? $input['categorytext'] : NULL), ['id'=> 'categorytext', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            </div>
+            <div class="col-xs-2">
+                {{ Form::select('prodmode', ["" => "",'1' => 'Není v Sync' ,"2" => "Neskryté zboží", "3" => "Jen skryté zboží"], (isset($input['prodmode']) ? $input['prodmode'] : NULL), ['id'=> 'prodmode', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::select('money', ['' => '','diverse' => 'Rozdílná','same' => 'Stejná'], (isset($input['money']) ? $input['money'] : NULL), ['id'=> 'money', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
@@ -145,9 +156,11 @@ Synchronizační databáze
 </form>
 <div class="text-center">
     {{ $db->appends([
-              'select_connect' => (isset($input['select_connect']) ? $input['select_connect'] : NULL),
-              'select_mixture_dev' => (isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL),
+              'basic'  => (isset($input['basic']) ? $input['basic'] : NULL),
+              'connect' => (isset($input['connect']) ? $input['connect'] : NULL),
+              'mixture_dev' => (isset($input['mixture_dev']) ? $input['mixture_dev'] : NULL),
               'join' => (isset($input['join']) ? $input['join'] : NULL),
+              'prodmode' => (isset($input['prodmode']) ? $input['prodmode'] : NULL),
               'limit' => (isset($input['limit']) ? $input['limit'] : NULL),
               'record' => (isset($input['record']) ? $input['record'] : NULL),
         ])->links();

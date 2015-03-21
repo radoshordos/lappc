@@ -93,6 +93,11 @@
                         </tr>
                     @endforeach
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="10" class="text-right">Celkem <b>{{ $view->getTotal() }}</b> záznamů</td>
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

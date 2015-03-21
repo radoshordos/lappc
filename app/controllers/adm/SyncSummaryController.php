@@ -8,7 +8,12 @@ class SyncSummaryController extends \BaseController
 	{
 		$i = 0;
 		$arr = [];
-		$sdb = SyncDb::distinct()->select(['sync_db.dev_id', 'dev.name'])->join('dev', 'dev.id', '=', 'sync_db.dev_id')->where('purpose', '=', Input::get('dfilter'))->get();
+		$sdb = SyncDb::distinct()
+            ->select(['sync_db.dev_id', 'dev.name'])
+            ->join('dev', 'dev.id', '=', 'sync_db.dev_id')
+            ->where('purpose', '=', Input::get('dfilter'))
+            ->orderBy('dev_id')
+            ->get();
 
 		if (!empty($sdb)) {
 			foreach ($sdb as $row) {
@@ -27,7 +32,6 @@ class SyncSummaryController extends \BaseController
 				$arr[$i++] = array_merge($row->toArray(), ['count_insert_prod' => $count_insert_prod], ['count_items_dev' => $count_items_dev], ['count_price_diff' => $count_price_diff]);
 			}
 		}
-
 
 		return View::make('adm.sync.summary.index', [
 			'dfilter' => Input::get('dfilter'),

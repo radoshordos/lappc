@@ -7,47 +7,76 @@ class SyncDbController extends \BaseController
 {
     public function index()
     {
-        $dev = \DB::table('mixture_dev_m2n_dev')->where('mixture_dev_id', Input::get('select_mixture_dev'))->lists('dev_id');
-        $select_mixture_dev = SB::option("SELECT * FROM mixture_dev WHERE purpose = 'autosimple' OR purpose = 'devgroup' ORDER BY name", ['id' => '->name'], TRUE);
+        $dev = \DB::table('mixture_dev_m2n_dev')->where('mixture_dev_id', Input::get('mixture_dev'))->lists('dev_id');
+        $mixture_dev = SB::option("SELECT * FROM mixture_dev WHERE purpose = 'autosimple' OR purpose = 'devgroup' ORDER BY name", ['id' => '->name'], TRUE);
 
         if (count($dev) > 0) {
-            $select_categorytext = SB::optionEloqent(SyncDb::select('categorytext')->whereIn('purpose', ['manualsync', 'autosync'])->whereIn('sync_db.dev_id', $dev)->distinct()->get(), ['categorytext' => '->categorytext'], TRUE);
+            $categorytext = SB::optionEloqent(SyncDb::select('categorytext')->whereIn('purpose', ['manualsync', 'autosync'])->whereIn('sync_db.dev_id', $dev)->distinct()->get(), ['categorytext' => '->categorytext'], TRUE);
         }
 
-        if (strlen(Input::get('select_connect')) == 0 || (count($dev) == 0 && Input::has('record') === FALSE))   {
+        if (strlen(Input::get('connect')) == 0 || (count($dev) == 0 && Input::has('record') === FALSE)) {
 
             return View::make('adm.sync.db.index', [
-                'input'               => Input::all(),
-                'select_mixture_dev'  => $select_mixture_dev,
-                'select_categorytext' => (isset($select_categorytext) ? $select_categorytext : [])
+                'input'        => Input::all(),
+                'mixture_dev'  => $mixture_dev,
+                'categorytext' => (isset($categorytext) ? $categorytext : [])
             ]);
 
         } else {
 
-            $db = \DB::table('sync_db');
-            if (Input::has('record') === FALSE && intval(Input::get('select_mixture_dev')) > 0) {
-                $db->whereIn('sync_db.dev_id', $dev);
+            if (Input::get('basic') == 'items') {
+                $db = \DB::table('items');
+
+                switch (Input::get('connect')) {
+                    case 'code_ean':
+                        $db->leftJoin('sync_db', "items.code_ean", '=', "sync_db.code_ean");
+                        $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+                        break;
+                    case 'name':
+                        $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+                        $db->leftJoin('sync_db', 'prod.name', '=', 'sync_db.name');
+                        break;
+                    case 'connect':
+                        $db->leftJoin('sync_db', "items.id", '=', "sync_db.item_id");
+                        $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+                        break;
+                    default:
+                        $db->leftJoin('sync_db', "items.code_prod", '=', "sync_db.code_prod");
+                        $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+                        break;
+                }
+
+                if (Input::has('record') === FALSE && intval(Input::get('mixture_dev')) > 0) {
+                    $db->whereIn('prod.dev_id', $dev);
+                }
+
+            } else {
+                $db = \DB::table('sync_db');
+
+                switch (Input::get('connect')) {
+                    case 'code_ean':
+                        $db->leftJoin('items', "items.code_ean", '=', "sync_db.code_ean");
+                        $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+                        break;
+                    case 'name':
+                        $db->leftJoin('prod', 'prod.name', '=', 'sync_db.name');
+                        $db->leftJoin('items', 'prod.id', '=', 'items.prod_id');
+                        break;
+                    case 'connect':
+                        $db->leftJoin('items', "items.id", '=', "sync_db.item_id");
+                        $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+                        break;
+                    default:
+                        $db->leftJoin('items', "items.code_prod", '=', "sync_db.code_prod");
+                        $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
+                        break;
+                }
+
+                if (Input::has('record') === FALSE && intval(Input::get('mixture_dev')) > 0) {
+                    $db->whereIn('sync_db.dev_id', $dev);
+                }
             }
 
-            switch (Input::get('select_connect')) {
-
-                case 'code_ean':
-                    $db->leftJoin('items', "items.code_ean", '=', "sync_db.code_ean");
-                    $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
-                    break;
-                case 'name':
-                    $db->leftJoin('prod', 'prod.name', '=', 'sync_db.name');
-                    $db->leftJoin('items', 'prod.id', '=', 'items.prod_id');
-                    break;
-	            case 'connect':
-		            $db->leftJoin('items', "items.id", '=', "sync_db.item_id");
-		            $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
-		            break;
-                default:
-                    $db->leftJoin('items', "items.code_prod", '=', "sync_db.code_prod");
-                    $db->leftJoin('prod', 'prod.id', '=', 'items.prod_id');
-                    break;
-            }
 
             switch (Input::get('join')) {
                 case 'left':
@@ -66,6 +95,20 @@ class SyncDbController extends \BaseController
 
             if (Input::has('record')) {
                 $db->where('record_id', '=', Input::get('record'));
+            }
+
+            switch (Input::get('prodmode')) {
+                case '1':
+                    $db->whereRaw('prod.mode_id > 1')->whereNull('sync_db.id');
+                    break;
+                case '2':
+                    $db->whereRaw('prod.mode_id > 1');
+                    break;
+                case '3':
+                    $db->whereRaw('prod.mode_id = 1');
+                    break;
+                default:
+                    break;
             }
 
             switch (Input::get('money')) {
@@ -112,6 +155,8 @@ class SyncDbController extends \BaseController
                     break;
             }
 
+            var_dump($db->toSql());
+
             $db->select([
                 'sync_db.id AS sync_id',
                 'sync_db.code_ean AS sync_code_ean',
@@ -129,10 +174,10 @@ class SyncDbController extends \BaseController
             ]);
 
             return View::make('adm.sync.db.index', [
-                'db'                  => $db->paginate(intval(Input::get('limit') > 0) ? Input::get('limit') : 20),
-                'input'               => Input::all(),
-                'select_mixture_dev'  => $select_mixture_dev,
-                'select_categorytext' => (isset($select_categorytext) ? $select_categorytext : [])
+                'db'           => $db->paginate(intval(Input::get('limit') > 0) ? Input::get('limit') : 20),
+                'input'        => Input::all(),
+                'mixture_dev'  => $mixture_dev,
+                'categorytext' => (isset($categorytext) ? $categorytext : [])
             ]);
         }
     }
