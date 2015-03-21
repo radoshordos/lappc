@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('admin/components/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/components/bootstrap/css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/components/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/components/select2/dist/css/select2.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/mystyle/style.css') }}">
     <script src="{{ asset('admin/components/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/components/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/components/select2/dist/js/select2.js') }}"></script>
     <script src="{{ asset('admin/components/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/components/restfulizer/restfulizer.js') }}"></script>
     <script src="{{ asset('admin/mystyle/style.js') }}"></script>

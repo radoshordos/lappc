@@ -13,8 +13,8 @@
                 minimumResultsForSearch: 3,
                 allowClear: true
             });
-            $("#select_dev").select2({
-                placeholder: "Výrobce",
+            $("#select_mixture_dev").select2({
+                placeholder: "Seskupení výrobců",
                 minimumResultsForSearch: 3,
                 allowClear: true
             });
@@ -37,7 +37,7 @@
                 {{ Form::select('select_tree', $select_tree, $input_tree, ['id'=> 'select_tree', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-3">
-                {{ Form::select('select_dev', $select_dev, $input_dev, ['id'=> 'select_dev', 'class'=> 'form-control']) }}
+                {{ Form::select('select_mixture_dev', $select_mixture_dev, $input_mixture_dev, ['id'=> 'select_mixture_dev', 'class'=> 'form-control']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::select('select_limit', ['5' => ' Limit 5','30' => ' Limit 30','90' => 'Limit 90'], $input_limit, ['id'=> 'select_limit', 'class'=> 'form-control']) }}
@@ -98,7 +98,7 @@
         </div>
         {{ Form::close() }}
         <div class="text-center">
-            {{ $view->appends(['select_tree' => $input_tree,'select_dev' => $input_dev,'select_limit' => $input_limit,'select_diff' => $input_diff])->links(); }}
+            {{ $view->appends(['select_tree' => $input_tree,'select_mixture_dev' => $input_mixture_dev,'select_limit' => $input_limit,'select_diff' => $input_diff])->links(); }}
         </div>
     @endif
 @stop
