@@ -5,14 +5,14 @@ class ProdTableSeeder extends Seeder
 
 	public function run()
 	{
-		$prod = [];
+        $import_prod = [];
 		include "migration/prod.php";
 
 		DB::table('prod')->delete();
 		$now = strtotime('now');
 
 		$i = 0;
-		foreach ($prod as $row) {
+		foreach ($import_prod as $row) {
 
 			$tree = $this->getTree($row['tree_id']);
 			$i++;
