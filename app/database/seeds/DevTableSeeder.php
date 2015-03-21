@@ -11,8 +11,6 @@ class DevTableSeeder extends Seeder
             ['dev_id' => '15', 'dev_id_tree' => '1053000', 'dev_id_default_warranty' => '3', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Protool', 'dev_unique_string' => 'protool', 'dev_url_2_dev' => 'http://www.protool.cz/', 'dev_url_2_dev_short' => 'www.protool.cz'],
             ['dev_id' => '20', 'dev_id_tree' => '1052000', 'dev_id_default_warranty' => '7', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Metabo', 'dev_unique_string' => 'metabo', 'dev_url_2_dev' => 'http://www.metabo.cz/', 'dev_url_2_dev_short' => 'www.metabo.cz'],
             ['dev_id' => '30', 'dev_id_tree' => '1054000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Dolmar', 'dev_unique_string' => 'dolmar', 'dev_url_2_dev' => 'http://www.dolmar.cz', 'dev_url_2_dev_short' => 'www.dolmar.cz'],
-            ['dev_id' => '35', 'dev_id_tree' => '1060000', 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Proma', 'dev_unique_string' => 'proma', 'dev_url_2_dev' => 'http://www.promacz.cz/', 'dev_url_2_dev_short' => 'www.promacz.cz'],
-            ['dev_id' => '36', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Ferm', 'dev_unique_string' => 'ferm', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
             ['dev_id' => '40', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Dewalt', 'dev_unique_string' => 'dewalt', 'dev_url_2_dev' => 'http://www.dewalt.cz/', 'dev_url_2_dev_short' => 'www.dewalt.cz'],
             ['dev_id' => '45', 'dev_id_tree' => '1064000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Narex Bystřice', 'dev_unique_string' => 'narex_bystrice', 'dev_url_2_dev' => 'http://www.narexby.cz/', 'dev_url_2_dev_short' => 'www.narexby.cz'],
             ['dev_id' => '50', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Flexovit', 'dev_unique_string' => 'flexovit', 'dev_url_2_dev' => 'http://www.flexovit.nl/', 'dev_url_2_dev_short' => 'www.flexovit.nl'],
@@ -22,6 +20,11 @@ class DevTableSeeder extends Seeder
             ['dev_id' => '80', 'dev_id_tree' => '1055000', 'dev_id_default_warranty' => '3', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Festool', 'dev_unique_string' => 'festool', 'dev_url_2_dev' => 'http://www.festool.cz/', 'dev_url_2_dev_short' => 'www.festool.cz'],
             ['dev_id' => '85', 'dev_id_tree' => '1058000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Knipex', 'dev_unique_string' => 'knipex', 'dev_url_2_dev' => 'http://www.knipex.cz/', 'dev_url_2_dev_short' => 'www.knipex.cz'],
             ['dev_id' => '95', 'dev_id_tree' => '1057000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '50', 'dev_id_default_availibility' => '26', 'dev_delivery_date' => '1', 'dev_name' => 'Stanley', 'dev_unique_string' => 'stanley', 'dev_url_2_dev' => 'http://www.stanleyworks.cz/', 'dev_url_2_dev_short' => 'www.stanleyworks.cz'],
+            ['dev_id' => '100', 'dev_id_tree' => '1060000', 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Proma', 'dev_unique_string' => 'proma', 'dev_url_2_dev' => 'http://www.promacz.cz/', 'dev_url_2_dev_short' => 'www.promacz.cz'],
+            ['dev_id' => '102', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Ferm', 'dev_unique_string' => 'ferm', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '104', 'dev_id_tree' => '1066000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Worx', 'dev_unique_string' => 'worx', 'dev_url_2_dev' => 'http://www.promacz.cz/', 'dev_url_2_dev_short' => 'www.promacz.cz'],
+            ['dev_id' => '106', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Comprecise', 'dev_unique_string' => 'comprecise', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '108', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Diy', 'dev_unique_string' => 'diy', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
             ['dev_id' => '120', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'Elko Nový Knín', 'dev_unique_string' => 'elko', 'dev_url_2_dev' => 'http://www.elkonk.cz/', 'dev_url_2_dev_short' => 'www.elkonk.cz'],
             ['dev_id' => '130', 'dev_id_tree' => '1061000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Fein', 'dev_unique_string' => 'fein', 'dev_url_2_dev' => 'http://www.fein.de/corp/de/en/custom/index.html', 'dev_url_2_dev_short' => 'www.fein.de'],
             ['dev_id' => '135', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '35', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Hitachi', 'dev_unique_string' => 'hitachi', 'dev_url_2_dev' => 'http://www.hitachi-powertools.cz/', 'dev_url_2_dev_short' => 'www.hitachi-powertools.cz'],
@@ -31,7 +34,8 @@ class DevTableSeeder extends Seeder
             ['dev_id' => '155', 'dev_id_tree' => '1063000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '40', 'dev_id_default_availibility' => '26', 'dev_delivery_date' => '1', 'dev_name' => 'Wiha', 'dev_unique_string' => 'wiha', 'dev_url_2_dev' => 'http://www.wiha.com/', 'dev_url_2_dev_short' => 'www.wiha.com'],
             ['dev_id' => '160', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Fiskars', 'dev_unique_string' => 'fiskars', 'dev_url_2_dev' => 'http://www.fiskars.com/cz/', 'dev_url_2_dev_short' => ''],
             ['dev_id' => '165', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Sankyo', 'dev_unique_string' => 'sankyo', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
-            ['dev_id' => '170', 'dev_id_tree' => '1066000', 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Worx', 'dev_unique_string' => 'worx', 'dev_url_2_dev' => 'http://www.promacz.cz/', 'dev_url_2_dev_short' => 'www.promacz.cz'],
+            ['dev_id' => '175', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Ferm economy', 'dev_unique_string' => 'ferm_economy', 'dev_url_2_dev' => 'http://www.satrade.cz/', 'dev_url_2_dev_short' => 'www.satrade.cz'],
+            ['dev_id' => '176', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '30', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Ferm powerline', 'dev_unique_string' => 'ferm_powerline', 'dev_url_2_dev' => 'http://www.satrade.cz/', 'dev_url_2_dev_short' => 'www.satrade.cz'],
             ['dev_id' => '180', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '25', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Proteco', 'dev_unique_string' => 'proteco', 'dev_url_2_dev' => 'http://www.azsatelit.cz/', 'dev_url_2_dev_short' => 'www.proteco.cz'],
             ['dev_id' => '185', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '4', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '24', 'dev_delivery_date' => '1', 'dev_name' => 'Al-ko', 'dev_unique_string' => 'al-ko', 'dev_url_2_dev' => 'http://zahrada.al-ko.cz/', 'dev_url_2_dev_short' => 'zahrada.al-ko.cz'],
             ['dev_id' => '190', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '8', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '0', 'dev_delivery_date' => '1', 'dev_name' => 'WAY', 'dev_unique_string' => 'way', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
@@ -143,21 +147,22 @@ class DevTableSeeder extends Seeder
             ['dev_id' => '864', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Opera', 'dev_unique_string' => 'opera', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
             ['dev_id' => '866', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Sonata', 'dev_unique_string' => 'sonata', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
             ['dev_id' => '868', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Viking', 'dev_unique_string' => 'viking', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
-            ['dev_id' => '870', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Vittoria', 'dev_unique_string' => 'vittoria', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => '']
+            ['dev_id' => '870', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Vittoria', 'dev_unique_string' => 'vittoria', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => ''],
+            ['dev_id' => '880', 'dev_id_tree' => NULL, 'dev_id_default_warranty' => '1', 'dev_id_default_sale' => '0', 'dev_id_default_availibility' => '1', 'dev_delivery_date' => '1', 'dev_name' => 'Holzmann', 'dev_unique_string' => 'holzmann', 'dev_url_2_dev' => '', 'dev_url_2_dev_short' => '']
         ];
 
         DB::table('dev')->delete();
         DB::table('dev')->insert([
-            'id'     => 1,
-            'alias'  => 'all',
-            'name'   => 'Vše'
+            'id'    => 1,
+            'alias' => 'all',
+            'name'  => 'Vše'
         ]);
 
         foreach ($dev as $row) {
             DB::table('dev')->insert([
-                'id'         => $row['dev_id'],
-                'alias'      => $row['dev_unique_string'],
-                'name'       => $row['dev_name']
+                'id'    => $row['dev_id'],
+                'alias' => $row['dev_unique_string'],
+                'name'  => $row['dev_name']
             ]);
         }
     }

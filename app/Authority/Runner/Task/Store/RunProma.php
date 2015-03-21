@@ -12,13 +12,17 @@ class RunProma extends AbstractRunDev implements iItem
     private function analyseIdDev($dev_name)
     {
         switch ($dev_name) {
+            case 'PROMA' :
+                return 100;
             case 'FERM' :
-                return 36;
+                return 102;
             case 'WORX' :
             case 'WORX Garden' :
-                return 170;
-            case 'PROMA' :
-                return 35;
+                return 104;
+            case 'COMPRECISE' :
+                return 106;
+            case 'DIY' :
+                return 108;
             default :
                 return 0;
         }
