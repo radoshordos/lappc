@@ -25,7 +25,6 @@ $('#transport').click(function () {
     }
 });
 
-
 jQuery('a.gallery').colorbox();
 
 $(function () {
