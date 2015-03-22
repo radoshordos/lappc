@@ -5,7 +5,6 @@ use Authority\Eloquent\Items;
 use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\MediaDb;
 use Authority\Eloquent\MixtureItem;
-use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
@@ -24,6 +23,16 @@ class EshopController extends BaseController
         $this->sid = Session::getId();
         $this->view_tree_array = ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get();
         $this->term = Input::get('term');
+//      var_dump($this->leftMenu());
+    }
+
+    protected function leftMenu()
+    {
+        $arr = [];
+        foreach ([21,22] as $val) {
+            $arr[$val] = ViewTree::select(['tree_absolute', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+        }
+        return $arr;
     }
 
     protected function setupLayout()
@@ -80,7 +89,7 @@ class EshopController extends BaseController
                 ->rightJoin('mixture_dev_m2n_dev', 'mixture_dev.id', '=', 'mixture_dev_m2n_dev.mixture_dev_id')
                 ->whereNotNull('media_db.mixture_dev_id')
                 ->where('mixture_dev_m2n_dev.dev_id', '=', $view_prod_actual->dev_id)
-                ->orderBy('variations_id','desc')
+                ->orderBy('variations_id', 'desc')
                 ->get();
 
             $media_prod = MediaDb::select([
@@ -91,7 +100,7 @@ class EshopController extends BaseController
                 ->rightJoin('mixture_prod_m2n_prod', 'mixture_prod.id', '=', 'mixture_prod_m2n_prod.mixture_prod_id')
                 ->whereNotNull('media_db.mixture_prod_id')
                 ->where('mixture_prod_m2n_prod.prod_id', '=', $view_prod_actual->prod_id)
-                ->orderBy('variations_id','desc')
+                ->orderBy('variations_id', 'desc')
                 ->get();
 
             return View::make('web.prod', [

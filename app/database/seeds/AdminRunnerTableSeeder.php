@@ -43,6 +43,12 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
+            'id'      => 306,
+            'autorun' => 1,
+            'class'   => 'Authority\Runner\Task\Fix\TreeDirectoryByPatternChild'
+        ]);
+
+        DB::table('runner')->insert([
             'id'      => 402,
             'autorun' => 0,
             'class'   => 'Authority\Runner\Task\Recalculate\TreeRecalculate'

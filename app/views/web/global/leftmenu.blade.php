@@ -8,12 +8,13 @@
     </a>
 </div>
 <br />
+
 @foreach($view_tree_array as $vta)
     @if ($group_id != $vta->tree_group_id)
         <?php $group_id = $vta->tree_group_id; ?>
         <div class="icon-bar vertical">
             <a class="item">
-                <label>{{ $vta->tree_group_name }}</label>
+                <label><a href="{{ '/'.$vta->tree_absolute }}">{{ $vta->tree_group_name }}</label>
             </a>
         </div>
     @endif

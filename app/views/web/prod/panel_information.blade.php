@@ -1,7 +1,8 @@
 <div id="desc-panel" class="panel radius">
     <div class="row">
         <div class="medium-10 columns">
-            <h5 class="storeroom">Skladem:<strong> > {{ $vpa->getProdStoreroom() + 4 }} ks</strong></h5>
+            <h6 class="storeroom"><i class="fa fa-home"></i> V obchodě:<strong> {{ $vpa->getProdStoreroom() + 4 }} ks</strong></h6>
+			<h6 class="storeroom"><i class="fa fa-truck"></i> Centrální sklad:<strong> {{ $vpa->getProdStoreroom() + 12 }} ks</strong></h6>
             <p>Zboží připraveno k expedici</p>
             <?php
             $date = new \DateTime();
