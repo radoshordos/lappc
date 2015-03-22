@@ -40,7 +40,7 @@ Výrobci zboží
             <tbody>
             @foreach ($devs as $dev)
             <tr>
-                <td>{{ $dev->id }}</td>
+				<td>{{ link_to_route('adm.product.prod.index', $dev->id, ["select_mixture_dev" => $dev->id]) }}</td>
                 <td>{{ (isset($count_dev[$dev->id]) ? $count_dev[$dev->id] : 0) }}</td>
                 <td>{{ $dev->name }}</td>
                 <td>{{ $dev->alias }}</td>

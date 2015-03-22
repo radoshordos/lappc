@@ -12,12 +12,13 @@ class MediaDb extends Migration
             $table->increments('id')->unsigned();
             $table->smallInteger('variations_id')->unsigned();
             $table->boolean('visible')->default(1);
+            $table->integer('mixture_dev_id')->unsigned()->nullable();
+            $table->integer('mixture_prod_id')->unsigned()->nullable();
             $table->string('name', 255);
             $table->string('source', 510)->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->foreign('variations_id')->references('id')->on('media_variations')->onUpdate('cascade')->onDelete('no action');
         });
     }
 

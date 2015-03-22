@@ -33,5 +33,4 @@ class TreeDev extends Migration {
             $table->dropForeign('group_id');
         });
 	}
-
 }
