@@ -6,6 +6,18 @@
 
 {{-- Content --}}
 @section('content')
+{{ Form::open(['route' => ['adm.pattern.multimedia.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
+    <blockquote>
+        <div class="row">
+            <div class="col-xs-10">
+                {{ Form::select('select_variations', $select_variations, $choice_variations, ['id'=> 'select_variations', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            </div>
+            <div class="col-xs-2">
+                {{ Form::select('select_limit', ['20' => ' Limit 20','30' => ' Limit 30','90' => 'Limit 90'], $choice_limit, ['id'=> 'select_limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            </div>
+        </div>
+    </blockquote>
+{{ Form::close() }}
 
 @if ($media->count())
 <div class="row">
@@ -20,25 +32,26 @@
             </thead>
             <tfoot>
                 <tr>
-                    <td class="text-center" colspan="7">{{ $media->links(); }}</td>
+                    <td colspan="5" class="text-right">Celkem <b>{{ $media->getTotal() }}</b> záznamů</td>
                 </tr>
             </tfoot>
             <tbody>
                 @foreach ($media as $row)
                 <tr>
-                    <td>{{ $row->mediaVariations->name }}</td>
+                    <td>{{ $row->variations_id }}</td>
                     <td>{{ $row->name }}</td>
                     <td>{{ htmlspecialchars($row->source) }}</td>
-                    <td>{{ link_to_route('adm.pattern.multimedia.show','Detail',array($row->id),array('class' => 'btn btn-primary btn-xs')) }}</td>
-                    <td>{{ link_to_route('adm.pattern.multimedia.edit','Edit',array($row->id),array('class' => 'btn btn-info btn-xs')) }}</td>
+                    <td>{{ link_to_route('adm.pattern.multimedia.show','Detail',[$row->id],['class' => 'btn btn-primary btn-xs']) }}</td>
+                    <td>{{ link_to_route('adm.pattern.multimedia.edit','Edit',[$row->id],['class' => 'btn btn-info btn-xs']) }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+<div class="text-center">{{ $media->links(); }}</div>
 @endif
 <p class="text-center">
-    {{ link_to_route('adm.pattern.multimedia.create','Přidat multimedia',NULL, array('class'=>'btn btn-success','role'=> 'button')) }}
+    {{ link_to_route('adm.pattern.multimedia.create','Přidat multimedia',NULL, ['class'=>'btn btn-success','role'=> 'button']) }}
 </p>
 @stop

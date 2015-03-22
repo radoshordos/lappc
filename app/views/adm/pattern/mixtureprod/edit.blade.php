@@ -87,6 +87,5 @@ Správa grupy produktů
         </div>
         {{ Form::close() }}
     </div>
-
 </div>
 @stop

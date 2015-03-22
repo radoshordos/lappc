@@ -42,5 +42,4 @@ class MixtureProdM2nProdController extends \BaseController
         }
         return Redirect::route('adm.pattern.mixtureprod.edit', $idx[0]);
     }
-
 }

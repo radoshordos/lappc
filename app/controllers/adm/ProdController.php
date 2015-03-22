@@ -557,10 +557,4 @@ class ProdController extends \BaseController
         }
         return Redirect::route('adm.product.prod.edit', [$tree, $prod]);
     }
-
-    public function ajaxdev()
-    {
-        return 666;
-    }
-
 }

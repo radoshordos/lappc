@@ -8,11 +8,19 @@ class MultimediaController extends \BaseController
 {
     public function index()
     {
+        $choice_limit = intval(Input::get('select_limit'));
+        $choice_variations = intval(Input::get('select_variations'));
+        $media = MediaDb::select(["media_db.*"])->join('media_variations', 'media_db.variations_id', '=', 'media_variations.id');
+
+        if ($choice_variations > 0) {
+            $media->where('media_variations.id', '=', $choice_variations);
+        }
+
         return View::make('adm.pattern.multimedia.index', [
-            'media' => MediaDb::select(["media_db.*"])->join('media_variations', 'media_db.variations_id', '=', 'media_variations.id')
-                ->where('visible_media', '=', '1')
-                ->orderBy('media_db.id')
-                ->paginate(40),
+            'media'             => $media->where('visible_media', '=', '1')->orderBy('media_db.id')->paginate($choice_limit == 0 ? 20 : $choice_limit),
+            'choice_limit'      => $choice_limit,
+            'choice_variations' => $choice_variations,
+            'select_variations' => SB::optionEloqent(MediaVariations::where('visible_media', '=', '1')->orderByRaw('tag,id')->get(), ['id' => '[->tag] - ->name'], TRUE)
         ]);
     }
 
@@ -31,7 +39,7 @@ class MultimediaController extends \BaseController
                 'media_variations.name AS media_variations_name',
                 'media_type.name AS media_type_name'
             ])->join('media_type', 'media_variations.type_id', '=', 'media_type.id')
-                ->where('visible_media', '=', '1')->get(), ['media_variations_id' => '[->media_type_name] - ->media_variations_name'], true)
+                ->where('visible_media', '=', '1')->get(), ['media_variations_id' => '[->media_type_name] - ->media_variations_name'], TRUE)
         ]);
     }
 
@@ -53,7 +61,6 @@ class MultimediaController extends \BaseController
     public function edit($id)
     {
         $media = MediaDb::find($id);
-
         if (is_null($media)) {
             return Redirect::route('adm.pattern.multimedia.index');
         }
