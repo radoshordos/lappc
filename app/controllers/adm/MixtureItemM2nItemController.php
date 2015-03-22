@@ -14,15 +14,18 @@ class MixtureItemM2nItemController extends \BaseController
     public function store()
     {
         $input = Input::all();
-        $v = Validator::make($input, MixtureItemM2nItem::$rules);
+        $input_filter = array_only($input, ['mixture_item_id', 'item_id']);
+        $v = Validator::make($input_filter, MixtureItemM2nItem::$rules);
 
-        if ($v->passes()) {
+        if (empty($input['item_id'])) {
+            return Redirect::route('adm.pattern.mixtureitem.edit', [$input['mixture_item_id'], 'select_dev' => $input['select_dev']]);
+        } else if ($v->passes()) {
             try {
-                $this->mimi->create($input);
+                $this->mimi->create($input_filter);
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }
-            return Redirect::route('adm.pattern.mixtureitem.edit', $input['mixture_item_id']);
+            return Redirect::route('adm.pattern.mixtureitem.edit', [$input['mixture_item_id'], 'select_dev' => $input['select_dev']]);
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.mixtureitem.edit', $input['mixture_item_id'])->withInput()->withErrors($v);
@@ -39,5 +42,4 @@ class MixtureItemM2nItemController extends \BaseController
         }
         return Redirect::route('adm.pattern.mixtureitem.edit', $idx[0]);
     }
-
 }

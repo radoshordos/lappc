@@ -27,7 +27,6 @@ class MixtureProdController extends \BaseController
             'select_purpose' => $this->pa,
             'choice_purpose' => Input::get('select_purpose')
         ]);
-
     }
 
     public function store()
@@ -57,7 +56,10 @@ class MixtureProdController extends \BaseController
         return View::make('adm.pattern.mixtureprod.edit', [
             'select_dev'      => SB::optionEloqent(Dev::where('id', '>', '1')->orderBy('id')->get(), ['id' => '[->id] - ->name'], TRUE),
             'choice_dev'      => $choice_dev,
-            'prod_insertable' => [''] + SB::option("SELECT * FROM prod WHERE dev_id = " . intval($choice_dev) . " AND id > 1 AND id NOT IN (SELECT prod_id FROM mixture_prod_m2n_prod WHERE mixture_prod_id = $id) ORDER BY id", ['id' => '[->tree_id] - ->name']),
+            'prod_insertable' => [''] + SB::option("SELECT *
+                                                    FROM prod
+                                                    WHERE dev_id = " . intval($choice_dev) . " AND id > 1 AND id NOT IN (SELECT prod_id FROM mixture_prod_m2n_prod WHERE mixture_prod_id = $id)
+                                                    ORDER BY id", ['id' => '[->tree_id] - ->name']),
             'id'              => $id,
             'mixtureprod'     => $mixprod,
             'select_purpose'  => $this->pa,
