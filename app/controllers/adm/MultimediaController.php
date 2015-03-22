@@ -2,6 +2,8 @@
 
 use Authority\Eloquent\MediaDb;
 use Authority\Eloquent\MediaVariations;
+use Authority\Eloquent\MixtureDev;
+use Authority\Eloquent\MixtureProd;
 use Authority\Tools\SB;
 
 class MultimediaController extends \BaseController
@@ -66,13 +68,23 @@ class MultimediaController extends \BaseController
         }
 
         return View::make('adm.pattern.multimedia.edit', [
-            'media' => $media
+            'media'               => $media,
+            'select_mixture_dev'  => SB::optionEloqent(MixtureDev::whereIn('purpose', ['multimedia', 'autosimple'])->get(), ['id' => '->name'], TRUE),
+            'select_mixture_prod' => SB::optionEloqent(MixtureProd::whereIn('purpose', ['multimedia'])->get(), ['id' => '->name'], TRUE),
         ]);
     }
 
     public function update($id)
     {
+
         $input = array_except(Input::all(), '_method');
+        if (empty($input['mixture_dev_id'])) {
+            $input['mixture_dev_id'] = NULL;
+        }
+        if (empty($input['mixture_prod_id'])) {
+            $input['mixture_prod_id'] = NULL;
+        }
+
         $v = Validator::make($input, MediaDb::$rules);
 
         if ($v->passes()) {

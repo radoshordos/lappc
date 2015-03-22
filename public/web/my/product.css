@@ -2,6 +2,10 @@
     font-size: 1.4em;
 }
 
+#product h3 {
+    font-size: 1.2em;
+}
+
 #product p#desc {
     font-size: .8em;
 }
@@ -31,12 +35,7 @@
 /* DESC */
 
 div.desc-list {
-    margin: 4em;
     padding: 1px 2em;
-}
-
-div.desc-list h3 {
-    font-size: 1.2em;
 }
 
 div.desc-list ul.prod-desc li {
@@ -56,4 +55,9 @@ div#price-panel p {
 
 div#price-panel strong {
     font-size: 1.4em;
+}
+
+/* MEDIA */
+#product .file {
+    margin: .2em 0;
 }
