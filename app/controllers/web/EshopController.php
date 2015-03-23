@@ -23,15 +23,30 @@ class EshopController extends BaseController
         $this->sid = Session::getId();
         $this->view_tree_array = ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get();
         $this->term = Input::get('term');
-//      var_dump($this->leftMenu());
+        $this->leftMenu();
+        //  var_dump($this->leftMenu());
     }
 
     protected function leftMenu()
     {
         $arr = [];
-        foreach ([21,22] as $val) {
-            $arr[$val] = ViewTree::select(['tree_absolute', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+        $uri = Request::path();
+        if ($uri) {
+            $euri = explode('/', $uri);
+
+            foreach ([21] as $val) {
+                $arr[$val] = ViewTree::select(['tree_id','tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->where('tree_deep','=','1')->orderBy('tree_id')->get()->toArray();
+                foreach ($arr[$val] as $value) {
+                    if ($euri[0] == $value['tree_relative']) {
+                        $arr[$val] = ViewTree::select(['tree_id','tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+                            $data = ViewTree::select(['tree_id','tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_parent_id','=',$value['tree_id'])->where('tree_deep','=','2')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+                            var_dump($data);
+                            die;
+                    }
+                }
+            }
         }
+
         return $arr;
     }
 
