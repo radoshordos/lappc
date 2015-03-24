@@ -14,17 +14,15 @@ use Authority\Web\Group\TreeMaster;
 
 class EshopController extends BaseController
 {
-    private $view_tree_array;
-    private $term;
-    private $sid;
+    protected $view_tree;
+    protected $term;
+    protected $sid;
 
     public function __construct()
     {
         $this->sid = Session::getId();
-        $this->view_tree_array = ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get();
+        $this->view_tree = ViewTree::where('tree_absolute', '=', Request::path())->first();
         $this->term = Input::get('term');
-        $this->leftMenu();
-        //  var_dump($this->leftMenu());
     }
 
     protected function leftMenu()
@@ -35,13 +33,13 @@ class EshopController extends BaseController
             $euri = explode('/', $uri);
 
             foreach ([21] as $val) {
-                $arr[$val] = ViewTree::select(['tree_id','tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->where('tree_deep','=','1')->orderBy('tree_id')->get()->toArray();
+                $arr[$val] = ViewTree::select(['tree_id', 'tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->where('tree_deep', '=', '1')->orderBy('tree_id')->get()->toArray();
                 foreach ($arr[$val] as $value) {
                     if ($euri[0] == $value['tree_relative']) {
-                        $arr[$val] = ViewTree::select(['tree_id','tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
-                            $data = ViewTree::select(['tree_id','tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_parent_id','=',$value['tree_id'])->where('tree_deep','=','2')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
-                            var_dump($data);
-                            die;
+                        $arr[$val] = ViewTree::select(['tree_id', 'tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+                        $data = ViewTree::select(['tree_id', 'tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_parent_id', '=', $value['tree_id'])->where('tree_deep', '=', '2')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+                        var_dump($data);
+                        die;
                     }
                 }
             }
@@ -69,10 +67,10 @@ class EshopController extends BaseController
         if (in_array($urlPart, ['kontakt'])) {
 
             return View::make('web.text', [
-                'namespace'       => 'text',
-                'buy_box_price'   => $this->buyBoxPrice(),
-                'view_tree_array' => $this->view_tree_array,
-                'term'            => $this->term
+                'namespace'     => 'text',
+                'buy_box_price' => $this->buyBoxPrice(),
+                'view_tree'     => $this->view_tree,
+                'term'          => $this->term
             ]);
         }
         return NULL;
@@ -122,7 +120,7 @@ class EshopController extends BaseController
                 'namespace'        => 'prod',
                 'group'            => 'prod',
                 'buy_box_price'    => $this->buyBoxPrice(),
-                'view_tree_array'  => $this->view_tree_array,
+                'view_tree'        => $this->view_tree,
                 'view_tree_actual' => ViewTree::where('tree_id', '=', $view_prod_actual->tree_id)->first(),
                 'view_prod_actual' => $view_prod_actual,
                 'prod_desc_array'  => ProdDescription::where('prod_id', '=', $view_prod_actual->prod_id)->whereNotNull('data')->get(),
@@ -153,7 +151,7 @@ class EshopController extends BaseController
                 'dev_actual'       => $res->getDevActual(),
                 'view_tree_actual' => $res->getViewTreeActual(),
                 'view_prod_array'  => $res->getViewProdPagination(),
-                'view_tree_array'  => ViewTree::whereIn('tree_group_type', ['prodaction', 'prodlist'])->orderBy('tree_id')->get(),
+                'view_tree'        => $this->view_tree,
                 'term'             => Input::get('term'),
                 'store'            => Input::has('store') ? TRUE : FALSE,
                 'action'           => Input::has('action') ? TRUE : FALSE,

@@ -1,27 +1,7 @@
-<?php $group_id = 0; ?>
-<div id="menu-action" class="icon-bar vertical">
-    <a class="item" href="/akcni-ceny-naradi">
-        <label>Akční nářadí</label>
-    </a>
-    <a class="item" href="/novinky-naradi">
-        <label>Novinky v e-shopu</label>
-    </a>
-</div>
+@if (!empty($view_tree))
+	{{ ($view_tree->tree_category_menu) }}
+@endif
+
 <br />
-
-@foreach($view_tree_array as $vta)
-    @if ($group_id != $vta->tree_group_id)
-        <?php $group_id = $vta->tree_group_id; ?>
-        <div class="icon-bar vertical">
-            <a class="item">
-                <label><a href="{{ '/'.$vta->tree_absolute }}">{{ $vta->tree_group_name }}</label>
-            </a>
-        </div>
-    @endif
-    @if ($vta->tree_deep == 1)
-        <p><a href="{{ '/'.$vta->tree_absolute }}">{{ $vta->tree_name }}</a></p>
-    @endif
-@endforeach
-
 <p><a href="http://localhost:8000/adm/">ADM</a></p>
 <p><a href="http://localhost:8000/adminer/">ADMINER</a></p>
