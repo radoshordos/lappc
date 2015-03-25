@@ -27,9 +27,9 @@ class TreeDirectoryByPatternChild extends TaskMessage implements iRun
             $euri = explode('/', $uri->absolute);
             $html .= "<ul>";
             foreach ([16, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 32] as $val) {
-                $root = Tree::select(['id', 'name', 'group_id', 'absolute'])->where('group_id', '=', $val)->where('deep', '=', '0')->first();
+                $root = Tree::select(['id', 'name', 'desc', 'group_id', 'absolute'])->where('group_id', '=', $val)->where('deep', '=', '0')->first();
                 if ($root->group_id == $uri->group_id) {
-                    $html .= "<li>" . $root->name . "<ul>";
+                    $html .= "<li><a href=\"" . "/" . $root->absolute . "\" title=\"" . $root->desc . "\">" . $root->name . "</a><ul>";
                     $ar1 = ViewTree::select(['tree_id', 'tree_absolute', 'tree_relative', 'tree_name', 'tree_desc', 'tree_deep'])->where('tree_group_id', '=', $val)->where('tree_deep', '=', '1')->orderBy('tree_id')->get()->toArray();
                     foreach ($ar1 as $value) {
                         $html .= "<li><a href=\"" . "/" . $value['tree_absolute'] . "\" title=\"" . $value['tree_desc'] . "\">" . $value['tree_name'] . "</a>";
@@ -62,7 +62,7 @@ class TreeDirectoryByPatternChild extends TaskMessage implements iRun
                     }
                     $html .= '</ul></li>';
                 } else {
-                    $html .= "<li>" . $root->name . "</li>";
+                    $html .= "<li><a href=\"" . "/" . $root->absolute . "\" title=\"" . $root->desc . "\">" .  $root->name . "</a></li>";
                 }
             }
             $html .= '</ul>';
