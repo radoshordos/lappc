@@ -16,7 +16,7 @@ class TreeGroupTableSeeder extends Seeder
 		]);
 
 		DB::table('tree_group')->insert([
-			'id'          => 11,
+			'id'          => 10,
 			'grouptop_id' => 10,
 			'type'        => 'homepage',
 			'name'        => 'Úvodní strana'
