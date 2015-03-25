@@ -7,7 +7,6 @@ use Carbon\Carbon;
 
 class HomeController extends EshopController
 {
-
     public function show()
     {
         if (Input::has('term')) {
@@ -26,7 +25,7 @@ class HomeController extends EshopController
         return View::make('web.home', [
             'namespace'     => 'home',
             'buy_box_price' => $this->buyBoxPrice(),
-            'view_tree'     => $this->view_tree,
+            'view_tree'     => ViewTree::where('tree_id', '=', 10000000)->first(),
             'tree_group'    => TreeGroup::where('type', '=', 'prodlist')->get(),
             'term'          => Input::get('term')
         ]);

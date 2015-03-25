@@ -21,8 +21,7 @@ class TreeDirectoryByPatternChild extends TaskMessage implements iRun
 
     protected function leftMenu()
     {
-
-        $uris = Tree::select(['id', 'group_id', 'absolute'])->whereIn('group_id', range(21, 32))->get();
+        $uris = Tree::select(['id', 'group_id', 'absolute'])->whereIn('group_id', array_merge([10,15,16,19], range(21, 32)))->get();
         foreach ($uris as $uri) {
             $html = "";
             $euri = explode('/', $uri->absolute);
