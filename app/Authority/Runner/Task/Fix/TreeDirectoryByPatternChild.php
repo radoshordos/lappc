@@ -15,18 +15,17 @@ class TreeDirectoryByPatternChild extends TaskMessage implements iRun
 
     public function run()
     {
-        $this->directoryFix();
         $this->leftMenu();
     }
 
     protected function leftMenu()
     {
-        $uris = Tree::select(['id', 'group_id', 'absolute'])->whereIn('group_id', array_merge([10,15,16,19], range(21, 32)))->get();
+        $uris = Tree::select(['id', 'group_id', 'absolute'])->orderBy('id')->get();
         foreach ($uris as $uri) {
             $html = "";
             $euri = explode('/', $uri->absolute);
             $html .= "<ul>";
-            foreach ([16, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 32] as $val) {
+            foreach ([16, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32] as $val) {
                 $root = Tree::select(['id', 'name', 'desc', 'group_id', 'absolute'])->where('group_id', '=', $val)->where('deep', '=', '0')->first();
                 if ($root->group_id == $uri->group_id) {
                     $html .= "<li><a href=\"" . "/" . $root->absolute . "\" title=\"" . $root->desc . "\" class=\"sub-down\">" . $root->name . "</a><ul>";
@@ -72,40 +71,4 @@ class TreeDirectoryByPatternChild extends TaskMessage implements iRun
             $tree->save();
         }
     }
-
-
-    public function directoryFix()
-    {
-        $arr = [];
-        $l1 = Tree::select('*')->whereIn('deep', ['0', '1'])->get();
-        $l2 = Tree::select('*')->where('deep', '=', '2')->get();
-        $l3 = Tree::select('*')->where('deep', '=', '3')->get();
-
-        foreach ($l1 as $key => $value) {
-            $arr[$value->id] = $value->relative;
-        }
-
-        foreach ($l2 as $key => $value) {
-            if (isset($arr[$value->parent_id])) {
-                $arr[$value->id] = implode('/', [$arr[$value->parent_id], $value->relative]);
-            } else {
-                throw new \Exception("BAD DIR L2");
-            }
-        }
-
-        foreach ($l3 as $key => $value) {
-            if (isset($arr[$value->parent_id])) {
-                $arr[$value->id] = implode('/', [$arr[$value->parent_id], $value->relative]);
-            } else {
-                throw new \Exception("BAD DIR L3");
-            }
-        }
-
-        foreach ($arr as $k => $v) {
-            $tree = Tree::find($k);
-            $tree->absolute = $v;
-            $tree->save();
-        }
-    }
-
 }

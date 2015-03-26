@@ -21,31 +21,7 @@ class EshopController extends BaseController
     public function __construct()
     {
         $this->sid = Session::getId();
-        $this->view_tree = ViewTree::where('tree_absolute', '=', Request::path())->first();
         $this->term = Input::get('term');
-    }
-
-    protected function leftMenu()
-    {
-        $arr = [];
-        $uri = Request::path();
-        if ($uri) {
-            $euri = explode('/', $uri);
-
-            foreach ([21] as $val) {
-                $arr[$val] = ViewTree::select(['tree_id', 'tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->where('tree_deep', '=', '1')->orderBy('tree_id')->get()->toArray();
-                foreach ($arr[$val] as $value) {
-                    if ($euri[0] == $value['tree_relative']) {
-                        $arr[$val] = ViewTree::select(['tree_id', 'tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
-                        $data = ViewTree::select(['tree_id', 'tree_absolute', 'tree_relative', 'tree_name', 'tree_deep'])->where('tree_parent_id', '=', $value['tree_id'])->where('tree_deep', '=', '2')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
-                        var_dump($data);
-                        die;
-                    }
-                }
-            }
-        }
-
-        return $arr;
     }
 
     protected function setupLayout()
@@ -119,6 +95,7 @@ class EshopController extends BaseController
             return View::make('web.prod', [
                 'namespace'        => 'prod',
                 'group'            => 'prod',
+                'view_tree'        => $this->view_tree = ViewTree::where('tree_absolute', '=', $view_prod_actual->tree_absolute)->first(),
                 'buy_box_price'    => $this->buyBoxPrice(),
                 'view_tree'        => $this->view_tree,
                 'view_tree_actual' => ViewTree::where('tree_id', '=', $view_prod_actual->tree_id)->first(),
@@ -137,6 +114,9 @@ class EshopController extends BaseController
 
     protected function isTree(array $url, $dev = NULL)
     {
+
+
+
         $tm = new TreeMaster();
         $tm->setDevActual($dev);
         $tm->setViewTreeActual($url);
@@ -146,6 +126,7 @@ class EshopController extends BaseController
             View::make($res::TREE_BLADE_TEMPLATE, [
                 'namespace'        => 'tree',
                 'group'            => $res::TREE_GROUP_TYPE,
+                'view_tree'        => $this->view_tree = ViewTree::where('tree_absolute', '=', Request::path())->first(),
                 'buy_box_price'    => $this->buyBoxPrice(),
                 'dev_list'         => $res->getDevList(),
                 'dev_actual'       => $res->getDevActual(),
