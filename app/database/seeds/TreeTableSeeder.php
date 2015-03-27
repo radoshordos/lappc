@@ -14,12 +14,12 @@ class TreeTableSeeder extends Seeder
             ['mid' => '23000000','pz' => '0','pid' => '23000000','tree_id' => '0000000', 'tree_id_division' => '23', 'tree_title' => 'Pneu nářadí', 'tree_name' => 'Pneu nářadí', 'tree_desc' => 'Pneu nářadí', 'tree_abs_path' => 'pneu-naradi/', 'tree_rel_path' => 'pneu-naradi', 'tree_body' => NULL],
             ['mid' => '24000000','pz' => '0','pid' => '24000000','tree_id' => '0000000', 'tree_id_division' => '24', 'tree_title' => 'Ruční nářadí', 'tree_name' => 'Ruční nářadí', 'tree_desc' => 'Ruční nářadí', 'tree_abs_path' => 'rucni-naradi/', 'tree_rel_path' => 'rucni-naradi', 'tree_body' => NULL],
             ['mid' => '25000000','pz' => '0','pid' => '25000000','tree_id' => '0000000', 'tree_id_division' => '25', 'tree_title' => 'Zahradní vybavení', 'tree_name' => 'Zahradní vybavení', 'tree_desc' => 'Zahradní vybavení', 'tree_abs_path' => 'zahradni-vybaveni/', 'tree_rel_path' => 'zahradni-vybaveni', 'tree_body' => NULL],
-            ['mid' => '26000000','pz' => '0','pid' => '26000000','tree_id' => '0000000', 'tree_id_division' => '26', 'tree_title' => 'Měřící technika', 'tree_name' => 'Měřící technika', 'tree_desc' => 'Měřící technika', 'tree_abs_path' => 'meríci-technika/', 'tree_rel_path' => 'meríci-technika', 'tree_body' => NULL],
+            ['mid' => '26000000','pz' => '0','pid' => '26000000','tree_id' => '0000000', 'tree_id_division' => '26', 'tree_title' => 'Měřící technika', 'tree_name' => 'Měřící technika', 'tree_desc' => 'Měřící technika', 'tree_abs_path' => 'merici-technika/', 'tree_rel_path' => 'merici-technika', 'tree_body' => NULL],
             ['mid' => '27000000','pz' => '0','pid' => '27000000','tree_id' => '0000000', 'tree_id_division' => '27', 'tree_title' => 'Dřevoobráběcí stroje', 'tree_name' => 'Dřevoobráběcí stroje', 'tree_desc' => 'Dřevoobráběcí stroje', 'tree_abs_path' => 'drevoobrabeci-stroje/', 'tree_rel_path' => 'drevoobrabeci-stroje', 'tree_body' => NULL],
             ['mid' => '28000000','pz' => '0','pid' => '28000000','tree_id' => '0000000', 'tree_id_division' => '28', 'tree_title' => 'Kovoobráběcí stroje', 'tree_name' => 'Kovoobráběcí stroje', 'tree_desc' => 'Kovoobráběcí stroje', 'tree_abs_path' => 'kovoobrabeci-stroje/', 'tree_rel_path' => 'kovoobrabeci-stroje', 'tree_body' => NULL],
             ['mid' => '29000000','pz' => '0','pid' => '29000000','tree_id' => '0000000', 'tree_id_division' => '29', 'tree_title' => 'Dílenské vybavení', 'tree_name' => 'Dílenské vybavení', 'tree_desc' => 'Dílenské vybavení', 'tree_abs_path' => 'dilenske-vybaveni/', 'tree_rel_path' => 'dilenske-vybaveni', 'tree_body' => NULL],
             ['mid' => '30000000','pz' => '0','pid' => '30000000','tree_id' => '0000000', 'tree_id_division' => '30', 'tree_title' => 'Stavební mechanizace', 'tree_name' => 'Stavební mechanizace', 'tree_desc' => 'Stavební mechanizace', 'tree_abs_path' => 'stavebni-mechanizace/', 'tree_rel_path' => 'stavebni-mechanizace', 'tree_body' => NULL],
-            ['mid' => '32000000','pz' => '0','pid' => '32000000','tree_id' => '0000000', 'tree_id_division' => '32', 'tree_title' => 'Příslušenství', 'tree_name' => 'Příslušenství', 'tree_desc' => 'Příslušenství', 'tree_abs_path' => 'príslusenstvi/', 'tree_rel_path' => 'príslusenstvi', 'tree_body' => NULL],
+            ['mid' => '32000000','pz' => '0','pid' => '32000000','tree_id' => '0000000', 'tree_id_division' => '32', 'tree_title' => 'Příslušenství', 'tree_name' => 'Příslušenství', 'tree_desc' => 'Příslušenství', 'tree_abs_path' => 'prislusenstvi/', 'tree_rel_path' => 'prislusenstvi', 'tree_body' => NULL],
             ['mid' => '51000000','pz' => '0','pid' => '51000000','tree_id' => '0000000', 'tree_id_division' => '32', 'tree_title' => 'Texty na eshopu', 'tree_name' => 'Texty na eshopu', 'tree_desc' => 'Příslušenství', 'tree_abs_path' => 'príslusenstvi/', 'tree_rel_path' => 'texty-na-eshopu', 'tree_body' => NULL],
             ['mid' => '51020000','pz' => '2','pid' => '51000000','tree_id' => '0000000', 'tree_id_division' => '32', 'tree_title' => 'Kontakt', 'tree_name' => 'Kontakt', 'tree_desc' => 'Kontakt', 'tree_abs_path' => 'kontakt', 'tree_rel_path' => 'kontakt', 'tree_body' => NULL],
             ['mid' => '91000000','pz' => '0','pid' => '91000000','tree_id' => '0000000', 'tree_id_division' => '91', 'tree_title' => 'Nákupní košík', 'tree_name' => 'Nákupní košík', 'tree_desc' => 'Nákupní košík', 'tree_abs_path' => 'nakupni-kosik/', 'tree_rel_path' => 'nakupni-kosik']
@@ -585,10 +585,12 @@ class TreeTableSeeder extends Seeder
 
         foreach (array_merge($top, $tree) as $row) {
 
+            /*
             $lastChar = substr($row['tree_abs_path'], -1);
             if ($lastChar == '/') {
                 $row['tree_abs_path'] = substr($row['tree_abs_path'], 0, -1);
             }
+            */
 
             if (isset($row['mid'])) {
                 DB::table('tree')->insert([
@@ -598,8 +600,7 @@ class TreeTableSeeder extends Seeder
                     'position'  => $row['pz'],
                     'name'      => $row['tree_name'],
                     'desc'      => $row['tree_title'],
-                    'relative'  => $row['tree_rel_path'],
-                    'absolute'  => $row['tree_abs_path']
+                    'relative'  => $row['tree_rel_path']
                 ]);
             }
         }

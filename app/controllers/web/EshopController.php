@@ -114,23 +114,22 @@ class EshopController extends BaseController
 
     protected function isTree(array $url, $dev = NULL)
     {
-
-
-
         $tm = new TreeMaster();
         $tm->setDevActual($dev);
         $tm->setViewTreeActual($url);
         $res = $tm->detectTree();
+        $vta = $res->getViewTreeActual();
 
         return (($res === NULL) ? NULL :
+
             View::make($res::TREE_BLADE_TEMPLATE, [
                 'namespace'        => 'tree',
                 'group'            => $res::TREE_GROUP_TYPE,
-                'view_tree'        => $this->view_tree = ViewTree::where('tree_absolute', '=', Request::path())->first(),
+                'view_tree'        => $this->view_tree = ViewTree::where('tree_id', '=', $vta['tree_id'])->first(),
                 'buy_box_price'    => $this->buyBoxPrice(),
                 'dev_list'         => $res->getDevList(),
                 'dev_actual'       => $res->getDevActual(),
-                'view_tree_actual' => $res->getViewTreeActual(),
+                'view_tree_actual' => $vta,
                 'view_prod_array'  => $res->getViewProdPagination(),
                 'view_tree'        => $this->view_tree,
                 'term'             => Input::get('term'),

@@ -34,6 +34,8 @@
 
 #part-left ul li {
     list-style: none;
+    padding: 0.3em 0;
+    border-bottom: 1px dotted #c0a16b;
 }
 
 

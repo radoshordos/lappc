@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Radek Horáček - hordos@centrum.cz">
     @if ($namespace == 'tree' && !empty($dev_actual))
         <title>{{ $view_tree_actual['tree_desc']." ".$dev_actual['name']}} | Guru nářadí</title>
         <meta name="keywords" content="{{ $view_tree_actual['tree_desc'].", ".$dev_actual['name'] }}">

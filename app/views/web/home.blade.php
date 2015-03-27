@@ -6,7 +6,6 @@
         @include('web.global.leftmenu')
     </div>
     <div id="part-right" class="large-14 columns">
-
         <div class="" style="background-color: #074f69;padding: 20px 30px;">
 
             <div class="row">
