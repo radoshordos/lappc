@@ -4,12 +4,12 @@ class ItemsSeeder extends Seeder
 {
 	public function run()
 	{
-		$items = [];
+        $import_items = [];
 		include "migration/items.php";
 		DB::table('items')->delete();
 		$now = strtotime('now');
 
-		foreach ($items as $row) {
+		foreach ($import_items as $row) {
 
 			DB::table('items')->insert([
 				'id'              => $row['items_id'],
