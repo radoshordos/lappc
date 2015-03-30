@@ -2,6 +2,9 @@
     Options -MultiViews
     RewriteEngine On
 
+	Order allow,deny
+	Allow from 37.48.33.198
+
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
 
