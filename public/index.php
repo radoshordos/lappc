@@ -6,8 +6,6 @@
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
-header("Strict-Transport-Security: max-age=31536000; includeSubDomains; preload");
-
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
