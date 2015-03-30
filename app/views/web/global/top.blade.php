@@ -68,7 +68,7 @@
 						<div class="small-18">Ruční nářadí</div>
 					</div>
 					<div class="row">
-						<div class="small-18">Měřící technika gfdgg dgdg fdg dg dg dg fdg fdgfdg fdg dfg fdg</div>
+						<div class="small-18">Měřící technika gfdgg dg dfg fdg</div>
 					</div>
 				</div>
 			</li>

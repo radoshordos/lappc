@@ -43,13 +43,17 @@ class SyncPapaspol extends AbstractSync implements iSync
 
             $all++;
             $arr_item = array_filter((array)$item);
-            var_dump($arr_item);
-            die;
             $run = new RunPapaspol($arr_item, $record_id);
+
+    //        var_dump($run);
+      //      die;
 
             if ($run->isUseRequired() === TRUE) {
                 $suc++;
-                //        $run->insertData2Db();
+
+
+
+                $run->insertData2Db();
             }
         }
 

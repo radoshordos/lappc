@@ -3,7 +3,7 @@
 class SyncNarex extends AbstractSync implements iSync
 {
     const DEV_NAME = 'narex';
-    const URL_FEED = '';
+    const URL_FEED = 'https://www.narex.cz/services/prices.aspx';
 
     public function __construct($table_cron)
     {
@@ -20,11 +20,13 @@ class SyncNarex extends AbstractSync implements iSync
 
     public function getFile()
     {
-        // TODO: Implement getFile() method.
+        return self::DEV_NAME . "-" . date('Y-m') . ".xml";
     }
 
     public function remotelyPrepareSynchronize()
     {
-        // TODO: Implement remotelyPrepareSynchronize() method.
+        $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
+        $down->runDownload();
+        $down->unzipDownload();
     }
 }

@@ -12,7 +12,7 @@
 */
 
 App::before(function ($request) {
-    //
+    //zz
 });
 
 App::after(function($request, $response)
