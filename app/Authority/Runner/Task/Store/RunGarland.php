@@ -14,7 +14,7 @@ class RunGarland extends AbstractRunDev implements iItem
             (strlen($this->getSyncProdName()) > 1) &&
             (intval($this->getSyncIdDev()) > 0) &&
             (intval($this->getSyncItemsPriceStandard()) > 19) &&
-            (!in_array($this->getSyncItemsCodeProduct(), ['41498','196-972A678','13A326SC600','21D-20MI678','21D-25MJ678','2200207']))
+            (!in_array($this->getSyncItemsCodeProduct(), ['41498', '196-972A678', '13A326SC600', '21D-20MI678', '21D-25MJ678', '2200207']))
         ) ? TRUE : FALSE;
     }
 
@@ -129,7 +129,7 @@ class RunGarland extends AbstractRunDev implements iItem
     public function setSyncProdDesc()
     {
         if (isset($this->shopItem['POPIS'])) {
-            $this->syncProdDesc = (string)trim($this->shopItem['POPIS']);
+            $this->syncProdDesc = (string)trim(str_replace(";", "", $this->shopItem['POPIS']));
         }
     }
 
