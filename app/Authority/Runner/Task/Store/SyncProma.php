@@ -39,7 +39,6 @@ class SyncProma extends AbstractSync implements iSync
             'created_at' => date("Y-m-d H:i:s", $record_id)
         ]);
 
-
         foreach ($xml->SHOPITEM as $item) {
 
             $all++;
