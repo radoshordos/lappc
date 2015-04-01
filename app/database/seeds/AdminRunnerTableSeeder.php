@@ -14,26 +14,26 @@ class AdminRunnerTableSeeder extends Seeder
         ]);
 
         DB::table('runner')->insert([
-            'id'                    => 106,
+            'id'                    => 104,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Events\OnOldAkceTemplate',
             'autorun_first_run_day' => 1200
         ]);
 
         DB::table('runner')->insert([
-            'id'                    => 108,
+            'id'                    => 106,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Events\OnVeryOldHiddenProd',
             'autorun_first_run_day' => 1800
         ]);
 
         DB::table('runner')->insert([
-            'id'                    => 104,
+            'id'                    => 108,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Events\CnbUpdateForex',
             'autorun_first_run_day' => 2400
         ]);
-
+        
         DB::table('runner')->insert([
             'id'                    => 302,
             'autorun'               => 1,
