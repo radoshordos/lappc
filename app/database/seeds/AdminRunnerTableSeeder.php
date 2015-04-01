@@ -122,84 +122,84 @@ class AdminRunnerTableSeeder extends Seeder
             'id'                    => 508,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Store\SyncMadalbal',
-            'autorun_first_run_day' => 102000
+            'autorun_first_run_day' => 10200
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 510,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Store\SyncMakita',
-            'autorun_first_run_day' => 108000
+            'autorun_first_run_day' => 10800
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 512,
             'autorun'               => 1,
-            'class'                 => 'Authority\Runner\Task\Store\RunNarexPrices',
-            'autorun_first_run_day' => 114000
+            'class'                 => 'Authority\Runner\Task\Store\SyncNarexPrices',
+            'autorun_first_run_day' => 11400
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 514,
             'autorun'               => 1,
-            'class'                 => 'Authority\Runner\Task\Store\RunNarexCatalogue',
-            'autorun_first_run_day' => 120000
+            'class'                 => 'Authority\Runner\Task\Store\SyncNarexCatalogue',
+            'autorun_first_run_day' => 12000
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 516,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Store\SyncPapaspol',
-            'autorun_first_run_day' => 126000
+            'autorun_first_run_day' => 12600
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 518,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Store\SyncProma',
-            'autorun_first_run_day' => 132000
+            'autorun_first_run_day' => 13200
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 520,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Store\SyncProteco',
-            'autorun_first_run_day' => 138000
+            'autorun_first_run_day' => 13800
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 522,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Store\SyncVgarden',
-            'autorun_first_run_day' => 144000
+            'autorun_first_run_day' => 14400
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 602,
             'autorun'               => 0,
             'class'                 => 'Authority\Runner\Task\OneRun\CreatePicture',
-            'autorun_first_run_day' => 150000
+            'autorun_first_run_day' => 15000
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 604,
             'autorun'               => 0,
             'class'                 => 'Authority\Runner\Task\OneRun\TreeMigrationTable',
-            'autorun_first_run_day' => 156000
+            'autorun_first_run_day' => 15600
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 702,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Performance\ClearUnusedTableData',
-            'autorun_first_run_day' => 162000
+            'autorun_first_run_day' => 16200
         ]);
 
         DB::table('runner')->insert([
             'id'                    => 704,
             'autorun'               => 1,
             'class'                 => 'Authority\Runner\Task\Performance\OptimalizeTable',
-            'autorun_first_run_day' => 168000
+            'autorun_first_run_day' => 16800
         ]);
     }
 }
