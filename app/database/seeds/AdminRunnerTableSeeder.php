@@ -33,7 +33,7 @@ class AdminRunnerTableSeeder extends Seeder
             'class'                 => 'Authority\Runner\Task\Events\CnbUpdateForex',
             'autorun_first_run_day' => 2400
         ]);
-        
+
         DB::table('runner')->insert([
             'id'                    => 302,
             'autorun'               => 1,
