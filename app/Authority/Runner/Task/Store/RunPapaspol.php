@@ -127,5 +127,4 @@ class RunPapaspol extends AbstractRunDev implements iItem
     {
         // TODO: Implement setSyncWarranty() method.
     }
-
 }

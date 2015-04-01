@@ -1,6 +1,6 @@
 <?php namespace Authority\Runner\Task\Store;
 
-class RunNarex extends AbstractRunDev implements iItem
+class RunNarexCatalogue extends AbstractRunDev implements iItem
 {
     function setSyncItemsCodeProduct()
     {

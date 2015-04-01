@@ -16,7 +16,7 @@ class Downloader
     function runDownload($file_get_context = TRUE)
     {
         if ($file_get_context == TRUE) {
-            $context = stream_context_create(['http' => ['header' => "User-Agent: Guru-Naradi-Downloader/1.0\r\n"]]);
+            $context = stream_context_create(['http' => ['header' => "User-Agent: Guru-Naradi-Cz-Downloader/1.0\r\n"]]);
             file_put_contents($this->dir . $this->file, trim(file_get_contents($this->source, FALSE, $context)));
         } else {
             file_put_contents($this->dir . $this->file, trim($this->source));

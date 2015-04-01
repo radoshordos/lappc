@@ -4,7 +4,7 @@ use Authority\Eloquent\RecordSyncImport;
 
 class SyncNarex extends AbstractSync implements iSync
 {
-    const DEV_NAME = 'narex';
+    const DEV_NAME = 'narex-prices';
     const URL_FEED = 'https://www.narex.cz/services/prices.aspx';
     const MIXTURE_DEV_ID = 10;
 
