@@ -17,5 +17,4 @@ class SyncDb extends \Eloquent
     {
         return $this->hasOne('Authority\Eloquent\Dev', 'id', 'dev_id');
     }
-
 }

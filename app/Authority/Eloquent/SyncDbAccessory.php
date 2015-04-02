@@ -10,5 +10,4 @@ class SyncDbAccessory extends \Eloquent
     public static $rules = [
         'connection' => 'required'
     ];
-
 }

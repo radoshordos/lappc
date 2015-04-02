@@ -1,8 +1,8 @@
 <?php namespace Authority\Eloquent;
 
-class SyncDbFile extends \Eloquent
+class SyncDbMedia extends \Eloquent
 {
-    protected $table = 'sync_db_file';
+    protected $table = 'sync_db_media';
     protected $guarded = [];
 
     public $timestamps = FALSE;
@@ -10,5 +10,4 @@ class SyncDbFile extends \Eloquent
     public static $rules = [
         'url' => 'required'
     ];
-
 }

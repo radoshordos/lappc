@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class SyncDbAccessory extends Migration
 {
-
     public function up()
     {
         Schema::create('sync_db_accessory', function (Blueprint $table) {

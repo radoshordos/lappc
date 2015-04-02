@@ -8,7 +8,6 @@ class SyncDbImg extends \Eloquent
     public $timestamps = FALSE;
 
     public static $rules = [
-        'url' => 'required'
+        'data' => 'required'
     ];
-
 }
