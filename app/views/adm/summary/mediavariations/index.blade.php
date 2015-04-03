@@ -13,11 +13,12 @@
                     <tr>
                         <th>#ID</th>
                         <th>Název</th>
+                        <th>TAG</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="2" class="text-right">Zobrazeno : <strong>{{ count($mv) }}</strong> řádků</td>
+                        <td colspan="3" class="text-right">Zobrazeno : <strong>{{ count($mv) }}</strong> řádků</td>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -25,6 +26,7 @@
                     <tr>
                         <td><?= $row->id; ?></td>
                         <td><?= $row->name; ?></td>
+                        <td><?= $row->tag; ?></td>
                     </tr>
                 @endforeach
                 </tbody>
