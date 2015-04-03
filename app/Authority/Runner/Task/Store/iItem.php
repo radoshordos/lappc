@@ -2,63 +2,53 @@
 
 interface iItem
 {
-	function getSyncProdDesc();
+    function getSyncProdDesc();
 
-	function getSyncProdName();
+    function getSyncProdName();
 
-	function getSyncIdDev();
+    function getSyncIdDev();
 
-	function getSyncItemsCodeProduct();
+    function getSyncItemsCodeProduct();
 
-	function getSyncItemsCodeEan();
+    function getSyncItemsCodeEan();
 
-	function getSyncItemsPriceStandard();
+    function getSyncItemsPriceStandard();
 
-	function getSyncItemsPriceAction();
+    function getSyncItemsPriceAction();
 
-	function getSyncItemsAvailabilityCount();
+    function getSyncItemsAvailabilityCount();
 
-	function getSyncCategoryText();
+    function getSyncCategoryText();
 
-	function getSyncWarranty();
+    function getSyncWarranty();
 
-	function getSyncUrl();
+    function getSyncUrl();
 
-	function getSyncProdImgSourceArray();
+    function getSyncProdWeight();
 
-	function getSyncProdAccessorySourceArray();
+    function setSyncProdDesc();
 
-	function getSyncProdFileSourceArray();
+    function setSyncProdName();
 
-	function getSyncProdWeight();
+    function setSyncIdDev();
 
-	function setSyncProdDesc();
+    function setSyncCategoryText();
 
-	function setSyncProdName();
+    function setSyncWarranty();
 
-	function setSyncIdDev();
+    function setSyncUrl();
 
-	function setSyncCategoryText();
+    function setSyncItemsCodeProduct();
 
-	function setSyncWarranty();
+    function setSyncItemsCodeEan();
 
-	function setSyncUrl();
+    function setSyncItemsPriceStandard();
 
-	function setSyncProdImgSourceArray();
+    function setSyncItemsPriceAction();
 
-	function setSyncProdAccessorySourceArray();
+    function setSyncItemsAvailabilityCount();
 
-	function setSyncProdFileSourceArray();
+    function setSyncProdWeight();
 
-	function setSyncItemsCodeProduct();
-
-	function setSyncItemsCodeEan();
-
-	function setSyncItemsPriceStandard();
-
-	function setSyncItemsPriceAction();
-
-	function setSyncItemsAvailabilityCount();
-
-	function setSyncProdWeight();
+    function setStoreArray();
 }
