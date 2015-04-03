@@ -11,7 +11,7 @@ class SyncNarexCatalogue extends AbstractSync implements iSync
     public function __construct($table_cron)
     {
         parent::__construct($table_cron);
-//        $this->remotelyPrepareSynchronize();
+        $this->remotelyPrepareSynchronize();
         $this->runSynchronizeData();
     }
 
@@ -22,13 +22,14 @@ class SyncNarexCatalogue extends AbstractSync implements iSync
 
     public function remotelyPrepareSynchronize()
     {
-      //  $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
+        $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
+        $down->runDownload(FALSE);
     }
 
     function runSynchronizeData()
     {
         $all = $suc = 0;
-        $xml = simplexml_load_file($this->getSyncUploadDirectory() . "narex-2015-03.xml");
+        $xml = simplexml_load_file($this->getFeedDirName(), 'SimpleXMLElement', LIBXML_NOCDATA);
         $record_id = strtotime('now');
 
         RecordSyncImport::create([
@@ -42,7 +43,12 @@ class SyncNarexCatalogue extends AbstractSync implements iSync
 
             $all++;
             $arr_item = array_filter((array)$item);
-            $run = new RunNarex($arr_item, $record_id);
+            $run = new RunNarexCatalogue($arr_item, $record_id);
+
+            echo var_dump($run->getAllValues());
+            echo "<br />";
+            var_dump($run);
+            die;
 
             if ($run->isUseRequired() === TRUE) {
                 $suc++;

@@ -75,6 +75,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::get('treevisualization', ['as' => 'adm.summary.treevisualization.index', 'uses' => 'TreeVisualizationController@index']);
 	    Route::get('payment', ['as' => 'adm.summary.payment.index', 'uses' => 'MethodsPaymentController@index']);
 	    Route::get('transport', ['as' => 'adm.summary.transport.index', 'uses' => 'MethodsTransportController@index']);
+        Route::get('mediavariations', ['as' => 'adm.summary.mediavariations.index', 'uses' => 'MediaVariationsController@index']);
     });
 
     Route::group(['prefix' => 'sync', 'before' => 'Sentry|inGroup:Power'], function () {

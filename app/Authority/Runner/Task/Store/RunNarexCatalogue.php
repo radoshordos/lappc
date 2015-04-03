@@ -11,9 +11,6 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
 
     function setSyncItemsPriceStandard()
     {
-        if ($this->shopItem['Prices']->Price->Country == 'CZ') {
-            $this->syncItemsPriceStandard = round(doubleval($this->shopItem['Prices']->Price->Value * self::DPH));
-        }
     }
 
     function setSyncProdName()
@@ -30,12 +27,16 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
 
     function setSyncProdDesc()
     {
-        // TODO: Implement setSyncProdDesc() method.
+        if (isset($this->shopItem['Product'])) {
+            $this->syncProdDesc = (string)trim($this->shopItem['Product']);
+        }
     }
 
     function setSyncCategoryText()
     {
-        // TODO: Implement setSyncCategoryText() method.
+        if (isset($this->shopItem['Group'])) {
+            $this->syncCategoryText = $this->shopItem['Group']->Number . " - " . $this->shopItem['Group']->Name;
+        }
     }
 
     function setSyncWarranty()
@@ -45,7 +46,9 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
 
     function setSyncUrl()
     {
-        // TODO: Implement setSyncUrl() method.
+        if (isset($this->shopItem['ProductUrl'])) {
+            $this->syncUrl = (string)$this->shopItem['ProductUrl'];
+        }
     }
 
     function setSyncProdImgSourceArray()

@@ -42,7 +42,7 @@ class SyncNarex extends AbstractSync implements iSync
 
             $all++;
             $arr_item = array_filter((array)$item);
-            $run = new RunNarex($arr_item, $record_id);
+            $run = new RunNarexPrices($arr_item, $record_id);
 
             if ($run->isUseRequired() === TRUE) {
                 $suc++;

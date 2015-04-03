@@ -96,6 +96,8 @@
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.summary.payment.index') }}">Způsoby platby</a></li>
                         <li><a href="{{ URL::route('adm.summary.transport.index') }}">Způsoby doručení</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.summary.mediavariations.index') }}">Variace médií</a></li>
                     </ul>
                 </li>
 
