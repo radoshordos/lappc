@@ -2,13 +2,9 @@
 
 class RunNarexCatalogue extends AbstractRunDev implements iItem
 {
-    protected $storeArray;
-
-    public function __construct($arr_item, $record_id)
+    public function isUseRequired()
     {
-        parent::__construct($arr_item, $record_id);
-        $this->storeArray = new StoreArrayIterator();
-        $this->storeArray->setMediaDescriptions($this->storeDescriptions());
+        return ((strlen($this->getSyncItemsCodeProduct()) > 1) && (strlen($this->getSyncProdName()) > 1) && (intval($this->getSyncIdDev()) > 0)) ? TRUE : FALSE;
     }
 
     function setSyncItemsCodeProduct()
@@ -44,31 +40,114 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
         }
     }
 
+    function setSyncUrl()
+    {
+        if (isset($this->shopItem['ProductUrl'])) {
+            $this->syncUrl = (string)trim($this->shopItem['ProductUrl']);
+        }
+    }
+
+    public function storeImages()
+    {
+        if (isset($this->shopItem['Images'])) {
+            foreach ((array)$this->shopItem['Images'] as $row) {
+                foreach ((array)$row as $val) {
+                    if (filter_var($val, FILTER_VALIDATE_URL) == TRUE) {
+                        $this->storeArray->setImg($val);
+                    }
+                }
+            }
+        }
+    }
+
+    public function storeDescriptions()
+    {
+        if (isset($this->shopItem['Descriptions'])) {
+            foreach ((array)$this->shopItem['Descriptions'] as $row) {
+                foreach ((array)$row as $val) {
+                    if (!empty($val)) {
+                        $this->storeArray->setMediaDescriptions(trim(strtr($val, ["»" => ""])));
+                    }
+                }
+            }
+        }
+    }
+
+    public function storePackageContents()
+    {
+        if (isset($this->shopItem['PackageContents'])) {
+            foreach ((array)$this->shopItem['PackageContents'] as $row) {
+                foreach ((array)$row as $val) {
+                    if (!empty($val)) {
+                        $this->storeArray->setMediaPackagecontents(trim(strtr($val, ["»" => ""])));
+                    }
+                }
+            }
+        }
+    }
+
+    public function storeParameters()
+    {
+        if (isset($this->shopItem['Parameters'])) {
+            foreach ((array)$this->shopItem['Parameters'] as $row) {
+
+                if (isset($row->Name)) {
+
+                    $line = "";
+                    if (isset($row->Name)) {
+                        $line .= trim($row->Name) . " :";
+                    }
+                    if (isset($row->Value)) {
+                        $line .= " " . trim($row->Value);
+                    }
+                    if (isset($row->Unit)) {
+                        $line .= " " . trim($row->Unit);
+                    }
+
+                    $line = strtr($line, ["$" => "", "&nbsp;" => " ", '#/min' => "min-1", "#" => '', '…' => '']);
+                    $line = preg_replace('/[\s]+/mu', ' ', $line);
+                    $this->storeArray->setMediaParameters(trim($line));
+
+                } else {
+
+                    foreach ((array)$row as $val) {
+
+                        if (!empty($val)) {
+
+                            $line = "";
+                            if (isset($val->Name)) {
+                                $line .= trim($val->Name) . " :";
+                            }
+                            if (isset($val->Value)) {
+                                $line .= " " . trim($val->Value);
+                            }
+                            if (isset($val->Unit)) {
+                                $line .= " " . trim($val->Unit);
+                            }
+
+                            $line = strtr($line, ["$" => "", "&nbsp;" => " ", '#/min' => "min-1", "#" => '', '…' => '']);
+                            $line = preg_replace('/[\s]+/mu', ' ', $line);
+                            $this->storeArray->setMediaParameters(trim($line));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     function setSyncWarranty()
     {
         // TODO: Implement setSyncWarranty() method.
     }
 
-    function setSyncUrl()
-    {
-        if (isset($this->shopItem['ProductUrl'])) {
-            $this->syncUrl = (string)$this->shopItem['ProductUrl'];
-        }
-    }
-
-    function setSyncProdImgSourceArray()
-    {
-        // TODO: Implement setSyncProdImgSourceArray() method.
-    }
-
-    function setSyncProdFileSourceArray()
-    {
-        // TODO: Implement setSyncProdFileSourceArray() method.
-    }
-
     function setSyncItemsCodeEan()
     {
         // TODO: Implement setSyncItemsCodeEan() method.
+    }
+
+    function setSyncItemsPriceStandard()
+    {
+        // TODO: Implement setSyncItemsPriceStandard() method.
     }
 
     function setSyncItemsPriceAction()
@@ -84,46 +163,5 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
     function setSyncProdWeight()
     {
         // TODO: Implement setSyncProdWeight() method.
-    }
-
-    function setMediaDescriptions()
-    {
-        // TODO: Implement setMediaDescriptions() method.
-    }
-
-    function getMediaDescriptions()
-    {
-        // TODO: Implement getMediaDescriptions() method.
-    }
-
-    function setStoreArray()
-    {
-
-
-    }
-
-    function setSyncItemsPriceStandard()
-    {
-        // TODO: Implement setSyncItemsPriceStandard() method.
-    }
-
-    //** STORE ARRAY PART **/
-
-
-    public function storeDescriptions()
-    {
-        if (isset($this->shopItem['Descriptions'])) {
-            foreach ((array)$this->shopItem['Descriptions'] as $row) {
-                foreach ((array)$row as $val) {
-                    if (!empty($val)) {
-
-                        $this->storeArray->setMediaDescriptions(filter_var($val, FILTER_SANITIZE_MAGIC_QUOTES));
-
-                        // mb_convert_encoding($nonutf8 , 'UTF-8', 'UTF-8');
-                        //$this->storeArray->setMediaDescriptions(str_replace('�', '', iconv("UTF-8", "UTF-8//IGNORE", $val)));
-                    }
-                }
-            }
-        }
     }
 }

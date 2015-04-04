@@ -1,16 +1,9 @@
-<?php
+<?php namespace Authority\Runner\Task\Store;
 
-namespace Authority\Runner\Task\Store;
-
-class StoreArrayIterator
+class StoreArray
 {
-    private $sai;
+    private $sai = [];
     private $i = 0;
-
-    function __construct()
-    {
-        $this->sai = ['accessory', 'img', 'media' => ['doc', 'pdf', 'jpg', 'youtube', 'parameters', 'descriptions', 'packagecontents']];
-    }
 
     public function setAccessory($line)
     {

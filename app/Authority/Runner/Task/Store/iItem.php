@@ -50,5 +50,11 @@ interface iItem
 
     function setSyncProdWeight();
 
-    function setStoreArray();
+    function storeImages();
+
+    function storeDescriptions();
+
+    function storePackageContents();
+
+    function storeParameters();
 }

@@ -45,11 +45,6 @@ class SyncNarexCatalogue extends AbstractSync implements iSync
             $arr_item = array_filter((array)$item);
             $run = new RunNarexCatalogue($arr_item, $record_id);
 
-            echo var_dump($run->getAllValues());
-            echo "<br />";
-            var_dump($run);
-            die;
-
             if ($run->isUseRequired() === TRUE) {
                 $suc++;
                 $run->insertData2Db();

@@ -20,21 +20,13 @@ abstract class AbstractRunDev implements iItem
     protected $syncCategoryText;
     protected $syncWarranty;
     protected $syncUrl;
-
     protected $storeArray;
 
-    private $counterAll = 0;
-    private $counterSync = 0;
-
-    public function __construct($shop_item, $record_id)
+    public function __construct($arr_item, $record_id)
     {
-        $this->shopItem = $shop_item;
+        $this->shopItem = $arr_item;
         $this->recordId = $record_id;
-        $this->initSetters();
-    }
-
-    protected function initSetters()
-    {
+        $this->storeArray = new StoreArray();
         $this->setSyncIdDev();
         $this->setSyncProdName();
         $this->setSyncProdDesc();
@@ -47,7 +39,10 @@ abstract class AbstractRunDev implements iItem
         $this->setSyncWarranty();
         $this->setSyncCategoryText();
         $this->setSyncUrl();
-        $this->setStoreArray();
+        $this->storeImages();
+        $this->storeDescriptions();
+        $this->storePackageContents();
+        $this->storeParameters();
     }
 
     public function Windows1250toUtf8($text)
@@ -80,29 +75,9 @@ abstract class AbstractRunDev implements iItem
         return $this->syncItemsPriceStandard;
     }
 
-    public function addCounterAll()
-    {
-        return $this->counterAll++;
-    }
-
-    public function addCounterSync()
-    {
-        return $this->counterSync++;
-    }
-
-    public function getCounterAll()
-    {
-        return $this->counterAll;
-    }
-
-    public function getCounterSync()
-    {
-        return $this->counterSync;
-    }
-
     public function insertData2Db()
     {
-        $tsi = new TotalSyncImport($this->getAllValues(), $this->getSyncProdImgSourceArray(), $this->getSyncProdAccessorySourceArray(), $this->getSyncProdMediaSourceArray());
+        $tsi = new TotalSyncImport($this->getScalarValues(), $this->getArrayValues());
         return $tsi->insertData2SyncDb();
     }
 
@@ -111,7 +86,7 @@ abstract class AbstractRunDev implements iItem
         return $this->syncItemsCodeEan;
     }
 
-    public function getAllValues()
+    public function getScalarValues()
     {
         return [
             'purpose'            => 'autosync',
@@ -128,8 +103,19 @@ abstract class AbstractRunDev implements iItem
             'warranty'           => $this->getSyncWarranty(),
             'categorytext'       => $this->getSyncCategoryText(),
             'url'                => $this->getSyncUrl(),
-            'store_array'        => $this->getStoreArray()
         ];
+    }
+
+    public function getArrayValues()
+    {
+        return [
+            'store_array' => $this->getStoreArray()
+        ];
+    }
+
+    public function getAllValues()
+    {
+        return array_merge($this->getScalarValues(), $this->getArrayValues());
     }
 
     public function getRecordId()

@@ -175,6 +175,7 @@ class RunMakita extends AbstractRunDev implements iItem
         }
     }
 
+
     function setSyncWarranty()
     {
         // TODO: Implement setSyncWarranty() method.
@@ -188,5 +189,25 @@ class RunMakita extends AbstractRunDev implements iItem
     function setSyncProdWeight()
     {
         // TODO: Implement setSyncProdWeight() method.
+    }
+
+    function storeImages()
+    {
+        // TODO: Implement storeImages() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
     }
 }

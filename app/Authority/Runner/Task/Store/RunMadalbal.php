@@ -171,4 +171,24 @@ class RunMadalbal extends AbstractRunDev implements iItem
 	{
 		// TODO: Implement setSyncProdFileSourceArray() method.
 	}
+
+    function storeImages()
+    {
+        // TODO: Implement storeImages() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
+    }
 }

@@ -2,21 +2,16 @@
 
 use Authority\Eloquent\Items;
 use Authority\Eloquent\SyncDb;
-use Authority\Eloquent\SyncDbImg;
-use Authority\Eloquent\SyncDbFile;
-use Authority\Eloquent\SyncDbAccessory;
 
 class TotalSyncImport
 {
 	private $columns;
-	private $images;
-	private $accessory;
-	private $file;
+    private $store_array;
 	private $dev_id;
 	private $code_prod;
 	private $purpose;
 
-	public function  __construct(array $data, array $images = NULL, array $accessory = NULL, array $file = NULL)
+	public function  __construct(array $data, array $store_array)
 	{
 		if (!isset($data['dev_id'])) {
 			throw new \RuntimeException("NOT column dev_id");
@@ -24,14 +19,12 @@ class TotalSyncImport
 		if (!isset($data['code_prod'])) {
 			throw new \RuntimeException("NOT column code_prod");
 		}
-		if (!isset($data['dev_id'])) {
+		if (!isset($data['purpose'])) {
 			throw new \RuntimeException("NOT column purpose");
 		}
 
 		$this->columns = $data;
-		$this->images = $images;
-		$this->accessory = $accessory;
-		$this->file = $file;
+        $this->store_array = $store_array;
 		$this->dev_id = $data['dev_id'];
 		$this->code_prod = $data['code_prod'];
 		$this->purpose = $data['purpose'];
@@ -76,18 +69,32 @@ class TotalSyncImport
 
 		$sync_id = $this->syncDbId();
 		if ($sync_id == 0) {
-			$newSyncDb = SyncDb::create(array_merge($this->columns, $additional));
-			$this->images2Db($newSyncDb);
-			$this->accessory2Db($newSyncDb);
-			$this->file2Db($newSyncDb);
-			return $newSyncDb;
+            $sync_db_id = SyncDb::create(array_merge($this->columns, $additional));
+			$this->StoreArray2Db($sync_db_id);
+			return $sync_db_id;
 		} else {
 			return SyncDb::where('id', '=', $sync_id)->update(array_merge($this->columns, $additional));
 		}
 	}
 
-	public function images2Db(SyncDb $db)
+	public function StoreArray2Db($sync_db_id)
 	{
+        $as = $this->store_array->sai;
+
+        var_dump($as->getStoreArray());
+/*
+        if (!empty($this->store_array['store_array'])) {
+            foreach ($this->store_array['store_array'] as $key => $val) {
+        //        echo $val;
+            }
+        }
+*/
+
+      //  var_dump($this->store_array["store_array"]);
+        die;
+
+
+        /*
 		if (count($this->images) > 0) {
 			foreach ($this->images as $val) {
 				if (is_array($val)) {
@@ -99,36 +106,6 @@ class TotalSyncImport
 				}
 			}
 		}
+        */
 	}
-
-	public function accessory2Db(SyncDb $db)
-	{
-		if (count($this->accessory) > 0) {
-			foreach ($this->accessory as $val) {
-				if (is_array($val)) {
-					foreach ($val as $v) {
-						SyncDbAccessory::create(['sync_id' => $db->id, 'connection' => $v]);
-					}
-				} else {
-					SyncDbAccessory::create(['sync_id' => $db->id, 'connection' => $val]);
-				}
-			}
-		}
-	}
-
-	public function file2Db(SyncDb $db)
-	{
-		if (count($this->file) > 0) {
-			foreach ($this->file as $val) {
-				if (is_array($val)) {
-					foreach ($val as $v) {
-						SyncDbFile::create(['sync_id' => $db->id, 'url' => $v]);
-					}
-				} else {
-					SyncDbFile::create(['sync_id' => $db->id, 'url' => $val]);
-				}
-			}
-		}
-	}
-
 }
