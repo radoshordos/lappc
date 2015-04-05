@@ -137,65 +137,84 @@ class RunBow extends AbstractRunDev implements iItem
 		}
 	}
 
-	function setSyncProdImgSourceArray()
-	{
-		if (isset($this->shopItem['PHOTOS'])) {
+    function storeImages()
+    {
+        if (isset($this->shopItem['PHOTOS'])) {
 
-			$ai = new \ArrayIterator();
-			$images = array_filter((array)$this->shopItem['PHOTOS']);
-			$dir = $images["@attributes"]["PATH"];
-			unset($images["@attributes"]);
+            $images = array_filter((array)$this->shopItem['PHOTOS']);
+            $dir = $images["@attributes"]["PATH"];
+            unset($images["@attributes"]);
 
-			foreach ($images as $img) {
-				if (is_array($img)) {
-					foreach ($img as $i) {
-						$ai->append($dir . $i);
-					}
-				} else {
-					$ai->append($dir . $img);
-				}
-			}
-			$this->syncProdImgSourceArray = $ai->getArrayCopy();
-		}
-	}
+            foreach ($images as $img) {
+                if (is_array($img)) {
+                    foreach ($img as $i) {
+                        $this->storeArray->setImg($dir . $i);
+                    }
+                } else {
+                    $this->storeArray->setImg($dir . $img);
+                }
+            }
+        }
+    }
 
-	function setSyncProdAccessorySourceArray()
-	{
-		if (isset($this->shopItem['RECOMMENDEDACCESSORIES'])) {
+    function storeAccessory()
+    {
+        if (isset($this->shopItem['RECOMMENDEDACCESSORIES'])) {
+            $recom = array_filter((array)$this->shopItem['RECOMMENDEDACCESSORIES']);
+            foreach ($recom as $rec) {
+                if (is_array($rec)) {
+                    foreach ($rec as $r) {
+                        $this->storeArray->setAccessory($r);
+                    }
+                } else {
+                    $this->storeArray->setAccessory($rec);
+                }
+            }
+        }
+    }
 
-			$ai = new \ArrayIterator();
-			$recom = array_filter((array)$this->shopItem['RECOMMENDEDACCESSORIES']);
+    function setSyncProdWeight()
+    {
+        // TODO: Implement setSyncProdWeight() method.
+    }
 
-			foreach ($recom as $rec) {
-				if (is_array($rec)) {
-					foreach ($rec as $r) {
-						$ai->append($r);
-					}
-				} else {
-					$ai->append($rec);
-				}
-			}
-			$this->syncProdAccessorySourceArray = $ai->getArrayCopy();
-		}
-	}
+    function setSyncWarranty()
+    {
+        // TODO: Implement setSyncWarranty() method.
+    }
 
-	function setSyncProdWeight()
-	{
-		// TODO: Implement setSyncProdWeight() method.
-	}
+    function setSyncUrl()
+    {
+        // TODO: Implement setSyncUrl() method.
+    }
 
-	function setSyncWarranty()
-	{
-		// TODO: Implement setSyncWarranty() method.
-	}
+    function setSyncProdFileSourceArray()
+    {
+        // TODO: Implement setSyncProdFileSourceArray() method.
+    }
 
-	function setSyncUrl()
-	{
-		// TODO: Implement setSyncUrl() method.
-	}
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
 
-	function setSyncProdFileSourceArray()
-	{
-		// TODO: Implement setSyncProdFileSourceArray() method.
-	}
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
+    }
 }

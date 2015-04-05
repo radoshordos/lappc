@@ -2,7 +2,7 @@
 
 class MyuCurl
 {
-    protected $_useragent = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)';
+    protected $_useragent = "User-Agent: Guru-Naradi-Cz-Downloader/1.0\r\n";
     protected $_url;
     protected $_followlocation;
     protected $_timeout;

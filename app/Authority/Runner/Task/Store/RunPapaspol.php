@@ -88,14 +88,9 @@ class RunPapaspol extends AbstractRunDev implements iItem
         }
     }
 
-    function setSyncProdAccessorySourceArray()
+    function setSyncWarranty()
     {
-        // TODO: Implement setSyncProdAccessorySourceArray() method.
-    }
-
-    function setSyncProdFileSourceArray()
-    {
-        // TODO: Implement setSyncProdFileSourceArray() method.
+        // TODO: Implement setSyncWarranty() method.
     }
 
     function setSyncItemsCodeProduct()
@@ -123,8 +118,38 @@ class RunPapaspol extends AbstractRunDev implements iItem
         // TODO: Implement setSyncProdWeight() method.
     }
 
-    function setSyncWarranty()
+    function storeImages()
     {
-        // TODO: Implement setSyncWarranty() method.
+        // TODO: Implement storeImages() method.
+    }
+
+    function storeAccessory()
+    {
+        // TODO: Implement storeAccessory() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
     }
 }

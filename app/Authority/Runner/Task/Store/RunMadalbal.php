@@ -117,40 +117,36 @@ class RunMadalbal extends AbstractRunDev implements iItem
 		}
 	}
 
-	function setSyncProdImgSourceArray()
-	{
-		if (isset($this->shopItem['Images'])) {
-			$images = array_filter((array)$this->shopItem['Images']);
-			if (count($images) > 0) {
-				$ai = new \ArrayIterator();
-				foreach ($images as $img) {
-					$ai->append($img);
-				}
-				$this->syncProdAccessorySourceArray = $ai->getArrayCopy();
-			}
-		}
-	}
-
-	function setSyncProdAccessorySourceArray()
-	{
-		if (isset($this->shopItem['Accessories'])) {
-			$accessories = array_filter((array)$this->shopItem['Accessories']);
-			if (count($accessories) > 0) {
-				$ai = new \ArrayIterator();
-				foreach ($accessories as $acc) {
-					$ai->append($acc);
-				}
-				$this->syncProdAccessorySourceArray = $ai->getArrayCopy();
-			}
-		}
-	}
-
 	function setSyncWarranty()
 	{
 		if (isset($this->shopItem['Guarantee'])) {
 			$this->syncWarranty = intval($this->shopItem['Guarantee']);
 		}
 	}
+
+    function storeImages()
+    {
+        if (isset($this->shopItem['Images'])) {
+            $images = array_filter((array)$this->shopItem['Images']);
+            if (count($images) > 0) {
+                foreach ($images as $img) {
+                    $this->storeArray->setImg($img);
+                }
+            }
+        }
+    }
+
+    function storeAccessory()
+    {
+        if (isset($this->shopItem['Accessories'])) {
+            $accessories = array_filter((array)$this->shopItem['Accessories']);
+            if (count($accessories) > 0) {
+                foreach ($accessories as $acc) {
+                    $this->storeArray->setAccessory($acc);
+                }
+            }
+        }
+    }
 
 	function setSyncItemsPriceAction()
 	{
@@ -167,16 +163,6 @@ class RunMadalbal extends AbstractRunDev implements iItem
 		// TODO: Implement setSyncUrl() method.
 	}
 
-	function setSyncProdFileSourceArray()
-	{
-		// TODO: Implement setSyncProdFileSourceArray() method.
-	}
-
-    function storeImages()
-    {
-        // TODO: Implement storeImages() method.
-    }
-
     function storeDescriptions()
     {
         // TODO: Implement storeDescriptions() method.
@@ -190,5 +176,15 @@ class RunMadalbal extends AbstractRunDev implements iItem
     function storeParameters()
     {
         // TODO: Implement storeParameters() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
     }
 }

@@ -76,7 +76,7 @@ class RunIgm extends AbstractRunDev implements iItem
         $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']);
     }
 
-    function setSyncProdName()
+    public function setSyncProdName()
     {
         if (isset($this->shopItem['PRODUCTNO']) && isset($this->shopItem['MANUFACTURER'])) {
             $this->syncProdName = $this->analyseName($this->shopItem['MANUFACTURER']) . " " . trim($this->shopItem['PRODUCTNO']);
@@ -111,14 +111,14 @@ class RunIgm extends AbstractRunDev implements iItem
         }
     }
 
-    function setSyncItemsPriceAction()
+    public function setSyncItemsPriceAction()
     {
         if (isset($this->shopItem['PRODUCTACTIONPRICE'])) {
             $this->syncItemsPriceAction = round(doubleval($this->shopItem['PRODUCTACTIONPRICE'] * self::DPH));
         }
     }
 
-    function setSyncProdWeight()
+    public function setSyncProdWeight()
     {
         if (isset($this->shopItem['MAINUNITWEIGHT'])) {
             $this->syncProdWeight = round(floatval(str_replace(",", ".", $this->shopItem['MAINUNITWEIGHT'])), 2);
@@ -130,34 +130,27 @@ class RunIgm extends AbstractRunDev implements iItem
         (!empty($this->shopItem['CATEGORY']) ? $this->syncCategoryText = $this->shopItem['CATEGORY'] : NULL);
     }
 
-    function setSyncProdImgSourceArray()
+    public function storeImages()
     {
         if (!empty($this->shopItem['PRODUCTPICTURES'])) {
-            $ai = new \ArrayIterator();
             $pp = (array)$this->shopItem['PRODUCTPICTURES'];
-
             if (count($pp) > 0) {
                 foreach ($pp as $val) {
-                    $ai->append($val);
+                    $this->storeArray->setImg($val);
                 }
             }
-            return $this->syncProdImgSourceArray = $ai->getArrayCopy();
         }
     }
 
-    function setSyncProdAccessorySourceArray()
+    public function storeAccessory()
     {
         if (!empty($this->shopItem['PRODUCTACCESSORIES'])) {
-
-            $ai = new \ArrayIterator();
             $pa = (array)$this->shopItem['PRODUCTACCESSORIES'];
-
             if (count($pa) > 0) {
                 foreach ($pa as $val) {
-                    $ai->append($val);
+                    $this->storeArray->setAccessory($val);
                 }
             }
-            return $this->syncProdAccessorySourceArray = $ai->getArrayCopy();
         }
     }
 
@@ -179,5 +172,30 @@ class RunIgm extends AbstractRunDev implements iItem
     function setSyncProdFileSourceArray()
     {
         // TODO: Implement setSyncProdFileSourceArray() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
     }
 }

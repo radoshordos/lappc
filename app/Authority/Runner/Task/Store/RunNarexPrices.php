@@ -48,21 +48,6 @@ class RunNarexPrices extends AbstractRunDev implements iItem
         // TODO: Implement setSyncUrl() method.
     }
 
-    function setSyncProdImgSourceArray()
-    {
-        // TODO: Implement setSyncProdImgSourceArray() method.
-    }
-
-    function setSyncProdAccessorySourceArray()
-    {
-        // TODO: Implement setSyncProdAccessorySourceArray() method.
-    }
-
-    function setSyncProdFileSourceArray()
-    {
-        // TODO: Implement setSyncProdFileSourceArray() method.
-    }
-
     function setSyncItemsCodeEan()
     {
         // TODO: Implement setSyncItemsCodeEan() method.
@@ -86,6 +71,21 @@ class RunNarexPrices extends AbstractRunDev implements iItem
     function storeImages()
     {
         // TODO: Implement storeImages() method.
+    }
+
+    function storeAccessory()
+    {
+        // TODO: Implement storeAccessory() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
     }
 
     function storeDescriptions()

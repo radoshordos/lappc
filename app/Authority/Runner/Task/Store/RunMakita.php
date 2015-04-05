@@ -10,7 +10,7 @@ class RunMakita extends AbstractRunDev implements iItem
     public function isUseRequired()
     {
         return (
-            (count($this->getSyncProdImgSourceArray()) > 0) &&
+            ($this->storeArray->getImgCount()) > 0 &&
             (strlen($this->getSyncItemsCodeProduct()) > 1) &&
             (strlen($this->getSyncProdName()) > 1) &&
             (intval($this->getSyncIdDev()) > 0) &&
@@ -72,28 +72,6 @@ class RunMakita extends AbstractRunDev implements iItem
         }
     }
 
-    function setSyncProdImgSourceArray()
-    {
-        if (!empty($this->shopItem['IMGURL']) || !empty($this->shopItem['IMGURL_ALTERNATIVE'])) {
-            $ai = new \ArrayIterator();
-
-            if (!empty($this->shopItem['IMGURL']) && $this->shopItem['IMGURL'] != 'http://templates/makita/grafika/telo/bez-nahledu.png') {
-                $ai->append($this->shopItem['IMGURL']);
-            }
-
-            if (!empty($this->shopItem['IMGURL_ALTERNATIVE'])) {
-                if (is_array($this->shopItem['IMGURL_ALTERNATIVE'])) {
-                    foreach ($this->shopItem['IMGURL_ALTERNATIVE'] as $val) {
-                        $ai->append($val);
-                    }
-                } else {
-                    $ai->append($this->shopItem['IMGURL_ALTERNATIVE']);
-                }
-            }
-            $this->syncProdImgSourceArray = $ai->getArrayCopy();
-        }
-    }
-
     function setSyncProdDesc()
     {
         if (isset($this->shopItem['PRODUCT'])) {
@@ -115,23 +93,6 @@ class RunMakita extends AbstractRunDev implements iItem
         }
     }
 
-    function setSyncProdAccessorySourceArray()
-    {
-        if (!empty($this->shopItem['ACCESSORY'])) {
-            $ai = new \ArrayIterator();
-
-            if (is_array($this->shopItem['ACCESSORY'])) {
-                foreach ($this->shopItem['ACCESSORY'] as $val) {
-                    $ai->append($val);
-                }
-            } else {
-                $ai->append($this->shopItem['ACCESSORY']);
-            }
-
-            $this->syncProdAccessorySourceArray = $ai->getArrayCopy();
-        }
-    }
-
     function setSyncItemsPriceStandard()
     {
         if (isset($this->shopItem['RECOMMENDED_PRICE_VAT'])) {
@@ -150,24 +111,6 @@ class RunMakita extends AbstractRunDev implements iItem
         }
     }
 
-    function setSyncProdFileSourceArray()
-    {
-        if (!empty($this->shopItem['ATTACHMENT'])) {
-            $ai = new \ArrayIterator();
-
-            if (!empty($this->shopItem['ATTACHMENT'])) {
-                if (is_array($this->shopItem['ATTACHMENT'])) {
-                    foreach ($this->shopItem['ATTACHMENT'] as $val) {
-                        $ai->append($val);
-                    }
-                } else {
-                    $ai->append($this->shopItem['ATTACHMENT']);
-                }
-            }
-            $this->syncProdFileSourceArray = $ai->getArrayCopy();
-        }
-    }
-
     function setSyncItemsCodeEan()
     {
         if (isset($this->shopItem['EAN'])) {
@@ -175,6 +118,64 @@ class RunMakita extends AbstractRunDev implements iItem
         }
     }
 
+    function storeImages()
+    {
+        if (!empty($this->shopItem['IMGURL']) || !empty($this->shopItem['IMGURL_ALTERNATIVE'])) {
+            if (!empty($this->shopItem['IMGURL']) && $this->shopItem['IMGURL'] != 'http://templates/makita/grafika/telo/bez-nahledu.png') {
+                $this->storeArray->setImg($this->shopItem['IMGURL']);
+            }
+            if (!empty($this->shopItem['IMGURL_ALTERNATIVE'])) {
+                if (is_array($this->shopItem['IMGURL_ALTERNATIVE'])) {
+                    foreach ($this->shopItem['IMGURL_ALTERNATIVE'] as $val) {
+                        $this->storeArray->setImg($val);
+                    }
+                } else {
+                    $this->storeArray->setImg($this->shopItem['IMGURL_ALTERNATIVE']);
+                }
+            }
+        }
+    }
+
+    function storeAccessory()
+    {
+        if (!empty($this->shopItem['ACCESSORY'])) {
+            if (is_array($this->shopItem['ACCESSORY'])) {
+                foreach ($this->shopItem['ACCESSORY'] as $val) {
+                    $this->storeArray->setAccessory($val);
+                }
+            } else {
+                $this->storeArray->setAccessory($this->shopItem['ACCESSORY']);
+            }
+        }
+    }
+
+    function storeFiles()
+    {
+        if (!empty($this->shopItem['ATTACHMENT'])) {
+            if (!empty($this->shopItem['ATTACHMENT'])) {
+                if (is_array($this->shopItem['ATTACHMENT'])) {
+                    foreach ($this->shopItem['ATTACHMENT'] as $val) {
+                        $this->storeArray->setMediaPdf($val);
+                    }
+                } else {
+                    $this->storeArray->setMediaPdf($this->shopItem['ATTACHMENT']);
+                }
+            }
+        }
+    }
+
+    function storePackageContents()
+    {
+        if (!empty($this->shopItem['DELIVERYSCOPE'])) {
+            if (is_array($this->shopItem['DELIVERYSCOPE'])) {
+                foreach ($this->shopItem['DELIVERYSCOPE'] as $val) {
+                    $this->storeArray->setAccessory($val);
+                }
+            } else {
+                $this->storeArray->setMediaPackagecontents($this->shopItem['DELIVERYSCOPE']);
+            }
+        }
+    }
 
     function setSyncWarranty()
     {
@@ -191,19 +192,14 @@ class RunMakita extends AbstractRunDev implements iItem
         // TODO: Implement setSyncProdWeight() method.
     }
 
-    function storeImages()
+    function storeYoutube()
     {
-        // TODO: Implement storeImages() method.
+        // TODO: Implement storeYoutube() method.
     }
 
     function storeDescriptions()
     {
         // TODO: Implement storeDescriptions() method.
-    }
-
-    function storePackageContents()
-    {
-        // TODO: Implement storePackageContents() method.
     }
 
     function storeParameters()

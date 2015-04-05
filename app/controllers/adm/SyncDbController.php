@@ -77,6 +77,19 @@ class SyncDbController extends \BaseController
                 }
             }
 
+            switch (Input::get('availability_count')) {
+                case '1':
+                    $db->where('availability_count', '>', '0');
+                    break;
+                case '2':
+                    $db->where('availability_count', '<=', '0');
+                    break;
+                case '3':
+                    $db->whereNull('availability_count');
+                    break;
+                default:
+                    break;
+            }
 
             switch (Input::get('join')) {
                 case 'left':
@@ -133,12 +146,12 @@ class SyncDbController extends \BaseController
                     break;
             }
 
-            switch (Input::get('file')) {
+            switch (Input::get('media')) {
                 case '1':
-                    $db->where('count_file', '>', '0');
+                    $db->where('count_media', '>', '0');
                     break;
                 case '2':
-                    $db->where('count_file', '=', '0');
+                    $db->where('count_media', '=', '0');
                     break;
                 default:
                     break;

@@ -33,11 +33,15 @@ Synchronizační databáze
             placeholder: "Zboží",
             allowClear: true
         });
+		$("#availability_count").select2({
+			placeholder: "Dodavatel má",
+			allowClear: true
+		});
         $("#accessory").select2({
             placeholder: "Má příslušenství",
             allowClear: true
         });
-        $("#file").select2({
+        $("#media").select2({
             placeholder: "Má přílohu",
             allowClear: true
         });
@@ -46,7 +50,7 @@ Synchronizační databáze
             allowClear: true
         });
         $("#categorytext").select2({
-            placeholder: "Kategirie produktů",
+            placeholder: "Kategorie produktů",
             allowClear: true
         });
         $("#money").select2({
@@ -91,11 +95,14 @@ Synchronizační databáze
             </div>
         </div>
         <div class="row" style="margin-top: .4em">
-            <div class="col-xs-4">
+			<div class="col-xs-2">
+				{{ Form::select('availability_count', ['' => '','1' => 'ANO','2' => 'NE', '3' => 'Neznámo'], (isset($input['availability_count']) ? $input['availability_count'] : NULL), ['id'=> 'availability_count', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+			</div>
+            <div class="col-xs-3">
                 {{ Form::select('accessory', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['accessory']) ? $input['accessory'] : NULL), ['id'=> 'accessory', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
-            <div class="col-xs-4">
-                {{ Form::select('file', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['file']) ? $input['file'] : NULL), ['id'=> 'file', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+            <div class="col-xs-3">
+                {{ Form::select('media', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['media']) ? $input['media'] : NULL), ['id'=> 'media', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::select('img', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['img']) ? $input['img'] : NULL), ['id'=> 'img', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
@@ -112,7 +119,7 @@ Synchronizační databáze
 <table class="table table-condensed">
     <thead>
         <tr>
-            <th>{{ Form::checkbox('select_all', NULL ,NULL, ['id'=>'select_all']) }}</th>
+            <th>{{ Form::checkbox('select_all', NULL ,NULL, ['id' => 'select_all']) }}</th>
             <th>Kód</th>
             <th>EAN</th>
             <th>Název</th>
@@ -161,6 +168,7 @@ Synchronizační databáze
               'connect' => (isset($input['connect']) ? $input['connect'] : NULL),
               'mixture_dev' => (isset($input['mixture_dev']) ? $input['mixture_dev'] : NULL),
               'join' => (isset($input['join']) ? $input['join'] : NULL),
+              'availability_count' => (isset($input['availability_count']) ? $input['availability_count'] : NULL),
               'prodmode' => (isset($input['prodmode']) ? $input['prodmode'] : NULL),
               'limit' => (isset($input['limit']) ? $input['limit'] : NULL),
               'record' => (isset($input['record']) ? $input['record'] : NULL),

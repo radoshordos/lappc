@@ -1,8 +1,7 @@
 <?php namespace Authority\Runner\Task\Store;
 
-class RunVgarden extends AbstractRunDev implements iItem {
-
-
+class RunVgarden extends AbstractRunDev implements iItem
+{
     function setSyncProdDesc()
     {
         // TODO: Implement setSyncProdDesc() method.
@@ -33,21 +32,6 @@ class RunVgarden extends AbstractRunDev implements iItem {
         // TODO: Implement setSyncUrl() method.
     }
 
-    function setSyncProdImgSourceArray()
-    {
-        // TODO: Implement setSyncProdImgSourceArray() method.
-    }
-
-    function setSyncProdAccessorySourceArray()
-    {
-        // TODO: Implement setSyncProdAccessorySourceArray() method.
-    }
-
-    function setSyncProdFileSourceArray()
-    {
-        // TODO: Implement setSyncProdFileSourceArray() method.
-    }
-
     function setSyncItemsCodeProduct()
     {
         // TODO: Implement setSyncItemsCodeProduct() method.
@@ -76,5 +60,40 @@ class RunVgarden extends AbstractRunDev implements iItem {
     function setSyncProdWeight()
     {
         // TODO: Implement setSyncProdWeight() method.
+    }
+
+    function storeImages()
+    {
+        // TODO: Implement storeImages() method.
+    }
+
+    function storeAccessory()
+    {
+        // TODO: Implement storeAccessory() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
     }
 }

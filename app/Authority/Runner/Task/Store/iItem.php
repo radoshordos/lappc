@@ -52,6 +52,12 @@ interface iItem
 
     function storeImages();
 
+    function storeAccessory();
+
+    function storeFiles();
+
+    function storeYoutube();
+
     function storeDescriptions();
 
     function storePackageContents();

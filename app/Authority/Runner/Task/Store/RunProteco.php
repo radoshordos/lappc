@@ -3,78 +3,98 @@
 class RunProteco extends AbstractRunDev implements iItem
 {
 
-	function setSyncProdDesc()
-	{
-		// TODO: Implement setSyncProdDesc() method.
-	}
+    function setSyncProdDesc()
+    {
+        // TODO: Implement setSyncProdDesc() method.
+    }
 
-	function setSyncProdName()
-	{
-		// TODO: Implement setSyncProdName() method.
-	}
+    function setSyncProdName()
+    {
+        // TODO: Implement setSyncProdName() method.
+    }
 
-	function setSyncIdDev()
-	{
-		// TODO: Implement setSyncIdDev() method.
-	}
+    function setSyncIdDev()
+    {
+        // TODO: Implement setSyncIdDev() method.
+    }
 
-	function setSyncCategoryText()
-	{
-		// TODO: Implement setSyncCategoryText() method.
-	}
+    function setSyncCategoryText()
+    {
+        // TODO: Implement setSyncCategoryText() method.
+    }
 
-	function setSyncWarranty()
-	{
-		// TODO: Implement setSyncWarranty() method.
-	}
+    function setSyncWarranty()
+    {
+        // TODO: Implement setSyncWarranty() method.
+    }
 
-	function setSyncUrl()
-	{
-		// TODO: Implement setSyncUrl() method.
-	}
+    function setSyncUrl()
+    {
+        // TODO: Implement setSyncUrl() method.
+    }
 
-	function setSyncProdImgSourceArray()
-	{
-		// TODO: Implement setSyncProdImgSourceArray() method.
-	}
+    function setSyncItemsCodeProduct()
+    {
+        // TODO: Implement setSyncItemsCodeProduct() method.
+    }
 
-	function setSyncProdAccessorySourceArray()
-	{
-		// TODO: Implement setSyncProdAccessorySourceArray() method.
-	}
+    function setSyncItemsCodeEan()
+    {
+        // TODO: Implement setSyncItemsCodeEan() method.
+    }
 
-	function setSyncProdFileSourceArray()
-	{
-		// TODO: Implement setSyncProdFileSourceArray() method.
-	}
+    function setSyncItemsPriceStandard()
+    {
+        // TODO: Implement setSyncItemsPriceStandard() method.
+    }
 
-	function setSyncItemsCodeProduct()
-	{
-		// TODO: Implement setSyncItemsCodeProduct() method.
-	}
+    function setSyncItemsPriceAction()
+    {
+        // TODO: Implement setSyncItemsPriceAction() method.
+    }
 
-	function setSyncItemsCodeEan()
-	{
-		// TODO: Implement setSyncItemsCodeEan() method.
-	}
+    function setSyncItemsAvailabilityCount()
+    {
+        // TODO: Implement setSyncItemsAvailabilityCount() method.
+    }
 
-	function setSyncItemsPriceStandard()
-	{
-		// TODO: Implement setSyncItemsPriceStandard() method.
-	}
+    function setSyncProdWeight()
+    {
+        // TODO: Implement setSyncProdWeight() method.
+    }
 
-	function setSyncItemsPriceAction()
-	{
-		// TODO: Implement setSyncItemsPriceAction() method.
-	}
+    function storeImages()
+    {
+        // TODO: Implement storeImages() method.
+    }
 
-	function setSyncItemsAvailabilityCount()
-	{
-		// TODO: Implement setSyncItemsAvailabilityCount() method.
-	}
+    function storeAccessory()
+    {
+        // TODO: Implement storeAccessory() method.
+    }
 
-	function setSyncProdWeight()
-	{
-		// TODO: Implement setSyncProdWeight() method.
-	}
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
+    }
 }

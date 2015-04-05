@@ -144,11 +144,11 @@ class TreeRecalculate extends TaskMessage implements iRun
                                 foreach ($ar2 as $k => $v) {
                                     $html .= "<li><a href=\"" . "/" . $v['absolute'] . "\" title=\"" . $v['desc'] . "\">" . $v['name'] . "</a>";
                                     if (isset($euri[1]) && $euri[1] == $v['relative']) {
-                                        $ar3 = Tree::select(['id', 'absolute', 'relative', 'name', 'deep'])->where('parent_id', '=', $v['id'])->where('deep', '=', '3')->where('group_id', '=', $val)->orderBy('id')->get()->toArray();
+                                        $ar3 = Tree::select(['id', 'absolute', 'relative', 'name', 'desc', 'deep'])->where('parent_id', '=', $v['id'])->where('deep', '=', '3')->where('group_id', '=', $val)->orderBy('id')->get()->toArray();
                                         if (!empty($ar3)) {
                                             $html .= '<ul>';
                                             foreach ($ar3 as $k3 => $v3) {
-                                                $html .= "<li>" . $v3['name'] . '</li>';
+                                                $html .= "<li><a href=\"" . "/" . $v3['absolute'] . "\" title=\"" . $v3['desc'] . "\">" . $v3['name'] . '</a></li>';
                                             }
                                             $html .= '</ul>';
                                         }

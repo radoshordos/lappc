@@ -4,6 +4,7 @@ class StoreArray
 {
     private $sai = [];
     private $i = 0;
+    private $img_count = 0;
 
     public function setAccessory($line)
     {
@@ -12,42 +13,43 @@ class StoreArray
 
     public function setImg($line)
     {
+        $this->img_count++;
         $this->sai['img'][$this->i++] = $line;
     }
 
     public function setMediaDoc($line)
     {
-        $this->sai['media']['doc'][$this->i++] = $line;
+        $this->sai['doc'][$this->i++] = $line;
     }
 
     public function setMediaPdf($line)
     {
-        $this->sai['media']['pdf'][$this->i++] = $line;
+        $this->sai['pdf'][$this->i++] = $line;
     }
 
     public function setMediaJpg($line)
     {
-        $this->sai['media']['jpg'][$this->i++] = $line;
+        $this->sai['jpg'][$this->i++] = $line;
     }
 
     public function setMediaYoutube($line)
     {
-        $this->sai['media']['youtube'][$this->i++] = $line;
+        $this->sai['youtube'][$this->i++] = $line;
     }
 
     public function setMediaParameters($line)
     {
-        $this->sai['media']['parameters'][$this->i++] = $line;
+        $this->sai['parameters'][$this->i++] = $line;
     }
 
     public function setMediaDescriptions($line)
     {
-        $this->sai['media']['descriptions'][$this->i++] = $line;
+        $this->sai['descriptions'][$this->i++] = $line;
     }
 
     public function setMediaPackagecontents($line)
     {
-        $this->sai['media']['packagecontents'][$this->i++] = $line;
+        $this->sai['packagecontents'][$this->i++] = $line;
     }
 
     public function getStoreArray()
@@ -58,5 +60,10 @@ class StoreArray
     public function getCounter()
     {
         return $this->i;
+    }
+
+    public function getImgCount()
+    {
+        return $this->img_count;
     }
 }

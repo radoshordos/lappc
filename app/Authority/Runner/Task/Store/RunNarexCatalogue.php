@@ -66,7 +66,7 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
             foreach ((array)$this->shopItem['Descriptions'] as $row) {
                 foreach ((array)$row as $val) {
                     if (!empty($val)) {
-                        $this->storeArray->setMediaDescriptions(trim(strtr($val, ["»" => ""])));
+                        $this->storeArray->setMediaDescriptions(trim(strip_tags(strtr($val, ["»" => ""]))));
                     }
                 }
             }
@@ -79,7 +79,7 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
             foreach ((array)$this->shopItem['PackageContents'] as $row) {
                 foreach ((array)$row as $val) {
                     if (!empty($val)) {
-                        $this->storeArray->setMediaPackagecontents(trim(strtr($val, ["»" => ""])));
+                        $this->storeArray->setMediaPackagecontents(trim(strip_tags(strtr($val, ["»" => ""]))));
                     }
                 }
             }
@@ -106,7 +106,7 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
 
                     $line = strtr($line, ["$" => "", "&nbsp;" => " ", '#/min' => "min-1", "#" => '', '…' => '']);
                     $line = preg_replace('/[\s]+/mu', ' ', $line);
-                    $this->storeArray->setMediaParameters(trim($line));
+                    $this->storeArray->setMediaParameters(trim(strip_tags($line)));
 
                 } else {
 
@@ -127,7 +127,7 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
 
                             $line = strtr($line, ["$" => "", "&nbsp;" => " ", '#/min' => "min-1", "#" => '', '…' => '']);
                             $line = preg_replace('/[\s]+/mu', ' ', $line);
-                            $this->storeArray->setMediaParameters(trim($line));
+                            $this->storeArray->setMediaParameters(trim(strip_tags($line)));
                         }
                     }
                 }
@@ -163,5 +163,20 @@ class RunNarexCatalogue extends AbstractRunDev implements iItem
     function setSyncProdWeight()
     {
         // TODO: Implement setSyncProdWeight() method.
+    }
+
+    function storeAccessory()
+    {
+        // TODO: Implement storeAccessory() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
     }
 }

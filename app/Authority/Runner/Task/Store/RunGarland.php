@@ -171,4 +171,39 @@ class RunGarland extends AbstractRunDev implements iItem
     {
         // TODO: Implement setSyncProdFileSourceArray() method.
     }
+
+    function storeImages()
+    {
+        // TODO: Implement storeImages() method.
+    }
+
+    function storeAccessory()
+    {
+        // TODO: Implement storeAccessory() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
+    }
 }

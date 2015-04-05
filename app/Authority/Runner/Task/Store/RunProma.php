@@ -4,11 +4,6 @@ class RunProma extends AbstractRunDev implements iItem
 {
     const ROOT = 'SHOP';
 
-    function __construct($shop_item, $record_id)
-    {
-        parent::__construct($shop_item, $record_id);
-    }
-
     private function analyseIdDev($dev_name)
     {
         switch ($dev_name) {
@@ -92,16 +87,6 @@ class RunProma extends AbstractRunDev implements iItem
         // TODO: Implement setSyncUrl() method.
     }
 
-    function setSyncProdImgSourceArray()
-    {
-        // TODO: Implement setSyncProdImgSourceArray() method.
-    }
-
-    function setSyncProdAccessorySourceArray()
-    {
-        // TODO: Implement setSyncProdAccessorySourceArray() method.
-    }
-
     function setSyncItemsPriceAction()
     {
         // TODO: Implement setSyncItemsPriceAction() method.
@@ -112,8 +97,38 @@ class RunProma extends AbstractRunDev implements iItem
         // TODO: Implement setSyncProdWeight() method.
     }
 
-    function setSyncProdFileSourceArray()
+    function storeImages()
     {
-        // TODO: Implement setSyncProdFileSourceArray() method.
+        // TODO: Implement storeImages() method.
+    }
+
+    function storeAccessory()
+    {
+        // TODO: Implement storeAccessory() method.
+    }
+
+    function storeFiles()
+    {
+        // TODO: Implement storeFiles() method.
+    }
+
+    function storeYoutube()
+    {
+        // TODO: Implement storeYoutube() method.
+    }
+
+    function storeDescriptions()
+    {
+        // TODO: Implement storeDescriptions() method.
+    }
+
+    function storePackageContents()
+    {
+        // TODO: Implement storePackageContents() method.
+    }
+
+    function storeParameters()
+    {
+        // TODO: Implement storeParameters() method.
     }
 }

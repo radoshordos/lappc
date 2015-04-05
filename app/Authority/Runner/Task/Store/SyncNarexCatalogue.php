@@ -23,7 +23,7 @@ class SyncNarexCatalogue extends AbstractSync implements iSync
     public function remotelyPrepareSynchronize()
     {
         $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
-        $down->runDownload(FALSE);
+        $down->runDownload(TRUE);
     }
 
     function runSynchronizeData()

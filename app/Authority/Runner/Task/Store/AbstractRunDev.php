@@ -40,6 +40,12 @@ abstract class AbstractRunDev implements iItem
         $this->setSyncCategoryText();
         $this->setSyncUrl();
         $this->storeImages();
+        $this->storeAccessory();
+//        $this->storeDoc();
+//        $this->storePdf();
+//        $this->storeJpg();
+//        $this->storeYoutube();
+        $this->storeFiles();
         $this->storeDescriptions();
         $this->storePackageContents();
         $this->storeParameters();
