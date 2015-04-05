@@ -4,6 +4,7 @@ use Authority\Eloquent\RecordSyncImport;
 
 class SyncPapaspol extends AbstractSync implements iSync
 {
+    const MIXTURE_DEV_ID = 1018;
     const DEV_NAME = 'papaspol';
     const URL_FEED = 'http://www.papaspol.cz/XML/zbozi.xml';
 
@@ -37,7 +38,6 @@ class SyncPapaspol extends AbstractSync implements iSync
             'name'       => __CLASS__,
             'created_at' => date("Y-m-d H:i:s", $record_id)
         ]);
-
 
         foreach ($xml->SHOPITEM as $item) {
 

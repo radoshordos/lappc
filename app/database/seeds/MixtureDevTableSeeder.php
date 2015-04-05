@@ -15,7 +15,8 @@ class MixtureDevTableSeeder extends Seeder
 			['id' => '1014', 'purpose' => 'devgroup', 'name' => 'GROUP Garland', 'desc' => NULL, 'trigger_column_count' => '21'],
 			['id' => '1015', 'purpose' => 'devgroup', 'name' => 'GROUP Proma', 'desc' => NULL, 'trigger_column_count' => '3'],
 			['id' => '1016', 'purpose' => 'devgroup', 'name' => 'GROUP V-Garden', 'desc' => NULL, 'trigger_column_count' => '0'],
-			['id' => '1017', 'purpose' => 'devgroup', 'name' => 'GROUP Igm', 'desc' => NULL, 'trigger_column_count' => '7']
+			['id' => '1017', 'purpose' => 'devgroup', 'name' => 'GROUP Igm', 'desc' => NULL, 'trigger_column_count' => '7'],
+            ['id' => '1018', 'purpose' => 'devgroup', 'name' => 'GROUP Papaspol', 'desc' => NULL, 'trigger_column_count' => '8']
 		];
 
 		foreach ($mixture_dev as $row) {
