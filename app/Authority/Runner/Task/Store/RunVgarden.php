@@ -9,7 +9,9 @@ class RunVgarden extends AbstractRunDev implements iItem
 
     function setSyncProdName()
     {
-        // TODO: Implement setSyncProdName() method.
+        if (isset($this->shopItem['PRODUCT'])) {
+            $this->syncItemsCodeEan = (string)trim($this->shopItem['PRODUCT']);
+        }
     }
 
     function setSyncIdDev()
@@ -19,7 +21,9 @@ class RunVgarden extends AbstractRunDev implements iItem
 
     function setSyncCategoryText()
     {
-        // TODO: Implement setSyncCategoryText() method.
+        if (isset($this->shopItem['KATEGORIE'])) {
+            $this->syncCategoryText = (string)$this->shopItem['KATEGORIE'];
+        }
     }
 
     function setSyncWarranty()
@@ -34,22 +38,30 @@ class RunVgarden extends AbstractRunDev implements iItem
 
     function setSyncItemsCodeProduct()
     {
-        // TODO: Implement setSyncItemsCodeProduct() method.
+        if (isset($this->shopItem['ID'])) {
+            $this->syncItemsCodeProduct = (string)trim($this->shopItem['ID']);
+        }
     }
 
     function setSyncItemsCodeEan()
     {
-        // TODO: Implement setSyncItemsCodeEan() method.
+        if (isset($this->shopItem['EAN'])) {
+            $this->syncItemsCodeEan = (string)trim($this->shopItem['EAN']);
+        }
     }
 
     function setSyncItemsPriceStandard()
     {
-        // TODO: Implement setSyncItemsPriceStandard() method.
+        if (isset($this->shopItem['PRICE_VAT'])) {
+            $this->syncItemsPriceStandard = round(doubleval($this->shopItem['PRICE_VAT']));
+        }
     }
 
     function setSyncItemsPriceAction()
     {
-        // TODO: Implement setSyncItemsPriceAction() method.
+        if (isset($this->shopItem['PRICE_AKCE_VAT'])) {
+            $this->syncItemsPriceAction = round(doubleval($this->shopItem['PRICE_AKCE_VAT']));
+        }
     }
 
     function setSyncItemsAvailabilityCount()
@@ -64,7 +76,9 @@ class RunVgarden extends AbstractRunDev implements iItem
 
     function storeImages()
     {
-        // TODO: Implement storeImages() method.
+        if (isset($this->shopItem['IMGURL'])) {
+            $this->storeArray->setImg($this->shopItem['IMGURL']);
+        }
     }
 
     function storeAccessory()

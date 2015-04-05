@@ -74,13 +74,6 @@ class RunPapaspol extends AbstractRunDev implements iItem
         }
     }
 
-    function setSyncProdImgSourceArray()
-    {
-        if (isset($this->shopItem['IMGURL'])) {
-            $this->syncProdImgSourceArray = (array)$this->shopItem['IMGURL'];
-        }
-    }
-
     public function setSyncItemsPriceStandard()
     {
         if (isset($this->shopItem['PRICE'])) {
@@ -120,7 +113,9 @@ class RunPapaspol extends AbstractRunDev implements iItem
 
     function storeImages()
     {
-        // TODO: Implement storeImages() method.
+        if (isset($this->shopItem['IMGURL'])) {
+            $this->storeArray->setImg($this->shopItem['IMGURL']);
+        }
     }
 
     function storeAccessory()
