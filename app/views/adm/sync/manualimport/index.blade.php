@@ -35,7 +35,6 @@ Sychnonizační manuální import
         <div class="col-xs-1">
             {{ Form::submit('OK',['class'=> 'form-control']); }}
         </div>
-
     </div>
 </blockquote>
 

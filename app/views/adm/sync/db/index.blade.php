@@ -18,42 +18,42 @@ Synchronizační databáze
               checkboxes.prop('checked', false);
             }
         });
-        $("#mixture_dev").select2({
+        $("#select_mixture_dev").select2({
             placeholder: "Seskupení výrobců",
             allowClear: true
         });
-        $("#connect").select2({
+        $("#select_connect").select2({
             placeholder: "Propojit podle",
             allowClear: true
         });
-        $("#join").select2({});
-        $("#limit").select2({});
-        $("#basic").select2({});
-        $("#prodmode").select2({
+        $("#select_join").select2({});
+        $("#select_limit").select2({});
+        $("#select_basic").select2({});
+        $("#select_prodmode").select2({
             placeholder: "Zboží",
             allowClear: true
         });
-		$("#availability_count").select2({
+		$("#select_availability_count").select2({
 			placeholder: "Dodavatel má",
 			allowClear: true
 		});
-        $("#accessory").select2({
+        $("#select_accessory").select2({
             placeholder: "Má příslušenství",
             allowClear: true
         });
-        $("#media").select2({
-            placeholder: "Má přílohu",
+        $("#select_media").select2({
+            placeholder: "Má média",
             allowClear: true
         });
-        $("#img").select2({
+        $("#select_img").select2({
             placeholder: "Má obrázek",
             allowClear: true
         });
-        $("#categorytext").select2({
+        $("#select_categorytext").select2({
             placeholder: "Kategorie produktů",
             allowClear: true
         });
-        $("#money").select2({
+        $("#select_money").select2({
             placeholder: "Cena Sync",
             allowClear: true
         });
@@ -65,62 +65,79 @@ Synchronizační databáze
 @section('content')
 
 <blockquote>
-    <form>
+	{{ Form::open(['route' => ['adm.sync.db.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
         <div class="row">
             <div class="col-xs-2">
-                {{ Form::select('basic', ['syncdb' => 'SyncDb', 'items' => 'ItemDb'], (isset($input['basic']) ? $input['basic'] : NULL), ['id'=> 'basic', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_basic', $select_basic, $choice_basic, ['id'=> 'select_basic', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('connect', ['' => '', 'code_prod' => 'Kódu produktu', 'code_ean' => 'EAN produktu', 'name' => 'Názvu produktu','connect' => 'Existujícího spojení'], (isset($input['connect']) ? $input['connect'] : NULL), ['id'=> 'connect', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_connect', $select_connect, $choice_connect, ['id'=> 'select_connect', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-4">
-                {{ Form::select('mixture_dev', $mixture_dev, (isset($input['mixture_dev']) ? $input['mixture_dev'] : NULL), ['id'=> 'mixture_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_mixture_dev', $select_mixture_dev, $choice_mixture_dev, ['id'=> 'select_mixture_dev', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('join', ['left' => 'Spárované','noleft' => 'Nespárované','inner' => 'Všechny'], (isset($input['join']) ? $input['join'] : NULL), ['id'=> 'join', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_join', $select_join , $choice_join, ['id'=> 'select_join', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('limit', ['20' => 'Limit 20','80' => 'Limit 80','500' => 'Limit 500'], (isset($input['limit']) ? $input['limit'] : NULL), ['id'=> 'limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_limit', $select_limit, $choice_limit, ['id'=> 'select_limit', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
         </div>
         <div class="row" style="margin-top: .4em">
             <div class="col-xs-8">
-                {{ Form::select('categorytext', $categorytext, (isset($input['categorytext']) ? $input['categorytext'] : NULL), ['id'=> 'categorytext', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_categorytext', $select_categorytext, $choice_categorytext, ['id'=> 'select_categorytext', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('prodmode', ["" => "",'1' => 'Není v Sync' ,"2" => "Neskryté zboží", "3" => "Jen skryté zboží"], (isset($input['prodmode']) ? $input['prodmode'] : NULL), ['id'=> 'prodmode', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_prodmode', $select_prodmode, $choice_prodmode, ['id'=> 'select_prodmode', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('money', ['' => '','diverse' => 'Rozdílná','same' => 'Stejná'], (isset($input['money']) ? $input['money'] : NULL), ['id'=> 'money', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_money', $select_money, $choice_money, ['id'=> 'select_money', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
         </div>
         <div class="row" style="margin-top: .4em">
 			<div class="col-xs-2">
-				{{ Form::select('availability_count', ['' => '','1' => 'ANO','2' => 'NE', '3' => 'Neznámo'], (isset($input['availability_count']) ? $input['availability_count'] : NULL), ['id'=> 'availability_count', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+				{{ Form::select('select_availability_count', $select_availability_count, $choice_availability_count, ['id'=> 'select_availability_count', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
 			</div>
             <div class="col-xs-3">
-                {{ Form::select('accessory', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['accessory']) ? $input['accessory'] : NULL), ['id'=> 'accessory', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_accessory', ['' => '','1' => 'ANO','2' => 'NE'], $choice_accessory, ['id'=> 'select_accessory', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-3">
-                {{ Form::select('media', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['media']) ? $input['media'] : NULL), ['id'=> 'media', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_media', ['' => '','1' => 'ANO','2' => 'NE'], $choice_media, ['id'=> 'select_media', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('img', ['' => '','1' => 'ANO','2' => 'NE'], (isset($input['img']) ? $input['img'] : NULL), ['id'=> 'img', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_img', ['' => '','1' => 'ANO','2' => 'NE'], $choice_img, ['id'=> 'select_img', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::text('record', (isset($input['record']) ? $input['record'] : NULL), ['maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Record #ID']) }}
+                {{ Form::text('record', $record, ['maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Record #ID']) }}
             </div>
         </div>
-    </form>
+	{{ Form::close() }}
 </blockquote>
 
 @if (isset($db))
-<form action="">
-<table class="table table-condensed">
+{{ Form::open(['route' => ['adm.sync.db.store'],'class' => 'form-horizontal', 'role' => 'form']) }}
+{{ Form::hidden('select_basic', $choice_basic); }}
+{{ Form::hidden('select_connect', $choice_connect) }}
+{{ Form::hidden('select_mixture_dev', $choice_mixture_dev) }}
+{{ Form::hidden('select_join', $choice_join) }}
+{{ Form::hidden('select_limit', $choice_limit) }}
+{{ Form::hidden('select_categorytext', $choice_categorytext) }}
+{{ Form::hidden('select_prodmode', $choice_prodmode) }}
+{{ Form::hidden('select_money', $choice_money) }}
+{{ Form::hidden('select_availability_count', $choice_availability_count) }}
+{{ Form::hidden('select_accessory', $choice_accessory) }}
+{{ Form::hidden('select_media', $choice_media) }}
+{{ Form::hidden('select_img', $choice_img) }}
+{{ Form::hidden('record', $record) }}
+
+
+
+<table class="table table-condensed table-bordered">
     <thead>
         <tr>
             <th>{{ Form::checkbox('select_all', NULL ,NULL, ['id' => 'select_all']) }}</th>
             <th>Kód</th>
+			<th><button type="button" class="btn btn-default btn-xs" title="Produktový mód">M</button></th>
             <th>EAN</th>
             <th>Název</th>
             <th>Popis</th>
@@ -129,9 +146,10 @@ Synchronizační databáze
     </thead>
     <tbody>
         @foreach ($db as $row)
-        <tr class="bg-success">
-            <td>{{ Form::checkbox("select[".$row->sync_id."]",NULL) }}</td>
+        <tr class="bg-success" style="border-top:2px solid #666">
+            <td></td>
             <td>{{ $row->sync_code_prod }}</td>
+			<td></td>
             <td>{{ $row->sync_code_ean }}</td>
             <td>
                 @if ($row->prod_name)
@@ -140,16 +158,23 @@ Synchronizační databáze
                     <a href="{{ URL::route('adm.product.prod.create',['sync_id' => $row->sync_id]); }}">{{ $row->sync_name }}</a>
                 @endif
             </td>
-            <td>{{ substr($row->sync_desc, 0, 100); }}</td>
-            <td class="{{ ($row->sync_price_standard > $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->sync_price_standard }}</td>
+            <td><small>{{ substr($row->sync_desc, 0, 66); }}</small></td>
+			@if ($row->sync_price_standard < $row->prod_price)
+				<td class="text-right bg-warning">{{ $row->sync_price_standard }}</td>
+			@elseif($row->sync_price_standard > $row->prod_price)
+				<td class="text-right bg-danger">{{ $row->sync_price_standard }}</td>
+			@else
+				<td class="text-right">{{ $row->sync_price_standard }}</td>
+			@endif
         </tr>
         @if ($row->prod_name)
         <tr class="bg-info">
-            <td></td>
+            <td>{{ Form::checkbox("select[".$row->items_id."]",NULL).Form::hidden("sync_price_standard[".$row->items_id."]",$row->sync_price_standard); }}</td>
             <td>{{ $row->items_code_prod }}</td>
+			<td><button type="button" class="btn btn-default btn-xs" title="Produktový mód">{{ $row->prod_mode_id }}</button></td>
             <td>{{ $row->items_code_ean }}</td>
             <td><a href="{{ URL::route('adm.product.prod.edit',[$row->prod_tree_id, $row->prod_id]); }}">{{ $row->prod_name }}</a></td>
-            <td>{{ substr($row->prod_desc, 0, 100); }}</td>
+            <td><small>{{ substr($row->prod_desc, 0, 66); }}</small></td>
             <td class="{{ ($row->sync_price_standard < $row->prod_price ? 'text-right bg-danger' : "text-right") }}">{{ $row->prod_price }}</td>
         </tr>
         @endif
@@ -157,23 +182,37 @@ Synchronizační databáze
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="6" class="text-right">Celkem <b>{{ $db->getTotal() }}</b> záznamů</td>
+            <td colspan="7" class="text-right">Celkem <b>{{ $db->getTotal() }}</b> záznamů</td>
         </tr>
+		<tr>
+			<td colspan="5">
+				{{ Form::select('sync_action',['','fix_price' => 'Opravit cenu','fix_go_hidden' => 'Skrýt produkt'],  NULL, ['id'=> 'mixture_dev', 'class'=> 'form-control']) }}
+			</td>
+			<td colspan="2">
+				{{ Form::submit('OK',['class'=> 'form-control']); }}
+			</td>
+		</tr>
     </tfoot>
 </table>
-</form>
+{{ Form::close() }}
 <div class="text-center">
-    {{ $db->appends([
-              'basic'  => (isset($input['basic']) ? $input['basic'] : NULL),
-              'connect' => (isset($input['connect']) ? $input['connect'] : NULL),
-              'mixture_dev' => (isset($input['mixture_dev']) ? $input['mixture_dev'] : NULL),
-              'join' => (isset($input['join']) ? $input['join'] : NULL),
-              'availability_count' => (isset($input['availability_count']) ? $input['availability_count'] : NULL),
-              'prodmode' => (isset($input['prodmode']) ? $input['prodmode'] : NULL),
-              'limit' => (isset($input['limit']) ? $input['limit'] : NULL),
-              'record' => (isset($input['record']) ? $input['record'] : NULL),
-        ])->links();
-    }}
+	{{
+		$db->appends([
+			'select_basic' => $choice_basic,
+			'select_connect' => $choice_connect,
+			'select_mixture_dev' => $choice_mixture_dev,
+			'select_join' => $choice_join,
+			'select_limit' => $choice_limit,
+			'select_categorytext' => $choice_categorytext,			
+			'select_prodmode' => $choice_prodmode,			
+			'select_money' => $choice_money,				
+			'select_availability_count' => $choice_availability_count,			
+			'select_accessory' => $choice_accessory,			
+			'select_media' => $choice_media,
+			'select_img' => $choice_img,			
+			'record' => $record
+		])->links();
+	}}
 </div>
 @endif
 @stop

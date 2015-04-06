@@ -32,6 +32,7 @@ class SyncDb extends Migration
             $table->engine = 'InnoDB';
             $table->unique(['purpose', 'dev_id', 'code_prod']);
             $table->unique(['purpose', 'code_ean']);
+            $table->unique(['purpose', 'item_id']);
 
             $table->foreign('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('record_id')->references('id')->on('record_sync_import')->onUpdate('cascade')->onDelete('set null');

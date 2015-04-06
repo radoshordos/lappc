@@ -1,15 +1,4 @@
 <?php
-/*
-Route::get('getdata', function () {
-    $term = Input::get('term');
-    $data = \Authority\Eloquent\ViewProd::where('prod_name', 'LIKE', "%$term%")->limit(10)->get();
-    $result = [];
-    foreach ($data as $key => $row) {
-            $result[] = ['id' => $row->id, 'value' => $row->prod_name];
-    }
-    return Response::json($result);
-});
-*/
 
 Route::get('getdata', ['uses' => 'SearchDataController@ajax']);
 Route::get('ajajtree', ['uses' => 'TreeListController@ajajtree']);
@@ -84,7 +73,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::get('csvexport', ['as' => 'adm.sync.csvexport.index', 'uses' => 'SyncCsvExportController@index']);
         Route::match(['GET', 'POST'],'csvimport', ['as' => 'adm.sync.csvimport.index', 'uses' => 'SyncCsvImportController@index']);
         Route::any('record', ['as' => 'adm.sync.record.index', 'uses' => 'RecordSyncImportController@index']);
-        Route::any('db', ['as' => 'adm.sync.db.index', 'uses' => 'SyncDbController@index']);
+        Route::resource('db', 'SyncDbController', ['only' => ['index','store']]);
         Route::get('summary', ['as' => 'adm.sync.summary.index', 'uses' => 'SyncSummaryController@index']);
     });
 
