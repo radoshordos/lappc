@@ -6,7 +6,7 @@ class SyncMakita extends AbstractSync implements iSync
 {
     const MIXTURE_DEV_ID = 1010;
     const DEV_NAME = 'makita';
-    const URL_FEED = 'https://NaradiDolezalova:YH129vg395@www.makita.cz/prilohaurl.php?file=makita.zip';
+    const URL_FEED = 'https://NaradiDolezalova:YH129vg395@www.makita.cz/prilohaurl.php?file=makita.xml';
 
     public function __construct($table_cron)
     {
@@ -18,19 +18,18 @@ class SyncMakita extends AbstractSync implements iSync
     public function remotelyPrepareSynchronize()
     {
         $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
-        $down->runDownload();
-        $down->unzipDownload();
+        $down->runDownload(FALSE);
     }
 
     public function getFile()
     {
-        return self::DEV_NAME . "-" . date('Y-m') . ".zip";
+        return self::DEV_NAME . "-" . date('Y-m') . ".xml";
     }
 
     public function runSynchronizeData()
     {
         $all = $suc = 0;
-        $xml = simplexml_load_file($this->getSyncUploadDirectory() . "/makita.xml");
+        $xml = simplexml_load_file($this->getSyncUploadDirectory() . $this->getFile());
         $record_id = strtotime('now');
 
         RecordSyncImport::create([

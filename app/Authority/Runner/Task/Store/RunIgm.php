@@ -136,7 +136,13 @@ class RunIgm extends AbstractRunDev implements iItem
             $pp = (array)$this->shopItem['PRODUCTPICTURES'];
             if (count($pp) > 0) {
                 foreach ($pp as $val) {
-                    $this->storeArray->setImg($val);
+                    if (is_array($val)) {
+                        foreach ($val as $v) {
+                            $this->storeArray->setImg($v);
+                        }
+                    } else {
+                        $this->storeArray->setAccessory($val);
+                    }
                 }
             }
         }
@@ -148,7 +154,13 @@ class RunIgm extends AbstractRunDev implements iItem
             $pa = (array)$this->shopItem['PRODUCTACCESSORIES'];
             if (count($pa) > 0) {
                 foreach ($pa as $val) {
-                    $this->storeArray->setAccessory($val);
+                    if (is_array($val)) {
+                        foreach ($val as $v) {
+                            $this->storeArray->setAccessory($v);
+                        }
+                    } else {
+                        $this->storeArray->setAccessory($val);
+                    }
                 }
             }
         }

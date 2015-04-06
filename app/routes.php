@@ -33,25 +33,25 @@ Route::group(['prefix' => 'adm'], function () {
         Route::any('prod/{tree}/{prod}', ['as' => 'adm.product.prod.update', 'uses' => 'ProdController@update'])->where(['tree' => '[0-9]+', 'prod' => '[0-9]+']);
         Route::resource('akce', 'AkceController', ['only' => ['index']]);
         Route::resource('akcehuge', 'AkceHugeController', ['only' => ['index', 'store']]);
-        Route::resource('akcetemplate', 'AkceTemplateController', ['only' => ['index','create','store']]);
-        Route::resource('akceminitext', 'AkceMinitextController', ['only' => ['index','create','store']]);
-        Route::resource('akceavailability', 'AkceAvailabilityController', ['only' => ['index','create','store']]);
+        Route::resource('akcetemplate', 'AkceTemplateController', ['only' => ['index', 'create', 'store']]);
+        Route::resource('akceminitext', 'AkceMinitextController', ['only' => ['index', 'create', 'store']]);
+        Route::resource('akceavailability', 'AkceAvailabilityController', ['only' => ['index', 'create', 'store']]);
     });
 
     Route::group(['prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'], function () {
         Route::resource('dev', 'DevController');
         Route::resource('tree', 'TreeController');
         Route::resource('mixturedev', 'MixtureDevController');
-        Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController', ['only' => ['store','destroy']]);
+        Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController', ['only' => ['store', 'destroy']]);
         Route::resource('mixturetree', 'MixtureTreeController');
-        Route::resource('mixturetreem2ntree', 'MixtureTreeM2nTreeController', ['only' => ['store','destroy']]);
+        Route::resource('mixturetreem2ntree', 'MixtureTreeM2nTreeController', ['only' => ['store', 'destroy']]);
         Route::resource('mixtureprod', 'MixtureProdController');
-        Route::resource('mixtureprodm2nprod', 'MixtureProdM2nProdController', ['only' => ['store','destroy']]);
+        Route::resource('mixtureprodm2nprod', 'MixtureProdM2nProdController', ['only' => ['store', 'destroy']]);
         Route::resource('mixtureitem', 'MixtureItemController');
-        Route::resource('mixtureitemm2nitem', 'MixtureItemM2nItemController', ['only' => ['store','destroy']]);
-        Route::resource('prodwarranty', 'ProdWarrantyController', ['only' => ['index','create', 'store']]);
-        Route::resource('proddifference', 'ProdDifferenceController', ['only' => ['index','store']]);
-        Route::resource('prodvariation', 'ProdVariationController', ['only' => ['index','create', 'store']]);
+        Route::resource('mixtureitemm2nitem', 'MixtureItemM2nItemController', ['only' => ['store', 'destroy']]);
+        Route::resource('prodwarranty', 'ProdWarrantyController', ['only' => ['index', 'create', 'store']]);
+        Route::resource('proddifference', 'ProdDifferenceController', ['only' => ['index', 'store']]);
+        Route::resource('prodvariation', 'ProdVariationController', ['only' => ['index', 'create', 'store']]);
         Route::get('multiplechanges', ['as' => 'adm.pattern.multiplechanges.index', 'uses' => 'ProdMultipleChangesController@index']);
         Route::resource('multimedia', 'MultimediaController');
     });
@@ -62,8 +62,8 @@ Route::group(['prefix' => 'adm'], function () {
         Route::match(['GET', 'POST'], 'sale', ['as' => 'adm.summary.sale.index', 'uses' => 'SummarySaleController@index']);
         Route::match(['GET', 'POST'], 'availability', ['as' => 'adm.summary.availability.index', 'uses' => 'SummaryAvailabilityController@index']);
         Route::get('treevisualization', ['as' => 'adm.summary.treevisualization.index', 'uses' => 'TreeVisualizationController@index']);
-	    Route::get('payment', ['as' => 'adm.summary.payment.index', 'uses' => 'MethodsPaymentController@index']);
-	    Route::get('transport', ['as' => 'adm.summary.transport.index', 'uses' => 'MethodsTransportController@index']);
+        Route::get('payment', ['as' => 'adm.summary.payment.index', 'uses' => 'MethodsPaymentController@index']);
+        Route::get('transport', ['as' => 'adm.summary.transport.index', 'uses' => 'MethodsTransportController@index']);
         Route::get('mediavariations', ['as' => 'adm.summary.mediavariations.index', 'uses' => 'MediaVariationsController@index']);
     });
 
@@ -71,9 +71,9 @@ Route::group(['prefix' => 'adm'], function () {
         Route::resource('template', 'SyncCsvTemplateController');
         Route::resource('templatem2ncolumn', 'SyncTemplateM2nColumnController');
         Route::get('csvexport', ['as' => 'adm.sync.csvexport.index', 'uses' => 'SyncCsvExportController@index']);
-        Route::match(['GET', 'POST'],'csvimport', ['as' => 'adm.sync.csvimport.index', 'uses' => 'SyncCsvImportController@index']);
+        Route::match(['GET', 'POST'], 'csvimport', ['as' => 'adm.sync.csvimport.index', 'uses' => 'SyncCsvImportController@index']);
         Route::any('record', ['as' => 'adm.sync.record.index', 'uses' => 'RecordSyncImportController@index']);
-        Route::resource('db', 'SyncDbController', ['only' => ['index','store']]);
+        Route::resource('db', 'SyncDbController', ['only' => ['index', 'store', 'destroy']]);
         Route::get('summary', ['as' => 'adm.sync.summary.index', 'uses' => 'SyncSummaryController@index']);
     });
 
@@ -81,7 +81,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::any('calculator', ['as' => 'adm.tools.calculator.index', 'uses' => 'ToolCalculatorController@index']);
         Route::any('comparator', ['as' => 'adm.tools.comparator.index', 'uses' => 'ToolComparatorController@index']);
         Route::any('csvoptimal', ['as' => 'adm.tools.csvoptimal.index', 'uses' => 'ToolCsvOptimalController@index']);
-        Route::resource('grab', 'GrabController', ['only' => ['index','store']]);
+        Route::resource('grab', 'GrabController', ['only' => ['index', 'store']]);
         Route::any('grabsimulator', ['as' => 'adm.tools.grabsimulator.index', 'uses' => 'GrabSimulatorController@index']);
     });
 
@@ -94,9 +94,9 @@ Route::group(['prefix' => 'adm'], function () {
 
     Route::group(['prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'], function () {
         Route::resource('order', 'BuyOrderController', ['only' => ['index']]);
-	    Route::resource('purchased', 'BuyPurchasedController', ['only' => ['index']]);
+        Route::resource('purchased', 'BuyPurchasedController', ['only' => ['index']]);
         Route::resource('maillist', 'MailListController', ['only' => ['index']]);
-        Route::resource('coupon', 'CouponController', ['only' => ['index','create','store']]);
+        Route::resource('coupon', 'CouponController', ['only' => ['index', 'create', 'store']]);
         Route::any('toptrans', ['as' => 'adm.buy.toptrans.index', 'uses' => 'BuyToptransController@index']);
     });
 
@@ -152,7 +152,6 @@ Route::group(['prefix' => 'api'], function () {
     });
 });
 
-App::missing(function($exception)
-{
-    return Response::view('errors.missing', array('url' => Request::url()), 404);
+App::missing(function ($exception) {
+    return Response::view('errors.missing', ['url' => Request::url()], 404);
 });

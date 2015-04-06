@@ -8,7 +8,6 @@ class MixtureDevM2nDevTableSeeder extends Seeder
         $i = 0;
 
         $mixture_dev_m2n_dev = [
-            ['id' => '199', 'mixture_dev_id' => '1009', 'dev_id' => '30'],
             ['id' => '1', 'mixture_dev_id' => '1010', 'dev_id' => '5'],
             ['id' => '2', 'mixture_dev_id' => '1010', 'dev_id' => '6'],
             ['id' => '3', 'mixture_dev_id' => '1010', 'dev_id' => '30'],

@@ -16,6 +16,11 @@ Záznamy importů
             <th>Seskupení výrobců</th>
             <th>Účel</th>
             <th colspan="2">Položek / Aktivních</th>
+			<th>
+				<button type="button" class="btn btn-default btn-sm">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+			</th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +42,11 @@ Záznamy importů
         @else
         <td>{{ $row->rsi_actual_count }}</td>
         @endif
+		<td>
+			{{ Form::open(['method' => 'DELETE', 'route' => ['adm.sync.db.destroy', $row->id]]) }}
+			{{ Form::submit('X',['class' => 'btn btn-danger btn-xs']) }}
+			{{ Form::close() }}
+		</td>
     </tr>
     @endforeach
     </tbody>

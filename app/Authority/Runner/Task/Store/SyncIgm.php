@@ -18,7 +18,7 @@ class SyncIgm extends AbstractSync implements iSync
     public function remotelyPrepareSynchronize()
     {
         $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
-        $down->runDownload(TRUE);
+        $down->runDownload(FALSE);
     }
 
     public function getFile()

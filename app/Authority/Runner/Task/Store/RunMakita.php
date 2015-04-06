@@ -7,17 +7,6 @@ class RunMakita extends AbstractRunDev implements iItem
         parent::__construct($shop_item, $record_id);
     }
 
-    public function isUseRequired()
-    {
-        return (
-            ($this->storeArray->getImgCount()) > 0 &&
-            (strlen($this->getSyncItemsCodeProduct()) > 1) &&
-            (strlen($this->getSyncProdName()) > 1) &&
-            (intval($this->getSyncIdDev()) > 0) &&
-            (intval($this->getSyncItemsPriceStandard()) > 19)
-        ) ? TRUE : FALSE;
-    }
-
     private function analyseIdDev($dev_name)
     {
         switch ((string)$dev_name) {

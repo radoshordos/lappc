@@ -8,7 +8,6 @@ class MixtureDevTableSeeder extends Seeder
 
 		$mixture_dev = [
 			['id' => '1001', 'purpose' => 'autoall', 'name' => 'MEGAGROUP ALL', 'desc' => 'AutoGenerate ALL dev', 'trigger_column_count' => '139'],
-			['id' => '1009', 'purpose' => 'devgroup', 'name' => 'TEST Dolmar ', 'desc' => NULL, 'trigger_column_count' => '1'],
 			['id' => '1010', 'purpose' => 'devgroup', 'name' => 'GROUP Makita', 'desc' => NULL, 'trigger_column_count' => '3'],
 			['id' => '1012', 'purpose' => 'devgroup', 'name' => 'GROUP Bow', 'desc' => NULL, 'trigger_column_count' => '14'],
 			['id' => '1013', 'purpose' => 'devgroup', 'name' => 'GROUP Madalbal', 'desc' => NULL, 'trigger_column_count' => '11'],

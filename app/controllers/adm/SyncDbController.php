@@ -30,10 +30,12 @@ class SyncDbController extends \BaseController
             'choice_money'              => (isset($input['select_money']) ? $input['select_money'] : NULL),
             'select_limit'              => ['20' => 'Limit 20', '100' => 'Limit 100', '250' => 'Limit 250'],
             'choice_limit'              => (isset($input['select_limit']) ? $input['select_limit'] : 20),
-            'choice_accessory'          => (isset($input['choice_accessory']) ? $input['choice_accessory'] : NULL),
+            'select_img'                => ['' => '', '1' => 'ANO', '2' => 'NE'],
+            'choice_img'                => (isset($input['select_img']) ? $input['select_img'] : NULL),
+            'select_media'              => ['' => '', '1' => 'ANO', '2' => 'NE'],
             'choice_media'              => (isset($input['choice_media']) ? $input['choice_media'] : NULL),
-            'choice_img'                => (isset($input['choice_img']) ? $input['choice_img'] : NULL),
-            'choice_mixture_dev'        => (isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL),
+            'select_accessory'          => ['' => '', '1' => 'ANO', '2' => 'NE'],
+            'choice_accessory'          => (isset($input['choice_accessory']) ? $input['choice_accessory'] : NULL),
             'record'                    => (isset($input['record']) ? $input['record'] : NULL),
         ];
 
@@ -135,11 +137,11 @@ class SyncDbController extends \BaseController
             }
 
             if (Input::has('select_categorytext')) {
-                $db->where('categorytext', '=', Input::get('choice_categorytext'));
+                $db->where('categorytext', '=', $clear['choice_categorytext']);
             }
 
             if (Input::has('record')) {
-                $db->where('record_id', '=', Input::get('record'));
+                $db->where('record_id', '=', $clear['record']);
             }
 
             switch ($clear['choice_prodmode']) {
@@ -253,5 +255,11 @@ class SyncDbController extends \BaseController
             }
         }
         return Redirect::route('adm.sync.db.index', $only);
+    }
+
+    public function destroy($record_id)
+    {
+        SyncDb::where('record_id', '=', $record_id)->delete();
+        return Redirect::route('adm.sync.record.index');
     }
 }

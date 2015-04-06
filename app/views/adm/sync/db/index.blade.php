@@ -99,13 +99,13 @@ Synchronizační databáze
 				{{ Form::select('select_availability_count', $select_availability_count, $choice_availability_count, ['id'=> 'select_availability_count', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
 			</div>
             <div class="col-xs-3">
-                {{ Form::select('select_accessory', ['' => '','1' => 'ANO','2' => 'NE'], $choice_accessory, ['id'=> 'select_accessory', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_accessory', $select_accessory, $choice_accessory, ['id'=> 'select_accessory', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-3">
-                {{ Form::select('select_media', ['' => '','1' => 'ANO','2' => 'NE'], $choice_media, ['id'=> 'select_media', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_media', $select_media, $choice_media, ['id'=> 'select_media', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
-                {{ Form::select('select_img', ['' => '','1' => 'ANO','2' => 'NE'], $choice_img, ['id'=> 'select_img', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+                {{ Form::select('select_img', $select_img , $choice_img, ['id'=> 'select_img', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
             </div>
             <div class="col-xs-2">
                 {{ Form::text('record', $record, ['maxlength' => '40', 'class'=> 'form-control', 'placeholder'=> 'Record #ID']) }}

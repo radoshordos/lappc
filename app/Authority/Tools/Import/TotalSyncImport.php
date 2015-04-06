@@ -46,11 +46,12 @@ class TotalSyncImport
 
     private function itemsId()
     {
-        return intval(Items::select('items.id AS items_id')
-            ->join('prod', 'items.prod_id', '=', 'prod.id')
-            ->where('items.code_prod', '=', $this->code_prod)
-            ->where('prod.dev_id', '=', $this->dev_id)
-            ->pluck('items_id')
+        return intval(
+            Items::select('items.id AS items_id')
+                ->join('prod', 'items.prod_id', '=', 'prod.id')
+                ->where('items.code_prod', '=', $this->code_prod)
+                ->where('prod.dev_id', '=', $this->dev_id)
+                ->pluck('items_id')
         );
     }
 
@@ -63,11 +64,11 @@ class TotalSyncImport
             unset($this->columns['updated_at']);
         }
 
-        $additional = ['updated_at' => date("Y-m-d H:i:s", strtotime('now'))];
-
         $items_id = $this->itemsId();
         if ($items_id > 0) {
-            $additional = array_merge($additional, ['item_id' => $items_id]);
+            $additional = ['item_id' => $items_id, 'updated_at' => date("Y-m-d H:i:s", strtotime('now'))];
+        } else {
+            $additional = ['updated_at' => date("Y-m-d H:i:s", strtotime('now'))];
         }
 
         $sync_id = $this->syncDbId();

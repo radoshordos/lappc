@@ -56,8 +56,6 @@
         </div>
     </blockquote>
 
-	{{ var_dump($view); }}
-
     @if ($view->count())
         <div class="row">
             <div class="col-md-12">
