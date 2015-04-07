@@ -3,13 +3,14 @@
 use Authority\Tools\SB;
 use Authority\Eloquent\SyncDb;
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\MixtureDevM2nDev;
 
 class SyncDbController extends \BaseController
 {
     public function index()
     {
         $input = Input::all();
-        $dev = \DB::table('mixture_dev_m2n_dev')->where('mixture_dev_id', '=', Input::get('select_mixture_dev'))->lists('dev_id');
+        $dev = MixtureDevM2nDev::where('mixture_dev_id', '=', Input::get('select_mixture_dev'))->lists('dev_id');
 
         $clear = [
             'select_mixture_dev'        => SB::option("SELECT * FROM mixture_dev WHERE purpose = 'autosimple' OR purpose = 'devgroup' ORDER BY name", ['id' => '->name'], TRUE),

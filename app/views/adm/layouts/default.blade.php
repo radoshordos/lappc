@@ -121,8 +121,10 @@
                         <li><a href="{{ URL::route('adm.stats.recordvisitors.index') }}">Hledané produkty</a></li>
                         <li><a href="{{ URL::route('adm.stats.prodgraph.index') }}">Produky v e-shopu</a></li>
                         <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.stats.buyorderitems.index') }}">Stav prodejů zboží</a></li>
+                        <li><a href="{{ URL::route('adm.stats.buyorderdevs.index') }}">Stav prodejů výrobců</a></li>
+                        <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.stats.marketsell.index') }}">Prodeje v obchodu</a></li>
-                        <li><a href="{{ URL::route('adm.stats.orderitems.index') }}">Zakoupené zboží</a></li>
                     </ul>
                 </li>
                 @endif

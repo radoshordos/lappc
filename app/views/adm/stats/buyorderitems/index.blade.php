@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Zakoupené zboží
+Stav prodejů zboží
 @stop
 
 {{-- JavaScript on page --}}
@@ -19,20 +19,20 @@ Zakoupené zboží
 
 {{-- Content --}}
 @section('content')
-    {{ Form::open(['route' => ['adm.stats.orderitems.index'], 'method' => 'GET', 'class' => 'form-horizontal', 'role' => 'form']) }}
+    {{ Form::open(['route' => ['adm.stats.buyorderitems.index'], 'method' => 'GET', 'class' => 'form-horizontal', 'role' => 'form']) }}
         <table class="table">
             <thead>
                 <tr>
-                    <th class="col-sm-3">{{ Form::label('day_start', 'Od dne') }}</th>
-                    <th class="col-sm-3">{{ Form::label('day_end', 'Do dne') }}</th>
+                    <th class="col-sm-3">{{ Form::label('month_start', 'Od dne') }}</th>
+                    <th class="col-sm-3">{{ Form::label('month_end', 'Do dne') }}</th>
                     <th>{{ Form::label('select_mixture_dev', 'Výrobce') }}</th>
                     <th>{{ Form::submit('Zobrazit',['name' => 'submit-orderitems','class' => 'btn btn-success']) }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ Form::input('date', 'day_start', $choice_day_start, ['class' => 'form-control', 'required' => 'required', 'min' => $min_insert_month, 'max' => date('Y-m-d')]) }}</td>
-                    <td>{{ Form::input('date', 'day_end', $choice_day_end , ['class' => 'form-control','required' => 'required', 'min' => $min_insert_month, 'max' => date('Y-m-d') ]) }}</td>
+                    <td>{{ Form::input('month', 'month_start', $choice_month_start, ['class' => 'form-control', 'required' => 'required', 'min' => $min_insert_month, 'max' => date('Y-m')]) }}</td>
+                    <td>{{ Form::input('month', 'month_end', $choice_month_end , ['class' => 'form-control','required' => 'required', 'min' => $min_insert_month, 'max' => date('Y-m') ]) }}</td>
                     <td colspan="2">{{ Form::select('select_mixture_dev',$select_mixture_dev, $choice_mixture_dev, ['class'=> 'form-control', 'id' => 'select_mixture_dev']) }}</td>
                 </tr>
             </tbody>
