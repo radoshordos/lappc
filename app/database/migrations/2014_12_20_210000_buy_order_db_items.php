@@ -26,6 +26,8 @@ class BuyOrderDbItems extends Migration
             $table->unique(['item_id', 'order_id']);
             $table->foreign('item_id', 'fk_bodi_2_ii')->references('id')->on('items')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('order_id', 'fk_bodi_2_oi')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('prod_mode_id', 'fk_bodi_2_pmi')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('prod_forex_id', 'fk_bodi_2_pfi')->references('id')->on('forex')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('prod_dev_id', 'fk_bodi_2_pdi')->references('id')->on('dev')->onUpdate('cascade')->onDelete('set null');
         });
     }
