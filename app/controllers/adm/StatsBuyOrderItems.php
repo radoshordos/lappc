@@ -17,7 +17,7 @@ class StatsBuyOrderItems extends \BaseController
             'choice_mixture_dev' => isset($input['select_mixture_dev']) ? $input['select_mixture_dev'] : NULL
         ];
 
-        if (Input::has('submit-buyorderitems')) {
+        if (Input::has('zobrazit')) {
             $bodi = BuyOrderDbItems::selectRaw("prod.name,COUNT(*) AS count_item")
                 ->leftJoin('items', 'buy_order_db_items.item_id', '=', 'items.id')
                 ->leftJoin('prod', 'items.prod_id', '=', 'prod.id')
@@ -39,13 +39,14 @@ class StatsBuyOrderItems extends \BaseController
             }
         }
 
+
         return View::make('adm.stats.buyorderitems.index', [
             'min_insert_month'   => BuyOrderDbItems::selectRaw('DATE_FORMAT(FROM_UNIXTIME(MIN("created_at")), "%Y-%m") AS min_insert_month')->pluck('min_insert_month'),
             'select_mixture_dev' => SB::optionEloqent(MixtureDev::whereIn('purpose', ['autosimple', 'devgroup', 'autoall'])->orderByRaw('name,id')->get(), ['id' => '->name - [Výrobců &#8721;:->trigger_column_count]'], TRUE),
             'choice_month_start' => $clear['month_start'],
             'choice_month_end'   => $clear['month_end'],
             'choice_mixture_dev' => $clear['choice_mixture_dev'],
-            'buy_order_db_items' => (Input::has('submit-buyorderitems')) ? $bodi->get() : NULL
+            'buy_order_db_items' => (Input::has('zobrazit')) ? $bodi->get() : NULL
         ]);
     }
 }
