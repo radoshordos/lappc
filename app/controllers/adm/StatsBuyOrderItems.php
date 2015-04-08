@@ -39,7 +39,6 @@ class StatsBuyOrderItems extends \BaseController
             }
         }
 
-
         return View::make('adm.stats.buyorderitems.index', [
             'min_insert_month'   => BuyOrderDbItems::selectRaw('DATE_FORMAT(FROM_UNIXTIME(MIN("created_at")), "%Y-%m") AS min_insert_month')->pluck('min_insert_month'),
             'select_mixture_dev' => SB::optionEloqent(MixtureDev::whereIn('purpose', ['autosimple', 'devgroup', 'autoall'])->orderByRaw('name,id')->get(), ['id' => '->name - [Výrobců &#8721;:->trigger_column_count]'], TRUE),

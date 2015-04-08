@@ -18,24 +18,17 @@ class StatsBuyOrderDevs extends \BaseController
         ];
 
         if (Input::has('zobrazit')) {
-            $bodi = BuyOrderDbItems::selectRaw("item_price")
+
+            $bodi = DB::table('buy_order_db_items')->select([
+                DB::raw("DATE_FORMAT(buy_order_db_items.created_at,'%Y-%m') AS month"),
+                DB::raw("SUM(buy_order_db_items.item_price * buy_order_db_items.item_count) AS price"),
+                DB::raw("SUM(buy_order_db_items.item_count) AS sum_item"),
+                DB::raw("COUNT(buy_order_db_items.order_id) AS count_order"),
+            ])
+                ->leftJoin('items', 'buy_order_db_items.item_id', '=', 'items.id')
+                ->leftJoin('prod', 'items.prod_id', '=', 'prod.id')
                 ->whereNotNull('buy_order_db_items.order_id')
-                ->groupBy('YEAR(buy_order_db_items.created_at), MONTH(buy_order_db_items.created_at)');
-
-
-
-
-            /*
-                        SELECT monthname(payment_date) AS Month,
-                     year(payment_date) AS Year,
-                     sum(total) AS 'Total Order',
-                     sum(??) AS 'Total Payment'
-                FROM omc_order
-            ORDER BY payment_date
-            GROUP BY month(payment_date),
-                     year(payment_date);
-
-            */
+                ->groupBy('month');
 
             if (!empty($clear['month_start'])) {
                 $bodi->where('buy_order_db_items.created_at', '>=', $clear['month_start']);
@@ -46,13 +39,8 @@ class StatsBuyOrderDevs extends \BaseController
             }
 
             if (intval($clear['choice_mixture_dev']) > 0) {
-                $bodi->whereIn('buy_order_db_items.prod_dev_id', MixtureDevM2nDev::where('mixture_dev_id', '=', $clear['choice_mixture_dev'])->lists('dev_id'));
+                $bodi->whereIn('prod.dev_id', MixtureDevM2nDev::where('mixture_dev_id', '=', $clear['choice_mixture_dev'])->lists('dev_id'));
             }
-
-            $x = $bodi->get();
-            var_dump($x);
-
-
         }
 
         return View::make('adm.stats.buyorderdesvs.index', [
@@ -63,5 +51,6 @@ class StatsBuyOrderDevs extends \BaseController
             'choice_mixture_dev' => $clear['choice_mixture_dev'],
             'buy_order_db_items' => (Input::has('zobrazit')) ? $bodi->get() : NULL
         ]);
+
     }
 }

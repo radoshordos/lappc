@@ -46,20 +46,24 @@ Stav prodejů výrobců
     <table class="table table-condensed">
         <thead>
             <tr>
-                <th class="text-center">&#8721;</th>
-                <th class="text-center">Název</th>
+				<th class="text-center">Období</th>
+                <th class="text-center">Počet objednávek</th>
+				<th class="text-center">&#8721; Ks</th>
+                <th class="text-right">Koupeno</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <td class="text-right" colspan="2">Zobrazeno: <b>{{ count($buy_order_db_items); }}</b> záznamů</td>
+                <td class="text-right" colspan="4">Zobrazeno: <b>{{ count($buy_order_db_items); }}</b> záznamů</td>
             </tr>
         </tfoot>
         <tbody>
         <?php foreach ($buy_order_db_items as $bodi) { ?>
             <tr>
-                <td class="text-center"><?= $bodi->count_item; ?></td>
-                <td><?= $bodi->name; ?></td>
+                <td class="text-center"><?= $bodi->month; ?></td>
+				<td class="text-center"><?= $bodi->count_order; ?></td>
+				<td class="text-center"><?= $bodi->sum_item; ?></td>
+                <td class="text-right"><?= $bodi->price; ?></td>
             </tr>
         <?php } ?>
         </tbody>
