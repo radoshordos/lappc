@@ -12,9 +12,9 @@ class BuyOrderDb extends Migration
 			$table->increments('id')->unsigned();
 			$table->tinyInteger('order_status_id')->unsigned()->default(2);
 			$table->char('sid', 40)->unique();
-			$table->string('remote_addr', 512);
-			$table->string('netbios', 512);
-			$table->string('browser', 512);
+			$table->string('remote_addr', 512)->nullable();
+			$table->string('netbios', 512)->nullable();
+			$table->string('browser', 512)->nullable();
 			$table->double('products_total_price')->unsigned()->default(0);
 			$table->double('delivery_price')->unsigned()->default(0);
 			$table->double('payment_price')->unsigned()->default(0);
