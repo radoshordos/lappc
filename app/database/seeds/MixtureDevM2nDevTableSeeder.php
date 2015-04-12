@@ -62,6 +62,8 @@ class MixtureDevM2nDevTableSeeder extends Seeder
             ['id' => '52', 'mixture_dev_id' => '1015', 'dev_id' => '104'],
             ['id' => '52', 'mixture_dev_id' => '1015', 'dev_id' => '106'],
             ['id' => '52', 'mixture_dev_id' => '1015', 'dev_id' => '108'],
+            ['id' => '53', 'mixture_dev_id' => '1016', 'dev_id' => '265'],
+            ['id' => '53', 'mixture_dev_id' => '1016', 'dev_id' => '290'],
             ['id' => '53', 'mixture_dev_id' => '1017', 'dev_id' => '800'],
             ['id' => '54', 'mixture_dev_id' => '1017', 'dev_id' => '802'],
             ['id' => '55', 'mixture_dev_id' => '1017', 'dev_id' => '804'],
