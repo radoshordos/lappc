@@ -14,9 +14,10 @@ class BuyOrderDbItems extends Migration
             $table->integer('item_id')->unsigned()->nullable();
             $table->integer('order_id')->unsigned()->nullable();
             $table->boolean('order_group')->default(0);
-            $table->tinyInteger('prod_forex_id')->unsigned()->nullable();
-            $table->tinyInteger('prod_mode_id')->unsigned()->nullable();
-            $table->integer('prod_dev_id')->unsigned()->nullable();
+            $table->tinyInteger('prod_forex')->unsigned()->nullable();
+            $table->tinyInteger('prod_mode')->unsigned()->nullable();
+            $table->integer('prod_dev')->unsigned()->nullable();
+            $table->integer('prod_tree')->unsigned()->nullable();
             $table->string('prod_fullname', 255)->nullable();
             $table->integer('item_count')->unsigned();
             $table->decimal('item_price', 9, 2)->unsigned();
@@ -26,9 +27,6 @@ class BuyOrderDbItems extends Migration
             $table->unique(['item_id', 'order_id']);
             $table->foreign('item_id', 'fk_bodi_2_ii')->references('id')->on('items')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('order_id', 'fk_bodi_2_oi')->references('id')->on('buy_order_db')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('prod_mode_id', 'fk_bodi_2_pmi')->references('id')->on('prod_mode')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('prod_forex_id', 'fk_bodi_2_pfi')->references('id')->on('forex')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('prod_dev_id', 'fk_bodi_2_pdi')->references('id')->on('dev')->onUpdate('cascade')->onDelete('set null');
         });
     }
 
