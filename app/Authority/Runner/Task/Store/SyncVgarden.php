@@ -41,14 +41,9 @@ class SyncVgarden extends AbstractSync implements iSync
 
         foreach ($xml as $item) {
 
-
-
             $all++;
             $arr_item = array_filter((array)$item);
             $run = new RunVgarden($arr_item, $record_id);
-
-            var_dump($run);
-            die;
 
             if ($run->isUseRequired() === TRUE) {
                 $suc++;

@@ -2,6 +2,17 @@
 
 class RunVgarden extends AbstractRunDev implements iItem
 {
+    private function analyseIdDev($string)
+    {
+        if (strpos($string, 'VeGA') !== FALSE) {
+            return 265;
+        } elseif (strpos($string, 'Weibang') !== FALSE) {
+            return 290;
+        } else {
+            return 0;
+        }
+    }
+
     function setSyncProdDesc()
     {
         // TODO: Implement setSyncProdDesc() method.
@@ -10,13 +21,15 @@ class RunVgarden extends AbstractRunDev implements iItem
     function setSyncProdName()
     {
         if (isset($this->shopItem['PRODUCT'])) {
-            $this->syncItemsCodeEan = (string)trim($this->shopItem['PRODUCT']);
+            $this->syncProdName = (string)trim($this->shopItem['PRODUCT']);
         }
     }
 
     function setSyncIdDev()
     {
-        // TODO: Implement setSyncIdDev() method.
+        if (isset($this->shopItem['PRODUCT'])) {
+            $this->syncIdDev = $this->analyseIdDev($this->shopItem['PRODUCT']);
+        }
     }
 
     function setSyncCategoryText()
@@ -24,16 +37,6 @@ class RunVgarden extends AbstractRunDev implements iItem
         if (isset($this->shopItem['KATEGORIE'])) {
             $this->syncCategoryText = (string)$this->shopItem['KATEGORIE'];
         }
-    }
-
-    function setSyncWarranty()
-    {
-        // TODO: Implement setSyncWarranty() method.
-    }
-
-    function setSyncUrl()
-    {
-        // TODO: Implement setSyncUrl() method.
     }
 
     function setSyncItemsCodeProduct()
@@ -64,6 +67,36 @@ class RunVgarden extends AbstractRunDev implements iItem
         }
     }
 
+    function storeImages()
+    {
+        if (isset($this->shopItem['IMGURL'])) {
+            $this->storeArray->setImg($this->shopItem['IMGURL']);
+        }
+    }
+
+    function storeParameters()
+    {
+        if (isset($this->shopItem['DESCRIPTION']) && !empty($this->shopItem['DESCRIPTION'])) {
+            $desc = explode("\n", $this->shopItem['DESCRIPTION']);
+            foreach ($desc as $line) {
+                if (strlen(trim($line)) > 0) {
+                    $this->storeArray->setMediaParameters(trim(strip_tags($line)));
+                }
+            }
+        }
+    }
+
+    function setSyncWarranty()
+    {
+        // TODO: Implement setSyncWarranty() method.
+    }
+
+    function setSyncUrl()
+    {
+        // TODO: Implement setSyncUrl() method.
+    }
+
+
     function setSyncItemsAvailabilityCount()
     {
         // TODO: Implement setSyncItemsAvailabilityCount() method.
@@ -74,12 +107,6 @@ class RunVgarden extends AbstractRunDev implements iItem
         // TODO: Implement setSyncProdWeight() method.
     }
 
-    function storeImages()
-    {
-        if (isset($this->shopItem['IMGURL'])) {
-            $this->storeArray->setImg($this->shopItem['IMGURL']);
-        }
-    }
 
     function storeAccessory()
     {
@@ -106,8 +133,5 @@ class RunVgarden extends AbstractRunDev implements iItem
         // TODO: Implement storePackageContents() method.
     }
 
-    function storeParameters()
-    {
-        // TODO: Implement storeParameters() method.
-    }
+
 }
