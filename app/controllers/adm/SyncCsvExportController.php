@@ -10,7 +10,15 @@ class SyncCsvExportController extends \BaseController
     {
         $line = [];
         if (Input::has('export')) {
-            $sdb = SyncDb::select(['name', 'code_prod', 'code_ean', \DB::raw('ROUND(price_standard) AS price_standard'), 'desc', 'dev_id'])
+            $sdb = SyncDb::select([
+                'name',
+                'code_prod',
+                'code_ean',
+                \DB::raw('ROUND(price_action) AS price_action'),
+                \DB::raw('ROUND(price_standard) AS price_standard'),
+                'desc',
+                'dev_id'
+            ])
                 ->where('purpose', '=', Input::get('select_import'))
                 ->whereIn('sync_db.dev_id', MixtureDevM2nDev::where('mixture_dev_id', Input::get('select_mixture_dev'))->lists('dev_id'))
                 ->orderBy("dev_id")
