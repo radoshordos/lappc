@@ -50,77 +50,79 @@
 			</section>
 		</nav>
 		@include('web.global.blocknav')
-		<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-			<li class="has-dropdown">
-				<a href="#" data-dropdown="hover1" data-options="is_hover:true; hover_timeout:0">Nářadí</a>
+	<!--
+	<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+		<li class="has-dropdown">
+			<a href="#" data-dropdown="hover1" data-options="is_hover:true; hover_timeout:0">Nářadí</a>
 
-				<div id="hover1" class="f-dropdown content" data-dropdown-content>
-					<div class="row">
-						<div class="small-18">Elektrické nářadí</div>
-					</div>
-					<div class="row">
-						<div class="small-18">Akumulátorové nářadí</div>
-					</div>
-					<div class="row">
-						<div class="small-18">Pneu nářadí</div>
-					</div>
-					<div class="row">
-						<div class="small-18">Ruční nářadí</div>
-					</div>
-					<div class="row">
-						<div class="small-18">Měřící technika gfdgg dg dfg fdg</div>
-					</div>
+			<div id="hover1" class="f-dropdown content" data-dropdown-content>
+				<div class="row">
+					<div class="small-18">Elektrické nářadí</div>
 				</div>
-			</li>
-			<li class="has-dropdown">
-				<a href="#" data-dropdown="hover2" data-options="is_hover:true; hover_timeout:500">Zahrada</a>
+				<div class="row">
+					<div class="small-18">Akumulátorové nářadí</div>
+				</div>
+				<div class="row">
+					<div class="small-18">Pneu nářadí</div>
+				</div>
+				<div class="row">
+					<div class="small-18">Ruční nářadí</div>
+				</div>
+				<div class="row">
+					<div class="small-18">Měřící technika gfdgg dg dfg fdg</div>
+				</div>
+			</div>
+		</li>
+		<li class="has-dropdown">
+			<a href="#" data-dropdown="hover2" data-options="is_hover:true; hover_timeout:500">Zahrada</a>
 
-				<div id="hover2" class="f-dropdown mega" data-dropdown-content>
-					<table role="grid">
-						<tr>
-							<td>Různé</td>
-							<td>Různé</td>
-						</tr>
-						<tr>
-							<td>Příslušenství</td>
-							<td>Příslušenství</td>
-						</tr>
-					</table>
-				</div>
-			</li>
-			<li class="has-dropdown">
-				<a href="#" data-dropdown="hover3" data-options="is_hover:true; hover_timeout:500">Stroje</a>
+			<div id="hover2" class="f-dropdown mega" data-dropdown-content>
+				<table role="grid">
+					<tr>
+						<td>Různé</td>
+						<td>Různé</td>
+					</tr>
+					<tr>
+						<td>Příslušenství</td>
+						<td>Příslušenství</td>
+					</tr>
+				</table>
+			</div>
+		</li>
+		<li class="has-dropdown">
+			<a href="#" data-dropdown="hover3" data-options="is_hover:true; hover_timeout:500">Stroje</a>
 
-				<div id="hover3" class="f-dropdown mega" data-dropdown-content>
-					<div class="row">
-						<div class="small-2 large-4 columns">TEST1</div>
-						<div class="small-4 large-4 columns">TEST2</div>
-						<div class="small-6 large-4 columns">TEST3</div>
-					</div>
-					<div class="row">
-						<div class="small-2 large-4 columns">TEST4</div>
-						<div class="small-4 large-4 columns">TEST5</div>
-						<div class="small-6 large-4 columns">TEST6</div>
-					</div>
-					<div class="row">
-						<div class="small-2 large-4 columns">TEST7</div>
-						<div class="small-4 large-4 columns">TEST8</div>
-						<div class="small-6 large-4 columns">TEST9</div>
-					</div>
+			<div id="hover3" class="f-dropdown mega" data-dropdown-content>
+				<div class="row">
+					<div class="small-2 large-4 columns">TEST1</div>
+					<div class="small-4 large-4 columns">TEST2</div>
+					<div class="small-6 large-4 columns">TEST3</div>
 				</div>
-			</li>
-			<li class="has-dropdown">
-				<a href="#" data-dropdown="hover4" data-options="is_hover:true; hover_timeout:500">Příslušenství</a>
+				<div class="row">
+					<div class="small-2 large-4 columns">TEST4</div>
+					<div class="small-4 large-4 columns">TEST5</div>
+					<div class="small-6 large-4 columns">TEST6</div>
+				</div>
+				<div class="row">
+					<div class="small-2 large-4 columns">TEST7</div>
+					<div class="small-4 large-4 columns">TEST8</div>
+					<div class="small-6 large-4 columns">TEST9</div>
+				</div>
+			</div>
+		</li>
+		<li class="has-dropdown">
+			<a href="#" data-dropdown="hover4" data-options="is_hover:true; hover_timeout:500">Příslušenství</a>
 
-				<div id="hover4" class="f-dropdown content" data-dropdown-content>
-					<div class="row">
-						<div class="small-18">Různé</div>
-					</div>
-					<div class="row">
-						<div class="small-18">Příslušenství</div>
-					</div>
+			<div id="hover4" class="f-dropdown content" data-dropdown-content>
+				<div class="row">
+					<div class="small-18">Různé</div>
 				</div>
-			</li>
-		</ul>
-	</div>
+				<div class="row">
+					<div class="small-18">Příslušenství</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+		-->
+</div>
 </header>

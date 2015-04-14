@@ -6,31 +6,41 @@
     font-size: 1.2em;
 }
 
-#product p#desc {
-    font-size: .8em;
-}
-
 #product p.storeroom {
     font-size: 1.4em;
-}
-
-#product p.date-exp {
-    font-size: 1.4em;
-}
-
-#product p.date-exp span {
-    font-weight: bold;
-}
-
-#product div#desc-panel p {
-    margin-bottom: 1px;
-    font-size: .9em;
 }
 
 #product div.label-list span {
     font-size: .9em;
     margin-bottom: .8em;
 }
+
+/* #prod-desc */
+#desc-panel {
+    margin-top: .8em;
+    padding: .8em 1em;
+}
+
+#desc-panel p {
+    margin-bottom: .2em;
+    font-size: .9em;
+}
+
+#desc-panel #prod-desc {
+    margin-top: .9em;
+}
+
+/* #product-image */
+div#product-image {
+    padding: 0.4em 0 0.4em 0.4em;
+    border: none;
+}
+
+/* MEDIA */
+#product .file {
+    margin: .2em 0;
+}
+
 
 /* DESC */
 
@@ -57,7 +67,8 @@ div#price-panel strong {
     font-size: 1.4em;
 }
 
-/* MEDIA */
-#product .file {
-    margin: .2em 0;
+
+table#transport td {
+    text-align: center;
+    padding: 0.5em 2.5em 0.5em 2.5em;
 }
