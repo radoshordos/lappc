@@ -6,6 +6,7 @@
 /app/config/defaultMailConfig.php
 /app/config/local/*
 /public/web/naradi/*
+/public/db/*
 /app/Authority/Runner/Task/Store/data/*
 /app/config/sendGridConfig.php
 /bootstrap/compiled.php
