@@ -18,8 +18,6 @@ return [
         'admin-guru-css' => [
             'filters' => [
                 'css_import',
-                'emed_css',
-                'css_min',
                 'css_rewrite'
             ],
             'assets'  => [
@@ -47,8 +45,7 @@ return [
             'filters' => [
                 'css_import',
                 'emed_css',
-                'css_min',
-                'css_rewrite'
+                'css_min'
             ],
             'assets'  => [
                 'web/components/foundation/css/normalize.css',
