@@ -1,5 +1,5 @@
 <?php
-
+/*
 return [
     'groups'  => [
         'admin-guru-js'  => [
@@ -67,3 +67,4 @@ return [
         'emed_css'         => 'Assetic\Filter\PhpCssEmbedFilter',
     ]
 ];
+*/

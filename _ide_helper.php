@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 4, to provide autocomplete information to your IDE
- * Generated for Laravel 4.2.17 on 2015-04-16.
+ * Generated for Laravel 4.2.17 on 2015-04-19.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1400,44 +1400,6 @@ namespace {
         public static function setDefaultCommand($commandName){
             //Method inherited from \Symfony\Component\Console\Application            
             return \Illuminate\Console\Application::setDefaultCommand($commandName);
-        }
-        
-    }
-
-
-    class Asset extends \Slushie\LaravelAssetic\Facades\AssetFacade{
-        
-        /**
-         * Create a new AssetCollection instance for the given group.
-         *
-         * @param string $name
-         * @param bool $overwrite force writing
-         * @return \Assetic\Asset\AssetCollection 
-         * @static 
-         */
-        public static function createGroup($name, $overwrite = false){
-            return \Slushie\LaravelAssetic\Asset::createGroup($name, $overwrite);
-        }
-        
-        /**
-         * Generate the URL for a given asset group.
-         *
-         * @param $name
-         * @return string 
-         * @static 
-         */
-        public static function url($name){
-            return \Slushie\LaravelAssetic\Asset::url($name);
-        }
-        
-        /**
-         * Returns an array of group names.
-         *
-         * @return array 
-         * @static 
-         */
-        public static function listGroups(){
-            return \Slushie\LaravelAssetic\Asset::listGroups();
         }
         
     }

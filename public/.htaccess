@@ -5,6 +5,8 @@
 	Order allow,deny
 	Allow from 37.48.33.198
 
+    RewriteCond %{REQUEST_URI} !\.woff
+
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
 
@@ -21,6 +23,9 @@
         <FilesMatch ".(js|css|xml|gz|html)$">
             Header append Vary: Accept-Encoding
         </FilesMatch>
+        <FilesMatch "\.(ttf|otf|eot|woff|woff2|svg)$">
+            Header set Access-Control-Allow-Origin "*"
+        </FilesMatch>
     </IfModule>
 
     <IfModule mod_deflate.c>
@@ -30,7 +35,7 @@
         </FilesMatch>
     </IfModule>
 
-    <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+    <FilesMatch "\.(jpg|jpeg|png|gif|swf|ttf|otf|eot|woff|woff2|svg)$">
         Header set Cache-Control "max-age=604800, public"
     </FilesMatch>
 

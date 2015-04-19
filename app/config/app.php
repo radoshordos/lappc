@@ -109,8 +109,7 @@ return [
         'Authority\Service\Form\FormServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Intervention\Image\ImageServiceProvider',
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'Slushie\LaravelAssetic\LaravelAsseticServiceProvider'
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
     ],
 
     /*

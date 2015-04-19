@@ -142,8 +142,8 @@ Route::get('feeds/{file?}', ['uses' => 'FeedController@show']);
 Route::match(['GET', 'POST'], '/', ['as' => 'web.home', 'uses' => 'HomeController@show']);
 Route::match(['GET', 'POST'], '/{url01}', ['as' => 'web.url01', 'uses' => 'Url01Controller@show']);
 Route::match(['GET', 'POST'], '/{url01}/{url02}', ['as' => 'web.url02', 'uses' => 'Url02Controller@show']);
-Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}', ['as' => 'web.url03', 'uses' => 'Url03Controller@show']);
-Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}/{url04}', ['as' => 'web.url04', 'uses' => 'Url04Controller@show']);
+//Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}', ['as' => 'web.url03', 'uses' => 'Url03Controller@show']);
+//Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}/{url04}', ['as' => 'web.url04', 'uses' => 'Url04Controller@show']);
 
 Route::group(['prefix' => 'api'], function () {
     Route::group(['prefix' => 'heureka'], function () {
@@ -152,8 +152,7 @@ Route::group(['prefix' => 'api'], function () {
         });
     });
 });
-/*
+
 App::missing(function ($exception) {
     return Response::view('errors.missing', ['url' => Request::url()], 404);
 });
-*/

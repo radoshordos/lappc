@@ -8,7 +8,6 @@
         "kartik-v/bootstrap-fileinput": "2.*",
         "intervention/image": "2.*",
         "kriswallsmith/assetic": "1.*",
-        "slushie/laravel-assetic": "1.*",
         "nervo/yuicompressor": "dev-master",
         "mrclay/minify": "dev-master",
         "components/bootstrap": "3.*",
@@ -40,8 +39,7 @@
             "php artisan command:adminer",
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize",
-            "php artisan asset:warm"
+            "php artisan optimize"
         ]
     },
     "minimum-stability": "RC"

@@ -38,8 +38,6 @@ class AdminerCommand extends Command
      */
     public function fire()
     {
-
-
         $this->recurse_copy("./vendor/dg/adminer-custom", "./public/adminer");
     }
 
@@ -50,9 +48,9 @@ class AdminerCommand extends Command
      */
     protected function getArguments()
     {
-        return array(
-            array('example', InputArgument::OPTIONAL, 'An example argument.'),
-        );
+        return [
+            ['example', InputArgument::OPTIONAL, 'An example argument.'],
+        ];
     }
 
     /**
@@ -62,9 +60,9 @@ class AdminerCommand extends Command
      */
     protected function getOptions()
     {
-        return array(
-            array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-        );
+        return [
+            ['example', NULL, InputOption::VALUE_OPTIONAL, 'An example option.', NULL],
+        ];
     }
 
     /**
@@ -76,7 +74,7 @@ class AdminerCommand extends Command
     {
         $dir = opendir($src);
         @mkdir($dst);
-        while (false !== ($file = readdir($dir))) {
+        while (FALSE !== ($file = readdir($dir))) {
             if (($file != '.') && ($file != '..')) {
                 if (is_dir($src . '/' . $file)) {
                     $this->recurse_copy($src . '/' . $file, $dst . '/' . $file);

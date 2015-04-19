@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>@section('title') @show</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('admin/admin.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/my/public/style/css/guru-admin.min.css') }}">
 </head>
 <body>
 
@@ -187,7 +187,7 @@
     @include('adm/layouts/notifications')
     @yield('content')
 </div>
-<script src="{{ asset('admin/admin.min.js') }}"></script>
+<script src="{{ asset('web/my/public/style/js/guru-admin.min.js') }}"></script>
 @section('script')
 @show
 </body>
