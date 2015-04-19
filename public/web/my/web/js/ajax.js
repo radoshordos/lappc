@@ -1,5 +1,3 @@
-$(document).foundation({});
-
 $('#transport').click(function () {
 
     $("#platebni_karta").prop("disabled", false);
@@ -25,7 +23,19 @@ $('#transport').click(function () {
     }
 });
 
+$(document).foundation({});
+
 jQuery('a.gallery').colorbox();
+jQuery.extend(jQuery.colorbox.settings, {
+    current: "{current}. obrázek z {total}",
+    previous: "Předchozí",
+    next: "Následující",
+    close: "Zavřít",
+    xhrError: "Obsah se nepodařilo načíst.",
+    imgError: "Obrázek se nepodařilo načíst.",
+    slideshowStart: "Spustit slideshow",
+    slideshowStop: "Zastavit slideshow"
+});
 
 $(function () {
     $('#term').autocomplete({

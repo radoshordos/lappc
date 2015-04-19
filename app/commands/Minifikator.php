@@ -9,6 +9,8 @@ use Assetic\Asset\GlobAsset;
 use Assetic\Filter\JSMinFilter;
 use Assetic\Filter\GoogleClosure\CompilerApiFilter;
 use Assetic\Filter\CssImportFilter;
+use Assetic\Filter\PhpCssEmbedFilter;
+use Assetic\Filter\CssEmbed;
 use Assetic\Filter\MinifyCssCompressorFilter;
 
 class Minifikator extends Command
@@ -51,7 +53,7 @@ class Minifikator extends Command
     {
         $js = new AssetCollection([
             new FileAsset(self::COMPONENTS . '/restfulizer/restfulizer.js'),
-            new GlobAsset('./public/web/my/admin/js/*')
+            new GlobAsset(self::VISIBLE . '.admin/js/*')
         ], [
             new CompilerApiFilter()
         ]);
@@ -73,7 +75,7 @@ class Minifikator extends Command
     public function adminMinCss()
     {
         $css = new AssetCollection([
-            new GlobAsset('./public/web/my/admin/css/*')
+            new GlobAsset(self::VISIBLE . 'admin/css/*')
         ], [
             new MinifyCssCompressorFilter()
         ]);
@@ -96,7 +98,6 @@ class Minifikator extends Command
     public function webMinJs()
     {
         $js = new AssetCollection([
-            new FileAsset(self::COMPONENTS . 'restfulizer/restfulizer.js'),
             new FileAsset(self::COMPONENTS . 'modernizr/modernizr.js'),
         ], [
             new CompilerApiFilter()
@@ -105,7 +106,8 @@ class Minifikator extends Command
         file_put_contents(self::CACHE . 'guru.before.compress.js', $js->dump());
 
         $js = new AssetCollection([
-            new GlobAsset('./public/web/my/web/js/*')
+            new FileAsset(self::COMPONENTS . 'restfulizer/restfulizer.js'),
+            new GlobAsset(self::VISIBLE . '/web/js/*')
         ], [
             new CompilerApiFilter()
         ]);
@@ -130,9 +132,11 @@ class Minifikator extends Command
     {
         $css = new AssetCollection([
             new FileAsset(self::COMPONENTS . 'foundation/css/normalize.css'),
-//            new GlobAsset('./public/web/my/web/css/*')
+            new FileAsset(self::COMPONENTS . 'colorbox/css/colorbox.css'),
+//            new GlobAsset(self::VISIBLE .'.admin/css/*')
         ], [
-            new MinifyCssCompressorFilter()
+            new PhpCssEmbedFilter(),
+            new MinifyCssCompressorFilter(),
         ]);
 
         file_put_contents(self::CACHE . 'guru.after.compress.css', $css->dump());
@@ -141,7 +145,6 @@ class Minifikator extends Command
             new FileAsset(self::COMPONENTS . 'foundation/css/foundation.min.css'),
             new FileAsset(self::COMPONENTS . 'jquery-ui/jquery-ui.min.css'),
             new FileAsset(self::COMPONENTS . 'font-awesome/css/font-awesome.min.css'),
-            new FileAsset(self::COMPONENTS . 'colorbox/css/colorbox.min.css'),
             new FileAsset(self::CACHE . 'guru.after.compress.css'),
         ], [
             new CssImportFilter()

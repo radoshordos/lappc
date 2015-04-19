@@ -8,6 +8,7 @@
     "kartik-v/bootstrap-fileinput": "2.*",
     "intervention/image": "2.*",
     "kriswallsmith/assetic": "1.*",
+    "ptachoire/cssembed": "1.*",
     "nervo/yuicompressor": "dev-master",
     "mrclay/minify": "dev-master",
     "components/bootstrap": "3.*",
