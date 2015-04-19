@@ -73,7 +73,7 @@ class Minifikator extends Command
     public function adminMinCss()
     {
         $css = new AssetCollection([
-            new GlobAsset('./public/web/admin/web/css/*')
+            new GlobAsset('./public/web/my/admin/css/*')
         ], [
             new MinifyCssCompressorFilter()
         ]);
