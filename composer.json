@@ -1,46 +1,48 @@
 {
-    "require": {
-        "laravel/framework": "4.2.*",
-        "cartalyst/sentry": "2.*",
-        "barryvdh/laravel-ide-helper": "1.*",
-        "dg/adminer-custom": "1.*",
-        "ivaynberg/select2": "4.*",
-        "kartik-v/bootstrap-fileinput": "2.*",
-        "intervention/image": "2.*",
-        "kriswallsmith/assetic": "1.*",
-        "nervo/yuicompressor": "dev-master",
-        "mrclay/minify": "dev-master",
-        "components/bootstrap": "3.*",
-        "components/jquery": "1.*",
-        "components/jqueryui": "1.*",
-        "components/foundation": "5.*",
-        "components/font-awesome": "4.*"
-    },
-    "require-dev": {
-        "way/generators": "~2.6",
-        "mockery/mockery": "~0.9",
-        "phpunit/phpunit": "~4.0"
-    },
-    "autoload": {
-        "classmap": [
-            "app/commands",
-            "app/controllers",
-            "app/models",
-            "app/database/migrations",
-            "app/database/seeds",
-            "app/tests/TestCase.php"
-        ],
-        "psr-0": {
-            "Authority": "app/"
-        }
-    },
-    "scripts": {
-        "post-update-cmd": [
-            "php artisan command:adminer",
-            "php artisan clear-compiled",
-            "php artisan ide-helper:generate",
-            "php artisan optimize"
-        ]
-    },
-    "minimum-stability": "RC"
+  "require": {
+    "laravel/framework": "4.2.*",
+    "cartalyst/sentry": "2.*",
+    "barryvdh/laravel-ide-helper": "1.*",
+    "dg/adminer-custom": "1.*",
+    "ivaynberg/select2": "4.*",
+    "kartik-v/bootstrap-fileinput": "2.*",
+    "intervention/image": "2.*",
+    "kriswallsmith/assetic": "1.*",
+    "nervo/yuicompressor": "dev-master",
+    "mrclay/minify": "dev-master",
+    "components/bootstrap": "3.*",
+    "components/jquery": "1.*",
+    "components/jqueryui": "1.*",
+    "components/foundation": "5.*",
+    "components/font-awesome": "4.*",
+    "contao-components/colorbox": "1.*"
+  },
+  "require-dev": {
+    "way/generators": "~2.6",
+    "mockery/mockery": "~0.9",
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "classmap": [
+      "app/commands",
+      "app/controllers",
+      "app/models",
+      "app/database/migrations",
+      "app/database/seeds",
+      "app/tests/TestCase.php"
+    ],
+    "psr-0": {
+      "Authority": "app/"
+    }
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "php artisan command:minifikator",
+      "php artisan command:adminer",
+      "php artisan clear-compiled",
+      "php artisan ide-helper:generate",
+      "php artisan optimize"
+    ]
+  },
+  "minimum-stability": "RC"
 }

@@ -46,7 +46,7 @@ class ProdImageRegenerator
         return $this->img_normal;
     }
 
-    public function createProdPictures($width, $height, $quality = 95)
+    public function createProdPictures($width, $height, $quality = 90)
     {
         try {
 
