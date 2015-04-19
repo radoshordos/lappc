@@ -5,8 +5,6 @@
 	Order allow,deny
 	Allow from 37.48.33.198
 
-    RewriteCond %{REQUEST_URI} !\.woff
-
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
 
@@ -22,9 +20,6 @@
         Header set Connection keep-alive
         <FilesMatch ".(js|css|xml|gz|html)$">
             Header append Vary: Accept-Encoding
-        </FilesMatch>
-        <FilesMatch "\.(ttf|otf|eot|woff|woff2|svg)$">
-            Header set Access-Control-Allow-Origin "*"
         </FilesMatch>
     </IfModule>
 
@@ -42,5 +37,4 @@
     <FilesMatch "\.(xml|txt|css|js)$">
         Header set Cache-Control "max-age=691200, proxy-revalidate"
     </FilesMatch>
-
 </IfModule>

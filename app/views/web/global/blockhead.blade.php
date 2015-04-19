@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="Radek Horáček - hordos@centrum.cz">
+	<meta name="author" content="Radek Horáček - hordos[@]centrum[.]cz">
     @if ($namespace == 'tree' && !empty($dev_actual))
         <title>{{ $view_tree_actual['tree_desc']." ".$dev_actual['name']}} | Guru nářadí</title>
         <meta name="keywords" content="{{ $view_tree_actual['tree_desc'].", ".$dev_actual['name'] }}">
@@ -27,11 +27,7 @@
     @else
         <title>Guru nářadí</title>
     @endif
-    <link rel="stylesheet" href="/web/components/foundation/css/normalize.css">
-    <link rel="stylesheet" href="/web/components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="/web/components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/web/components/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="/web/components/colorbox/colorbox.css">
+	<link rel="stylesheet" href="/web/my/public/style/css/guru.min.css">
     <link rel="stylesheet" href="/web/my/layout.css">
     <link rel="stylesheet" href="/web/my/tree.css">
     <link rel="stylesheet" href="/web/my/product.css">
