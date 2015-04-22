@@ -15,7 +15,6 @@ class TreeListController extends EshopController
         $res->ajajSort(Input::get('sort'));
         $res->ajajStoreroom(Input::get('store'));
         $res->ajajAction(Input::get('action'));
-//      var_dump($res->toDebugSql());
 
         $actual = $res->getViewTreeActual();
         $pag = $res->getViewProdPagination();

@@ -8,7 +8,7 @@ class SearchDataController extends BaseController
     public function ajax()
     {
         $term = Input::get('term');
-        $data = ViewProd::where('prod_name', 'LIKE', "%$term%")->where('prod_mode_id','>','1')->limit(10)->get();
+        $data = ViewProd::where('prod_name', 'LIKE', "%$term%")->where('prod_mode_id', '>', '1')->limit(10)->get();
         $result = [];
         foreach ($data as $key => $row) {
             $result[] = ['id' => $row->prod_id, 'value' => $row->prod_name];
@@ -19,7 +19,7 @@ class SearchDataController extends BaseController
     public function storeroom()
     {
         $dev = Input::get('dev');
-        $tree = Input::get('tree');
+        $tree = intval(Input::get('tree'));
         $store = Input::get('store');
         $action = Input::get('action');
         $term = Input::get('term');
@@ -42,8 +42,14 @@ class SearchDataController extends BaseController
             $db->where('prod_mode_id', '=', 4);
         }
 
-        if (intval($tree) > 0) {
-            $db->whereBetween('tree_id', [intval($tree), intval($tree) + 9999]);
+        if ($tree > 0) {
+            if ($tree % 10000 == 0) {
+                $db->whereBetween('tree_id', [$tree, $tree + 9999]);
+            } else if ($tree % 100 == 0) {
+                $db->whereBetween('tree_id', [$tree, $tree + 99]);
+            } else {
+                $db->where('tree_id', '=', $tree);
+            }
         }
 
         if (intval($dev) > 0) {
@@ -51,7 +57,7 @@ class SearchDataController extends BaseController
         }
 
         $ajaxTree = new AjaxTree();
-        $db = $ajaxTree->orderBySort($db,$sort);
+        $db = $ajaxTree->orderBySort($db, $sort);
 
         $pagination = $db->limit(self::PAGINATE_PAGE)->paginate();
         $pagination->setBaseUrl('');
@@ -61,8 +67,8 @@ class SearchDataController extends BaseController
         }
 
         return View::make('web.tree.boxprodlist', [
-            "view_prod_array" => $pagination,
-            'view_tree_actual' => ViewTree::where('tree_id', '=', intval($tree))->first(),
+            "view_prod_array"  => $pagination,
+            'view_tree_actual' => ViewTree::where('tree_id', '=', $tree)->first(),
         ]);
     }
 }
