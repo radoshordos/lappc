@@ -1,17 +1,13 @@
 <?php namespace Authority\Runner\Task\Store;
 
 use Authority\Eloquent\RecordSyncImport;
+use Authority\Runner\Task\TaskAbstract;
 
-class AbstractSync
+class AbstractSync extends TaskAbstract
 {
-    protected $tm;
-    protected $table;
-    protected $message = [];
-    protected $resultTime = 0;
-
-    public function __construct($table)
+    public function __construct($dbTable)
     {
-        $this->table = $table;
+        parent::__construct($dbTable);
     }
 
     public function getFeedDirName()
@@ -24,16 +20,6 @@ class AbstractSync
         return __DIR__ . "/data/";
     }
 
-    public function getClassName()
-    {
-        return $this->table->class;
-    }
-
-    public function addMessage($comment)
-    {
-        $this->message[] = $comment;
-    }
-
     public function addRecordCounter($record_id, $all, $suc, $mixture_dev_id = NULL)
     {
         $rsi = RecordSyncImport::find($record_id);
@@ -41,22 +27,5 @@ class AbstractSync
         $rsi->item_counter_insert = $suc;
         $rsi->mixture_dev_id = $mixture_dev_id;
         $rsi->save();
-    }
-
-    public function getMessages()
-    {
-        if (count($this->message) > 0) {
-            return implode("<br />", $this->message);
-        }
-    }
-
-    public function getResultTime()
-    {
-        return $this->resultTime;
-    }
-
-    public function setResultTime($resultTime)
-    {
-        $this->resultTime = $resultTime;
     }
 }

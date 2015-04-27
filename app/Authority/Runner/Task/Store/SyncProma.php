@@ -18,7 +18,7 @@ class SyncProma extends AbstractSync implements iSync
     public function remotelyPrepareSynchronize()
     {
         $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), self::URL_FEED);
-        $down->runDownload();
+        $down->runDownload(TRUE);
     }
 
     public function getFile()
