@@ -63,6 +63,7 @@ class Minifikator extends Command
         $js = new AssetCollection([
             new FileAsset(self::COMPONENTS . 'jquery/jquery.min.js'),
             new FileAsset(self::COMPONENTS . 'select2/dist/js/select2.min.js'),
+            new FileAsset(self::COMPONENTS . 'select2/dist/js/i18n/cs.js'),
             new FileAsset(self::COMPONENTS . 'bootstrap/js/bootstrap.min.js'),
             new FileAsset(self::CACHE . 'admin.after.compress.js'),
         ], [
