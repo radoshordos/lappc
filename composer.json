@@ -10,6 +10,7 @@
     "kriswallsmith/assetic": "1.*",
     "ptachoire/cssembed": "1.*",
     "mrclay/minify": "dev-master",
+    "phpunit/php-timer": "1.*",
     "components/bootstrap": "3.*",
     "components/jquery": "1.*",
     "components/jqueryui": "1.*",
