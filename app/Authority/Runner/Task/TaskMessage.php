@@ -2,16 +2,15 @@
 
 class TaskMessage
 {
-    protected $start;
-    protected $message;
     protected $db;
-    protected $microtime;
+    protected $message;
+    protected $timer;
     protected $resultTime = 0;
 
     public function __construct($db)
     {
         $this->db = $db;
-        $this->start = new \PHP_Timer();
+        $this->timer = new \PHP_Timer();
         $this->comment = [];
     }
 
@@ -27,11 +26,6 @@ class TaskMessage
         }
     }
 
-    public function stopTimer()
-    {
-        $this->microtime = microtime(TRUE);
-    }
-
     public function getClassName()
     {
         return $this->db->class;
@@ -45,5 +39,10 @@ class TaskMessage
     public function setResultTime($resultTime)
     {
         $this->resultTime = $resultTime;
+    }
+
+    public function stop()
+    {
+        return $this->timer->stop();
     }
 }
