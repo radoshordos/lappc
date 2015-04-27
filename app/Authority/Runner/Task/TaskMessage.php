@@ -2,42 +2,48 @@
 
 class TaskMessage
 {
-	protected $start;
-	protected $message;
-	protected $db;
-	protected $microtime;
+    protected $start;
+    protected $message;
+    protected $db;
+    protected $microtime;
+    protected $resultTime = 0;
 
-	public function __construct($db)
-	{
-		$this->db = $db;
-		$this->start = microtime(true);
-		$this->comment = [];
-	}
+    public function __construct($db)
+    {
+        $this->db = $db;
+        $this->start = new \PHP_Timer();
+        $this->comment = [];
+    }
 
-	public function addMessage($comment)
-	{
-		$this->message[] = $comment;
-	}
+    public function addMessage($comment)
+    {
+        $this->message[] = $comment;
+    }
 
-	public function getMessages()
-	{
-		if (count($this->message) > 0) {
-			return implode("<br />", $this->message);
-		}
-	}
+    public function getMessages()
+    {
+        if (count($this->message) > 0) {
+            return implode("<br />", $this->message);
+        }
+    }
 
-	public function stopTimer()
-	{
-		$this->microtime = microtime(true);
-	}
+    public function stopTimer()
+    {
+        $this->microtime = microtime(TRUE);
+    }
 
-	public function getTimeRunTask()
-	{
-		return round($this->microtime - $this->start, 5) . "s";
-	}
+    public function getClassName()
+    {
+        return $this->db->class;
+    }
 
-	public function getClassName()
-	{
-		return $this->db->class;
-	}
+    public function getResultTime()
+    {
+        return $this->resultTime;
+    }
+
+    public function setResultTime($resultTime)
+    {
+        $this->resultTime = $resultTime;
+    }
 }

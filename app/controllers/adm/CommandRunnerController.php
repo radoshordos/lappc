@@ -11,7 +11,8 @@ class CommandRunnerController extends \BaseController
 	function __construct(AdminRunner $runner)
 	{
 		$this->runner = $runner;
-		$this->timmer = new Timmer();
+		\PHP_Timer::start();
+		//$this->timmer = new Timmer();
 	}
 
 	public function index()
@@ -32,7 +33,7 @@ class CommandRunnerController extends \BaseController
 				}
 				return View::make('adm.admin.runner.task', [
 					'ao'    => $ao,
-					'timer' => $this->timmer->stopTimer()
+					'timer' => \PHP_Timer::secondsToTimeString(\PHP_Timer::stop())
 				]);
 			}
 		}
@@ -41,7 +42,7 @@ class CommandRunnerController extends \BaseController
 			$this->executeManualTask($ao, $task);
 			return View::make('adm.admin.runner.task', [
 				'ao'    => $ao,
-				'timer' => $this->timmer->stopTimer()
+				'timer' => \PHP_Timer::secondsToTimeString(\PHP_Timer::stop())
 			]);
 		}
 	}
@@ -52,12 +53,15 @@ class CommandRunnerController extends \BaseController
 
 		if (!empty($row) && class_exists($row->class)) {
 
+			$time = new \PHP_Timer;
+			$time->start();
+
 			$cl = new $row->class($row);
-			$cl->stopTimer();
 
 			$row->last_run_manual = strtotime('now');
 			$row->save();
 
+			$cl->setResultTime(\PHP_Timer::secondsToTimeString($time->stop()));
 			$ao->append($cl);
 		}
 	}

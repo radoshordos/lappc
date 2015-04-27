@@ -22,14 +22,14 @@ Runner => Spuštěné skripty
             @foreach ($ao as $object)
             <tr>
                 <td>{{  str_replace('Authority\\Runner\\Task\\', '', $object->getClassName())  }}</td>
-                <td>{{ ($object->getTimeRunTask()) }}</td>
+                <td>{{ ($object->getResultTime()) }}</td>
                 <td>{{ ($object->getMessages()) }}</td>
             </tr>
             @endforeach
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3">Celkem: <b> {{ $timer->getTime() }} </b></td>
+                <td colspan="3">Celkem: <b> {{ $timer }} </b></td>
             </tr>
             </tfoot>
         </table>

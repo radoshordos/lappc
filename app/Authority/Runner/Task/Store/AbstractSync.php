@@ -48,18 +48,13 @@ class AbstractSync
         $this->tm->stopTimer();
     }
 
-    public function getTimeRunTask()
+    public function getResultTime()
     {
-        return $this->tm->getTimeRunTask();
+        return $this->tm->getResultTime();
     }
 
     public function getMessages()
     {
         return $this->tm->getMessages();
-    }
-
-    public function getTimeRunAll()
-    {
-        return $this->tm->getTimeRunAll();
     }
 }
