@@ -33,9 +33,9 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 
     public function getViewProdPagination()
     {
-        $tree_id = $this->view_tree_actual['tree_id'];
+        $tree_id = intval($this->view_tree_actual['tree_id']);
 
-        switch ($this->view_tree_actual['tree_deep']) {
+        switch (intval($this->view_tree_actual['tree_deep'])) {
             case 1:
                 $this->vp->whereBetween('tree_id', [$tree_id, ($tree_id + 9999)]);
                 break;

@@ -5,8 +5,8 @@
 			<p>rfghfdkljhdlůg jlog dlg lůdg ldgj lfdjg lrejtg llg l dlg dlg dlg ldgjelptge</p>
 		</div>
 		<div class="medium-4 columns">
-			<form action="http://zurb.createsend.com/t/y/s/msuyr/" method="post" id="subForm">
-				<div class="row collapse margintop-20px">
+			<form action="" method="post" id="subForm">
+				<div class="row collapse">
 					<div class="small-8 medium-8 columns">
 						<input id="fieldEmail" type="email" name="cm-msuyr-msuyr" placeholder="signup@example.com">
 					</div>
