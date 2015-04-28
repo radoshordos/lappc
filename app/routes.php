@@ -100,7 +100,7 @@ Route::group(['prefix' => 'adm'], function () {
     });
 
     Route::group(['prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'], function () {
-        Route::resource('order', 'BuyOrderController', ['only' => ['index']]);
+        Route::resource('order', 'BuyOrderController', ['only' => ['index','show']]);
         Route::resource('purchased', 'BuyPurchasedController', ['only' => ['index']]);
         Route::resource('maillist', 'MailListController', ['only' => ['index']]);
         Route::resource('coupon', 'CouponController', ['only' => ['index', 'create', 'store']]);

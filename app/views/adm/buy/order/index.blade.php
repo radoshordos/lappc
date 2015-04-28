@@ -14,6 +14,8 @@
                 <th>Datum</th>
                 <th>Jméno</th>
                 <th>Platba</th>
+				<th></th>
+				<th></th>
             </tr>
             @foreach($bodc as $row)
                 <tr>
@@ -22,6 +24,8 @@
                     <td>{{ $row->bod_created_at }}</td>
                     <td>{{ $row->bodc_customer_fullname }}</td>
                     <td>{{ $row->pa_name }}</td>
+					<td><a href="{{ URL::route('adm.buy.order.show',[$row->bod_id,'design' => 'pdf']) }}"><i class="fa fa-file-pdf-o"></i></a></td>
+					<td><a href="{{ URL::route('adm.buy.order.show',[$row->bod_id,'design' => 'html']) }}"><i class="fa fa-street-view"></i></a></td>
                 </tr>
             @endforeach
         </table>

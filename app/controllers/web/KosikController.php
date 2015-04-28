@@ -191,9 +191,10 @@ class KosikController extends Controller
                             'item_id'       => $items->id,
                             'item_count'    => 1,
                             'item_price'    => 1,
-                            'prod_forex_id' => $items->prod->forex_id,
-                            'prod_dev_id'   => $items->prod->dev_id,
-                            'prod_mode_id'  => $items->prod->mode_id,
+                            'prod_forex'    => $items->prod->forex_id,
+                            'prod_mode'     => $items->prod->mode_id,
+                            'prod_dev'      => $items->prod->dev_id,
+                            'prod_tree'     => $items->prod->tree_id,
                             'prod_fullname' => $items->prod->name,
                         ]);
                     }
@@ -284,7 +285,6 @@ class KosikController extends Controller
         }
 
         // KROK 3
-
         if (Input::has('kup-si-me')) {
 
             $products_total_price = BuyOrderDbItems::select([\DB::raw("SUM(item_price * item_count) AS total_price")])->where('sid', '=', $this->sid)->pluck('total_price');
@@ -299,9 +299,8 @@ class KosikController extends Controller
                 'delivery_price'       => 0
             ]);
 
-            $bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
-            $bodc->order_db_id = $bod->id;
-            $bodc->save();
+            BuyOrderDbCustomer::where('sid', '=', $this->sid)->update(['order_db_id' => $bod->id]);
+            BuyOrderDbItems::where('sid', '=', $this->sid)->update(['order_id' => $bod->id]);
             \DB::commit();
 
             return Redirect::action('KosikController@index', ['krok' => 'dokonceni-objednavky']);
