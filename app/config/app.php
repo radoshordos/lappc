@@ -109,7 +109,8 @@ return [
         'Authority\Service\Form\FormServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Intervention\Image\ImageServiceProvider',
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Thujohn\Pdf\PdfServiceProvider'
     ],
 
     /*
@@ -162,6 +163,7 @@ return [
         'Mail'        => 'Illuminate\Support\Facades\Mail',
         'Paginator'   => 'Illuminate\Support\Facades\Paginator',
         'Password'    => 'Illuminate\Support\Facades\Password',
+        'PDF'         => 'Thujohn\Pdf\PdfFacade',
         'Queue'       => 'Illuminate\Support\Facades\Queue',
         'Redirect'    => 'Illuminate\Support\Facades\Redirect',
         'Redis'       => 'Illuminate\Support\Facades\Redis',
