@@ -7,8 +7,6 @@
 			@include('web.global.leftmenu')
 		</div>
 		<div id="part-right" class="large-14 columns">
-
-
 			<div class="row">
 				<div class="medium-9 large-6 columns">
 					<div class="callout-card success radius">
@@ -47,9 +45,7 @@
 						</div>
 						<div class="callout-card-content">
 							<h3 class="lead">Chappie</h3>
-
-							<p>In the near future, crime is patrolled by a mechanized police force. When one police droid, Chappie, is stolen and given new programming, he becomes the first robot with the ability to think and feel for
-								himself.</p>
+							<p>In the near future, crime is patrolled by a mechanized police force. When one police droid, Chappie, is stolen and given new programming, he becomes the first robot with the ability to think and feel for himself.</p>
 						</div>
 					</div>
 				</div>

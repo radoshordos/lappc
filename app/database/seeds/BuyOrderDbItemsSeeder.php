@@ -15,6 +15,7 @@ class BuyOrderDbItemsSeeder extends Seeder
             }
 
             DB::table('buy_order_db_items')->insert([
+                'sid'         => $row['lpb_ti_create'],
                 'item_id'     => $row['lpb_id_items'],
                 'order_id'    => $row['lpb_id_order'],
                 'order_group' => $row['lpb_is_group_order'],
