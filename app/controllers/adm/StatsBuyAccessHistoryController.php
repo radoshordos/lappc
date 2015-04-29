@@ -14,17 +14,13 @@ class StatsBuyAccessHistoryController extends \BaseController
             'choice_limit' => (isset($input['select_limit']) ? $input['select_limit'] : 10),
         ];
 
-        $bod = BuyOrderDb::orderBy('id', 'DESC')->limit($clear['choice_limit']);
+        $bod = BuyOrderDb::orderBy('id', 'DESC')->limit($clear['choice_limit'])->get();
 
         if (!empty($bod)) {
             foreach ($bod as $row) {
-                $arr[$row->id] = $row;
-                $rvh = RecordVisitorsHit::where('remote_addr', '=', $row->remote_addr)->orderBy('id', 'DESC')->get();
-                if (!empty($rvh)) {
-                    foreach ($rvh as $val) {
-                        $arr[$row->id][$val->id] = $val;
-                    }
-                }
+                $row = $row->toArray();
+                $arr[$row['id']]['buy'] = $row;
+                $arr[$row['id']]['hit'] = RecordVisitorsHit::where('remote_addr', '=', $arr[$row['id']]['buy']['remote_addr'])->orderBy('id', 'DESC')->get();
             }
         }
 
