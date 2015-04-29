@@ -9,10 +9,10 @@ class RecordVisitorsHit extends Migration
     {
         Schema::create('record_visitors_hit', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->timestamp('created_at');
-            $table->string('http_referer', 255)->nullable();
+            $table->integer('created_int');
             $table->string('request_url', 255)->nullable();
             $table->string('remote_addr', 255)->nullable();
+            $table->string('user_agent', 255)->nullable();
         });
     }
 

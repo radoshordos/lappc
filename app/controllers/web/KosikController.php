@@ -1,11 +1,11 @@
 <?php
 
-use Authority\Eloquent\Items;
 use Authority\Eloquent\BuyOrderDb;
-use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyOrderDbCustomer;
-use Authority\Eloquent\BuyTransport;
+use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyPayment;
+use Authority\Eloquent\BuyTransport;
+use Authority\Eloquent\Items;
 use Authority\Eloquent\ViewTree;
 
 class KosikController extends BaseController
@@ -22,11 +22,9 @@ class KosikController extends BaseController
         $this->term = Input::get('term');
     }
 
-    protected function buyBoxPrice()
+    public function __destruct()
     {
-        return BuyOrderDbItems::selectRaw('(SELECT ROUND(SUM(buy_order_db_items.item_count * buy_order_db_items.item_price))) AS buy_box_price')
-            ->where('sid', '=', $this->sid)
-            ->pluck('buy_box_price');
+        $this->saveHttpRefer();
     }
 
     public function index()
@@ -170,6 +168,13 @@ class KosikController extends BaseController
             'customer'           => BuyOrderDbCustomer::select(["delivery_id", "payment_id"])->where('sid', '=', $this->sid)->first(),
             'weight_sum'         => $weight_sum
         ]);
+    }
+
+    protected function buyBoxPrice()
+    {
+        return BuyOrderDbItems::selectRaw('(SELECT ROUND(SUM(buy_order_db_items.item_count * buy_order_db_items.item_price))) AS buy_box_price')
+            ->where('sid', '=', $this->sid)
+            ->pluck('buy_box_price');
     }
 
     public function store()

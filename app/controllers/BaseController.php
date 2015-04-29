@@ -7,21 +7,22 @@ class BaseController extends Controller
         if (!is_null($this->layout)) {
             $this->layout = View::make($this->layout);
         }
-        $this->saveHttpRefer();
     }
-
 
     protected function saveHttpRefer()
     {
-        if (!empty($_SERVER["HTTP_REFERER"]) && (!empty($_SERVER["REMOTE_ADDR"]))) {
+        if (!empty($_SERVER["HTTP_USER_AGENT"]) && (!empty($_SERVER["REMOTE_ADDR"]))) {
 
-            $count = DB::whereRaw('created_at != DATE_SUB(NOW(),INTERVAL 1 HOUR')->where('remote_addr', '=', trim($_SERVER["REMOTE_ADDR"]))->count();
-            if ($count === 0 && strlen($_SERVER["HTTP_REFERER"]) < 255) {
+            $created_int = strtotime('now');
+            $count = \DB::table('record_visitors_hit')->where('created_int', '>', $created_int - 3600)->where('remote_addr', '=', $_SERVER["REMOTE_ADDR"])->count();
+            if ($count === 0 && strlen($_SERVER["HTTP_USER_AGENT"]) < 255) {
 
-                DB::table('record_visitors_hit')->insert(['http_referer' => trim($_SERVER["HTTP_REFERER"]),
-                                                          'request_url'  => trim($_SERVER["REQUEST_URI"]),
-                                                          'remote_addr'  => trim($_SERVER["REMOTE_ADDR"])]
-                );
+                \DB::table('record_visitors_hit')->insert([
+                    'created_int' => $created_int,
+                    'request_url' => $_SERVER["REQUEST_URI"],
+                    'remote_addr' => $_SERVER["REMOTE_ADDR"],
+                    'user_agent'  => $_SERVER["HTTP_USER_AGENT"]
+                ]);
             }
         }
     }

@@ -7,6 +7,11 @@ use Carbon\Carbon;
 
 class HomeController extends EshopController
 {
+    public function __destruct()
+    {
+        $this->saveHttpRefer();
+    }
+
     public function show()
     {
         if (Input::has('term')) {
@@ -30,5 +35,4 @@ class HomeController extends EshopController
             'term'          => Input::get('term')
         ]);
     }
-
 }

@@ -2,11 +2,14 @@
 
 class Url04Controller extends EshopController
 {
+    public function __destruct()
+    {
+        $this->saveHttpRefer();
+    }
 
     public function show($url01, $url02, $url03, $url04)
     {
         $prod = $this->isProudct($url04);
-        return (!is_null($prod)) ? $prod : $this->isTree([$url01,$url02,$url03],$url04);
+        return (!is_null($prod)) ? $prod : $this->isTree([$url01, $url02, $url03], $url04);
     }
-
 }

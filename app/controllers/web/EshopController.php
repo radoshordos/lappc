@@ -24,6 +24,10 @@ class EshopController extends BaseController
         $this->term = Input::get('term');
     }
 
+    public function __destruct() {
+        $this->saveHttpRefer();
+    }
+
     protected function setupLayout()
     {
         if (!is_null($this->layout)) {
