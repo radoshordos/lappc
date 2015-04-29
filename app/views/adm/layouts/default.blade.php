@@ -114,6 +114,8 @@
                         <li><a href="{{ URL::route('adm.stats.buyorderdevs.index') }}">Stav prodejů výrobců</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.stats.marketsell.index') }}">Prodeje v obchodu</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.stats.buyaccesshistory.index') }}">Historie přístupů a nákupů</a></li>
                     </ul>
                 </li>
                 @endif
