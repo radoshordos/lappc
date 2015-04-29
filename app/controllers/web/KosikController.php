@@ -8,7 +8,7 @@ use Authority\Eloquent\BuyTransport;
 use Authority\Eloquent\BuyPayment;
 use Authority\Eloquent\ViewTree;
 
-class KosikController extends Controller
+class KosikController extends BaseController
 {
     CONST SIFRA = 'VeRY_STRoN1G_SeECREET_PAS3WoRD:-]';
     CONST KOSIKSPACE = 'kosik';
