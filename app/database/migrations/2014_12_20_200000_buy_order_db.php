@@ -14,7 +14,7 @@ class BuyOrderDb extends Migration
 			$table->char('sid', 40)->unique();
 			$table->string('remote_addr', 512)->nullable();
 			$table->string('netbios', 512)->nullable();
-			$table->string('browser', 512)->nullable();
+			$table->string('http_user_agent', 512)->nullable();
 			$table->double('products_total_price')->unsigned()->default(0);
 			$table->double('delivery_price')->unsigned()->default(0);
 			$table->double('payment_price')->unsigned()->default(0);

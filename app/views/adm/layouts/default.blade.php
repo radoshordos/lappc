@@ -115,7 +115,8 @@
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.stats.marketsell.index') }}">Prodeje v obchodu</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ URL::route('adm.stats.buyaccesshistory.index') }}">Historie přístupů a nákupů</a></li>
+						<li><a href="{{ URL::route('adm.stats.useraccesshistory.index') }}">Odkud přišli návštěvníci?</a></li>
+                        <li><a href="{{ URL::route('adm.stats.buyaccesshistory.index') }}">Odkud přišli zákazníci?</a></li>
                     </ul>
                 </li>
                 @endif

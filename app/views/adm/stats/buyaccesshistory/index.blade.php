@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Historie přístupů a nákupů
+Odkud přišli zákazníci?
 @stop
 
 {{-- Content --}}
@@ -22,7 +22,7 @@ Historie přístupů a nákupů
 		<table class="table table-striped table-bordered">
 			@foreach($history as $row)
 				<tr>
-					<td>{{ substr($row['buy']['created_at'],0,-3) }} | <a href="">{{$row['buy']['id']}}</a></td>
+					<td>{{ substr($row['buy']['created_at'],0,-3) }} | <a href="{{ URL::route('adm.buy.order.show',[$row['buy']['id'],'design' => 'pdf']) }}">{{$row['buy']['id']}}</a></td>
 					<td style="font-size: small">{{ $row['buy']['browser'] }} | {{ $row['buy']['netbios'] }}</td>
 					<td style="font-size: small">{{ $row['buy']['products_total_price'] }}</td>
 				</tr>

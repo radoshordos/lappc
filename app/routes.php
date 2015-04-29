@@ -97,6 +97,7 @@ Route::group(['prefix' => 'adm'], function () {
         Route::get('marketsell', ['as' => 'adm.stats.marketsell.index', 'uses' => 'RecordMarketSellController@index']);
         Route::resource('buyorderitems', 'StatsBuyOrderItemsController', ['only' => ['index']]);
         Route::resource('buyorderdevs', 'StatsBuyOrderDevsController', ['only' => ['index']]);
+        Route::resource('useraccesshistory', 'StatsUserAccessHistoryController', ['only' => ['index']]);
         Route::resource('buyaccesshistory', 'StatsBuyAccessHistoryController', ['only' => ['index']]);
     });
 
