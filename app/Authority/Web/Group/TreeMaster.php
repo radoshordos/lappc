@@ -76,7 +76,10 @@ class TreeMaster
 			case self::URL_NEW:
 				return new ProdNew($this->view_tree_actual, $this->dev_actual);
 			default:
-				return new ProdList($this->view_tree_actual, $this->dev_actual);
+                if (isset($this->view_tree_actual["tree_id"]) && (isset($this->view_tree_actual["tree_parent_id"]) && $this->view_tree_actual["tree_id"] === $this->view_tree_actual["tree_parent_id"])) {
+                    return new TreeGroup($this->view_tree_actual);
+                }
+                return new ProdList($this->view_tree_actual, $this->dev_actual);
 		}
 	}
 

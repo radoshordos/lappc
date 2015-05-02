@@ -2,7 +2,6 @@
 
 use Authority\Web\Group\iProdList;
 use Authority\Web\Group\TreeMaster;
-use Authority\Eloquent\ViewTree;
 
 class TreeListController extends EshopController
 {

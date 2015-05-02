@@ -24,7 +24,8 @@ class EshopController extends BaseController
         $this->term = Input::get('term');
     }
 
-    public function __destruct() {
+    public function __destruct()
+    {
         $this->saveHttpRefer();
     }
 
@@ -124,22 +125,36 @@ class EshopController extends BaseController
         $res = $tm->detectTree();
         $vta = $res->getViewTreeActual();
 
-        return (($res === NULL) ? NULL :
+        if ($res::TYPE_OF_TREE === 'group') {
 
-            View::make($res::TREE_BLADE_TEMPLATE, [
-                'namespace'        => 'tree',
+            return View::make($res::TREE_BLADE_TEMPLATE, [
+                'namespace'        => $res::TYPE_OF_TREE,
                 'group'            => $res::TREE_GROUP_TYPE,
                 'view_tree'        => $this->view_tree = ViewTree::where('tree_id', '=', $vta['tree_id'])->first(),
                 'buy_box_price'    => $this->buyBoxPrice(),
-                'dev_list'         => $res->getDevList(),
-                'dev_actual'       => $res->getDevActual(),
                 'view_tree_actual' => $vta,
-                'view_prod_array'  => $res->getViewProdPagination(),
-                'view_tree'        => $this->view_tree,
                 'term'             => Input::get('term'),
-                'store'            => Input::has('store') ? TRUE : FALSE,
-                'action'           => Input::has('action') ? TRUE : FALSE,
-            ])
-        );
+            ]);
+
+        } else {
+
+            return (($res === NULL) ? NULL :
+
+                View::make($res::TREE_BLADE_TEMPLATE, [
+                    'namespace'        => $res::TYPE_OF_TREE,
+                    'group'            => $res::TREE_GROUP_TYPE,
+                    'view_tree'        => $this->view_tree = ViewTree::where('tree_id', '=', $vta['tree_id'])->first(),
+                    'buy_box_price'    => $this->buyBoxPrice(),
+                    'dev_list'         => $res->getDevList(),
+                    'dev_actual'       => $res->getDevActual(),
+                    'view_tree_actual' => $vta,
+                    'view_prod_array'  => $res->getViewProdPagination(),
+                    'view_tree'        => $this->view_tree,
+                    'term'             => Input::get('term'),
+                    'store'            => Input::has('store') ? TRUE : FALSE,
+                    'action'           => Input::has('action') ? TRUE : FALSE,
+                ])
+            );
+        }
     }
 }

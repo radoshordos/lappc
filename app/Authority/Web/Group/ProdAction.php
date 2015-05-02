@@ -6,8 +6,9 @@ class ProdAction extends AbstractTree implements iProdListable, iProdExpandable
 {
 	CONST TREE_GROUP_TYPE = 'prodaction';
 	CONST TREE_BLADE_TEMPLATE = 'web.tree';
+    CONST TYPE_OF_TREE = 'tree';
 
-	public function __construct($view_tree_actual = NULL, $dev_actual = NULL)
+    public function __construct($view_tree_actual = NULL, $dev_actual = NULL)
 	{
 		$this->dev_actual = $dev_actual;
 		$this->view_tree_actual = $view_tree_actual;

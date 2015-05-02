@@ -7,6 +7,7 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 {
     CONST TREE_GROUP_TYPE = 'prodlist';
     CONST TREE_BLADE_TEMPLATE = 'web.tree';
+    CONST TYPE_OF_TREE = 'tree';
 
     public function __construct($view_tree_actual = NULL, $dev_actual = NULL)
     {

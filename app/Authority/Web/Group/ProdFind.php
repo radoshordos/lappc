@@ -6,6 +6,7 @@ class ProdFind extends AbstractTree implements iProdListable, iProdExpandable
 {
 	CONST TREE_GROUP_TYPE = 'prodfind';
 	CONST TREE_BLADE_TEMPLATE = 'web.vyhledavani';
+    CONST TYPE_OF_TREE = 'tree';
 
 	private $et;
 	private $clt;
