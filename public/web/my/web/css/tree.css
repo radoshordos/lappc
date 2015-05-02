@@ -130,3 +130,22 @@ li.th {
 #prodlist span.price {
     font-weight: bolder;
 }
+
+
+/*////////////////////////////////////////////*/
+/*     #category-list                         */
+/*////////////////////////////////////////////*/
+
+
+#category-list h3 {
+    font-size: 1em;
+}
+
+#category-list li {
+    border: .0em solid bisque;
+}
+
+#category-list a {
+    margin: 1em;
+    border: .0em solid bisque;
+}
