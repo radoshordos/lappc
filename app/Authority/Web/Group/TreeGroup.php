@@ -1,5 +1,7 @@
 <?php namespace Authority\Web\Group;
 
+use Authority\Eloquent\Tree;
+
 class TreeGroup
 {
     CONST TREE_GROUP_TYPE = 'treegroup';
@@ -16,5 +18,10 @@ class TreeGroup
     public function getViewTreeActual()
     {
         return $this->view_tree_actual;
+    }
+
+    public function getPictureTree()
+    {
+        return Tree::select(['name', 'desc', 'absolute', 'picture'])->where('parent_id', '=', $this->view_tree_actual['tree_id'])->where('deep', '=', 1)->orderBy('id')->get();
     }
 }

@@ -133,6 +133,7 @@ class EshopController extends BaseController
                 'view_tree'        => $this->view_tree = ViewTree::where('tree_id', '=', $vta['tree_id'])->first(),
                 'buy_box_price'    => $this->buyBoxPrice(),
                 'view_tree_actual' => $vta,
+                'picture_tree'     => $res->getPictureTree(),
                 'term'             => Input::get('term'),
             ]);
 

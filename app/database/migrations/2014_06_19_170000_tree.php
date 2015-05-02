@@ -20,6 +20,7 @@ class Tree extends Migration
             $table->string('category_text','256')->nulable();
             $table->string('category_nav','512')->nulable();
             $table->string('category_menu','4096')->nulable();
+            $table->string('picture','40')->default('!.jpg');
             $table->timestamps();
 
             $table->engine = 'InnoDB';

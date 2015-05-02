@@ -136,16 +136,30 @@ li.th {
 /*     #category-list                         */
 /*////////////////////////////////////////////*/
 
-
-#category-list h3 {
-    font-size: 1em;
+#category-list {
+    margin: 0.1em;
+    border: 1pt dotted #000;
 }
 
 #category-list li {
-    border: .0em solid bisque;
+
 }
 
-#category-list a {
-    margin: 1em;
-    border: .0em solid bisque;
+#category-list h3 {
+    font-size: .8em;
 }
+
+#category-list li a {
+    margin: 1em;
+}
+
+#category-list li:hover {
+    font-weight: bold;
+    opacity: 0.75;
+}
+
+#category-list li:hover h3 {
+    text-decoration: underline;
+}
+
+

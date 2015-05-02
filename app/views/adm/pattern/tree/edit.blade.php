@@ -61,6 +61,12 @@
             {{ Form::text('absolute',NULL,['required' => 'required', 'readonly' => 'readonly', 'maxlength' => '256', 'class'=> 'form-control', 'placeholder'=> 'Absolutní cesta']) }}
         </div>
     </div>
+	<div class="form-group">
+		{{ Form::label('picture','Obrázek',['class'=> 'col-sm-2 control-label']) }}
+		<div class="col-sm-10">
+			{{ Form::text('picture',NULL,['required' => 'required', 'maxlength' => '256', 'class'=> 'form-control', 'placeholder'=> 'Obrázek ke skupině']) }}
+		</div>
+	</div>
     <div class="form-group">
         {{ Form::label('category_text','Text kategorie',['class'=> 'col-sm-2 control-label']) }}
         <div class="col-sm-10">

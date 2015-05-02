@@ -9,23 +9,13 @@
 		<div id="part-right" class="medium-14 columns">
 			<h1>{{ $view_tree_actual["tree_category_text"] }}</h1>
 
-			<br />
-			<br />
 
-			<ul id="category-list" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-				<li><a href=""><h3>Bruska úhlová</h3><img src="/web/img/category/uhlova-bruska.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Kladiva</h3><img src="/web/img/category/kladiva.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Míchadla</h3><img src="/web/img/category/michadla.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Bruska úhlová</h3><img src="/web/img/category/uhlova-bruska.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Kladiva</h3><img src="/web/img/category/kladiva.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Míchadla</h3><img src="/web/img/category/michadla.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Bruska úhlová</h3><img src="/web/img/category/uhlova-bruska.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Kladiva</h3><img src="/web/img/category/kladiva.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Míchadla</h3><img src="/web/img/category/michadla.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Bruska úhlová</h3><img src="/web/img/category/uhlova-bruska.jpg" alt=""/></a></li>
-				<li><a href=""><h3>Kladiva</h3><img src="/web/img/category/kladiva.jpg" alt=""/></a></li>
+
+			<ul id="category-list" class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
+			@foreach($picture_tree as $val)
+					<li><a href="{{ $val->absolute }}"><h3>{{ $val->name }}</h3><img src="/web/img/category/{{ $val->picture }}" alt=""/></a></li>
+			@endforeach
 			</ul>
-
 			<br />
 			<br />
 
