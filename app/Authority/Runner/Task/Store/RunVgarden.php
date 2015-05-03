@@ -4,9 +4,9 @@ class RunVgarden extends AbstractRunDev implements iItem
 {
     private function analyseIdDev($string)
     {
-        if (strpos($string, 'VeGA') !== FALSE) {
+        if (strpos($string, 'VeGA ') !== FALSE) {
             return 265;
-        } elseif (strpos($string, 'Weibang') !== FALSE) {
+        } elseif (strpos($string, 'Weibang ') !== FALSE) {
             return 290;
         } else {
             return 0;
