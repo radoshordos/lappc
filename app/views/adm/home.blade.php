@@ -16,6 +16,7 @@
     </div>
 </div>
 
+{{--
 @if (Sentry::check() )
 	<div class="panel panel-success">
 		 <div class="panel-heading">
@@ -26,6 +27,7 @@
 			<pre>{{ var_dump(Session::all()) }}</pre>
 		</div>
 	</div>
-@endif 
+@endif
+--}}
 
 @stop

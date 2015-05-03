@@ -10,36 +10,47 @@ Odkud přišli návštěvníci?
 @section('content')
     <blockquote>
         {{ Form::open(['route' => ['adm.stats.useraccesshistory.index'],'method' => 'GET','class' => 'form-horizontal', 'role' => 'form']) }}
+		<div class="row">
+			<div class="col-xs-2">
+				{{ Form::text('remote_addr',$input['remote_addr'],['id'=> 'remote_addr', 'placeholder' => 'IP Adresa', 'maxlength' => '48', 'class'=> 'form-control']) }}
+			</div>
+			<div class="col-xs-2">
+				{{ Form::input('date', 'date', NULL, ['max' => date("Y-m-d"),'placeholder' => 'Datum','class'=> 'form-control']) }}
+			</div>
+			<div class="col-xs-2">
+				{{ Form::text('http_referer',$input['http_referer'],['id'=> 'http_referer', 'placeholder' => 'Odkazující stránka',  'maxlength' => '48', 'class'=> 'form-control']) }}
+			</div>
+			<div class="col-xs-2">
+				{{ Form::text('request_uri',$input['request_uri'],['id'=> 'request_uri','placeholder' => 'Vstupní stránka', 'maxlength' => '48', 'class'=> 'form-control']) }}
+			</div>
+			<div class="col-xs-2">
+				{{ Form::select('select_limit', $input['select_limit'], $input['choice_limit'], ['id'=> 'select_limit', 'class'=> 'form-control']) }}
+			</div>
+			<div class="col-xs-2">
+				{{ Form::submit('Vyhledat',['class'=> 'form-control btn-primary']) }}
+			</div>
+		</div>
+		{{ Form::close() }}
+	</blockquote>
 
-			<table class="table table-condensed">
-				<tr class="center">
-					<th>{{ Form::label('date','Datum') }}</th>
-					<th>{{ Form::label('remote_addr','IP Adresa') }}</th>
-					<th><label for="ls_http_referer">OdkazujĂ­cĂ­ strĂĄnka</label></th>
-					<th><label for="ls_request_url">VstupnĂ­ strĂĄnka</label></th>
-					<th><label for="ppc">Reklama</label></th>
-					<th><label for="limit">Limit</label></th>
-					<th rowspan="2"><input type="submit" name="find" value="Vyhledat" /></th>
-				</tr>
-				<tr>
-					<td><input type="date" max="<?= date("Y-m-d"); ?>" name="date" id="date" value="<?= $_GET["date"]; ?>" class="big" /></td>
-					<td>{{ Form::text('remote_addr',$input['remote_addr'],['id'=> 'remote_addr', 'maxlength' => '48', 'class'=> 'form-control']) }}</td>
-					<td><?= $this->formText('ls_http_referer', trim($_GET["ls_http_referer"]), array("id" => "ls_http_referer", "size" => "26", "maxlength" => "48")); ?></td>
-					<td>{{ Form::text('request_url',$input['request_url'],['id'=> 'request_url', 'maxlength' => '48', 'class'=> 'form-control']) }}</td>
-					<td><?= $this->formSelect("ppc", $_GET["ppc"], array("id" => "ppc"), $ppc); ?></td>
-					<td>{{ Form::select('select_limit', $input['select_limit'], $input['choice_limit'], ['id'=> 'select_limit', 'class'=> 'form-control']) }}</td>
-				</tr>
-			</table>
-
-        <div class="row">
-            <div class="col-xs-12">
-
-            </div>
-        </div>
-        {{ Form::close() }}
-    </blockquote>
-
-	@if ($history)
-
+	@if ($hit)
+		<table class="table table-condensed table-striped">
+			<tr>
+				<th class="col-xs-1">#ID</th>
+				<th class="col-xs-1">IP Adresa</th>
+				<th class="col-xs-2">Čas</th>
+				<th>Odkazující stránka</th>
+				<th>Vstupní stránka</th>
+			</tr>
+		@foreach($hit as $row)
+			<tr>
+				<td style="font-size: small">{{ $row->id }}</td>
+				<td style="font-size: small">{{ $row->remote_addr }}</td>
+				<td style="font-size: small">{{ date("d.m.Y H:i", $row->created_int); }}</td>
+				<td style="font-size: small"><a href="{{ $row->http_referer }}">{{ htmlspecialchars(substr($row->http_referer, 0, 120)) }}</a></td>
+				<td style="font-size: small">{{ $row->request_uri }}</td>
+			</tr>
+		@endforeach
+		</table>
 	@endif
 @stop

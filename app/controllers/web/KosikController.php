@@ -299,7 +299,7 @@ class KosikController extends BaseController
                 'sid'                  => $this->sid,
                 "remote_addr"          => Request::getClientIp(),
                 "netbios"              => gethostbyaddr(Request::getClientIp()),
-                "browser"              => (isset($_SERVER['HTTP_USER_AGENT']) ? substr(strip_tags($_SERVER['HTTP_USER_AGENT']), 0, 510) : NULL),
+                "http_user_agent"      => (isset($_SERVER['HTTP_USER_AGENT']) ? substr(strip_tags($_SERVER['HTTP_USER_AGENT']), 0, 510) : NULL),
                 'products_total_price' => $products_total_price,
                 'delivery_price'       => 0
             ]);

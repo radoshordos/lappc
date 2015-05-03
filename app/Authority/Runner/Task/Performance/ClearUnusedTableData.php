@@ -1,6 +1,7 @@
 <?php namespace Authority\Runner\Task\Performance;
 
 use Authority\Eloquent\Dev;
+use Authority\Eloquent\RecordVisitorsHit;
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 use Authority\Eloquent\AkceAvailability;
@@ -24,6 +25,7 @@ class ClearUnusedTableData extends TaskMessage implements iRun
         $this->clearProdDifference();
         $this->clearProdWarranty();
         $this->clearSyncCsvTemplate();
+        $this->clearClearOldStats();
         $this->clearInfoDev();
     }
 
@@ -94,7 +96,7 @@ class ClearUnusedTableData extends TaskMessage implements iRun
     {
         $row = Dev::distinct()->select(['dev.id AS dev_id', 'dev.name'])
             ->leftJoin('prod', 'dev.id', '=', 'prod.dev_id')
-            ->where('dev.id','>','1')
+            ->where('dev.id', '>', '1')
             ->whereNull('prod.id')
             ->orderBy('name')
             ->get();
@@ -137,5 +139,12 @@ class ClearUnusedTableData extends TaskMessage implements iRun
             }
         }
         $this->addMessage("Odstraněno nevyužitých CSV šablon : <b>" . $count . "</b>");
+    }
+
+
+    function clearClearOldStats()
+    {
+        $count = RecordVisitorsHit::where('created_int', '<', intval(strtotime("now") - (90 * 24 * 60 * 60)))->delete();
+        $this->addMessage("Odstraněno statistik starších než 90 dní : <b>" . $count . "</b>");
     }
 }
