@@ -11,8 +11,6 @@ class SyncVgarden extends AbstractSync implements iSync
     public function __construct($table_cron)
     {
         parent::__construct($table_cron);
-        $this->remotelyPrepareSynchronize();
-        $this->runSynchronizeData();
     }
 
     public function getFile()

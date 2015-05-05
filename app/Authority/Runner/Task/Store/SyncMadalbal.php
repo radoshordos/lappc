@@ -11,6 +11,10 @@ class SyncMadalbal extends AbstractSync implements iSync
     public function __construct($table_cron)
     {
         parent::__construct($table_cron);
+    }
+
+    public function run()
+    {
         $this->curl = new MyuCurl(self::URL_FEED);
         $this->curl->setName("27634493/0");
         $this->curl->setPass("NAD276ph");
@@ -23,7 +27,7 @@ class SyncMadalbal extends AbstractSync implements iSync
     public function remotelyPrepareSynchronize()
     {
         $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), $this->curl->__tostring());
-        $down->runDownload(FALSE);
+        $down->runDownload(TRUE);
         $down->unzipDownload();
     }
 
@@ -66,4 +70,5 @@ class SyncMadalbal extends AbstractSync implements iSync
         $this->addMessage("Přečteno záznamů : <b>" . $all . "</b>");
         $this->addMessage("Zpracováno záznamů : <b>" . $suc . "</b>");
     }
+
 }

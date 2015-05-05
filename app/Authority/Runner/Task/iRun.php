@@ -1,7 +1,6 @@
 <?php namespace Authority\Runner\Task;
 
-interface iRun {
-
+interface iRun
+{
     public function run();
-
-} 
+}

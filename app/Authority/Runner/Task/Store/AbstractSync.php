@@ -10,6 +10,12 @@ class AbstractSync extends TaskAbstract
         parent::__construct($dbTable);
     }
 
+    public function run()
+    {
+        $this->remotelyPrepareSynchronize();
+        $this->runSynchronizeData();
+    }
+
     public function getFeedDirName()
     {
         return $this->getSyncUploadDirectory() . $this->getFile();

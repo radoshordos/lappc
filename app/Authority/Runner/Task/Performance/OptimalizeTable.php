@@ -14,7 +14,6 @@ class OptimalizeTable extends TaskMessage implements iRun
 	{
 		parent::__construct($db);
 		$this->pdo = DB::connection()->getPdo();
-		$this->run();
 	}
 
 	function itemDiscontinued()

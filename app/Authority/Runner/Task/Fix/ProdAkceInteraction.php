@@ -10,7 +10,6 @@ class ProdAkceInteraction extends TaskMessage implements iRun
     public function __construct($db)
     {
         parent::__construct($db);
-        $this->run();
     }
 
     public function run()

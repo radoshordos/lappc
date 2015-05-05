@@ -11,6 +11,7 @@ class Downloader
         $this->dir = $dir;
         $this->file = $file;
         $this->source = $source;
+
     }
 
     function runDownload($file_get_context = TRUE)
@@ -22,7 +23,7 @@ class Downloader
 
         if ($file_get_context == TRUE) {
             $context = stream_context_create($opts);
-            file_put_contents($this->dir . $this->file, trim(file_get_contents($this->source, FALSE, $context)));
+            file_put_contents($this->dir . $this->file, file_get_contents(trim($this->source), FALSE, $context));
         } else {
             file_get_contents($this->dir . $this->file, trim($this->source));
         }
@@ -31,8 +32,7 @@ class Downloader
     function unzipDownload()
     {
         $zip = new \ZipArchive();
-        $result = $zip->open($this->dir . $this->file);
-        if ($result === TRUE) {
+        if ($zip->open($this->dir . $this->file) === TRUE) {
             $zip->extractTo($this->dir);
             $zip->close();
             return TRUE;

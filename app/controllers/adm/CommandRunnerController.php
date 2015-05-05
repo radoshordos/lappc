@@ -57,6 +57,7 @@ class CommandRunnerController extends \BaseController
 			$time->start();
 
 			$cl = new $row->class($row);
+            $cl->run();
 
 			$row->last_run_manual = strtotime('now');
 			$row->save();

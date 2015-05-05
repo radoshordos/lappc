@@ -2,16 +2,12 @@
 
 Route::get('getdata', ['uses' => 'SearchDataController@ajax']);
 Route::get('ajajtree', ['uses' => 'TreeListController@ajajtree']);
+Route::get('autorunner', ['uses' => 'AutoRunnerServiceController@index']);
 
 Route::group(['prefix' => 'feed/{file}'], function () {
     Route::get('feed', ['as' => 'feed.index', 'uses' => 'FeedServiceController@index']);
 });
 
-Route::get('pdf', function()
-{
-    $pdf = PDF::loadView('errors.pdf', []);
-    return $pdf->stream();
-});
 
 Route::group(['prefix' => 'adm'], function () {
 
@@ -102,7 +98,7 @@ Route::group(['prefix' => 'adm'], function () {
     });
 
     Route::group(['prefix' => 'buy', 'before' => 'Sentry|inGroup:Simple'], function () {
-        Route::resource('order', 'BuyOrderController', ['only' => ['index','show']]);
+        Route::resource('order', 'BuyOrderController', ['only' => ['index', 'show']]);
         Route::resource('purchased', 'BuyPurchasedController', ['only' => ['index']]);
         Route::resource('maillist', 'MailListController', ['only' => ['index']]);
         Route::resource('coupon', 'CouponController', ['only' => ['index', 'create', 'store']]);
@@ -152,7 +148,6 @@ Route::match(['GET', 'POST'], '/{url01}', ['as' => 'web.url01', 'uses' => 'Url01
 Route::match(['GET', 'POST'], '/{url01}/{url02}', ['as' => 'web.url02', 'uses' => 'Url02Controller@show']);
 Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}', ['as' => 'web.url03', 'uses' => 'Url03Controller@show']);
 Route::match(['GET', 'POST'], '/{url01}/{url02}/{url03}/{url04}', ['as' => 'web.url04', 'uses' => 'Url04Controller@show']);
-
 
 
 Route::group(['prefix' => 'api'], function () {

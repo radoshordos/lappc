@@ -7,15 +7,13 @@ use Authority\Runner\Task\TaskMessage;
 
 class OnOldAkceTemplate extends TaskMessage implements iRun
 {
+    public function __construct($db)
+    {
+        parent::__construct($db);
+    }
 
-	public function __construct($db)
-	{
-		parent::__construct($db);
-		$this->run();
-	}
-
-	public function run()
-	{
+    public function run()
+    {
         $this->deleteOldActionProducts();
         $this->destroyEmptyActionTemplate();
     }
