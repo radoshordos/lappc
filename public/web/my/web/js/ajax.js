@@ -37,7 +37,23 @@ jQuery.extend(jQuery.colorbox.settings, {
     slideshowStop: "Zastavit slideshow"
 });
 
+$('#deliverycheck').click(function () {
+
+
+    if ($("#deliverycheck").is(':checked')) {
+        $("#delivery-address").hide().slideToggle("slow");
+    };
+
+});
+
+
+
 $(function () {
+
+
+
+
+
     $('#term').autocomplete({
         source: '/getdata',
         minLength: 2,

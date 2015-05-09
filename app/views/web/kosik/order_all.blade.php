@@ -1,3 +1,9 @@
+<script>
+
+
+</script>
+
+
 <fieldset>
 	<legend>Kontaktní­ informace - fakturační­ adresa</legend>
 	<div class="row">
@@ -65,52 +71,59 @@
 	</div>
 </fieldset>
 
+<input type="checkbox" name="deliverycheck" id="deliverycheck" value="0"/>Jiná dodací adresa <br/>
 
-<fieldset>
-	<legend>Dodací adresa (vyplňte jen v případě, že dodací adresa jiná než fakturační)</legend>
-	<div class="row">
-		<div class="small-12 large-16 large-centered columns">
-			<div class="row collapse prefix-radius">
-				<div class="small-4 large-6 columns">
-					{{ Form::label('d_fullname','Celé jméno / název:',['class' => 'prefix']) }}
+
+<div id="delivery-address">
+
+
+
+	<fieldset>
+		<legend>Dodací adresa (vyplňte jen v případě, že dodací adresa jiná než fakturační)</legend>
+		<div class="row">
+			<div class="small-12 large-16 large-centered columns">
+				<div class="row collapse prefix-radius">
+					<div class="small-4 large-6 columns">
+						{{ Form::label('d_fullname','Celé jméno / název:',['class' => 'prefix']) }}
+					</div>
+					<div class="small-14 large-12 columns">
+						{{ Form::text('d_fullname',$customer['d_fullname'],['id' => 'd_fullname','maxlength' => 128]) }}
+					</div>
 				</div>
-				<div class="small-14 large-12 columns">
-					{{ Form::text('d_fullname',$customer['d_fullname'],['id' => 'd_fullname','maxlength' => 128]) }}
+			</div>
+			<div class="small-12 large-16 large-centered columns">
+				<div class="row collapse prefix-radius">
+					<div class="small-4 large-6 columns">
+						{{ Form::label('d_street','Ulice a číslo.',['class' => 'prefix']) }}
+					</div>
+					<div class="small-14 large-12 columns">
+						{{ Form::text('d_street',$customer['d_street'],['id' => 'd_street','maxlength' => 128]) }}
+					</div>
+				</div>
+			</div>
+			<div class="small-12 large-16 large-centered columns">
+				<div class="row collapse prefix-radius">
+					<div class="small-4 large-6 columns">
+						{{ Form::label('d_city','Město',['class' => 'prefix']) }}
+					</div>
+					<div class="small-14 large-12 columns">
+						{{ Form::text('d_city',$customer['d_city'],['id' => 'd_city','maxlength' => 128]) }}
+					</div>
+				</div>
+			</div>
+			<div class="small-12 large-16 large-centered columns">
+				<div class="row collapse prefix-radius">
+					<div class="small-4 large-6 columns">
+						{{ Form::label('d_post_code','PSČ',['class' => 'prefix']) }}
+					</div>
+					<div class="small-14 large-12 columns">
+						{{ Form::text('d_post_code',$customer['d_post_code'],['id' => 'd_post_code','required' => 'required','maxlength' => 6]) }}
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="small-12 large-16 large-centered columns">
-			<div class="row collapse prefix-radius">
-				<div class="small-4 large-6 columns">
-					{{ Form::label('d_street','Ulice a číslo.',['class' => 'prefix']) }}
-				</div>
-				<div class="small-14 large-12 columns">
-					{{ Form::text('d_street',$customer['d_street'],['id' => 'd_street','maxlength' => 128]) }}
-				</div>
-			</div>
-		</div>
-		<div class="small-12 large-16 large-centered columns">
-			<div class="row collapse prefix-radius">
-				<div class="small-4 large-6 columns">
-					{{ Form::label('d_city','Město',['class' => 'prefix']) }}
-				</div>
-				<div class="small-14 large-12 columns">
-					{{ Form::text('d_city',$customer['d_city'],['id' => 'd_city','maxlength' => 128]) }}
-				</div>
-			</div>
-		</div>
-		<div class="small-12 large-16 large-centered columns">
-			<div class="row collapse prefix-radius">
-				<div class="small-4 large-6 columns">
-					{{ Form::label('d_post_code','PSČ',['class' => 'prefix']) }}
-				</div>
-				<div class="small-14 large-12 columns">
-					{{ Form::text('d_post_code',$customer['d_post_code'],['id' => 'd_post_code','required' => 'required','maxlength' => 6]) }}
-				</div>
-			</div>
-		</div>
-	</div>
-</fieldset>
+	</fieldset>
+</div>
 
 <fieldset>
 	<legend>Vzkaz pro prodejce, váš dotaz, přání atd.</legend>
