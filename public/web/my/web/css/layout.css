@@ -14,6 +14,15 @@ body {
     background-color: white;
 }
 
+/* HEADER */
+nav.top-bar {
+    width: 1000px
+}
+
+input#term {
+    font-size: .8em;
+    top:0;
+}
 
 /* My CLASS */
 
@@ -142,3 +151,6 @@ footer {
     top: 2px;
     white-space: nowrap;
     transform: rotate(30deg); }
+
+
+

@@ -1,128 +1,42 @@
 <header class="row">
-	<!--
-<div class="small-18 columns" style="background-color: #f5f5f5">
-	<img src="/web/img/logo/guru-naradi-200x80.gif">
-</div>
--->
-<div class="small-18 columns">
-	<nav class="top-bar" data-topbar>
+	<nav class="top-bar" data-topbar role="navigation">
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="#">Guru nářadí</a></h1>
+			</li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
 		<section class="top-bar-section">
 			<ul class="right">
 				<li class="has-dropdown">
 					<a href="#">Obchod</a>
 					<ul class="dropdown">
 						<li><a href="#">Test</a></li>
-						<li><a href="#">Nářadí Doležalova s.r.o.</a></li>
+						<li><a href="#">Nářadí Doležalová s.r.o.</a></li>
 					</ul>
 				</li>
-				<li><a href="#">Přihlásit se</a></li>
-				<ul class="right">
-					<!--                        <a href="/nakupni-kosik"><i class="fa fa-shopping-cart fa-lg"></i> Košík</a>
-												<ul class="dropdown">
-													<li><a href="#">First link in dropdown h fgh fgh fh fh f</a></li>
-													<li><a href="#">Active link inh dropdown</a></li>
-													<li>
-														<a><img src="/web/naradi/vrtaky-sekace/bity-sady/metabo-630454.jpg" alt="Metabo sada bitů a vrtáků IV" width="50" height="50"> fgh fh fh f</a>
-													</li>
-												</ul>
-					-->
-						</li>
-					</ul>
-				</ul>
-				<ul class="left">
-					<div class="large-4 small-4 columns">
-						<img src="/web/img/logo/guru-naradi-200x80.gif" />
-					</div>
-					<div class="has-form">
-						{{ Form::open(['url' => '/vyhledat-naradi', 'method' => 'GET', 'files' => TRUE]); }}
-						<div class="row collapse">
-							<div class="large-10 small-10 columns ui-widget">
-								{{ Form::input('search','term', $term,['size' => '42', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"]) }}
-							</div>
-							<div class="large-4 small-4 columns">
-								{{ Form::submit('Hledat', ['class' => 'success button expand']) }}
-							</div>
+				<li>
+					<a href="#">Přihlásit se</a>
+				</li>
+				<li style="padding: .1em .5em">
+					<a href="/nakupni-kosik" class="button success large"><i class="fa fa-shopping-cart fa-lg"></i> Košík</a>
+				</li>
+			</ul>
+			<ul class="left">
+				<li>
+					{{ Form::open(['url' => '/vyhledat-naradi', 'method' => 'GET', 'files' => TRUE]); }}
+					<div class="row collapse">
+						<div class="large-12 small-12 columns ui-widget">
+							{{ Form::input('search','term', $term,['size' => '40', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"]) }}
 						</div>
-						{{ Form::close() }}
+						<div class="large-5 small-5 columns">
+							{{ Form::submit('Hledat', ['class' => 'success button expand']) }}
+						</div>
 					</div>
-
-				</ul>
-			</section>
-		</nav>
-		@include('web.global.blocknav')
-	<!--
-	<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-		<li class="has-dropdown">
-			<a href="#" data-dropdown="hover1" data-options="is_hover:true; hover_timeout:0">Nářadí</a>
-
-			<div id="hover1" class="f-dropdown content" data-dropdown-content>
-				<div class="row">
-					<div class="small-18">Elektrické nářadí</div>
-				</div>
-				<div class="row">
-					<div class="small-18">Akumulátorové nářadí</div>
-				</div>
-				<div class="row">
-					<div class="small-18">Pneu nářadí</div>
-				</div>
-				<div class="row">
-					<div class="small-18">Ruční nářadí</div>
-				</div>
-				<div class="row">
-					<div class="small-18">Měřící technika gfdgg dg dfg fdg</div>
-				</div>
-			</div>
-		</li>
-		<li class="has-dropdown">
-			<a href="#" data-dropdown="hover2" data-options="is_hover:true; hover_timeout:500">Zahrada</a>
-
-			<div id="hover2" class="f-dropdown mega" data-dropdown-content>
-				<table role="grid">
-					<tr>
-						<td>Různé</td>
-						<td>Různé</td>
-					</tr>
-					<tr>
-						<td>Příslušenství</td>
-						<td>Příslušenství</td>
-					</tr>
-				</table>
-			</div>
-		</li>
-		<li class="has-dropdown">
-			<a href="#" data-dropdown="hover3" data-options="is_hover:true; hover_timeout:500">Stroje</a>
-
-			<div id="hover3" class="f-dropdown mega" data-dropdown-content>
-				<div class="row">
-					<div class="small-2 large-4 columns">TEST1</div>
-					<div class="small-4 large-4 columns">TEST2</div>
-					<div class="small-6 large-4 columns">TEST3</div>
-				</div>
-				<div class="row">
-					<div class="small-2 large-4 columns">TEST4</div>
-					<div class="small-4 large-4 columns">TEST5</div>
-					<div class="small-6 large-4 columns">TEST6</div>
-				</div>
-				<div class="row">
-					<div class="small-2 large-4 columns">TEST7</div>
-					<div class="small-4 large-4 columns">TEST8</div>
-					<div class="small-6 large-4 columns">TEST9</div>
-				</div>
-			</div>
-		</li>
-		<li class="has-dropdown">
-			<a href="#" data-dropdown="hover4" data-options="is_hover:true; hover_timeout:500">Příslušenství</a>
-
-			<div id="hover4" class="f-dropdown content" data-dropdown-content>
-				<div class="row">
-					<div class="small-18">Různé</div>
-				</div>
-				<div class="row">
-					<div class="small-18">Příslušenství</div>
-				</div>
-			</div>
-		</li>
-	</ul>
-		-->
-</div>
+					{{ Form::close() }}
+				</li>
+			</ul>
+		</section>
+	</nav>
+	@include('web.global.blocknav')
 </header>
