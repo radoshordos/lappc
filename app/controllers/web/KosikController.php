@@ -25,7 +25,7 @@ class KosikController extends BaseController
         $this->term = Input::get('term');
         $this->total_price_products = $this->getProductsTotalPrice();
         $this->view_tree_actual = ViewTree::where('tree_group_type', '=', 'buybox')->first();
-        $this->buy_order_db_items = BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
+        $this->buy_order_db_items = BuyOrderDbItems::where('sid', '=', $this->sid)->get();
     }
 
     public function GlobalArray()
@@ -259,7 +259,8 @@ class KosikController extends BaseController
             'buy_payment.name AS buy_payment_name',
             'buy_payment.price_payment AS buy_payment_price',
             'buy_transport.name AS buy_transport_name',
-            'buy_transport.price_transport AS buy_transport_price'])->join('buy_transport', 'buy_order_db_customer.delivery_id', '=', 'buy_transport.id')
+            'buy_transport.price_transport AS buy_transport_price'])
+            ->join('buy_transport', 'buy_order_db_customer.delivery_id', '=', 'buy_transport.id')
             ->join('buy_payment', 'buy_order_db_customer.payment_id', '=', 'buy_payment.id')
             ->where('sid', '=', $this->sid)
             ->first();
