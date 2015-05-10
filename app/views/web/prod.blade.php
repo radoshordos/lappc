@@ -22,7 +22,7 @@
 
 
 				</div>
-			</div>
+		</div>
 		</div>
 	</div>
 	@include('web.global.footer')
