@@ -13,9 +13,6 @@
 				<div class="columns">@include('web.kosik.order_all')</div>
 			</div>
 			<div class="row">
-				<div class="columns">@include('web.kosik.items_view')</div>
-			</div>
-			<div class="row">
 				<div class="large-9 columns">
 					<a href="/nakupni-kosik" class="button info">&lArr; Zpět k obsahu košíku</a>
 				</div>

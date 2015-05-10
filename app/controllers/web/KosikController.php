@@ -15,24 +15,29 @@ class KosikController extends BaseController
 
     private $sid;
     private $term;
-    private $products_total_price;
+    private $total_price_products;
     private $view_tree_actual;
+    private $buy_order_db_items;
 
     public function __construct()
     {
         $this->sid = Session::getId();
         $this->term = Input::get('term');
-        $this->products_total_price = $this->getProductsTotalPrice();
+        $this->total_price_products = $this->getProductsTotalPrice();
         $this->view_tree_actual = ViewTree::where('tree_group_type', '=', 'buybox')->first();
+        $this->buy_order_db_items = BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
     }
 
     public function GlobalArray()
     {
         return [
-            'namespace'        => self::KOSIKSPACE,
-            'sid'              => $this->sid,
-            'term'             => $this->term,
-            'view_tree_actual' => $this->view_tree_actual,
+            'namespace'            => self::KOSIKSPACE,
+            'sid'                  => $this->sid,
+            'term'                 => $this->term,
+            'view_tree_actual'     => $this->view_tree_actual,
+            'buy_order_db_items'   => $this->buy_order_db_items,
+            'total_price_products' => $this->total_price_products,
+            'total_price_order'    => $this->total_price_products
         ];
     }
 
@@ -50,32 +55,25 @@ class KosikController extends BaseController
             }
         }
 
-        // FLOAT == CORRECT
-        if ($this->products_total_price == 0) {
+        if ($this->total_price_products === 0.0) {
             return View::make('web.kosik_empty', $this->GlobalArray());
         }
 
         if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
             return View::make('web.kosik_krok2', array_merge($this->GlobalArray(), [
-                'krok'                 => 2,
-                'products_total_price' => $this->products_total_price,
-                'cena_celkem'          => 0, // Zero OK
-                'buy_order_db_items'   => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
-                'manipulation'         => $this->getPaymentTransportArray(),
-                'weight_sum'           => $this->getWeightSumProducts(),
-                'customer'             => $this->getCustomerArray()
+                'krok'         => 2,
+                'manipulation' => $this->getPaymentTransportArray(),
+                'weight_sum'   => $this->getWeightSumProducts(),
+                'customer'     => $this->getCustomerArray()
             ]));
         }
 
         if (Input::get('krok') == 'souhrn-objednavky') {
             return View::make('web.kosik_krok3', array_merge($this->GlobalArray(), [
-                'krok'                 => 3,
-                'products_total_price' => $this->products_total_price,
-                'cena_celkem'          => 0, // Zero OK,
-                'buy_order_db_items'   => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
-                'manipulation'         => $this->getPaymentTransportArray(),
-                'weight_sum'           => $this->getWeightSumProducts(),
-                'customer'             => $this->getCustomerArray()
+                'krok'         => 3,
+                'manipulation' => $this->getPaymentTransportArray(),
+                'weight_sum'   => $this->getWeightSumProducts(),
+                'customer'     => $this->getCustomerArray()
             ]));
         }
 
@@ -90,15 +88,12 @@ class KosikController extends BaseController
         $weight_sum = $this->getWeightSumProducts();
 
         return View::make('web.kosik_krok1', array_merge($this->GlobalArray(), [
-            'krok'                 => 1,
-            'products_total_price' => $this->products_total_price,
-            'buy_order_db_items'   => BuyOrderDbItems::where('sid', '=', $this->sid)->get(),
-            'item_new'             => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
-            'buy_transport'        => BuyTransport::where('active', '=', 1)->where('weight_start', '<', $weight_sum)->where('weight_end', '>=', $weight_sum)->get(),
-            'buy_payment'          => BuyPayment::where('active', '=', 1)->get(),
-            'cena_celkem'          => $this->products_total_price, // Zero OK
-            'customer'             => BuyOrderDbCustomer::select(["delivery_id", "payment_id"])->where('sid', '=', $this->sid)->first(),
-            'weight_sum'           => $weight_sum
+            'krok'          => 1,
+            'item_new'      => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
+            'buy_transport' => BuyTransport::where('active', '=', 1)->where('weight_start', '<', $weight_sum)->where('weight_end', '>=', $weight_sum)->get(),
+            'buy_payment'   => BuyPayment::where('active', '=', 1)->get(),
+            'customer'      => BuyOrderDbCustomer::select(["delivery_id", "payment_id"])->where('sid', '=', $this->sid)->first(),
+            'weight_sum'    => $weight_sum
         ]));
     }
 
@@ -106,7 +101,7 @@ class KosikController extends BaseController
     {
         $this->insertToBuy();
 
-        if ($this->products_total_price === 0) {
+        if ($this->total_price_products === 0) {
             return Redirect::action('KosikController@index');
         }
 
@@ -151,8 +146,10 @@ class KosikController extends BaseController
         if (!empty(Input::get('item_count'))) {
             foreach (Input::get('item_count') as $key => $val) {
                 $item = BuyOrderDbItems::where('id', '=', $key)->where('sid', '=', $this->sid)->first();
-                $item->item_count = intval($val);
-                $item->save();
+                if (!empty($item)) {
+                    $item->item_count = intval($val);
+                    $item->save();
+                }
             }
         }
 
@@ -229,7 +226,7 @@ class KosikController extends BaseController
             "remote_addr"          => Request::getClientIp(),
             "netbios"              => gethostbyaddr(Request::getClientIp()),
             "http_user_agent"      => isset($_SERVER['HTTP_USER_AGENT']) ? substr($_SERVER['HTTP_USER_AGENT'], 0, 510) : NULL,
-            'products_total_price' => $this->products_total_price,
+            'total_price_products' => $this->total_price_products,
             'delivery_price'       => 0
         ]);
 
@@ -242,9 +239,9 @@ class KosikController extends BaseController
 
     protected function getProductsTotalPrice()
     {
-        return doubleval(BuyOrderDbItems::select([\DB::raw("ROUND(SUM(item_price * item_count)) AS products_total_price")])
+        return doubleval(BuyOrderDbItems::select([\DB::raw("SUM(ROUND(item_price) * item_count) AS total_price_products")])
             ->where('sid', '=', $this->sid)
-            ->pluck('products_total_price'));
+            ->pluck('total_price_products'));
     }
 
     protected function getWeightSumProducts()

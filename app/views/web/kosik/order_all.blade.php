@@ -1,16 +1,10 @@
-<script>
-
-
-</script>
-
-
 <fieldset>
 	<legend>Kontaktní­ informace - fakturační­ adresa</legend>
 	<div class="row">
 		<div class="small-12 large-16 large-centered columns">
 			<div class="row collapse prefix-radius">
 				<div class="small-4 large-6 columns">
-					{{ Form::label('c_fullname','Celé jméno',['class' => 'prefix']) }}
+					{{ Form::label('c_fullname','Celé jméno / název firmy',['class' => 'prefix']) }}
 				</div>
 				<div class="small-14 large-12 columns">
 					{{ Form::text('c_fullname',$customer['c_fullname'],['id' => 'c_fullname','required' => 'required','maxlength' => 128]) }}
@@ -68,23 +62,47 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="small-12 large-16 large-centered columns" style="margin-top: 0.6em">
+			<div class="row collapse prefix-radius">
+				<div class="small-4 large-6 columns">
+					{{ Form::label('c_ic','IČO',['class' => 'prefix']) }}
+				</div>
+				<div class="small-14 large-12 columns">
+					{{ Form::text('c_ic',$customer['c_ic'],['id' => 'c_ic','maxlength' => 8]) }}
+				</div>
+			</div>
+		</div>
+
+		<div class="small-12 large-16 large-centered columns">
+			<div class="row collapse prefix-radius">
+				<div class="small-4 large-6 columns">
+					{{ Form::label('c_dic','DIČ',['class' => 'prefix']) }}
+				</div>
+				<div class="small-14 large-12 columns">
+					{{ Form::text('c_dic',$customer['c_dic'],['id' => 'c_dic','maxlength' => 16]) }}
+				</div>
+			</div>
+		</div>
 	</div>
 </fieldset>
 
-<input type="checkbox" name="deliverycheck" id="deliverycheck" value="0"/>Jiná dodací adresa <br/>
+<div id="delivery-blok">
+	<div class="row">
+		<div class="small-18 large-18">
+			<input type="checkbox" name="deliverycheck" id="deliverycheck" value="0"/>Jiná dodací adresa?<br/>
+		</div>
+	</div>
+</div>
 
-
-<div id="delivery-address">
-
-
-
+<div id="delivery-address" style="display: none">
 	<fieldset>
 		<legend>Dodací adresa (vyplňte jen v případě, že dodací adresa jiná než fakturační)</legend>
 		<div class="row">
 			<div class="small-12 large-16 large-centered columns">
 				<div class="row collapse prefix-radius">
 					<div class="small-4 large-6 columns">
-						{{ Form::label('d_fullname','Celé jméno / název:',['class' => 'prefix']) }}
+						{{ Form::label('d_fullname','Celé jméno / název firmy:',['class' => 'prefix']) }}
 					</div>
 					<div class="small-14 large-12 columns">
 						{{ Form::text('d_fullname',$customer['d_fullname'],['id' => 'd_fullname','maxlength' => 128]) }}

@@ -38,21 +38,19 @@ jQuery.extend(jQuery.colorbox.settings, {
 });
 
 $('#deliverycheck').click(function () {
-
-
     if ($("#deliverycheck").is(':checked')) {
-        $("#delivery-address").hide().slideToggle("slow");
-    };
-
+        $("#delivery-address").show("slow");
+    } else {
+        $("#delivery-address").hide("slow");
+        $("#d_fullname").val('');
+        $("#d_street").val('');
+        $("#d_city").val('');
+        $("#d_post_code").val('');
+    }
 });
 
 
-
 $(function () {
-
-
-
-
 
     $('#term').autocomplete({
         source: '/getdata',
