@@ -67,17 +67,17 @@ class KosikController extends BaseController
 
         if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
             return View::make('web.kosik_krok2', array_merge($this->GlobalArray(), [
-                'krok'         => 2,
-                'weight_sum'   => $this->getWeightSumProducts(),
-                'customer'     => $this->getCustomerArray()
+                'krok'       => 2,
+                'weight_sum' => $this->getWeightSumProducts(),
+                'customer'   => $this->getCustomerArray()
             ]));
         }
 
         if (Input::get('krok') == 'souhrn-objednavky') {
             return View::make('web.kosik_krok3', array_merge($this->GlobalArray(), [
-                'krok'         => 3,
-                'weight_sum'   => $this->getWeightSumProducts(),
-                'customer'     => $this->getCustomerArray()
+                'krok'       => 3,
+                'weight_sum' => $this->getWeightSumProducts(),
+                'customer'   => $this->getCustomerArray()
             ]));
         }
 
@@ -273,7 +273,11 @@ class KosikController extends BaseController
             ->where('sid', '=', $this->sid)
             ->first();
 
-        return $pta->toArray();
+        if (!empty($pta)) {
+            return $pta->toArray();
+        } else {
+            return [];
+        }
     }
 
     protected function getCustomerArray()

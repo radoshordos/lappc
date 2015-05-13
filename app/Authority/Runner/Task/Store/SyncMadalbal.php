@@ -7,6 +7,8 @@ class SyncMadalbal extends AbstractSync implements iSync
     const MIXTURE_DEV_ID = 1013;
     const DEV_NAME = 'madalbal';
     const URL_FEED = 'http://shop.madalbal.cz/katalog/feeds/products.xml';
+    const USER = "27634493/0";
+    const PASS = 'NAD276ph';
 
     public function __construct($table_cron)
     {
@@ -15,20 +17,24 @@ class SyncMadalbal extends AbstractSync implements iSync
 
     public function run()
     {
-        $this->curl = new MyuCurl(self::URL_FEED);
-        $this->curl->setName("27634493/0");
-        $this->curl->setPass("NAD276ph");
-        $this->curl->useAuth(TRUE);
-        $this->curl->createCurl();
         $this->remotelyPrepareSynchronize();
         $this->runSynchronizeData();
     }
 
     public function remotelyPrepareSynchronize()
     {
-        $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), $this->curl->__tostring());
-        $down->runDownload(TRUE);
-        $down->unzipDownload();
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, self::URL_FEED);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, self::USER . ":" . self::PASS);
+        $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $down = new Downloader($this->getSyncUploadDirectory(), $this->getFile(), $result);
+        $down->saveToFile();
     }
 
     public function getFile()

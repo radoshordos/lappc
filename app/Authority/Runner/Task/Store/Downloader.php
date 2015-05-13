@@ -25,8 +25,13 @@ class Downloader
             $context = stream_context_create($opts);
             file_put_contents($this->dir . $this->file, file_get_contents(trim($this->source), FALSE, $context));
         } else {
-            file_get_contents($this->dir . $this->file, trim($this->source));
+            file_get_contents($this->dir . $this->file, $this->source);
         }
+    }
+
+    public function saveToFile()
+    {
+        file_put_contents($this->dir . $this->file, $this->source);
     }
 
     function unzipDownload()
