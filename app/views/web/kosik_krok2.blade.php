@@ -3,7 +3,7 @@
 <div id="start">
 	@include('web.global.top')
 	<div id="buy" class="row">
-		<h1>Nákupní košík 2 je tu</h1>
+		<h1>Nákupní košík</h1>
 		{{ Form::open(['action' => 'KosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
 		<div class="large-18 large-centered columns">
 			<div class="row">
@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="columns">@include('web.kosik.order_all')</div>
 			</div>
-			<div class="row">
+			<div class="row stepping">
 				<div class="large-9 columns">
 					<a href="/nakupni-kosik" class="button info">&lArr; Zpět k obsahu košíku</a>
 				</div>

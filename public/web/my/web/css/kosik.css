@@ -4,7 +4,8 @@ h1 {
 }
 
 table#buy-table {
-    width: 100%;
+    margin: .5em 1.5em;
+    width: auto;
 }
 
 table#buy-table input {
@@ -36,20 +37,23 @@ table#buy-table a.delete-alert {
     font-weight: bold;
 }
 
+#buy fieldset {
+    margin: .5em 1.5em;
+}
+
+#buy .stepping {
+    margin: .5em 1.5em;
+}
+
 #buy input[type='radio'][disabled] + label {
     color: #d3d3d3;
     font-style: italic;
 }
 
-#buy #buy-flow a {
-    margin-top: .6em;
-    border: 3px double blue;
+#buy #buy-flow {
+    text-align: center;
+    margin: 1em 3em;
 }
-
-#buy #buy-flow a i {
-    color: #666;
-}
-
 
 div#delivery-blok {
     padding: 1em 2em;

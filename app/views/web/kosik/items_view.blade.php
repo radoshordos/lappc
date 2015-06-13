@@ -3,9 +3,9 @@
     <tr>
         <th colspan="2">Název produktu</th>
         <th scope="column">Dostupnost</th>
-        <th scope="column">Počet</th>
-        <th scope="column">Cena za kus</th>
-        <th scope="column">Cena celkem</th>
+        <th class="text-center" scope="column">Počet</th>
+        <th class="text-right" scope="column">Cena za kus</th>
+        <th class="text-right" scope="column">Cena celkem</th>
     </tr>
     </thead>
     <tbody>
@@ -14,17 +14,17 @@
         $vpa = (new \Authority\Mapper\ViewProdMapper)->fetchRow($bodi->items->viewProd);
         ?>
         <tr>
-            <td><img src="{{ $vpa->getProdImgNormalWithDir() }}" alt="{{ $vpa->getProdNameWithBonus() }}" width="70" height="70"></td>
-            <td style="min-width: 25em">
+            <td class="small-2"><img src="{{ $vpa->getProdImgNormalWithDir() }}" alt="{{ $vpa->getProdNameWithBonus() }}" width="70" height="70"></td>
+            <td class="small-8">
                 {{ $vpa->getProdNameWithBonus() }}
                 <p>
                     <small>Kód: {{ $bodi->items->code_prod }}</small>
                 </p>
             </td>
-            <td><span class="success label">Skladem > 6 ks</span></td>
-            <td>{{ $bodi->item_count }}</td>
-            <td class="text-right">{{ $vpa->priceFormatCurrencyWith() }}</td>
-            <td class="text-right">{{ $vpa->priceFormatCurrencyWith($bodi->item_count) }}</td>
+            <td class="small-2"><span class="success label">Skladem > 6 ks</span></td>
+            <td class="small-2 text-center">{{ $bodi->item_count }}</td>
+            <td class="small-2 text-right">{{ $vpa->priceFormatCurrencyWith() }}</td>
+            <td class="small-2 text-right">{{ $vpa->priceFormatCurrencyWith($bodi->item_count) }}</td>
         </tr>
     @endforeach
     </tbody>
