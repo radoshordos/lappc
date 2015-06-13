@@ -1,5 +1,6 @@
 <?php
 
+use Authority\Eloquent\BuyOrderDb;
 use Authority\Eloquent\BuyOrderDbCustomer;
 use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyPayment;
@@ -74,6 +75,8 @@ class KosikController extends BaseController
         }
 
         if (Input::get('krok') == 'souhrn-objednavky') {
+
+
             return View::make('web.kosik_krok3', array_merge($this->GlobalArray(), [
                 'krok'       => 3,
                 'weight_sum' => $this->getWeightSumProducts(),
@@ -234,7 +237,7 @@ class KosikController extends BaseController
             "remote_addr"          => Request::getClientIp(),
             "netbios"              => gethostbyaddr(Request::getClientIp()),
             "http_user_agent"      => isset($_SERVER['HTTP_USER_AGENT']) ? substr($_SERVER['HTTP_USER_AGENT'], 0, 510) : NULL,
-            'total_price_products' => $this->total_price_products,
+            'products_total_price' => $this->total_price_products,
             'delivery_price'       => 0
         ]);
 
@@ -276,7 +279,12 @@ class KosikController extends BaseController
         if (!empty($pta)) {
             return $pta->toArray();
         } else {
-            return [];
+            return [
+                'buy_payment_name'    => "",
+                'buy_payment_price'   => 0,
+                'buy_transport_name'  => "",
+                'buy_transport_price' => 0,
+            ];
         }
     }
 
