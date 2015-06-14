@@ -15,7 +15,7 @@
         ?>
         <tr>
             <td class="small-2"><img src="{{ $vpa->getProdImgNormalWithDir() }}" alt="{{ $vpa->getProdNameWithBonus() }}" width="70" height="70"></td>
-            <td class="small-8">
+            <td class="small-7">
                 {{ $vpa->getProdNameWithBonus() }}
                 <p>
                     <small>Kód: {{ $bodi->items->code_prod }}</small>
@@ -24,7 +24,7 @@
             <td class="small-2"><span class="success label">Skladem > 6 ks</span></td>
             <td class="small-2 text-center">{{ $bodi->item_count }}</td>
             <td class="small-2 text-right">{{ $vpa->priceFormatCurrencyWith() }}</td>
-            <td class="small-2 text-right">{{ $vpa->priceFormatCurrencyWith($bodi->item_count) }}</td>
+            <td class="small-3 text-right">{{ $vpa->priceFormatCurrencyWith($bodi->item_count) }}</td>
         </tr>
     @endforeach
     </tbody>

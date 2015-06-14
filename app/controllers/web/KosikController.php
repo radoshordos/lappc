@@ -24,6 +24,14 @@ class KosikController extends BaseController
     {
         $this->sid = Session::getId();
         $this->term = Input::get('term');
+
+        if (Input::has('delete-buy-item')) {
+            $bodi = BuyOrderDbItems::where('id', '=', intval(Input::get('delete-buy-item')))->where('sid', '=', $this->sid)->first();
+            if (!empty($bodi) && $bodi->sid === $this->sid) {
+                BuyOrderDbItems::destroy(Input::get('delete-buy-item'));
+            }
+        }
+
         $this->total_price_products = $this->getProductsTotalPrice();
         $this->view_tree_actual = ViewTree::where('tree_group_type', '=', 'buybox')->first();
         $this->buy_order_db_items = BuyOrderDbItems::where('sid', '=', $this->sid)->get();
@@ -55,13 +63,6 @@ class KosikController extends BaseController
 
     public function index()
     {
-        if (Input::has('delete-buy-item')) {
-            $bodi = BuyOrderDbItems::where('id', '=', intval(Input::get('delete-buy-item')))->where('sid', '=', $this->sid)->first();
-            if (!empty($bodi) && $bodi->sid === $this->sid) {
-                BuyOrderDbItems::destroy(Input::get('delete-buy-item'));
-            }
-        }
-
         if ($this->total_price_products === 0.0) {
             return View::make('web.kosik_empty', $this->GlobalArray());
         }
@@ -75,8 +76,6 @@ class KosikController extends BaseController
         }
 
         if (Input::get('krok') == 'souhrn-objednavky') {
-
-
             return View::make('web.kosik_krok3', array_merge($this->GlobalArray(), [
                 'krok'       => 3,
                 'weight_sum' => $this->getWeightSumProducts(),
@@ -85,10 +84,8 @@ class KosikController extends BaseController
         }
 
         if (Input::get('krok') == 'dokonceni-objednavky') {
-
             Session::regenerateToken();
             Session::regenerate(TRUE);
-
             return View::make('web.kosik_complete', $this->GlobalArray());
         }
 
@@ -154,7 +151,7 @@ class KosikController extends BaseController
 
     protected function stepContact(array $step)
     {
-        if (!empty(Input::get('item_count'))) {
+        if (is_array(Input::get('item_count'))) {
             foreach (Input::get('item_count') as $key => $val) {
                 $item = BuyOrderDbItems::where('id', '=', $key)->where('sid', '=', $this->sid)->first();
                 if (!empty($item)) {

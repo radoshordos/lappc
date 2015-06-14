@@ -6,7 +6,7 @@
         <th class="text-center" scope="column">Počet</th>
         <th class="text-right" scope="column">Cena za kus</th>
         <th class="text-right" scope="column">Cena celkem</th>
-        <th><i class="fa fa-times"></i></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -18,7 +18,6 @@
             <td class="small-2"><img src="{{ $vpa->getProdImgNormalWithDir() }}" alt="{{ $vpa->getProdNameWithBonus() }}" width="70" height="70"></td>
             <td class="small-7">
                 <a href="{{ $vpa->getProdUrl(); }}">{{ $vpa->getProdNameWithBonus() }}</a>
-
                 <p>
                     <small>Kód: {{ $bodi->items->code_prod }}</small>
                 </p>
