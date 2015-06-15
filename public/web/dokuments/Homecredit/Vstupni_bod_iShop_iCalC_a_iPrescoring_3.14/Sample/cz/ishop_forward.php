@@ -21,23 +21,20 @@ $shop_code = '0999';
 $order_code = substr('1224589654', 0, 10);
 $goods_price = '11678,80';
 $client_name = substr('Tomaš', 0, 30);
-$client_surname = substr('Mate��dou�ka', 0, 30);
-$goods_name = substr('Lednice na spl�tky', 0, 60);
+$client_surname = substr('Mateřídouška', 0, 30);
+$goods_name = substr('Lednice na splátky', 0, 60);
 $goods_producer = substr('ArdoBeko', 0, 50);
 $request_time = date('d.m.Y-H:i:s');
 $secret_code = 'w1vsg,tu7q';
 
 # plain text pro kontrolni hash
-$plain_text = $shop_code . $order_code . $goods_price . $client_name .
-    $client_surname . $goods_name . $goods_producer . $request_time .
-    $secret_code;
+$plain_text = $shop_code . $order_code . $goods_price . $client_name . $client_surname . $goods_name . $goods_producer . $request_time . $secret_code;
 
 # hash
 $checksum = md5($plain_text);
 
 # vstupni bod aplikace Home Credit - i-Shop
 $ishop_entry_point = 'https://i-shop-train.homecredit.net/ishop/entry.do';
-# url pro navrat
 $our_ishop_home = 'https://guru-naradi.cz';
 
 # nepovinne udaje

@@ -17,9 +17,6 @@
 #
 ##############################################################################
 
-$source_encoding = 'windows-1250';
-$server_encoding = 'utf-8';
-
 # povinne udaje pro vstupni bod
 $shop_code = '0999';
 $goods_price = '10000';
@@ -35,13 +32,10 @@ $checksum = md5($plain_text);
 # vstupni bod aplikace Home Credit - i-Shop
 $ishop_entry_point = 'https://i-calc-train.homecredit.net/icalc/entry.do';
 
-
 # vstupni bod aplikace i-Shop se vsemi parametry
-$url = $ishop_entry_point .
-    '?shop=' . $shop_code .
-    '&o_price=' . $goods_price .
-    '&time_request=' . $request_time .
-    '&sh=' . $checksum;
+$url = $ishop_entry_point . '?shop=' . $shop_code . '&o_price=' . $goods_price . '&time_request=' . $request_time . '&sh=' . $checksum;
 
 # misto redirectu je mozne realizovat pripojeni pres html formular
 header('Location: ' . $url);
+
+
