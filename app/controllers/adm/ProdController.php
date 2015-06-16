@@ -30,7 +30,7 @@ class ProdController extends \BaseController
     ];
 
     protected $items_input_fields = [
-        'visible', 'diff_val1_id', 'diff_val2_id', 'code_prod', 'code_ean', 'availability_id'
+        'item_id', 'item_visible', 'diff_val1_id', 'diff_val2_id', 'code_prod', 'code_ean', 'availability_id'
     ];
 
     function __construct(Prod $prod, ViewProd $view, Items $items)
@@ -126,19 +126,19 @@ class ProdController extends \BaseController
         }
 
         return View::make('adm.product.prod.create', [
-            'input' => $input,
-            'cpm' => $cpm,
-            'select_tree' => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all AND tree_group_id BETWEEN 20 AND 39", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], TRUE),
-            'select_dev' => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], TRUE),
-            'select_warranty' => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
-            'select_dph' => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
-            'select_forex' => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
-            'select_mode' => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1 AND id < 4", ['id' => '->name']),
-            'select_sale' => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
-            'select_difference' => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+            'input'               => $input,
+            'cpm'                 => $cpm,
+            'select_tree'         => SB::option("SELECT tree_id,tree_name,tree_absolute FROM view_tree WHERE tree_subdir_all = tree_dir_all AND tree_group_id BETWEEN 20 AND 39", ['tree_id' => '[->tree_id] - [->tree_absolute] - ->tree_name'], TRUE),
+            'select_dev'          => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name'], TRUE),
+            'select_warranty'     => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
+            'select_dph'          => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
+            'select_forex'        => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
+            'select_mode'         => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1 AND id < 4", ['id' => '->name']),
+            'select_sale'         => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
+            'select_difference'   => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
             'select_availability' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
-            'select_media_var' => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
-            'select_grab' => SB::option("SELECT id,name FROM grab_profile WHERE active = 1", ['id' => '->name'], TRUE)
+            'select_media_var'    => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
+            'select_grab'         => SB::option("SELECT id,name FROM grab_profile WHERE active = 1", ['id' => '->name'], TRUE)
         ]);
     }
 
@@ -152,8 +152,6 @@ class ProdController extends \BaseController
 
             $pinput['alias'] = SF::friendlyAlias($input['name']);
             $pinput['search_alias'] = SF::friendlySearch($input['name']);
-            $iinput['diff_val1_id'] = 1;
-            $iinput['diff_val2_id'] = 1;
 
             $vp = Validator::make($pinput, Prod::$rules);
             $vi = Validator::make($iinput, Items::$rules);
@@ -199,8 +197,8 @@ class ProdController extends \BaseController
                                 $prod_result->save();
                             } else {
                                 ProdPicture::create([
-                                    'prod_id' => $prod_result->id,
-                                    'img_big' => $img->getImgBig(),
+                                    'prod_id'    => $prod_result->id,
+                                    'img_big'    => $img->getImgBig(),
                                     'img_normal' => $img->getImgNormal()
                                 ]);
                             }
@@ -245,19 +243,19 @@ class ProdController extends \BaseController
             $db->where('prod_difference_id', '=', Input::get('select_diff'));
         }
 
-		return View::make('adm.product.prod.index', [
-            'view' => $db->paginate($input_limit),
-            'input_mixture_dev' => Input::has('select_mixture_dev') ? intval(Input::get('select_mixture_dev')) : NULL,
-            'input_tree' => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
-            'input_sort' => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
-            'input_diff' => Input::has('select_diff') ? intval(Input::get('select_diff')) : NULL,
-            'input_limit' => $input_limit,
-            'search_name' => Input::get('search_name'),
-            'select_tree' => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name'], TRUE),
+        return View::make('adm.product.prod.index', [
+            'view'               => $db->paginate($input_limit),
+            'input_mixture_dev'  => Input::has('select_mixture_dev') ? intval(Input::get('select_mixture_dev')) : NULL,
+            'input_tree'         => Input::has('select_tree') ? intval(Input::get('select_tree')) : NULL,
+            'input_sort'         => Input::has('select_sort') ? intval(Input::get('select_sort')) : 1,
+            'input_diff'         => Input::has('select_diff') ? intval(Input::get('select_diff')) : NULL,
+            'input_limit'        => $input_limit,
+            'search_name'        => Input::get('search_name'),
+            'select_tree'        => SB::option("SELECT * FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name'], TRUE),
             'select_mixture_dev' => SB::option("SELECT * FROM mixture_dev WHERE purpose = 'autosimple' OR purpose = 'devgroup' ORDER BY name", ['id' => '->name'], TRUE),
-			'select_diff' => SB::option("SELECT * FROM prod_difference ORDER BY id", ['id' => '[->id] - ->name'], TRUE)
-		]);
-	}
+            'select_diff'        => SB::option("SELECT * FROM prod_difference ORDER BY id", ['id' => '[->id] - ->name'], TRUE)
+        ]);
+    }
 
     public function edit($tree = 0, $prod = 0)
     {
@@ -280,8 +278,8 @@ class ProdController extends \BaseController
         if (!isset($row->tree_id)) {
 
             return View::make('adm.product.prod.edit', [
-                'list_tree' => $select_tree,
-                'list_prod' => [''] + $list_prod,
+                'list_tree'   => $select_tree,
+                'list_prod'   => [''] + $list_prod,
                 'choice_tree' => $tree,
                 'choice_prod' => $prod
             ])->with(['id' => $prod]);
@@ -309,27 +307,28 @@ class ProdController extends \BaseController
             }
 
             return View::make('adm.product.prod.edit', [
-                'list_tree' => $select_tree,
-                'list_prod' => $list_prod,
-                'choice_tree' => $tree,
-                'choice_prod' => $prod,
-                'prod' => $row,
-                'select_dev' => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
-                'select_tree' => SB::option("SELECT id,name,absolute FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
-                'select_warranty' => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
-                'select_dph' => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
-                'select_mode' => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1", ['id' => '->name']),
-                'select_forex' => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
-                'select_sale' => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
-                'select_difference' => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
-                'select_availability' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
+                'list_tree'                  => $select_tree,
+                'list_prod'                  => $list_prod,
+                'choice_tree'                => $tree,
+                'choice_prod'                => $prod,
+                'prod'                       => $row,
+                'select_dev'                 => SB::option("SELECT id,name FROM dev WHERE id > 1", ['id' => '[->id] - ->name']),
+                'select_tree'                => SB::option("SELECT id,name,absolute FROM tree WHERE deep > 0", ['id' => '[->id] - [->absolute] - ->name']),
+                'select_warranty'            => SB::option("SELECT id,name FROM prod_warranty", ['id' => '->name']),
+                'select_dph'                 => SB::option("SELECT id,name FROM dph WHERE visible = 1", ['id' => '->name']),
+                'select_mode'                => SB::option("SELECT id,name FROM prod_mode WHERE visible = 1", ['id' => '->name']),
+                'select_forex'               => SB::option("SELECT id,currency FROM forex WHERE active = 1", ['id' => '->currency']),
+                'select_sale'                => SB::option("SELECT * FROM prod_sale WHERE visible = 1", ['id' => '->desc']),
+                'select_difference'          => SB::option("SELECT id,name,count FROM prod_difference WHERE visible = 1", ['id' => '->name [->count]']),
+                'select_difference_values'   => SB::option("SELECT id,name FROM prod_difference_values", ['id' => '->name']),
+                'select_availability'        => SB::option("SELECT id,name FROM items_availability WHERE visible = 1 AND id > 1", ['id' => '->name']),
                 'select_availability_action' => SB::option("SELECT id,name FROM items_availability WHERE visible = 1", ['id' => '->name']),
-                'select_media_var' => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
-                'select_akce_template' => $select_akce_template,
-                'select_akce_sale' => SB::optionEloqent(AkceSale::select(['id', 'desc'])->where('visible', '=', '1')->orderBy('id')->get(), ['id' => '->desc'], FALSE),
-                'table_items' => $this->items->where('prod_id', '=', $prod)->get(),
-                'table_prod_picture' => ProdPicture::where('prod_id', '=', $prod)->orderBy('id')->get(),
-                'table_prod_description' => ProdDescription::where('prod_id', '=', $prod)->get()->toArray(),
+                'select_media_var'           => SB::option("SELECT id,name FROM media_variations WHERE type_id = 7", ['id' => '->name'], TRUE),
+                'select_akce_template'       => $select_akce_template,
+                'select_akce_sale'           => SB::optionEloqent(AkceSale::select(['id', 'desc'])->where('visible', '=', '1')->orderBy('id')->get(), ['id' => '->desc'], FALSE),
+                'table_items'                => $this->items->where('prod_id', '=', $prod)->get(),
+                'table_prod_picture'         => ProdPicture::where('prod_id', '=', $prod)->orderBy('id')->get(),
+                'table_prod_description'     => ProdDescription::where('prod_id', '=', $prod)->get()->toArray(),
                 'table_prod_description_set' => ProdDifferenceM2nSet::where('difference_id', '=', $row->difference_id)->get(),
             ])->with(['id' => $prod]);
         }
@@ -388,8 +387,8 @@ class ProdController extends \BaseController
                     $img = new ProdImage(Input::file('input-1a')->getPathname(), $row->tree->absolute, $row->name);
                     $img->createProdPictures(240, 240);
                     $aff = ProdPicture::create([
-                        'prod_id' => $row->id,
-                        'img_big' => $img->getImgBig(),
+                        'prod_id'    => $row->id,
+                        'img_big'    => $img->getImgBig(),
                         'img_normal' => $img->getImgNormal()
                     ]);
                     if ($aff) {
@@ -407,8 +406,8 @@ class ProdController extends \BaseController
                 $img = new ProdImage(Input::get('upload_url'), $row->tree->absolute, $row->name);
                 $img->createProdPictures(240, 240);
                 $aff = ProdPicture::create([
-                    'prod_id' => $row->id,
-                    'img_big' => $img->getImgBig(),
+                    'prod_id'    => $row->id,
+                    'img_big'    => $img->getImgBig(),
                     'img_normal' => $img->getImgNormal()
                 ]);
                 if ($aff) {
@@ -418,6 +417,17 @@ class ProdController extends \BaseController
                 Session::flash('error', $e->getMessage());
             }
             return Redirect::route('adm.product.prod.edit', [$tree, $prod, "#fotogalerie"]);
+        }
+
+        if (Input::has('button-submit-delete-item')) {
+            $ic = Input::get('item-checkbox');
+            if (!empty($ic)) {
+                foreach ($ic as $key => $val) {
+                    if ($val == 1) {
+                        Items::destroy($key);
+                    }
+                }
+            }
         }
 
         if (Input::has('button-submit-edit')) {
@@ -446,15 +456,13 @@ class ProdController extends \BaseController
                 }
             }
 
-            if (Input::has('code_ean')) {
+            if (Input::has('item_id')) {
                 $input_items = array_only($input, $this->items_input_fields);
-                foreach (array_keys(Input::get('code_ean')) as $key) {
+                foreach (Input::get('item_id') as $key) {
                     $items = Items::find($key);
-                    $items->visible = $input_items['visible'][$key];
-                    $items->diff_val1_id = isset($input_items['diff_val1_id'][$key]) ? $input_items['diff_val1_id'][$key] : 1;
-                    $items->diff_val2_id = isset($input_items['diff_val2_id'][$key]) ? $input_items['diff_val2_id'][$key] : 1;
-                    $items->code_prod = $input_items['code_prod'][$key];
-                    $items->code_ean = $input_items['code_ean'][$key];
+                    $items->visible = $input_items['item_visible'][$key];
+                    $items->code_prod = !empty($input_items['code_prod'][$key]) ? $input_items['code_prod'][$key] : NULL;
+                    $items->code_ean = !empty($input_items['code_ean'][$key]) ? $input_items['code_ean'][$key] : NULL;
                     $items->availability_id = $input_items['availability_id'][$key];
                     $items->save();
                 }
@@ -465,9 +473,9 @@ class ProdController extends \BaseController
                 ProdDescription::destroy(intval($ida1['data_id1']));
             } elseif (strlen($ida1['data_input1']) > 0 && intval($ida1['data_id1']) == 0) {
                 ProdDescription::create([
-                    "prod_id" => $prod,
+                    "prod_id"       => $prod,
                     "variations_id" => intval($ida1['data_title1']),
-                    "data" => $ida1['data_input1']
+                    "data"          => $ida1['data_input1']
                 ]);
             } elseif (isset($ida1['data_title1']) && isset($ida1['data_input1']) && strlen($ida1['data_input1']) > 0 && intval($ida1['data_title1']) > 0) {
                 $pd1 = ProdDescription::find(intval($ida1['data_id1']));
@@ -481,9 +489,9 @@ class ProdController extends \BaseController
                 ProdDescription::destroy(intval($ida2['data_id2']));
             } elseif (strlen($ida2['data_input2']) > 0 && intval($ida2['data_id2']) == 0) {
                 ProdDescription::create([
-                    "prod_id" => $prod,
+                    "prod_id"       => $prod,
                     "variations_id" => intval($ida2['data_title2']),
-                    "data" => $ida2['data_input2']
+                    "data"          => $ida2['data_input2']
                 ]);
             } elseif (isset($ida2['data_title2']) && isset($ida2['data_input2']) && strlen($ida2['data_input2']) > 0 && intval($ida2['data_title2']) > 0) {
                 $pd2 = ProdDescription::find(intval($ida2['data_id2']));
@@ -497,9 +505,9 @@ class ProdController extends \BaseController
                 ProdDescription::destroy(intval($ida3['data_id3']));
             } elseif (strlen($ida3['data_input3']) > 0 && intval($ida3['data_id3']) == 0) {
                 ProdDescription::create([
-                    "prod_id" => $prod,
+                    "prod_id"       => $prod,
                     "variations_id" => intval($ida3['data_title3']),
-                    "data" => $ida3['data_input3']
+                    "data"          => $ida3['data_input3']
                 ]);
             } elseif (isset($ida3['data_title3']) && isset($ida3['data_input3']) && strlen($ida3['data_input3']) > 0 && intval($ida3['data_title3']) > 0) {
                 $pd3 = ProdDescription::find(intval($ida3['data_id3']));
@@ -510,6 +518,7 @@ class ProdController extends \BaseController
         }
 
         if (Input::has('button-add-variation') && Input::has('variation')) {
+
             $i = 0;
             if (count(Input::get('variation')) == $row->prodDifference->count && count(Input::get('variation')) > 0) {
                 $variation = Input::get('variation');
@@ -523,13 +532,11 @@ class ProdController extends \BaseController
                         $count = Items::where('prod_id', '=', $row->id)->where('diff_val1_id', '=', $v1)->where('diff_val2_id', '=', 1)->count();
                         if ($count == 0) {
                             Items::create([
-                                'prod_id' => $row->id,
-                                'sale_id' => $row->dev->default_sale_prod_id,
+                                'prod_id'         => $row->id,
                                 'availability_id' => $row->dev->default_availability_id,
-                                'diff_val1_id' => $v1,
-                                'diff_val2_id' => 1,
-                                'created_at' => date("Y-m-d H:i:s", strtotime('now')),
-                                'updated_at' => date("Y-m-d H:i:s", strtotime('now'))
+                                'diff_val1_id'    => $v1,
+                                'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
+                                'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
                             ]);
                         }
                     }
@@ -540,13 +547,12 @@ class ProdController extends \BaseController
                             $count = Items::where('prod_id', '=', $row->id)->where('diff_val1_id', '=', $v1)->where('diff_val2_id', '=', 1)->count();
                             if ($count == 0) {
                                 Items::create([
-                                    'prod_id' => $row->id,
-                                    'sale_id' => $row->dev->default_sale_prod_id,
+                                    'prod_id'         => $row->id,
                                     'availability_id' => $row->dev->default_availability_id,
-                                    'diff_val1_id' => $v1,
-                                    'diff_val2_id' => $v2,
-                                    'created_at' => date("Y-m-d H:i:s", strtotime('now')),
-                                    'updated_at' => date("Y-m-d H:i:s", strtotime('now'))
+                                    'diff_val1_id'    => $v1,
+                                    'diff_val2_id'    => $v2,
+                                    'created_at'      => date("Y-m-d H:i:s", strtotime('now')),
+                                    'updated_at'      => date("Y-m-d H:i:s", strtotime('now'))
                                 ]);
                             }
                         }

@@ -25,7 +25,7 @@ Přidání nové skupiny zboží
 <div class="form-group">
     {{ Form::label('parent_id','Rodič #ID',['class'=> 'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        {{ Form::select('parent_id',$select_parent, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Výchozí dostupnost pro výrobce']) }}
+        {{ Form::select('parent_id',$select_parent, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Volba rodiče']) }}
     </div>
 </div>
 <div class="form-group">
@@ -47,7 +47,7 @@ Přidání nové skupiny zboží
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('relative','Reletivní cesta',['class'=> 'col-sm-2 control-label']) }}
+    {{ Form::label('relative','Relativní cesta',['class'=> 'col-sm-2 control-label']) }}
     <div class="col-sm-10">
         {{ Form::text('relative',NULL,['required' => 'required', 'maxlength' => '32', 'class'=> 'form-control', 'placeholder'=> 'Relativní cesta']) }}
     </div>
@@ -55,7 +55,7 @@ Přidání nové skupiny zboží
 
 <p class="text-center">
     {{ link_to_route('adm.pattern.tree.index','Zobrazit všechny skupiny',NULL, ['class' => 'btn btn-primary','role' => 'button']) }}
-    {{ Form::submit('Vložit nového výrobce', ['class' => 'btn btn-success']) }}
+    {{ Form::submit('Vložit novou skupinu', ['class' => 'btn btn-success']) }}
 </p>
 
 {{ Form::close() }}

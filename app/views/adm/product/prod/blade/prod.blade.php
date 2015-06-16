@@ -88,6 +88,7 @@
                     <div class="input-group-addon"><i class="fa fa-car fa-lg" title="Typ nákladu"></i></div>
                     <span class="btn-group">{{ Form::select('transport_atypical',['0' => 'Běžný rozměr', 1 => 'Atypický rozměr'], NULL, ['required' => 'required', 'class'=> 'form-control']) }}</span>
                     <span class="btn-group">{{ Form::input('number','transport_weight', round($prod['transport_weight'],2), ['required' => 'required', 'min'=>'0', 'max'=>'9999', 'step' => '0.1', 'class'=> 'form-control']) }}</span>
+
                     <div class="input-group-addon" title="Hmotnost produktu">kg</div>
                 </div>
             </div>
@@ -112,17 +113,17 @@
             <tbody>
             @foreach ($table_items as $item)
                 <tr>
-                    <td>{{ Form::select("visible[$item->id]", ['0' => 'NE', '1' => 'ANO'], $item->visible, ['class' => 'form-control']) }}</td>
+                    <td>{{ Form::hidden("item_id[$item->id]",$item->id).Form::select("item_visible[$item->id]", ['0' => 'NE', '1' => 'ANO'], $item->visible, ['class' => 'form-control']) }}</td>
                     @if ($prod->prodDifference->count > 0)
-                        <td>{{ Form::text("diff1[$item->id]", $item->diff1, ['class'=> 'form-control']) }}</td>
+                        <td>{{ Form::select("diff_val1_id[$item->id]",$select_difference_values,$item->diff_val1_id, ['class'=> 'form-control','disabled']) }}</td>
                     @endif
                     @if ($prod->prodDifference->count > 1)
-                        <td>{{ Form::text("diff2[$item->id]", $item->diff2, ['class'=> 'form-control']) }}</td>
+                        <td>{{ Form::select("diff_val2_id[$item->id]",$select_difference_values,$item->diff_val2_id, ['class'=> 'form-control','disabled']) }}</td>
                     @endif
                     <td>{{ Form::text("code_prod[$item->id]", $item->code_prod, ['class'=> 'form-control']) }}</td>
                     <td>{{ Form::text("code_ean[$item->id]", $item->code_ean, ['class'=> 'form-control']) }}</td>
                     <td>{{ Form::select("availability_id[$item->id]", $select_availability, $item->availability_id, ['class' => 'form-control']) }}</td>
-                    <td>{{ Form::checkbox('item[$item->id]') }}</td>
+                    <td>{{ Form::checkbox("item-checkbox[$item->id]") }}</td>
                 </tr>
             @endforeach
             </tbody>

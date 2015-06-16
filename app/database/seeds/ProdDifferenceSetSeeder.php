@@ -17,7 +17,8 @@ class ProdDifferenceSetSeeder extends Seeder
 
 		$prod2difference2set = [
 			['pds_id' => '1', 'pds_visible' => '1', 'pds_name' => '[A/N]', 'pds_sortby' => 'id'],
-			['pds_id' => '11', 'pds_visible' => '1', 'pds_name' => 'Velikost', 'pds_sortby' => 'id']
+			['pds_id' => '11', 'pds_visible' => '1', 'pds_name' => 'Velikost', 'pds_sortby' => 'id'],
+            ['pds_id' => '13', 'pds_visible' => '1', 'pds_name' => 'Barva', 'pds_sortby' => 'id'],
 		];
 
 		DB::table('prod_difference_set')->delete();

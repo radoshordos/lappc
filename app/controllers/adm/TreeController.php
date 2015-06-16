@@ -32,7 +32,7 @@ class TreeController extends \BaseController
             'trees'        => $tree,
             'input'        => $input,
             'search_desc'  => Input::get('search_desc'),
-            'select_group' => SB::option("SELECT * FROM tree_group WHERE grouptop_id = 20 AND for_prod = 1", ['id' => '[->id] - ->name'])
+            'select_group' => SB::option("SELECT * FROM tree_group WHERE id > 1 ORDER BY for_prod DESC, id", ['id' => '[->id] - ->name'])
         ]);
     }
 

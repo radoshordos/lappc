@@ -75,7 +75,7 @@
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="prod">
-                    {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form','files'=> true]) }}
+                    {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form','files'=> TRUE]) }}
                     @include('adm.product.prod.blade.prod')
                 </div>
                 <div role="tabpanel" class="tab-pane" id="source">
@@ -84,7 +84,9 @@
                 </div>
                 @if ($prod->difference_id > 1)
                     <div role="tabpanel" class="tab-pane" id="difference">
+                        {{ Form::model($prod, ['method'=>'PATCH','route' => ['adm.product.prod.update',$choice_tree, $choice_prod],'class'=>'form-horizontal','role'=>'form']) }}
                         @include('adm.product.prod.blade.difference')
+                        {{ Form::close() }}
                     </div>
                 @endif
                 <div role="tabpanel" class="tab-pane" id="fotogalerie">
