@@ -1,13 +1,4 @@
 <table id="buy-table">
-    <thead>
-    <tr>
-        <th colspan="2">Název produktu</th>
-        <th scope="column">Dostupnost</th>
-        <th class="text-center" scope="column">Počet</th>
-        <th class="text-right" scope="column">Cena za kus</th>
-        <th class="text-right" scope="column">Cena celkem</th>
-    </tr>
-    </thead>
     <tbody>
     @foreach($buy_order_db_items as $bodi)
         <?php
@@ -21,8 +12,6 @@
                     <small>Kód: {{ $bodi->items->code_prod }}</small>
                 </p>
             </td>
-            <td class="small-2"><span class="success label">Skladem > 6 ks</span></td>
-            <td class="small-2 text-center">{{ $bodi->item_count }}</td>
             <td class="small-2 text-right">{{ $vpa->priceFormatCurrencyWith() }}</td>
             <td class="small-3 text-right">{{ $vpa->priceFormatCurrencyWith($bodi->item_count) }}</td>
         </tr>
