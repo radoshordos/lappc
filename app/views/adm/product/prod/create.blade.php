@@ -22,14 +22,9 @@ Nový produkt
                 placeholder: "Výrobce",
                 allowClear: true
             });
-            $("#grab_profile").select2({
-                placeholder: "Filtrační šablona",
-                allowClear: true
-            });
+
             $("#warranty_id").select2({});
             $("#difference_id").select2({});
-            $("#sale_id").select2({});
-            $("#mode_id").select2({});
             $("#data_title1").select2({});
             $("#data_title2").select2({});
             $("#data_title3").select2({});

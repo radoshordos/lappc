@@ -8,7 +8,7 @@ class HyperzboziCz extends ShopAbstract
     public function feedRender()
     {
         $expiresAt = Carbon::now()->addMinutes(300);
-        if (\Cache::has(get_class())) {
+        if (\Cache::has(get_class()) && strlen(\Cache::get(get_class())) > 100) {
             return \Cache::get(get_class());
         } else {
             $this->out .= $this->startDocument();
