@@ -22,7 +22,7 @@
                     <td>{{ $row->bod_id.date('md',strtotime($row->bod_created_at))  }}</td>
                     <td>{{ Form::select('order_status_id',$buy_order_status,$row->bod_order_status_id,['required' => 'required','class'=> 'form-control']) }}</td>
                     <td>{{ $row->bod_created_at }}</td>
-                    <td>{{ $row->bodc_customer_fullname }}</td>
+                    <td>{{-- $row->bodc_customer_fullname --}}</td>
                     <td>{{ $row->pa_name }}</td>
 					<td><a href="{{ URL::route('adm.buy.order.show',[$row->bod_id,'design' => 'pdf']) }}"><i class="fa fa-file-pdf-o"></i></a></td>
 					<td><a href="{{ URL::route('adm.buy.order.show',[$row->bod_id,'design' => 'html']) }}"><i class="fa fa-street-view"></i></a></td>

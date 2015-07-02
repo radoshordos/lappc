@@ -4,17 +4,27 @@
         <div class="small-12 large-16 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 large-6 columns">
-                    {{ Form::label('c_fullname','Celé jméno / název firmy',['class' => 'prefix']) }}
+                    {{ Form::label('c_firstname','Jméno',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 large-12 columns">
-                    {{ Form::text('c_fullname',$customer['c_fullname'],['id' => 'c_fullname','required' => 'required','maxlength' => 128]) }}
+                    {{ Form::text('c_firstname',$customer['c_firstname'],['id' => 'c_firstname','required' => 'required','maxlength' => 128]) }}
                 </div>
             </div>
         </div>
         <div class="small-12 large-16 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 large-6 columns">
-                    {{ Form::label('c_street','Ulice a čp.',['class' => 'prefix']) }}
+                    {{ Form::label('c_lastname','Příjmení',['class' => 'prefix']) }}
+                </div>
+                <div class="small-14 large-12 columns">
+                    {{ Form::text('c_lastname',$customer['c_lastname'],['id' => 'c_lastname','required' => 'required','maxlength' => 128]) }}
+                </div>
+            </div>
+        </div>
+        <div class="small-12 large-16 large-centered columns">
+            <div class="row collapse prefix-radius">
+                <div class="small-4 large-6 columns">
+                    {{ Form::label('c_street','Ulice a číslo popisné',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 large-12 columns">
                     {{ Form::text('c_street',$customer['c_street'],['id' => 'c_street','required' => 'required','maxlength' => 128]) }}

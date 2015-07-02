@@ -5,7 +5,7 @@ use Authority\Eloquent\MixtureDev;
 use Authority\Eloquent\MixtureDevM2nDev;
 use Authority\Tools\SB;
 
-class StatsBuyOrderDevs extends \BaseController
+class StatsBuyOrderDevsController extends \BaseController
 {
     public function index()
     {

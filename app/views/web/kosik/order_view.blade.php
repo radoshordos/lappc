@@ -4,13 +4,24 @@
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">
-                    {{ Form::label('c_fullname','Celé jméno',['class' => 'prefix']) }}
+                    {{ Form::label('c_firstname','Jméno',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 columns">
-                    {{ Form::text('c_fullname',$customer['c_fullname'],['id' => 'c_fullname', 'readonly'=>'readonly', 'required' => 'required','maxlength' => 128]) }}
+                    {{ Form::text('c_firstname',$customer['c_firstname'],['id' => 'c_firstname', 'readonly'=>'readonly', 'required' => 'required','maxlength' => 128]) }}
                 </div>
             </div>
         </div>
+        <div class="small-12 large-centered columns">
+            <div class="row collapse prefix-radius">
+                <div class="small-4 columns">
+                    {{ Form::label('c_lastname','Příjmení',['class' => 'prefix']) }}
+                </div>
+                <div class="small-14 columns">
+                    {{ Form::text('c_lastname',$customer['c_lastname'],['id' => 'c_lastname', 'readonly'=>'readonly', 'required' => 'required','maxlength' => 128]) }}
+                </div>
+            </div>
+        </div>
+
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">

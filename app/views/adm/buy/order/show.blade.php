@@ -19,7 +19,7 @@
 		<tr>
 			<td>{{ $order->bod_id.date('md',strtotime($order->bod_created_at))  }}</td>
 			<td>{{ $order->bod_created_at }}</td>
-			<td>{{ $order->bodc_customer_fullname }}</td>
+			<td>{{-- $order->bodc_customer_fullname --}}</td>
 			<td>{{ $order->pa_name }}</td>
 		</tr>
 	</table>

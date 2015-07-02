@@ -14,6 +14,11 @@ class KosikController extends BaseController
     CONST SIFRA = 'VeRY_STRoN1G_SeECREET_PAS3WoRD:-]';
     CONST KOSIKSPACE = 'kosik';
 
+    CONST STEP1 = 'nakupni-kosik';
+    CONST STEP2 = 'doruceni-a-zpusoby-platby';
+    CONST STEP3 = 'kontaktni-informace';
+    CONST STEP4 = 'dokonceni-objednavky';
+
     private $sid;
     private $term;
     private $total_price_products;
@@ -63,11 +68,16 @@ class KosikController extends BaseController
 
     public function index()
     {
+
+        var_dump(Input::get('krok'));
+
         if ($this->total_price_products === 0.0) {
-            return View::make('web.kosik_empty', $this->GlobalArray());
+            return View::make('web.kosik_krok1', array_merge($this->GlobalArray(), [
+                'krok' => 1
+            ]));
         }
 
-        if (Input::get('krok') == 'zadani-kontaktnich-udaju') {
+        if (Input::get('krok') === self::STEP2) {
             return View::make('web.kosik_krok2', array_merge($this->GlobalArray(), [
                 'krok'       => 2,
                 'weight_sum' => $this->getWeightSumProducts(),
@@ -75,7 +85,7 @@ class KosikController extends BaseController
             ]));
         }
 
-        if (Input::get('krok') == 'souhrn-objednavky') {
+        if (Input::get('krok') === self::STEP3) {
             return View::make('web.kosik_krok3', array_merge($this->GlobalArray(), [
                 'krok'       => 3,
                 'weight_sum' => $this->getWeightSumProducts(),
@@ -83,7 +93,7 @@ class KosikController extends BaseController
             ]));
         }
 
-        if (Input::get('krok') == 'dokonceni-objednavky') {
+        if (Input::get('krok') === self::STEP4) {
             Session::regenerateToken();
             Session::regenerate(TRUE);
             return View::make('web.kosik_complete', $this->GlobalArray());
@@ -103,18 +113,19 @@ class KosikController extends BaseController
 
     public function store()
     {
-        $this->insertToBuy();
 
+
+        $this->insertToBuy();
         if ($this->total_price_products === 0) {
             return Redirect::action('KosikController@index');
         }
 
-        if (Input::has('zadej-kontakt')) {
-            return $this->stepContact(['krok' => 'zadani-kontaktnich-udaju']);
-        } else if (Input::has('zkontroluj-si-me')) {
-            return $this->stepSummary(['krok' => 'souhrn-objednavky']);
-        } else if (Input::has('kup-si-me')) {
-            return $this->stepComplete(['krok' => 'dokonceni-objednavky']);
+        if (Input::has(self::STEP2)) {
+            return $this->step2DeliveryPayment(['krok' => self::STEP2]);
+        } else if (Input::has(self::STEP3)) {
+            return $this->step3Contact(['krok' => self::STEP3]);
+        } else if (Input::has(self::STEP4)) {
+            return $this->step4Complete(['krok' => self::STEP4]);
         } else {
             return Redirect::action('KosikController@index');
         }
@@ -149,7 +160,8 @@ class KosikController extends BaseController
         }
     }
 
-    protected function stepContact(array $step)
+
+    protected function step1Buybox()
     {
         if (is_array(Input::get('item_count'))) {
             foreach (Input::get('item_count') as $key => $val) {
@@ -160,10 +172,14 @@ class KosikController extends BaseController
                 }
             }
         }
+    }
 
+    protected function step2DeliveryPayment(array $step)
+    {
+        /*
         $bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
         if (intval(Input::get('delivery_id')) == 0 || intval(Input::get('payment_id')) == 0) {
-            return Redirect::action('KosikController@index');
+            return Redirect::action('KosikController@index', $step);
         } elseif (empty($bodc)) {
             BuyOrderDbCustomer::create([
                 'sid'         => $this->sid,
@@ -175,26 +191,29 @@ class KosikController extends BaseController
             $bodc->payment_id = intval(Input::get('payment_id'));
             $bodc->save();
         }
+        */
         return Redirect::action('KosikController@index', $step);
     }
 
-    protected function stepSummary(array $step)
+    protected function step3Contact(array $step)
     {
         $bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
         if (empty($bodc)) {
             BuyOrderDbCustomer::create([
                 'sid'                => $this->sid,
-                'customer_fullname'  => \DB::raw("AES_ENCRYPT('" . Input::get('c_fullname') . "','" . self::SIFRA . "')"),
+                'customer_firstname' => \DB::raw("AES_ENCRYPT('" . Input::get('c_firstname') . "','" . self::SIFRA . "')"),
+                'customer_lastname'  => \DB::raw("AES_ENCRYPT('" . Input::get('c_lastname') . "','" . self::SIFRA . "')"),
                 'customer_phone'     => \DB::raw("AES_ENCRYPT('" . Input::get('c_phone') . "','" . self::SIFRA . "')"),
                 'customer_email'     => \DB::raw("AES_ENCRYPT('" . Input::get('c_email') . "','" . self::SIFRA . "')"),
                 'customer_street'    => \DB::raw("AES_ENCRYPT('" . Input::get('c_street') . "','" . self::SIFRA . "')"),
                 'customer_city'      => \DB::raw("AES_ENCRYPT('" . Input::get('c_city') . "','" . self::SIFRA . "')"),
                 'customer_post_code' => \DB::raw("AES_ENCRYPT('" . Input::get('c_post_code') . "','" . self::SIFRA . "')"),
                 'customer_state'     => \DB::raw("AES_ENCRYPT('" . Input::get('c_state') . "','" . self::SIFRA . "')"),
-                'customer_company'   => \DB::raw("AES_ENCRYPT('" . Input::get('c_company') . "','" . self::SIFRA . "')"),
-                'customer_ic'        => \DB::raw("AES_ENCRYPT('" . Input::get('c_ic') . "','" . self::SIFRA . "')"),
-                'customer_dic'       => \DB::raw("AES_ENCRYPT('" . Input::get('c_dic') . "','" . self::SIFRA . "')"),
-                'delivery_fullname'  => \DB::raw("AES_ENCRYPT('" . Input::get('d_fullname') . "','" . self::SIFRA . "')"),
+                'firm_company'       => \DB::raw("AES_ENCRYPT('" . Input::get('f_company') . "','" . self::SIFRA . "')"),
+                'firm_ico'           => \DB::raw("AES_ENCRYPT('" . Input::get('f_ico') . "','" . self::SIFRA . "')"),
+                'firm_dic'           => \DB::raw("AES_ENCRYPT('" . Input::get('f_dic') . "','" . self::SIFRA . "')"),
+                'delivery_firstname' => \DB::raw("AES_ENCRYPT('" . Input::get('d_firstname') . "','" . self::SIFRA . "')"),
+                'delivery_lastname'  => \DB::raw("AES_ENCRYPT('" . Input::get('d_lastname') . "','" . self::SIFRA . "')"),
                 'delivery_street'    => \DB::raw("AES_ENCRYPT('" . Input::get('d_street') . "','" . self::SIFRA . "')"),
                 'delivery_city'      => \DB::raw("AES_ENCRYPT('" . Input::get('d_city') . "','" . self::SIFRA . "')"),
                 'delivery_post_code' => \DB::raw("AES_ENCRYPT('" . Input::get('d_post_code') . "','" . self::SIFRA . "')"),
@@ -204,17 +223,19 @@ class KosikController extends BaseController
             ]);
         } else {
             $bodc->sid = $this->sid;
-            $bodc->customer_fullname = \DB::raw("AES_ENCRYPT('" . Input::get('c_fullname') . "','" . self::SIFRA . "')");
+            $bodc->customer_firstname = \DB::raw("AES_ENCRYPT('" . Input::get('c_firstname') . "','" . self::SIFRA . "')");
+            $bodc->customer_lastname = \DB::raw("AES_ENCRYPT('" . Input::get('c_lastname') . "','" . self::SIFRA . "')");
             $bodc->customer_phone = \DB::raw("AES_ENCRYPT('" . Input::get('c_phone') . "','" . self::SIFRA . "')");
             $bodc->customer_email = \DB::raw("AES_ENCRYPT('" . Input::get('c_email') . "','" . self::SIFRA . "')");
             $bodc->customer_street = \DB::raw("AES_ENCRYPT('" . Input::get('c_street') . "','" . self::SIFRA . "')");
             $bodc->customer_city = \DB::raw("AES_ENCRYPT('" . Input::get('c_city') . "','" . self::SIFRA . "')");
             $bodc->customer_post_code = \DB::raw("AES_ENCRYPT('" . Input::get('c_post_code') . "','" . self::SIFRA . "')");
             $bodc->customer_state = \DB::raw("AES_ENCRYPT('" . Input::get('c_state') . "','" . self::SIFRA . "')");
-            $bodc->customer_company = \DB::raw("AES_ENCRYPT('" . Input::get('c_company') . "','" . self::SIFRA . "')");
-            $bodc->customer_ic = \DB::raw("AES_ENCRYPT('" . Input::get('c_ic') . "','" . self::SIFRA . "')");
-            $bodc->customer_dic = \DB::raw("AES_ENCRYPT('" . Input::get('c_dic') . "','" . self::SIFRA . "')");
-            $bodc->delivery_fullname = \DB::raw("AES_ENCRYPT('" . Input::get('d_fullname') . "','" . self::SIFRA . "')");
+            $bodc->firm_company = \DB::raw("AES_ENCRYPT('" . Input::get('f_company') . "','" . self::SIFRA . "')");
+            $bodc->firm_ico = \DB::raw("AES_ENCRYPT('" . Input::get('f_ico') . "','" . self::SIFRA . "')");
+            $bodc->firm_dic = \DB::raw("AES_ENCRYPT('" . Input::get('f_dic') . "','" . self::SIFRA . "')");
+            $bodc->delivery_firstname = \DB::raw("AES_ENCRYPT('" . Input::get('d_firstname') . "','" . self::SIFRA . "')");
+            $bodc->delivery_lastname = \DB::raw("AES_ENCRYPT('" . Input::get('d_lastname') . "','" . self::SIFRA . "')");
             $bodc->delivery_street = \DB::raw("AES_ENCRYPT('" . Input::get('d_street') . "','" . self::SIFRA . "')");
             $bodc->delivery_city = \DB::raw("AES_ENCRYPT('" . Input::get('d_city') . "','" . self::SIFRA . "')");
             $bodc->delivery_post_code = \DB::raw("AES_ENCRYPT('" . Input::get('d_post_code') . "','" . self::SIFRA . "')");
@@ -226,7 +247,7 @@ class KosikController extends BaseController
         return Redirect::action('KosikController@index', $step);
     }
 
-    protected function stepComplete($step)
+    protected function step4Complete($step)
     {
         \DB::beginTransaction();
         $bod = BuyOrderDb::create([
@@ -291,17 +312,19 @@ class KosikController extends BaseController
             implode(',', [
                 "delivery_id",
                 "payment_id",
-                "AES_DECRYPT(customer_fullname,'" . self::SIFRA . "') AS c_fullname",
+                "AES_DECRYPT(customer_firstname,'" . self::SIFRA . "') AS c_firstname",
+                "AES_DECRYPT(customer_lastname,'" . self::SIFRA . "') AS c_lastname",
                 "AES_DECRYPT(customer_phone,'" . self::SIFRA . "') AS c_phone",
                 "AES_DECRYPT(customer_email,'" . self::SIFRA . "') AS c_email",
                 "AES_DECRYPT(customer_street,'" . self::SIFRA . "') AS c_street",
                 "AES_DECRYPT(customer_city,'" . self::SIFRA . "') AS c_city",
                 "AES_DECRYPT(customer_post_code,'" . self::SIFRA . "') AS c_post_code",
                 "AES_DECRYPT(customer_state,'" . self::SIFRA . "') AS c_state",
-                "AES_DECRYPT(customer_company,'" . self::SIFRA . "') AS c_company",
-                "AES_DECRYPT(customer_ic,'" . self::SIFRA . "') AS c_ic",
-                "AES_DECRYPT(customer_dic,'" . self::SIFRA . "') AS c_dic",
-                "AES_DECRYPT(delivery_fullname,'" . self::SIFRA . "') AS d_fullname",
+                "AES_DECRYPT(firm_company,'" . self::SIFRA . "') AS f_company",
+                "AES_DECRYPT(firm_ico,'" . self::SIFRA . "') AS f_ico",
+                "AES_DECRYPT(firm_dic,'" . self::SIFRA . "') AS f_dic",
+                "AES_DECRYPT(delivery_firstname,'" . self::SIFRA . "') AS d_firstname",
+                "AES_DECRYPT(delivery_lastname,'" . self::SIFRA . "') AS d_lastname",
                 "AES_DECRYPT(delivery_street,'" . self::SIFRA . "') AS d_street",
                 "AES_DECRYPT(delivery_city,'" . self::SIFRA . "') AS d_city",
                 "AES_DECRYPT(delivery_post_code,'" . self::SIFRA . "') AS d_post_code",
@@ -312,6 +335,6 @@ class KosikController extends BaseController
             ->where('sid', '=', $this->sid)
             ->first();
 
-        return $bodi->toArray();
+        return (!empty($bodi)) ? $bodi->toArray() : [];
     }
 }
