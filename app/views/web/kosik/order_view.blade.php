@@ -21,7 +21,6 @@
                 </div>
             </div>
         </div>
-
         <div class="small-12 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 columns">

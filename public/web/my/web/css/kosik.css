@@ -33,13 +33,23 @@ table#buy-table a.delete-alert {
     color: #ff0000;
 }
 
-#buy .button, #product .button {
-    font-weight: bold;
+#buy h3 {
+    font-size: 1.2em;
 }
+
+#buy #delivery,#buy #payment {
+    padding: 1.5em;
+}
+
 
 #buy fieldset {
     margin: .5em 1.5em;
 }
+
+#buy .button, #product .button {
+    font-weight: bold;
+}
+
 
 #buy .stepping {
     margin: .5em .5em;

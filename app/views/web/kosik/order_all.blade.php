@@ -76,10 +76,10 @@
         <div class="small-12 large-16 large-centered columns" style="margin-top: 0.6em">
             <div class="row collapse prefix-radius">
                 <div class="small-4 large-6 columns">
-                    {{ Form::label('c_ic','IČO',['class' => 'prefix']) }}
+                    {{ Form::label('f_ico','IČO',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 large-12 columns">
-                    {{ Form::text('c_ic',$customer['c_ic'],['id' => 'c_ic','maxlength' => 8]) }}
+                    {{ Form::text('f_ico',$customer['f_ico'],['id' => 'f_ico','maxlength' => 8]) }}
                 </div>
             </div>
         </div>
@@ -87,10 +87,10 @@
         <div class="small-12 large-16 large-centered columns">
             <div class="row collapse prefix-radius">
                 <div class="small-4 large-6 columns">
-                    {{ Form::label('c_dic','DIČ',['class' => 'prefix']) }}
+                    {{ Form::label('f_dic','DIČ',['class' => 'prefix']) }}
                 </div>
                 <div class="small-14 large-12 columns">
-                    {{ Form::text('c_dic',$customer['c_dic'],['id' => 'c_dic','maxlength' => 16]) }}
+                    {{ Form::text('f_dic',$customer['f_dic'],['id' => 'f_dic','maxlength' => 16]) }}
                 </div>
             </div>
         </div>
@@ -112,10 +112,20 @@
             <div class="small-12 large-16 large-centered columns">
                 <div class="row collapse prefix-radius">
                     <div class="small-4 large-6 columns">
-                        {{ Form::label('d_fullname','Celé jméno / název firmy:',['class' => 'prefix']) }}
+                        {{ Form::label('d_firstname','Jméno',['class' => 'prefix']) }}
                     </div>
                     <div class="small-14 large-12 columns">
-                        {{ Form::text('d_fullname',$customer['d_fullname'],['id' => 'd_fullname','maxlength' => 128]) }}
+                        {{ Form::text('d_firstname',$customer['d_firstname'],['id' => 'd_firstname','maxlength' => 128]) }}
+                    </div>
+                </div>
+            </div>
+            <div class="small-12 large-16 large-centered columns">
+                <div class="row collapse prefix-radius">
+                    <div class="small-4 large-6 columns">
+                        {{ Form::label('d_lastname','Příjmení',['class' => 'prefix']) }}
+                    </div>
+                    <div class="small-14 large-12 columns">
+                        {{ Form::text('d_lastname',$customer['d_lastname'],['id' => 'd_lastname','maxlength' => 128]) }}
                     </div>
                 </div>
             </div>

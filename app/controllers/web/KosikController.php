@@ -24,6 +24,7 @@ class KosikController extends BaseController
     private $total_price_products;
     private $view_tree_actual;
     private $buy_order_db_items;
+    private $weight_sum;
 
     public function __construct()
     {
@@ -37,6 +38,7 @@ class KosikController extends BaseController
             }
         }
 
+        $this->weight_sum = $this->getWeightSumProducts();
         $this->total_price_products = $this->getProductsTotalPrice();
         $this->view_tree_actual = ViewTree::where('tree_group_type', '=', 'buybox')->first();
         $this->buy_order_db_items = BuyOrderDbItems::where('sid', '=', $this->sid)->get();
@@ -51,6 +53,7 @@ class KosikController extends BaseController
             'sid'                  => $this->sid,
             'term'                 => $this->term,
             'view_tree_actual'     => $this->view_tree_actual,
+            'weight_sum'           => $this->weight_sum,
             'buy_order_db_items'   => $this->buy_order_db_items,
             'buy_payment_name'     => $manipulation['buy_payment_name'],
             'buy_payment_price'    => $manipulation['buy_payment_price'],
@@ -68,53 +71,36 @@ class KosikController extends BaseController
 
     public function index()
     {
-
-        var_dump(Input::get('krok'));
-
         if ($this->total_price_products === 0.0) {
             return View::make('web.kosik_krok1', array_merge($this->GlobalArray(), [
                 'krok' => 1
             ]));
-        }
-
-        if (Input::get('krok') === self::STEP2) {
+        } else if (Input::get('krok') === self::STEP2) {
             return View::make('web.kosik_krok2', array_merge($this->GlobalArray(), [
-                'krok'       => 2,
-                'weight_sum' => $this->getWeightSumProducts(),
-                'customer'   => $this->getCustomerArray()
+                'krok'          => 2,
+                'buy_transport' => BuyTransport::where('active', '=', 1)->where('weight_start', '<', $this->weight_sum)->where('weight_end', '>=', $this->weight_sum)->get(),
+                'buy_payment'   => BuyPayment::where('active', '=', 1)->get(),
+                'customer'      => BuyOrderDbCustomer::select(["delivery_id", "payment_id"])->where('sid', '=', $this->sid)->first(),
             ]));
-        }
-
-        if (Input::get('krok') === self::STEP3) {
+        } else if (Input::get('krok') === self::STEP3) {
             return View::make('web.kosik_krok3', array_merge($this->GlobalArray(), [
-                'krok'       => 3,
-                'weight_sum' => $this->getWeightSumProducts(),
-                'customer'   => $this->getCustomerArray()
+                'krok'     => 3,
+                'customer' => $this->getCustomerArray()
             ]));
-        }
-
-        if (Input::get('krok') === self::STEP4) {
+        } else if (Input::get('krok') === self::STEP4) {
             Session::regenerateToken();
             Session::regenerate(TRUE);
             return View::make('web.kosik_complete', $this->GlobalArray());
+        } else {
+            return View::make('web.kosik_krok1', array_merge($this->GlobalArray(), [
+                'krok'     => 1,
+                'item_new' => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
+            ]));
         }
-
-        $weight_sum = $this->getWeightSumProducts();
-
-        return View::make('web.kosik_krok1', array_merge($this->GlobalArray(), [
-            'krok'          => 1,
-            'item_new'      => BuyOrderDbItems::where('sid', '=', $this->sid)->orderBy('created_at', 'DESC')->first(),
-            'buy_transport' => BuyTransport::where('active', '=', 1)->where('weight_start', '<', $weight_sum)->where('weight_end', '>=', $weight_sum)->get(),
-            'buy_payment'   => BuyPayment::where('active', '=', 1)->get(),
-            'customer'      => BuyOrderDbCustomer::select(["delivery_id", "payment_id"])->where('sid', '=', $this->sid)->first(),
-            'weight_sum'    => $weight_sum
-        ]));
     }
 
     public function store()
     {
-
-
         $this->insertToBuy();
         if ($this->total_price_products === 0) {
             return Redirect::action('KosikController@index');
@@ -122,7 +108,9 @@ class KosikController extends BaseController
 
         if (Input::has(self::STEP2)) {
             return $this->step2DeliveryPayment(['krok' => self::STEP2]);
-        } else if (Input::has(self::STEP3)) {
+        } else if (Input::has(self::STEP3) && (intval(Input::get('delivery_id')) == 0 || intval(Input::get('payment_id')) == 0)) {
+            return $this->step2DeliveryPayment(['krok' => self::STEP2]);
+        } else if (Input::has(self::STEP3) && (intval(Input::get('delivery_id')) > 0 && intval(Input::get('payment_id')) > 0)) {
             return $this->step3Contact(['krok' => self::STEP3]);
         } else if (Input::has(self::STEP4)) {
             return $this->step4Complete(['krok' => self::STEP4]);
@@ -176,7 +164,8 @@ class KosikController extends BaseController
 
     protected function step2DeliveryPayment(array $step)
     {
-        /*
+
+
         $bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
         if (intval(Input::get('delivery_id')) == 0 || intval(Input::get('payment_id')) == 0) {
             return Redirect::action('KosikController@index', $step);
@@ -191,7 +180,6 @@ class KosikController extends BaseController
             $bodc->payment_id = intval(Input::get('payment_id'));
             $bodc->save();
         }
-        */
         return Redirect::action('KosikController@index', $step);
     }
 

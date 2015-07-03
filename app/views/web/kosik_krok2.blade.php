@@ -10,8 +10,11 @@
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <div class="row">
-                    @include('web.kosik.order_all')
+                <div class="row" id="delivery">
+                    @include('web.kosik.delivery')
+                </div>
+                <div class="row" id="payment">
+                    @include('web.kosik.payment')
                 </div>
                 <div class="row stepping">
                     <div class="large-9 columns">
