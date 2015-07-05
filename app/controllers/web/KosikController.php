@@ -22,6 +22,7 @@ class KosikController extends BaseController
     private $sid;
     private $term;
     private $total_price_products;
+
     private $view_tree_actual;
     private $buy_order_db_items;
     private $weight_sum;

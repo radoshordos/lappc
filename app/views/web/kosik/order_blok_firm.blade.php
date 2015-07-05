@@ -3,8 +3,7 @@
         <input type="checkbox" name="order-firm-check" id="order-firm-check" value="0"/>
         <label for="order-firm-check">Firemní údaje</label>
     </div>
-
-    <div id="order-firm-inputs" style="display: none">
+    <div id="order-firm-inputs" class="hide">
         <div class="row">
             <div class="large-18 columns">
                 <label>Firma

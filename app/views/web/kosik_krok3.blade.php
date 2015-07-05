@@ -9,23 +9,23 @@
             <div class="columns">@include('web.kosik.flow')</div>
         </div>
         <div class="row">
-            <div class="large-12 columns">
+            <div class="large-11 medium-9 columns">
                 <div class="row">
                     @include('web.kosik.order_all')
                 </div>
-                <div class="row stepping">
-                    <div class="large-9 columns">
-                        <a href="/nakupni-kosik?krok=doruceni-a-zpusoby-platby" class="button info">&lArr; Způsob doručení a platby</a>
-                    </div>
-                    <div class="large-9 columns text-right">
-                        {{ Form::submit('&rArr; Dokončit objednávku',['name'=> 'dokonceni-objednavky','class' => 'button success']); }}
-                    </div>
+            </div>
+            <div class="large-7 medium-9 columns">
+                <div class="row">
+                    @include('web.kosik.items_view3')
                 </div>
             </div>
-            <div class="large-6 columns">
-                <div class="row">
-                    @include('web.kosik.items_view2')
-                </div>
+        </div>
+        <div class="row stepping">
+            <div class="large-7 columns">
+                <a href="/nakupni-kosik?krok=doruceni-a-zpusoby-platby" class="button info">&lArr; Způsob doručení a platby</a>
+            </div>
+            <div class="large-11 columns">
+                {{ Form::submit('&rArr; Dokončit objednávku',['name'=> 'dokonceni-objednavky','class' => 'button success']); }}
             </div>
         </div>
         {{ Form::close() }}

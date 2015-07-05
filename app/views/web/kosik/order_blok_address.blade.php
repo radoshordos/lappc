@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="large-18 columns">
-            <label>Ulice a číslo popisné / evidenční
+            <label>Ulice a číslo popisné
                 {{ Form::text('c_street',$customer['c_street'],['id' => 'c_street','required' => 'required','maxlength' => 128]) }}
             </label>
         </div>
@@ -51,7 +51,7 @@
     <div class="row">
         <div class="large-18 columns">
             <label>E-mail
-                {{ Form::text('c_email',$customer['c_email'],['id' => 'c_email','required' => 'required','maxlength' => 128]) }}
+                {{ Form::email('c_email',$customer['c_email'],['id' => 'c_email','required' => 'required','maxlength' => 128]) }}
             </label>
         </div>
     </div>

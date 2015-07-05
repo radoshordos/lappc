@@ -1,7 +1,8 @@
-h1 {
+#buy h3 {
     font-size: 1.2em;
-    text-align: center;
 }
+
+
 
 table#buy-table {
     margin: .5em 1.5em;
@@ -33,23 +34,13 @@ table#buy-table a.delete-alert {
     color: #ff0000;
 }
 
-#buy h3 {
-    font-size: 1.2em;
-}
-
 #buy #delivery,#buy #payment {
     padding: 1.5em;
-}
-
-
-#buy fieldset {
-    margin: .5em 1.5em;
 }
 
 #buy .button, #product .button {
     font-weight: bold;
 }
-
 
 #buy .stepping {
     margin: .5em;
@@ -65,10 +56,16 @@ table#buy-table a.delete-alert {
     margin: 1em 3em;
 }
 
-div#delivery-blok {
-    padding: 1em 2em;
+
+/* ORDER */
+#buy #buy-order {
+    margin: 1.5em;
 }
 
-div#delivery-blok input {
-    margin: .2em;
+#buy #simple-buybox {
+    margin: 1.5em;
+}
+
+#buy #simple-buybox tbody td {
+    font-size: .75em;
 }

@@ -24,7 +24,7 @@
                     </div>
                 </div>
             @else
-                <p class="panel"  style="text-align: center">
+                <p class="panel" class="text-center">
                     <strong>Nákupní košík je prázdný</strong>
                 </p>
             @endif

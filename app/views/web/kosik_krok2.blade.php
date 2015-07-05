@@ -9,7 +9,7 @@
             <div class="columns">@include('web.kosik.flow')</div>
         </div>
         <div class="row">
-            <div class="large-12 columns">
+            <div class="large-11 columns">
                 <div class="row" id="delivery">
                     @include('web.kosik.delivery')
                 </div>
@@ -25,10 +25,8 @@
                     </div>
                 </div>
             </div>
-            <div class="large-6 columns">
-                <div class="row">
+            <div class="large-7 columns">
                     @include('web.kosik.items_view2')
-                </div>
             </div>
         </div>
         {{ Form::close() }}

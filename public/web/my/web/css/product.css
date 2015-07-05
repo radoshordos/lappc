@@ -41,7 +41,6 @@ div#product-image {
     margin: .2em 0;
 }
 
-
 /* DESC */
 
 div.desc-list {
@@ -66,7 +65,6 @@ div#price-panel p {
 div#price-panel strong {
     font-size: 1.4em;
 }
-
 
 table#transport td {
     text-align: center;

@@ -3,8 +3,7 @@
         <input type="checkbox" name="order-delivery-check" id="order-delivery-check" value="0"/>
         <label for="order-delivery-check">Jiná dodací adresa</label>
     </div>
-
-    <div id="order-delivery-inputs" style="display: none">
+    <div id="order-delivery-inputs" class="hide">
         <div class="row">
             <div class="large-18 columns">
                 <label>Jméno
@@ -23,7 +22,7 @@
 
         <div class="row">
             <div class="large-18 columns">
-                <label>Ulice a číslo popisné / evidenční
+                <label>Ulice a číslo popisné
                     {{ Form::text('d_street',$customer['d_street'],['id' => 'd_street','maxlength' => 128]) }}
                 </label>
             </div>

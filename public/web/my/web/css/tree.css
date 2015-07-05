@@ -7,7 +7,7 @@
 }
 
 #dev-container {
-    padding:0  0 9px 0;
+    padding: 0 0 9px 0;
 }
 
 #dev-container dt {
@@ -16,7 +16,7 @@
 
 #dev-container dd a, #dev-container dt {
     display: block;
-    color:#666;
+    color: #666;
     width: 10em;
     text-align: left;
     padding: 2px 0;
@@ -25,7 +25,7 @@
 
 #dev-container a.active {
     color: #258FBD;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 /*////////////////////////////////////////////*/
@@ -41,22 +41,22 @@ div#prod-filter {
 /*////////////////////////////////////////////*/
 
 div#prod-sort li {
-    float:left;
-    margin:0 .1em;
+    float: left;
+    margin: 0 .1em;
     list-style-type: none;
     font-size: .9em;
 }
 
 div#prod-sort li a {
-    margin:0 .2em;
+    margin: 0 .2em;
 }
 
-#dev-container a:hover, div#prod-sort li a:hover, div#prod-filter a:hover label  {
+#dev-container a:hover, div#prod-sort li a:hover, div#prod-filter a:hover label {
     text-decoration: underline;
 }
 
 div#prod-sort a.active {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 /*////////////////////////////////////////////*/
@@ -71,9 +71,10 @@ div#prod-sort a.active {
 #prodlist h3 {
     font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
     text-align: center;
-    font-size:1em;
+    font-size: 1em;
     margin: 2px 5px 10px 5px;
 }
+
 li.prod {
     margin: 0px;
     padding: 0px;
@@ -131,7 +132,6 @@ li.th {
     font-weight: bolder;
 }
 
-
 /*////////////////////////////////////////////*/
 /*     #category-list                         */
 /*////////////////////////////////////////////*/
@@ -161,5 +161,3 @@ li.th {
 #category-list li:hover h3 {
     text-decoration: underline;
 }
-
-
