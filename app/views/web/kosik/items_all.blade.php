@@ -37,8 +37,8 @@
         <td class="text-left" colspan="2">
             <small>Orientační hmotnost: {{ number_format(round($weight_sum,1), 2, ',', ' ') }} kg</small>
         </td>
-        <td class="text-right" colspan="3">Celkem cena s DPH</td>
-        <td class="text-right" colspan="2"><strong>{{ number_format($total_price_products, 0, ',', ' ')}} Kč</strong></td>
+        <td class="text-right" colspan="4">Celkem cena s DPH <strong>{{ number_format($total_price_products, 0, ',', ' ')}} Kč</strong></td>
+        <td></td>
     </tr>
     </tfoot>
 </table>

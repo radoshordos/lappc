@@ -101,12 +101,17 @@ class KosikController extends BaseController
 
     public function store()
     {
+
+
         $this->insertToBuy();
         if ($this->total_price_products === 0) {
             return Redirect::action('KosikController@index');
         }
 
         if (Input::has(self::STEP2)) {
+
+
+
             return $this->step2DeliveryPayment(['krok' => self::STEP2]);
         } else if (Input::has(self::STEP3) && (intval(Input::get('delivery_id')) == 0 || intval(Input::get('payment_id')) == 0)) {
             return $this->step2DeliveryPayment(['krok' => self::STEP2]);
@@ -151,6 +156,11 @@ class KosikController extends BaseController
 
     protected function step1Buybox()
     {
+
+    }
+
+    protected function step2DeliveryPayment(array $step)
+    {
         if (is_array(Input::get('item_count'))) {
             foreach (Input::get('item_count') as $key => $val) {
                 $item = BuyOrderDbItems::where('id', '=', $key)->where('sid', '=', $this->sid)->first();
@@ -160,16 +170,13 @@ class KosikController extends BaseController
                 }
             }
         }
+        return Redirect::action('KosikController@index', $step);
     }
 
-    protected function step2DeliveryPayment(array $step)
+    protected function step3Contact(array $step)
     {
-
-
         $bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
-        if (intval(Input::get('delivery_id')) == 0 || intval(Input::get('payment_id')) == 0) {
-            return Redirect::action('KosikController@index', $step);
-        } elseif (empty($bodc)) {
+        if (empty($bodc)) {
             BuyOrderDbCustomer::create([
                 'sid'         => $this->sid,
                 'delivery_id' => intval(Input::get('delivery_id')),
@@ -183,7 +190,7 @@ class KosikController extends BaseController
         return Redirect::action('KosikController@index', $step);
     }
 
-    protected function step3Contact(array $step)
+    protected function step4Complete($step)
     {
         $bodc = BuyOrderDbCustomer::where('sid', '=', $this->sid)->first();
         if (empty($bodc)) {
@@ -232,11 +239,7 @@ class KosikController extends BaseController
             $bodc->note = \DB::raw("AES_ENCRYPT('" . Input::get('note') . "','" . self::SIFRA . "')");
             $bodc->save();
         }
-        return Redirect::action('KosikController@index', $step);
-    }
 
-    protected function step4Complete($step)
-    {
         \DB::beginTransaction();
         $bod = BuyOrderDb::create([
             'sid'                  => $this->sid,

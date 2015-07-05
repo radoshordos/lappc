@@ -37,12 +37,25 @@ jQuery.extend(jQuery.colorbox.settings, {
     slideshowStop: "Zastavit slideshow"
 });
 
-$('#deliverycheck').click(function () {
-    if ($("#deliverycheck").is(':checked')) {
-        $("#delivery-address").show("slow");
+
+$('#order-firm-check').click(function () {
+    if ($("#order-firm-check").is(':checked')) {
+        $("#order-firm-inputs").show("slow");
     } else {
-        $("#delivery-address").hide("slow");
-        $("#d_fullname").val('');
+        $("#order-firm-inputs").hide("slow");
+        $("#f_company").val('');
+        $("#f_ico").val('');
+        $("#f_dic").val('');
+    }
+});
+
+$('#order-delivery-check').click(function () {
+    if ($("#order-delivery-check").is(':checked')) {
+        $("#order-delivery-inputs").show("slow");
+    } else {
+        $("#order-delivery-inputs").hide("slow");
+        $("#d_firstname").val('');
+        $("#d_lastname").val('');
         $("#d_street").val('');
         $("#d_city").val('');
         $("#d_post_code").val('');

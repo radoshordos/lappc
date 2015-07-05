@@ -52,7 +52,7 @@ table#buy-table a.delete-alert {
 
 
 #buy .stepping {
-    margin: .5em .5em;
+    margin: .5em;
 }
 
 #buy input[type='radio'][disabled] + label {
