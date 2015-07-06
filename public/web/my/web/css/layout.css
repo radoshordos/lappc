@@ -29,6 +29,27 @@ input#term {
     top: 0;
 }
 
+/* SHOPTEXT */
+
+#shoptext {
+    margin: 1.5em;
+}
+#shoptext h2 {
+    font-size: 1.8em;
+}
+
+#shoptext h3 {
+    font-size: 1.4em;
+}
+
+#shoptext li {
+    font-size: .9em;
+}
+
+#shoptext p {
+    font-size: 1em;
+}
+
 /* My CLASS */
 
 .my-green {

@@ -8,7 +8,7 @@ class TreeText extends \Eloquent
 
     public static $rules = [
         'tree_id' => 'required|exists:tree,id',
-        'text'    => 'required|min:1|max:12000'
+        'text'    => 'required|min:1|max:18000'
     ];
 
     public function tree()

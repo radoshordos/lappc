@@ -6,10 +6,10 @@ use Authority\Tools\SB;
 
 class TreeTextController extends \BaseController
 {
-    public function index($id = 0)
+    public function index()
     {
         return View::make('adm.pattern.treetext.index', [
-            'list' => TreeText::get()
+            'list' => TreeText::orderBy('tree_id')->get()
         ]);
     }
 
@@ -25,8 +25,17 @@ class TreeTextController extends \BaseController
 
     public function edit($id)
     {
-        return View::make('adm.pattern.treetext.edit', [
+        $treetext = TreeText::find($id);
+        if (is_null($treetext)) {
+            return Redirect::route('adm.pattern.treetext.index');
+        }
 
+        return View::make('adm.pattern.treetext.edit', [
+            'treetext'      => $treetext,
+            'tree_for_text' => SB::optionEloqent(Tree::select(['tree.id', 'tree.name'])->whereBetween('group_id', [50, 59])
+                ->leftJoin('tree_text', 'tree.id', '=', 'tree_text.tree_id')
+                ->whereNotNull('text')
+                ->get(), ['id' => '[->id] - ->name'], FALSE)
         ]);
     }
 
@@ -46,6 +55,25 @@ class TreeTextController extends \BaseController
         } else {
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.treetext.create')->withInput()->withErrors($v);
+        }
+    }
+
+    public function update($id)
+    {
+        $input = array_except(Input::all(), '_method');
+        $v = Validator::make($input, TreeText::$rules);
+
+        if ($v->passes()) {
+            $media = TreeText::find($id);
+            try {
+                $media->update($input);
+            } catch (Exception $e) {
+                Session::flash('error', $e->getMessage());
+            }
+            return Redirect::route('adm.pattern.treetext.index');
+        } else {
+            Session::flash('error', implode('<br />', $v->errors()->all(':message')));
+            return Redirect::route('adm.pattern.treetext.edit', $id)->withInput()->withErrors($v);
         }
     }
 }

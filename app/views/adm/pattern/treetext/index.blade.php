@@ -22,6 +22,7 @@
                     <tr>
                         <th>#Skupina</th>
                         <th>Název</th>
+                        <th>Cesta</th>
                         <th><span class="glyphicon glyphicon-edit"></span></th>
                     </tr>
                     </thead>
@@ -30,6 +31,7 @@
                         <tr>
                             <td>{{ $row->tree_id }}</td>
                             <td>{{ $row->tree->name }}</td>
+                            <td>{{ $row->tree->absolute }}</td>
                             <td>{{ link_to_route('adm.pattern.treetext.edit','Edit',[$row->id],['class' => 'btn btn-info btn-xs']) }}</td>
                         </tr>
                     @endforeach

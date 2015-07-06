@@ -11,8 +11,10 @@
 				<li class="has-dropdown">
 					<a href="#">Obchod</a>
 					<ul class="dropdown">
-						<li><a href="#">Test</a></li>
 						<li><a href="#">Nářadí Doležalová s.r.o.</a></li>
+                        <li><a href="/kontakt">Kontakt</a></li>
+                        <li><a href="/nakup-na-splatky-home-credit">Splátky Home Credit</a></li>
+
 					</ul>
 				</li>
 				<li>

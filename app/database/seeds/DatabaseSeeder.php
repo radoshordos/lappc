@@ -76,6 +76,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('ProdDifferenceSeeder');
 		$this->call('GrabDbSeeder');
 		$this->call('MediaDbSeeder');
+        $this->call('TreeTextSeeder');
 
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 	}
