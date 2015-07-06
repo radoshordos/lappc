@@ -16,17 +16,17 @@
                 <div class="row" id="payment">
                     @include('web.kosik.payment')
                 </div>
-                <div class="row stepping">
-                    <div class="large-9 columns">
-                        <a href="/nakupni-kosik" class="button info">&lArr; Zpět k obsahu košíku</a>
-                    </div>
-                    <div class="large-9 columns text-right">
-                        {{ Form::submit('&rArr; Vaše kontaktní informace',['name'=> 'kontaktni-informace','class' => 'button success']); }}
-                    </div>
-                </div>
             </div>
             <div class="large-7 columns">
-                    @include('web.kosik.items_view2')
+                @include('web.kosik.items_view2')
+            </div>
+            <div class="row stepping">
+                <div class="large-7 columns">
+                    <a href="/nakupni-kosik" class="button info">&lArr; Zpět k obsahu košíku</a>
+                </div>
+                <div class="large-11 columns text-right">
+                    {{ Form::submit('&rArr; Vaše kontaktní informace',['name'=> 'kontaktni-informace','class' => 'button success']); }}
+                </div>
             </div>
         </div>
         {{ Form::close() }}

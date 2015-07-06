@@ -43,6 +43,19 @@ class BuyPaymentSeeder extends Seeder
             'price_payment'   => 30
         ]);
 
+        DB::table('buy_transport')->insert([
+            'id'                => $i++,
+            'alias'             => 'dobirka',
+            'transport_type_id' => 3,
+            'name'              => 'Dobírka',
+            'desc'              => 'Dobírka | 0-50000 | 0-30',
+            'price_start'       => 0,
+            'price_end'         => 50000,
+            'weight_start'      => 0,
+            'weight_end'        => 30,
+            'price_transport'   => 130
+        ]);
+
         DB::table('buy_payment')->insert([
             'id'              => $i++,
             'payment_type_id' => 2,
@@ -55,8 +68,8 @@ class BuyPaymentSeeder extends Seeder
         DB::table('buy_payment')->insert([
             'id'              => $i++,
             'payment_type_id' => 2,
-            'alias'           => 'splatky-multiservis',
-            'name'            => 'Splátky Multiservis',
+            'alias'           => 'splatky-home-credit',
+            'name'            => 'Nákup na splátky Home Credit',
             'name_short'      => 'Splátky',
             'price_payment'   => 0
         ]);

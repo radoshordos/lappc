@@ -14,6 +14,7 @@ class BuyPayment extends Migration
             $table->string('alias', '32')->unique();
             $table->string('name', '64')->unique();
             $table->string('name_short', '16')->unique();
+            $table->string('image', '96')->nullable();
             $table->double('price_payment')->unsigned();
 
             $table->engine = 'InnoDB';

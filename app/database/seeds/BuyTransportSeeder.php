@@ -37,19 +37,6 @@ class BuyTransportSeeder extends Seeder
 
         DB::table('buy_transport')->insert([
             'id'                => $i++,
-            'alias'             => 'dobirka',
-            'transport_type_id' => 3,
-            'name'              => 'Dobírka',
-            'desc'              => 'Dobírka | 0-50000 | 0-30',
-            'price_start'       => 0,
-            'price_end'         => 50000,
-            'weight_start'      => 0,
-            'weight_end'        => 30,
-            'price_transport'   => 130
-        ]);
-
-        DB::table('buy_transport')->insert([
-            'id'                => $i++,
             'alias'             => 'zasilkovna',
             'transport_type_id' => 5,
             'name'              => 'Zásilkovna',

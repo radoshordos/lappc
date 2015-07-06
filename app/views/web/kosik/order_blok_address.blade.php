@@ -43,7 +43,7 @@
     <div class="row">
         <div class="small-6 columns">
             <label>Telefon
-                {{ Form::text('c_phone',$customer['c_phone'],['id' => 'c_phone','required' => 'required','maxlength' => 15]) }}
+                {{ Form::text('c_phone',$customer['c_phone'],['id' => 'c_phone','required' => 'required', 'pattern' => '[+ 01234566789]','title' => "Zadejte kontaktní telefoní číslo, na které Vám budeme moci v případě potřeby zatelefonovat." , 'maxlength' => 15]) }}
             </label>
         </div>
     </div>

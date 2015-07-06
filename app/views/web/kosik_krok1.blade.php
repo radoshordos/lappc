@@ -14,12 +14,12 @@
                     @include('web.kosik.items_all')
                 </div>
                 <div class="row stepping">
-                    <div class="small-9 large-9 columns">
+                    <div class="large-7 columns">
                         @if (!empty($item_new))
                             <a href="{{ '/' . $item_new->items->viewProd->tree_absolute .'/'. $item_new->items->viewProd->prod_alias }}" class="button info">&lArr; Zpět k produktu</a>
                         @endif
                     </div>
-                    <div class="small-9 large-9 columns text-right">
+                    <div class="large-11 columns text-right">
                         {{ Form::submit('&rArr; Doručení a způsoby platby',['name'=> 'doruceni-a-zpusoby-platby','class' => 'button success']); }}
                     </div>
                 </div>
