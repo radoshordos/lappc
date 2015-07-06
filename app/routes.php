@@ -43,6 +43,7 @@ Route::group(['prefix' => 'adm'], function () {
     Route::group(['prefix' => 'pattern', 'before' => 'Sentry|inGroup:Power'], function () {
         Route::resource('dev', 'DevController');
         Route::resource('tree', 'TreeController');
+        Route::resource('treetext', 'TreeTextController');
         Route::resource('mixturedev', 'MixtureDevController');
         Route::resource('mixturedevm2ndev', 'MixtureDevM2nDevController', ['only' => ['store', 'destroy']]);
         Route::resource('mixturetree', 'MixtureTreeController');

@@ -56,6 +56,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.pattern.dev.index') }}">Výrobci</a></li>
                         <li><a href="{{ URL::route('adm.pattern.tree.index') }}">Skupiny</a></li>
+                        <li><a href="{{ URL::route('adm.pattern.treetext.index') }}">Texty pro skupiny</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ URL::route('adm.pattern.mixturedev.index')}}">Grupy výrobců</a></li>
                         <li><a href="{{ URL::route('adm.pattern.mixturetree.index')}}">Grupy skupin</a></li>
