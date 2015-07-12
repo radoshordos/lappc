@@ -76,7 +76,7 @@ input#term {
 
 #part-right {
     border: 0px solid #ebcccc;
-    padding: .8em;
+    padding: .6em;
     font-size: .9em;
 }
 
@@ -148,12 +148,6 @@ input#term {
 .valign-middle .columns,
 .valign-middle [class*="column"] + [class*="column"]:last-child {
     float: none;
-}
-
-footer {
-    color: #ddd;
-    background: #333;
-    padding: 24px 0 10px;
 }
 
 /**********************************************/

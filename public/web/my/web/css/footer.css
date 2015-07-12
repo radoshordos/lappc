@@ -1,0 +1,10 @@
+footer {
+    color: #ddd;
+    background: #333;
+    padding: 24px 0 10px;
+}
+
+footer img {
+    padding-top: .3em;
+    padding-bottom: .2em;
+}

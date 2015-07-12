@@ -1,0 +1,163 @@
+/*////////////////////////////////////////////*/
+/*     #dev-container                         */
+/*////////////////////////////////////////////*/
+
+#tree-panel {
+    padding: 1em 1em 0.4em 1em;
+}
+
+#dev-container {
+    padding: 0 0 9px 0;
+}
+
+#dev-container dt {
+    padding: 0 1px;
+}
+
+#dev-container dd a, #dev-container dt {
+    display: block;
+    color: #666;
+    width: 10em;
+    text-align: left;
+    padding: 2px 0;
+    font-size: .9em;
+}
+
+#dev-container a.active {
+    color: #258FBD;
+    font-weight: bold;
+}
+
+/*////////////////////////////////////////////*/
+/*     div#prod-filter                        */
+/*////////////////////////////////////////////*/
+
+div#prod-filter {
+    padding: 1em 0 0 1.2em;
+}
+
+/*////////////////////////////////////////////*/
+/*     div#prod-sort                          */
+/*////////////////////////////////////////////*/
+
+div#prod-sort li {
+    float: left;
+    margin: 0 .1em;
+    list-style-type: none;
+    font-size: .9em;
+}
+
+div#prod-sort li a {
+    margin: 0 .2em;
+}
+
+#dev-container a:hover, div#prod-sort li a:hover, div#prod-filter a:hover label {
+    text-decoration: underline;
+}
+
+div#prod-sort a.active {
+    font-weight: bold;
+}
+
+/*////////////////////////////////////////////*/
+/*     #prodlist                              */
+/*////////////////////////////////////////////*/
+
+#prodlist {
+    font-size: 1em;
+    padding-left: 8px;
+}
+
+#prodlist h3 {
+    font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
+    text-align: center;
+    font-size: 1em;
+    margin: 2px 5px 10px 5px;
+}
+
+li.prod {
+    margin: 0px;
+    padding: 0px;
+}
+
+li.th {
+    border: 3px solid white;
+}
+
+.prod .akce {
+    position: relative;
+    color: #ffffff;
+    background: red;
+    top: 10px;
+    z-index: 3;
+    padding: 3px;
+    opacity: .75;
+}
+
+#prodlist p {
+    margin: 7px 2px 2px 2px;
+    font-size: .9em;
+}
+
+#prodlist a:hover h3 {
+    text-decoration: underline;
+}
+
+#prodlist p::first-letter {
+    text-transform: capitalize
+}
+
+#prodlist img {
+    margin: 0px;
+    padding: 0px;
+    width: 240px;
+    height: 240px;
+    border: 1px solid #eee;
+    z-index: -3;
+}
+
+#prodlist .prod {
+    padding: 0px;
+    margin: 6px 4px;
+    width: 246px;
+    height: 366px;
+}
+
+#prodlist span {
+    font-size: 1em;
+    width: 118px;
+}
+
+#prodlist span.price {
+    font-weight: bolder;
+}
+
+/*////////////////////////////////////////////*/
+/*     #category-list                         */
+/*////////////////////////////////////////////*/
+
+#category-list {
+    margin: 0.1em;
+    border: 1pt dotted #000;
+}
+
+#category-list li {
+
+}
+
+#category-list h3 {
+    font-size: .8em;
+}
+
+#category-list li a {
+    margin: 1em;
+}
+
+#category-list li:hover {
+    font-weight: bold;
+    opacity: 0.75;
+}
+
+#category-list li:hover h3 {
+    text-decoration: underline;
+}

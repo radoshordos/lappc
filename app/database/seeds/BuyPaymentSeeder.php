@@ -70,6 +70,7 @@ class BuyPaymentSeeder extends Seeder
             'payment_type_id' => 2,
             'alias'           => 'splatky-home-credit',
             'name'            => 'Nákup na splátky Home Credit',
+            'image'           => 'homecredit/homecredit-logo.png',
             'name_short'      => 'Splátky',
             'price_payment'   => 0
         ]);

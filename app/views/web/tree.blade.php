@@ -6,9 +6,9 @@
 		<div id="part-left" class="medium-4 columns">
 			@include('web.global.leftmenu')
 		</div>
-		<div id="part-right" class="medium-14 columns">
+        <div id="part-right" class="medium-14 large-14 columns">
 			<h1>{{ $view_tree_actual['tree_desc'] }}</h1>
-			<div id="tree-panel" class="small-18 panel clearfix valign-middle">
+			<div id="tree-panel" class="small-18 panel radius clearfix valign-middle">
 				<div class="row">
 					<dl id="dev-container" class="small-6 columns sub-nav">
 						@include('web.tree.boxdev')

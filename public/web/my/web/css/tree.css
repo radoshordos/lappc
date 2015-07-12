@@ -60,79 +60,6 @@ div#prod-sort a.active {
 }
 
 /*////////////////////////////////////////////*/
-/*     #prodlist                              */
-/*////////////////////////////////////////////*/
-
-#prodlist {
-    font-size: 1em;
-    padding-left: 8px;
-}
-
-#prodlist h3 {
-    font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
-    text-align: center;
-    font-size: 1em;
-    margin: 2px 5px 10px 5px;
-}
-
-li.prod {
-    margin: 0px;
-    padding: 0px;
-}
-
-li.th {
-    border: 3px solid white;
-}
-
-.prod .akce {
-    position: relative;
-    color: #ffffff;
-    background: red;
-    top: 10px;
-    z-index: 3;
-    padding: 3px;
-    opacity: .75;
-}
-
-#prodlist p {
-    margin: 7px 2px 2px 2px;
-    font-size: .9em;
-}
-
-#prodlist a:hover h3 {
-    text-decoration: underline;
-}
-
-#prodlist p::first-letter {
-    text-transform: capitalize
-}
-
-#prodlist img {
-    margin: 0px;
-    padding: 0px;
-    width: 240px;
-    height: 240px;
-    border: 1px solid #eee;
-    z-index: -3;
-}
-
-#prodlist .prod {
-    padding: 0px;
-    margin: 6px 4px;
-    width: 246px;
-    height: 366px;
-}
-
-#prodlist span {
-    font-size: 1em;
-    width: 118px;
-}
-
-#prodlist span.price {
-    font-weight: bolder;
-}
-
-/*////////////////////////////////////////////*/
 /*     #category-list                         */
 /*////////////////////////////////////////////*/
 
@@ -160,4 +87,63 @@ li.th {
 
 #category-list li:hover h3 {
     text-decoration: underline;
+}
+
+/*////////////////////////////////////////////*/
+/*     #prodlist                              */
+/*////////////////////////////////////////////*/
+
+#prodlist {
+    font-size: 1em;
+    padding-left: .7em;
+    padding-right: .8em;
+}
+
+
+#prodlist li {
+    min-height: 25em;
+    padding: 0.2em;
+    margin-bottom: .6em;
+    border: .2em solid white;
+}
+
+#prodlist h3 {
+    font-family: Tahoma, 'Tahoma CE', Arial, sans-serif;
+    text-align: center;
+    font-size: 1em;
+    margin: 2px 5px 10px 5px;
+}
+
+#prodlist img {
+    padding: 0;
+    text-align: center;
+    margin: auto;
+    border: 1px solid #eee;
+    max-width: 240px;
+    max-height: 240px;
+}
+
+#prodlist p {
+    margin: 7px 2px 2px 2px;
+    font-size: .9em;
+}
+
+#prodlist a:hover h3 {
+    text-decoration: underline;
+}
+
+#prodlist p::first-letter {
+    text-transform: capitalize
+}
+
+#prodlist span {
+    font-size: 1em;
+}
+
+#prodlist span:first-child {
+    border-right: 3px solid white;
+}
+
+#prodlist span.price {
+    font-weight: bolder;
 }

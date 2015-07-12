@@ -22,14 +22,21 @@
             <div class="large-6 columns">
                 <p>© Guru nářadí</p>
             </div>
-            <div class="large-4 columns">
+            <div class="large-3 columns">
                 <ul class="inline-list right">
                     <li>
                         <a href="#">Link 1</a>
                     </li>
                 </ul>
             </div>
-            <div class="large-4 columns">
+            <div class="large-2 columns">
+                <ul class="inline-list right">
+                    <li>
+                        <img src="/web/img/payment/homecredit/homecredit-logo.png" width="" />
+                    </li>
+                </ul>
+            </div>
+            <div class="large-2 columns">
                 <ul class="inline-list right">
                     <li>
                         <i class="fa fa-cc-visa fa-4x"></i>

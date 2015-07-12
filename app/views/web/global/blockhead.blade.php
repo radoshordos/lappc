@@ -28,6 +28,7 @@
     @endif
 	<link rel="stylesheet" href="/web/my/guru.min.css">
     <link rel="stylesheet" href="/web/my/web/css/layout.css">
+    <link rel="stylesheet" href="/web/my/web/css/footer.css">
     <link rel="stylesheet" href="/web/my/web/css/tree.css">
     <link rel="stylesheet" href="/web/my/web/css/product.css">
     <link rel="stylesheet" href="/web/my/web/css/kosik.css">
