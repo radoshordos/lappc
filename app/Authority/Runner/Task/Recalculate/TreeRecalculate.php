@@ -128,24 +128,24 @@ class TreeRecalculate extends TaskMessage implements iRun
         foreach ($uris as $uri) {
             $html = "";
             $euri = explode('/', $uri->absolute);
-            $html .= "<ul>";
+            $html .= '<ul class="sub0">';
             foreach ([16, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32] as $val) {
                 $root = Tree::select(['id', 'name', 'desc', 'group_id', 'absolute'])->where('group_id', '=', $val)->where('deep', '=', '0')->first();
                 if ($root->group_id == $uri->group_id) {
-                    $html .= "<li><a href=\"" . "/" . $root->absolute . "\" title=\"" . $root->desc . "\" class=\"sub-down\">" . $root->name . "</a><ul>";
+                    $html .= "<li><a href=\"" . "/" . $root->absolute . "\" title=\"" . $root->desc . "\">" . $root->name . "</a><ul class=\"down sub1\">";
                     $ar1 = Tree::select(['id', 'absolute', 'relative', 'name', 'desc', 'deep'])->where('group_id', '=', $val)->where('deep', '=', '1')->orderBy('id')->get()->toArray();
                     foreach ($ar1 as $value) {
                         $html .= "<li><a href=\"" . "/" . $value['absolute'] . "\" title=\"" . $value['desc'] . "\">" . $value['name'] . "</a>";
                         if (isset($euri[0]) && $euri[0] == $value['relative']) {
                             $ar2 = Tree::select(['id', 'absolute', 'relative', 'name', 'desc', 'deep'])->where('parent_id', '=', $value['id'])->where('deep', '=', '2')->where('group_id', '=', $val)->orderBy('id')->get()->toArray();
                             if (!empty($ar2)) {
-                                $html .= '<ul>';
+                                $html .= '<ul class="down sub2">';
                                 foreach ($ar2 as $k => $v) {
                                     $html .= "<li><a href=\"" . "/" . $v['absolute'] . "\" title=\"" . $v['desc'] . "\">" . $v['name'] . "</a>";
-                                    if (isset($euri[1]) && $euri[1] == $v['relative']) {
+                                    if (isset($euri[2]) && $euri[1] == $v['relative']) {
                                         $ar3 = Tree::select(['id', 'absolute', 'relative', 'name', 'desc', 'deep'])->where('parent_id', '=', $v['id'])->where('deep', '=', '3')->where('group_id', '=', $val)->orderBy('id')->get()->toArray();
                                         if (!empty($ar3)) {
-                                            $html .= '<ul>';
+                                            $html .= '<ul class="down sub3">';
                                             foreach ($ar3 as $k3 => $v3) {
                                                 $html .= "<li><a href=\"" . "/" . $v3['absolute'] . "\" title=\"" . $v3['desc'] . "\">" . $v3['name'] . '</a></li>';
                                             }

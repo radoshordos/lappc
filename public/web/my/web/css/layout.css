@@ -20,7 +20,7 @@ h1 {
 }
 
 /* HEADER */
-nav.top-bar {
+nxav.top-bar {
     width: 1000px
 }
 
@@ -34,6 +34,7 @@ input#term {
 #shoptext {
     margin: 1.5em;
 }
+
 #shoptext h2 {
     font-size: 1.8em;
 }
@@ -75,19 +76,62 @@ input#term {
 
 #part-right {
     border: 0px solid #ebcccc;
+    padding: .8em;
     font-size: .9em;
 }
 
 /* LEFT MENU */
+#part-left {
+    font-family: verdana, sans-serif;
+}
 
-#part-left a {
-    font-size: .8em;
+#part-left ul {
+    margin: 0em;
 }
 
 #part-left ul li {
     list-style: none;
-    padding: 0.3em 0;
-    border-bottom: 1px dotted #c0a16b;
+}
+
+#part-left a {
+    font-size: .8em;
+    display: block;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    border-bottom: 1px dotted #aaa;
+}
+
+#part-left ul.sub0 li a {
+    padding-left: .6em;
+    background-color: #115599;
+    font-weight: bold;
+    color: white;
+}
+
+#part-left ul.sub1 li a {
+    padding-top: .4em;
+    padding-bottom: .4em;
+    padding-left: 1.2em;
+    background-color: #0077AF;
+}
+
+#part-left ul.sub2 li a {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: 1.8em;
+    font-weight: normal;
+    background-color: #2ba6cb;
+}
+
+#part-left ul.sub3 li a {
+    padding-left: 2.4em;
+}
+
+#part-left ul.sub0 li a:hover, #part-left ul.sub1 li a:hover, #part-left ul.sub2 li a:hover, #part-left ul.sub3 li a:hover {
+    background-color: #5C81B1;
+    text-decoration: underline;
+    color: white;
+
 }
 
 /*****************************/

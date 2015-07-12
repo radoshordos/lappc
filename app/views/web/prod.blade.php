@@ -9,20 +9,11 @@
 		</div>
 		<div id="part-right" class="large-14 columns">
 			<h1>{{ $vpa->getProdNameWithBonus(); }}</h1>
-
-
-			@include('web.prod.blok_top')
-
+    		@include('web.prod.blok_top')
 			<div id="product" class="row">
-
 				<div class="medium-12 columns">
-
-
-
-
-
 				</div>
-		</div>
+		    </div>
 		</div>
 	</div>
 	@include('web.global.footer')
