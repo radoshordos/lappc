@@ -7,18 +7,16 @@
 }
 
 #dev-container {
-    padding: 0 0 9px 0;
+    padding-left: 1em;
+    padding-bottom: .2em;
 }
 
-#dev-container dt {
+#dev-container li {
     padding: 0 1px;
 }
 
-#dev-container dd a, #dev-container dt {
-    display: block;
+#dev-container li a {
     color: #666;
-    width: 10em;
-    text-align: left;
     padding: 2px 0;
     font-size: .9em;
 }
@@ -33,7 +31,7 @@
 /*////////////////////////////////////////////*/
 
 div#prod-filter {
-    padding: 1em 0 0 1.2em;
+    padding: 1em 0 0 .4em;
 }
 
 /*////////////////////////////////////////////*/
@@ -99,9 +97,8 @@ div#prod-sort a.active {
     padding-right: .8em;
 }
 
-
 #prodlist li {
-    min-height: 25em;
+    min-height: 25.9em;
     padding: 0.2em;
     margin-bottom: .6em;
     border: .2em solid white;

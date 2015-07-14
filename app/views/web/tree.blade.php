@@ -10,9 +10,9 @@
 			<h1>{{ $view_tree_actual['tree_desc'] }}</h1>
 			<div id="tree-panel" class="small-18 panel radius clearfix valign-middle">
 				<div class="row">
-					<dl id="dev-container" class="small-6 columns sub-nav">
+                    <ul id="dev-container" class="small-block-grid-3 medium-block-grid-4 large-block-grid-5">
 						@include('web.tree.boxdev')
-					</dl>
+					</ul>
 				</div>
 				<div class="row">
 					<div id="prod-filter" class="small-3 columns">

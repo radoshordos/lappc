@@ -160,13 +160,6 @@ class TreeGroupTableSeeder extends Seeder
 		]);
 
 		DB::table('tree_group')->insert([
-			'id'          => 59,
-			'grouptop_id' => 50,
-			'type'        => 'textterms',
-			'name'        => 'Obchodní podmínky'
-		]);
-
-		DB::table('tree_group')->insert([
 			'id'          => 81,
 			'grouptop_id' => 80,
 			'type'        => 'textrules',

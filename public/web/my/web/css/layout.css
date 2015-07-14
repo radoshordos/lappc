@@ -101,6 +101,10 @@ input#term {
     border-bottom: 1px dotted #aaa;
 }
 
+#part-left ul.down li a.actual {
+    background-color: #e38d13;
+}
+
 #part-left ul.sub0 li a {
     padding-left: .6em;
     background-color: #115599;
