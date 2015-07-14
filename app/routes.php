@@ -62,6 +62,7 @@ Route::group(['prefix' => 'adm'], function () {
     Route::group(['prefix' => 'summary', 'before' => 'Sentry|inGroup:Simple'], function () {
         Route::get('treegroup', ['as' => 'adm.summary.treegroup.index', 'uses' => 'TreeGroupController@index']);
         Route::get('treedev', ['as' => 'adm.summary.treedev.index', 'uses' => 'TreeDevController@index']);
+        Route::get('treenoused', ['as' => 'adm.summary.treenoused.index', 'uses' => 'TreeNoUsedController@index']);
         Route::match(['GET', 'POST'], 'sale', ['as' => 'adm.summary.sale.index', 'uses' => 'SummarySaleController@index']);
         Route::match(['GET', 'POST'], 'availability', ['as' => 'adm.summary.availability.index', 'uses' => 'SummaryAvailabilityController@index']);
         Route::get('treevisualization', ['as' => 'adm.summary.treevisualization.index', 'uses' => 'TreeVisualizationController@index']);

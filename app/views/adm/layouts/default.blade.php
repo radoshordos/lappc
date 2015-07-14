@@ -78,6 +78,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ URL::route('adm.summary.treedev.index') }}">Skupiny a výrobci</a></li>
                         <li class="divider"></li>
+                        <li><a href="{{ URL::route('adm.summary.treenoused.index') }}">Nevyužité skupiny</a></li>
                         <li><a href="{{ URL::route('adm.summary.treegroup.index') }}">Skupiny rozdělení</a></li>
                         <li><a href="{{ URL::route('adm.summary.treevisualization.index') }}">Vizualizace skupin</a></li>
                         <li class="divider"></li>
