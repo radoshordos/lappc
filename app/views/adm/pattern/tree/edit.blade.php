@@ -73,9 +73,15 @@
             {{ Form::text('category_text',NULL,['required' => 'required', 'readonly' => 'readonly', 'maxlength' => '256', 'class'=> 'form-control']) }}
         </div>
     </div>
+
     <p class="text-center">
-        {{ link_to_route('adm.pattern.tree.index','Zobrazit skupiny zboží',NULL, ['class'=>'btn btn-primary','role'=> 'button']) }}
-        {{ Form::submit('Editovat výrobce', ['class' => 'btn btn-info']) }}
+        {{ link_to_route('adm.pattern.tree.index','Zobrazit skupiny zboží', NULL, ['class'=>'btn btn-primary','role'=> 'button']) }}
+        {{ Form::submit('Editovat skupinu zboží', ['class' => 'btn btn-info']) }}
+        @if (count($tree->treeDev) == 0)
+            {{ Form::open(['route' => ['adm.pattern.tree.destroy', $tree->id], 'method' => 'delete','style' => 'margin-right:5em']) }}
+            <button type="submit" class="btn btn-danger">Smazat skupinu zboží</button>
+            {{ Form::close() }}
+        @endif
     </p>
     {{ Form::close() }}
 

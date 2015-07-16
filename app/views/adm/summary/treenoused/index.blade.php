@@ -22,7 +22,7 @@ Nevyužité skupiny
                 <tbody>
                 @foreach ($tree as $row)
                     <tr>
-                        <td>{{ $row->id }}</td>
+                        <td>{{ link_to_route('adm.pattern.tree.edit', $row->id , $row->id) }}</td>
                         <td>{{ $row->name }}</td>
                         <td>{{ $row->absolute }}</td>
                     </tr>

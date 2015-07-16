@@ -90,7 +90,6 @@ class TreeController extends \BaseController
     {
         $tt = new ToolTree();
         $input = array_except(Input::all(), '_method');
-
         $v = Validator::make($input, Tree::$rules);
 
         if ($v->passes()) {
@@ -111,5 +110,11 @@ class TreeController extends \BaseController
             Session::flash('error', implode('<br />', $v->errors()->all(':message')));
             return Redirect::route('adm.pattern.tree.index', $id)->withInput()->withErrors($v);
         }
+    }
+
+    public function destroy($id)
+    {
+        Tree::destroy($id);
+        return Redirect::route('adm.pattern.tree.index');
     }
 }
