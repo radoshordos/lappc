@@ -456,15 +456,17 @@ class ProdController extends \BaseController
                 }
             }
 
-            if (Input::has('item_id')) {
+            if (Input::has('item_id') && Input::get('difference_id') == $row->difference_id) {
                 $input_items = array_only($input, $this->items_input_fields);
                 foreach (Input::get('item_id') as $key) {
                     $items = Items::find($key);
-                    $items->visible = $input_items['item_visible'][$key];
-                    $items->code_prod = !empty($input_items['code_prod'][$key]) ? $input_items['code_prod'][$key] : NULL;
-                    $items->code_ean = !empty($input_items['code_ean'][$key]) ? $input_items['code_ean'][$key] : NULL;
-                    $items->availability_id = $input_items['availability_id'][$key];
-                    $items->save();
+                    if (!is_null($items)) {
+                        $items->visible = $input_items['item_visible'][$key];
+                        $items->code_prod = !empty($input_items['code_prod'][$key]) ? $input_items['code_prod'][$key] : NULL;
+                        $items->code_ean = !empty($input_items['code_ean'][$key]) ? $input_items['code_ean'][$key] : NULL;
+                        $items->availability_id = $input_items['availability_id'][$key];
+                        $items->save();
+                    }
                 }
             }
 
