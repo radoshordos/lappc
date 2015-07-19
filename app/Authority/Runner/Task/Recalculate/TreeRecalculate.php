@@ -145,7 +145,7 @@ class TreeRecalculate extends TaskMessage implements iRun
                                 foreach ($ar2 as $v2) {
                                     $html .= "<li><a " . ($uri->tree_id === $v2['tree_id'] ? "class=\"actual\"" : NULL) . " href=\"" . "/" . $v2['tree_absolute'] . "\" title=\"" . $v2['tree_desc'] . "\">" . $v2['tree_name'] . "</a>";
                                     if (isset($euri[2]) && $euri[1] == $v2['tree_relative']) {
-                                        $ar3 = Tree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_parent_id', '=', $v2['tree_id'])->where('tree_deep', '=', '3')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+                                        $ar3 = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_parent_id', '=', $v2['tree_id'])->where('tree_deep', '=', '3')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
                                         if (!empty($ar3)) {
                                             $html .= '<ul class="down sub3">';
                                             foreach ($ar3 as $k3 => $v3) {

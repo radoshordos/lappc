@@ -1,5 +1,7 @@
 <?php
 
+use Authority\Eloquent\BuyOrderDbItems;
+
 class BaseController extends Controller
 {
     protected function setupLayout()
@@ -8,6 +10,7 @@ class BaseController extends Controller
             $this->layout = View::make($this->layout);
         }
     }
+
 
     protected function saveHttpRefer()
     {

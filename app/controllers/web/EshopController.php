@@ -36,6 +36,13 @@ class EshopController extends BaseController
         }
     }
 
+    protected function buyBoxPrice()
+    {
+        return BuyOrderDbItems::selectRaw('(SELECT ROUND(SUM(buy_order_db_items.item_count * buy_order_db_items.item_price))) AS buy_box_price')
+            ->where('sid', '=', $this->sid)
+            ->pluck('buy_box_price');
+    }
+
     protected function isText($urlPart)
     {
         if (in_array($urlPart, ['kontakt'])) {

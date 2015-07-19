@@ -1,54 +1,68 @@
 <?php namespace Authority\Web\Prod;
 
-use Authority\Eloquent\BuyOrderDbItems;
+use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Items;
 use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\MediaDb;
 use Authority\Eloquent\ProdDescription;
+use Authority\Eloquent\ProdDifference;
+use Authority\Eloquent\ProdDifferenceM2nSet;
+use Authority\Eloquent\ProdDifferenceValues;
+use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
 class Produkt
 {
     private $sid;
+    private $term;
+    private $urlPart;
 
-    public function __construct($sid, $urlPart)
+    public function __construct($sid, $term, $urlPart)
     {
         $this->sid = $sid;
-        $wp = ViewProd::where('prod_alias', '=', $urlPart)->first();
+        $this->term = $sid;
+        $this->urlPart = $urlPart;
+    }
+
+    public function makeProdukt()
+    {
+        $wp = ViewProd::where('prod_alias', '=', $this->urlPart)->first();
 
         if (!is_null($wp)) {
-            return $this->makeProdukt($wp);
+            return $this->workProdukt($wp);
         } else {
             return NULL;
         }
     }
 
-    public function makeProdukt($wp)
+    private function workProdukt($wp)
     {
+        $items = $this->getItems($wp->prod_id);
+        $items_count = count($items);
         $media_dev = $this->getMediaDev($wp->dev_id);
         $media_prod = $this->getMediaProd($wp->prod_id);
 
-        return View::make('web.prod', [
-            'namespace'        => 'prod',
-            'group'            => 'prod',
-            'items'            => Items::where('prod_id', '=', $wp->prod_id)->get(),
-            'view_prod_actual' => $wp,
-            'view_tree_actual' => ViewTree::where('tree_id', '=', $wp->tree_id)->first(),
-            'prod_picture'     => $this->getProdPicture($wp->prod_id, $wp->prod_picture_count),
-            'items_accessory'  => $this->getItemsAccessory($wp->prod_id),
-            'prod_desc_array'  => ProdDescription::where('prod_id', '=', $wp->prod_id)->whereNotNull('data')->get(),
-            'media'            => array_unique(array_merge($media_dev->toArray(), $media_prod->toArray()), SORT_REGULAR)
+        return \View::make('web.prod', [
+            'namespace'              => 'prod',
+            'group'                  => 'prod',
+            'term'                   => $this->term,
+            'items'                  => $items,
+            'items_count'            => $items_count,
+            'view_prod_actual'       => $wp,
+            'view_tree'              => ViewTree::where('tree_id', '=', $wp->tree_id)->first(),
+            'prod_picture'           => $this->getProdPicture($wp->prod_id, $wp->prod_picture_count),
+            'prod_difference'        => $this->getProdDifference($wp->prod_difference_id),
+            'prod_difference_values' => $this->getProdDifferenceValues($wp->prod_difference_id),
+            'items_accessory'        => $this->getItemsAccessory($wp->prod_id),
+            'prod_desc_array'        => ProdDescription::where('prod_id', '=', $wp->prod_id)->whereNotNull('data')->get(),
+            'media'                  => array_unique(array_merge($media_dev->toArray(), $media_prod->toArray()), SORT_REGULAR)
         ]);
     }
 
-    protected function getItemsAccessory($prod_id)
+    protected function getItems($prod_id)
     {
-        return ItemsAccessory::join('items', 'items.id', '=', 'items_accessory.item_to_id')
-            ->join('view_prod', 'items.prod_id', '=', 'view_prod.prod_id')
-            ->whereIn('items_accessory.item_from_id', Items::select(["id"])->where('prod_id', '=', $prod_id)->lists('id'))
-            ->where('view_prod.prod_id', '!=', $prod_id)
-            ->get();
+        return Items::where('prod_id', '=', $prod_id)->get();
     }
 
     protected function getMediaDev($dev_id)
@@ -84,40 +98,62 @@ class Produkt
         return ($prod_picture_count > 0 ? ProdPicture::where('prod_id', '=', $prod_id)->get() : NULL);
     }
 
-    protected function buyBoxPrice()
+    protected function getProdDifference($prod_difference_id)
     {
-        return BuyOrderDbItems::selectRaw('(SELECT ROUND(SUM(buy_order_db_items.item_count * buy_order_db_items.item_price))) AS buy_box_price')
-            ->where('sid', '=', $this->sid)
-            ->pluck('buy_box_price');
+        return ($prod_difference_id > 1 ? ProdDifference::find($prod_difference_id)->toArray() : NULL);
     }
 
-}
-/*
-        protected function isProudct($urlPart)
-        {
+    protected function getProdDifferenceValues($prod_difference_id)
+    {
+        if ($prod_difference_id > 0) {
+            $arr = ProdDifferenceM2nSet::select(['set_id'])->where('difference_id', '=', $prod_difference_id)->lists('set_id');
+            $values = ProdDifferenceValues::select(['id', 'name'])->whereIn('set_id', $arr)->get()->toArray();
+            $arr = [];
+            foreach ($values as $val) {
+                $arr[$val['id']] = $val['name'];
+            }
+            return $arr;
+        } else {
+            return NULL;
+        }
+    }
+
+    protected function getItemsAccessory($prod_id)
+    {
+        return ItemsAccessory::join('items', 'items.id', '=', 'items_accessory.item_to_id')
+            ->join('view_prod', 'items.prod_id', '=', 'view_prod.prod_id')
+            ->whereIn('items_accessory.item_from_id', Items::select(["id"])->where('prod_id', '=', $prod_id)->lists('id'))
+            ->where('view_prod.prod_id', '!=', $prod_id)
+            ->get();
+    }
+
+    protected function getAkceTemplate($prod_mode_id, $akce_template_id)
+    {
+        return ($prod_mode_id == 4 && !is_null($akce_template_id) ? AkceTempl::find($akce_template_id) : NULL);
+    }
+
+    protected function getAkceMixtureItem($prod_mode_id, $akce_template_id)
+    {
+//        return ($prod_mode_id == 4 && !is_null($akce_template_id) ? AkceTempl::find($akce_template_id)->get() : NULL);
+    }
 
 
-                $at_row = (intval($view_prod_actual->akce_template_id) > 1 ? AkceTempl::find($view_prod_actual->akce_template_id) : NULL);
+    /*
+            protected function isProudct($urlPart)
+            {
+                    return View::make('web.prod', [
+                        'view_tree'        => $this->view_tree = ViewTree::where('tree_absolute', '=', $view_prod_actual->tree_absolute)->first(),
+                        'buy_box_price'    => $this->buyBoxPrice(),
 
-                $item_row = NULL;
-                if ($view_prod_actual->prod_ic_visible == 1) {
-                    $item_row = Items::where('prod_id', '=', $view_prod_actual->prod_id)->first();
+
+                        'at_row'           => $at_row,
+                        'item_row'         => $item_row,
+                        'mi_row'           => ((isset($at_row) && intval($at_row->mixture_item_id) > 0) ? MixtureItem::find(intval($at_row->mixture_item_id)) : NULL),
+
+                    ]);
                 }
 
+    */
 
-                return View::make('web.prod', [
-                    'view_tree'        => $this->view_tree = ViewTree::where('tree_absolute', '=', $view_prod_actual->tree_absolute)->first(),
-                    'buy_box_price'    => $this->buyBoxPrice(),
-                    'view_tree'        => $this->view_tree,
-                    'term'             => $this->term,
-                    'at_row'           => $at_row,
-                    'item_row'         => $item_row,
-                    'mi_row'           => ((isset($at_row) && intval($at_row->mixture_item_id) > 0) ? MixtureItem::find(intval($at_row->mixture_item_id)) : NULL),
-
-                ]);
-            }
-
-*/
-}
 
 }

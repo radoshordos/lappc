@@ -29,7 +29,7 @@ class HomeController extends EshopController
 
         return View::make('web.home', [
             'namespace'     => 'home',
-            'buy_box_price' => $this->buyBoxPrice(),
+            'buy_box_price' => $this->buyBoxPrice($this->sid),
             'view_tree'     => ViewTree::where('tree_id', '=', 10000000)->first(),
             'tree_group'    => TreeGroup::where('type', '=', 'prodlist')->get(),
             'term'          => Input::get('term')
