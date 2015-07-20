@@ -12,11 +12,6 @@
 	</div>
 	<div class="row">
 		<div class="medium-18 columns">
-			@include('web.prod.blok_prod_items')
-		</div>
-	</div>
-	<div class="row">
-		<div class="medium-18 columns">
 			@include('web.prod.panel_transport')
 		</div>
 	</div>
