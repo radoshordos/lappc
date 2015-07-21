@@ -37,7 +37,6 @@
                 @endif
 
 
-
                 @if (!empty($items))
                     {{ Form::open(['action' => 'KosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
                     @if ($items_count == 1)

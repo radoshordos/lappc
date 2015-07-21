@@ -128,7 +128,10 @@ input#term {
 }
 
 #part-left ul.sub3 li a {
-    padding-left: 2.4em;
+    padding-top: .6em;
+    padding-bottom: .6em;
+    padding-left: 2.6em;
+    background-color: #6db8c6;
 }
 
 #part-left ul.sub0 li a:hover, #part-left ul.sub1 li a:hover, #part-left ul.sub2 li a:hover, #part-left ul.sub3 li a:hover {
