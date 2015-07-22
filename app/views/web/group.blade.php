@@ -14,16 +14,14 @@
                 @foreach($picture_tree as $val)
                     <li>
                         <a href="{{ $val->tree_absolute }}">
-                            <div class="site-examples">
-                                <h3 class="site-examples-heading">{{ $val->tree_name }} </h3>
-                                <img class="grayscale" src="/web/img/category/{{ $val->tree_picture }}" alt=""/>
+                            <div>
+                                <h3>{{ $val->tree_name }} </h3>
+                                <img src="/web/img/category/{{ $val->tree_picture }}" alt=""/>
                             </div>
                         </a>
                     </li>
                 @endforeach
             </ul>
-            <br/>
-            <br/>
 
             <div class="row">
                 <div class="medium-5 columns">

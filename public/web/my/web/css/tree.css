@@ -62,16 +62,22 @@ div#prod-sort a.active {
 /*////////////////////////////////////////////*/
 
 #category-list {
-    padding-top: .8em;
+    padding-left: .4em;
+    padding-right: .4em;
 }
 
 #category-list h3 {
     font-size: .8em;
 }
 
+#category-list li {
+    padding: .2em;
+}
+
 #category-list img {
+    margin-top: 21px;
     background-size: cover;
-    height: 167px;
+    height: 184px;
 }
 
 #category-list li:hover div {
@@ -101,14 +107,14 @@ div#prod-sort a.active {
 }
 
 #category-list li:hover h3 {
-    top: -26px;
+    top: -10px;
     text-decoration: underline;
 }
 
 #category-list li div {
     width: 100%;
     position: relative;
-    height: 169px;
+    height: 210px;
     text-align: center;
     border: 1px solid #ddd;
     -webkit-transition: all 0.3s ease;
