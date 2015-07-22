@@ -20,6 +20,7 @@ class ViewTree extends Migration
                     tree.category_text AS tree_category_text,
                     tree.category_nav AS tree_category_nav,
                     tree.category_menu AS tree_category_menu,
+                    tree.picture AS tree_picture,
                     tree_dev.subdir_all AS tree_subdir_all,
                     tree_dev.subdir_visible AS tree_subdir_visible,
                     tree_dev.dir_all AS tree_dir_all,

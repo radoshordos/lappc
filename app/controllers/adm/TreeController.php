@@ -98,10 +98,11 @@ class TreeController extends \BaseController
                 $tree->update($input);
 
                 $fix = Tree::find($id);
+                $fix['id'] = $tt->calculateId($input['parent_id'], $input['position']);
                 $fix['category_text'] = $tt->getCategoryText($input['id']);
                 $fix->save();
 
-                Session::flash('success', 'Provedena aktualizace skupiny #ID: ' . $input['id']);
+                Session::flash('success', 'Provedena aktualizace skupiny #ID: ' . $fix['id']);
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());
             }

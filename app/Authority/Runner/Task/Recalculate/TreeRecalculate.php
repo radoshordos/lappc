@@ -58,6 +58,12 @@ class TreeRecalculate extends TaskMessage implements iRun
         }
     }
 
+    public function recalculateTreeWithProd()
+    {
+        \DB::statement('CALL proc_tree_recalculate');
+        $this->addMessage("Zavolán přepočet skupin (TREE)");
+    }
+
     public function recalculateTreeWithoutProd()
     {
         $tree = Tree::select('tree.id AS tree_id')
@@ -126,26 +132,26 @@ class TreeRecalculate extends TaskMessage implements iRun
     protected function recalculateLeftMenu()
     {
         $arr_section = [16, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32];
-        $uris = ViewTree::select(['tree_id', 'tree_group_id', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->orderBy('tree_id')->get();
+        $uris = ViewTree::select(['tree_id', 'tree_group_id', 'tree_absolute'])->orderBy('tree_id')->get();
         foreach ($uris as $uri) {
             $html = "";
             $euri = explode('/', $uri->tree_absolute);
             $html .= '<ul class="down sub0">';
             foreach ($arr_section as $val) {
-                $root = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_group_id', '=', $val)->where('tree_deep', '=', '0')->orderBy('tree_id')->first();
+                $root = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_absolute'])->where('tree_group_id', '=', $val)->where('tree_deep', '=', '0')->orderBy('tree_id')->first();
                 if ($root->tree_group_id == $uri->tree_group_id) {
                     $html .= "<li><a " . ($uri->tree_id === $root->tree_id ? "class=\"actual\"" : NULL) . " href=\"" . "/" . $root->tree_absolute . "\" title=\"" . $root->tree_desc . "\">" . $root->tree_name . "</a><ul class=\"down sub1\">";
-                    $ar1 = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_subdir_visible','>','0')->where('tree_group_id', '=', $val)->where('tree_deep', '=', '1')->orderBy('tree_id')->get()->toArray();
+                    $ar1 = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_group_id', '=', $val)->where('tree_deep', '=', '1')->orderBy('tree_id')->get()->toArray();
                     foreach ($ar1 as $v1) {
                         $html .= "<li><a " . ($uri->tree_id === $v1['tree_id'] ? "class=\"actual\"" : NULL) . " href=\"" . "/" . $v1['tree_absolute'] . "\" title=\"" . $v1['tree_desc'] . "\">" . $v1['tree_name'] . "</a>";
                         if (isset($euri[0]) && $euri[0] == $v1['tree_relative']) {
-                            $ar2 = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_subdir_visible','>','0')->where('tree_parent_id', '=', $v1['tree_id'])->where('tree_deep', '=', '2')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+                            $ar2 = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_subdir_visible', '>', '0')->where('tree_parent_id', '=', $v1['tree_id'])->where('tree_deep', '=', '2')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
                             if (!empty($ar2)) {
                                 $html .= '<ul class="down sub2">';
                                 foreach ($ar2 as $v2) {
                                     $html .= "<li><a " . ($uri->tree_id === $v2['tree_id'] ? "class=\"actual\"" : NULL) . " href=\"" . "/" . $v2['tree_absolute'] . "\" title=\"" . $v2['tree_desc'] . "\">" . $v2['tree_name'] . "</a>";
                                     if (isset($euri[1]) && $euri[1] == $v2['tree_relative']) {
-                                        $ar3 = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_subdir_visible','>','0')->where('tree_parent_id', '=', $v2['tree_id'])->where('tree_deep', '=', '3')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
+                                        $ar3 = ViewTree::select(['tree_id', 'tree_name', 'tree_desc', 'tree_group_id', 'tree_relative', 'tree_absolute'])->whereIn('tree_group_id', $arr_section)->where('tree_subdir_visible', '>', '0')->where('tree_parent_id', '=', $v2['tree_id'])->where('tree_deep', '=', '3')->where('tree_group_id', '=', $val)->orderBy('tree_id')->get()->toArray();
                                         if (!empty($ar3)) {
                                             $html .= '<ul class="down sub3">';
                                             foreach ($ar3 as $k3 => $v3) {
@@ -167,7 +173,7 @@ class TreeRecalculate extends TaskMessage implements iRun
                     }
                     $html .= '</ul></li>';
                 } else {
-                    $html .= "<li><a href=\"" . "/" . $root->tree_absolute . "\" title=\"" . $root->tree_desc . "\">" . $root->tree_name . "</a></li>";
+                        $html .= "<li><a href=\"" . "/" . $root->tree_absolute . "\" title=\"" . $root->tree_desc . "\">" . $root->tree_name . "</a></li>";
                 }
             }
             $html .= '</ul>';
@@ -176,11 +182,5 @@ class TreeRecalculate extends TaskMessage implements iRun
             $tree->category_menu = $html;
             $tree->save();
         }
-    }
-
-    public function recalculateTreeWithProd()
-    {
-        \DB::statement('CALL proc_tree_recalculate');
-        $this->addMessage("Zavolán přepočet skupin (TREE)");
     }
 }

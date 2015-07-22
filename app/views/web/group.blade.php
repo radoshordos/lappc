@@ -13,10 +13,10 @@
             <ul id="category-list" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
                 @foreach($picture_tree as $val)
                     <li>
-                        <a href="{{ $val->absolute }}">
+                        <a href="{{ $val->tree_absolute }}">
                             <div class="site-examples">
-                                <h3 class="site-examples-heading">{{ $val->name }} </h3>
-                                <img class="grayscale" src="/web/img/category/{{ $val->picture }}" alt=""/>
+                                <h3 class="site-examples-heading">{{ $val->tree_name }} </h3>
+                                <img class="grayscale" src="/web/img/category/{{ $val->tree_picture }}" alt=""/>
                             </div>
                         </a>
                     </li>

@@ -1,6 +1,7 @@
 <?php namespace Authority\Web\Group;
 
-use Authority\Eloquent\Tree;
+
+use Authority\Eloquent\ViewTree;
 
 class TreeGroup
 {
@@ -22,6 +23,9 @@ class TreeGroup
 
     public function getPictureTree()
     {
-        return Tree::select(['name', 'desc', 'absolute', 'picture'])->where('parent_id', '=', $this->view_tree_actual['tree_id'])->where('deep', '=', 1)->orderBy('id')->get();
+        return ViewTree::select(['tree_name', 'tree_desc', 'tree_absolute', 'tree_picture'])
+            ->where('tree_parent_id', '=', $this->view_tree_actual['tree_id'])
+            ->where('tree_subdir_visible','>','0')
+            ->where('tree_deep', '=', 1)->orderBy('tree_id')->get();
     }
 }

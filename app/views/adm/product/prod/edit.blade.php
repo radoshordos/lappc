@@ -45,15 +45,14 @@
 {{-- Content --}}
 @section('content')
     {{ Form::open(['route' => ['adm.product.prod.edit', $choice_tree, $choice_prod]]) }}
-    <div class="input-group form-group">
-        <span class="input-group-addon">Skupina</span>
-        {{ Form::select('list_tree',$list_tree, $choice_tree, ['id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+    <div class="row" style="margin-bottom: .4em">
+        <div class="col-md-1">{{ Form::label('list_tree','Skupina') }}</div>
+        <div class="col-md-11">{{ Form::select('list_tree',$list_tree, $choice_tree, ['id' => 'list_tree', 'class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}</div>
     </div>
-
     @if (isset($list_prod) && !empty($list_prod))
-        <div class="input-group form-group">
-            <span class="input-group-addon">Produkt</span>
-            {{ Form::select('list_prod',$list_prod, $choice_prod, ['id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}
+        <div class="row" style="margin-bottom: .4em">
+            <div class="col-md-1">{{ Form::label('list_prod','Produkt') }}</div>
+            <div class="col-md-11">{{ Form::select('list_prod',$list_prod, $choice_prod, ['id' => 'list_prod','class'=> 'form-control', 'onchange' => 'this.form.submit()']) }}</div>
         </div>
     @endif
     {{ Form::close() }}
