@@ -11,6 +11,14 @@ class SearchDataController extends BaseController
         $data = ViewProd::where('prod_name', 'LIKE', "%$term%")->where('prod_mode_id', '>', '1')->limit(10)->get();
         $result = [];
         foreach ($data as $key => $row) {
+//            $result[] = ['id' => $row->prod_id, 'value' => $row->prod_name];
+
+//            $(function(){$.widget("custom.catcomplete",$.ui.autocomplete,{_create:function(){this._super();this.widget().menu("option","items","> :not(.ui-autocomplete-category)")},_renderMenu:function(a,k){var g=this,c="";$.each(k,function(d,e){e.category!=c&&(a.append("<li class='ui-autocomplete-category'>"+(1==e.category?jsLANG[0]:jsLANG[1])+"</li>"),c=e.category);li=g._renderItemData(a,e);e.category&&li.attr("aria-label",e.category+" : "+e.label)})}});$.ui.autocomplete.prototype._renderItem=function(a,k){var g=
+
+            $xxx = '<a><span class="img"><img src="' . $row->tree_absolute . $row->prod_img_normal . '" alt="Jolly Caffé Crema - 1000 g, zrnková káva"></span><span class="item">Jolly Caffé Crema - <b>100</b>0 g, zrnková káva<br><em>609&nbsp;Kè</em></span></a>';
+
+            $xxx = "<img src=" . $row->tree_absolute . $row->prod_img_normal . ">";
+
             $result[] = ['id' => $row->prod_id, 'value' => $row->prod_name];
         }
         return Response::json($result);
@@ -67,7 +75,7 @@ class SearchDataController extends BaseController
         }
 
         return View::make('web.tree.boxprodlist', [
-            "view_prod_array"  => $pagination,
+            "view_prod_array" => $pagination,
             'view_tree_actual' => ViewTree::where('tree_id', '=', $tree)->first(),
         ]);
     }

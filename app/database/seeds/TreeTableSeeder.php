@@ -600,7 +600,7 @@ class TreeTableSeeder extends Seeder
                     'parent_id' => $row['pid'],
                     'group_id'  => substr($row['pid'], 0, 2),
                     'position'  => $row['pz'],
-                    'picture'   => isset($row['picture']) ? $row['picture'] : NULL,
+                    'picture'   => isset($row['picture']) ? $row['picture'] : "!.jpg",
                     'name'      => $row['tree_name'],
                     'desc'      => $row['tree_title'],
                     'relative'  => $row['tree_rel_path']

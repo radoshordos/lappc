@@ -27,12 +27,18 @@
 			<ul class="left">
 				<li>
 					{{ Form::open(['url' => '/vyhledat-naradi', 'method' => 'GET', 'files' => TRUE]); }}
+
 					<div class="row collapse">
 						<div class="large-12 small-12 columns ui-widget">
+
+							{{--
+							<fieldset role="search">
+								<input class="ac_source ac_desktop ui-autocomplete-input" autocapitalize="off" autocorrect="off" type="text" data-position="top-left" data-lang="cs" name="search" value="Zadejte hledanou frázi" onfocus="if(this.value=='Zadejte hledanou frázi'){this.value=''}" onblur="if(this.value.replace(/ /g, '') == ''){this.value='Zadejte hledanou frázi'}" required="" autocomplete="off" aria-required="true">
+								<div><button type="submit"><span class="icon-search"></span></button></div>
+							</fieldset>
+								--}}
+
 							{{ Form::input('search','term', $term,['size' => '40', 'id' => 'term', "placeholder" => "Nalést nářadí i příslušenství"]) }}
-						</div>
-						<div class="large-5 small-5 columns">
-							{{ Form::submit('Hledat', ['class' => 'success button expand']) }}
 						</div>
 					</div>
 					{{ Form::close() }}

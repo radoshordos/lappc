@@ -62,6 +62,30 @@ $('#order-delivery-check').click(function () {
     }
 });
 
+/*
+$(function () {
+    $.widget("custom.catcomplete", $.ui.autocomplete, {
+        _create: function () {
+            this._super();
+            this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)")
+        }, _renderMenu: function (a, k) {
+            var g = this, c = "";
+            $.each(k, function (d, e) {
+                e.category != c && (a.append("<li class='ui-autocomplete-category'>" + (1 == e.category ? jsLANG[0] : jsLANG[1]) + "</li>"), c = e.category);
+                li = g._renderItemData(a, e);
+                e.category && li.attr("aria-label", e.category + " : " + e.label)
+            })
+        }
+    });
+    $.ui.autocomplete.prototype._renderItem = function (a, k) {
+        var g = this.term.split(" ").join("|"), g = new RegExp("(" + g + ")", "gi"), c = k.label.replace(g, "<b>$1</b>");
+        if (k.ean)var d = k.ean.replace(g, "<b>$1</b>");
+        return 1 == k.category && 0 == k.i ? $("<li></li>").data("item.autocomplete", k).append('<a><span class="img">' + k.img + '</span><span class="item">' + c + "<br><em>" + k.price + "</em>" + (k.ean ? ", ean: " + d : "") + "</span></a>").appendTo(a) : 1 == k.i ? $('<li class="ui-menu-item-2 ui-menu-item-3"></li>').data("item.autocomplete", k).append('<a><span class="item">' + k.label + "</span></a>").appendTo(a) :
+            $('<li class="ui-menu-item-2"></li>').data("item.autocomplete", k).append('<a><span class="item">' + c + "</span></a>").appendTo(a)
+    };
+    plugoAutocomplete($(".ac_source"))
+});
+*/
 
 $(function () {
 
