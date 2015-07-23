@@ -63,29 +63,96 @@ $('#order-delivery-check').click(function () {
 });
 
 /*
-$(function () {
-    $.widget("custom.catcomplete", $.ui.autocomplete, {
-        _create: function () {
-            this._super();
-            this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)")
-        }, _renderMenu: function (a, k) {
-            var g = this, c = "";
-            $.each(k, function (d, e) {
-                e.category != c && (a.append("<li class='ui-autocomplete-category'>" + (1 == e.category ? jsLANG[0] : jsLANG[1]) + "</li>"), c = e.category);
-                li = g._renderItemData(a, e);
-                e.category && li.attr("aria-label", e.category + " : " + e.label)
-            })
-        }
-    });
-    $.ui.autocomplete.prototype._renderItem = function (a, k) {
-        var g = this.term.split(" ").join("|"), g = new RegExp("(" + g + ")", "gi"), c = k.label.replace(g, "<b>$1</b>");
-        if (k.ean)var d = k.ean.replace(g, "<b>$1</b>");
-        return 1 == k.category && 0 == k.i ? $("<li></li>").data("item.autocomplete", k).append('<a><span class="img">' + k.img + '</span><span class="item">' + c + "<br><em>" + k.price + "</em>" + (k.ean ? ", ean: " + d : "") + "</span></a>").appendTo(a) : 1 == k.i ? $('<li class="ui-menu-item-2 ui-menu-item-3"></li>').data("item.autocomplete", k).append('<a><span class="item">' + k.label + "</span></a>").appendTo(a) :
-            $('<li class="ui-menu-item-2"></li>').data("item.autocomplete", k).append('<a><span class="item">' + c + "</span></a>").appendTo(a)
-    };
-    plugoAutocomplete($(".ac_source"))
-});
-*/
+ [{
+ "label": "Aroma Classico 1kg, zrnkov\u00e1 k\u00e1va",
+ "url": "\/kava-zrnkova\/aroma-classico-1kg-zrnkova-kava",
+ "img": "<img src=\"\/cache\/images\/search\/983.jpg\" alt=\"Aroma Classico 1kg, zrnkov\u00e1 k\u00e1va\" >",
+ "price": "249&nbsp;K\u010d",
+ "category": 1,
+ "i": 0
+ }, {
+ "label": "Bristot Buongusto 1kg, zrnkov\u00e1 k\u00e1va",
+ "url": "\/bristot\/bristot-buongusto-1kg-zrnkova-kava",
+ "img": "<img src=\"\/cache\/images\/search\/1012.jpg\" alt=\"Bristot Buongusto 1kg, zrnkov\u00e1 k\u00e1va\" >",
+ "price": "429&nbsp;K\u010d",
+ "category": 1,
+ "i": 0
+ }, {
+ "label": "Bristot Classico 1 kg zrnkov\u00e1 k\u00e1va",
+ "url": "\/bristot\/bristot-classico-1-kg-zrnkova-kava",
+ "img": "<img src=\"\/cache\/images\/search\/676.jpg\" alt=\"Bristot Classico 1 kg zrnkov\u00e1 k\u00e1va\" >",
+ "price": "299&nbsp;K\u010d",
+ "category": 1,
+ "i": 0
+ }, {
+ "label": "Bristot Espresso, 1kg zrnkov\u00e1 k\u00e1va",
+ "url": "\/bristot\/bristot-espresso-1kg-zrnkova-kava",
+ "img": "<img src=\"\/cache\/images\/search\/1026.jpg\" alt=\"Bristot Espresso, 1kg zrnkov\u00e1 k\u00e1va\" >",
+ "price": "338&nbsp;K\u010d",
+ "category": 1,
+ "i": 0
+ }, {
+ "label": "Bristot Rainforest 1kg, zrnkov\u00e1 k\u00e1va",
+ "url": "\/bristot\/bristot-rainforest-1kg-zrnkova-kava",
+ "img": "<img src=\"\/cache\/images\/search\/1011.jpg\" alt=\"Bristot Rainforest 1kg, zrnkov\u00e1 k\u00e1va\" >",
+ "price": "499&nbsp;K\u010d",
+ "category": 1,
+ "i": 0
+ }, {
+ "label": "Vyhledat v\u00fdraz <b>kava<\/b> ve fulltextu",
+ "url": "\/hledani\/?search=kava",
+ "img": "",
+ "price": "",
+ "category": 1,
+ "i": 1
+ }, {
+ "label": "K\u00e1va",
+ "url": "\/kava",
+ "img": "",
+ "price": "",
+ "category": 2,
+ "i": 0
+ }, {
+ "label": "K\u00e1va mlet\u00e1",
+ "url": "\/kava-mleta",
+ "img": "",
+ "price": "",
+ "category": 2,
+ "i": 0
+ }, {
+ "label": "K\u00e1va v kapsl\u00edch",
+ "url": "\/kava-v-kapslich",
+ "img": "",
+ "price": "",
+ "category": 2,
+ "i": 0
+ }, {"label": "K\u00e1va zrnkov\u00e1", "url": "\/kava-zrnkova", "img": "", "price": "", "category": 2, "i": 0}]
+
+
+ $(function () {
+ $.widget("custom.catcomplete", $.ui.autocomplete, {
+ _create: function () {
+ this._super();
+ this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)")
+ }, _renderMenu: function (a, k) {
+ var g = this, c = "";
+ $.each(k, function (d, e) {
+ e.category != c && (a.append("<li class='ui-autocomplete-category'>" + (1 == e.category ? jsLANG[0] : jsLANG[1]) + "</li>"), c = e.category);
+ li = g._renderItemData(a, e);
+ e.category && li.attr("aria-label", e.category + " : " + e.label)
+ })
+ }
+ });
+ $.ui.autocomplete.prototype._renderItem = function (a, k) {
+ var g = this.term.split(" ").join("|"), g = new RegExp("(" + g + ")", "gi"), c = k.label.replace(g, "<b>$1</b>");
+ if (k.ean)var d = k.ean.replace(g, "<b>$1</b>");
+ return 1 == k.category && 0 == k.i ? $("<li></li>").data("item.autocomplete", k).append('<a><span class="img">' + k.img + '</span><span class="item">' + c + "<br><em>" + k.price + "</em>" + (k.ean ? ", ean: " + d : "") + "</span></a>").appendTo(a) : 1 == k.i ? $('<li class="ui-menu-item-2 ui-menu-item-3"></li>').data("item.autocomplete", k).append('<a><span class="item">' + k.label + "</span></a>").appendTo(a) :
+ $('<li class="ui-menu-item-2"></li>').data("item.autocomplete", k).append('<a><span class="item">' + c + "</span></a>").appendTo(a)
+ };
+ plugoAutocomplete($(".ac_source"))
+ });
+ */
+
 
 $(function () {
 
