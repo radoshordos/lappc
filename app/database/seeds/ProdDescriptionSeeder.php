@@ -14,10 +14,10 @@ class ProdDescriptionSeeder extends Seeder
             $count = DB::table('prod')->where("id", '=', $row['prod_id'])->count();
             if ($count > 0) {
                 DB::table('prod_description')->insert([
-                    'id' => $row['id'],
-                    'prod_id' => $row['prod_id'],
+                    'id'            => $row['id'],
+                    'prod_id'       => $row['prod_id'],
                     'variations_id' => $row['variations_id'] + 100,
-                    'data' => $row['data'],
+                    'data'          => $row['data'],
                 ]);
             }
         }

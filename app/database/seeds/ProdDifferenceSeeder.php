@@ -2,29 +2,22 @@
 
 class ProdDifferenceSeeder extends Seeder
 {
+    public function run()
+    {
+        $prod_difference = [
+            ['id' => '1', 'visible' => '1', 'count' => '0', 'name' => 'Základní'],
+            ['id' => '11', 'visible' => '1', 'count' => '1', 'name' => 'Velikost'],
+            ['id' => '143', 'visible' => '1', 'count' => '1', 'name' => 'Velikost + Barva']
+        ];
 
-	public function run()
-	{
-		/* IN SHOP (OLD)
-		$prod2difference = [
-			['pd_id' => '1', 'pd_id_diffmode' => '1', 'pd_visible' => '1', 'pd_lenght' => '0', 'pd_name' => 'Základní'],
-			['pd_id' => '10', 'pd_id_diffmode' => '2', 'pd_visible' => '1', 'pd_lenght' => '1', 'pd_name' => 'Velikost'],
-		];
-		*/
+        DB::table('prod_difference')->delete();
 
-		$prod_difference = [
-			['id' => '1', 'visible' => '1', 'count' => '0', 'name' => 'Základní'],
-			['id' => '11', 'visible' => '1', 'count' => '1', 'name' => 'Velikost']
-		];
-
-		DB::table('prod_difference')->delete();
-
-		foreach ($prod_difference as $row) {
-			DB::table('prod_difference')->insert([
-				'id'    => $row['id'],
-				'count' => $row['count'],
-				'name'  => $row['name']
-			]);
-		}
-	}
+        foreach ($prod_difference as $row) {
+            DB::table('prod_difference')->insert([
+                'id'    => $row['id'],
+                'count' => $row['count'],
+                'name'  => $row['name']
+            ]);
+        }
+    }
 }
