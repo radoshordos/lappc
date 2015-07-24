@@ -82,7 +82,7 @@ class TreeController extends \BaseController
         return View::make('adm.pattern.tree.edit', [
             'tree'           => $tree,
             'select_dev'     => SB::option("SELECT * FROM dev", ['id' => '->name']),
-            'select_zbozicz' => SB::option("SELECT * FROM feed_zbozi_cz ORDER BY destination", ['category_id' => '->category_id - [->destination] ||| ->name']),
+            'select_zbozicz' => SB::option("SELECT * FROM feed_zbozi_cz ORDER BY destination", ['category_id' => '->category_id - [->destination] ||| ->name'], TRUE),
             'select_parent'  => SB::option("SELECT * FROM tree WHERE deep <= 2", ['id' => '[->id] - ->desc'])
         ]);
     }
@@ -91,6 +91,7 @@ class TreeController extends \BaseController
     {
         $tt = new ToolTree();
         $input = array_except(Input::all(), '_method');
+        (empty($input['zbozicz_id']) ? $input['zbozicz_id'] = NULL : "");
         $v = Validator::make($input, Tree::$rules);
 
         if ($v->passes()) {

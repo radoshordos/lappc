@@ -42,7 +42,7 @@
     <div class="form-group">
         {{ Form::label('zbozicz_id','Zboží.cz category #ID',['class'=> 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
-            {{ Form::select('zbozicz_id',$select_zbozicz, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zboží.cz category #ID']) }}
+            {{ Form::select('zbozicz_id',$select_zbozicz, NULL, ['class'=> 'form-control', 'placeholder'=> 'Zboží.cz category #ID']) }}
         </div>
     </div>
     <div class="form-group">
