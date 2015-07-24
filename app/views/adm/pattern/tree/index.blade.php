@@ -63,6 +63,7 @@
                     <tr>
                         <th>#ID</th>
                         <th>#Rodič</th>
+                        <th>#Zboží.cz</th>
                         <th>Název</th>
                         <th class="col-xs-4">{{ Form::text('search_desc',$search_desc,['placeholder'=> 'Titulek']) }}</th>
                         <th>Absolutní cesta</th>
@@ -74,6 +75,7 @@
                         <tr>
                             <td>{{ $tree->id }}</td>
                             <td>{{ $tree->parent_id }}</td>
+                            <td>{{ $tree->zbozicz_id }}</td>
                             <td>{{ $tree->name }}</td>
                             <td>{{ $tree->desc }}</td>
                             <td>{{ $tree->absolute }}</td>

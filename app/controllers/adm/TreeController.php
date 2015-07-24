@@ -39,7 +39,7 @@ class TreeController extends \BaseController
     public function create()
     {
         return View::make('adm.pattern.tree.create', [
-            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->absolute - ->desc'], true)
+            'select_parent' => SB::option("SELECT * FROM tree", ['id' => '[->id] - ->absolute - ->desc'], TRUE)
         ]);
     }
 
@@ -80,9 +80,10 @@ class TreeController extends \BaseController
         }
 
         return View::make('adm.pattern.tree.edit', [
-            'tree'          => $tree,
-            'select_dev'    => SB::option("SELECT * FROM dev", ['id' => '->name']),
-            'select_parent' => SB::option("SELECT * FROM tree WHERE deep <= 2", ['id' => '[->id] - ->desc'])
+            'tree'           => $tree,
+            'select_dev'     => SB::option("SELECT * FROM dev", ['id' => '->name']),
+            'select_zbozicz' => SB::option("SELECT * FROM feed_zbozi_cz ORDER BY destination", ['category_id' => '->category_id - [->destination] ||| ->name']),
+            'select_parent'  => SB::option("SELECT * FROM tree WHERE deep <= 2", ['id' => '[->id] - ->desc'])
         ]);
     }
 

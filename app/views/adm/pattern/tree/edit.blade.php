@@ -8,6 +8,8 @@
     <script>
         $(document).ready(function () {
             $("#parent_id").select2({});
+            $("#position").select2({});
+            $("#zbozicz_id").select2({});
         });
     </script>
 @stop
@@ -35,6 +37,12 @@
         {{ Form::label('position','Pozice #ID',['class'=> 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
             {{ Form::selectRange('position', 1, 99, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Pozice produktu vzhledem k menu']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ Form::label('zbozicz_id','Zboží.cz category #ID',['class'=> 'col-sm-2 control-label']) }}
+        <div class="col-sm-10">
+            {{ Form::select('zbozicz_id',$select_zbozicz, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Zboží.cz category #ID']) }}
         </div>
     </div>
     <div class="form-group">
@@ -85,7 +93,6 @@
     </p>
     {{ Form::close() }}
 
-    <br/>
     <br/>
 
     @if (count($tree->treeDev)>0)
