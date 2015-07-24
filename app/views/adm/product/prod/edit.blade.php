@@ -14,6 +14,7 @@
             $("#list_prod").select2({});
             $("#tree_id").select2({});
             $("#dev_id").select2({});
+            $("#warranty_id").select2({});
             $('#myTab a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');

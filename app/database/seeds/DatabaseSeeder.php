@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('BuyOrderStatusSeeder');
 		$this->call('BuyPaymentTypeSeeder');
 		$this->call('BuyTransportTypeSeeder');
-
+		$this->call('FeedZboziCzSeeder');
 
 		// OSTATNI
 		$this->call('FeedServiceTableSeeder');

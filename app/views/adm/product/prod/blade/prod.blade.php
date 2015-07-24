@@ -28,8 +28,8 @@
             {{ Form::label('dev_id', 'Výrobce', ['class'=> 'col-sm-2 control-label']) }}
             <div class="col-sm-10">
                 <div class="input-group btn-group-justified">
-                    <span class="btn-group">{{ Form::select('dev_id', $select_dev, NULL, ['required' => 'required', 'class'=> 'col-sm-2 form-control']) }}</span>
-                    <span class="btn-group">{{ Form::select('warranty_id', $select_warranty, NULL, ['required' => 'required', 'class'=> 'form-control', 'placeholder'=> 'Záruka produktu']) }}</span>
+                    <span class="btn-group">{{ Form::select('dev_id', $select_dev, NULL, ['id' => 'dev_id','required' => 'required']) }}</span>
+                    <span class="btn-group">{{ Form::select('warranty_id', $select_warranty, NULL, ['id' => 'warranty_id', 'required' => 'required', 'placeholder'=> 'Záruka produktu']) }}</span>
                 </div>
             </div>
         </div>
