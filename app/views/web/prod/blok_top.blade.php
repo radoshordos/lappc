@@ -1,11 +1,11 @@
 <div id="product">
 	<div class="row">
-		<div id="product-image" class="medium-6 columns">
-			<a class="gallery th" role="button" aria-label="Detailní náhled obrázku" href="{{ $vpa->getProdImgBigWithDir() }}">
-				<img aria-hidden="true" width="240" height="240" src="{{ $vpa->getProdImgNormalWithDir() }}" alt="{{ $vpa->getProdName() }}"/>
+		<div id="product-image" class="medium-7 columns">
+			<a class="gallery th" role="button" aria-label="Detailní náhled obrázku" title="{{ $vpa->getProdName() }}" href="{{ $vpa->getProdImgBigWithDir() }}">
+				<img aria-hidden="true" width="240" height="240" src="{{ $vpa->getProdImgNormalWithDir() }}" title="{{ $vpa->getProdName() }}" alt="{{ $vpa->getProdName() }}"/>
 			</a>
 		</div>
-		<div class="medium-12 columns">
+		<div class="medium-11 columns">
 			@include('web.prod.panel_price')
 			@include('web.prod.panel_information')
 		</div>
@@ -21,7 +21,7 @@
 				<div class="row">ZDARMA</div>
 				@foreach($mi_row->items as $item)
 					<div class="row">
-						<a class="th" role="button" aria-label="Thumbnail" href="">
+						<a class="th" role="button" aria-label="Zdarma k produktu" href="">
 							<img src="{{ "/web/naradi/". $item->prod->tree->absolute."/". $vpa->getProdImgNormal() }}" width="114" height="114">
 						</a>
 					</div>

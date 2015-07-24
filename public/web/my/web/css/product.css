@@ -32,8 +32,7 @@
 
 /* #product-image */
 div#product-image {
-    padding: 0.4em 0 0.4em 0.4em;
-    border: none;
+    padding-left: .5em;
 }
 
 /* MEDIA */
