@@ -12,6 +12,7 @@ class ViewTree extends Migration
             view_tree AS
             SELECT  tree.id AS tree_id,
                     tree.parent_id AS tree_parent_id,
+                    tree.zbozicz_id AS tree_zbozicz_id,
                     tree.deep AS tree_deep,
                     tree.name AS tree_name,
                     tree.desc AS tree_desc,

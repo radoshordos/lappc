@@ -10,6 +10,7 @@ class Tree extends Migration
         Schema::create('tree', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->integer('parent_id')->unsigned();
+            $table->integer('zbozicz_id')->unsigned()->nullable();
             $table->tinyInteger('group_id')->unsigned();
             $table->tinyInteger('position')->unsigned();
             $table->tinyInteger('deep')->unsigned()->nulable();
@@ -20,7 +21,7 @@ class Tree extends Migration
             $table->string('category_text','256')->nulable();
             $table->string('category_nav','512')->nulable();
             $table->string('category_menu','4096')->nulable();
-            $table->string('picture','40')->default('!.jpg')->nulable();
+            $table->string('picture','40')->default('!.jpg')->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
@@ -28,6 +29,7 @@ class Tree extends Migration
 
             $table->foreign('parent_id')->references('id')->on('tree')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('tree_group')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('zbozicz_id')->references('category_id')->on('feed_zbozi_cz')->onUpdate('cascade')->onDelete('set null');
         });
 
         DB::unprepared('DROP PROCEDURE IF EXISTS proc_tree_recalculate');

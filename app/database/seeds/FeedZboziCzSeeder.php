@@ -13,7 +13,7 @@ class FeedZboziCzSeeder extends Seeder
             $col = explode(";", $val);
 
             DB::table('feed_zbozi_cz')->insert([
-                'category'    => $col[0],
+                'category_id' => $col[0],
                 'name'        => $col[1],
                 'destination' => $col[2]
             ]);
