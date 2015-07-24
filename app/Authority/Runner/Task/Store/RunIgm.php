@@ -73,7 +73,9 @@ class RunIgm extends AbstractRunDev implements iItem
 
     public function setSyncIdDev()
     {
-        $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']);
+        if (isset($this->shopItem['MANUFACTURER'])) {
+            $this->syncIdDev = $this->analyseIdDev($this->shopItem['MANUFACTURER']);
+        }
     }
 
     public function setSyncProdName()

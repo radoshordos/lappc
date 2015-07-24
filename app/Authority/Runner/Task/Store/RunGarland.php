@@ -20,7 +20,9 @@ class RunGarland extends AbstractRunDev implements iItem
 
     public function setSyncIdDev()
     {
-        $this->syncIdDev = $this->analyseIdDev($this->shopItem['DRUH']);
+        if (isset($this->shopItem['DRUH'])) {
+            $this->syncIdDev = $this->analyseIdDev($this->shopItem['DRUH']);
+        }
     }
 
     private function analyseIdDev($dev_name)
