@@ -1,6 +1,5 @@
 <?php namespace Authority\Web\Prod;
 
-use Authority\Eloquent\ItemsAvailability;
 use Authority\Eloquent\ProdDifference;
 use Authority\Eloquent\ProdDifferenceM2nSet;
 use Authority\Eloquent\ProdDifferenceSet;
@@ -11,7 +10,6 @@ class Variations
     private $prod_difference_id;
     private $prod_difference_m2n_list;
     private $table_prod_difference;
-    private $table_items_availability;
     private $probably_items_variation_values = [];
     private $used_prod_difference_set;
 
@@ -61,11 +59,4 @@ class Variations
         return $this->table_prod_difference;
     }
 
-    public function getTableItemsAvailability()
-    {
-        if ($this->prod_difference_id > 1 && is_null($this->table_items_availability)) {
-            $this->table_items_availability = ItemsAvailability::all();
-        }
-        return $this->table_items_availability;
-    }
 }

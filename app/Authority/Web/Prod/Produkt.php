@@ -2,6 +2,7 @@
 
 use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Items;
+use Authority\Eloquent\ItemsAvailability;
 use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\MediaDb;
 use Authority\Eloquent\ProdDescription;
@@ -52,6 +53,7 @@ class Produkt
             'prod_difference_set'    => $variations->getUsedProdDifferenceSet(),
             'prod_difference_values' => $variations->getProbablyItemsVariationValues(),
             'prod_difference_column' => $variations->getCountDifferenceColumn(),
+            'items_availability'     => $this->getItemsAvailability(),
             'view_tree'              => ViewTree::where('tree_id', '=', $wp->tree_id)->first(),
             'prod_picture'           => $this->getProdPicture($wp->prod_id, $wp->prod_picture_count),
             'items_accessory'        => $this->getItemsAccessory($wp->prod_id),
@@ -63,6 +65,15 @@ class Produkt
     protected function getItems($prod_id)
     {
         return Items::where('prod_id', '=', $prod_id)->where('visible', '=', 1)->get();
+    }
+
+    protected function getItemsAvailability() {
+        $ia = ItemsAvailability::all()->toArray();
+        $arr = [];
+        foreach ($ia as $val) {
+            $arr[$val['id']] = $val;
+        }
+        return $arr;
     }
 
     protected function getMediaDev($dev_id)
