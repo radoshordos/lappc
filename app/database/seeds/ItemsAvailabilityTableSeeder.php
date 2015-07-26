@@ -33,13 +33,15 @@ class ItemsAvailabilityTableSeeder extends Seeder
         ]);
 
         DB::table('items_availability')->insert([
-            'id'   => 24,
-            'name' => '1-3 dny'
+            'id'            => 24,
+            'delivery_date' => 1,
+            'name'          => '1-3 dny'
         ]);
 
         DB::table('items_availability')->insert([
-            'id'   => 26,
-            'name' => '3-5 dnů'
+            'id'            => 26,
+            'delivery_date' => 3,
+            'name'          => '3-5 dnů'
         ]);
     }
 }

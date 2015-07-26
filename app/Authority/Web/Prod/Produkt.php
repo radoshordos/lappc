@@ -41,10 +41,6 @@ class Produkt
         $media_prod = $this->getMediaProd($wp->prod_id);
         $variations = new Variations($wp->prod_difference_id);
 
-        foreach($items as $row) {
-            $variations->getVariationsFromItem($row);
-        }
-
         return \View::make('web.prod', [
             'namespace'              => 'prod',
             'group'                  => 'prod',
@@ -53,7 +49,9 @@ class Produkt
             'items_count'            => $items_count,
             'view_prod_actual'       => $wp,
             'prod_difference'        => $variations->getTableProdDifference(),
+            'prod_difference_set'    => $variations->getUsedProdDifferenceSet(),
             'prod_difference_values' => $variations->getProbablyItemsVariationValues(),
+            'prod_difference_column' => $variations->getCountDifferenceColumn(),
             'view_tree'              => ViewTree::where('tree_id', '=', $wp->tree_id)->first(),
             'prod_picture'           => $this->getProdPicture($wp->prod_id, $wp->prod_picture_count),
             'items_accessory'        => $this->getItemsAccessory($wp->prod_id),
@@ -120,15 +118,12 @@ class Produkt
 //        return ($prod_mode_id == 4 && !is_null($akce_template_id) ? AkceTempl::find($akce_template_id)->get() : NULL);
     }
 
-
     /*
             protected function isProudct($urlPart)
             {
                     return View::make('web.prod', [
                         'view_tree'        => $this->view_tree = ViewTree::where('tree_absolute', '=', $view_prod_actual->tree_absolute)->first(),
                         'buy_box_price'    => $this->buyBoxPrice(),
-
-
                         'at_row'           => $at_row,
                         'item_row'         => $item_row,
                         'mi_row'           => ((isset($at_row) && intval($at_row->mixture_item_id) > 0) ? MixtureItem::find(intval($at_row->mixture_item_id)) : NULL),

@@ -69,3 +69,12 @@ table#transport td {
     text-align: center;
     padding: 0.5em 2.5em 0.5em 2.5em;
 }
+
+table#prod-items td {
+    padding: 0 1em 0 .2em;
+    margin: 0;
+}
+
+table#prod-items input {
+    margin: .5em;
+}
