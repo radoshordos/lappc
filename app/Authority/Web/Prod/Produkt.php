@@ -2,8 +2,8 @@
 
 use Authority\Eloquent\AkceTempl;
 use Authority\Eloquent\Items;
-use Authority\Eloquent\ItemsAvailability;
 use Authority\Eloquent\ItemsAccessory;
+use Authority\Eloquent\ItemsAvailability;
 use Authority\Eloquent\MediaDb;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdPicture;
@@ -67,15 +67,6 @@ class Produkt
         return Items::where('prod_id', '=', $prod_id)->where('visible', '=', 1)->get();
     }
 
-    protected function getItemsAvailability() {
-        $ia = ItemsAvailability::all()->toArray();
-        $arr = [];
-        foreach ($ia as $val) {
-            $arr[$val['id']] = $val;
-        }
-        return $arr;
-    }
-
     protected function getMediaDev($dev_id)
     {
         return MediaDb::select([
@@ -102,6 +93,16 @@ class Produkt
             ->where('mixture_prod_m2n_prod.prod_id', '=', $prod_id)
             ->orderBy('variations_id', 'desc')
             ->get();
+    }
+
+    protected function getItemsAvailability()
+    {
+        $ia = ItemsAvailability::all()->toArray();
+        $arr = [];
+        foreach ($ia as $val) {
+            $arr[$val['id']] = $val;
+        }
+        return $arr;
     }
 
     protected function getProdPicture($prod_id, $prod_picture_count)
