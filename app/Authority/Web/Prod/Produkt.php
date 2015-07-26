@@ -5,9 +5,6 @@ use Authority\Eloquent\Items;
 use Authority\Eloquent\ItemsAccessory;
 use Authority\Eloquent\MediaDb;
 use Authority\Eloquent\ProdDescription;
-use Authority\Eloquent\ProdDifference;
-use Authority\Eloquent\ProdDifferenceM2nSet;
-use Authority\Eloquent\ProdDifferenceValues;
 use Authority\Eloquent\ProdPicture;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
@@ -38,25 +35,30 @@ class Produkt
 
     private function workProdukt($wp)
     {
-        $items = $this->getItems($wp->prod_id);
+        $items = $this->getItems($wp->prod_id)->toArray();
         $items_count = count($items);
         $media_dev = $this->getMediaDev($wp->dev_id);
         $media_prod = $this->getMediaProd($wp->prod_id);
+        $variations = new Variations($wp->prod_difference_id);
+
+        foreach($items as $row) {
+            $variations->getVariationsFromItem($row);
+        }
 
         return \View::make('web.prod', [
-            'namespace' => 'prod',
-            'group' => 'prod',
-            'term' => $this->term,
-            'items' => $items,
-            'items_count' => $items_count,
-            'view_prod_actual' => $wp,
-            'view_tree' => ViewTree::where('tree_id', '=', $wp->tree_id)->first(),
-            'prod_picture' => $this->getProdPicture($wp->prod_id, $wp->prod_picture_count),
-            'prod_difference' => $this->getProdDifference($wp->prod_difference_id),
-            'prod_difference_values' => $this->getProdDifferenceValues($wp->prod_difference_id),
-            'items_accessory' => $this->getItemsAccessory($wp->prod_id),
-            'prod_desc_array' => ProdDescription::where('prod_id', '=', $wp->prod_id)->whereNotNull('data')->get(),
-            'media' => array_unique(array_merge($media_dev->toArray(), $media_prod->toArray()), SORT_REGULAR)
+            'namespace'              => 'prod',
+            'group'                  => 'prod',
+            'term'                   => $this->term,
+            'items'                  => $items,
+            'items_count'            => $items_count,
+            'view_prod_actual'       => $wp,
+            'prod_difference'        => $variations->getTableProdDifference(),
+            'prod_difference_values' => $variations->getProbablyItemsVariationValues(),
+            'view_tree'              => ViewTree::where('tree_id', '=', $wp->tree_id)->first(),
+            'prod_picture'           => $this->getProdPicture($wp->prod_id, $wp->prod_picture_count),
+            'items_accessory'        => $this->getItemsAccessory($wp->prod_id),
+            'prod_desc_array'        => ProdDescription::where('prod_id', '=', $wp->prod_id)->whereNotNull('data')->get(),
+            'media'                  => array_unique(array_merge($media_dev->toArray(), $media_prod->toArray()), SORT_REGULAR)
         ]);
     }
 
@@ -93,42 +95,9 @@ class Produkt
             ->get();
     }
 
-    protected function prepareProdDifferenceSelectBox(array $items, array $prod_difference_values, $prod_difference_id)
-    {
-        if ($prod_difference_id > 1 && count($prod_difference_values) > 0 && count($items) > 0) {
-            $arr = [];
-            foreach ($items as $row) {
-                $arr[$row['id']] = ["param01" => $prod_difference_values[$row['diff_val1_id']], "param02" => $prod_difference_values[$row['diff_val2_id']]];
-            }
-            return $arr;
-        } else {
-            return NULL;
-        }
-    }
-
     protected function getProdPicture($prod_id, $prod_picture_count)
     {
         return ($prod_picture_count > 0 ? ProdPicture::where('prod_id', '=', $prod_id)->get() : NULL);
-    }
-
-    protected function getProdDifference($prod_difference_id)
-    {
-        return ($prod_difference_id > 1 ? ProdDifference::find($prod_difference_id)->toArray() : NULL);
-    }
-
-    protected function getProdDifferenceValues($prod_difference_id)
-    {
-        if ($prod_difference_id > 1) {
-            $arr = ProdDifferenceM2nSet::select(['set_id'])->where('difference_id', '=', $prod_difference_id)->lists('set_id');
-            $values = ProdDifferenceValues::select(['id', 'name'])->whereIn('set_id', $arr)->get()->toArray();
-            $arr = [];
-            foreach ($values as $val) {
-                $arr[$val['id']] = $val['name'];
-            }
-            return $arr;
-        } else {
-            return NULL;
-        }
     }
 
     protected function getItemsAccessory($prod_id)
@@ -139,6 +108,7 @@ class Produkt
             ->where('view_prod.prod_id', '!=', $prod_id)
             ->get();
     }
+
 
     protected function getAkceTemplate($prod_mode_id, $akce_template_id)
     {

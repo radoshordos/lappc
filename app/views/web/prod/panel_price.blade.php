@@ -18,9 +18,9 @@
 
         <div class="row">
             <div class="medium-7 columns">
-                @if (!is_null($prod_difference) && $prod_difference>1)
+                @if (is_array($prod_difference) && $prod_difference['id'] > 1)
 
-                    @if ($prod_difference["count"] == 1)
+                    @if ($prod_difference["count"] >= 1)
                         <div class="row">
                             <div class="large-12 columns">
                                 <label>{{ $prod_difference['name'] }}
@@ -38,11 +38,20 @@
                     @endif
                 @endif
 
+                @if (isset($prod_difference['name']))
+                    <p>{{$prod_difference['name']}}</p>
+
+                    <p>
+                         {{-- var_dump($preppare); --}}
+                    </p>
+                @endif
+
+                {{ var_dump($prod_difference) }}
 
                 @if (!empty($items))
                     {{ Form::open(['action' => 'KosikController@store','class' => 'form-horizontal', 'role' => 'form']) }}
                     @if ($items_count == 1)
-                        <input name="do-kosiku[{{$items[0]->id }}]" style="max-width: 12em" class="success button expand" type="submit"  title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
+                        <input name="do-kosiku[{{$items[0]->id }}]" style="max-width: 12em" class="success button expand" type="submit" title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
                     @endif
                     {{ Form::close() }}
                 @endif

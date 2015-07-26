@@ -13,11 +13,11 @@
 		@foreach($media as $row)
 			@if ($row['media_variations'] == 302)
 				<div class="small-18 large-18 file column">
-					<a role="button" aria-label="Příloha" href="/web/naradi/_doc/{{ $row['media_source'] }}"><i class="fa fa-file-pdf-o fa-lg"></i> {{ $row['media_name'] }}</a>
+					<a role="button" aria-label="Příloha .pdf" href="/web/naradi/_doc/{{ $row['media_source'] }}"><i class="fa fa-file-pdf-o fa-lg"></i> {{ $row['media_name'] }}</a>
 				</div>
 			@elseif ($row['media_variations'] == 303)
 				<div class="small-18 large-18 file column">
-					<a role="button" aria-label="Příloha" href="/web/naradi/_doc/{{ $row['media_source'] }}"><i class="fa fa-file-image-o fa-lg"></i> {{ $row['media_name'] }}</a>
+					<a role="button" aria-label="Příloha obrázek" href="/web/naradi/_doc/{{ $row['media_source'] }}"><i class="fa fa-file-image-o fa-lg"></i> {{ $row['media_name'] }}</a>
 				</div>
 			@elseif ($row['media_variations'] == 401)
 				<div class="small-18 large-18 file column">
