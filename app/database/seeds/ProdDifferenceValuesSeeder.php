@@ -25,7 +25,9 @@ class ProdDifferenceValuesSeeder extends Seeder
 			['pdv_id' => '1134', 'pdv_id_set' => '11', 'pdv_id_extra' => '1', 'pdv_name' => 'velikost 47'],
 			['pdv_id' => '1137', 'pdv_id_set' => '11', 'pdv_id_extra' => '1', 'pdv_name' => 'velikost 48'],
 			['pdv_id' => '1140', 'pdv_id_set' => '11', 'pdv_id_extra' => '1', 'pdv_name' => 'velikost 49'],
-			['pdv_id' => '1143', 'pdv_id_set' => '11', 'pdv_id_extra' => '1', 'pdv_name' => 'velikost 50']
+			['pdv_id' => '1143', 'pdv_id_set' => '11', 'pdv_id_extra' => '1', 'pdv_name' => 'velikost 50'],
+			['pdv_id' => '3001', 'pdv_id_set' => '13', 'pdv_id_extra' => '1', 'pdv_name' => 'Modrá'],
+			['pdv_id' => '3002', 'pdv_id_set' => '13', 'pdv_id_extra' => '1', 'pdv_name' => 'Žlutá']
 		];
 
 		DB::table('prod_difference_values')->delete();
