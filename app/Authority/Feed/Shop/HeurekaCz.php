@@ -24,7 +24,7 @@ class HeurekaCz extends ShopAbstract
                     $this->out .= $this->tagEan($row);
                     $this->out .= $this->tagPriceVat($row);
                     $this->out .= $this->tagUrl($row);
-                    $this->out .= $this->tagUrlImg($row);
+                    $this->out .= $this->tagImgUrl($row);
                     $this->out .= $this->endShopItem();
                 }
             }

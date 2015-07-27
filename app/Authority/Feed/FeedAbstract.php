@@ -32,7 +32,7 @@ class FeedAbstract
         return "  <URL>" . implode('/', [\URL::route('web.home'), $row["tree_absolute"], $row["prod_alias"]]) . "</URL>\n";
     }
 
-    public function tagUrlImg($row)
+    public function tagImgUrl($row)
     {
         return "  <IMGURL>" . implode('/', [\URL::route('web.home'), "naradi", $row["tree_absolute"], $row["prod_img_normal"]]) . "</IMGURL>\n";
     }
