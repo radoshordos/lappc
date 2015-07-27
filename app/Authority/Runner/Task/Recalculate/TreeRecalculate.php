@@ -173,7 +173,7 @@ class TreeRecalculate extends TaskMessage implements iRun
                     }
                     $html .= '</ul></li>';
                 } else {
-                        $html .= "<li><a href=\"" . "/" . $root->tree_absolute . "\" title=\"" . $root->tree_desc . "\">" . $root->tree_name . "</a></li>";
+                    $html .= "<li><a href=\"" . "/" . $root->tree_absolute . "\" title=\"" . $root->tree_desc . "\">" . $root->tree_name . "</a></li>";
                 }
             }
             $html .= '</ul>';

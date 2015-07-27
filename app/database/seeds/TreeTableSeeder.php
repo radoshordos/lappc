@@ -587,13 +587,6 @@ class TreeTableSeeder extends Seeder
 
         foreach (array_merge($top, $tree) as $row) {
 
-            /*
-            $lastChar = substr($row['tree_abs_path'], -1);
-            if ($lastChar == '/') {
-                $row['tree_abs_path'] = substr($row['tree_abs_path'], 0, -1);
-            }
-            */
-
             if (isset($row['mid'])) {
                 DB::table('tree')->insert([
                     'id'        => $row['mid'],

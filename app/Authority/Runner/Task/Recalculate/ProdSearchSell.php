@@ -3,6 +3,7 @@
 use Authority\Runner\Task\iRun;
 use Authority\Runner\Task\TaskMessage;
 use Authority\Eloquent\Prod;
+use Authority\Eloquent\BuyOrderDbItems;
 
 class ProdSearchSell extends TaskMessage implements iRun
 {
