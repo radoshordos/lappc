@@ -15,15 +15,19 @@ class ProdSearchPrice extends TaskMessage implements iRun
 
     public function run()
     {
+        $i = 0;
         $prod_all = ViewProd::all();
         if (!empty($prod_all)) {
             foreach ($prod_all as $pid) {
                 $vpm = (new ViewProdMapper)->fetchRow($pid);
                 $prod = Prod::find($vpm->getProdId());
-                $prod->search_price = $vpm->getPrice();
-                $prod->save();
+                if ($prod->search_price != $vpm->getPrice()) {
+                    $i++;
+                    $prod->search_price = $vpm->getPrice();
+                    $prod->save();
+                }
             }
         }
-        $this->addMessage("Provedena aktualizace cen pro setřídění");
+        $this->addMessage("Provedena aktualizace cen pro setřídění: <b>" . $i . "</b>");
     }
 }

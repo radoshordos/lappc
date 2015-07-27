@@ -14,12 +14,17 @@ class ProdSearchAlias extends TaskMessage implements iRun
 
     public function run()
     {
+        $i = 0;
         $prod_all = Prod::select(['id', 'alias'])->get();
         foreach ($prod_all as $row) {
             $prod = Prod::find($row->id);
-            $prod->search_alias = SF::friendlyString($row->alias);
-            $prod->save();
+            $alias = SF::friendlySearch($row->alias);
+            if ($prod->search_alias != $alias) {
+                $i++;
+                $prod->search_alias = $alias;
+                $prod->save();
+            }
         }
-        $this->addMessage("Provedena aktualizace vyhledávacích textů");
+        $this->addMessage("Provedena aktualizace vyhledávacích textů: <b>" . $i . "</b>");
     }
 }
