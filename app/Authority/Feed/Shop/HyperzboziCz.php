@@ -22,7 +22,7 @@ class HyperzboziCz extends ShopAbstract
                     $this->out .= $this->tagDescription($row);
                     $this->out .= $this->tagPriceVat($row);
                     $this->out .= $this->tagUrl($row);
-                    $this->out .= $this->tagUrlImg($row);
+                    $this->out .= $this->tagImgUrl($row);
                     $this->out .= $this->tagCategoryText($row);
                     $this->out .= $this->endShopItem();
                 }
