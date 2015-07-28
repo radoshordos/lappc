@@ -1,7 +1,4 @@
-<?php
-
-use Authority\Eloquent\FeedService;
-
+<?php use Authority\Eloquent\FeedService;
 
 class FeedServiceController extends \BaseController
 {
@@ -14,9 +11,8 @@ class FeedServiceController extends \BaseController
 
     public function index()
     {
-        return View::make('adm.admin.feed.index', array(
+        return View::make('adm.admin.feed.index', [
             'feed' => $this->feed->orderBy('id')->get()
-        ));
+        ]);
     }
-
 }

@@ -43,4 +43,14 @@ abstract class ShopAbstract extends FeedAbstract implements ShopInterface
             ->where('prod_search_price', '!=', '9999999')
             ->get();
     }
+
+    public function getOut()
+    {
+        return $this->out;
+    }
+
+    public function getPublicFile($filename)
+    {
+        return dirname(dirname(dirname(dirname(__DIR__)))) . "\\public\\feeds\\" . $filename;
+    }
 }

@@ -11,13 +11,14 @@ Seznam XML Feedů
 
 @if ($feed->count())
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-10 col-md-offset-1">
         <table class="table table-striped table-hover table-bordered">
             <thead>
             <tr>
                 <th>#ID</th>
                 <th>Class</th>
                 <th>Název souboru</th>
+                <th>Spuštění</th>
                 <th>URL</th>
             </tr>
             </thead>
@@ -27,6 +28,7 @@ Seznam XML Feedů
                 <td>{{ $row->id }}</td>
                 <td>{{ $row->class }}</td>
                 <td>{{ $row->filename }}</td>
+                <td>{{ URL::route('web.home').'/feeds/'.$row->execute  }}</td>
                 <td>{{ URL::route('web.home').'/feeds/'.$row->filename  }}</td>
             </tr>
             @endforeach

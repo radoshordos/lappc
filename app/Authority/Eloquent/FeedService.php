@@ -17,6 +17,14 @@ class FeedService extends \Eloquent
         }
     }
 
+    public function scopeExecute($query, $string)
+    {
+        if (count($string) > 0) {
+            return $query->where('execute', '=', $string);
+        }
+    }
+
+
     public function feedColumn()
     {
         return $this->belongsToMany('Authority\Eloquent\FeedColumn', 'feed_service_m2n_column', 'service_id', 'column_id');
