@@ -9,8 +9,8 @@ class Items extends \Eloquent
 
 	public static $rules = [
 		'availability_id' => 'required|exists:items_availability,id',
-		'diff_val1_id'    => 'required|exists:prod_difference_values,id',
-		'diff_val2_id'    => 'required|exists:prod_difference_values,id',
+		'diff_val1_id'    => 'exists:prod_difference_values,id',
+		'diff_val2_id'    => 'exists:prod_difference_values,id',
 		'code_prod'       => "unique:items,code_prod",
 		'code_ean'        => "unique:items,code_ean"
 	];

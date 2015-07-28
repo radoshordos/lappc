@@ -7,6 +7,7 @@ use Authority\Eloquent\ItemsAvailability;
 use Authority\Eloquent\MediaDb;
 use Authority\Eloquent\ProdDescription;
 use Authority\Eloquent\ProdPicture;
+use Authority\Eloquent\SyncDb;
 use Authority\Eloquent\ViewProd;
 use Authority\Eloquent\ViewTree;
 
@@ -42,6 +43,12 @@ class Produkt
         $media_prod = $this->getMediaProd($wp->prod_id);
         $variations = new Variations($wp->prod_difference_id);
 
+        if (isset($items[0]['id'])) {
+            $items_id = $items[0]['id'];
+        } else {
+            $items_id = NULL;
+        }
+
         return \View::make('web.prod', [
             'namespace'              => 'prod',
             'group'                  => 'prod',
@@ -53,6 +60,7 @@ class Produkt
             'prod_difference_set'    => $variations->getUsedProdDifferenceSet(),
             'prod_difference_values' => $variations->getProbablyItemsVariationValues(),
             'prod_difference_column' => $variations->getCountDifferenceColumn(),
+            'sync_db_autosync'       => $this->getSyncDbAutoSync($items_id),
             'items_availability'     => $this->getItemsAvailability(),
             'view_tree'              => ViewTree::where('tree_id', '=', $wp->tree_id)->first(),
             'prod_picture'           => $this->getProdPicture($wp->prod_id, $wp->prod_picture_count),
@@ -60,6 +68,11 @@ class Produkt
             'prod_desc_array'        => ProdDescription::where('prod_id', '=', $wp->prod_id)->whereNotNull('data')->get(),
             'media'                  => array_unique(array_merge($media_dev->toArray(), $media_prod->toArray()), SORT_REGULAR)
         ]);
+    }
+
+    protected function getSyncDbAutoSync($items_id)
+    {
+        return SyncDb::where('item_id', '=', $items_id)->where('purpose', '=', 'autosync')->first();
     }
 
     protected function getItems($prod_id)
