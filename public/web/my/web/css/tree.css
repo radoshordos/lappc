@@ -171,8 +171,6 @@ div#prod-sort a.active {
     text-align: center;
     margin: auto;
     border: 1px solid #eee;
-    max-width: 240px;
-    max-height: 240px;
 }
 
 #prodlist p {
