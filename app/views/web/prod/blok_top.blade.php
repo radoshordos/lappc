@@ -23,7 +23,7 @@
 				@foreach($mi_row->items as $item)
 					<div class="row">
 						<a class="th" role="button" aria-label="Zdarma k produktu" href="">
-							<img src="{{ "/web/naradi/". $item->prod->tree->absolute."/". $vpa->getProdImgNormal() }}" width="121" height="121">
+							<img src="{{ "/web/naradi/". $item->prod->tree->absolute."/". $vpa->getProdImgNormal() }}" width="120" height="120">
 						</a>
 					</div>
 				@endforeach
@@ -37,7 +37,7 @@
 			@if (!empty($items_accessory))
 				@foreach($items_accessory as $row)
 					<a href="{{ "/".$row->tree_absolute."/". $row->prod_alias }}">
-						<img src="{{ "/web/naradi/". $row->tree_absolute."/". $row->prod_img_normal }}" width="121" height="121">
+						<img src="{{ "/web/naradi/". $row->tree_absolute."/". $row->prod_img_normal }}" width="120" height="120">
 					</a>
 				@endforeach
 			@endif

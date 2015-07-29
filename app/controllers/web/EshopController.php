@@ -1,15 +1,7 @@
 <?php
 
-use Authority\Eloquent\AkceTempl;
-use Authority\Eloquent\Items;
-use Authority\Eloquent\ItemsAccessory;
-use Authority\Eloquent\MediaDb;
-use Authority\Eloquent\MixtureItem;
-use Authority\Eloquent\ProdDescription;
-use Authority\Eloquent\ProdPicture;
-use Authority\Eloquent\ViewProd;
-use Authority\Eloquent\ViewTree;
 use Authority\Eloquent\BuyOrderDbItems;
+use Authority\Eloquent\ViewTree;
 use Authority\Web\Group\TreeMaster;
 
 class EshopController extends BaseController
