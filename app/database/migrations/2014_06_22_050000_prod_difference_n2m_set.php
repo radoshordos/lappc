@@ -15,7 +15,7 @@ class ProdDifferenceN2mSet extends Migration
             $table->engine = 'InnoDB';
             $table->unique(['difference_id', 'set_id']);
 
-            $table->foreign('difference_id', 'fk_pdns_2_pd')->references('id')->on('prod_difference')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('difference_id', 'fk_pdns_2_pd')->references('id')->on('prod_difference')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('set_id', 'fk_pdns_2_pds')->references('id')->on('prod_difference_set')->onUpdate('cascade')->onDelete('cascade');
         });
     }

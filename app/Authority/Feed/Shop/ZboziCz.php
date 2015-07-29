@@ -41,7 +41,7 @@ class ZboziCz extends ShopAbstract
 
     public function tagProductNo($row)
     {
-        if (strpos($row["prod_search_codes"], '|') == FALSE) {
+        if (strpos($row["prod_search_codes"], '|') === FALSE) {
             return "  <PRODUCTNO>" . $row["prod_search_codes"] . "</PRODUCTNO>\n";
         }
     }

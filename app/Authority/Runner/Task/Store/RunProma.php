@@ -4,6 +4,13 @@ class RunProma extends AbstractRunDev implements iItem
 {
     const ROOT = 'SHOP';
 
+    public function setSyncIdDev()
+    {
+        if (isset($this->shopItem['MANUFACTURER'])) {
+            $this->syncIdDev = $this->analyseIdDev(trim($this->shopItem['MANUFACTURER']));
+        }
+    }
+
     private function analyseIdDev($dev_name)
     {
         switch ($dev_name) {
@@ -20,13 +27,6 @@ class RunProma extends AbstractRunDev implements iItem
                 return 108;
             default :
                 return 0;
-        }
-    }
-
-    public function setSyncIdDev()
-    {
-        if (isset($this->shopItem['MANUFACTURER'])) {
-            $this->syncIdDev = $this->analyseIdDev(trim($this->shopItem['MANUFACTURER']));
         }
     }
 
@@ -77,9 +77,48 @@ class RunProma extends AbstractRunDev implements iItem
         }
     }
 
+    function setSyncProdWeight()
+    {
+        if (isset($this->shopItem['WEIGHT_GROSS'])) {
+            $this->syncProdWeight = round(doubleval($this->shopItem['WEIGHT_GROSS']), 2);
+        }
+    }
+
     function setSyncProdDesc()
     {
-        // TODO: Implement setSyncProdDesc() method.
+        if (isset($this->shopItem['DESCRIPTION'])) {
+            $this->syncProdDesc = (string)trim($this->shopItem['DESCRIPTION']);
+        }
+    }
+
+    public function storeImages()
+    {
+        if (!empty($this->shopItem['IMAGES'])) {
+            $pp = (array)$this->shopItem['IMAGES'];
+            if (count($pp) > 0) {
+                foreach ($pp as $val) {
+                    if (is_array($val)) {
+                        foreach ($val as $v) {
+                            if (strpos($v, "2-roky.jpg") === FALSE &&
+                                strpos($v, "3-roky.jpg") === FALSE &&
+                                strpos($v, "comprecisered.jpg") === FALSE &&
+                                strpos($v, "WORX-21black.jpg") === FALSE &&
+                                strpos($v, "logoworx.jpg") === FALSE &&
+                                strpos($v, "FERMRGB.jpg") === FALSE &&
+                                strpos($v, "logoFERMNEW2012CMYK.jpg") === FALSE &&
+                                strpos($v, "WORX-garden-logo-500.jpg") === FALSE &&
+                                strpos($v, "logoPROMAupravenebezR.jpg") === FALSE &&
+                                strpos($v, "Worxgardenlogo.jpg") === FALSE
+                            ) {
+                                $this->storeArray->setImg($v);
+                            }
+                        }
+                    } else {
+                        $this->storeArray->setAccessory($val);
+                    }
+                }
+            }
+        }
     }
 
     function setSyncUrl()
@@ -90,16 +129,6 @@ class RunProma extends AbstractRunDev implements iItem
     function setSyncItemsPriceAction()
     {
         // TODO: Implement setSyncItemsPriceAction() method.
-    }
-
-    function setSyncProdWeight()
-    {
-        // TODO: Implement setSyncProdWeight() method.
-    }
-
-    function storeImages()
-    {
-        // TODO: Implement storeImages() method.
     }
 
     function storeAccessory()
