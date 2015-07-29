@@ -6,7 +6,7 @@
 			</a>
 		</div>
 		<div class="medium-11 columns">
-			@include('web.prod.panel_price')
+			@include('web.prod.price')
 			@include('web.prod.panel_information')
 		</div>
 	</div>

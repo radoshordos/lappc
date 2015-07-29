@@ -16,15 +16,13 @@
         @if (!empty($items))
             {{ Form::open(['action' => 'KosikController@store', 'class' => 'form-horizontal', 'role' => 'form']) }}
             @if ($items_count == 1)
-                <input name="do-kosiku[{{--$items[0]->id --}}]" style="max-width: 12em" class="success button expand" type="submit" title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
+                <div class="large-9 columns">
+                    <input name="do-kosiku[{{ $items[0]['id'] }}]" class="success button expand radius" type="submit" title="Vložit {{ $vpa->getProdNameWithBonus(); }} do košíku" value="Do košíku"/>
+                </div>
+            @elseif($items_count > 1 && is_array($prod_difference) && $prod_difference_column > 0)
+                @include('web.prod.variation')
             @endif
             {{ Form::close() }}
-        @endif
-    </div>
-
-    <div class="row">
-        @if (is_array($prod_difference) && $prod_difference_column > 0)
-            @include('web.prod.variation')
         @endif
     </div>
 

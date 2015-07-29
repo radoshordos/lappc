@@ -6,8 +6,8 @@ use Authority\Eloquent\BuyOrderDbItems;
 use Authority\Eloquent\BuyPayment;
 use Authority\Eloquent\BuyTransport;
 use Authority\Eloquent\Items;
-use Authority\Eloquent\ViewTree;
 use Authority\Eloquent\ViewProd;
+use Authority\Eloquent\ViewTree;
 
 class KosikController extends BaseController
 {
@@ -53,7 +53,7 @@ class KosikController extends BaseController
             'namespace'            => self::KOSIKSPACE,
             'sid'                  => $this->sid,
             'term'                 => $this->term,
-            'view_tree_actual'     => $this->view_tree_actual,
+            'view_tree'            => $this->view_tree_actual,
             'weight_sum'           => $this->weight_sum,
             'buy_order_db_items'   => $this->buy_order_db_items,
             'buy_payment_name'     => $manipulation['buy_payment_name'],
@@ -110,7 +110,6 @@ class KosikController extends BaseController
         }
 
         if (Input::has(self::STEP2)) {
-
 
 
             return $this->step2DeliveryPayment(['krok' => self::STEP2]);
