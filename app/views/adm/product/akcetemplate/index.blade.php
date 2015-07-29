@@ -31,7 +31,7 @@
             <tbody>
             @foreach ($akcetemplate as $row)
             <tr>
-                <td>{{ $row->mixture_dev->name }}</td>
+                <td>{{ $row->mixture_dev["name"] }}</td>
                 <td>{{ $row->akce_minitext->name }}</td>
                 <td>{{ $row->akce_availability->name }}</td>
                 <td class="col-md-1">{{ $row->endtime }}</td>

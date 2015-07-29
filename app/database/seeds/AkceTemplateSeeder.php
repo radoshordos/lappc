@@ -9,7 +9,6 @@ class AkceTemplateSeeder extends Seeder
 		$akce_template = [
 			['id' => '1', 'mixture_dev_id' => '10', 'availability_id' => '1', 'minitext_id' => '1', 'mixture_item_id' => NULL, 'endtime' => '2028-01-01', 'bonus_title' => '[NULL]', 'bonus_text' => NULL, 'created_at' => '0000-00-00 00:00:00', 'updated_at' => '0000-00-00 00:00:00'],
 			['id' => '3', 'mixture_dev_id' => '10', 'availability_id' => '1', 'minitext_id' => '1', 'mixture_item_id' => NULL, 'endtime' => '2014-09-30', 'bonus_title' => 'title', 'bonus_text' => 'text', 'created_at' => '0000-00-00 00:00:00', 'updated_at' => '0000-00-00 00:00:00'],
-			['id' => '4', 'mixture_dev_id' => '9', 'availability_id' => '1', 'minitext_id' => '1', 'mixture_item_id' => NULL, 'endtime' => '2015-03-01', 'bonus_title' => NULL, 'bonus_text' => NULL, 'created_at' => '2015-02-09 22:03:32', 'updated_at' => '2015-02-09 22:03:32']
 		];
 
 		foreach ($akce_template as $row) {
