@@ -18,13 +18,13 @@
                     <div class="row">
                         @if ($vpa->getProdModeId() > 1)
                             @if ($vpa->getProdStoreroom() > 0)
-                                <span class="success label small-9 columns">{{ $vpa->getProdStoreroom() }} ks skladem</span>
+                                <span class="success label small-18 medium-9 columns">{{ $vpa->getProdStoreroom() }} ks skladem</span>
                             @else
-                                <span class="secondary label small-9 columns">není skladem</span>
+                                <span class="secondary label small-18 medium-9 columns">není skladem</span>
                             @endif
-                            <span class="price label small-9 columns">{{ $vpa->priceFormatCurrencyWith() }}</span>
+                            <span class="price label small-18 medium-9 columns">{{ $vpa->priceFormatCurrencyWith() }}</span>
                         @else
-                            <span class="alert label small-9 columns">Prodej byl ukončen</span>
+                            <span class="alert label small-18 medium-9 columns">Prodej byl ukončen</span>
                         @endif
                     </div>
                 </a>
