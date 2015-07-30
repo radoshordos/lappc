@@ -2,6 +2,7 @@
   "require": {
     "laravel/framework": "4.2.*",
     "cartalyst/sentry": "2.*",
+    "guzzlehttp/guzzle": "~6.0",
     "barryvdh/laravel-ide-helper": "1.*",
     "barryvdh/laravel-dompdf": "0.4.*",
     "dg/adminer-custom": "1.*",

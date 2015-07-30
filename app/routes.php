@@ -8,6 +8,14 @@ Route::group(['prefix' => 'feed/{file}'], function () {
     Route::get('feed', ['as' => 'feed.index', 'uses' => 'FeedServiceController@index']);
 });
 
+Route::group(['prefix' => 'pohoda'], function () {
+    Route::group(['prefix' => 'api'], function () {
+        Route::group(['prefix' => 'v1'], function () {
+            Route::get('test', ['as' => 'pohoda.api.v1.index', 'uses' => 'PohodaApiTestController@index']);
+        });
+    });
+});
+
 
 Route::group(['prefix' => 'adm'], function () {
 
