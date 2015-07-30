@@ -50,9 +50,10 @@ class ProdList extends AbstractTree implements iProdListable, iProdExpandable
 
 		$this->vp->where('prod_mode_id', '>', '1');
 
+
 		if (isset($this->view_tree_actual) && is_array($this->view_tree_actual) && count($this->view_tree_actual) > 0) {
-            if (isset($this->dev_actual['id']) && is_int($this->dev_actual['id'])) {
-                $this->vp->where('dev_id', '=', $this->dev_actual['id']);
+            if (isset($this->dev_actual['id'])) {
+                $this->vp->where('dev_id', '=', intval($this->dev_actual['id']));
             }
         }
 		return $this->vp->paginate(iProdListable::PAGINATE_PAGE);

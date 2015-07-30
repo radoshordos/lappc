@@ -5,6 +5,7 @@
 	Order allow,deny
 	Allow from 37.48.36.
 	Allow from 37.48.45.
+	Allow from 37.48.51.
 	Allow from 94.112.242.230
 
 	RewriteCond %{REQUEST_FILENAME} !-d
